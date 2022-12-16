@@ -1,0 +1,20 @@
+{
+  "name": "retusa",
+  "version": "1.0.0",
+  "description": "Statistical library for social sciences running in Node.js and browsers",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muzikp/retusa.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/muzikp/retusa/issues"
+  },
+  "homepage": "https://github.com/muzikp/retusa#readme"
+}
