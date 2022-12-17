@@ -1,7 +1,10 @@
 var $ = require("./locale").call;
 
+var e_yes = ":white_check_mark:";
+var e_no = ":no_entry_sign:"
+
 function VectorMarkdown(wiki, level = 1) {
-    var _ = `${hash(level)} ${wiki.name.toUpperCase()}{#${wiki.name}}`;
+    var _ = `${hash(level)} ${wiki.title.toUpperCase()} {#${wiki.name}}`;
     if(wiki.description) _ += `\n\n${wiki.description}`;
     if(wiki.filter) {
         _ += `\n\n${hash(level+1)} ${$("VVSN")}\n\n${wiki.filter}`;
@@ -21,7 +24,7 @@ function VectorMarkdown(wiki, level = 1) {
         _ += `\n\n${hash(level+1)} ${$("FRpk")}\n\n${objArrayToTable(headers, values)}`;
     }
     if(wiki.applies?.length > 0) {
-        _ += `\n\n${hash(level+1)} ${$("NizL")}\n\n${objArrayToTable([$("AfXp"), $("picU")], wiki.applies.map(v => [v.title, v.apply ? $("OpXv") : ":tent:"]))}`;
+        _ += `\n\n${hash(level+1)} ${$("NizL")}\n\n${objArrayToTable([$("AfXp"), $("picU")], wiki.applies.map(v => [v.title, v.apply ? e_yes : e_no]))}`;
 
     }
     return _;
@@ -36,16 +39,16 @@ function VectorOverview(Models) {
             `[${m.wiki.name}](#${m.wiki.name})`,
             m.wiki.title,
             m.wiki.description,
-            m.wiki.applies[0].apply ? "ano" : "ne",
-            m.wiki.applies[1].apply ? "ano" : "ne",
-            m.wiki.applies[2].apply ? "ano" : "ne",
+            m.wiki.applies[0].apply ? e_yes : e_no,
+            m.wiki.applies[1].apply ? e_yes : e_no,
+            m.wiki.applies[2].apply ? e_yes : e_no,
         ];
         return row;
     }));
     models.forEach(function(m) {
         _ += "\n\n\---\n\n" + VectorMarkdown(m.wiki, 3);
     });
-    console.log(_);
+    return _;
 }
 
 const hash = function(level) {

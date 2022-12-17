@@ -543,12 +543,11 @@ function getVectorTypeLabelCode(vector) {
 const Models = {}
 VectorMethodsModels.map(function(m){Models[m.name] = new VectorMethod(m)});
 
-VectorOverview(Models);
-
 module.exports = {
     $: $,
     NumericVector: NumericVector,
     StringVector: StringVector,
     VectorMethod: VectorMethod,
-    Models: Models
+    Models: Models,
+    VectorOverview: VectorOverview(Models)
 }
