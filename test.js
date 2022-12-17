@@ -2,15 +2,8 @@ const console = require("console");
 var framework = require("./index");
 
 with (framework) {
-    var range = new NumericVector(5,2,-15,-16.3,12,null, null, 12,13,7).range(); /* = 22 */
-    console.dir(range);
-    debugger;
-    return;
-    var h1 = score.histogram(null, 2);
-    //console.log(JSON.stringify(h1, null, "\t"))
-    console.table(h1)
-    debugger;
-    //debugger;
+    
+    
 
 
     //console.dir(framework.vectorModels.percentile.markdown(3));

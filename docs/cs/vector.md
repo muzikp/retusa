@@ -6,25 +6,25 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 
 | funkce | metoda | popis | numerická | nominální | binární |
 | --- | --- | --- | --- | --- | --- |
-| [sum](#sum) | součet | Vrátí součet všech neprázdných číselných hodnot vektoru. | :white_check_mark: | :no_entry_sign: | :no_entry_sign: |
-| [count](#count) | počet | Vrátí počet všech polí ve vektoru (včetně prázdných). | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| [avg](#avg) | arytmetický průměr | Vrátí arytmetický průměr z neprázdných hodnot. | :white_check_mark: | :no_entry_sign: | :no_entry_sign: |
-| [stdev](#stdev) | směrodatná odchylka | Vrátí směrodatnou odchylku neprázdných hodnot. | :white_check_mark: | :no_entry_sign: | :no_entry_sign: |
-| [variance](#variance) | rozptyl | Vrátí hodnotu rozptylu tohoto vektoru. | :white_check_mark: | :no_entry_sign: | :no_entry_sign: |
-| [histogram](#histogram) | histogram | Vrátí matici histogramu daného vektoru. | :white_check_mark: | :no_entry_sign: | :no_entry_sign: |
-| [min](#min) | minimální hodnota | Vrátí nejmenší hodnotu z neprázdných hodnot. V případě textu vrátí první hodnotu z abecedního řazení. | :white_check_mark: | :white_check_mark: | :no_entry_sign: |
-| [max](#max) | maximální hodnota | Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení. | :white_check_mark: | :white_check_mark: | :no_entry_sign: |
-| [range](#range) | variační rozpětí | Vrátí rozdíl největší a nejmenší neprázdné hodnoty. | :white_check_mark: | :no_entry_sign: | :no_entry_sign: |
-| [varc](#varc) | variační koeficient | Vrátí hodnotu variačního koeficientu neprázdných hodnot. | :white_check_mark: | :no_entry_sign: | :no_entry_sign: |
-| [percentile](#percentile) | percentil | Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru. | :white_check_mark: | :no_entry_sign: | :no_entry_sign: |
-| [frequency](#frequency) | frekvenční tabulka | Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností. | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| [geomean](#geomean) | geometrický průměr | Vrátí geometrický průměr z neprázdných hodnot. | :white_check_mark: | :no_entry_sign: | :no_entry_sign: |
-| [harmean](#harmean) | harmonický průměr | Vrátí harmonický průměr z neprázdných hodnot. | :white_check_mark: | :no_entry_sign: | :no_entry_sign: |
-| [median](#median) | medián | Vrátí střední hodnotu z neprázdných hodnot. | :white_check_mark: | :no_entry_sign: | :no_entry_sign: |
-| [mode](#mode) | modus | Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu). | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| [SEM](#SEM) | směrodatná chyba průměru | Vrátí hodnotu směrodatné chyby odhadu průměru. | :white_check_mark: | :no_entry_sign: | :no_entry_sign: |
-| [skewness](#skewness) | šikmost |  | :white_check_mark: | :no_entry_sign: | :no_entry_sign: |
-| [kurtosis](#kurtosis) | špičatost | Vrátí hodnotu excesu množiny dat. | :white_check_mark: | :no_entry_sign: | :no_entry_sign: |
+| [sum](#sum) | součet | Vrátí součet všech neprázdných číselných hodnot vektoru. | :heavy_check_mark: |  |  |
+| [count](#count) | počet | Vrátí počet všech polí ve vektoru (včetně prázdných). | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| [avg](#avg) | arytmetický průměr | Vrátí arytmetický průměr z neprázdných hodnot. | :heavy_check_mark: |  |  |
+| [stdev](#stdev) | směrodatná odchylka | Vrátí směrodatnou odchylku neprázdných hodnot. | :heavy_check_mark: |  |  |
+| [variance](#variance) | rozptyl | Vrátí hodnotu rozptylu tohoto vektoru. | :heavy_check_mark: |  |  |
+| [histogram](#histogram) | histogram | Vrátí matici histogramu daného vektoru. | :heavy_check_mark: |  |  |
+| [min](#min) | minimální hodnota | Vrátí nejmenší hodnotu z neprázdných hodnot. V případě textu vrátí první hodnotu z abecedního řazení. | :heavy_check_mark: | :heavy_check_mark: |  |
+| [max](#max) | maximální hodnota | Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení. | :heavy_check_mark: | :heavy_check_mark: |  |
+| [range](#range) | variační rozpětí | Vrátí rozdíl největší a nejmenší neprázdné hodnoty. | :heavy_check_mark: |  |  |
+| [varc](#varc) | variační koeficient | Vrátí hodnotu variačního koeficientu neprázdných hodnot. | :heavy_check_mark: |  |  |
+| [percentile](#percentile) | percentil | Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru. | :heavy_check_mark: |  |  |
+| [frequency](#frequency) | frekvenční tabulka | Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností. | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| [geomean](#geomean) | geometrický průměr | Vrátí geometrický průměr z neprázdných hodnot. | :heavy_check_mark: |  |  |
+| [harmean](#harmean) | harmonický průměr | Vrátí harmonický průměr z neprázdných hodnot. | :heavy_check_mark: |  |  |
+| [median](#median) | medián | Vrátí střední hodnotu z neprázdných hodnot. | :heavy_check_mark: |  |  |
+| [mode](#mode) | modus | Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu). | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| [SEM](#SEM) | směrodatná chyba průměru | Vrátí hodnotu směrodatné chyby odhadu průměru. | :heavy_check_mark: |  |  |
+| [skewness](#skewness) | šikmost |  | :heavy_check_mark: |  |  |
+| [kurtosis](#kurtosis) | špičatost | Vrátí hodnotu excesu množiny dat. | :heavy_check_mark: |  |  |
 
 ---
 
@@ -40,9 +40,9 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- | --- |
-| numerická | :white_check_mark: |
-| nominální | :no_entry_sign: |
-| binární | :no_entry_sign: |
+| numerická | :heavy_check_mark: |
+| nominální |  |
+| binární |  |
 
 #### Příklad
 
@@ -60,9 +60,9 @@ Vrátí počet všech polí ve vektoru (včetně prázdných).
 
 | typ vektoru | integrace |
 | --- | --- |
-| numerická | :white_check_mark: |
-| nominální | :white_check_mark: |
-| binární | :white_check_mark: |
+| numerická | :heavy_check_mark: |
+| nominální | :heavy_check_mark: |
+| binární | :heavy_check_mark: |
 
 #### Příklad
 
@@ -86,9 +86,9 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- | --- |
-| numerická | :white_check_mark: |
-| nominální | :no_entry_sign: |
-| binární | :no_entry_sign: |
+| numerická | :heavy_check_mark: |
+| nominální |  |
+| binární |  |
 
 #### Příklad
 
@@ -116,9 +116,9 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- | --- |
-| numerická | :white_check_mark: |
-| nominální | :no_entry_sign: |
-| binární | :no_entry_sign: |
+| numerická | :heavy_check_mark: |
+| nominální |  |
+| binární |  |
 
 #### Příklad
 
@@ -147,9 +147,9 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- | --- |
-| numerická | :white_check_mark: |
-| nominální | :no_entry_sign: |
-| binární | :no_entry_sign: |
+| numerická | :heavy_check_mark: |
+| nominální |  |
+| binární |  |
 
 #### Příklad
 
@@ -179,9 +179,9 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- | --- |
-| numerická | :white_check_mark: |
-| nominální | :no_entry_sign: |
-| binární | :no_entry_sign: |
+| numerická | :heavy_check_mark: |
+| nominální |  |
+| binární |  |
 
 #### Příklad
 
@@ -232,15 +232,22 @@ Vrátí nejmenší hodnotu z neprázdných hodnot. V případě textu vrátí pr
 
 #### Pre-filtr
 
-Pouze číselné hodnoty (včetně nul).
+jakákoliv neprázdná hodnota (u číselných řad akceptuje nuly, u birnáních proměnných argumenty nepravda/false).
 
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
 | --- | --- |
-| numerická | :white_check_mark: |
-| nominální | :white_check_mark: |
-| binární | :no_entry_sign: |
+| numerická | :heavy_check_mark: |
+| nominální | :heavy_check_mark: |
+| binární |  |
+
+#### Příklad
+
+```js
+var numeric_min = new NumericVector(4.5, 3.9, 5, 6, 7, 5.7, 9.1, 5.3, 7.2, 6.9, 6, 7.5, 5.3, 7.1, 8.2, 1).min(); /* = 1 */;
+var string_min = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale", "Gauss", "Poisson").min(); /* = Fisher */
+```
 
 ---
 
@@ -250,15 +257,22 @@ Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí p
 
 #### Pre-filtr
 
-Pouze číselné hodnoty (včetně nul).
+jakákoliv neprázdná hodnota (u číselných řad akceptuje nuly, u birnáních proměnných argumenty nepravda/false).
 
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
 | --- | --- |
-| numerická | :white_check_mark: |
-| nominální | :white_check_mark: |
-| binární | :no_entry_sign: |
+| numerická | :heavy_check_mark: |
+| nominální | :heavy_check_mark: |
+| binární |  |
+
+#### Příklad
+
+```js
+var numeric_max = new NumericVector(4.5, 3.9, 5, 6, 7, 5.7, 9.1, 5.3, 7.2, 6.9, 6, 7.5, 5.3, 7.1, 8.2, 1).max(); /* = 9.1 */;
+var string_max = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale", "Gauss", "Poisson").max(); /* = Poisson */
+```
 
 ---
 
@@ -274,9 +288,15 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- | --- |
-| numerická | :white_check_mark: |
-| nominální | :no_entry_sign: |
-| binární | :no_entry_sign: |
+| numerická | :heavy_check_mark: |
+| nominální |  |
+| binární |  |
+
+#### Příklad
+
+```js
+var range = new NumericVector(5,2,-15,-16.3,12,null, null, 12,13,7).range(); /* = 22 */
+```
 
 ---
 
@@ -298,9 +318,9 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- | --- |
-| numerická | :white_check_mark: |
-| nominální | :no_entry_sign: |
-| binární | :no_entry_sign: |
+| numerická | :heavy_check_mark: |
+| nominální |  |
+| binární |  |
 
 ---
 
@@ -322,9 +342,9 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- | --- |
-| numerická | :white_check_mark: |
-| nominální | :no_entry_sign: |
-| binární | :no_entry_sign: |
+| numerická | :heavy_check_mark: |
+| nominální |  |
+| binární |  |
 
 ---
 
@@ -342,9 +362,9 @@ Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností.
 
 | typ vektoru | integrace |
 | --- | --- |
-| numerická | :white_check_mark: |
-| nominální | :white_check_mark: |
-| binární | :white_check_mark: |
+| numerická | :heavy_check_mark: |
+| nominální | :heavy_check_mark: |
+| binární | :heavy_check_mark: |
 
 ---
 
@@ -360,9 +380,9 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- | --- |
-| numerická | :white_check_mark: |
-| nominální | :no_entry_sign: |
-| binární | :no_entry_sign: |
+| numerická | :heavy_check_mark: |
+| nominální |  |
+| binární |  |
 
 ---
 
@@ -378,9 +398,9 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- | --- |
-| numerická | :white_check_mark: |
-| nominální | :no_entry_sign: |
-| binární | :no_entry_sign: |
+| numerická | :heavy_check_mark: |
+| nominální |  |
+| binární |  |
 
 ---
 
@@ -396,9 +416,9 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- | --- |
-| numerická | :white_check_mark: |
-| nominální | :no_entry_sign: |
-| binární | :no_entry_sign: |
+| numerická | :heavy_check_mark: |
+| nominální |  |
+| binární |  |
 
 ---
 
@@ -410,9 +430,9 @@ Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vr�
 
 | typ vektoru | integrace |
 | --- | --- |
-| numerická | :white_check_mark: |
-| nominální | :white_check_mark: |
-| binární | :white_check_mark: |
+| numerická | :heavy_check_mark: |
+| nominální | :heavy_check_mark: |
+| binární | :heavy_check_mark: |
 
 ---
 
@@ -428,9 +448,9 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- | --- |
-| numerická | :white_check_mark: |
-| nominální | :no_entry_sign: |
-| binární | :no_entry_sign: |
+| numerická | :heavy_check_mark: |
+| nominální |  |
+| binární |  |
 
 ---
 
@@ -450,9 +470,9 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- | --- |
-| numerická | :white_check_mark: |
-| nominální | :no_entry_sign: |
-| binární | :no_entry_sign: |
+| numerická | :heavy_check_mark: |
+| nominální |  |
+| binární |  |
 
 ---
 
@@ -468,6 +488,6 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- | --- |
-| numerická | :white_check_mark: |
-| nominální | :no_entry_sign: |
-| binární | :no_entry_sign: |
+| numerická | :heavy_check_mark: |
+| nominální |  |
+| binární |  |
