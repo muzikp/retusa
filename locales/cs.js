@@ -277,10 +277,14 @@ module.exports = {
 	"AfXp": "typ vektoru",
 	/* MD vector applies - applies (header) */
 	"picU": "integrace",
-	"DJUc": "",
-	"wRbe": "",
-	"rlTY": "",
-	"zPyP": "",
+	/* MD vector overview header */
+	"DJUc": "Přehled statistických metod",
+	/* MD vector overview table header - function */
+	"wRbe": "funkce",
+	/* MD vector overview table header - method */
+	"rlTY": "metoda",
+	/* MD vector overview table header - description */
+	"zPyP": "popis",
 	"nzmJ": "",
 	"GBcE": "",
 	"IPcj": "",

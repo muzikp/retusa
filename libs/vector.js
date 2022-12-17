@@ -4,7 +4,7 @@ var $ = require("./locale").call;
 var {filters, validators} = require("./parsers");
 var schemas = require("./schemas");
 const {Array, Math, String} = require("./extensions");
-const {VectorMarkdown} = require("./markdown");
+const {VectorMarkdown, VectorOverview} = require("./markdown");
 var {VectorValueError, ArgumentError, Empty} = require("./errors");
 
 const registry = new WeakMap();
@@ -367,7 +367,7 @@ const VectorMethodsModels = [
         fn: Array.prototype.skewness,
         filter: filters.number,
         wiki: {
-            title: "oPPx",
+            title: "KZgI",
             description: "",
         },
         type: [1],
@@ -423,7 +423,8 @@ class VectorMethod {
     get wiki() {
         if(this.model.wiki) {
             return {
-                name: $(this.model.wiki.title),
+                name: this.model.name,
+                title: $(this.model.wiki.title),
                 description: $(this.model.wiki.description),
                 filter: this.model.filter ? $(this.model.filter.text) : null,
                 applies: [
@@ -537,8 +538,12 @@ function getVectorTypeLabelCode(vector) {
     }
 }
 
+
+
 const Models = {}
 VectorMethodsModels.map(function(m){Models[m.name] = new VectorMethod(m)});
+
+VectorOverview(Models);
 
 module.exports = {
     $: $,

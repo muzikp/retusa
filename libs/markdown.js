@@ -1,8 +1,7 @@
 var $ = require("./locale").call;
 
 function VectorMarkdown(wiki, level = 1) {
-    console.dir(wiki);
-    var _ = `${hash(level)} ${wiki.name.toUpperCase()}`;
+    var _ = `${hash(level)} ${wiki.name.toUpperCase()}{#${wiki.name}}`;
     if(wiki.description) _ += `\n\n${wiki.description}`;
     if(wiki.filter) {
         _ += `\n\n${hash(level+1)} ${$("VVSN")}\n\n${wiki.filter}`;
@@ -22,10 +21,31 @@ function VectorMarkdown(wiki, level = 1) {
         _ += `\n\n${hash(level+1)} ${$("FRpk")}\n\n${objArrayToTable(headers, values)}`;
     }
     if(wiki.applies?.length > 0) {
-        _ += `\n\n${hash(level+1)} ${$("NizL")}\n\n${objArrayToTable([$("AfXp"), $("picU")], wiki.applies.map(v => [v.title, v.apply ? $("OpXv") : "-"]))}`;
+        _ += `\n\n${hash(level+1)} ${$("NizL")}\n\n${objArrayToTable([$("AfXp"), $("picU")], wiki.applies.map(v => [v.title, v.apply ? $("OpXv") : ":tent:"]))}`;
 
     }
     return _;
+}
+
+function VectorOverview(Models) {
+    var models = Object.entries(Models).map(x => x[1]);
+    var _ = "# Vektor\n\nVektor (řada) je základní entitou statistické analýzy. Třída Vector se v aplikaci využívá výhradně skrze zděděné třídy (NumericVector atd.), které zajišťují validaci jednotlivých hodnot řady (např. do NumericVector instance nelze přidat hodnotu 'nazdar').";
+    _ += "\n\n## Statistické metody\n\n";
+    _ += objArrayToTable([$("wRbe"),$("rlTY"),$("zPyP"),$("LOYN"),$("zoiB"),$("OkoC")],models.map(function(m) { 
+        var row = [
+            `[${m.wiki.name}](#${m.wiki.name})`,
+            m.wiki.title,
+            m.wiki.description,
+            m.wiki.applies[0].apply ? "ano" : "ne",
+            m.wiki.applies[1].apply ? "ano" : "ne",
+            m.wiki.applies[2].apply ? "ano" : "ne",
+        ];
+        return row;
+    }));
+    models.forEach(function(m) {
+        _ += "\n\n\---\n\n" + VectorMarkdown(m.wiki, 3);
+    });
+    console.log(_);
 }
 
 const hash = function(level) {
@@ -49,5 +69,6 @@ function objArrayToTable(headers, values) {
 }
 
 module.exports = {
+    VectorOverview: VectorOverview,
     VectorMarkdown: VectorMarkdown
 }
