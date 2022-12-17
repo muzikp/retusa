@@ -4,7 +4,14 @@ var framework = require("./index");
 with (framework) {
     
     
-
+            console.table(new BooleanVector(true, false, null, true, null, null).frequency(4));
+            var boolean_vector = new StringVector("E","B","C","B","C","C","A","F","C").frequency(3);
+            /* 
+            */
+            var boolean_vector = new BooleanVector(true, false, null, true, null, null).frequency(4);
+            /* 
+            */
+    debugger;
 
     //console.dir(framework.vectorModels.percentile.markdown(3));
     var x = VectorOverview;

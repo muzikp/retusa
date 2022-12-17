@@ -331,6 +331,10 @@ const VectorMethodsModels = [
         },
         type: [1],
         returns: schemas.number,
+        example: function(){
+            var population = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc();  /* = 0.227 */
+            var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc(true); /* = 0.24 */ 
+        },
         args: {
             s: {
                 wiki: {
@@ -354,6 +358,12 @@ const VectorMethodsModels = [
         },
         type: [1],
         returns: schemas.number,
+        example: function(){
+            var score = new NumericVector(10,20,15,25,23,19,18,17,24,23);
+            var median = score.percentile(0.5); /* = 19.5 */
+            var q25 = score.percentile(0.25); /* = 17.25 */
+            var max = score.percentile(1); /* = 25 */
+        },
         args: {
             k: {
                 wiki: {
@@ -376,6 +386,42 @@ const VectorMethodsModels = [
         },
         type: [1,2,3],
         returns: schemas.frequencyTable,
+        example: function(){
+            var numeric_vector_no_order = new NumericVector(5,2,3,2,3,3,1,6,3).frequency();
+            /*
+            ┌─────────┬───────┬───────────┐
+            │ (index) │ value │ frequency │
+            ├─────────┼───────┼───────────┤
+            │    0    │   1   │     1     │
+            │    1    │   2   │     2     │
+            │    2    │   3   │     4     │
+            │    3    │   5   │     1     │
+            │    4    │   6   │     1     │
+            └─────────┴───────┴───────────┘ 
+            */
+            var string_vector_desc_value = new StringVector("E","B","C","B","C","C","A","F","C").frequency(3);
+            /* 
+            ┌─────────┬───────┬───────────┐
+            │ (index) │ value │ frequency │
+            ├─────────┼───────┼───────────┤
+            │    0    │  'F'  │     1     │
+            │    1    │  'A'  │     1     │
+            │    2    │  'C'  │     4     │
+            │    3    │  'B'  │     2     │
+            │    4    │  'E'  │     1     │
+            └─────────┴───────┴───────────┘
+            */
+            var boolean_vector_desc_frequency = new BooleanVector(true, false, null, true, null, null).frequency(4);
+            /* 
+            ┌─────────┬─────────┬───────────┐
+            │ (index) │  value  │ frequency │
+            ├─────────┼─────────┼───────────┤
+            │    0    │  null   │     3     │
+            │    1    │ 'true'  │     2     │
+            │    2    │ 'false' │     1     │
+            └─────────┴─────────┴───────────┘
+            */
+        },
         args: {
             order: {
                 wiki: {
@@ -622,6 +668,7 @@ module.exports = {
     $: $,
     NumericVector: NumericVector,
     StringVector: StringVector,
+    BooleanVector: BooleanVector,
     VectorMethod: VectorMethod,
     Models: Models,
     VectorOverview: VectorOverview(Models)

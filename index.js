@@ -7,6 +7,7 @@ module.exports = {
     },
     NumericVector: Vector.NumericVector,
     StringVector: Vector.StringVector,
+    BooleanVector: Vector.BooleanVector,
     vectorModels: Vector.Models,
     VectorOverview: Vector.VectorOverview
 }
