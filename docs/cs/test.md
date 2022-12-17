@@ -39,6 +39,8 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Integrace dle třídy
 
+| typ | integrace |
+| --- | --- |
 | numerická | ano |
 | nominální | - |
 | binární | - |
