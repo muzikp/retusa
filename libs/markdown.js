@@ -8,7 +8,18 @@ function VectorMarkdown(wiki, level = 1) {
         _ += `\n\n${hash(level+1)} ${$("VVSN")}\n\n${wiki.filter}`;
     }
     if(wiki.arguments?.length > 0) {
-        _ += `\n\n${hash(level+1)} ${$("FRpk")}`;
+        var headers = [$("QUJS"), $("jBGO"), $("tGqA"), $("VPYX"), $("pDgb"), $("Olab")];
+        var values = wiki.arguments.map(function(a){
+            return [
+                a.name,
+                a.title,
+                a.validator,
+                a.required ? $("OpXv") : "-",
+                a.default || a.default === 0 || a.default === false ? a.default : "-",
+                a.multiple ? $("OpXv") : "-",
+            ]
+        });
+        _ += `\n\n${hash(level+1)} ${$("FRpk")}\n\n${objArrayToTable(headers, values)}`;
     }
     return _;
 }
@@ -19,6 +30,18 @@ const hash = function(level) {
         h += "#";
     }
     return h;
+}
+
+function objArrayToTable(headers, values) {
+    var t = "|";
+    headers.forEach(h => t+= ` ${h} |`);
+    t += "\n|";
+    headers.forEach(h => t += ` --- |`);
+    values.forEach(function(v){ 
+        t += "\n|";
+        v.forEach(_ => t += ` ${_} |`)
+    });
+    return t;
 }
 
 module.exports = {

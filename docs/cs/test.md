@@ -8,7 +8,6 @@ Pouze číselné hodnoty (včetně nul).
 
 ## Argumenty
 
-| Key | Value |
-| --- | --- |
-| 1 | 3 |
-| 5 | 1598754565 |
+| argument | popis | vaidátor | povinný | defaultní hodnota | vícenásobný |
+| --- | --- | --- | --- | --- | --- |
+| k | hodnota percentilu | Ověří, zdali je hodnota číslo mezi 0 a 1 (včetně hraničních hodnot). V opačném případě vyvolá chybu. | ano | - | - |

@@ -255,14 +255,22 @@ module.exports = {
 	"VVSN": "Pre-filtr",
 	/* MD vector arguments (title) */
 	"FRpk": "Argumenty",
-	"QUJS": "",
-	"jBGO": "",
-	"tGqA": "",
-	"VPYX": "",
-	"pDgb": "",
-	"Olab": "",
-	"OpXv": "",
-	"SnpN": "",
+	/* MD vector argument table header - id */
+	"QUJS": "argument",
+	/* MD vector argument table header - title */
+	"jBGO": "popis",
+	/* MD vector argument table header - validator */
+	"tGqA": "vaidátor",
+	/* MD vector argument table header - required */
+	"VPYX": "povinný",
+	/* MD vector argument table header - default */
+	"pDgb": "defaultní hodnota",
+	/* MD vector argument table header - multiple */
+	"Olab": "vícenásobný",
+	/* YES */
+	"OpXv": "ano",
+	/* NO */ 
+	"SnpN": "ne",
 	"NizL": "",
 	"AfXp": "",
 	"picU": "",
