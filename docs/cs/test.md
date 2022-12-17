@@ -48,7 +48,7 @@ Pouze číselné hodnoty (včetně nul).
 
 ```
 var cf = new NumericVector(200,250,150,320,240,-250,10,-320).sum(); 
-```js
+```
 
 ---
 
