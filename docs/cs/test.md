@@ -2,6 +2,8 @@
 
 ## Statistické metody
 
+---
+
 ### HISTOGRAM
 
 Vrátí matici histogramu daného vektoru.
@@ -39,7 +41,7 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Integrace dle třídy
 
-| typ | integrace |
+| typ vektoru | integrace |
 | --- | --- |
 | numerická | ano |
 | nominální | - |

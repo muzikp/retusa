@@ -22,12 +22,7 @@ function VectorMarkdown(wiki, level = 1) {
         _ += `\n\n${hash(level+1)} ${$("FRpk")}\n\n${objArrayToTable(headers, values)}`;
     }
     if(wiki.applies?.length > 0) {
-        var headers = []
-        var t = "";
-        for(var i = 0; i < wiki.applies.length; i++) {
-            t+= `| ${wiki.applies[i].title} | ${wiki.applies[i].apply ? $("ano") : "-"} |\n`;
-        }
-        _ += `\n\n${hash(level+1)} ${$("NizL")}\n\n${t}`;
+        _ += `\n\n${hash(level+1)} ${$("NizL")}\n\n${objArrayToTable([$("AfXp"), $("picU")], wiki.applies.map(v => [v.title, v.apply ? $("OpXv") : "-"]))}`;
 
     }
     return _;

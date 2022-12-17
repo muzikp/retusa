@@ -273,8 +273,10 @@ module.exports = {
 	"SnpN": "ne",
 	/* MD vector applies (title) */
 	"NizL": "Integrace dle třídy",
-	"AfXp": "",
-	"picU": "",
+	/* MD vector applies - type (header) */
+	"AfXp": "typ vektoru",
+	/* MD vector applies - applies (header) */
+	"picU": "integrace",
 	"DJUc": "",
 	"wRbe": "",
 	"rlTY": "",
