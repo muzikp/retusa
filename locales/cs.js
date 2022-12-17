@@ -251,7 +251,8 @@ module.exports = {
 	"oIyG": "kumulativní četnost (%)",
 	/* Empty instance - calling VectorMethod without the parent specified */
 	"hKRq": "Pokud není určena konkrétní instance vektoru coby vlastnosti instance třídy VectorMethod, je při volání výpočetní nebo validační metody vrácen prázdný výsledek.",
-	"VVSN": "",
+	/* MD vector filter lavel */
+	"VVSN": "implementovaný filtr",
 	"FRpk": "",
 	"QUJS": "",
 	"jBGO": "",

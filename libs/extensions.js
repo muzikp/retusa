@@ -141,6 +141,14 @@ Array.prototype.kurtosis = function(){
     return k;
 }
 
+String.prototype.fill = function(what, repetition) {
+    var x = "";
+    for(var i = 0; i < repetition; i++) {
+        x =+ what;
+    }
+    return x;
+}
+
 Math.combinations = function(n, r, repeats) {
     if(n< r) return 0;
     if(n=== r) return 1;
@@ -166,4 +174,4 @@ Math.getRandomIndexes = function(n, max) {
     return indexes;
 }
 
-module.exports = {Array, Math};
+module.exports = {Array, Math, String};

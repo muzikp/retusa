@@ -3,7 +3,8 @@
 var $ = require("./locale").call;
 var {filters, validators} = require("./parsers");
 var schemas = require("./schemas");
-const {Array, Math} = require("./extensions");
+const {Array, Math, String} = require("./extensions");
+const {VectorMarkdown} = require("./markdown");
 var {VectorValueError, ArgumentError, Empty} = require("./errors");
 
 const registry = new WeakMap();
@@ -451,6 +452,10 @@ class VectorMethod {
                 })(this.model.args)
             }
         } else return {};
+    }
+    /* Generates a markdown documentation for the vector method */
+    markdown(level = 1) {
+        return VectorMarkdown(this.wiki, level);
     }
     
     /**
