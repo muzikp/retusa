@@ -98,6 +98,13 @@ class StringVector extends Vector {
 }
 StringVector.prototype.parse = vectorParser.string;
 
+class BooleanVector extends Vector {
+    constructor(){
+        super(...arguments);
+    }
+}
+BooleanVector.prototype.parse = vectorParser.string;
+
 // #endregion
 
 const VectorMethodsModels = [
@@ -110,7 +117,10 @@ const VectorMethodsModels = [
             description: "iMbD"
         },
         type: [1],
-        returns: schemas.number
+        returns: schemas.number,
+        example: function(){
+            var cashflow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 600 */
+        }
     },    
     {
         name: "count",
@@ -120,7 +130,12 @@ const VectorMethodsModels = [
             description: "ULJX"
         },
         type: [1,2,3],
-        returns: schemas.uint
+        returns: schemas.uint,
+        example: function(){
+            var total_numeric = new NumericVector(200,250,null,150,320,240,-250,null,10,-320).count();  /* = 10 */
+            var total_string = new StringVector("A","B","C","D").count();  /* = 4 */
+            var total_boolean = new BooleanVector(true, true, false, null, false, true).count();  /* = 6 */
+        }
     },
     {
         name: "avg",
@@ -131,7 +146,10 @@ const VectorMethodsModels = [
             description: "UYJN"
         },
         type: [1],
-        returns: schemas.number
+        returns: schemas.number,
+        example: function(){
+            var avgCashFlow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 75 */
+        }
     },
     {
         name: "stdev",
@@ -433,6 +451,7 @@ class VectorMethod {
                     {type: 3, title: $("OkoC"), apply: this.model.type.indexOf(3) > -1}
                 ],
                 returns: this.model.returns,
+                example: this.model.example ? this.model.example.stringify() : null,
                 arguments: (function(args){
                     var _ = [];
                     if(!args) return [];
@@ -538,7 +557,12 @@ function getVectorTypeLabelCode(vector) {
     }
 }
 
-
+Function.prototype.stringify = function(indent = "\t") {
+    var raw = this.toString().match(/function[^{]+\{([\s\S]*)\}$/)[1];
+    var formatted = "";
+    raw.split(/\n/g).forEach(l => formatted += l.trim() + "\n");
+    return formatted.trim();
+}
 
 const Models = {}
 VectorMethodsModels.map(function(m){Models[m.name] = new VectorMethod(m)});

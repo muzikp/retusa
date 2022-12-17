@@ -4,7 +4,7 @@ var e_yes = ":white_check_mark:";
 var e_no = ":no_entry_sign:"
 
 function VectorMarkdown(wiki, level = 1) {
-    var _ = `${hash(level)} ${wiki.title.toUpperCase()} {#${wiki.name}}`;
+    var _ = `${hash(level)} ${wiki.name.toUpperCase()}`;
     if(wiki.description) _ += `\n\n${wiki.description}`;
     if(wiki.filter) {
         _ += `\n\n${hash(level+1)} ${$("VVSN")}\n\n${wiki.filter}`;
@@ -26,6 +26,9 @@ function VectorMarkdown(wiki, level = 1) {
     if(wiki.applies?.length > 0) {
         _ += `\n\n${hash(level+1)} ${$("NizL")}\n\n${objArrayToTable([$("AfXp"), $("picU")], wiki.applies.map(v => [v.title, v.apply ? e_yes : e_no]))}`;
 
+    }
+    if(wiki.example) {
+        _ += `\n\n${hash(level+1)} ${$("nzmJ")}\n\n\`\`\`js\n${wiki.example}\n\`\`\``;
     }
     return _;
 }

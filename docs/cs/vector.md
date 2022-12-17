@@ -6,7 +6,7 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 
 | funkce | metoda | popis | numerická | nominální | binární |
 | --- | --- | --- | --- | --- | --- |
-| [sum]{#sum} | součet | Vrátí součet všech neprázdných číselných hodnot vektoru. | :white_check_mark: | :no_entry_sign: | :no_entry_sign: |
+| [sum](#sum) | součet | Vrátí součet všech neprázdných číselných hodnot vektoru. | :white_check_mark: | :no_entry_sign: | :no_entry_sign: |
 | [count](#count) | počet | Vrátí počet všech polí ve vektoru (včetně prázdných). | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | [avg](#avg) | arytmetický průměr | Vrátí arytmetický průměr z neprázdných hodnot. | :white_check_mark: | :no_entry_sign: | :no_entry_sign: |
 | [stdev](#stdev) | směrodatná odchylka | Vrátí směrodatnou odchylku neprázdných hodnot. | :white_check_mark: | :no_entry_sign: | :no_entry_sign: |
@@ -28,7 +28,7 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 
 ---
 
-### SOUČET {#sum}
+### SUM
 
 Vrátí součet všech neprázdných číselných hodnot vektoru.
 
@@ -44,9 +44,15 @@ Pouze číselné hodnoty (včetně nul).
 | nominální | :no_entry_sign: |
 | binární | :no_entry_sign: |
 
+#### Příklad
+
+```js
+var cashflow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 600 */
+```
+
 ---
 
-### POČET {#count}
+### COUNT
 
 Vrátí počet všech polí ve vektoru (včetně prázdných).
 
@@ -58,9 +64,17 @@ Vrátí počet všech polí ve vektoru (včetně prázdných).
 | nominální | :white_check_mark: |
 | binární | :white_check_mark: |
 
+#### Příklad
+
+```js
+var total_numeric = new NumericVector(200,250,null,150,320,240,-250,null,10,-320).count();  /* = 10 */
+var total_string = new StringVector("A","B","C","D").count();  /* = 4 */
+var total_boolean = new BooleanVector(true, true, false, null, false, true).count();  /* = 6 */
+```
+
 ---
 
-### ARYTMETICKÝ PRŮMĚR {#avg}
+### AVG
 
 Vrátí arytmetický průměr z neprázdných hodnot.
 
@@ -76,9 +90,15 @@ Pouze číselné hodnoty (včetně nul).
 | nominální | :no_entry_sign: |
 | binární | :no_entry_sign: |
 
+#### Příklad
+
+```js
+var avgCashFlow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 75 */
+```
+
 ---
 
-### SMĚRODATNÁ ODCHYLKA {#stdev}
+### STDEV
 
 Vrátí směrodatnou odchylku neprázdných hodnot.
 
@@ -102,7 +122,7 @@ Pouze číselné hodnoty (včetně nul).
 
 ---
 
-### ROZPTYL {#variance}
+### VARIANCE
 
 Vrátí hodnotu rozptylu tohoto vektoru.
 
@@ -126,7 +146,7 @@ Pouze číselné hodnoty (včetně nul).
 
 ---
 
-### HISTOGRAM {#histogram}
+### HISTOGRAM
 
 Vrátí matici histogramu daného vektoru.
 
@@ -151,7 +171,7 @@ Pouze číselné hodnoty (včetně nul).
 
 ---
 
-### MINIMÁLNÍ HODNOTA {#min}
+### MIN
 
 Vrátí nejmenší hodnotu z neprázdných hodnot. V případě textu vrátí první hodnotu z abecedního řazení.
 
@@ -169,7 +189,7 @@ Pouze číselné hodnoty (včetně nul).
 
 ---
 
-### MAXIMÁLNÍ HODNOTA {#max}
+### MAX
 
 Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení.
 
@@ -187,7 +207,7 @@ Pouze číselné hodnoty (včetně nul).
 
 ---
 
-### VARIAČNÍ ROZPĚTÍ {#range}
+### RANGE
 
 Vrátí rozdíl největší a nejmenší neprázdné hodnoty.
 
@@ -205,7 +225,7 @@ Pouze číselné hodnoty (včetně nul).
 
 ---
 
-### VARIAČNÍ KOEFICIENT {#varc}
+### VARC
 
 Vrátí hodnotu variačního koeficientu neprázdných hodnot.
 
@@ -229,7 +249,7 @@ Pouze číselné hodnoty (včetně nul).
 
 ---
 
-### PERCENTIL {#percentile}
+### PERCENTILE
 
 Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru.
 
@@ -253,7 +273,7 @@ Pouze číselné hodnoty (včetně nul).
 
 ---
 
-### FREKVENČNÍ TABULKA {#frequency}
+### FREQUENCY
 
 Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností.
 
@@ -273,7 +293,7 @@ Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností.
 
 ---
 
-### GEOMETRICKÝ PRŮMĚR {#geomean}
+### GEOMEAN
 
 Vrátí geometrický průměr z neprázdných hodnot.
 
@@ -291,7 +311,7 @@ Pouze číselné hodnoty (včetně nul).
 
 ---
 
-### HARMONICKÝ PRŮMĚR {#harmean}
+### HARMEAN
 
 Vrátí harmonický průměr z neprázdných hodnot.
 
@@ -309,7 +329,7 @@ Pouze číselné hodnoty (včetně nul).
 
 ---
 
-### MEDIÁN {#median}
+### MEDIAN
 
 Vrátí střední hodnotu z neprázdných hodnot.
 
@@ -327,7 +347,7 @@ Pouze číselné hodnoty (včetně nul).
 
 ---
 
-### MODUS {#mode}
+### MODE
 
 Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu).
 
@@ -341,7 +361,7 @@ Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vr�
 
 ---
 
-### SMĚRODATNÁ CHYBA PRŮMĚRU {#SEM}
+### SEM
 
 Vrátí hodnotu směrodatné chyby odhadu průměru.
 
@@ -359,7 +379,7 @@ Pouze číselné hodnoty (včetně nul).
 
 ---
 
-### ŠIKMOST {#skewness}
+### SKEWNESS
 
 #### Pre-filtr
 
@@ -381,7 +401,7 @@ Pouze číselné hodnoty (včetně nul).
 
 ---
 
-### ŠPIČATOST {#kurtosis}
+### KURTOSIS
 
 Vrátí hodnotu excesu množiny dat.
 

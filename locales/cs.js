@@ -285,7 +285,8 @@ module.exports = {
 	"rlTY": "metoda",
 	/* MD vector overview table header - description */
 	"zPyP": "popis",
-	"nzmJ": "",
+	/* MD vector example header */
+	"nzmJ": "Příklad",
 	"GBcE": "",
 	"IPcj": "",
 	"VEAt": "",
