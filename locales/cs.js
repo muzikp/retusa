@@ -271,7 +271,8 @@ module.exports = {
 	"OpXv": "ano",
 	/* NO */ 
 	"SnpN": "ne",
-	"NizL": "",
+	/* MD vector applies (title) */
+	"NizL": "Integrace dle třídy",
 	"AfXp": "",
 	"picU": "",
 	"DJUc": "",
