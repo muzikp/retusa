@@ -1,7 +1,8 @@
+//https://gist.github.com/rxaviers/7360908
 var $ = require("./locale").call;
 
-var e_yes = ":white_check_mark:";
-var e_no = ":no_entry_sign:"
+var e_yes = ":heavy_check_mark:" //":white_check_mark:";
+var e_no = "" // ":no_entry_sign:"
 
 function VectorMarkdown(wiki, level = 1) {
     var _ = `${hash(level)} ${wiki.name.toUpperCase()}`;

@@ -280,24 +280,32 @@ const VectorMethodsModels = [
     {
         name: "min",
         fn: Array.prototype.min,
-        filter: filters.number,
+        filter: filters.notnull,
         wiki: {
             title: "FkaD",
             description: "yBlA"
         },
         type: [1,2],
+        example: function(){
+            var numeric_min = new NumericVector(4.5, 3.9, 5, 6, 7, 5.7, 9.1, 5.3, 7.2, 6.9, 6, 7.5, 5.3, 7.1, 8.2, 1).min(); /* = 1 */;
+            var string_min = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale", "Gauss", "Poisson").min(); /* = Fisher */
+        },
         returns: [schemas.number, schemas.string],
     },
     {
         name: "max",
         fn: Array.prototype.max,
-        filter: filters.number,
+        filter: filters.notnull,
         wiki: {
             title: "nKuF",
             description: "gkep"
         },
         type: [1,2],
-        returns: [schemas.number, schemas.string]
+        returns: [schemas.number, schemas.string],
+        example: function(){
+            var numeric_max = new NumericVector(4.5, 3.9, 5, 6, 7, 5.7, 9.1, 5.3, 7.2, 6.9, 6, 7.5, 5.3, 7.1, 8.2, 1).max(); /* = 9.1 */;
+            var string_max = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale", "Gauss", "Poisson").max(); /* = Poisson */
+        }
     },
     {
         name: "range",
@@ -308,7 +316,10 @@ const VectorMethodsModels = [
             description: "dnzB"
         },
         type: [1],
-        returns: schemas.number
+        returns: schemas.number,
+        example: function(){
+            var range = new NumericVector(5,2,-15,-16.3,12,null, null, 12,13,7).range(); /* = 22 */
+        }
     },
     {
         name: "varc",

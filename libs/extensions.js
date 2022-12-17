@@ -10,31 +10,31 @@ Array.prototype.avg = function() {
     return this.sum()/this.count()
 }
 
-Array.prototype.asc = function(self) {
-    if(self) return this.sort((a,b) => a - b);
-    else return new Array(...this).sort((a,b) => a - b);
-}
-
 Array.prototype.distinct = function() {
     return [...new Set(this)]
 }
 
+Array.prototype.asc = function(self) {
+    if(self) return this.sort();
+    else return new Array(...this).sort();
+}
+
 Array.prototype.desc = function(self) {
     if(self) {
-        return this.sort((a,b) => b - a);
-    } else return new Array(...this).sort((a,b) => b - a);
+        return this.sort().reverse();
+    } else return new Array(...this).sort().reverse();
 }
 
 Array.prototype.min = function(){
     if(this.length == 0) return null;
     else if(this.length == 1) return this[0];
-    else return this.asc()[0];
+    else return new Array(...this).sort()[0];
 }
 
 Array.prototype.max = function(){
     if(this.length == 0) return null;
     else if(this.length == 1) return this[0];
-    else return this.desc()[0];
+    else return new Array(...this).sort().reverse()[0];
 }
 
 Array.prototype.range = function(){

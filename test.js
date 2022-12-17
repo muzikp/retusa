@@ -1,8 +1,11 @@
+const console = require("console");
 var framework = require("./index");
 
 with (framework) {
-    var score = new NumericVector(4.5, 3.9, 5, 6, 7, 5.7, 9.1, 5.3, 7.2, 6.9, 6, 7.5, 5.3, 7.1, 8.2, 1);
-    console.log(score.count());
+    var range = new NumericVector(5,2,-15,-16.3,12,null, null, 12,13,7).range(); /* = 22 */
+    console.dir(range);
+    debugger;
+    return;
     var h1 = score.histogram(null, 2);
     //console.log(JSON.stringify(h1, null, "\t"))
     console.table(h1)
