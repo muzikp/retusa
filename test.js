@@ -1,9 +1,12 @@
 var framework = require("./index");
 
 with (framework) {
-    var w = [0.25, 0.3, 0.3, 0.1, 0,5];
-    var age = new NumericVector(15,16,17,19,20).weight(w).name();
-    console.log(new NumericVector(200,250,150,320,240,-250,10,-320).avg());
+    var score = new NumericVector(4.5, 3.9, 5, 6, 7, 5.7, 9.1, 5.3, 7.2, 6.9, 6, 7.5, 5.3, 7.1, 8.2, 1);
+    console.log(score.count());
+    var h1 = score.histogram(null, 2);
+    //console.log(JSON.stringify(h1, null, "\t"))
+    console.table(h1)
+    debugger;
     //debugger;
 
 

@@ -174,4 +174,11 @@ Math.getRandomIndexes = function(n, max) {
     return indexes;
 }
 
-module.exports = {Array, Math, String};
+Function.prototype.stringify = function(indent = "\t") {
+    var raw = this.toString().match(/function[^{]+\{([\s\S]*)\}$/)[1];
+    var formatted = "";
+    raw.split(/\n/g).forEach(l => formatted += l.trim() + "\n");
+    return formatted.trim();
+}
+
+module.exports = {Array, Math, String, Function};

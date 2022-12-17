@@ -3,7 +3,7 @@
 var $ = require("./locale").call;
 var {filters, validators} = require("./parsers");
 var schemas = require("./schemas");
-const {Array, Math, String} = require("./extensions");
+const {Array, Math, String, Function} = require("./extensions");
 const {VectorMarkdown, VectorOverview} = require("./markdown");
 var {VectorValueError, ArgumentError, Empty} = require("./errors");
 
@@ -161,6 +161,10 @@ const VectorMethodsModels = [
         },
         type: [1],
         returns: schemas.number,
+        example: function(){
+            var population = new NumericVector(10,20,15,25,23,19,18,17,24,23).stdev();  /* = 4.41 */
+            var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).stdev(true); /* = 4.65 */ 
+        },
         args: {
             s: {
                 wiki: {
@@ -184,6 +188,10 @@ const VectorMethodsModels = [
         },
         type: [1],
         returns: schemas.number,
+        example: function(){
+            var population = new NumericVector(10,20,15,25,23,19,18,17,24,23).variance();  /* = 19.44 */
+            var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).variance(true); /* = 21.6 */ 
+        },
         args: {
             s: {
                 wiki: {
@@ -207,6 +215,45 @@ const VectorMethodsModels = [
         },
         type: [1],
         returns: schemas.histogram,
+        example: function(){
+            var score = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1);
+            var h1 = score.histogram();
+            /*
+            ┌─────────┬───────────────────┬───────────────────┬─────────────────┬───┬────┬────────┬────────┐
+            │ (index) │       from        │        to         │        i        │ n │ nc │   p    │   pc   │
+            ├─────────┼───────────────────┼───────────────────┼─────────────────┼───┼────┼────────┼────────┤
+            │    0    │         1         │       3.025       │  '1.00 - 3.00'  │ 1 │ 1  │ 0.0625 │ 0.0625 │
+            │    1    │       3.025       │       5.05        │  '4.00 - 5.00'  │ 3 │ 4  │ 0.1875 │  0.25  │
+            │    2    │       5.05        │ 7.074999999999999 │  '6.00 - 7.00'  │ 7 │ 11 │ 0.4375 │ 0.6875 │
+            │    3    │ 7.074999999999999 │        9.1        │  '8.00 - 9.00'  │ 5 │ 16 │ 0.3125 │   1    │
+            │    4    │        9.1        │      11.125       │ '10.00 - 11.00' │ 1 │ 17 │ 0.0625 │ 1.0625 │
+            └─────────┴───────────────────┴───────────────────┴─────────────────┴───┴────┴────────┴────────┘
+            */
+            var h2 = score.histogram(4)
+            /* 
+            ┌─────────┬───────────────────┬───────────────────┬─────────────────┬───┬────┬────────┬────────┐
+            │ (index) │       from        │        to         │        i        │ n │ nc │   p    │   pc   │
+            ├─────────┼───────────────────┼───────────────────┼─────────────────┼───┼────┼────────┼────────┤
+            │    0    │         1         │       3.025       │  '1.00 - 3.00'  │ 1 │ 1  │ 0.0625 │ 0.0625 │
+            │    1    │       3.025       │       5.05        │  '4.00 - 5.00'  │ 3 │ 4  │ 0.1875 │  0.25  │
+            │    2    │       5.05        │ 7.074999999999999 │  '6.00 - 7.00'  │ 7 │ 11 │ 0.4375 │ 0.6875 │
+            │    3    │ 7.074999999999999 │        9.1        │  '8.00 - 9.00'  │ 5 │ 16 │ 0.3125 │   1    │
+            └─────────┴───────────────────┴───────────────────┴─────────────────┴───┴────┴────────┴────────┘
+            */
+            var h3 = score.histogram(null, 2)
+            /* 
+            ┌─────────┬──────┬────┬────────────────┬───┬────┬────────┬────────┐
+            │ (index) │ from │ to │       i        │ n │ nc │   p    │   pc   │
+            ├─────────┼──────┼────┼────────────────┼───┼────┼────────┼────────┤
+            │    0    │  1   │ 3  │ '1.00 - 3.00'  │ 1 │ 1  │ 0.0625 │ 0.0625 │
+            │    1    │  3   │ 5  │ '3.00 - 5.00'  │ 3 │ 4  │ 0.1875 │  0.25  │
+            │    2    │  5   │ 7  │ '5.00 - 7.00'  │ 7 │ 11 │ 0.4375 │ 0.6875 │
+            │    3    │  7   │ 9  │ '7.00 - 9.00'  │ 4 │ 15 │  0.25  │ 0.9375 │
+            │    4    │  9   │ 11 │ '9.00 - 11.00' │ 1 │ 16 │ 0.0625 │   1    │
+            └─────────┴──────┴────┴────────────────┴───┴────┴────────┴────────┘
+            */
+
+        },
         args: {
             maxIntervals: {
                 wiki: {
@@ -555,13 +602,6 @@ function getVectorTypeLabelCode(vector) {
         default:
             return null;
     }
-}
-
-Function.prototype.stringify = function(indent = "\t") {
-    var raw = this.toString().match(/function[^{]+\{([\s\S]*)\}$/)[1];
-    var formatted = "";
-    raw.split(/\n/g).forEach(l => formatted += l.trim() + "\n");
-    return formatted.trim();
 }
 
 const Models = {}
