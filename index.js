@@ -5,5 +5,7 @@ module.exports = {
     locale: function(locale) {
         Locale.config(locale);
     },
-    ScaleVector: Vector.ScaleVector,
+    NumericVector: Vector.NumericVector,
+    StringVector: Vector.StringVector,
+    vectorModels: Vector.Models
 }

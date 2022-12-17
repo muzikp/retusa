@@ -1,4 +1,4 @@
-var $ = require("./locale");
+var $ = require("./locale").call;
 
 // #region FILTERS
 
@@ -32,7 +32,7 @@ let v_isNumber = function(v) {
     else throw new RangeError($("Jphg", {value: v}));
 }
 let v_zeroToOneInc = function(v) {
-    if(v_isNumber(v) < 0 || v_isNumber(v) > 1) throw new RangeError($("vKlu", {value: v}));
+    if(v_isNumber(v) < 0 || v_isNumber(v) > 1) throw new Error($("vKlu", {value: v}));
     else return v;    
 }
 
@@ -42,7 +42,7 @@ let v_boolean = function(v) {
 }
 
 let v_isNotEmpty = function(v) {
-    if(!v && v !== 0 && v !== false) throw new RangeError($("HOuY"));
+    if(!v && v !== 0 && v !== false) throw new Error($("HOuY"));
 }
 
 let v_isVariable = function(v, autoparse){

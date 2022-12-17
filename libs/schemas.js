@@ -1,51 +1,86 @@
-const number = {
+var $ = require("./locale").call;
+
+class Entity {
+    constructor(config){
+        for(let k of Object.keys(config)) {
+            var value;
+            switch (k) {
+                case "title":
+                    value = $(config[k])
+                    break;
+                default:
+                    value = config[k];
+                    break;
+            }
+            Object.defineProperty(this, k, {
+                writable: false,
+                enumerable: false,
+                value: value
+            });
+        }
+    }
+}
+
+const any = new Entity({
+    type: "any",
+    title: "FxzE",
+    example: [13.075, -14, 0]
+})
+
+const number = new Entity({
     type: "number",
     title: "WdQY",
-    examples: [13.075, -14, 0]
-}
+    example: [13.075, -14, 0]
+})
 
-const integer = {
-    type: "integer",
+const integer = new Entity({
+    type: "number",
     title: "DQnl",
-    examples: [12, 0, -3]
-}
+    example: [12, 0, -3]
+})
 
-const uint = {
+const uint = new Entity({
     name: "uint",
-    type: "integer",
+    type: "number",
     title: "IrhN",
-    examples: [0, 10]
-}
+    example: [0, 10]
+})
 
+const zeroToOneInc = new Entity({
+    type: number,
+    title: "OQnL",
+    example: [0, 0.15, 1]
+})
 
-const string = {
+const string = new Entity({
     name: "string",
     type: "string",
     title: "RFGF",
-    examples: ["Hello", "Lorem ipsum dolor sit amet..."]
-}
+    example: ["Hello", "Lorem ipsum dolor sit amet..."]
+})
 
-const boolean = {
+const boolean = new Entity({
     name: "boolean",
     type: "boolean",
     title: "XPGc",
     examples: [true, false]
-}
+})
 
-const frequencyTable = {
+const frequencyTable = new Entity({
     name: "frequencyTable",
     type: "table",
+    title: "dYJK",
     children: [
-        {
-            type: "any",
+        new Entity({
+            type: any,
             name: "v",
             title: "ZVbP"
-        },
-        {
+        }),
+        new Entity({
             type: integer,
             name: "f",
             title: "mXpR"
-        },
+        }),
     ],
     example: [
         {
@@ -61,6 +96,49 @@ const frequencyTable = {
             f: 7
         }
     ]
+})
+
+const histogramTable = {
+    name: "histogramTable",
+    type: "table",
+    children: [
+        {
+            type: number,
+            name: "from",
+            title: "jbqY"
+        },
+        {
+            type: number,
+            name: "to",
+            title: "GlDV"
+        },
+        {
+            type: string,
+            name: "i",
+            title: "VyzG"
+        },
+        {
+            type: uint,
+            name: "n",
+            title: "eHkc"
+        },
+        {
+            type: uint,
+            name: "nc",
+            title: "Dwuz"
+        },
+        {
+            type: zeroToOneInc,
+            name: "p",
+            title: "iDVx"
+        },
+        {
+            type: zeroToOneInc,
+            name: "pc",
+            title: "oIyG"
+        },
+    ],
+    example: [{"from":16,"to":18.771609312622935,"i":"16.0 - 18.0","n":3,"nc":3,"p":0.13636363636363635,"pc":0.13636363636363635},{"from":18.771609312622935,"to":21.54321862524587,"i":"19.0 - 21.0","n":9,"nc":12,"p":0.4090909090909091,"pc":0.5454545454545454},{"from":21.54321862524587,"to":24.314827937868806,"i":"22.0 - 24.0","n":7,"nc":19,"p":0.3181818181818182,"pc":0.8636363636363635},{"from":24.314827937868806,"to":27.08643725049174,"i":"25.0 - 27.0","n":2,"nc":21,"p":0.09090909090909091,"pc":0.9545454545454545},{"from":27.08643725049174,"to":29.858046563114677,"i":"28.0 - 29.0","n":1,"nc":22,"p":0.045454545454545456,"pc":0.9999999999999999}]
 }
 
 const frequencyOrderEnum = {
@@ -94,5 +172,6 @@ module.exports = {
     string: string,
     boolean: boolean,
     frequencyTable: frequencyTable,
+    histogramTable: histogramTable,
     frequencyOrderEnum: frequencyOrderEnum
 }

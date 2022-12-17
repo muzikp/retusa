@@ -123,6 +123,8 @@ module.exports = {
 	"tpUR": "třetí proměnná",
 	/* schema type integer */
 	"DQnl": "celé číslo",
+	/* schema type integer */
+	"OQnL": "desetinné číslo mezi 1 a 0 (včetně)",
 	/* schema type number */
 	"WdQY": "desetinné číslo",
 	/* schema type string */
@@ -184,7 +186,7 @@ module.exports = {
 	/* validators text - positiveDecimal */
 	"bpCq": "Ověří, zdali se jedná o číselnou hodnotu větší než nula. V opačném případě vyvolá chybu.",
 	/* model validator error - parameter is mandatory */
-	"dSWt": "Parametr ${name} (${title}) je povinný.",
+	"dSWt": "Parametr ${name} (${title}) pro metodu ${method} je povinný.",
 	/* vector general validator error - wrong parameter in model */
 	"ZUMk": "Chybný parametr ${name} (${title}) v metodě ${method}",
 	/* table partial correlation fce (title) */
@@ -217,22 +219,38 @@ module.exports = {
 	"HhLt": "Neznámá hodnota enumerátoru ${name} (${title}): ${value}. Možné hodnoty jsou ${keys}",
 	/* numeric vector value parse error */
 	"UyOj": "Tento typ vektoru akceptuje pouze numerické a prázdné hodnoty. Vrácená chybná hodnota: ${value}",
-	"ibNu": "",
-	"kPSW": "",
-	"UQoV": "",
-	"WiEE": "",
-	"LiPr": "",
-	"sbFB": "",
-	"TvQv": "",
-	"sfCh": "",
-	"jbqY": "",
-	"GlDV": "",
-	"VyzG": "",
-	"eHkc": "",
-	"iDVx": "",
-	"Dwuz": "",
-	"oIyG": "",
-	"hKRq": "",
+	/* NotApplicable class vector message */
+	"ibNu": "Metoda '${method}' není určena pro ${type} vektor.",
+	/* vektor type enum (title) - numeric */
+	"kPSW": "číselný",
+	/* vektor type enum (title) - string */
+	"UQoV": "textový",
+	/* vektor type enum (title) - boolean */
+	"WiEE": "binární",
+	/* vektor type enum (title) - multiple */
+	"LiPr": "vícenásobný",
+	/* vektor type enum (title) - date */
+	"sbFB": "časový",
+	/* vector variance fce (title) */ 
+	"TvQv": "rozptyl",
+	/* vector variance fce (description) */ 
+	"sfCh": "Vrátí hodnotu rozptylu tohoto vektoru.",
+	/* histogram schema - from */
+	"jbqY": "spodní mez",
+	/* histogram schema - from */
+	"GlDV": "horní mez",
+	/* histogram schema - interval */
+	"VyzG": "interval",
+	/* histogram schema - frequency abs. */
+	"eHkc": "četnost (abs.)",
+	/* histogram schema - frequency rel. */
+	"iDVx": "četnost (%)",
+	/* histogram schema - cumulative frequency abs. */
+	"Dwuz": "kumulativní četnost (abs.)",
+	/* histogram schema - cumulative frequency rel. */
+	"oIyG": "kumulativní četnost (%)",
+	/* Empty instance - calling VectorMethod without the parent specified */
+	"hKRq": "Pokud není určena konkrétní instance vektoru coby vlastnosti instance třídy VectorMethod, je při volání výpočetní nebo validační metody vrácen prázdný výsledek.",
 	"VVSN": "",
 	"FRpk": "",
 	"QUJS": "",

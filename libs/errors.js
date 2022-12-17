@@ -7,14 +7,22 @@ class VectorValueError extends Error {
 }
 
 class ArgumentError extends Error {
-    constructor(msg, data){
-        super(...arguments);
+    constructor(msg, sender) {
+        super(msg);
+        this.data = sender;
         this.name = "";
-        this.data = data;
+        this.message = msg;
+    }
+}
+
+class Empty {
+    constructor(message) {
+        this.default = message || "";
     }
 }
 
 module.exports = {
     VectorValueError: VectorValueError,
-    ArgumentError: ArgumentError
+    ArgumentError: ArgumentError,
+    Empty: Empty
 }
