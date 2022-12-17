@@ -107,7 +107,7 @@ const VectorMethodsModels = [
         filter: filters.number,
         wiki: {
             title: "gvdg",
-            desription: "iMbD"
+            description: "iMbD"
         },
         type: [1],
         returns: schemas.number

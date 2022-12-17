@@ -6,7 +6,7 @@ module.exports = {
 	/* vector sum fce (title) */
 	"gvdg": "součet",
 	/* vector sum fce (desc) */
-	"iMbD": "Sečte všechny neprázdné hodnoty vektoru.",
+	"iMbD": "Vrátí součet všech neprázdných číselných hodnot vektoru.",
 	/* vector count fce (title) */
 	"tdrm": "počet",
 	/* vector mean/average fce (title) */
@@ -251,9 +251,10 @@ module.exports = {
 	"oIyG": "kumulativní četnost (%)",
 	/* Empty instance - calling VectorMethod without the parent specified */
 	"hKRq": "Pokud není určena konkrétní instance vektoru coby vlastnosti instance třídy VectorMethod, je při volání výpočetní nebo validační metody vrácen prázdný výsledek.",
-	/* MD vector filter lavel */
-	"VVSN": "implementovaný filtr",
-	"FRpk": "",
+	/* MD vector filter level (title) */
+	"VVSN": "Pre-filtr",
+	/* MD vector arguments (title) */
+	"FRpk": "Argumenty",
 	"QUJS": "",
 	"jBGO": "",
 	"tGqA": "",
