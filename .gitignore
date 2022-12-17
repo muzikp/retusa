@@ -105,3 +105,4 @@ dist
 
 *.min.js
 test.js
+.vscode/

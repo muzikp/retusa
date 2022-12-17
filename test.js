@@ -3,7 +3,10 @@ var framework = require("./index");
 with (framework) {
     var w = [0.25, 0.3, 0.3, 0.1, 0,5];
     var age = new NumericVector(15,16,17,19,20).weight(w).name();
-    
+    var cf = new NumericVector(200,250,150,320,240,-250,10,-320).sum();
+    debugger;
+
+
     //console.dir(framework.vectorModels.percentile.markdown(3));
     var x = VectorOverview;
     var fs = require("fs");
