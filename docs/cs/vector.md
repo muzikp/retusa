@@ -34,8 +34,8 @@ Vrátí součet všech neprázdných číselných hodnot vektoru.
 
 #### Konstruktor
 
->
-> (NumericVector).==sum==()
+
+> (NumericVector).<mark>sum</mark>()
 
 
 #### Pre-filtr
@@ -64,12 +64,12 @@ Vrátí počet všech polí ve vektoru (včetně prázdných).
 
 #### Konstruktor
 
->
-> (NumericVector).==count==()
->
-> (StringVector).==count==()
->
-> (BooleanVector).==count==()
+
+> (NumericVector).<mark>count</mark>()
+
+> (StringVector).<mark>count</mark>()
+
+> (BooleanVector).<mark>count</mark>()
 
 
 #### Integrace dle třídy
@@ -96,8 +96,8 @@ Vrátí arytmetický průměr z neprázdných hodnot.
 
 #### Konstruktor
 
->
-> (NumericVector).==avg==()
+
+> (NumericVector).<mark>avg</mark>()
 
 
 #### Pre-filtr
@@ -126,8 +126,8 @@ Vrátí směrodatnou odchylku neprázdných hodnot.
 
 #### Konstruktor
 
->
-> (NumericVector).==stdev==(*s* [výběrový soubor])
+
+> (NumericVector).<mark>stdev</mark>(*s* [výběrový soubor])
 
 
 #### Pre-filtr
@@ -163,8 +163,8 @@ Vrátí hodnotu rozptylu tohoto vektoru.
 
 #### Konstruktor
 
->
-> (NumericVector).==variance==(*s* [výběrový soubor])
+
+> (NumericVector).<mark>variance</mark>(*s* [výběrový soubor])
 
 
 #### Pre-filtr
@@ -200,8 +200,8 @@ Vrátí matici histogramu daného vektoru.
 
 #### Konstruktor
 
->
-> (NumericVector).==histogram==(*maxIntervals* [Maximální počet intervalů], *fixedInterval* [Pevná velikost intervalu])
+
+> (NumericVector).<mark>histogram</mark>(*maxIntervals* [Maximální počet intervalů], *fixedInterval* [Pevná velikost intervalu])
 
 
 #### Pre-filtr
@@ -272,10 +272,10 @@ Vrátí nejmenší hodnotu z neprázdných hodnot. V případě textu vrátí pr
 
 #### Konstruktor
 
->
-> (NumericVector).==min==()
->
-> (StringVector).==min==()
+
+> (NumericVector).<mark>min</mark>()
+
+> (StringVector).<mark>min</mark>()
 
 
 #### Pre-filtr
@@ -305,10 +305,10 @@ Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí p
 
 #### Konstruktor
 
->
-> (NumericVector).==max==()
->
-> (StringVector).==max==()
+
+> (NumericVector).<mark>max</mark>()
+
+> (StringVector).<mark>max</mark>()
 
 
 #### Pre-filtr
@@ -338,8 +338,8 @@ Vrátí rozdíl největší a nejmenší neprázdné hodnoty.
 
 #### Konstruktor
 
->
-> (NumericVector).==range==()
+
+> (NumericVector).<mark>range</mark>()
 
 
 #### Pre-filtr
@@ -368,8 +368,8 @@ Vrátí hodnotu variačního koeficientu neprázdných hodnot.
 
 #### Konstruktor
 
->
-> (NumericVector).==varc==(*s* [výběrový soubor])
+
+> (NumericVector).<mark>varc</mark>(*s* [výběrový soubor])
 
 
 #### Pre-filtr
@@ -405,8 +405,8 @@ Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru.
 
 #### Konstruktor
 
->
-> (NumericVector).==percentile==(***k***)
+
+> (NumericVector).<mark>percentile</mark>(***k***)
 
 
 #### Pre-filtr
@@ -444,12 +444,12 @@ Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností.
 
 #### Konstruktor
 
->
-> (NumericVector).==frequency==(*order* [způsob řazení dat tabulky])
->
-> (StringVector).==frequency==(*order* [způsob řazení dat tabulky])
->
-> (BooleanVector).==frequency==(*order* [způsob řazení dat tabulky])
+
+> (NumericVector).<mark>frequency</mark>(*order* [způsob řazení dat tabulky])
+
+> (StringVector).<mark>frequency</mark>(*order* [způsob řazení dat tabulky])
+
+> (BooleanVector).<mark>frequency</mark>(*order* [způsob řazení dat tabulky])
 
 
 #### Argumenty
@@ -513,8 +513,8 @@ Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovn
 
 #### Konstruktor
 
->
-> (NumericVector).==geomean==()
+
+> (NumericVector).<mark>geomean</mark>()
 
 
 #### Pre-filtr
@@ -543,8 +543,8 @@ Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vž
 
 #### Konstruktor
 
->
-> (NumericVector).==harmean==()
+
+> (NumericVector).<mark>harmean</mark>()
 
 
 #### Pre-filtr
@@ -573,8 +573,8 @@ Vrátí střední hodnotu z neprázdných hodnot.
 
 #### Konstruktor
 
->
-> (NumericVector).==median==()
+
+> (NumericVector).<mark>median</mark>()
 
 
 #### Pre-filtr
@@ -603,12 +603,12 @@ Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vr�
 
 #### Konstruktor
 
->
-> (NumericVector).==mode==()
->
-> (StringVector).==mode==()
->
-> (BooleanVector).==mode==()
+
+> (NumericVector).<mark>mode</mark>()
+
+> (StringVector).<mark>mode</mark>()
+
+> (BooleanVector).<mark>mode</mark>()
 
 
 #### Integrace dle třídy
@@ -635,8 +635,8 @@ Vrátí hodnotu směrodatné chyby odhadu průměru.
 
 #### Konstruktor
 
->
-> (NumericVector).==SEM==()
+
+> (NumericVector).<mark>SEM</mark>()
 
 
 #### Pre-filtr
@@ -663,8 +663,8 @@ var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,2
 
 #### Konstruktor
 
->
-> (NumericVector).==skewness==(*s* [výběrový soubor])
+
+> (NumericVector).<mark>skewness</mark>(*s* [výběrový soubor])
 
 
 #### Pre-filtr
@@ -700,8 +700,8 @@ Vrátí hodnotu excesu množiny dat.
 
 #### Konstruktor
 
->
-> (NumericVector).==kurtosis==()
+
+> (NumericVector).<mark>kurtosis</mark>()
 
 
 #### Pre-filtr
