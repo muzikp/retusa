@@ -5,7 +5,7 @@ var e_yes = ":heavy_check_mark:" //":white_check_mark:";
 var e_no = "" // ":no_entry_sign:"
 
 function VectorMarkdown(wiki, level = 1) {
-    var _ = `${hash(level)} ${wiki.name.toUpperCase()}`;
+    var _ = `${hash(level)} ${wiki.name.toUpperCase()}\n\n**název metody**: ${wiki.title}`;
     if(wiki.description) _ += `\n\n${wiki.description}`;
     if(wiki.filter) {
         _ += `\n\n${hash(level+1)} ${$("VVSN")}\n\n${wiki.filter}`;

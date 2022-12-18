@@ -30,6 +30,8 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 
 ### SUM
 
+**název metody**: součet
+
 Vrátí součet všech neprázdných číselných hodnot vektoru.
 
 #### Pre-filtr
@@ -54,6 +56,8 @@ var cashflow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 
 
 ### COUNT
 
+**název metody**: počet
+
 Vrátí počet všech polí ve vektoru (včetně prázdných).
 
 #### Integrace dle třídy
@@ -75,6 +79,8 @@ var total_boolean = new BooleanVector(true, true, false, null, false, true).coun
 ---
 
 ### AVG
+
+**název metody**: arytmetický průměr
 
 Vrátí arytmetický průměr z neprázdných hodnot.
 
@@ -99,6 +105,8 @@ var avgCashFlow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /*
 ---
 
 ### STDEV
+
+**název metody**: směrodatná odchylka
 
 Vrátí směrodatnou odchylku neprázdných hodnot.
 
@@ -131,6 +139,8 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).stdev(true); /* = 
 
 ### VARIANCE
 
+**název metody**: rozptyl
+
 Vrátí hodnotu rozptylu tohoto vektoru.
 
 #### Pre-filtr
@@ -161,6 +171,8 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).variance(true); /*
 ---
 
 ### HISTOGRAM
+
+**název metody**: histogram
 
 Vrátí matici histogramu daného vektoru.
 
@@ -228,6 +240,8 @@ var h3 = score.histogram(null, 2)
 
 ### MIN
 
+**název metody**: minimální hodnota
+
 Vrátí nejmenší hodnotu z neprázdných hodnot. V případě textu vrátí první hodnotu z abecedního řazení.
 
 #### Pre-filtr
@@ -252,6 +266,8 @@ var string_min = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 ---
 
 ### MAX
+
+**název metody**: maximální hodnota
 
 Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení.
 
@@ -278,6 +294,8 @@ var string_max = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 ### RANGE
 
+**název metody**: variační rozpětí
+
 Vrátí rozdíl největší a nejmenší neprázdné hodnoty.
 
 #### Pre-filtr
@@ -301,6 +319,8 @@ var range = new NumericVector(5,2,-15,-16.3,12,null, null, 12,13,7).range(); /* 
 ---
 
 ### VARC
+
+**název metody**: variační koeficient
 
 Vrátí hodnotu variačního koeficientu neprázdných hodnot.
 
@@ -332,6 +352,8 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc(true); /* = 0
 ---
 
 ### PERCENTILE
+
+**název metody**: percentil
 
 Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru.
 
@@ -365,6 +387,8 @@ var max = score.percentile(1); /* = 25 */
 ---
 
 ### FREQUENCY
+
+**název metody**: frekvenční tabulka
 
 Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností.
 
@@ -425,6 +449,8 @@ var boolean_vector_desc_frequency = new BooleanVector(true, false, null, true, n
 
 ### GEOMEAN
 
+**název metody**: geometrický průměr
+
 Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovný než průměr arytmetický.
 
 #### Pre-filtr
@@ -448,6 +474,8 @@ var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29
 ---
 
 ### HARMEAN
+
+**název metody**: harmonický průměr
 
 Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti.
 
@@ -473,6 +501,8 @@ var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29
 
 ### MEDIAN
 
+**název metody**: medián
+
 Vrátí střední hodnotu z neprázdných hodnot.
 
 #### Pre-filtr
@@ -497,6 +527,8 @@ var median = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,2
 
 ### MODE
 
+**název metody**: modus
+
 Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu).
 
 #### Integrace dle třídy
@@ -518,6 +550,8 @@ var z = new BooleanVector(true, false, true).mode(); /* = true */
 ---
 
 ### SEM
+
+**název metody**: směrodatná chyba průměru
 
 Vrátí hodnotu směrodatné chyby odhadu průměru.
 
@@ -542,6 +576,8 @@ var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,2
 ---
 
 ### SKEWNESS
+
+**název metody**: šikmost
 
 #### Pre-filtr
 
@@ -571,6 +607,8 @@ var skewness_sample = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,2
 ---
 
 ### KURTOSIS
+
+**název metody**: špičatost
 
 Vrátí hodnotu excesu množiny dat.
 
