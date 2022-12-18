@@ -5,7 +5,7 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 ## Statistické metody
 
 | funkce | metoda | popis | numerická | nominální | binární |
-| *---* | *---* | --- | *---* | *---* | *---* |
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | [sum](#sum) | součet | Vrátí součet všech neprázdných číselných hodnot vektoru. | :heavy_check_mark: |  |  |
 | [count](#count) | počet | Vrátí počet všech polí ve vektoru (včetně prázdných). | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | [avg](#avg) | arytmetický průměr | Vrátí arytmetický průměr z neprázdných hodnot. | :heavy_check_mark: |  |  |
@@ -39,7 +39,7 @@ Pouze číselné hodnoty (včetně nul).
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
-| --- | *---* |
+| --- |  :---: | 
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
@@ -59,7 +59,7 @@ Vrátí počet všech polí ve vektoru (včetně prázdných).
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
-| --- | *---* |
+| --- |  :---: | 
 | numerická | :heavy_check_mark: |
 | nominální | :heavy_check_mark: |
 | binární | :heavy_check_mark: |
@@ -85,7 +85,7 @@ Pouze číselné hodnoty (včetně nul).
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
-| --- | *---* |
+| --- |  :---: | 
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
@@ -109,13 +109,13 @@ Pouze číselné hodnoty (včetně nul).
 #### Argumenty
 
 | argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
-| --- | --- | --- | *---* | *---* | *---* |
+| --- |  --- |  --- |  :---: |  :---: |  :---: | 
 | **s** | výběrový soubor | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - | - | - |
 
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
-| --- | *---* |
+| --- |  :---: | 
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
@@ -140,13 +140,13 @@ Pouze číselné hodnoty (včetně nul).
 #### Argumenty
 
 | argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
-| --- | --- | --- | *---* | *---* | *---* |
+| --- |  --- |  --- |  :---: |  :---: |  :---: | 
 | **s** | výběrový soubor | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - | - | - |
 
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
-| --- | *---* |
+| --- |  :---: | 
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
@@ -171,14 +171,14 @@ Pouze číselné hodnoty (včetně nul).
 #### Argumenty
 
 | argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
-| --- | --- | --- | *---* | *---* | *---* |
+| --- |  --- |  --- |  :---: |  :---: |  :---: | 
 | **maxIntervals** | Maximální počet intervalů | Ověří, zdali se jedná o celé kladné číslo. V opačném případě vyvolá chybu. | - | - | - |
 | **fixedInterval** | Pevná velikost intervalu | Ověří, zdali se jedná o číselnou hodnotu větší než nula. V opačném případě vyvolá chybu. | - | - | - |
 
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
-| --- | *---* |
+| --- |  :---: | 
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
@@ -237,7 +237,7 @@ jakákoliv neprázdná hodnota (u číselných řad akceptuje nuly, u birnáníc
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
-| --- | *---* |
+| --- |  :---: | 
 | numerická | :heavy_check_mark: |
 | nominální | :heavy_check_mark: |
 | binární |  |
@@ -262,7 +262,7 @@ jakákoliv neprázdná hodnota (u číselných řad akceptuje nuly, u birnáníc
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
-| --- | *---* |
+| --- |  :---: | 
 | numerická | :heavy_check_mark: |
 | nominální | :heavy_check_mark: |
 | binární |  |
@@ -287,7 +287,7 @@ Pouze číselné hodnoty (včetně nul).
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
-| --- | *---* |
+| --- |  :---: | 
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
@@ -311,13 +311,13 @@ Pouze číselné hodnoty (včetně nul).
 #### Argumenty
 
 | argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
-| --- | --- | --- | *---* | *---* | *---* |
+| --- |  --- |  --- |  :---: |  :---: |  :---: | 
 | **s** | výběrový soubor | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - | - | - |
 
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
-| --- | *---* |
+| --- |  :---: | 
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
@@ -342,13 +342,13 @@ Pouze číselné hodnoty (včetně nul).
 #### Argumenty
 
 | argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
-| --- | --- | --- | *---* | *---* | *---* |
+| --- |  --- |  --- |  :---: |  :---: |  :---: | 
 | **k** | hodnota percentilu | Ověří, zdali je hodnota číslo mezi 0 a 1 (včetně hraničních hodnot). V opačném případě vyvolá chybu. | ano | - | - |
 
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
-| --- | *---* |
+| --- |  :---: | 
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
@@ -371,13 +371,13 @@ Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností.
 #### Argumenty
 
 | argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
-| --- | --- | --- | *---* | *---* | *---* |
+| --- |  --- |  --- |  :---: |  :---: |  :---: | 
 | **order** | způsob řazení dat tabulky | Ověří, zdali je hodnota platným členem enumerace. V opačném případě vyvolá chybu. | - | 1 | - |
 
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
-| --- | *---* |
+| --- |  :---: | 
 | numerická | :heavy_check_mark: |
 | nominální | :heavy_check_mark: |
 | binární | :heavy_check_mark: |
@@ -434,7 +434,7 @@ Pouze číselné hodnoty (včetně nul).
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
-| --- | *---* |
+| --- |  :---: | 
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
@@ -458,7 +458,7 @@ Pouze číselné hodnoty (včetně nul).
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
-| --- | *---* |
+| --- |  :---: | 
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
@@ -482,7 +482,7 @@ Pouze číselné hodnoty (včetně nul).
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
-| --- | *---* |
+| --- |  :---: | 
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
@@ -502,7 +502,7 @@ Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vr�
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
-| --- | *---* |
+| --- |  :---: | 
 | numerická | :heavy_check_mark: |
 | nominální | :heavy_check_mark: |
 | binární | :heavy_check_mark: |
@@ -528,7 +528,7 @@ Pouze číselné hodnoty (včetně nul).
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
-| --- | *---* |
+| --- |  :---: | 
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
@@ -550,13 +550,13 @@ Pouze číselné hodnoty (včetně nul).
 #### Argumenty
 
 | argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
-| --- | --- | --- | *---* | *---* | *---* |
+| --- |  --- |  --- |  :---: |  :---: |  :---: | 
 | **s** | výběrový soubor | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - | - | - |
 
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
-| --- | *---* |
+| --- |  :---: | 
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
@@ -581,7 +581,7 @@ Pouze číselné hodnoty (včetně nul).
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
-| --- | *---* |
+| --- |  :---: | 
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |

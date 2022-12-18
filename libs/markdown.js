@@ -67,7 +67,7 @@ function objArrayToTable(headers, values, alignment) {
     var t = "|";
     headers.forEach(h => t+= ` ${h} |`);
     t += "\n|";
-    headers.forEach((h,i) => t += ` ${(alignment || [])[i] == 1 ? "*" : ""}---${(alignment || [])[i] > 0 ? "*" : ""} |`);
+    headers.forEach((h,i) => t += ` ${(alignment || [])[i] == 1 ? ":" : ""}---${(alignment || [])[i] > 0 ? ":" : ""} | `);
     values.forEach(function(v){ 
         t += "\n|";
         v.forEach(_ => t += ` ${_} |`)
