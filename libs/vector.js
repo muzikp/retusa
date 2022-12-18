@@ -78,7 +78,11 @@ const vectorParser = {
     string: function(value) {
         if(value || value === false || value === 0) return String(value);
         else return null;
-        //else throw new VectorValueError($("UyOj", {value}), {vector: this, value: value});
+    },
+    boolean: function(value) {
+        if(value) return true;
+        else if(value === false || value === 0) return false;
+        else return null;
     }
 }
 
@@ -103,7 +107,7 @@ class BooleanVector extends Vector {
         super(...arguments);
     }
 }
-BooleanVector.prototype.parse = vectorParser.string;
+BooleanVector.prototype.parse = vectorParser.boolean;
 
 // #endregion
 
@@ -442,7 +446,11 @@ const VectorMethodsModels = [
             title: "louK",
             description: "PDzr"
         },
-        type: [1]
+        type: [1],
+        returns: schemas.number,
+        example: function(){
+            var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).geomean(); /* = 21.24*/
+        }
     },
     {
         name: "harmean",
@@ -452,7 +460,11 @@ const VectorMethodsModels = [
             title: "vpdN",
             description: "nhJv"
         },
-        type: [1]
+        type: [1],
+        returns: schemas.number,
+        example: function(){
+            var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).harmean(); /* = 21.03*/
+        }
     },
     {
         name: "median",
@@ -462,7 +474,11 @@ const VectorMethodsModels = [
             title: "TzfX",
             description: "YIir"
         },
-        type: [1]
+        type: [1],
+        returns: schemas.number,
+        example: function(){
+            var median = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).median(); /* = 21*/
+        }
     },
     {
         name: "mode",
@@ -471,7 +487,14 @@ const VectorMethodsModels = [
             title: "StQx",
             description: "IBfx"
         },
-        type: [1,2,3]
+        type: [1,2,3],
+        returns: schemas.any,
+        example: function(){
+            var x = new NumericVector(1,2,3,4,3,4,5,3).mode(); /* = 3 */
+            var y = new StringVector("a",null,null,"b","c","d",null,"b").mode(); /* = null */
+            var z = new BooleanVector(true, false, true).mode(); /* = true */
+        }
+
     },
         /* směrodatná chyba průměru */
     {
@@ -482,7 +505,11 @@ const VectorMethodsModels = [
             title: "dLmV",
             description: "ZBnI"
         },
-        type: [1]
+        type: [1],
+        returns: schemas.number,
+        example: function(){
+            var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).SEM(); /* = 0.67*/
+        }
     },
     {
         name: "skewness",
@@ -493,6 +520,11 @@ const VectorMethodsModels = [
             description: "",
         },
         type: [1],
+        returns: schemas.number,
+        example: function(){
+            var skewness_population = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).skewness(false); /* = 0.52*/
+            var skewness_sample = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).skewness(true); /* = 0.027*/
+        },
         args: {
             s: {
                 wiki: {
@@ -514,7 +546,11 @@ const VectorMethodsModels = [
             title: "oPPx",
             description: "UOBG"
         },
-        type: [1]
+        type: [1],
+        returns: schemas.number,
+        example: function(){
+            var kurtosis = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).kurtosis(); /* = 0.425*/
+        },
     }
 ]
 

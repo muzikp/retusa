@@ -84,11 +84,11 @@ module.exports = {
 	/* vector geomean fce (title) */
 	"louK": "geometrický průměr",
 	/* vector geomean fce (description) */
-	"PDzr": "Vrátí geometrický průměr z neprázdných hodnot.",
+	"PDzr": "Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovný než průměr arytmetický.",
 	/* vector harmean fce (title) */
 	"vpdN": "harmonický průměr",
 	/* vector harmean fce (description) */
-	"nhJv": "Vrátí harmonický průměr z neprázdných hodnot.",
+	"nhJv": "Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti.",
 	/* vector median fce (title) */
 	"TzfX": "medián",
 	/* vector median fce (description) */
@@ -260,7 +260,7 @@ module.exports = {
 	/* MD vector argument table header - title */
 	"jBGO": "popis",
 	/* MD vector argument table header - validator */
-	"tGqA": "vaidátor",
+	"tGqA": "validátor",
 	/* MD vector argument table header - required */
 	"VPYX": "povinný",
 	/* MD vector argument table header - default */

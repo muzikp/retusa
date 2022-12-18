@@ -14,7 +14,7 @@ function VectorMarkdown(wiki, level = 1) {
         var headers = [$("QUJS"), $("jBGO"), $("tGqA"), $("VPYX"), $("pDgb"), $("Olab")];
         var values = wiki.arguments.map(function(a){
             return [
-                a.name,
+                `**${a.name}**`,
                 a.title,
                 a.validator,
                 a.required ? $("OpXv") : "-",
@@ -22,10 +22,10 @@ function VectorMarkdown(wiki, level = 1) {
                 a.multiple ? $("OpXv") : "-",
             ]
         });
-        _ += `\n\n${hash(level+1)} ${$("FRpk")}\n\n${objArrayToTable(headers, values)}`;
+        _ += `\n\n${hash(level+1)} ${$("FRpk")}\n\n${objArrayToTable(headers, values, [0,0,0,1,1,1])}`;
     }
     if(wiki.applies?.length > 0) {
-        _ += `\n\n${hash(level+1)} ${$("NizL")}\n\n${objArrayToTable([$("AfXp"), $("picU")], wiki.applies.map(v => [v.title, v.apply ? e_yes : e_no]))}`;
+        _ += `\n\n${hash(level+1)} ${$("NizL")}\n\n${objArrayToTable([$("AfXp"), $("picU")], wiki.applies.map(v => [v.title, v.apply ? e_yes : e_no]), [0,1])}`;
 
     }
     if(wiki.example) {
@@ -48,7 +48,7 @@ function VectorOverview(Models) {
             m.wiki.applies[2].apply ? e_yes : e_no,
         ];
         return row;
-    }));
+    }),[1,1,0,1,1,1]);
     models.forEach(function(m) {
         _ += "\n\n\---\n\n" + VectorMarkdown(m.wiki, 3);
     });
@@ -63,11 +63,11 @@ const hash = function(level) {
     return h;
 }
 
-function objArrayToTable(headers, values) {
+function objArrayToTable(headers, values, alignment) {
     var t = "|";
     headers.forEach(h => t+= ` ${h} |`);
     t += "\n|";
-    headers.forEach(h => t += ` --- |`);
+    headers.forEach((h,i) => t += ` ${(alignment || [])[i] == 1 ? "*" : ""}---${(alignment || [])[i] > 0 ? "*" : ""} |`);
     values.forEach(function(v){ 
         t += "\n|";
         v.forEach(_ => t += ` ${_} |`)
