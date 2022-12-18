@@ -5,8 +5,7 @@ var e_yes = ":heavy_check_mark:" //":white_check_mark:";
 var e_no = "" // ":no_entry_sign:"
 
 function VectorMarkdown(wiki, level = 1) {
-    var _ = `${hash(level)} ${wiki.name.toUpperCase()}\n\n**název metody**: ${wiki.title}`;
-    if(wiki.description) _ += `\n\n${wiki.description}`;
+    var _ = `${hash(level)} ${wiki.title.toUpperCase()} ${"{#" + wiki.name + "}"}\n\n**${wiki.title.toUpperCase}**${wiki.description ? ": " + wiki.description : ""}`;
     if(wiki.filter) {
         _ += `\n\n${hash(level+1)} ${$("VVSN")}\n\n${wiki.filter}`;
     }
@@ -22,7 +21,7 @@ function VectorMarkdown(wiki, level = 1) {
                 a.multiple ? $("OpXv") : "-",
             ]
         });
-        _ += `\n\n${hash(level+1)} ${$("FRpk")}\n\n${objArrayToTable(headers, values, [0,0,0,1,1,1])}`;
+        _ += `\n\n${hash(level+1)} ${$("FRpk")}\n\n${objArrayToTable(headers, values, [1,1,0,1,1,1])}`;
     }
     if(wiki.applies?.length > 0) {
         _ += `\n\n${hash(level+1)} ${$("NizL")}\n\n${objArrayToTable([$("AfXp"), $("picU")], wiki.applies.map(v => [v.title, v.apply ? e_yes : e_no]), [0,1])}`;

@@ -28,11 +28,9 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 
 ---
 
-### SUM
+### SOUČET {#sum}
 
-**název metody**: součet
-
-Vrátí součet všech neprázdných číselných hodnot vektoru.
+**function toUpperCase() { [native code] }**: Vrátí součet všech neprázdných číselných hodnot vektoru.
 
 #### Pre-filtr
 
@@ -54,11 +52,9 @@ var cashflow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 
 
 ---
 
-### COUNT
+### POČET {#count}
 
-**název metody**: počet
-
-Vrátí počet všech polí ve vektoru (včetně prázdných).
+**function toUpperCase() { [native code] }**: Vrátí počet všech polí ve vektoru (včetně prázdných).
 
 #### Integrace dle třídy
 
@@ -78,11 +74,9 @@ var total_boolean = new BooleanVector(true, true, false, null, false, true).coun
 
 ---
 
-### AVG
+### ARYTMETICKÝ PRŮMĚR {#avg}
 
-**název metody**: arytmetický průměr
-
-Vrátí arytmetický průměr z neprázdných hodnot.
+**function toUpperCase() { [native code] }**: Vrátí arytmetický průměr z neprázdných hodnot.
 
 #### Pre-filtr
 
@@ -104,11 +98,9 @@ var avgCashFlow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /*
 
 ---
 
-### STDEV
+### SMĚRODATNÁ ODCHYLKA {#stdev}
 
-**název metody**: směrodatná odchylka
-
-Vrátí směrodatnou odchylku neprázdných hodnot.
+**function toUpperCase() { [native code] }**: Vrátí směrodatnou odchylku neprázdných hodnot.
 
 #### Pre-filtr
 
@@ -117,7 +109,7 @@ Pouze číselné hodnoty (včetně nul).
 #### Argumenty
 
 | argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
-| --- |  --- |  --- |  :---: |  :---: |  :---: | 
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **s** | výběrový soubor | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - | - | - |
 
 #### Integrace dle třídy
@@ -137,11 +129,9 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).stdev(true); /* = 
 
 ---
 
-### VARIANCE
+### ROZPTYL {#variance}
 
-**název metody**: rozptyl
-
-Vrátí hodnotu rozptylu tohoto vektoru.
+**function toUpperCase() { [native code] }**: Vrátí hodnotu rozptylu tohoto vektoru.
 
 #### Pre-filtr
 
@@ -150,7 +140,7 @@ Pouze číselné hodnoty (včetně nul).
 #### Argumenty
 
 | argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
-| --- |  --- |  --- |  :---: |  :---: |  :---: | 
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **s** | výběrový soubor | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - | - | - |
 
 #### Integrace dle třídy
@@ -170,11 +160,9 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).variance(true); /*
 
 ---
 
-### HISTOGRAM
+### HISTOGRAM {#histogram}
 
-**název metody**: histogram
-
-Vrátí matici histogramu daného vektoru.
+**function toUpperCase() { [native code] }**: Vrátí matici histogramu daného vektoru.
 
 #### Pre-filtr
 
@@ -183,7 +171,7 @@ Pouze číselné hodnoty (včetně nul).
 #### Argumenty
 
 | argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
-| --- |  --- |  --- |  :---: |  :---: |  :---: | 
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **maxIntervals** | Maximální počet intervalů | Ověří, zdali se jedná o celé kladné číslo. V opačném případě vyvolá chybu. | - | - | - |
 | **fixedInterval** | Pevná velikost intervalu | Ověří, zdali se jedná o číselnou hodnotu větší než nula. V opačném případě vyvolá chybu. | - | - | - |
 
@@ -238,15 +226,13 @@ var h3 = score.histogram(null, 2)
 
 ---
 
-### MIN
+### MINIMÁLNÍ HODNOTA {#min}
 
-**název metody**: minimální hodnota
-
-Vrátí nejmenší hodnotu z neprázdných hodnot. V případě textu vrátí první hodnotu z abecedního řazení.
+**function toUpperCase() { [native code] }**: Vrátí nejmenší hodnotu z neprázdných hodnot. V případě textu vrátí první hodnotu z abecedního řazení.
 
 #### Pre-filtr
 
-jakákoliv neprázdná hodnota (u číselných řad akceptuje nuly, u birnáních proměnných argumenty nepravda/false).
+jakákoliv neprázdná hodnota (u číselných řad akceptuje nuly, u binárních proměnných argumenty false).
 
 #### Integrace dle třídy
 
@@ -265,15 +251,13 @@ var string_min = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 ---
 
-### MAX
+### MAXIMÁLNÍ HODNOTA {#max}
 
-**název metody**: maximální hodnota
-
-Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení.
+**function toUpperCase() { [native code] }**: Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení.
 
 #### Pre-filtr
 
-jakákoliv neprázdná hodnota (u číselných řad akceptuje nuly, u birnáních proměnných argumenty nepravda/false).
+jakákoliv neprázdná hodnota (u číselných řad akceptuje nuly, u binárních proměnných argumenty false).
 
 #### Integrace dle třídy
 
@@ -292,11 +276,9 @@ var string_max = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 ---
 
-### RANGE
+### VARIAČNÍ ROZPĚTÍ {#range}
 
-**název metody**: variační rozpětí
-
-Vrátí rozdíl největší a nejmenší neprázdné hodnoty.
+**function toUpperCase() { [native code] }**: Vrátí rozdíl největší a nejmenší neprázdné hodnoty.
 
 #### Pre-filtr
 
@@ -318,11 +300,9 @@ var range = new NumericVector(5,2,-15,-16.3,12,null, null, 12,13,7).range(); /* 
 
 ---
 
-### VARC
+### VARIAČNÍ KOEFICIENT {#varc}
 
-**název metody**: variační koeficient
-
-Vrátí hodnotu variačního koeficientu neprázdných hodnot.
+**function toUpperCase() { [native code] }**: Vrátí hodnotu variačního koeficientu neprázdných hodnot.
 
 #### Pre-filtr
 
@@ -331,7 +311,7 @@ Pouze číselné hodnoty (včetně nul).
 #### Argumenty
 
 | argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
-| --- |  --- |  --- |  :---: |  :---: |  :---: | 
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **s** | výběrový soubor | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - | - | - |
 
 #### Integrace dle třídy
@@ -351,11 +331,9 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc(true); /* = 0
 
 ---
 
-### PERCENTILE
+### PERCENTIL {#percentile}
 
-**název metody**: percentil
-
-Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru.
+**function toUpperCase() { [native code] }**: Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru.
 
 #### Pre-filtr
 
@@ -364,7 +342,7 @@ Pouze číselné hodnoty (včetně nul).
 #### Argumenty
 
 | argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
-| --- |  --- |  --- |  :---: |  :---: |  :---: | 
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **k** | hodnota percentilu | Ověří, zdali je hodnota číslo mezi 0 a 1 (včetně hraničních hodnot). V opačném případě vyvolá chybu. | ano | - | - |
 
 #### Integrace dle třídy
@@ -386,16 +364,14 @@ var max = score.percentile(1); /* = 25 */
 
 ---
 
-### FREQUENCY
+### FREKVENČNÍ TABULKA {#frequency}
 
-**název metody**: frekvenční tabulka
-
-Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností.
+**function toUpperCase() { [native code] }**: Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností.
 
 #### Argumenty
 
 | argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
-| --- |  --- |  --- |  :---: |  :---: |  :---: | 
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **order** | způsob řazení dat tabulky | Ověří, zdali je hodnota platným členem enumerace. V opačném případě vyvolá chybu. | - | 1 | - |
 
 #### Integrace dle třídy
@@ -447,11 +423,9 @@ var boolean_vector_desc_frequency = new BooleanVector(true, false, null, true, n
 
 ---
 
-### GEOMEAN
+### GEOMETRICKÝ PRŮMĚR {#geomean}
 
-**název metody**: geometrický průměr
-
-Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovný než průměr arytmetický.
+**function toUpperCase() { [native code] }**: Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovný než průměr arytmetický.
 
 #### Pre-filtr
 
@@ -473,11 +447,9 @@ var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29
 
 ---
 
-### HARMEAN
+### HARMONICKÝ PRŮMĚR {#harmean}
 
-**název metody**: harmonický průměr
-
-Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti.
+**function toUpperCase() { [native code] }**: Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti.
 
 #### Pre-filtr
 
@@ -499,11 +471,9 @@ var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29
 
 ---
 
-### MEDIAN
+### MEDIÁN {#median}
 
-**název metody**: medián
-
-Vrátí střední hodnotu z neprázdných hodnot.
+**function toUpperCase() { [native code] }**: Vrátí střední hodnotu z neprázdných hodnot.
 
 #### Pre-filtr
 
@@ -525,11 +495,9 @@ var median = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,2
 
 ---
 
-### MODE
+### MODUS {#mode}
 
-**název metody**: modus
-
-Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu).
+**function toUpperCase() { [native code] }**: Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu).
 
 #### Integrace dle třídy
 
@@ -549,11 +517,9 @@ var z = new BooleanVector(true, false, true).mode(); /* = true */
 
 ---
 
-### SEM
+### SMĚRODATNÁ CHYBA PRŮMĚRU {#SEM}
 
-**název metody**: směrodatná chyba průměru
-
-Vrátí hodnotu směrodatné chyby odhadu průměru.
+**function toUpperCase() { [native code] }**: Vrátí hodnotu směrodatné chyby odhadu průměru.
 
 #### Pre-filtr
 
@@ -575,9 +541,9 @@ var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,2
 
 ---
 
-### SKEWNESS
+### ŠIKMOST {#skewness}
 
-**název metody**: šikmost
+**function toUpperCase() { [native code] }**
 
 #### Pre-filtr
 
@@ -586,7 +552,7 @@ Pouze číselné hodnoty (včetně nul).
 #### Argumenty
 
 | argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
-| --- |  --- |  --- |  :---: |  :---: |  :---: | 
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **s** | výběrový soubor | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - | - | - |
 
 #### Integrace dle třídy
@@ -606,11 +572,9 @@ var skewness_sample = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,2
 
 ---
 
-### KURTOSIS
+### ŠPIČATOST {#kurtosis}
 
-**název metody**: špičatost
-
-Vrátí hodnotu excesu množiny dat.
+**function toUpperCase() { [native code] }**: Vrátí hodnotu excesu množiny dat.
 
 #### Pre-filtr
 

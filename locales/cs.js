@@ -156,7 +156,7 @@ module.exports = {
 	/* filter text - any */
 	"FxzE": "jakákoliv hodnota",
 	/* filter text - notnull */
-	"ndPx": "jakákoliv neprázdná hodnota (u číselných řad akceptuje nuly, u birnáních proměnných argumenty nepravda/false).",
+	"ndPx": "jakákoliv neprázdná hodnota (u číselných řad akceptuje nuly, u binárních proměnných argumenty false).",
 	/* Validator error - value is empty */
 	"HOuY": "Hodnota nemůže být prázdná.",
 	/* validator text - isNotNull */
