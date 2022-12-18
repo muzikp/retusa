@@ -85,9 +85,9 @@ function createVectorMethodConstructor(wiki) {
         if(t.type == 1) _ += "NumericVector";
         else if(t.type == 2) _ += "StringVector";
         else if(t.type == 3) _ += "BooleanVector";
-        _ += `).<mark>${wiki.name}</mark>(${wiki.arguments.length > 0 ? "" : ")"}`;
+        _ += `).<mark>**${wiki.name}**(${wiki.arguments.length > 0 ? "" : ")"}`;
         for(var a of wiki.arguments) {
-            _ += a.required ? "***" + a.name + "***" : "*" + a.name + "*" + " [" + a.title + "]";
+            _ += a.required ? "***" + + a.title + "***" : "*" + a.title + "*";
             if(wiki.arguments.indexOf(a) < wiki.arguments.length - 1) _ += ", ";
             else _+= ")";
         }
