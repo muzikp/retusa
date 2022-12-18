@@ -28,9 +28,14 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 
 ---
 
-### SOUČET {#sum}
+### SUM (součet) {#sum}
 
-**function toUpperCase() { [native code] }**: Vrátí součet všech neprázdných číselných hodnot vektoru.
+Vrátí součet všech neprázdných číselných hodnot vektoru.
+
+#### Konstruktor
+
+> <NumericVector>.**sum**()
+
 
 #### Pre-filtr
 
@@ -52,9 +57,16 @@ var cashflow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 
 
 ---
 
-### POČET {#count}
+### COUNT (počet) {#count}
 
-**function toUpperCase() { [native code] }**: Vrátí počet všech polí ve vektoru (včetně prázdných).
+Vrátí počet všech polí ve vektoru (včetně prázdných).
+
+#### Konstruktor
+
+> <NumericVector>.**count**()
+> <StringVector>.**count**()
+> <BooleanVector>.**count**()
+
 
 #### Integrace dle třídy
 
@@ -74,9 +86,14 @@ var total_boolean = new BooleanVector(true, true, false, null, false, true).coun
 
 ---
 
-### ARYTMETICKÝ PRŮMĚR {#avg}
+### AVG (arytmetický průměr) {#avg}
 
-**function toUpperCase() { [native code] }**: Vrátí arytmetický průměr z neprázdných hodnot.
+Vrátí arytmetický průměr z neprázdných hodnot.
+
+#### Konstruktor
+
+> <NumericVector>.**avg**()
+
 
 #### Pre-filtr
 
@@ -98,9 +115,14 @@ var avgCashFlow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /*
 
 ---
 
-### SMĚRODATNÁ ODCHYLKA {#stdev}
+### STDEV (směrodatná odchylka) {#stdev}
 
-**function toUpperCase() { [native code] }**: Vrátí směrodatnou odchylku neprázdných hodnot.
+Vrátí směrodatnou odchylku neprázdných hodnot.
+
+#### Konstruktor
+
+> <NumericVector>.**stdev**(*s*)
+
 
 #### Pre-filtr
 
@@ -129,9 +151,14 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).stdev(true); /* = 
 
 ---
 
-### ROZPTYL {#variance}
+### VARIANCE (rozptyl) {#variance}
 
-**function toUpperCase() { [native code] }**: Vrátí hodnotu rozptylu tohoto vektoru.
+Vrátí hodnotu rozptylu tohoto vektoru.
+
+#### Konstruktor
+
+> <NumericVector>.**variance**(*s*)
+
 
 #### Pre-filtr
 
@@ -160,9 +187,14 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).variance(true); /*
 
 ---
 
-### HISTOGRAM {#histogram}
+### HISTOGRAM (histogram) {#histogram}
 
-**function toUpperCase() { [native code] }**: Vrátí matici histogramu daného vektoru.
+Vrátí matici histogramu daného vektoru.
+
+#### Konstruktor
+
+> <NumericVector>.**histogram**(*maxIntervals*,*fixedInterval*)
+
 
 #### Pre-filtr
 
@@ -226,9 +258,15 @@ var h3 = score.histogram(null, 2)
 
 ---
 
-### MINIMÁLNÍ HODNOTA {#min}
+### MIN (minimální hodnota) {#min}
 
-**function toUpperCase() { [native code] }**: Vrátí nejmenší hodnotu z neprázdných hodnot. V případě textu vrátí první hodnotu z abecedního řazení.
+Vrátí nejmenší hodnotu z neprázdných hodnot. V případě textu vrátí první hodnotu z abecedního řazení.
+
+#### Konstruktor
+
+> <NumericVector>.**min**()
+> <StringVector>.**min**()
+
 
 #### Pre-filtr
 
@@ -251,9 +289,15 @@ var string_min = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 ---
 
-### MAXIMÁLNÍ HODNOTA {#max}
+### MAX (maximální hodnota) {#max}
 
-**function toUpperCase() { [native code] }**: Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení.
+Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení.
+
+#### Konstruktor
+
+> <NumericVector>.**max**()
+> <StringVector>.**max**()
+
 
 #### Pre-filtr
 
@@ -276,9 +320,14 @@ var string_max = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 ---
 
-### VARIAČNÍ ROZPĚTÍ {#range}
+### RANGE (variační rozpětí) {#range}
 
-**function toUpperCase() { [native code] }**: Vrátí rozdíl největší a nejmenší neprázdné hodnoty.
+Vrátí rozdíl největší a nejmenší neprázdné hodnoty.
+
+#### Konstruktor
+
+> <NumericVector>.**range**()
+
 
 #### Pre-filtr
 
@@ -300,9 +349,14 @@ var range = new NumericVector(5,2,-15,-16.3,12,null, null, 12,13,7).range(); /* 
 
 ---
 
-### VARIAČNÍ KOEFICIENT {#varc}
+### VARC (variační koeficient) {#varc}
 
-**function toUpperCase() { [native code] }**: Vrátí hodnotu variačního koeficientu neprázdných hodnot.
+Vrátí hodnotu variačního koeficientu neprázdných hodnot.
+
+#### Konstruktor
+
+> <NumericVector>.**varc**(*s*)
+
 
 #### Pre-filtr
 
@@ -331,9 +385,14 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc(true); /* = 0
 
 ---
 
-### PERCENTIL {#percentile}
+### PERCENTILE (percentil) {#percentile}
 
-**function toUpperCase() { [native code] }**: Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru.
+Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru.
+
+#### Konstruktor
+
+> <NumericVector>.**percentile**(***k***)
+
 
 #### Pre-filtr
 
@@ -364,9 +423,16 @@ var max = score.percentile(1); /* = 25 */
 
 ---
 
-### FREKVENČNÍ TABULKA {#frequency}
+### FREQUENCY (frekvenční tabulka) {#frequency}
 
-**function toUpperCase() { [native code] }**: Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností.
+Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností.
+
+#### Konstruktor
+
+> <NumericVector>.**frequency**(*order*)
+> <StringVector>.**frequency**(*order*)
+> <BooleanVector>.**frequency**(*order*)
+
 
 #### Argumenty
 
@@ -423,9 +489,14 @@ var boolean_vector_desc_frequency = new BooleanVector(true, false, null, true, n
 
 ---
 
-### GEOMETRICKÝ PRŮMĚR {#geomean}
+### GEOMEAN (geometrický průměr) {#geomean}
 
-**function toUpperCase() { [native code] }**: Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovný než průměr arytmetický.
+Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovný než průměr arytmetický.
+
+#### Konstruktor
+
+> <NumericVector>.**geomean**()
+
 
 #### Pre-filtr
 
@@ -447,9 +518,14 @@ var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29
 
 ---
 
-### HARMONICKÝ PRŮMĚR {#harmean}
+### HARMEAN (harmonický průměr) {#harmean}
 
-**function toUpperCase() { [native code] }**: Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti.
+Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti.
+
+#### Konstruktor
+
+> <NumericVector>.**harmean**()
+
 
 #### Pre-filtr
 
@@ -471,9 +547,14 @@ var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29
 
 ---
 
-### MEDIÁN {#median}
+### MEDIAN (medián) {#median}
 
-**function toUpperCase() { [native code] }**: Vrátí střední hodnotu z neprázdných hodnot.
+Vrátí střední hodnotu z neprázdných hodnot.
+
+#### Konstruktor
+
+> <NumericVector>.**median**()
+
 
 #### Pre-filtr
 
@@ -495,9 +576,16 @@ var median = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,2
 
 ---
 
-### MODUS {#mode}
+### MODE (modus) {#mode}
 
-**function toUpperCase() { [native code] }**: Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu).
+Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu).
+
+#### Konstruktor
+
+> <NumericVector>.**mode**()
+> <StringVector>.**mode**()
+> <BooleanVector>.**mode**()
+
 
 #### Integrace dle třídy
 
@@ -517,9 +605,14 @@ var z = new BooleanVector(true, false, true).mode(); /* = true */
 
 ---
 
-### SMĚRODATNÁ CHYBA PRŮMĚRU {#SEM}
+### SEM (směrodatná chyba průměru) {#SEM}
 
-**function toUpperCase() { [native code] }**: Vrátí hodnotu směrodatné chyby odhadu průměru.
+Vrátí hodnotu směrodatné chyby odhadu průměru.
+
+#### Konstruktor
+
+> <NumericVector>.**SEM**()
+
 
 #### Pre-filtr
 
@@ -541,9 +634,12 @@ var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,2
 
 ---
 
-### ŠIKMOST {#skewness}
+### SKEWNESS (šikmost) {#skewness}
 
-**function toUpperCase() { [native code] }**
+#### Konstruktor
+
+> <NumericVector>.**skewness**(*s*)
+
 
 #### Pre-filtr
 
@@ -572,9 +668,14 @@ var skewness_sample = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,2
 
 ---
 
-### ŠPIČATOST {#kurtosis}
+### KURTOSIS (špičatost) {#kurtosis}
 
-**function toUpperCase() { [native code] }**: Vrátí hodnotu excesu množiny dat.
+Vrátí hodnotu excesu množiny dat.
+
+#### Konstruktor
+
+> <NumericVector>.**kurtosis**()
+
 
 #### Pre-filtr
 

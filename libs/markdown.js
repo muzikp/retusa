@@ -1,3 +1,5 @@
+const { NumericVector } = require("..");
+
 //https://gist.github.com/rxaviers/7360908
 var $ = require("./locale").call;
 
@@ -5,10 +7,12 @@ var e_yes = ":heavy_check_mark:" //":white_check_mark:";
 var e_no = "" // ":no_entry_sign:"
 
 function VectorMarkdown(wiki, level = 1) {
-    var _ = `${hash(level)} ${wiki.title.toUpperCase()} ${"{#" + wiki.name + "}"}\n\n**${wiki.title.toUpperCase}**${wiki.description ? ": " + wiki.description : ""}`;
+    var _ = `${hash(level)} ${wiki.name.toUpperCase()} (${wiki.title}) ${"{#" + wiki.name + "}"}${wiki.description ? "\n\n" + wiki.description : ""}`;
+    _ += `\n\n${hash(level + 1)} Konstruktor\n\n${createVectorMethodConstructor(wiki)}`
     if(wiki.filter) {
         _ += `\n\n${hash(level+1)} ${$("VVSN")}\n\n${wiki.filter}`;
     }
+    constructor = createVectorMethodConstructor(wiki);
     if(wiki.arguments?.length > 0) {
         var headers = [$("QUJS"), $("jBGO"), $("tGqA"), $("VPYX"), $("pDgb"), $("Olab")];
         var values = wiki.arguments.map(function(a){
@@ -72,6 +76,24 @@ function objArrayToTable(headers, values, alignment) {
         v.forEach(_ => t += ` ${_} |`)
     });
     return t;
+}
+
+function createVectorMethodConstructor(wiki) {
+    var _ = "";
+    for(var t of wiki.applies.filter(a => a.apply)) {
+        _ += "> <";
+        if(t.type == 1) _ += "NumericVector";
+        else if(t.type == 2) _ += "StringVector";
+        else if(t.type == 3) _ += "BooleanVector";
+        _ += `>.**${wiki.name}**(${wiki.arguments.length > 0 ? "" : ")"}`;
+        for(var a of wiki.arguments) {
+            _ += a.required ? "***" + a.name + "***" : "*" + a.name + "*";
+            if(wiki.arguments.indexOf(a) < wiki.arguments.length - 1) _ += ",";
+            else _+= ")";
+        }
+        _+="\n";
+    }
+    return _;
 }
 
 module.exports = {
