@@ -43,30 +43,25 @@ let v_boolean = function(v) {
 
 let v_isNotEmpty = function(v) {
     if(!v && v !== 0 && v !== false) throw new Error($("HOuY"));
+    else return v;
 }
 
-let v_isVariable = function(v, autoparse){
-    v_isNotEmpty(v);
-    try {
-        if(v?.constructor?.name == "Variable") return v;
-        else if(autoparse) {
-            if(Array.isArray(v)) {
-                return new Variable(v);
-            } else throw new Error($("RLob"), {value: typeof v})
-        } else throw new Error($("RLob", {value: typeof v}))
-    } catch (e) {
-        throw new Error($("RLob", {value: typeof v}))
-    }
+let v_isVector = function(v, autoparse){
+    v = v_isNotEmpty(v);
+    if(v?.isVector) return v;
+    else if(Array.isArray(v) && autoparse) {
+        return v.vectorify();
+    } else throw new Error($("RLob", {value: typeof v}));
 }
 
-let v_isNumericVariable = function(v, autoparse = false){
-    if(v_isVariable(v, autoparse).type() === 1) return v;
+let v_isNumericVector = function(v, autoparse = false){
+    if(v_isVector(v, autoparse).type() === 1) return v;
     else throw new Error($("Kvpv"))
 }
 
 /** nezohledňuje požadovanou velikost vzorku */
 let v_generalCorrelVariable = function(v, autoparse = false) {
-    return v_isNumericVariable(v, autoparse = false);
+    return v_isNumericVector(v, autoparse = false);
 }
 
 let v_positiveInteger = function(v) {
@@ -85,7 +80,7 @@ let v_positiveDecimal = function(v) {
 }
 
 let v_booleanVariable = function(v) {
-    if(v_isVariable(v).type() !== 3) throw new Error($("GqQZ"));
+    if(v_isVector(v).type() !== 3) throw new Error($("GqQZ"));
     else return v;
 }
 
@@ -94,9 +89,9 @@ const validators = {
     isNotEmpty: {fn: v_isNotEmpty, text: ""},
     zeroToOneInc: {fn: v_zeroToOneInc, text:"GweD"},
     boolean: {fn: v_boolean, text:"GHFj"},
-    isVariable: {fn: v_isVariable, text: "GJry"},
-    isNumericVariable: {fn: v_isNumericVariable, text: "gGTf"},
-    generalCorrelVariable: {fn: v_isNumericVariable, text: "gGTf"},
+    isVector: {fn: v_isVector, text: "GJry"},
+    isNumericVariable: {fn: v_isNumericVector, text: "gGTf"},
+    generalCorrelVariable: {fn: v_isNumericVector, text: "gGTf"},
     positiveInteger: {fn: v_positiveInteger, text: "dFiw"},
     positiveDecimal: {fn: v_positiveDecimal, text: "bpCq"},
     booleanVariable: {fn: v_booleanVariable, text: "OCKc"},

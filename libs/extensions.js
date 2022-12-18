@@ -187,11 +187,11 @@ Math.factorial = function(n) {
     return n;
 }
 
-Math.getRandomIndexes = function(n, max) {
+Math.getRandomIndexes = function(total_of_elements, samplesize) {
     var indexes = [];
-    if(n < max) max = n;
-    while (indexes.length < max) {
-        var v = Math.round(Math.random()*max);
+    if(total_of_elements < samplesize) samplesize = total_of_elements;
+    while (indexes.length < samplesize) {
+        var v = Math.round(Math.random()*total_of_elements);
         if(indexes.indexOf(v) < 0) indexes.push(v);
     };
     return indexes;
