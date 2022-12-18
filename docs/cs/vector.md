@@ -63,9 +63,9 @@ Vrátí počet všech polí ve vektoru (včetně prázdných).
 
 #### Konstruktor
 
-> <NumericVector>.**count**()
-> <StringVector>.**count**()
-> <BooleanVector>.**count**()
+> NumericVector.**count**()
+> StringVector.**count**()
+> BooleanVector.**count**()
 
 
 #### Integrace dle třídy
