@@ -141,6 +141,29 @@ Array.prototype.kurtosis = function(){
     return k;
 }
 
+Array.prototype.getRankIndexes = function(order = 0){
+    const sorted = [...new Set(this)].sort((a, b) => order == 1 ? a-b : b-a);
+    const rank = new Map(sorted.map((x, i) => [x, i + 1]));
+    return this.map((x) => rank.get(x));
+}
+
+Array.prototype.rankAvg = function(value, dir) {
+    var array = new Array(...this).sort((a,b) => a - b);
+    var fi = Number(array.indexOf(value));
+    var li = Number(array.lastIndexOf(value));
+    return (fi !== li ? (li+fi)/2 : fi) + 1;
+} 
+
+Array.prototype.toAvgRank = function(order = 0) {
+    var array = new Array(...this).sort((a, b) => order == 1 ? a-b : b-a);
+    var sorted = this.map(function(value){
+        var fi = Number(array.indexOf(value));
+        var li = Number(array.lastIndexOf(value));
+        return (fi !== li ? (li+fi)/2 : fi) + 1;
+    });
+    return sorted;
+} 
+
 String.prototype.fill = function(what, repetition) {
     var x = "";
     for(var i = 0; i < repetition; i++) {

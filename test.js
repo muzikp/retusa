@@ -1,11 +1,19 @@
 var framework = require("./index");
 
 with (framework) {
+    var a = new NumericVector([10,20,15,25,23,19,18,17,24,23]).name("A")
+    var b = new NumericVector([11,19,20,25,15,20,19,17,23,25]).name("B");
+    var M = new Matrix(a, b).filter(function(){return true});
+    //var t = M.filter("A", (v) => v > 19, 1, (v) => v > 19);
+    console.log(M.removeEmpty())
+    debugger;
+    /*
     var x = VectorOverview;
     var fs = require("fs");
     fs.writeFileSync("./docs/cs/vector.md", x)
     debugger
     //vectorOverview();
+    */
 }
 
 function vectorOverview() {

@@ -47,26 +47,41 @@ class Vector extends Array {
             return this;
         } else return registry.get(this).name
     }
-    weight(value){
+    parent(value){
         if(value) {
-            setRegistryProperty(this, "weight", value)
+            setRegistryProperty(this, "parent", value)
             return this;
-        } else return registry.get(this).name
+        } else return registry.get(this).parent
     }
     serialize() {
         var obj = {
             values: this,
             name: this.name(),
-            title: this.title()
         };
         return obj;
     }
-    clone() {
-        var _ = Object.assign(Object.create(Object.getPrototypeOf(this)), this);
-        registry.set(_, getRegistryProperty(this));
-        return _;
+    clone(flush = false) {
+        if(!flush) return new this.constructor();
+        else return new this.constructor(...this);
+        
+    }
+    /**
+    * Instead of values, this method extracts indexes of values matching the filter (see @param) and return an array of indexes. 
+    * @param {function} filter A function or a strong type filter type (string). Strong type filters: notempty, empty.
+    * @return {Array<integer>} Returns an array of indexes of values matching the given filter.
+    */
+    ifilter(filter = () => true) {
+        return new Array(...this._values).map(function(v, i){
+            if(filter(v)) return i;
+            else return -1;
+        }).filter(x => x > -1 );
     }
 }
+
+/**
+* Whenever you need to make sure an instance is a vector or any of its extended children, call this property.
+*/
+Vector.prototype.isVector = true;
 
 const vectorParser = {
     numeric: function(value) {
@@ -108,6 +123,29 @@ class BooleanVector extends Vector {
     }
 }
 BooleanVector.prototype.parse = vectorParser.boolean;
+
+Array.prototype.numerify = function(){
+    return new NumericVector(...this);
+}
+
+Array.prototype.stringify = function(){
+    return new StringVector(...this);
+}
+
+Array.prototype.boolify = function(){
+    return new BooleanVector(...this);
+}
+
+Array.prototype.vectorify = function() {
+    if(this.find(v => v !== true && v !==false && v !== null))
+    {
+        try {
+            return new NumericVector(...this)
+        } catch (e) {
+            return new StringVector(...this);
+        }
+    } else return new BooleanVector(...this);
+}
 
 // #endregion
 
