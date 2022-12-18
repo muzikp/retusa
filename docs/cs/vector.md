@@ -5,7 +5,7 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 ## Statistické metody
 
 | funkce | metoda | popis | numerická | nominální | binární |
-| *---* | *---* | --- | *---* | *---* | *---* |
+| --- | --- | --- | --- | --- | --- |
 | [sum](#sum) | součet | Vrátí součet všech neprázdných číselných hodnot vektoru. | :heavy_check_mark: |  |  |
 | [count](#count) | počet | Vrátí počet všech polí ve vektoru (včetně prázdných). | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | [avg](#avg) | arytmetický průměr | Vrátí arytmetický průměr z neprázdných hodnot. | :heavy_check_mark: |  |  |
