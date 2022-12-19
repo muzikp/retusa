@@ -1,4 +1,7 @@
 var $ = require("./locale").call;
+const $schema = "http://json-schema.org/draft-04/schema#";
+
+class Schema {}
 
 class Entity {
     constructor(config){
@@ -19,6 +22,36 @@ class Entity {
             });
         }
     }
+    markdown() {
+        return toMD(this);
+    }
+}
+
+function toMD(o) {
+    var md = "";
+    if(["table", "object"].indexOf(o.type) <0) {
+        md += `**${$(o.title)}**`
+    } else {
+        if(o.type == "object") {
+            md += `**${$("qumN")}**`;
+
+        }
+        else if(o.type == "table") {
+            md += `**${$("qumN")}**`;
+
+        }
+    } 
+}
+
+var int = {
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "http://example.com/example.json",
+    "type": "integer",
+    "default": 0,
+    "title": "Root Schema",
+    "examples": [
+        1
+    ]
 }
 
 const any = new Entity({

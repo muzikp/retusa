@@ -25,6 +25,7 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 | [SEM](#SEM) | směrodatná chyba průměru | Vrátí hodnotu směrodatné chyby odhadu průměru. | :heavy_check_mark: |  |  |
 | [skewness](#skewness) | šikmost |  | :heavy_check_mark: |  |  |
 | [kurtosis](#kurtosis) | špičatost | Vrátí hodnotu excesu množiny dat. | :heavy_check_mark: |  |  |
+| [ttest](#ttest) | jednovýběrový t-test | Vrátí statistický protokol pro jednovýběrový t-test při zadání populačního průměru. | :heavy_check_mark: |  |  |
 
 ---
 
@@ -720,4 +721,43 @@ Pouze číselné hodnoty (včetně nul).
 
 ```js
 var kurtosis = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).kurtosis(); /* = 0.425*/
+```
+
+---
+
+### TTEST (jednovýběrový t-test) {#ttest}
+
+Vrátí statistický protokol pro jednovýběrový t-test při zadání populačního průměru.
+
+#### Konstruktor
+
+
+> (NumericVector).<mark>**ttest**(***NaN***)
+
+
+#### Pre-filtr
+
+Pouze číselné hodnoty (včetně nul).
+
+#### Argumenty
+
+| argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
+| **populationMean** | populační průměr | null | ano | - | - |
+
+#### Integrace dle třídy
+
+| typ vektoru | integrace |
+| --- |  :---: | 
+| numerická | :heavy_check_mark: |
+| nominální |  |
+| binární |  |
+
+#### Příklad
+
+```js
+var score = new NumericVector(10,20,15,25,23,19,18,17,24,23);
+var median = score.percentile(0.5); /* = 19.5 */
+var q25 = score.percentile(0.25); /* = 17.25 */
+var max = score.percentile(1); /* = 25 */
 ```

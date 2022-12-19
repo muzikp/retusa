@@ -1,3 +1,5 @@
+const dist = require("./distribution");
+
 Array.prototype.sum = function() {
     return this.reduce((a,b) => a+b);
 }
@@ -139,6 +141,21 @@ Array.prototype.kurtosis = function(){
     const c = (3 * Math.pow((n-1),2)) / ((n-2)*(n-3));
     var k = a * b - c;
     return k;
+}
+
+Array.prototype.ttest = function(mean){
+    var n = this.length;
+    var m = this.avg();
+    var t = (m - mean)/this.SEM();
+    var p = 1 - dist.tdist(t, n-1);
+    return {
+        t: t,
+        p: p,
+        n: n,
+        //df: n-1,
+        //sample_mean: m,
+        //population_mean: mean
+    }
 }
 
 Array.prototype.getRankIndexes = function(order = 0){

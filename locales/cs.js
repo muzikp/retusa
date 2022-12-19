@@ -291,12 +291,18 @@ module.exports = {
 	"GBcE": "hodnota korelačního koeficientu",
 	/* Schema type - correlation coefficient R (description) */
 	"IPcj": "Hodnota korelačního koeficientu nabírá hodnotu mezi -1 až 1 včetně, přičemž -1 značí maximálně nepřímo uměrný vztah, hodnota 1 znamená maximální přímo úměrný vztah a číslo nula znamená žádný vztah mězi proměnnými.",
-	"VEAt": "",
-	"rbjM": "",
-	"GRoZ": "",
-	"xtfz": "",
-	"WoVe": "",
-	"qumN": "",
+	/* vector fce ttest one sample (title) */
+	"VEAt": "jednovýběrový t-test",
+	/* vector fce ttest one sample (description) */
+	"rbjM": "Vrátí statistický protokol pro jednovýběrový t-test při zadání populačního průměru.",
+	/* vector fce ttest one sample - populationMean argument (title;) */
+	"GRoZ": "populační průměr",
+	/* vector fce ttest one sample - populationMean argument (description) */
+	"xtfz": "hodnota populačního (srovnávacího) průměru, vůči kterému je testovaní prováděno",
+	/* MD schema value example text */
+	"WoVe": "např.",
+	/* MD schema type: object */
+	"qumN": "objekt",
 	"YqRh": "",
 	"gILL": "",
 	"sOyV": "",

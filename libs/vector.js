@@ -589,8 +589,36 @@ const VectorMethodsModels = [
         example: function(){
             var kurtosis = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).kurtosis(); /* = 0.425*/
         },
-    }
-]
+    },
+    {
+        name: "ttest",
+        fn: Array.prototype.ttest,
+        filter: filters.number,
+        wiki: {
+            title: "VEAt",
+            description: "rbjM"
+        },
+        type: [1],
+        returns: schemas.number,
+        example: function(){
+            var score = new NumericVector(10,20,15,25,23,19,18,17,24,23);
+            var median = score.percentile(0.5); /* = 19.5 */
+            var q25 = score.percentile(0.25); /* = 17.25 */
+            var max = score.percentile(1); /* = 25 */
+        },
+        args: {
+            populationMean: {
+                wiki: {
+                    title: "GRoZ",
+                    description: "xtfz"
+                },
+                required: true,
+                type: "number",
+                validator: validators.number
+                }
+            }
+    },
+].sort((a,b) => a.name > b.name);
 
 class VectorMethod {
     constructor(model, parent) {

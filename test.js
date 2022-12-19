@@ -1,7 +1,10 @@
 var framework = require("./index");
 
 with (framework) {
+    /*
     var a = new NumericVector([10,20,15,25,23,19,18,17,24,23]).name("A")
+    console.dir(new NumericVector([10,20,15,25,23,19,18,17,24,23]).name("A").ttest(12));
+    sdebugger;
     var b = new NumericVector([11,19,20,25,15,20,19,17,23,25]).name("B");
     var factor = new StringVector("A","B","A", "B", "C","C");
     var target = new NumericVector(3,4,7,8, -2, -7);
@@ -11,13 +14,14 @@ with (framework) {
     //var t = M.filter("A", (v) => v > 19, 1, (v) => v > 19);
     console.log(JSON.stringify(M.correlSpearman(0,1), null, "\t"))
     debugger;
-    /*
+    */
+    
     var x = VectorOverview;
     var fs = require("fs");
     fs.writeFileSync("./docs/cs/vector.md", x)
     debugger
     //vectorOverview();
-    */
+    
 }
 
 function vectorOverview() {
