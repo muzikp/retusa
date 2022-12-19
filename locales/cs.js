@@ -287,8 +287,10 @@ module.exports = {
 	"zPyP": "popis",
 	/* MD vector example header */
 	"nzmJ": "Příklad",
-	"GBcE": "",
-	"IPcj": "",
+	/* Schema type - correlation coefficient R (title) */
+	"GBcE": "hodnota korelačního koeficientu",
+	/* Schema type - correlation coefficient R (description) */
+	"IPcj": "Hodnota korelačního koeficientu nabírá hodnotu mezi -1 až 1 včetně, přičemž -1 značí maximálně nepřímo uměrný vztah, hodnota 1 znamená maximální přímo úměrný vztah a číslo nula znamená žádný vztah mězi proměnnými.",
 	"VEAt": "",
 	"rbjM": "",
 	"GRoZ": "",

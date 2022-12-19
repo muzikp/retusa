@@ -164,6 +164,11 @@ Array.prototype.toAvgRank = function(order = 0) {
     return sorted;
 } 
 
+Array.prototype.intersection = function(arr) {
+    if(arr.length == 0) return this;
+    return this.filter(v => arr.indexOf(v) > -1)
+}
+
 String.prototype.fill = function(what, repetition) {
     var x = "";
     for(var i = 0; i < repetition; i++) {

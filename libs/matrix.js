@@ -25,6 +25,37 @@ class Matrix extends Array {
             else throw new ArgumentError("Argument is not a vector or array.");
         };
     }
+    /**
+     * Similar to a pivot table in Excel without aggregation. Converts a matrix of two vectors to a new matrix where the new factors are named after the unique values from the original factor. Nov vectors are filled with values that match the row filter in the original matrix.
+     * @param {Vector identifier} target 
+     * @param {Vector identifier} factor 
+     * @param {Array} selectedKeys Optional. If you want to pivot only selected values from the factor vector, enlist them in the selectedKeys argument.
+     * @returns {Matrix}
+     */
+    pivot(target, factor, selectedKeys = []) {
+        target = validators.isVector.fn(target);
+        factor = validators.isVector.fn(factor);
+        var selection = this.select(target, factor);
+        var pivot = new Matrix();        
+        for(let key of factor.distinct().intersection(selectedKeys)) {
+            pivot.push(new target.constructor(...selection.filter(factor, (v) => v === key)[0]).name(key));
+        }
+        return pivot;
+    }
+    /** Converts the Matrix into an array with key-value object values.
+     * @returns {Array}
+    */
+    toTable() {
+        var table = [];
+        for(var r = 0; r < this.maxRows(); r++) {
+            var row = {};
+            for(var v = 0; v < this.length; v++) {
+                row[this[v].name() || v] = this[v][r];
+            }
+            table.push(row);
+        }
+        return table;
+    }
     clone(flush = false) {
         return new Matrix(...new Array(...this).map(v => v.clone()));
     }
@@ -276,9 +307,10 @@ const matrixMethods = {
        };
     },
     correlSpearman: function(x,y) {
-        var T = new mATRIX(x,y).removeEmpty();
+        var T = new Matrix(x,y).removeEmpty();
         x = T[0].toAvgRank();
         y = T[1].toAvgRank();
+        debugger;
         var n = x.length;
         var d2 = x.map((_x, i) => Math.pow(_x - y[i],2)).sum();
         var rs = 1 - ((6 * d2) / (n * (Math.pow(n, 2) - 1)));
@@ -287,9 +319,7 @@ const matrixMethods = {
         var p = (1-dist.tdist(t_test,df)) * 2;
         return {
             r: rs,
-            N: n,
-            df: n-2,
-            T: t_test,
+            n: n,
             p: p
         }
     },

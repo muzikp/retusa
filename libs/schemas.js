@@ -66,6 +66,13 @@ const boolean = new Entity({
     examples: [true, false]
 })
 
+const correlationCoefficient = new Entity({
+    type: number,
+    title: "GBcE",
+    description: "IPcj",
+    example: [0.78, -0.91, 1]
+})
+
 const frequencyTable = new Entity({
     name: "frequencyTable",
     type: "table",
@@ -98,7 +105,7 @@ const frequencyTable = new Entity({
     ]
 })
 
-const histogramTable = {
+const histogramTable = new Entity({
     name: "histogramTable",
     type: "table",
     children: [
@@ -139,9 +146,9 @@ const histogramTable = {
         },
     ],
     example: [{"from":16,"to":18.771609312622935,"i":"16.0 - 18.0","n":3,"nc":3,"p":0.13636363636363635,"pc":0.13636363636363635},{"from":18.771609312622935,"to":21.54321862524587,"i":"19.0 - 21.0","n":9,"nc":12,"p":0.4090909090909091,"pc":0.5454545454545454},{"from":21.54321862524587,"to":24.314827937868806,"i":"22.0 - 24.0","n":7,"nc":19,"p":0.3181818181818182,"pc":0.8636363636363635},{"from":24.314827937868806,"to":27.08643725049174,"i":"25.0 - 27.0","n":2,"nc":21,"p":0.09090909090909091,"pc":0.9545454545454545},{"from":27.08643725049174,"to":29.858046563114677,"i":"28.0 - 29.0","n":1,"nc":22,"p":0.045454545454545456,"pc":0.9999999999999999}]
-}
+})
 
-const frequencyOrderEnum = {
+const frequencyOrderEnum = new Entity({
     name: "order",
     type: "enum",
     title: "gZCx",
@@ -163,7 +170,14 @@ const frequencyOrderEnum = {
             title: "vJCU"
         }
     ]
-}
+})
+
+const pearsonR = new Entity({
+    type: "object",
+    children: {
+        r: correlationCoefficient
+    }
+})
 
 module.exports = {
     number: number,
