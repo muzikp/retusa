@@ -10,6 +10,8 @@ var {VectorValueError, ArgumentError, Empty} = require("./errors");
 
 const registry = new WeakMap();
 
+// #region MATRIX
+
 class Matrix extends Array {
     /**
      * Initializes a new instance of the Matrix class.
@@ -182,6 +184,14 @@ class Matrix extends Array {
     }
 }
 
+/**
+ * Allows inserting only NumericVector members,.
+ */
+class NumericMatrix extends Matrix 
+{}
+
+// //#endregion
+
 class MatrixMethod {
     constructor(model, parent = null) {
         if(parent) this.parent = parent;
@@ -246,6 +256,7 @@ class MatrixMethod {
      * @returns {any} Returns the result of the main function.
      */
     call() {
+        if(!this.parent) return new Empty($("jrQP"));
         var args = this.validate(...arguments);
         return this.model.fn(...args)
     }
@@ -262,25 +273,27 @@ class MatrixMethod {
         return this.model.minArgs || Object.entries(this.model.args).filter(a => a.required).length;
     }
     /**
-     * Validates the method arguments and returns a new table instance ready for the method call.
+     * Validates the method arguments.
      * @returns {Array} Returns an array of validated arguments (or nothing if a validation error is thrown before).
      */
-    validate() {
-        var T = [];
-        var args = Array.prototype.slice.call(arguments);
-        let ts = Object.entries(this.model.args).map(e => e[1]);
-        for(var i = 0; i < ts.length; i++) {
-            if(ts[i].multiple) {
-                for(var r = i; r < args.length; r++) {
-                    T.push(ts[i].validator(this.parent.item(args[r])))        
-                }
-            } else {
-                T.push(ts[i].validator.fn(this.parent.item(args[i])))    
+    validate(...args) {
+        if(!this.parent) return new Empty($("jrQP"));
+        var output = [];
+        let ts = this.model.args;
+        for(var i = 0; i < ts.length; i++) {            
+            let arg = args[i];
+            if(ts[i].class < 2) arg = this.parent.item(arg);
+            if(!ts[i].required) {
+                if((arg === null || arg === undefined)) T.push(ts[i].default || null);
+                else output.push(ts[i].validator.fn(arg));
+            }
+            else {
+                if(!arg && arg !== false && arg !== 0) throw new ArgumentError($("dSWt", {name: ts[i].name, title: $(ts[i]?.title), method: $(this.model.wiki?.title)}), this); 
+                else output.push(ts[i].validator.fn(arg))    
             }
         }
-        return T;
-    }
-    
+        return output;
+    }    
 }
 
 // #region Models
@@ -389,12 +402,70 @@ const matrixMethods = {
         var phi = (x1y1*x0y0 - x1y0*x0y1)/Math.sqrt(x1*x0*y1*y0);
         debugger;
         return {};
+    },
+    ttest_independent: function(x,y){
+        var T = new Matrix(x,y).removeEmpty();
+        var x = T[0];
+        var y = T[1];
+        var nx = x.length;
+        var ny = y.length;
+        var df = nx+ny-2;
+        var sx2 = Math.pow(x.sum(),2);
+        var sy2 = Math.pow(y.sum(),2);
+        var mx = x.avg();
+        var my = y.avg();
+        var x_2 = (x.map(_ => Math.pow(_,2))).sum();
+        var y_2 = (y.map(_ => Math.pow(_,2))).sum();
+        var t = (mx-my) / Math.pow(((x_2-sx2/nx) + (y_2-sy2/ny))/df * (1/nx+1/ny), 0.5);
+        var p = dist.tdist(t, df) * 2;
+        return {
+            t: t,
+            mx: mx,
+            my: my,
+            nx: nx,
+            ny: ny,
+            df: df,
+            p: p
+        }
+    },
+    ttest_independent_grouped: function(x,y,g) {
+        var M = new Matrix(x,y).pivot(x,y,g);
+        return matrixMethods.ttest_independent(...M);
+
+    },
+    ttest_paired: function(x,y){
+        var M = new Matrix(x,y).removeEmpty();
+        x = M[0];
+        y = M[1];
+        var xy = x.map(function(_,i){return {x: x[i].toString() ? Number(x[i]) : null, y: y[i].toString() ? Number(y[i]) : null}}).filter(_ => _.x && _.y);
+        var n = xy.length;
+        var df = n * 2 - 2;
+        var x_y = xy.map(_ => _.x - _.y);
+        var t = (x_y.sum()/n)/Math.pow(((x_y.map(_ => Math.pow(_,2))).sum() - Math.pow(x_y.sum(),2)/n)/(n*(n-1)),0.5);    
+        var p = dist.tdist(t, df) * 2;
+        return {
+            t: t,
+            p: p,
+            n: x.length,
+            mx: x.avg(),
+            my: y.avg()
+        }
     }
 };
 
+var ats = {
+    /**Numeric vector only */
+    nv: new NumericVector().constructor.name,
+    /**String vector only */
+    sv: new StringVector().constructor.name,
+    /**Boolean vector only */
+    bv: new BooleanVector().constructor.name,
+    m: new Matrix().constructor.name,
+    mv: new NumericMatrix().constructor.name,
+}
+
 const MatrixMethodsModels = [
-    {
-        name: "correlPearson",
+    {   name: "correlPearson",
         fn: matrixMethods.correlPearson,
         example: function(x,y) {
             var correl = new Table([1,2,3,4,5],[4,5,6,7,8]).correlPearson(0,1);
@@ -425,8 +496,7 @@ const MatrixMethodsModels = [
         }            
         }
     },
-    {
-        name: "correlSpearman",
+    {   name: "correlSpearman",
         fn: matrixMethods.correlSpearman,
         example: null,
         wiki: {
@@ -545,7 +615,115 @@ const MatrixMethodsModels = [
                 validator: validators.booleanVariable
         }            
         }
-    }
+    },
+    {   name: "ttestind",
+        fn: matrixMethods.ttest_independent,
+        example: function(){
+            var M = new Matrix([],[]).ttestind(0,1);
+        },
+        wiki: {
+            title: "YqRh",
+            description: "gILL"
+        },
+        args: [{
+                name: "x",
+                wiki: {title: "qFEM"},
+                type: [ats.nv],
+                required: true,
+                validator: validators.isNumericVector
+            },        
+            {
+                name: "y",
+                wiki: {title: "tpUu"},
+                type: [ats.nv],
+                required: true,
+                validator: validators.isNumericVector
+        }]
+    },
+    {   name: "ttestindg",
+        fn: matrixMethods.ttest_independent_grouped,
+        example: function(){
+            var M = new Matrix([10,11,9,8,9,13,14,13,12,13,19,18,20,19,18], ["a","a","a","a","a","b","b","b","b","b","c","c","c","c","c"]).ttestindg(0,1,["a","b"]);
+            /*
+            {
+                "t": -6.000000000000004,
+                "mx": 9.4,
+                "my": 13,
+                "nx": 5,
+                "ny": 5,
+                "df": 8,
+                "p": 0.00032
+            } 
+            */
+        },
+        wiki: {
+            title: "sOyV",
+            description: "qwEY"
+        },
+        args: [
+            {
+                name: "x",
+                wiki: {title: "wHHo"},
+                type: [ats.nv],
+                required: true,
+                validator: validators.isNumericVector,
+                class: 1
+            },        
+            {
+                name: "factor",
+                wiki: {title: "Ltgx"},
+                type: [ats.nv, ats.sv, ats.bv],
+                required: true,
+                validator: validators.isVector,
+                class: 1
+            },
+            {
+                name: "groups",
+                wiki: {title: "rQBm"},
+                type: [ats.arr],
+                required: false,
+                default: [],
+                validator: validators.isArray,
+                class: 99
+            }            
+        
+        ]
+    },
+    {   name: "ttestpair",
+        fn: matrixMethods.ttest_paired,
+        example: function(){
+            var test = new Matrix([2,3,2,4,5], [9,8,7,9,10]).ttestpair(0,1);
+            /*
+            {
+                "t": -13.500000000000025,
+                "p": 0,
+                "n": 5,
+                "mx": 3.2,
+                "my": 8.6
+            } 
+            */
+        },
+        wiki: {
+            title: "mmXD",
+            description: "kPqo"
+        },
+        args: [{
+                name: "x",
+                wiki: {title: "qFEM"},
+                type: [ats.nv],
+                required: true,
+                validator: validators.isNumericVector,
+                class: 1
+            },        
+            {
+                name: "y",
+                wiki: {title: "tpUu"},
+                type: [ats.nv],
+                required: true,
+                validator: validators.isNumericVector,
+                class: 1
+        }]
+    },
 ].sort((a,b) => a.name < b.name);
 
 MatrixMethodsModels.forEach(function(m) {
@@ -554,6 +732,10 @@ MatrixMethodsModels.forEach(function(m) {
         return M.call(...arguments);
     };
 });
+
+// #endregion
+
+// #region MISC
 
 // #endregion
 

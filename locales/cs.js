@@ -289,7 +289,7 @@ module.exports = {
 	"nzmJ": "Příklad",
 	/* Schema type - correlation coefficient R (title) */
 	"GBcE": "hodnota korelačního koeficientu",
-	/* Schema type - correlation coefficient R (description) */
+	/* Schema type - correlation coefGqQZficient R (description) */
 	"IPcj": "Hodnota korelačního koeficientu nabírá hodnotu mezi -1 až 1 včetně, přičemž -1 značí maximálně nepřímo uměrný vztah, hodnota 1 znamená maximální přímo úměrný vztah a číslo nula znamená žádný vztah mězi proměnnými.",
 	/* vector fce ttest one sample (title) */
 	"VEAt": "jednovýběrový t-test",
@@ -303,17 +303,28 @@ module.exports = {
 	"WoVe": "např.",
 	/* MD schema type: object */
 	"qumN": "objekt",
-	"YqRh": "",
-	"gILL": "",
-	"sOyV": "",
-	"qwEY": "",
-	"FepU": "",
-	"wHHo": "",
-	"Ltgx": "",
-	"rQBm": "",
-	"jrQP": "",
-	"mmXD": "",
-	"kPqo": "",
+	/* Matrix fce t-test independent plain (title) */
+	"YqRh": "T-test (nezávislý)",
+	/* Matrix fce t-test independent plain (description) */
+	"gILL": "Vrátí statistický protokol Studentova t-testu pro dva nezávislé výběry, které jsou definovány vlastní proměnnou (tedy dvěma numerickými vektory).",
+	/* Matrix fce t-test independent plain (title) */
+	"sOyV": "T-test (nezávislý) se shlukující proměnnou",
+	/* Matrix fce t-test independent plain (description) */
+	"qwEY": "Vrátí statistický protokol Studentova t-testu pro dva nezávislé výběry, které jsou definovány jednou proměnnu a druhá proměnná určuje příslušnost ke skupině.",
+	/* validators isArray error */
+	"FepU": "Očekávala se hodnota typu Array, místo toho byla zjištěna hodnota ${value}",
+	/* Matrix fce t-test independent grouped - arg test variable */
+	"wHHo": "testová proměnná",
+	/* Matrix fce t-test independent grouped - arg factor variable */
+	"Ltgx": "shlukující proměnná",
+	/* Matrix fce t-test independent grouped - arg groups array */
+	"rQBm": "výběr shlukujících hodnot",
+	/* Empty instance - calling MatrixMethod without the parent specified */
+	"jrQP": "Pokud není určena konkrétní instance matice coby vlastnosti instance třídy MatrixMethod (vlastnost 'parent'), je při volání výpočetní nebo validační metody vrácen prázdný výsledek.",
+	/* Matrix fce t-test paired (title) */
+	"mmXD": "T-test (párový)",
+	/* Matrix fce t-test paired (description) */
+	"kPqo": "Vrátí statistický protokol párového t-testu pro dva závislé výběry.",
 	"baJo": "",
 	"qqQo": "",
 	"rPQr": "",

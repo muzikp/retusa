@@ -84,13 +84,18 @@ let v_booleanVariable = function(v) {
     else return v;
 }
 
+let v_isArray = function(v) {
+    if(!Array.isArray(v)) throw new Error($("FepU", {value: v}))
+}
+
 const validators = {
     isNumber: {fn: v_isNumber, text: "NfvF"},
+    isArray: {fn: v_isArray, text: ""},
     isNotEmpty: {fn: v_isNotEmpty, text: ""},
     zeroToOneInc: {fn: v_zeroToOneInc, text:"GweD"},
     boolean: {fn: v_boolean, text:"GHFj"},
     isVector: {fn: v_isVector, text: "GJry"},
-    isNumericVariable: {fn: v_isNumericVector, text: "gGTf"},
+    isNumericVector: {fn: v_isNumericVector, text: "gGTf"},
     generalCorrelVariable: {fn: v_isNumericVector, text: "gGTf"},
     positiveInteger: {fn: v_positiveInteger, text: "dFiw"},
     positiveDecimal: {fn: v_positiveDecimal, text: "bpCq"},

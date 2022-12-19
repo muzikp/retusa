@@ -1,6 +1,9 @@
 var framework = require("./index");
 
 with (framework) {
+    var M = new Matrix([2,3,2,4,5], [9,8,7,9,10]).ttestpair(0,1);
+    console.log(JSON.stringify(M, null, "\t"));
+    debugger;
     /*
     var a = new NumericVector([10,20,15,25,23,19,18,17,24,23]).name("A")
     console.dir(new NumericVector([10,20,15,25,23,19,18,17,24,23]).name("A").ttest(12));
