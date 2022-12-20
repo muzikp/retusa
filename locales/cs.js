@@ -352,7 +352,7 @@ module.exports = {
 	/* schema total of cases */
 	"bLoI": "počet případů",
 	/* argument schema (title) */
-	"dmmV": "schéma",
+	"dmmV": "typ hodnoty",
 	"nJbe": "",
 	"WLsu": "",
 	"yHjW": "",

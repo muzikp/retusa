@@ -699,7 +699,7 @@ class VectorMethod {
                                 title: args[k].wiki?.title ? $(args[k].wiki.title) : null,
                                 validator: args[k].validator?.text ? $(args[k].validator?.text) : null,
                                 description: args[k]?.wiki?.description ? $(args[k].wiki.description) : null,
-                                schema: new ArgumentSchema(args[k].schema),
+                                schema: vectorResultSchemas[args[k].schema],
                                 required: !!args[k]?.required,
                                 default: args[k].default || null,
                                 

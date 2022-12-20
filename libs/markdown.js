@@ -1,6 +1,6 @@
 //https://gist.github.com/rxaviers/7360908
 var $ = require("./locale").call;
-var {Schema} = require("./schemas");
+var {Schema, ArgumentSchema} = require("./schemas");
 
 var e_yes = ":heavy_check_mark:" //":white_check_mark:";
 var e_no = "" // ":no_entry_sign:"
@@ -19,7 +19,7 @@ function VectorMarkdown(VektorMethod, level = 1) {
             return [
                 `**${a.name}**`,
                 a.title,
-                a.schema.markdown(),
+                new ArgumentSchema(a.schema).markdown(),
                 a.validator,
                 a.required ? "[x]" || $("OpXv") : "[ ]",
                 a.default || a.default === 0 || a.default === false ? a.default : "",

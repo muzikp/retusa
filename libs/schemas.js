@@ -3,6 +3,7 @@ var $ = require("./locale").call;
 class Schema {
     lsign = "- ";
     lstart = "\n";
+    bold = "**";
     to = "";
     constructor(schema) {
       this.schema = schema;
@@ -47,7 +48,7 @@ class Schema {
     }
     createPropTitle(e, indent = 1) {
       //this.to += `${this.createIndentLi(indent)}${$(e.name) ? '<span style="color: blue">**' + $(e.name) + '**</span>: ' : ""}*${$(e.title)}* ${this.createMDTypeBadge(e.type)}`;
-      this.to += `${this.createIndentLi(indent)}${$(e.name) ? '**' + $(e.name) + '**: ' : ""}*${$(e.title)}* ${this.createMDTypeBadge(e.type)}`;
+      this.to += `${this.createIndentLi(indent)}${$(e.name) ? this.bold + $(e.name) + this.bold + ': ' : ""}*${$(e.title) !== $(e.type) ? $(e.title) : ""}* ${this.createMDTypeBadge(e.type)}`;
     }
     createIndentLi(indent) {
       var str = this.lstart;
@@ -63,8 +64,8 @@ class Schema {
         {t: "number", c: "🔴", l: "pelN"},
         {t: "integer", c: "🟠", l: "llQx"},
         {t: "boolean", c: "🟣", l: "XPGc"},
-        {t: "object", c: "🔵", l: "kLhB"},
-        {t: "array", c: "🟢", l: "qdkt"},
+        {t: "object", c: "🟦", l: "kLhB"},
+        {t: "array", c: "🟩", l: "qdkt"},
         {t: "any", c: "🟤", l: "oMas"}
       ];
       
@@ -79,6 +80,7 @@ class Schema {
         super(...arguments);
         this.lsign = "";
         this.lstart = "";
+        this.bold = "";
     }
   }
 
@@ -155,7 +157,7 @@ const vectorResultSchemas = {
         "$schema": "http://json-schema.org/draft-07/schema#", 
         "$id": "https://example.com/object1671554312.json", 
         "title": "XPGc", 
-        "type": "number",
+        "type": "boolean",
         "examples": [
             1.5
         ],
