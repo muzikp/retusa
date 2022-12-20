@@ -66,9 +66,9 @@ class Schema {
         {t: "any", c: "🟤", l: "oMas"}
       ];
       
-      var s = types.find(i => i.t == type) || {c: "red", l: "oMas"};
+      var s = types.find(i => i.t == type) || {c: "🟤", l: "oMas"};
       //return `<span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: ${s.c}">${$(s.l)}</span>`
-      return `${s.c} \` ${s.c} ${$(s.l)}\``
+      return `\`${s.c} ${$(s.l)}\``
     }
   }
 
