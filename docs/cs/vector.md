@@ -53,7 +53,7 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Schéma výsledku
 
-- *přirozené číslo* 🔴 ` 🔴 přirozené číslo`
+- *přirozené číslo* `🔴 přirozené číslo`
 
 #### Příklad
 

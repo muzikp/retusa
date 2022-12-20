@@ -57,12 +57,12 @@ class Schema {
     }
     createMDTypeBadge(type) {
       var types = [
-        {t: "string", c: "🟢", l: "RFGF"},
+        {t: "string", c: "🟡", l: "RFGF"},
         {t: "number", c: "🔴", l: "pelN"},
         {t: "integer", c: "🟠", l: "llQx"},
-        {t: "boolean", c: "🟡", l: "XPGc"},
+        {t: "boolean", c: "🟣", l: "XPGc"},
         {t: "object", c: "🔵", l: "kLhB"},
-        {t: "array", c: "🟣", l: "qdkt"},
+        {t: "array", c: "🟢", l: "qdkt"},
         {t: "any", c: "🟤", l: "oMas"}
       ];
       
