@@ -307,10 +307,10 @@ module.exports = {
 	"YqRh": "T-test (nezávislý)",
 	/* Matrix fce t-test independent plain (description) */
 	"gILL": "Vrátí statistický protokol Studentova t-testu pro dva nezávislé výběry, které jsou definovány vlastní proměnnou (tedy dvěma numerickými vektory).",
-	/* Matrix fce t-test independent plain (title) */
-	"sOyV": "T-test (nezávislý) se shlukující proměnnou",
-	/* Matrix fce t-test independent plain (description) */
-	"qwEY": "Vrátí statistický protokol Studentova t-testu pro dva nezávislé výběry, které jsou definovány jednou proměnnu a druhá proměnná určuje příslušnost ke skupině.",
+	/* Vector fce t-test one sample (title) */
+	"sOyV": "T-test s jedním výběrem",
+	/* Vector fce t-test one sample (title) */
+	"qwEY": "Vrátí statistický protokol Studentova t-testu pro jeden výběrem při zadání populačního (testovacího) průměru.",
 	/* validators isArray error */
 	"FepU": "Očekávala se hodnota typu Array, místo toho byla zjištěna hodnota ${value}",
 	/* Matrix fce t-test independent grouped - arg test variable */
@@ -345,10 +345,14 @@ module.exports = {
 	"oMas": "cokoliv",
 	/* MD docs header - result schema */
 	"KxQM": "Schéma výsledku",
-	"GmAh": "",
-	"MpjZ": "",
-	"bLoI": "",
-	"dmmV": "",
+	/* schema t-test - T value */
+	"GmAh": "testovací hodnota",
+	/* schema p (significance) */
+	"MpjZ": "hladina významnosti",
+	/* schema total of cases */
+	"bLoI": "počet případů",
+	/* argument schema (title) */
+	"dmmV": "schéma",
 	"nJbe": "",
 	"WLsu": "",
 	"yHjW": "",

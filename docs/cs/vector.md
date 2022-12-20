@@ -53,7 +53,7 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Schéma výsledku
 
-- *přirozené číslo* `🔴 **přirozené číslo`
+- *přirozené číslo* `🔴 přirozené číslo`
 
 #### Příklad
 
@@ -149,9 +149,9 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Argumenty
 
-| argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
+| argument | popis | schéma | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **s** | výběrový soubor | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - | - | - |
+| **s** | výběrový soubor | ** `🟤 cokoliv` | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | [ ] |  |
 
 #### Integrace dle třídy
 
@@ -190,9 +190,9 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Argumenty
 
-| argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
+| argument | popis | schéma | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **s** | výběrový soubor | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - | - | - |
+| **s** | výběrový soubor | ** `🟤 cokoliv` | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | [ ] |  |
 
 #### Integrace dle třídy
 
@@ -231,10 +231,10 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Argumenty
 
-| argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
+| argument | popis | schéma | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **maxIntervals** | Maximální počet intervalů | Ověří, zdali se jedná o celé kladné číslo. V opačném případě vyvolá chybu. | - | - | - |
-| **fixedInterval** | Pevná velikost intervalu | Ověří, zdali se jedná o číselnou hodnotu větší než nula. V opačném případě vyvolá chybu. | - | - | - |
+| **maxIntervals** | Maximální počet intervalů | ** `🟤 cokoliv` | Ověří, zdali se jedná o celé kladné číslo. V opačném případě vyvolá chybu. | [ ] |  |
+| **fixedInterval** | Pevná velikost intervalu | ** `🟤 cokoliv` | Ověří, zdali se jedná o číselnou hodnotu větší než nula. V opačném případě vyvolá chybu. | [ ] |  |
 
 #### Integrace dle třídy
 
@@ -246,7 +246,14 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Schéma výsledku
 
-- *přirozené číslo* `🔴 přirozené číslo`
+- *histogram* `🟢 řada`
+  - **from**: *spodní mez* `🔴 přirozené číslo`
+  - **to**: *horní mez* `🔴 přirozené číslo`
+  - **i**: *interval* `🟡 text`
+  - **n**: *četnost (abs.)* `🟠 celé číslo`
+  - **nc**: *kumulativní četnost (abs.)* `🟠 celé číslo`
+  - **p**: *četnost (%)* `🔴 přirozené číslo`
+  - **pc**: *kumulativní četnost (%)* `🔴 přirozené číslo`
 
 #### Příklad
 
@@ -413,9 +420,9 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Argumenty
 
-| argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
+| argument | popis | schéma | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **s** | výběrový soubor | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - | - | - |
+| **s** | výběrový soubor | ** `🟤 cokoliv` | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | [ ] |  |
 
 #### Integrace dle třídy
 
@@ -454,9 +461,9 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Argumenty
 
-| argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
+| argument | popis | schéma | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **k** | hodnota percentilu | Ověří, zdali je hodnota číslo mezi 0 a 1 (včetně hraničních hodnot). V opačném případě vyvolá chybu. | ano | - | - |
+| **k** | hodnota percentilu | ** `🟤 cokoliv` | Ověří, zdali je hodnota číslo mezi 0 a 1 (včetně hraničních hodnot). V opačném případě vyvolá chybu. | [x] |  |
 
 #### Integrace dle třídy
 
@@ -497,9 +504,9 @@ Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností.
 
 #### Argumenty
 
-| argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
+| argument | popis | schéma | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **order** | způsob řazení dat tabulky | Ověří, zdali je hodnota platným členem enumerace. V opačném případě vyvolá chybu. | - | 1 | - |
+| **order** | způsob řazení dat tabulky | ** `🟤 cokoliv` | Ověří, zdali je hodnota platným členem enumerace. V opačném případě vyvolá chybu. | [ ] | 1 |
 
 #### Integrace dle třídy
 
@@ -511,7 +518,9 @@ Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností.
 
 #### Schéma výsledku
 
-- *přirozené číslo* `🔴 přirozené číslo`
+- *frekvenční tabulka* `🟢 řada`
+  - **value**: *hodnota* `🟤 cokoliv`
+  - **frequency**: *četnost* `🟠 celé číslo`
 
 #### Příklad
 
@@ -680,7 +689,7 @@ Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vr�
 
 #### Schéma výsledku
 
-- *přirozené číslo* `🔴 přirozené číslo`
+- *jakákoliv hodnota* `🟤 cokoliv`
 
 #### Příklad
 
@@ -740,9 +749,9 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Argumenty
 
-| argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
+| argument | popis | schéma | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **s** | výběrový soubor | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - | - | - |
+| **s** | výběrový soubor | ** `🟤 cokoliv` | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | [ ] |  |
 
 #### Integrace dle třídy
 
@@ -815,9 +824,9 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Argumenty
 
-| argument | popis | validátor | povinný | defaultní hodnota | vícenásobný |
+| argument | popis | schéma | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **populationMean** | populační průměr | null | ano | - | - |
+| **populationMean** | populační průměr | ** `🟤 cokoliv` | null | [x] |  |
 
 #### Integrace dle třídy
 
@@ -829,7 +838,10 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Schéma výsledku
 
-- *přirozené číslo* `🔴 přirozené číslo`
+- *T-test s jedním výběrem* `🔵 objekt`
+  - **t**: *testovací hodnota* `🔴 přirozené číslo`
+  - **p**: *hladina významnosti* `🔴 přirozené číslo`
+  - **n**: *počet případů* `🟠 celé číslo`
 
 #### Příklad
 

@@ -14,15 +14,15 @@ function VectorMarkdown(VektorMethod, level = 1) {
     }
     constructor = createVectorMethodConstructor(wiki);
     if(wiki.arguments?.length > 0) {
-        var headers = [$("QUJS"), $("jBGO"), $("tGqA"), $("VPYX"), $("pDgb"), $("Olab")];
+        var headers = [$("QUJS"), $("jBGO"), $("dmmV"), $("tGqA"), $("VPYX"), $("pDgb")];
         var values = wiki.arguments.map(function(a){
             return [
                 `**${a.name}**`,
                 a.title,
+                a.schema.markdown(),
                 a.validator,
-                a.required ? $("OpXv") : "-",
-                a.default || a.default === 0 || a.default === false ? a.default : "-",
-                a.multiple ? $("OpXv") : "-",
+                a.required ? "[x]" || $("OpXv") : "[ ]",
+                a.default || a.default === 0 || a.default === false ? a.default : "",
             ]
         });
         _ += `\n\n${hash(level+1)} ${$("FRpk")}\n\n${objArrayToTable(headers, values, [1,1,0,1,1,1])}`;

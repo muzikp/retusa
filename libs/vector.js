@@ -2,7 +2,7 @@
 
 var $ = require("./locale").call;
 var {filters, validators} = require("./parsers");
-var {vectorResultSchemas, Schema} = require("./schemas");
+var {vectorResultSchemas, Schema, ArgumentSchema} = require("./schemas");
 const {Array, Math, String, Function} = require("./extensions");
 const {VectorMarkdown, VectorOverview} = require("./markdown");
 var {VectorValueError, ArgumentError, Empty} = require("./errors");
@@ -214,6 +214,7 @@ const VectorMethodsModels = [
                     description: "FfpU"
                 },
                 required: false,
+                schema: "boolean",
                 default: false,
                 type: "boolean",
                 validator: validators.boolean
@@ -242,6 +243,7 @@ const VectorMethodsModels = [
                 },
                 required: false,
                 default: false,
+                schema: "boolean",
                 type: "boolean",
                 validator: validators.boolean
                 }
@@ -256,7 +258,7 @@ const VectorMethodsModels = [
             description: "AISp"
         },
         type: [1],
-        returns: "number",
+        returns: "histogram",
         example: function(){
             var score = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1);
             var h1 = score.histogram();
@@ -304,6 +306,7 @@ const VectorMethodsModels = [
                 },
                 required: false,
                 default: null,
+                schema: "number",
                 type: "number",
                 validator: validators.positiveInteger,
             },
@@ -314,6 +317,7 @@ const VectorMethodsModels = [
                 },
                 required: false,
                 default: null,
+                schema: "number",
                 type: "number",
                 validator: validators.positiveDecimal,
                 }
@@ -385,6 +389,7 @@ const VectorMethodsModels = [
                 },
                 required: false,
                 default: false,
+                schema: "boolean",
                 type: "boolean",
                 validator: validators.boolean
                 }
@@ -413,6 +418,7 @@ const VectorMethodsModels = [
                     description: "GQpQ"
                 },
                 required: true,
+                schema: "number",
                 type: "decimal",
                 validator: validators.zeroToOneInc
                 }
@@ -427,7 +433,7 @@ const VectorMethodsModels = [
             description: "Tzyp"
         },
         type: [1,2,3],
-        returns: "number",
+        returns: "frequency",
         example: function(){
             var numeric_vector_no_order = new NumericVector(5,2,3,2,3,3,1,6,3).frequency();
             /*
@@ -470,6 +476,7 @@ const VectorMethodsModels = [
                     title: "gZCx"
                 },
                 required: false,
+                schema: "integer",
                 default: 1,
                 type: "enum",
                 validator: validators.enumValidator({
@@ -548,7 +555,7 @@ const VectorMethodsModels = [
             description: "IBfx"
         },
         type: [1,2,3],
-        returns: "number",
+        returns: "any",
         example: function(){
             var x = new NumericVector(1,2,3,4,3,4,5,3).mode(); /* = 3 */
             var y = new StringVector("a",null,null,"b","c","d",null,"b").mode(); /* = null */
@@ -591,6 +598,7 @@ const VectorMethodsModels = [
                     title: "eJTq",
                     description: "FfpU"
                 },
+                schema: "boolean",
                 required: false,
                 default: false,
                 type: "boolean",
@@ -621,7 +629,7 @@ const VectorMethodsModels = [
             description: "rbjM"
         },
         type: [1],
-        returns: "number",
+        returns: "ttest",
         example: function(){
             var score = new NumericVector(10,20,15,25,23,19,18,17,24,23);
             var median = score.percentile(0.5); /* = 19.5 */
@@ -634,6 +642,7 @@ const VectorMethodsModels = [
                     title: "GRoZ",
                     description: "xtfz"
                 },
+                schema: "number",
                 required: true,
                 type: "number",
                 validator: validators.number
@@ -690,9 +699,10 @@ class VectorMethod {
                                 title: args[k].wiki?.title ? $(args[k].wiki.title) : null,
                                 validator: args[k].validator?.text ? $(args[k].validator?.text) : null,
                                 description: args[k]?.wiki?.description ? $(args[k].wiki.description) : null,
+                                schema: new ArgumentSchema(args[k].schema),
                                 required: !!args[k]?.required,
                                 default: args[k].default || null,
-                                multiple: !!args[k].multiple
+                                
                             })
                         }
                     }

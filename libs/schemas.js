@@ -1,6 +1,8 @@
 var $ = require("./locale").call;
 
 class Schema {
+    lsign = "- ";
+    lstart = "\n";
     to = "";
     constructor(schema) {
       this.schema = schema;
@@ -11,7 +13,7 @@ class Schema {
             this.append(this.schema);
             return this.to;
         } catch(e) {
-            console.warn(e);
+            //console.warn(e);
             return "";
         }
       
@@ -48,11 +50,11 @@ class Schema {
       this.to += `${this.createIndentLi(indent)}${$(e.name) ? '**' + $(e.name) + '**: ' : ""}*${$(e.title)}* ${this.createMDTypeBadge(e.type)}`;
     }
     createIndentLi(indent) {
-      var str = "\n";
+      var str = this.lstart;
       for(var i = 0; i < indent; i++) {
         str += "  ";
       }
-      str += "- ";
+      str += this.lsign;
       return str;
     }
     createMDTypeBadge(type) {
@@ -71,6 +73,16 @@ class Schema {
       return `\`${s.c} ${$(s.l)}\``
     }
   }
+
+  class ArgumentSchema extends Schema {
+    constructor() {
+        super(...arguments);
+        this.lsign = "";
+        this.lstart = "";
+    }
+  }
+
+
 
 const vectorResultSchemas = {
     number: {
@@ -148,84 +160,182 @@ const vectorResultSchemas = {
             1.5
         ],
         "default": 0.0
+    },
+    histogram: {
+        "definitions": {},
+        "$schema": "http://json-schema.org/draft-07/schema#", 
+        "$id": "https://example.com/object1671560926.json", 
+        "title": "PAwR", 
+        "type": "array",
+        "default": [],
+        "items":{
+            "$id": "#root/items", 
+            "title": "Items", 
+            "type": "object",
+            "required": [
+                "from",
+                "to",
+                "i",
+                "n",
+                "nc",
+                "p",
+                "pc"
+            ],
+            "properties": {
+                "from": {
+                    "$id": "#root/items/from", 
+                    "title": "jbqY", 
+                    "type": "number",
+                    "examples": [
+                        1
+                    ],
+                    "default": 0
+                },
+                "to": {
+                    "$id": "#root/items/to", 
+                    "title": "GlDV", 
+                    "type": "number",
+                    "examples": [
+                        3.025
+                    ],
+                    "default": 0.0
+                },
+                "i": {
+                    "$id": "#root/items/i", 
+                    "title": "VyzG", 
+                    "type": "string",
+                    "default": "",
+                    "examples": [
+                        "1.00 - 3.00"
+                    ],
+                    "pattern": "^.*$"
+                },
+                "n": {
+                    "$id": "#root/items/n", 
+                    "title": "eHkc", 
+                    "type": "integer",
+                    "examples": [
+                        1
+                    ],
+                    "default": 0
+                },
+                "nc": {
+                    "$id": "#root/items/nc", 
+                    "title": "Dwuz", 
+                    "type": "integer",
+                    "examples": [
+                        1
+                    ],
+                    "default": 0
+                },
+                "p": {
+                    "$id": "#root/items/p", 
+                    "title": "iDVx", 
+                    "type": "number",
+                    "examples": [
+                        0.0625
+                    ],
+                    "default": 0.0
+                },
+                "pc": {
+                    "$id": "#root/items/pc", 
+                    "title": "oIyG", 
+                    "type": "number",
+                    "examples": [
+                        0.0625
+                    ],
+                    "default": 0.0
+                }
+            }
+        }        
+    },
+    frequency: {
+        "definitions": {},
+        "$schema": "http://json-schema.org/draft-07/schema#", 
+        "$id": "https://example.com/object1671561419.json", 
+        "title": "dYJK", 
+        "type": "array",
+        "default": [],
+        "items":{
+            "$id": "#root/items", 
+            "title": "Items", 
+            "type": "object",
+            "required": [
+                "value",
+                "frequency"
+            ],
+            "properties": {
+                "value": {
+                    "$id": "#root/items/value", 
+                    "title": "ZVbP", 
+                    "type": "any",
+                    "default": "",
+                    "examples": [
+                        "a"
+                    ],
+                    "pattern": "^.*$"
+                },
+                "frequency": {
+                    "$id": "#root/items/frequency", 
+                    "title": "mXpR", 
+                    "type": "integer",
+                    "examples": [
+                        2
+                    ],
+                    "default": 0
+                }
+            }
+        }
+    
+    },
+    ttest: {
+        "definitions": {},
+        "$schema": "http://json-schema.org/draft-07/schema#", 
+        "$id": "https://example.com/object1671561683.json", 
+        "title": "sOyV", 
+        "type": "object",
+        "required": [
+            "t",
+            "p",
+            "n"
+        ],
+        "properties": {
+            "t": {
+                "$id": "#root/t", 
+                "title": "GmAh", 
+                "type": "number",
+                "examples": [
+                    -8.403733075366224
+                ],
+                "default": 0.0
+            },
+            "p": {
+                "$id": "#root/p", 
+                "title": "MpjZ", 
+                "type": "number",
+                "examples": [
+                    1
+                ],
+                "default": 0
+            },
+            "n": {
+                "$id": "#root/n", 
+                "title": "bLoI", 
+                "type": "integer",
+                "examples": [
+                    16
+                ],
+                "default": 0
+            }
+        }
     }
+    
 }
 /*
 
-const frequencyTable = {
-    name: "frequencyTable",
-    type: "table",
-    title: "dYJK",
-    children: [
-        new Entity({
-            type: any,
-            name: "v",
-            title: "ZVbP"
-        }),
-        new Entity({
-            type: integer,
-            name: "f",
-            title: "mXpR"
-        }),
-    ],
-    example: [
-        {
-            v: "C",
-            f: 12
-        },
-        {
-            v: "A",
-            f: 8
-        },
-        {
-            v: "B",
-            f: 7
-        }
-    ]
-};
 
-const histogramTable = {
-    name: "histogramTable",
-    type: "table",
-    children: [
-        {
-            type: number,
-            name: "from",
-            title: "jbqY"
-        },
-        {
-            type: number,
-            name: "to",
-            title: "GlDV"
-        },
-        {
-            type: string,
-            name: "i",
-            title: "VyzG"
-        },
-        {
-            type: uint,
-            name: "n",
-            title: "eHkc"
-        },
-        {
-            type: uint,
-            name: "nc",
-            title: "Dwuz"
-        },
-        {
-            type: zeroToOneInc,
-            name: "p",
-            title: "iDVx"
-        },
-        {
-            type: zeroToOneInc,
-            name: "pc",
-            title: "oIyG"
-        },
-    ],
-    example: [{"from":16,"to":18.771609312622935,"i":"16.0 - 18.0","n":3,"nc":3,"p":0.13636363636363635,"pc":0.13636363636363635},{"from":18.771609312622935,"to":21.54321862524587,"i":"19.0 - 21.0","n":9,"nc":12,"p":0.4090909090909091,"pc":0.5454545454545454},{"from":21.54321862524587,"to":24.314827937868806,"i":"22.0 - 24.0","n":7,"nc":19,"p":0.3181818181818182,"pc":0.8636363636363635},{"from":24.314827937868806,"to":27.08643725049174,"i":"25.0 - 27.0","n":2,"nc":21,"p":0.09090909090909091,"pc":0.9545454545454545},{"from":27.08643725049174,"to":29.858046563114677,"i":"28.0 - 29.0","n":1,"nc":22,"p":0.045454545454545456,"pc":0.9999999999999999}]
-}
+
+
 
 const frequencyOrderEnum = {
     name: "order",
@@ -260,5 +370,6 @@ const pearsonR = {
 */
 module.exports = {
     Schema: Schema,
+    ArgumentSchema: ArgumentSchema,
     vectorResultSchemas: vectorResultSchemas
 }

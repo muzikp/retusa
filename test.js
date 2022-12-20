@@ -4,8 +4,11 @@ var framework = require("./index");
 
 with (framework) {
     //var M = new Matrix([1,2,3,4,5,6,7,8,9,10],[1,3,5,7,9,11,13,15,17,19]).mannwhitney(0,1);
-    //var M = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1);
+    //var M = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1).ttest(10);
+
+    //var M = new StringVector("a","a","b","c").frequency();
     //console.log(JSON.stringify(M,null,"\t"));
+    //return;
     //debugger;
     /*
     var a = new NumericVector([10,20,15,25,23,19,18,17,24,23]).name("A")
