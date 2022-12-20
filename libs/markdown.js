@@ -3,7 +3,7 @@ var $ = require("./locale").call;
 var {Schema, ArgumentSchema} = require("./schemas");
 
 var e_yes = "✔️" //":heavy_check_mark:" //":white_check_mark:";
-var e_no = "❌" // ":no_entry_sign:"
+var e_no = "-" // "❌" // ":no_entry_sign:"
 
 function VectorMarkdown(VektorMethod, level = 1) {
     var wiki = VektorMethod;
@@ -21,7 +21,7 @@ function VectorMarkdown(VektorMethod, level = 1) {
                 a.title,
                 new ArgumentSchema(a.schema).markdown(),
                 a.validator,
-                a.required ? "[x]" || $("OpXv") : "[ ]",
+                a.required ? e_yes : e_no,
                 a.default || a.default === 0 || a.default === false ? a.default : "",
             ]
         });

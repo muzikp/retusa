@@ -38,16 +38,16 @@ module.exports = {
 	/* any integer */
 	"llQx": "celé číslo",
 	/* any number */
-	"pelN": "přirozené číslo",
+	"pelN": "číslo",
 	/* vector percentile (example note) */
 	"vOnn": "výpočet 1. kvartilu (25% percentilu)",
 	/* vector result note */
 	"UUNG": "výsledek",
-	/* numeric array type name */
-	"LOYN": "numerická",
-	/* string array type name */
+	/* numeric vector type name */
+	"LOYN": "numerický",
+	/* string vector type name */
 	"zoiB": "nominální",
-	/* boolean array type name */
+	/* boolean vector type name */
 	"OkoC": "binární",
 	/* vector count fce (description) */
 	"ULJX": "Vrátí počet všech polí ve vektoru (včetně prázdných).",
@@ -130,7 +130,7 @@ module.exports = {
 	/* schema type string */
 	"RFGF": "text",
 	/* schema type boolean */
-	"XPGc": "binární proměnná",
+	"XPGc": "binární",
 	/* schema type object */
 	"UxIa": "",
 	/* schema type array */

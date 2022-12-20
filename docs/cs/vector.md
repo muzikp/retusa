@@ -4,28 +4,28 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 
 ## Statistické metody
 
-| funkce | metoda | popis | numerická | nominální | binární |
+| funkce | metoda | popis | numerický | nominální | binární |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| [sum](#sum) | součet | Vrátí součet všech neprázdných číselných hodnot vektoru. | ✔️ | ❌ | ❌ |
+| [sum](#sum) | součet | Vrátí součet všech neprázdných číselných hodnot vektoru. | ✔️ | - | - |
 | [count](#count) | počet | Vrátí počet všech polí ve vektoru (včetně prázdných). | ✔️ | ✔️ | ✔️ |
-| [avg](#avg) | arytmetický průměr | Vrátí arytmetický průměr z neprázdných hodnot. | ✔️ | ❌ | ❌ |
-| [stdev](#stdev) | směrodatná odchylka | Vrátí směrodatnou odchylku neprázdných hodnot. | ✔️ | ❌ | ❌ |
-| [variance](#variance) | rozptyl | Vrátí hodnotu rozptylu tohoto vektoru. | ✔️ | ❌ | ❌ |
-| [histogram](#histogram) | histogram | Vrátí matici histogramu daného vektoru. | ✔️ | ❌ | ❌ |
+| [avg](#avg) | arytmetický průměr | Vrátí arytmetický průměr z neprázdných hodnot. | ✔️ | - | - |
+| [stdev](#stdev) | směrodatná odchylka | Vrátí směrodatnou odchylku neprázdných hodnot. | ✔️ | - | - |
+| [variance](#variance) | rozptyl | Vrátí hodnotu rozptylu tohoto vektoru. | ✔️ | - | - |
+| [histogram](#histogram) | histogram | Vrátí matici histogramu daného vektoru. | ✔️ | - | - |
 | [min](#min) | minimální hodnota | Vrátí nejmenší hodnotu z neprázdných hodnot. V případě textu vrátí první hodnotu z abecedního řazení. | ✔️ | ✔️ | ✔️ |
 | [max](#max) | maximální hodnota | Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení. | ✔️ | ✔️ | ✔️ |
-| [range](#range) | variační rozpětí | Vrátí rozdíl největší a nejmenší neprázdné hodnoty. | ✔️ | ❌ | ❌ |
-| [varc](#varc) | variační koeficient | Vrátí hodnotu variačního koeficientu neprázdných hodnot. | ✔️ | ❌ | ❌ |
-| [percentile](#percentile) | percentil | Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru. | ✔️ | ❌ | ❌ |
+| [range](#range) | variační rozpětí | Vrátí rozdíl největší a nejmenší neprázdné hodnoty. | ✔️ | - | - |
+| [varc](#varc) | variační koeficient | Vrátí hodnotu variačního koeficientu neprázdných hodnot. | ✔️ | - | - |
+| [percentile](#percentile) | percentil | Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru. | ✔️ | - | - |
 | [frequency](#frequency) | frekvenční tabulka | Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností. | ✔️ | ✔️ | ✔️ |
-| [geomean](#geomean) | geometrický průměr | Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovný než průměr arytmetický. | ✔️ | ❌ | ❌ |
-| [harmean](#harmean) | harmonický průměr | Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti. | ✔️ | ❌ | ❌ |
-| [median](#median) | medián | Vrátí střední hodnotu z neprázdných hodnot. | ✔️ | ❌ | ❌ |
+| [geomean](#geomean) | geometrický průměr | Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovný než průměr arytmetický. | ✔️ | - | - |
+| [harmean](#harmean) | harmonický průměr | Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti. | ✔️ | - | - |
+| [median](#median) | medián | Vrátí střední hodnotu z neprázdných hodnot. | ✔️ | - | - |
 | [mode](#mode) | modus | Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu). | ✔️ | ✔️ | ✔️ |
-| [SEM](#SEM) | směrodatná chyba průměru | Vrátí hodnotu směrodatné chyby odhadu průměru. | ✔️ | ❌ | ❌ |
-| [skewness](#skewness) | šikmost |  | ✔️ | ❌ | ❌ |
-| [kurtosis](#kurtosis) | špičatost | Vrátí hodnotu excesu množiny dat. | ✔️ | ❌ | ❌ |
-| [ttest](#ttest) | jednovýběrový t-test | Vrátí statistický protokol pro jednovýběrový t-test při zadání populačního průměru. | ✔️ | ❌ | ❌ |
+| [SEM](#SEM) | směrodatná chyba průměru | Vrátí hodnotu směrodatné chyby odhadu průměru. | ✔️ | - | - |
+| [skewness](#skewness) | šikmost |  | ✔️ | - | - |
+| [kurtosis](#kurtosis) | špičatost | Vrátí hodnotu excesu množiny dat. | ✔️ | - | - |
+| [ttest](#ttest) | jednovýběrový t-test | Vrátí statistický protokol pro jednovýběrový t-test při zadání populačního průměru. | ✔️ | - | - |
 
 ---
 
@@ -47,13 +47,13 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- |  :---: | 
-| numerická | ✔️ |
-| nominální | ❌ |
-| binární | ❌ |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
 #### Schéma výsledku
 
-- *přirozené číslo* `🔴 přirozené číslo`
+- *číslo* `🔴 číslo`
 
 #### Příklad
 
@@ -81,7 +81,7 @@ Vrátí počet všech polí ve vektoru (včetně prázdných).
 
 | typ vektoru | integrace |
 | --- |  :---: | 
-| numerická | ✔️ |
+| numerický | ✔️ |
 | nominální | ✔️ |
 | binární | ✔️ |
 
@@ -117,13 +117,13 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- |  :---: | 
-| numerická | ✔️ |
-| nominální | ❌ |
-| binární | ❌ |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
 #### Schéma výsledku
 
-- *přirozené číslo* `🔴 přirozené číslo`
+- *číslo* `🔴 číslo`
 
 #### Příklad
 
@@ -151,19 +151,19 @@ Pouze číselné hodnoty (včetně nul).
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **s** | výběrový soubor | 🟣 binární proměnná | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | [ ] |  |
+| **s** | výběrový soubor | 🟣 binární | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - |  |
 
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
 | --- |  :---: | 
-| numerická | ✔️ |
-| nominální | ❌ |
-| binární | ❌ |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
 #### Schéma výsledku
 
-- *přirozené číslo* `🔴 přirozené číslo`
+- *číslo* `🔴 číslo`
 
 #### Příklad
 
@@ -192,19 +192,19 @@ Pouze číselné hodnoty (včetně nul).
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **s** | výběrový soubor | 🟣 binární proměnná | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | [ ] |  |
+| **s** | výběrový soubor | 🟣 binární | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - |  |
 
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
 | --- |  :---: | 
-| numerická | ✔️ |
-| nominální | ❌ |
-| binární | ❌ |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
 #### Schéma výsledku
 
-- *přirozené číslo* `🔴 přirozené číslo`
+- *číslo* `🔴 číslo`
 
 #### Příklad
 
@@ -233,27 +233,27 @@ Pouze číselné hodnoty (včetně nul).
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **maxIntervals** | Maximální počet intervalů | 🔴 přirozené číslo | Ověří, zdali se jedná o celé kladné číslo. V opačném případě vyvolá chybu. | [ ] |  |
-| **fixedInterval** | Pevná velikost intervalu | 🔴 přirozené číslo | Ověří, zdali se jedná o číselnou hodnotu větší než nula. V opačném případě vyvolá chybu. | [ ] |  |
+| **maxIntervals** | Maximální počet intervalů | 🔴 číslo | Ověří, zdali se jedná o celé kladné číslo. V opačném případě vyvolá chybu. | - |  |
+| **fixedInterval** | Pevná velikost intervalu | 🔴 číslo | Ověří, zdali se jedná o číselnou hodnotu větší než nula. V opačném případě vyvolá chybu. | - |  |
 
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
 | --- |  :---: | 
-| numerická | ✔️ |
-| nominální | ❌ |
-| binární | ❌ |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
 #### Schéma výsledku
 
 - *histogram* `🟩 řada`
-  - **from**: *spodní mez* `🔴 přirozené číslo`
-  - **to**: *horní mez* `🔴 přirozené číslo`
+  - **from**: *spodní mez* `🔴 číslo`
+  - **to**: *horní mez* `🔴 číslo`
   - **i**: *interval* `🟡 text`
   - **n**: *četnost (abs.)* `🟠 celé číslo`
   - **nc**: *kumulativní četnost (abs.)* `🟠 celé číslo`
-  - **p**: *četnost (%)* `🔴 přirozené číslo`
-  - **pc**: *kumulativní četnost (%)* `🔴 přirozené číslo`
+  - **p**: *četnost (%)* `🔴 číslo`
+  - **pc**: *kumulativní četnost (%)* `🔴 číslo`
 
 #### Příklad
 
@@ -320,7 +320,7 @@ jakákoliv neprázdná hodnota (u číselných řad akceptuje nuly, u binárníc
 
 | typ vektoru | integrace |
 | --- |  :---: | 
-| numerická | ✔️ |
+| numerický | ✔️ |
 | nominální | ✔️ |
 | binární | ✔️ |
 
@@ -359,7 +359,7 @@ jakákoliv neprázdná hodnota (u číselných řad akceptuje nuly, u binárníc
 
 | typ vektoru | integrace |
 | --- |  :---: | 
-| numerická | ✔️ |
+| numerický | ✔️ |
 | nominální | ✔️ |
 | binární | ✔️ |
 
@@ -394,13 +394,13 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- |  :---: | 
-| numerická | ✔️ |
-| nominální | ❌ |
-| binární | ❌ |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
 #### Schéma výsledku
 
-- *přirozené číslo* `🔴 přirozené číslo`
+- *číslo* `🔴 číslo`
 
 #### Příklad
 
@@ -428,19 +428,19 @@ Pouze číselné hodnoty (včetně nul).
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **s** | výběrový soubor | 🟣 binární proměnná | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | [ ] |  |
+| **s** | výběrový soubor | 🟣 binární | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - |  |
 
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
 | --- |  :---: | 
-| numerická | ✔️ |
-| nominální | ❌ |
-| binární | ❌ |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
 #### Schéma výsledku
 
-- *přirozené číslo* `🔴 přirozené číslo`
+- *číslo* `🔴 číslo`
 
 #### Příklad
 
@@ -469,19 +469,19 @@ Pouze číselné hodnoty (včetně nul).
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **k** | hodnota percentilu | 🔴 přirozené číslo | Ověří, zdali je hodnota číslo mezi 0 a 1 (včetně hraničních hodnot). V opačném případě vyvolá chybu. | [x] |  |
+| **k** | hodnota percentilu | 🔴 číslo | Ověří, zdali je hodnota číslo mezi 0 a 1 (včetně hraničních hodnot). V opačném případě vyvolá chybu. | ✔️ |  |
 
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
 | --- |  :---: | 
-| numerická | ✔️ |
-| nominální | ❌ |
-| binární | ❌ |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
 #### Schéma výsledku
 
-- *přirozené číslo* `🔴 přirozené číslo`
+- *číslo* `🔴 číslo`
 
 #### Příklad
 
@@ -512,13 +512,13 @@ Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností.
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **order** | způsob řazení dat tabulky | 🟠 celé číslo | Ověří, zdali je hodnota platným členem enumerace. V opačném případě vyvolá chybu. | [ ] | 1 |
+| **order** | způsob řazení dat tabulky | 🟠 celé číslo | Ověří, zdali je hodnota platným členem enumerace. V opačném případě vyvolá chybu. | - | 1 |
 
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
 | --- |  :---: | 
-| numerická | ✔️ |
+| numerický | ✔️ |
 | nominální | ✔️ |
 | binární | ✔️ |
 
@@ -587,13 +587,13 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- |  :---: | 
-| numerická | ✔️ |
-| nominální | ❌ |
-| binární | ❌ |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
 #### Schéma výsledku
 
-- *přirozené číslo* `🔴 přirozené číslo`
+- *číslo* `🔴 číslo`
 
 #### Příklad
 
@@ -621,13 +621,13 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- |  :---: | 
-| numerická | ✔️ |
-| nominální | ❌ |
-| binární | ❌ |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
 #### Schéma výsledku
 
-- *přirozené číslo* `🔴 přirozené číslo`
+- *číslo* `🔴 číslo`
 
 #### Příklad
 
@@ -655,13 +655,13 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- |  :---: | 
-| numerická | ✔️ |
-| nominální | ❌ |
-| binární | ❌ |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
 #### Schéma výsledku
 
-- *přirozené číslo* `🔴 přirozené číslo`
+- *číslo* `🔴 číslo`
 
 #### Příklad
 
@@ -689,7 +689,7 @@ Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vr�
 
 | typ vektoru | integrace |
 | --- |  :---: | 
-| numerická | ✔️ |
+| numerický | ✔️ |
 | nominální | ✔️ |
 | binární | ✔️ |
 
@@ -725,13 +725,13 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- |  :---: | 
-| numerická | ✔️ |
-| nominální | ❌ |
-| binární | ❌ |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
 #### Schéma výsledku
 
-- *přirozené číslo* `🔴 přirozené číslo`
+- *číslo* `🔴 číslo`
 
 #### Příklad
 
@@ -757,19 +757,19 @@ Pouze číselné hodnoty (včetně nul).
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **s** | výběrový soubor | 🟣 binární proměnná | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | [ ] |  |
+| **s** | výběrový soubor | 🟣 binární | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - |  |
 
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
 | --- |  :---: | 
-| numerická | ✔️ |
-| nominální | ❌ |
-| binární | ❌ |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
 #### Schéma výsledku
 
-- *přirozené číslo* `🔴 přirozené číslo`
+- *číslo* `🔴 číslo`
 
 #### Příklad
 
@@ -798,13 +798,13 @@ Pouze číselné hodnoty (včetně nul).
 
 | typ vektoru | integrace |
 | --- |  :---: | 
-| numerická | ✔️ |
-| nominální | ❌ |
-| binární | ❌ |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
 #### Schéma výsledku
 
-- *přirozené číslo* `🔴 přirozené číslo`
+- *číslo* `🔴 číslo`
 
 #### Příklad
 
@@ -832,21 +832,21 @@ Pouze číselné hodnoty (včetně nul).
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **populationMean** | populační průměr | 🔴 přirozené číslo | null | [x] |  |
+| **populationMean** | populační průměr | 🔴 číslo | null | ✔️ |  |
 
 #### Integrace dle třídy
 
 | typ vektoru | integrace |
 | --- |  :---: | 
-| numerická | ✔️ |
-| nominální | ❌ |
-| binární | ❌ |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
 #### Schéma výsledku
 
 - *T-test s jedním výběrem* `🟦 objekt`
-  - **t**: *testovací hodnota* `🔴 přirozené číslo`
-  - **p**: *hladina významnosti* `🔴 přirozené číslo`
+  - **t**: *testovací hodnota* `🔴 číslo`
+  - **p**: *hladina významnosti* `🔴 číslo`
   - **n**: *počet případů* `🟠 celé číslo`
 
 #### Příklad
