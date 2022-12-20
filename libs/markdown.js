@@ -5,9 +5,9 @@ var {Schema, ArgumentSchema} = require("./schemas");
 var e_yes = "✔️" //":heavy_check_mark:" //":white_check_mark:";
 var e_no = "-" // "❌" // ":no_entry_sign:"
 
-function VectorMarkdown(VektorMethod, level = 1) {
-    var wiki = VektorMethod;
-    var _ = `${hash(level)} ${wiki.name.toUpperCase()} (${wiki.title}) ${"{#" + wiki.name + "}"}${wiki.description ? "\n\n" + wiki.description : ""}`;
+function VectorMarkdown(method, level = 1) {
+    var wiki = method;
+    var _ = `${hash(level)} ${wiki.name.toUpperCase()} (${wiki.title}) ${"{#" + wiki.name + "}"}${wiki.description ? "\n\n" + wiki.description + (wiki.url ? " " + "[" + $("WLsu") + "](" + wiki.url + ")" : "") : ""}`;
     _ += `\n\n${hash(level + 1)} Konstruktor\n\n${createVectorMethodConstructor(wiki)}`
     if(wiki.filter) {
         _ += `\n\n${hash(level+1)} ${$("VVSN")}\n\n${wiki.filter}`;

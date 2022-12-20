@@ -236,11 +236,11 @@ module.exports = {
 	/* vector variance fce (description) */ 
 	"sfCh": "Vrátí hodnotu rozptylu tohoto vektoru.",
 	/* histogram schema - from */
-	"jbqY": "spodní mez",
+	"jbqY": "spodní mez intervalu",
 	/* histogram schema - from */
-	"GlDV": "horní mez",
+	"GlDV": "horní mez intervalu",
 	/* histogram schema - interval */
-	"VyzG": "interval",
+	"VyzG": "interval (slovní vyjádření)",
 	/* histogram schema - frequency abs. */
 	"eHkc": "četnost (abs.)",
 	/* histogram schema - frequency rel. */
@@ -353,8 +353,10 @@ module.exports = {
 	"bLoI": "počet případů",
 	/* argument schema (title) */
 	"dmmV": "typ hodnoty",
-	"nJbe": "",
-	"WLsu": "",
+	/* Vektor fce skewness (description)*/
+	"nJbe": "Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru.",
+	/* MD url "read more" */
+	"WLsu": "Zjistit více.",
 	"yHjW": "",
 	"DDpa": "",
 	"lFlm": "",

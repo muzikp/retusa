@@ -23,7 +23,7 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 | [median](#median) | medián | Vrátí střední hodnotu z neprázdných hodnot. | ✔️ | - | - |
 | [mode](#mode) | modus | Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu). | ✔️ | ✔️ | ✔️ |
 | [SEM](#SEM) | směrodatná chyba průměru | Vrátí hodnotu směrodatné chyby odhadu průměru. | ✔️ | - | - |
-| [skewness](#skewness) | šikmost |  | ✔️ | - | - |
+| [skewness](#skewness) | šikmost | Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru. | ✔️ | - | - |
 | [kurtosis](#kurtosis) | špičatost | Vrátí hodnotu excesu množiny dat. | ✔️ | - | - |
 | [ttest](#ttest) | jednovýběrový t-test | Vrátí statistický protokol pro jednovýběrový t-test při zadání populačního průměru. | ✔️ | - | - |
 
@@ -31,7 +31,7 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 
 ### SUM (součet) {#sum}
 
-Vrátí součet všech neprázdných číselných hodnot vektoru.
+Vrátí součet všech neprázdných číselných hodnot vektoru. [Zjistit více.](https://en.wikipedia.org/wiki/Addition)
 
 #### Konstruktor
 
@@ -247,9 +247,9 @@ Pouze číselné hodnoty (včetně nul).
 #### Schéma výsledku
 
 - *histogram* `🟩 řada`
-  - **from**: *spodní mez* `🔴 číslo`
-  - **to**: *horní mez* `🔴 číslo`
-  - **i**: *interval* `🟡 text`
+  - **from**: *spodní mez intervalu* `🔴 číslo`
+  - **to**: *horní mez intervalu* `🔴 číslo`
+  - **i**: *interval (slovní vyjádření)* `🟡 text`
   - **n**: *četnost (abs.)* `🟠 celé číslo`
   - **nc**: *kumulativní četnost (abs.)* `🟠 celé číslo`
   - **p**: *četnost (%)* `🔴 číslo`
@@ -632,7 +632,7 @@ Pouze číselné hodnoty (včetně nul).
 #### Příklad
 
 ```js
-var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).harmean(); /* = 21.03*/
+var x = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).harmean(); /* = 21.03*/
 ```
 
 ---
@@ -743,6 +743,8 @@ var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,2
 
 ### SKEWNESS (šikmost) {#skewness}
 
+Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru.
+
 #### Konstruktor
 
 
@@ -832,7 +834,7 @@ Pouze číselné hodnoty (včetně nul).
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **populationMean** | populační průměr | 🔴 číslo | null | ✔️ |  |
+| **populationMean** | populační průměr | 🔴 číslo | Ověří, zdali je hodnota číslo. V opačném případě vyvolá chybu. | ✔️ |  |
 
 #### Integrace dle třídy
 

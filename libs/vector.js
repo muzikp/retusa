@@ -162,7 +162,8 @@ const VectorMethodsModels = [
         returns: "number",
         example: function(){
             var cashflow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 600 */
-        }
+        },
+        url: "https://en.wikipedia.org/wiki/Addition"
     },    
     {
         name: "count",
@@ -530,7 +531,7 @@ const VectorMethodsModels = [
         type: [1],
         returns: "number",
         example: function(){
-            var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).harmean(); /* = 21.03*/
+            var x = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).harmean(); /* = 21.03*/
         }
     },
     {
@@ -584,7 +585,7 @@ const VectorMethodsModels = [
         filter: filters.number,
         wiki: {
             title: "KZgI",
-            description: "",
+            description: "nJbe",
         },
         type: [1],
         returns: "number",
@@ -645,7 +646,7 @@ const VectorMethodsModels = [
                 schema: "number",
                 required: true,
                 type: "number",
-                validator: validators.number
+                validator: validators.isNumber
                 }
             }
     },
@@ -682,6 +683,7 @@ class VectorMethod {
                 title: $(this.model.wiki.title),
                 description: $(this.model.wiki.description),
                 filter: this.model.filter ? $(this.model.filter.text) : null,
+                url: this.model.url || null,
                 applies: [
                     {type: 1, title: $("LOYN"), apply: this.model.type.indexOf(1) > -1},
                     {type: 2, title: $("zoiB"), apply: this.model.type.indexOf(2) > -1},
