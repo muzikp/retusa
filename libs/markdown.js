@@ -1,10 +1,12 @@
 //https://gist.github.com/rxaviers/7360908
 var $ = require("./locale").call;
+var {Schema} = require("./schemas");
 
 var e_yes = ":heavy_check_mark:" //":white_check_mark:";
 var e_no = "" // ":no_entry_sign:"
 
-function VectorMarkdown(wiki, level = 1) {
+function VectorMarkdown(VektorMethod, level = 1) {
+    var wiki = VektorMethod;
     var _ = `${hash(level)} ${wiki.name.toUpperCase()} (${wiki.title}) ${"{#" + wiki.name + "}"}${wiki.description ? "\n\n" + wiki.description : ""}`;
     _ += `\n\n${hash(level + 1)} Konstruktor\n\n${createVectorMethodConstructor(wiki)}`
     if(wiki.filter) {
@@ -27,8 +29,8 @@ function VectorMarkdown(wiki, level = 1) {
     }
     if(wiki.applies?.length > 0) {
         _ += `\n\n${hash(level+1)} ${$("NizL")}\n\n${objArrayToTable([$("AfXp"), $("picU")], wiki.applies.map(v => [v.title, v.apply ? e_yes : e_no]), [0,1])}`;
-
     }
+    _ += `\n\n${hash(level+1)} ${$("Schéma výsledku")}\n` + new Schema(wiki.returns).markdown();
     if(wiki.example) {
         _ += `\n\n${hash(level+1)} ${$("nzmJ")}\n\n\`\`\`js\n${wiki.example}\n\`\`\``;
     }

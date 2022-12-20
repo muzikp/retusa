@@ -1,9 +1,12 @@
+const { Matrix } = require("./index");
+const console = require("console");
 var framework = require("./index");
 
 with (framework) {
-    var M = new Matrix([2,3,2,4,5], [9,8,7,9,10]).ttestpair(0,1);
-    console.log(JSON.stringify(M, null, "\t"));
-    debugger;
+    //var M = new Matrix([1,2,3,4,5,6,7,8,9,10],[1,3,5,7,9,11,13,15,17,19]).mannwhitney(0,1);
+    //var M = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1);
+    //console.log(JSON.stringify(M,null,"\t"));
+    //debugger;
     /*
     var a = new NumericVector([10,20,15,25,23,19,18,17,24,23]).name("A")
     console.dir(new NumericVector([10,20,15,25,23,19,18,17,24,23]).name("A").ttest(12));

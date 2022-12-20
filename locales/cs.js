@@ -37,8 +37,8 @@ module.exports = {
 	"vKlu": "Hodnota musí být mezi 0 a 1 včetně; zadaná hodnota ${value}.",
 	/* any integer */
 	"llQx": "celé číslo",
-	/* any decimal */
-	"pelN": "reálné číslo",
+	/* any number */
+	"pelN": "přirozené číslo",
 	/* vector percentile (example note) */
 	"vOnn": "výpočet 1. kvartilu (25% percentilu)",
 	/* vector result note */
@@ -140,9 +140,11 @@ module.exports = {
 	/* schema type frequency table children - frequency */
 	"mXpR": "četnost",
 	/* Validator error - not a Variable type */
-	"RLob": "Argument musí být typu Variable (proměnná); tyo zadané hodnoty: ${value}",
+	"RLob": "Argument musí být typu vektor, místo toho přijata hodnotaf ${value}",
 	/* Validator error - not a Numeric variable type */
-	"Kvpv": "Argument musí být numerická proměnná.",
+	"Kvpv": "Argument musí být numerický vektor.",
+	/* Validator error - not a boolean variable type */
+	"KvHv": "Argument musí být binární vektor.",
 	/* validator text - isNumber */
 	"NfvF": "Ověří, zdali je hodnota číslo. V opačném případě vyvolá chybu.",
 	/* validator text - zeroToOneInc */
@@ -195,8 +197,6 @@ module.exports = {
 	"hHaW": "Vrátí statistický protokol parciálního korelačního koeficientu.",
 	/* validators text - booleanVariable */
 	"OCKc": "Ověří, zdali je hodnota typu binární proměnné. V opačném případě vyvolá chybu.",
-	/* validators booleanVariable error */
-	"GqQZ": "Očekávala se proměnná binárního typu.",
 	/* vector frequency fce (title) */
 	"dYJK": "frekvenční tabulka",
 	/* vector frequency fce (description) */
@@ -325,14 +325,26 @@ module.exports = {
 	"mmXD": "T-test (párový)",
 	/* Matrix fce t-test paired (description) */
 	"kPqo": "Vrátí statistický protokol párového t-testu pro dva závislé výběry.",
-	"baJo": "",
-	"qqQo": "",
-	"rPQr": "",
-	"vzHj": "",
-	"kLhB": "",
-	"qdkt": "",
-	"oMas": "",
-	"KxQM": "",
+	/* Matrix fce One-way ANOVA (title) */
+	"baJo": "ANOVA",
+	/* Matrix fce One-way ANOVA (description) */
+	"qqQo": "Vrátí statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Vstupem analýzy je matice s již předvybranými numerickými vektory.",
+	/* validators text - isNumericMatrix */
+	"OrZc": "Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu.",
+	/* validators isNumericMatrix error */
+	"FIQW": "Očekávala se hodnota typu NumericMatrix, místo toho byla zjištěna hodnota ${value}",
+	/* Matrix fce Mann-Whitney U (title) */
+	"rPQr": "Mann-Whitney",
+	/* Matrix fce Mann-Whitney U (description) */
+	"vzHj": "Vrátí statistický protokol Mann-Whitneyho U testu.",
+	/* schema type object */
+	"kLhB": "objekt",
+	/* schema type array */
+	"qdkt": "řada",
+	/* schema type any */
+	"oMas": "cokoliv",
+	/* MD docs header - result schema */
+	"KxQM": "Schéma výsledku",
 	"GmAh": "",
 	"MpjZ": "",
 	"bLoI": "",

@@ -2,7 +2,7 @@
 
 var $ = require("./locale").call;
 var {filters, validators} = require("./parsers");
-var schemas = require("./schemas");
+var {vectorResultSchemas, Schema} = require("./schemas");
 const {Array, Math, String, Function} = require("./extensions");
 const {VectorMarkdown, VectorOverview} = require("./markdown");
 var {VectorValueError, ArgumentError, Empty} = require("./errors");
@@ -159,7 +159,7 @@ const VectorMethodsModels = [
             description: "iMbD"
         },
         type: [1],
-        returns: schemas.number,
+        returns: "number",
         example: function(){
             var cashflow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 600 */
         }
@@ -172,7 +172,7 @@ const VectorMethodsModels = [
             description: "ULJX"
         },
         type: [1,2,3],
-        returns: schemas.uint,
+        returns: "uint",
         example: function(){
             var total_numeric = new NumericVector(200,250,null,150,320,240,-250,null,10,-320).count();  /* = 10 */
             var total_string = new StringVector("A","B","C","D").count();  /* = 4 */
@@ -188,7 +188,7 @@ const VectorMethodsModels = [
             description: "UYJN"
         },
         type: [1],
-        returns: schemas.number,
+        returns: "number",
         example: function(){
             var avgCashFlow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 75 */
         }
@@ -202,7 +202,7 @@ const VectorMethodsModels = [
             description: "ZgSc"
         },
         type: [1],
-        returns: schemas.number,
+        returns: "number",
         example: function(){
             var population = new NumericVector(10,20,15,25,23,19,18,17,24,23).stdev();  /* = 4.41 */
             var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).stdev(true); /* = 4.65 */ 
@@ -229,7 +229,7 @@ const VectorMethodsModels = [
             description: "sfCh"
         },
         type: [1],
-        returns: schemas.number,
+        returns: "number",
         example: function(){
             var population = new NumericVector(10,20,15,25,23,19,18,17,24,23).variance();  /* = 19.44 */
             var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).variance(true); /* = 21.6 */ 
@@ -256,7 +256,7 @@ const VectorMethodsModels = [
             description: "AISp"
         },
         type: [1],
-        returns: schemas.histogram,
+        returns: "number",
         example: function(){
             var score = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1);
             var h1 = score.histogram();
@@ -332,7 +332,7 @@ const VectorMethodsModels = [
             var numeric_min = new NumericVector(4.5, 3.9, 5, 6, 7, 5.7, 9.1, 5.3, 7.2, 6.9, 6, 7.5, 5.3, 7.1, 8.2, 1).min(); /* = 1 */;
             var string_min = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale", "Gauss", "Poisson").min(); /* = Fisher */
         },
-        returns: [schemas.number, schemas.string],
+        returns: ["number", "string"],
     },
     {
         name: "max",
@@ -343,7 +343,7 @@ const VectorMethodsModels = [
             description: "gkep"
         },
         type: [1,2],
-        returns: [schemas.number, schemas.string],
+        returns: ["number", "string"],
         example: function(){
             var numeric_max = new NumericVector(4.5, 3.9, 5, 6, 7, 5.7, 9.1, 5.3, 7.2, 6.9, 6, 7.5, 5.3, 7.1, 8.2, 1).max(); /* = 9.1 */;
             var string_max = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale", "Gauss", "Poisson").max(); /* = Poisson */
@@ -358,7 +358,7 @@ const VectorMethodsModels = [
             description: "dnzB"
         },
         type: [1],
-        returns: schemas.number,
+        returns: "number",
         example: function(){
             var range = new NumericVector(5,2,-15,-16.3,12,null, null, 12,13,7).range(); /* = 22 */
         }
@@ -372,7 +372,7 @@ const VectorMethodsModels = [
             description: "fUpj"
         },
         type: [1],
-        returns: schemas.number,
+        returns: "number",
         example: function(){
             var population = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc();  /* = 0.227 */
             var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc(true); /* = 0.24 */ 
@@ -399,7 +399,7 @@ const VectorMethodsModels = [
             description: "yNbM"
         },
         type: [1],
-        returns: schemas.number,
+        returns: "number",
         example: function(){
             var score = new NumericVector(10,20,15,25,23,19,18,17,24,23);
             var median = score.percentile(0.5); /* = 19.5 */
@@ -427,7 +427,7 @@ const VectorMethodsModels = [
             description: "Tzyp"
         },
         type: [1,2,3],
-        returns: schemas.frequencyTable,
+        returns: "number",
         example: function(){
             var numeric_vector_no_order = new NumericVector(5,2,3,2,3,3,1,6,3).frequency();
             /*
@@ -472,7 +472,29 @@ const VectorMethodsModels = [
                 required: false,
                 default: 1,
                 type: "enum",
-                validator: validators.enumValidator(schemas.frequencyOrderEnum)
+                validator: validators.enumValidator({
+                    name: "order",
+                    type: "enum",
+                    title: "gZCx",
+                    values: [
+                        {
+                            key: 1, 
+                            title: "AUbD"
+                        },
+                        {
+                            key: 2, 
+                            title: "WSJH"
+                        },
+                        {
+                            key: 3, 
+                            title: "dkxz"
+                        },
+                        {
+                            key: 4, 
+                            title: "vJCU"
+                        }
+                    ]
+                })
                 }
             }
     },
@@ -485,7 +507,7 @@ const VectorMethodsModels = [
             description: "PDzr"
         },
         type: [1],
-        returns: schemas.number,
+        returns: "number",
         example: function(){
             var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).geomean(); /* = 21.24*/
         }
@@ -499,7 +521,7 @@ const VectorMethodsModels = [
             description: "nhJv"
         },
         type: [1],
-        returns: schemas.number,
+        returns: "number",
         example: function(){
             var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).harmean(); /* = 21.03*/
         }
@@ -513,7 +535,7 @@ const VectorMethodsModels = [
             description: "YIir"
         },
         type: [1],
-        returns: schemas.number,
+        returns: "number",
         example: function(){
             var median = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).median(); /* = 21*/
         }
@@ -526,7 +548,7 @@ const VectorMethodsModels = [
             description: "IBfx"
         },
         type: [1,2,3],
-        returns: schemas.any,
+        returns: "number",
         example: function(){
             var x = new NumericVector(1,2,3,4,3,4,5,3).mode(); /* = 3 */
             var y = new StringVector("a",null,null,"b","c","d",null,"b").mode(); /* = null */
@@ -544,7 +566,7 @@ const VectorMethodsModels = [
             description: "ZBnI"
         },
         type: [1],
-        returns: schemas.number,
+        returns: "number",
         example: function(){
             var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).SEM(); /* = 0.67*/
         }
@@ -558,7 +580,7 @@ const VectorMethodsModels = [
             description: "",
         },
         type: [1],
-        returns: schemas.number,
+        returns: "number",
         example: function(){
             var skewness_population = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).skewness(false); /* = 0.52*/
             var skewness_sample = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).skewness(true); /* = 0.027*/
@@ -585,7 +607,7 @@ const VectorMethodsModels = [
             description: "UOBG"
         },
         type: [1],
-        returns: schemas.number,
+        returns: "number",
         example: function(){
             var kurtosis = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).kurtosis(); /* = 0.425*/
         },
@@ -599,7 +621,7 @@ const VectorMethodsModels = [
             description: "rbjM"
         },
         type: [1],
-        returns: schemas.number,
+        returns: "number",
         example: function(){
             var score = new NumericVector(10,20,15,25,23,19,18,17,24,23);
             var median = score.percentile(0.5); /* = 19.5 */
@@ -656,7 +678,7 @@ class VectorMethod {
                     {type: 2, title: $("zoiB"), apply: this.model.type.indexOf(2) > -1},
                     {type: 3, title: $("OkoC"), apply: this.model.type.indexOf(3) > -1}
                 ],
-                returns: this.model.returns,
+                returns: vectorResultSchemas[this.model.returns],
                 example: this.model.example ? this.model.example.stringify() : null,
                 arguments: (function(args){
                     var _ = [];

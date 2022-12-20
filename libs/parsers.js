@@ -1,4 +1,6 @@
 var $ = require("./locale").call;
+//var {NumericMatrix} = require("./matrix");
+//var {NumericVector} = require("./vector");
 
 // #region FILTERS
 
@@ -59,6 +61,11 @@ let v_isNumericVector = function(v, autoparse = false){
     else throw new Error($("Kvpv"))
 }
 
+let v_isBooleanVector = function(v, autoparse = false){
+    if(v_isVector(v, autoparse).type() === 3) return v;
+    else throw new Error($("KvHv"))
+}
+
 /** nezohledňuje požadovanou velikost vzorku */
 let v_generalCorrelVariable = function(v, autoparse = false) {
     return v_isNumericVector(v, autoparse = false);
@@ -79,13 +86,18 @@ let v_positiveDecimal = function(v) {
     else return v;
 }
 
-let v_booleanVariable = function(v) {
-    if(v_isVector(v).type() !== 3) throw new Error($("GqQZ"));
+let v_isArray = function(v) {
+    if(!Array.isArray(v)) throw new Error($("FepU", {value: v}))
     else return v;
 }
 
-let v_isArray = function(v) {
-    if(!Array.isArray(v)) throw new Error($("FepU", {value: v}))
+let v_isNumericMatrix = function(v) {
+    v = v_isNotEmpty(v);
+    if(v.constructor?.name !== "NumericMatrix") {
+        if(!Array.isArray(v)) throw new Error($("FIQW", {value: v}))    
+        else if(v.find(i => i.constructor?.name !== "NumericVector")) throw new Error($("FIQW", {value: v}));
+        else return v.toNumericMatrix();
+    } else return v
 }
 
 const validators = {
@@ -96,10 +108,11 @@ const validators = {
     boolean: {fn: v_boolean, text:"GHFj"},
     isVector: {fn: v_isVector, text: "GJry"},
     isNumericVector: {fn: v_isNumericVector, text: "gGTf"},
-    generalCorrelVariable: {fn: v_isNumericVector, text: "gGTf"},
+    generalCorrelVector: {fn: v_isNumericVector, text: "gGTf"},
     positiveInteger: {fn: v_positiveInteger, text: "dFiw"},
     positiveDecimal: {fn: v_positiveDecimal, text: "bpCq"},
-    booleanVariable: {fn: v_booleanVariable, text: "OCKc"},
+    isBooleanVector: {fn: v_isBooleanVector, text: "OCKc"},
+    isNumericMatrix: {fn: v_isNumericMatrix, text: "OrZc"},
     enumValidator: function(enumSchema) {
         const es = enumSchema;
         return {

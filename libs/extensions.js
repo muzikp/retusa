@@ -186,6 +186,12 @@ Array.prototype.intersection = function(arr) {
     return this.filter(v => arr.indexOf(v) > -1)
 }
 
+Array.prototype.covariance = function(arr, sample = false) {
+    var xm = this.avg();
+    var ym = arr.avg();
+    return this.map((x,i) => (x-xm)*(arr[i]*ym)).sum(arr.length - (sample ? 1 : 0));
+}
+
 String.prototype.fill = function(what, repetition) {
     var x = "";
     for(var i = 0; i < repetition; i++) {

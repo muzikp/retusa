@@ -35,8 +35,8 @@ class Matrix extends Array {
      * @returns {Matrix}
      */
     pivot(target, factor, selectedKeys = []) {
-        target = validators.isVector.fn(target);
-        factor = validators.isVector.fn(factor);
+        target = this.item(target);
+        factor = this.item(factor);
         var selection = this.select(target, factor);
         var pivot = new Matrix();        
         for(let key of factor.distinct().intersection(selectedKeys)) {
@@ -84,7 +84,6 @@ class Matrix extends Array {
     select(...identifiers) {
         var clone = new Matrix();
         for(let i of identifiers) {
-            console.error(i);
             var v = this.item(i);
             if(v) clone.push(v);
         }
@@ -273,22 +272,29 @@ class MatrixMethod {
         return this.model.minArgs || Object.entries(this.model.args).filter(a => a.required).length;
     }
     /**
-     * Validates the method arguments.
+     * Validates the method arguments.s
      * @returns {Array} Returns an array of validated arguments (or nothing if a validation error is thrown before).
      */
     validate(...args) {
         if(!this.parent) return new Empty($("jrQP"));
+        if(this.model.argsToMatrix) {
+            var M = (args.length === 0) ? this.parent : this.parent.select(...args);
+            return this.model.args[0].validator.fn(M);
+        }
         var output = [];
         let ts = this.model.args;
         for(var i = 0; i < ts.length; i++) {            
             let arg = args[i];
-            if(ts[i].class < 2) arg = this.parent.item(arg);
+            if(ts[i].class === 1 || !ts[i].class) arg = this.parent.item(arg);
+            else if (ts[i].class === 2) {
+
+            }
             if(!ts[i].required) {
                 if((arg === null || arg === undefined)) T.push(ts[i].default || null);
                 else output.push(ts[i].validator.fn(arg));
             }
             else {
-                if(!arg && arg !== false && arg !== 0) throw new ArgumentError($("dSWt", {name: ts[i].name, title: $(ts[i]?.title), method: $(this.model.wiki?.title)}), this); 
+                    if(!arg && arg !== false && arg !== 0) throw new ArgumentError($("dSWt", {name: ts[i].name, title: $(ts[i]?.title), method: $(this.model.wiki?.title)}), this); 
                 else output.push(ts[i].validator.fn(arg))    
             }
         }
@@ -428,11 +434,6 @@ const matrixMethods = {
             p: p
         }
     },
-    ttest_independent_grouped: function(x,y,g) {
-        var M = new Matrix(x,y).pivot(x,y,g);
-        return matrixMethods.ttest_independent(...M);
-
-    },
     ttest_paired: function(x,y){
         var M = new Matrix(x,y).removeEmpty();
         x = M[0];
@@ -450,18 +451,85 @@ const matrixMethods = {
             mx: x.avg(),
             my: y.avg()
         }
+    },
+    anova_oneway: function(...M) {
+        var arrays = new Array(...M);
+        var ns = arrays.map(a => a.length);
+        var g_avg = arrays.map(a => a.avg());
+        var yi_total = (arrays.map((a, i) => a.sum())).sum();
+        var yi_avg = yi_total / ns.sum();
+        var pow_yi_min = arrays.map((a, i) => a.map(_ => Math.pow(_ - g_avg[i], 2)));
+        var pow_yi_min_total = (pow_yi_min.map(a => a.sum())).sum();
+        var yi_yn = g_avg.map((g, i) => Math.pow(g - yi_avg, 2) * ns[i]);
+        var yi_yn_total = yi_yn.sum();
+        var dfwg = (ns.sum() - ns.length);
+        var F = (yi_yn.sum() / (ns.length - 1)) / (pow_yi_min_total / dfwg);
+        var P2 = yi_yn_total / (yi_yn_total + pow_yi_min_total);
+        var p = dist.fdistrt(F, ns.length - 1, dfwg);
+        return {
+            F: F,
+            P2: P2,
+            p: p,
+            N: ns.sum(),
+            ANOVA: {
+                totalOfGroups: arrays.length,
+                betweenGroups: {
+                    sumOfSquares: yi_yn_total,
+                    df: ns.length - 1
+                },
+                withinGroups: {
+                    sumOfsquares: pow_yi_min_total,
+                    df: dfwg
+                },
+                total: {
+                    sumOfSquares: yi_yn_total + pow_yi_min_total,
+                    df: ns.length - 1 + dfwg
+                }
+            }
+        };
+    },
+    mannwhitney: function(x,y){
+        var M = new Matrix(x,y).removeEmpty();
+        var all = x.concat(y);
+        var ac = all.length;
+        var xa = x.map(function(v,i){
+            var vd = all.rankAvg(v, 0);
+            var va = all.rankAvg(v, 1);
+            return vd + (ac + 1 - vd - va)/2;
+        })
+        var ya = y.map(function(v,i){
+            var vd = all.rankAvg(v, 0);
+            var va = all.rankAvg(v, 1);
+            return vd + (ac + 1 - vd - va)/2;
+        })
+        var R1 = xa.sum();
+        var R2 = ya.sum();
+        var N1 = xa.length;
+        var N2 = ya.length;
+        var U1 = N1*N2+N1*(N1+1)/2 - R1;
+        var U2 = N1*N2+N2*(N2+1)/2 - R2;
+        var U = Math.min(U1,U2);
+        var z = (U-N1*N2/2)/Math.sqrt(N1*N2*(N1+N2+1)/12)
+        var p = dist.normsdist(z)*2;
+        return {
+            U: U,
+            Z: z,
+            p: p,
+            n1: N1,
+            n2: N2
+        }
     }
 };
 
 var ats = {
     /**Numeric vector only */
-    nv: new NumericVector().constructor.name,
+    nv: "NumericVector",
     /**String vector only */
-    sv: new StringVector().constructor.name,
+    sv: "StringVector",
     /**Boolean vector only */
-    bv: new BooleanVector().constructor.name,
-    m: new Matrix().constructor.name,
-    mv: new NumericMatrix().constructor.name,
+    bv: "BooleanVector",
+    m: "Matrix",
+    mv: "NumericMatrix",
 }
 
 const MatrixMethodsModels = [
@@ -472,7 +540,7 @@ const MatrixMethodsModels = [
             /*
             {
 	"r": 0.7341461196855918,
-	"N": 10,
+	"n": 10,
 	"p": 0.015619999999999967
 }
             */
@@ -486,13 +554,13 @@ const MatrixMethodsModels = [
                 wiki: {title: "qFEM"},
                 type: [1],
                 required: true,
-                validator: validators.generalCorrelVariable
+                validator: validators.generalCorrelVector
             },        
             y: {
                 wiki: {title: "tpUu"},
                 type: [1],
                 required: true,
-                validator: validators.generalCorrelVariable
+                validator: validators.generalCorrelVector
         }            
         }
     },
@@ -518,8 +586,7 @@ const MatrixMethodsModels = [
         }            
         }
     },
-    {
-        name: "correlKendall",
+    {   name: "correlKendall",
         fn: matrixMethods.correlKendall,
         example: null,
         wiki: {
@@ -541,8 +608,7 @@ const MatrixMethodsModels = [
         }            
         }
     },
-    {
-        name: "correlPartial",
+    {   name: "correlPartial",
         fn: matrixMethods.correlPartial,
         example: null,
         wiki: {
@@ -570,8 +636,7 @@ const MatrixMethodsModels = [
             }            
         }
     },
-    {
-        name: "correlBiserial",
+    {   name: "correlBiserial",
         fn: matrixMethods.correlBiserial,
         example: null,
         wiki: {
@@ -593,8 +658,7 @@ const MatrixMethodsModels = [
         }            
         }
     },
-    {
-        name: "correlPhi",
+    {   name: "correlPhi",
         fn: matrixMethods.correlPhi,
         example: null,
         wiki: {
@@ -640,55 +704,6 @@ const MatrixMethodsModels = [
                 validator: validators.isNumericVector
         }]
     },
-    {   name: "ttestindg",
-        fn: matrixMethods.ttest_independent_grouped,
-        example: function(){
-            var M = new Matrix([10,11,9,8,9,13,14,13,12,13,19,18,20,19,18], ["a","a","a","a","a","b","b","b","b","b","c","c","c","c","c"]).ttestindg(0,1,["a","b"]);
-            /*
-            {
-                "t": -6.000000000000004,
-                "mx": 9.4,
-                "my": 13,
-                "nx": 5,
-                "ny": 5,
-                "df": 8,
-                "p": 0.00032
-            } 
-            */
-        },
-        wiki: {
-            title: "sOyV",
-            description: "qwEY"
-        },
-        args: [
-            {
-                name: "x",
-                wiki: {title: "wHHo"},
-                type: [ats.nv],
-                required: true,
-                validator: validators.isNumericVector,
-                class: 1
-            },        
-            {
-                name: "factor",
-                wiki: {title: "Ltgx"},
-                type: [ats.nv, ats.sv, ats.bv],
-                required: true,
-                validator: validators.isVector,
-                class: 1
-            },
-            {
-                name: "groups",
-                wiki: {title: "rQBm"},
-                type: [ats.arr],
-                required: false,
-                default: [],
-                validator: validators.isArray,
-                class: 99
-            }            
-        
-        ]
-    },
     {   name: "ttestpair",
         fn: matrixMethods.ttest_paired,
         example: function(){
@@ -724,6 +739,94 @@ const MatrixMethodsModels = [
                 class: 1
         }]
     },
+    {   name: "anovaow",
+        fn: matrixMethods.anova_oneway,
+        argsToMatrix: true,
+        example: function(){
+            var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow(0,1,2);
+            /* OR */
+            var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow();
+            debugger;
+            /* OR */
+            var M = new Matrix([2,3,2,4,5,9,8,7,9,10,1,7,19,32,90],[1,1,1,1,1,2,2,2,2,2,3,3,3,3,3]).pivot(0,1).anovaow();
+            /*
+            {
+                "F": 2.3227069789300536,
+                "P2": 0.2790807107363349,
+                "p": 0.1403847313472082,
+                "N": 15,
+                "ANOVA": {
+                    "totalOfGroups": 3,
+                    "betweenGroups": {
+                        "sumOfSquares": 1976.9333333333336,
+                        "df": 2
+                    },
+                    "withinGroups": {
+                        "sumOfsquares": 5106.800000000001,
+                        "df": 12
+                    },
+                    "total": {
+                        "sumOfSquares": 7083.7333333333345,
+                        "df": 14
+                    }
+                }
+            }
+            */
+
+        },
+        wiki: {
+            title: "baJo",
+            description: "qqQo"
+        },
+        args: [{
+                name: "x",
+                wiki: {title: "qFEM"},
+                required: true,
+                validator: validators.isNumericMatrix,
+                class: 2
+            }]
+    },
+    {   name: "mannwhitney",
+    fn: matrixMethods.mannwhitney,
+    example: function(){
+        var M = new Matrix([1,2,3,4,5,6,7,8,9,10],[1,3,5,7,9,11,13,15,17,19]).mannwhitney();
+    },
+    wiki: {
+        title: "rPQr",
+        description: "vzHj"
+    },
+    args: [{
+            name: "x",
+            wiki: {title: "qFEM"},
+            type: [ats.nv],
+            required: true,
+            validator: validators.isNumericVector
+        },        
+        {
+            name: "y",
+            wiki: {title: "tpUu"},
+            type: [ats.nv],
+            required: true,
+            validator: validators.isNumericVector
+    }]
+    },
+    {   name: "jonckheere",
+        fn: matrixMethods.anova_oneway,
+        argsToMatrix: true,
+        example: function(){
+        },
+        wiki: {
+            title: "baJo",
+            description: "qqQo"
+        },
+        args: [{
+                name: "x",
+                wiki: {title: "qFEM"},
+                required: true,
+                validator: validators.isNumericMatrix,
+                class: 2
+            }]
+    }
 ].sort((a,b) => a.name < b.name);
 
 MatrixMethodsModels.forEach(function(m) {
@@ -737,8 +840,13 @@ MatrixMethodsModels.forEach(function(m) {
 
 // #region MISC
 
+Array.prototype.toNumericMatrix = function() {
+    return new NumericMatrix(...this);
+}
+
 // #endregion
 
 module.exports = {
     Matrix: Matrix,
+    NumericMatrix: NumericMatrix
 };

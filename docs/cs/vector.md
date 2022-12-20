@@ -51,6 +51,10 @@ Pouze číselné hodnoty (včetně nul).
 | nominální |  |
 | binární |  |
 
+#### Schéma výsledku
+
+- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+
 #### Příklad
 
 ```js
@@ -80,6 +84,10 @@ Vrátí počet všech polí ve vektoru (včetně prázdných).
 | numerická | :heavy_check_mark: |
 | nominální | :heavy_check_mark: |
 | binární | :heavy_check_mark: |
+
+#### Schéma výsledku
+
+- *celé číslo větší nebo rovné nule* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">celé číslo</span>
 
 #### Příklad
 
@@ -112,6 +120,10 @@ Pouze číselné hodnoty (včetně nul).
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
+
+#### Schéma výsledku
+
+- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
 
 #### Příklad
 
@@ -148,6 +160,10 @@ Pouze číselné hodnoty (včetně nul).
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
+
+#### Schéma výsledku
+
+- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
 
 #### Příklad
 
@@ -186,6 +202,10 @@ Pouze číselné hodnoty (včetně nul).
 | nominální |  |
 | binární |  |
 
+#### Schéma výsledku
+
+- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+
 #### Příklad
 
 ```js
@@ -223,6 +243,10 @@ Pouze číselné hodnoty (včetně nul).
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
+
+#### Schéma výsledku
+
+- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
 
 #### Příklad
 
@@ -291,6 +315,9 @@ jakákoliv neprázdná hodnota (u číselných řad akceptuje nuly, u binárníc
 | nominální | :heavy_check_mark: |
 | binární |  |
 
+#### Schéma výsledku
+
+
 #### Příklad
 
 ```js
@@ -324,6 +351,9 @@ jakákoliv neprázdná hodnota (u číselných řad akceptuje nuly, u binárníc
 | nominální | :heavy_check_mark: |
 | binární |  |
 
+#### Schéma výsledku
+
+
 #### Příklad
 
 ```js
@@ -354,6 +384,10 @@ Pouze číselné hodnoty (včetně nul).
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
+
+#### Schéma výsledku
+
+- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
 
 #### Příklad
 
@@ -391,6 +425,10 @@ Pouze číselné hodnoty (včetně nul).
 | nominální |  |
 | binární |  |
 
+#### Schéma výsledku
+
+- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+
 #### Příklad
 
 ```js
@@ -427,6 +465,10 @@ Pouze číselné hodnoty (včetně nul).
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
+
+#### Schéma výsledku
+
+- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
 
 #### Příklad
 
@@ -466,6 +508,10 @@ Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností.
 | numerická | :heavy_check_mark: |
 | nominální | :heavy_check_mark: |
 | binární | :heavy_check_mark: |
+
+#### Schéma výsledku
+
+- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
 
 #### Příklad
 
@@ -530,6 +576,10 @@ Pouze číselné hodnoty (včetně nul).
 | nominální |  |
 | binární |  |
 
+#### Schéma výsledku
+
+- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+
 #### Příklad
 
 ```js
@@ -559,6 +609,10 @@ Pouze číselné hodnoty (včetně nul).
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
+
+#### Schéma výsledku
+
+- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
 
 #### Příklad
 
@@ -590,6 +644,10 @@ Pouze číselné hodnoty (včetně nul).
 | nominální |  |
 | binární |  |
 
+#### Schéma výsledku
+
+- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+
 #### Příklad
 
 ```js
@@ -619,6 +677,10 @@ Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vr�
 | numerická | :heavy_check_mark: |
 | nominální | :heavy_check_mark: |
 | binární | :heavy_check_mark: |
+
+#### Schéma výsledku
+
+- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
 
 #### Příklad
 
@@ -651,6 +713,10 @@ Pouze číselné hodnoty (včetně nul).
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
+
+#### Schéma výsledku
+
+- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
 
 #### Příklad
 
@@ -686,6 +752,10 @@ Pouze číselné hodnoty (včetně nul).
 | nominální |  |
 | binární |  |
 
+#### Schéma výsledku
+
+- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+
 #### Příklad
 
 ```js
@@ -716,6 +786,10 @@ Pouze číselné hodnoty (včetně nul).
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
+
+#### Schéma výsledku
+
+- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
 
 #### Příklad
 
@@ -752,6 +826,10 @@ Pouze číselné hodnoty (včetně nul).
 | numerická | :heavy_check_mark: |
 | nominální |  |
 | binární |  |
+
+#### Schéma výsledku
+
+- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
 
 #### Příklad
 
