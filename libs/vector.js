@@ -548,7 +548,8 @@ const VectorMethodsModels = [
         returns: "number",
         example: function(){
             var median = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).median(); /* = 21*/
-        }
+        },
+        url: "https://en.wikipedia.org/wiki/Median"
     },
     {
         name: "mode",
@@ -563,7 +564,8 @@ const VectorMethodsModels = [
             var x = new NumericVector(1,2,3,4,3,4,5,3).mode(); /* = 3 */
             var y = new StringVector("a",null,null,"b","c","d",null,"b").mode(); /* = null */
             var z = new BooleanVector(true, false, true).mode(); /* = true */
-        }
+        },
+        url: "https://en.wikipedia.org/wiki/Mode_(statistics)"
 
     },
         /* směrodatná chyba průměru */
@@ -579,7 +581,8 @@ const VectorMethodsModels = [
         returns: "number",
         example: function(){
             var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).SEM(); /* = 0.67*/
-        }
+        },
+        url: "https://en.wikipedia.org/wiki/Standard_error#Standard_error_of_the_sample_mean"
     },
     {
         name: "skewness",
@@ -607,7 +610,8 @@ const VectorMethodsModels = [
                 type: "boolean",
                 validator: validators.boolean
                 }
-            }
+            },
+            url: "https://en.wikipedia.org/wiki/Skewness"
     },
     {
         name: "kurtosis",
@@ -622,6 +626,7 @@ const VectorMethodsModels = [
         example: function(){
             var kurtosis = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).kurtosis(); /* = 0.425*/
         },
+        url: "https://en.wikipedia.org/wiki/Kurtosis"
     },
     {
         name: "ttest",
@@ -634,10 +639,14 @@ const VectorMethodsModels = [
         type: [1],
         returns: "ttest",
         example: function(){
-            var score = new NumericVector(10,20,15,25,23,19,18,17,24,23);
-            var median = score.percentile(0.5); /* = 19.5 */
-            var q25 = score.percentile(0.25); /* = 17.25 */
-            var max = score.percentile(1); /* = 25 */
+            var T = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1).ttest(10);
+            /*
+            {
+                "t": 2.0519223838763545,
+                "p": 0.05806,
+                "n": 16
+            }
+            */
         },
         args: {
             populationMean: {

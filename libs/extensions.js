@@ -147,7 +147,7 @@ Array.prototype.ttest = function(mean){
     var n = this.length;
     var m = this.avg();
     var t = (m - mean)/this.SEM();
-    var p = 1 - dist.tdist(t, n-1);
+    var p = (1 - dist.tdist(t, n-1))*2;
     return {
         t: t,
         p: p,
