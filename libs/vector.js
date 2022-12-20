@@ -331,12 +331,12 @@ const VectorMethodsModels = [
             title: "FkaD",
             description: "yBlA"
         },
-        type: [1,2],
+        type: [1,2,3],
         example: function(){
             var numeric_min = new NumericVector(4.5, 3.9, 5, 6, 7, 5.7, 9.1, 5.3, 7.2, 6.9, 6, 7.5, 5.3, 7.1, 8.2, 1).min(); /* = 1 */;
             var string_min = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale", "Gauss", "Poisson").min(); /* = Fisher */
         },
-        returns: ["number", "string"],
+        returns: "any",
     },
     {
         name: "max",
@@ -346,8 +346,8 @@ const VectorMethodsModels = [
             title: "nKuF",
             description: "gkep"
         },
-        type: [1,2],
-        returns: ["number", "string"],
+        type: [1,2,3],
+        returns: "any",
         example: function(){
             var numeric_max = new NumericVector(4.5, 3.9, 5, 6, 7, 5.7, 9.1, 5.3, 7.2, 6.9, 6, 7.5, 5.3, 7.1, 8.2, 1).max(); /* = 9.1 */;
             var string_max = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale", "Gauss", "Poisson").max(); /* = Poisson */

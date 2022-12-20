@@ -2,8 +2,8 @@
 var $ = require("./locale").call;
 var {Schema, ArgumentSchema} = require("./schemas");
 
-var e_yes = ":heavy_check_mark:" //":white_check_mark:";
-var e_no = "" // ":no_entry_sign:"
+var e_yes = "✔️" //":heavy_check_mark:" //":white_check_mark:";
+var e_no = "❌" // ":no_entry_sign:"
 
 function VectorMarkdown(VektorMethod, level = 1) {
     var wiki = VektorMethod;
