@@ -29,9 +29,9 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 
 ---
 
-### SUM (součet) {#sum}
+### SUM
 
-Vrátí součet všech neprázdných číselných hodnot vektoru. [Zjistit více.](https://en.wikipedia.org/wiki/Addition)
+<mark>SOUČET</mark>: Vrátí součet všech neprázdných číselných hodnot vektoru. [Zjistit více.](https://en.wikipedia.org/wiki/Addition)
 
 #### Konstruktor
 
@@ -63,9 +63,9 @@ var cashflow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 
 
 ---
 
-### COUNT (počet) {#count}
+### COUNT
 
-Vrátí počet všech polí ve vektoru (včetně prázdných).
+<mark>POČET</mark>: Vrátí počet všech polí ve vektoru (včetně prázdných).
 
 #### Konstruktor
 
@@ -99,9 +99,9 @@ var total_boolean = new BooleanVector(true, true, false, null, false, true).coun
 
 ---
 
-### AVG (arytmetický průměr) {#avg}
+### AVG
 
-Vrátí arytmetický průměr z neprázdných hodnot.
+<mark>ARYTMETICKÝ PRŮMĚR</mark>: Vrátí arytmetický průměr z neprázdných hodnot. [Zjistit více.](https://en.wikipedia.org/wiki/Arithmetic_mean)
 
 #### Konstruktor
 
@@ -133,9 +133,9 @@ var avgCashFlow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /*
 
 ---
 
-### STDEV (směrodatná odchylka) {#stdev}
+### STDEV
 
-Vrátí směrodatnou odchylku neprázdných hodnot.
+<mark>SMĚRODATNÁ ODCHYLKA</mark>: Vrátí směrodatnou odchylku neprázdných hodnot. [Zjistit více.](https://en.wikipedia.org/wiki/Standard_deviation)
 
 #### Konstruktor
 
@@ -174,9 +174,9 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).stdev(true); /* = 
 
 ---
 
-### VARIANCE (rozptyl) {#variance}
+### VARIANCE
 
-Vrátí hodnotu rozptylu tohoto vektoru.
+<mark>ROZPTYL</mark>: Vrátí hodnotu rozptylu tohoto vektoru.
 
 #### Konstruktor
 
@@ -215,9 +215,9 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).variance(true); /*
 
 ---
 
-### HISTOGRAM (histogram) {#histogram}
+### HISTOGRAM
 
-Vrátí matici histogramu daného vektoru.
+<mark>HISTOGRAM</mark>: Vrátí matici histogramu daného vektoru.
 
 #### Konstruktor
 
@@ -298,9 +298,9 @@ var h3 = score.histogram(null, 2)
 
 ---
 
-### MIN (minimální hodnota) {#min}
+### MIN
 
-Vrátí nejmenší hodnotu z neprázdných hodnot. V případě textu vrátí první hodnotu z abecedního řazení.
+<mark>MINIMÁLNÍ HODNOTA</mark>: Vrátí nejmenší hodnotu z neprázdných hodnot. V případě textu vrátí první hodnotu z abecedního řazení.
 
 #### Konstruktor
 
@@ -337,9 +337,9 @@ var string_min = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 ---
 
-### MAX (maximální hodnota) {#max}
+### MAX
 
-Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení.
+<mark>MAXIMÁLNÍ HODNOTA</mark>: Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení.
 
 #### Konstruktor
 
@@ -376,9 +376,9 @@ var string_max = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 ---
 
-### RANGE (variační rozpětí) {#range}
+### RANGE
 
-Vrátí rozdíl největší a nejmenší neprázdné hodnoty.
+<mark>VARIAČNÍ ROZPĚTÍ</mark>: Vrátí rozdíl největší a nejmenší neprázdné hodnoty.
 
 #### Konstruktor
 
@@ -410,9 +410,9 @@ var range = new NumericVector(5,2,-15,-16.3,12,null, null, 12,13,7).range(); /* 
 
 ---
 
-### VARC (variační koeficient) {#varc}
+### VARC
 
-Vrátí hodnotu variačního koeficientu neprázdných hodnot.
+<mark>VARIAČNÍ KOEFICIENT</mark>: Vrátí hodnotu variačního koeficientu neprázdných hodnot.
 
 #### Konstruktor
 
@@ -451,9 +451,9 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc(true); /* = 0
 
 ---
 
-### PERCENTILE (percentil) {#percentile}
+### PERCENTILE
 
-Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru.
+<mark>PERCENTIL</mark>: Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru.
 
 #### Konstruktor
 
@@ -494,9 +494,9 @@ var max = score.percentile(1); /* = 25 */
 
 ---
 
-### FREQUENCY (frekvenční tabulka) {#frequency}
+### FREQUENCY
 
-Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností.
+<mark>FREKVENČNÍ TABULKA</mark>: Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností.
 
 #### Konstruktor
 
@@ -569,9 +569,9 @@ var boolean_vector_desc_frequency = new BooleanVector(true, false, null, true, n
 
 ---
 
-### GEOMEAN (geometrický průměr) {#geomean}
+### GEOMEAN
 
-Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovný než průměr arytmetický.
+<mark>GEOMETRICKÝ PRŮMĚR</mark>: Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovný než průměr arytmetický.
 
 #### Konstruktor
 
@@ -603,9 +603,9 @@ var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29
 
 ---
 
-### HARMEAN (harmonický průměr) {#harmean}
+### HARMEAN
 
-Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti.
+<mark>HARMONICKÝ PRŮMĚR</mark>: Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti.
 
 #### Konstruktor
 
@@ -637,9 +637,9 @@ var x = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,
 
 ---
 
-### MEDIAN (medián) {#median}
+### MEDIAN
 
-Vrátí střední hodnotu z neprázdných hodnot.
+<mark>MEDIÁN</mark>: Vrátí střední hodnotu z neprázdných hodnot.
 
 #### Konstruktor
 
@@ -671,9 +671,9 @@ var median = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,2
 
 ---
 
-### MODE (modus) {#mode}
+### MODE
 
-Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu).
+<mark>MODUS</mark>: Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu).
 
 #### Konstruktor
 
@@ -707,9 +707,9 @@ var z = new BooleanVector(true, false, true).mode(); /* = true */
 
 ---
 
-### SEM (směrodatná chyba průměru) {#SEM}
+### SEM
 
-Vrátí hodnotu směrodatné chyby odhadu průměru.
+<mark>SMĚRODATNÁ CHYBA PRŮMĚRU</mark>: Vrátí hodnotu směrodatné chyby odhadu průměru.
 
 #### Konstruktor
 
@@ -741,9 +741,9 @@ var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,2
 
 ---
 
-### SKEWNESS (šikmost) {#skewness}
+### SKEWNESS
 
-Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru.
+<mark>ŠIKMOST</mark>: Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru.
 
 #### Konstruktor
 
@@ -782,9 +782,9 @@ var skewness_sample = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,2
 
 ---
 
-### KURTOSIS (špičatost) {#kurtosis}
+### KURTOSIS
 
-Vrátí hodnotu excesu množiny dat.
+<mark>ŠPIČATOST</mark>: Vrátí hodnotu excesu množiny dat.
 
 #### Konstruktor
 
@@ -816,9 +816,9 @@ var kurtosis = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24
 
 ---
 
-### TTEST (jednovýběrový t-test) {#ttest}
+### TTEST
 
-Vrátí statistický protokol pro jednovýběrový t-test při zadání populačního průměru.
+<mark>JEDNOVÝBĚROVÝ T-TEST</mark>: Vrátí statistický protokol pro jednovýběrový t-test při zadání populačního průměru.
 
 #### Konstruktor
 

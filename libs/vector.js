@@ -192,7 +192,8 @@ const VectorMethodsModels = [
         returns: "number",
         example: function(){
             var avgCashFlow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 75 */
-        }
+        },
+        url: "https://en.wikipedia.org/wiki/Arithmetic_mean"
     },
     {
         name: "stdev",
@@ -220,7 +221,8 @@ const VectorMethodsModels = [
                 type: "boolean",
                 validator: validators.boolean
                 }
-            }
+            },
+        url: "https://en.wikipedia.org/wiki/Standard_deviation"
     },
     {
         name: "variance",
