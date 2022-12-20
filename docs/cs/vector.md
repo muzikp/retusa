@@ -53,7 +53,7 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Schéma výsledku
 
-- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+- *přirozené číslo* `přirozené číslo`
 
 #### Příklad
 
@@ -87,7 +87,7 @@ Vrátí počet všech polí ve vektoru (včetně prázdných).
 
 #### Schéma výsledku
 
-- *celé číslo větší nebo rovné nule* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">celé číslo</span>
+- *celé číslo větší nebo rovné nule* `celé číslo`
 
 #### Příklad
 
@@ -123,7 +123,7 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Schéma výsledku
 
-- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+- *přirozené číslo* `přirozené číslo`
 
 #### Příklad
 
@@ -163,7 +163,7 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Schéma výsledku
 
-- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+- *přirozené číslo* `přirozené číslo`
 
 #### Příklad
 
@@ -204,7 +204,7 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Schéma výsledku
 
-- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+- *přirozené číslo* `přirozené číslo`
 
 #### Příklad
 
@@ -246,7 +246,7 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Schéma výsledku
 
-- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+- *přirozené číslo* `přirozené číslo`
 
 #### Příklad
 
@@ -387,7 +387,7 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Schéma výsledku
 
-- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+- *přirozené číslo* `přirozené číslo`
 
 #### Příklad
 
@@ -427,7 +427,7 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Schéma výsledku
 
-- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+- *přirozené číslo* `přirozené číslo`
 
 #### Příklad
 
@@ -468,7 +468,7 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Schéma výsledku
 
-- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+- *přirozené číslo* `přirozené číslo`
 
 #### Příklad
 
@@ -511,7 +511,7 @@ Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností.
 
 #### Schéma výsledku
 
-- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+- *přirozené číslo* `přirozené číslo`
 
 #### Příklad
 
@@ -578,7 +578,7 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Schéma výsledku
 
-- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+- *přirozené číslo* `přirozené číslo`
 
 #### Příklad
 
@@ -612,7 +612,7 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Schéma výsledku
 
-- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+- *přirozené číslo* `přirozené číslo`
 
 #### Příklad
 
@@ -646,7 +646,7 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Schéma výsledku
 
-- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+- *přirozené číslo* `přirozené číslo`
 
 #### Příklad
 
@@ -680,7 +680,7 @@ Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vr�
 
 #### Schéma výsledku
 
-- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+- *přirozené číslo* `přirozené číslo`
 
 #### Příklad
 
@@ -716,7 +716,7 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Schéma výsledku
 
-- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+- *přirozené číslo* `přirozené číslo`
 
 #### Příklad
 
@@ -754,7 +754,7 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Schéma výsledku
 
-- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+- *přirozené číslo* `přirozené číslo`
 
 #### Příklad
 
@@ -789,7 +789,7 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Schéma výsledku
 
-- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+- *přirozené číslo* `přirozené číslo`
 
 #### Příklad
 
@@ -829,7 +829,7 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Schéma výsledku
 
-- *přirozené číslo* <span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: yellow">přirozené číslo</span>
+- *přirozené číslo* `přirozené číslo`
 
 #### Příklad
 

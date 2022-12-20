@@ -44,7 +44,8 @@ class Schema {
       }
     }
     createPropTitle(e, indent = 1) {
-      this.to += `${this.createIndentLi(indent)}${$(e.name) ? '<span style="color: blue">**' + $(e.name) + '**</span>: ' : ""}*${$(e.title)}* ${this.createMDTypeBadge(e.type)}`;
+      //this.to += `${this.createIndentLi(indent)}${$(e.name) ? '<span style="color: blue">**' + $(e.name) + '**</span>: ' : ""}*${$(e.title)}* ${this.createMDTypeBadge(e.type)}`;
+      this.to += `${this.createIndentLi(indent)}${$(e.name) ? '**' + $(e.name) + '**: ' : ""}*${$(e.title)}* ${this.createMDTypeBadge(e.type)}`;
     }
     createIndentLi(indent) {
       var str = "\n";
@@ -66,7 +67,8 @@ class Schema {
       ];
       
       var s = types.find(i => i.t == type) || {c: "red", l: "oMas"};
-      return `<span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: ${s.c}">${$(s.l)}</span>`
+      //return `<span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: ${s.c}">${$(s.l)}</span>`
+      return `\`${$(s.l)}\``
     }
   }
 
