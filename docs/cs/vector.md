@@ -6,32 +6,32 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 
 | funkce | metoda | popis | numerický | nominální | binární |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| [sum](#sum) | součet | Vrátí součet všech neprázdných číselných hodnot vektoru. | ✔️ | - | - |
-| [count](#count) | počet | Vrátí počet všech polí ve vektoru (včetně prázdných). | ✔️ | ✔️ | ✔️ |
-| [avg](#avg) | arytmetický průměr | Vrátí arytmetický průměr z neprázdných hodnot. | ✔️ | - | - |
-| [stdev](#stdev) | směrodatná odchylka | Vrátí směrodatnou odchylku neprázdných hodnot. | ✔️ | - | - |
-| [variance](#variance) | rozptyl | Vrátí hodnotu rozptylu tohoto vektoru. | ✔️ | - | - |
-| [histogram](#histogram) | histogram | Vrátí matici histogramu daného vektoru. | ✔️ | - | - |
-| [min](#min) | minimální hodnota | Vrátí nejmenší hodnotu z neprázdných hodnot. V případě textu vrátí první hodnotu z abecedního řazení. | ✔️ | ✔️ | ✔️ |
-| [max](#max) | maximální hodnota | Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení. | ✔️ | ✔️ | ✔️ |
-| [range](#range) | variační rozpětí | Vrátí rozdíl největší a nejmenší neprázdné hodnoty. | ✔️ | - | - |
-| [varc](#varc) | variační koeficient | Vrátí hodnotu variačního koeficientu neprázdných hodnot. | ✔️ | - | - |
-| [percentile](#percentile) | percentil | Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru. | ✔️ | - | - |
-| [frequency](#frequency) | frekvenční tabulka | Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností. | ✔️ | ✔️ | ✔️ |
-| [geomean](#geomean) | geometrický průměr | Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovný než průměr arytmetický. | ✔️ | - | - |
-| [harmean](#harmean) | harmonický průměr | Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti. | ✔️ | - | - |
-| [median](#median) | medián | Vrátí střední hodnotu z neprázdných hodnot. | ✔️ | - | - |
-| [mode](#mode) | modus | Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu). | ✔️ | ✔️ | ✔️ |
-| [SEM](#SEM) | směrodatná chyba průměru | Vrátí hodnotu směrodatné chyby odhadu průměru. | ✔️ | - | - |
-| [skewness](#skewness) | šikmost | Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru. | ✔️ | - | - |
-| [kurtosis](#kurtosis) | špičatost | Vrátí hodnotu excesu množiny dat. | ✔️ | - | - |
-| [ttest](#ttest) | jednovýběrový t-test | Vrátí statistický protokol pro jednovýběrový t-test při zadání populačního průměru. | ✔️ | - | - |
+| [sum](#sum) | [součet](#sum) | Vrátí součet všech neprázdných číselných hodnot vektoru. | ✔️ | - | - |
+| [count](#count) | [počet](#count) | Vrátí počet všech polí ve vektoru (včetně prázdných). | ✔️ | ✔️ | ✔️ |
+| [avg](#avg) | [arytmetický průměr](#avg) | Vrátí arytmetický průměr z neprázdných hodnot. | ✔️ | - | - |
+| [stdev](#stdev) | [směrodatná odchylka](#stdev) | Vrátí směrodatnou odchylku neprázdných hodnot. | ✔️ | - | - |
+| [variance](#variance) | [rozptyl](#variance) | Vrátí hodnotu rozptylu tohoto vektoru. | ✔️ | - | - |
+| [histogram](#histogram) | [histogram](#histogram) | Vrátí matici histogramu daného vektoru. | ✔️ | - | - |
+| [min](#min) | [minimální hodnota](#min) | Vrátí nejmenší hodnotu z neprázdných hodnot. V případě textu vrátí první hodnotu z abecedního řazení. | ✔️ | ✔️ | ✔️ |
+| [max](#max) | [maximální hodnota](#max) | Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení. | ✔️ | ✔️ | ✔️ |
+| [range](#range) | [variační rozpětí](#range) | Vrátí rozdíl největší a nejmenší neprázdné hodnoty. | ✔️ | - | - |
+| [varc](#varc) | [variační koeficient](#varc) | Vrátí hodnotu variačního koeficientu neprázdných hodnot. | ✔️ | - | - |
+| [percentile](#percentile) | [percentil](#percentile) | Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru. | ✔️ | - | - |
+| [frequency](#frequency) | [frekvenční tabulka](#frequency) | Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností. | ✔️ | ✔️ | ✔️ |
+| [geomean](#geomean) | [geometrický průměr](#geomean) | Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovný než průměr arytmetický. | ✔️ | - | - |
+| [harmean](#harmean) | [harmonický průměr](#harmean) | Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti. | ✔️ | - | - |
+| [median](#median) | [medián](#median) | Vrátí střední hodnotu z neprázdných hodnot. | ✔️ | - | - |
+| [mode](#mode) | [modus](#mode) | Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu). | ✔️ | ✔️ | ✔️ |
+| [SEM](#SEM) | [směrodatná chyba průměru](#SEM) | Vrátí hodnotu směrodatné chyby odhadu průměru. | ✔️ | - | - |
+| [skewness](#skewness) | [šikmost](#skewness) | Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru. | ✔️ | - | - |
+| [kurtosis](#kurtosis) | [špičatost](#kurtosis) | Vrátí hodnotu excesu množiny dat. | ✔️ | - | - |
+| [ttest](#ttest) | [jednovýběrový t-test](#ttest) | Vrátí statistický protokol pro jednovýběrový t-test při zadání populačního průměru. | ✔️ | - | - |
 
 ---
 
-### SUM
+### [SOUČET](#sum)
 
-<mark>SOUČET</mark>: Vrátí součet všech neprázdných číselných hodnot vektoru. [Zjistit více.](https://en.wikipedia.org/wiki/Addition)
+Vrátí součet všech neprázdných číselných hodnot vektoru. [Zjistit více.](https://en.wikipedia.org/wiki/Addition)
 
 #### Konstruktor
 
@@ -63,9 +63,9 @@ var cashflow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 
 
 ---
 
-### COUNT
+### [POČET](#count)
 
-<mark>POČET</mark>: Vrátí počet všech polí ve vektoru (včetně prázdných).
+Vrátí počet všech polí ve vektoru (včetně prázdných).
 
 #### Konstruktor
 
@@ -99,9 +99,9 @@ var total_boolean = new BooleanVector(true, true, false, null, false, true).coun
 
 ---
 
-### AVG
+### [ARYTMETICKÝ PRŮMĚR](#avg)
 
-<mark>ARYTMETICKÝ PRŮMĚR</mark>: Vrátí arytmetický průměr z neprázdných hodnot. [Zjistit více.](https://en.wikipedia.org/wiki/Arithmetic_mean)
+Vrátí arytmetický průměr z neprázdných hodnot. [Zjistit více.](https://en.wikipedia.org/wiki/Arithmetic_mean)
 
 #### Konstruktor
 
@@ -133,9 +133,9 @@ var avgCashFlow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /*
 
 ---
 
-### STDEV
+### [SMĚRODATNÁ ODCHYLKA](#stdev)
 
-<mark>SMĚRODATNÁ ODCHYLKA</mark>: Vrátí směrodatnou odchylku neprázdných hodnot. [Zjistit více.](https://en.wikipedia.org/wiki/Standard_deviation)
+Vrátí směrodatnou odchylku neprázdných hodnot. [Zjistit více.](https://en.wikipedia.org/wiki/Standard_deviation)
 
 #### Konstruktor
 
@@ -174,9 +174,9 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).stdev(true); /* = 
 
 ---
 
-### VARIANCE
+### [ROZPTYL](#variance)
 
-<mark>ROZPTYL</mark>: Vrátí hodnotu rozptylu tohoto vektoru.
+Vrátí hodnotu rozptylu tohoto vektoru.
 
 #### Konstruktor
 
@@ -215,9 +215,9 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).variance(true); /*
 
 ---
 
-### HISTOGRAM
+### [HISTOGRAM](#histogram)
 
-<mark>HISTOGRAM</mark>: Vrátí matici histogramu daného vektoru.
+Vrátí matici histogramu daného vektoru.
 
 #### Konstruktor
 
@@ -298,9 +298,9 @@ var h3 = score.histogram(null, 2)
 
 ---
 
-### MIN
+### [MINIMÁLNÍ HODNOTA](#min)
 
-<mark>MINIMÁLNÍ HODNOTA</mark>: Vrátí nejmenší hodnotu z neprázdných hodnot. V případě textu vrátí první hodnotu z abecedního řazení.
+Vrátí nejmenší hodnotu z neprázdných hodnot. V případě textu vrátí první hodnotu z abecedního řazení.
 
 #### Konstruktor
 
@@ -337,9 +337,9 @@ var string_min = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 ---
 
-### MAX
+### [MAXIMÁLNÍ HODNOTA](#max)
 
-<mark>MAXIMÁLNÍ HODNOTA</mark>: Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení.
+Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení.
 
 #### Konstruktor
 
@@ -376,9 +376,9 @@ var string_max = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 ---
 
-### RANGE
+### [VARIAČNÍ ROZPĚTÍ](#range)
 
-<mark>VARIAČNÍ ROZPĚTÍ</mark>: Vrátí rozdíl největší a nejmenší neprázdné hodnoty.
+Vrátí rozdíl největší a nejmenší neprázdné hodnoty.
 
 #### Konstruktor
 
@@ -410,9 +410,9 @@ var range = new NumericVector(5,2,-15,-16.3,12,null, null, 12,13,7).range(); /* 
 
 ---
 
-### VARC
+### [VARIAČNÍ KOEFICIENT](#varc)
 
-<mark>VARIAČNÍ KOEFICIENT</mark>: Vrátí hodnotu variačního koeficientu neprázdných hodnot.
+Vrátí hodnotu variačního koeficientu neprázdných hodnot.
 
 #### Konstruktor
 
@@ -451,9 +451,9 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc(true); /* = 0
 
 ---
 
-### PERCENTILE
+### [PERCENTIL](#percentile)
 
-<mark>PERCENTIL</mark>: Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru.
+Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru.
 
 #### Konstruktor
 
@@ -494,9 +494,9 @@ var max = score.percentile(1); /* = 25 */
 
 ---
 
-### FREQUENCY
+### [FREKVENČNÍ TABULKA](#frequency)
 
-<mark>FREKVENČNÍ TABULKA</mark>: Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností.
+Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností.
 
 #### Konstruktor
 
@@ -569,9 +569,9 @@ var boolean_vector_desc_frequency = new BooleanVector(true, false, null, true, n
 
 ---
 
-### GEOMEAN
+### [GEOMETRICKÝ PRŮMĚR](#geomean)
 
-<mark>GEOMETRICKÝ PRŮMĚR</mark>: Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovný než průměr arytmetický.
+Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovný než průměr arytmetický.
 
 #### Konstruktor
 
@@ -603,9 +603,9 @@ var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29
 
 ---
 
-### HARMEAN
+### [HARMONICKÝ PRŮMĚR](#harmean)
 
-<mark>HARMONICKÝ PRŮMĚR</mark>: Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti.
+Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti.
 
 #### Konstruktor
 
@@ -637,9 +637,9 @@ var x = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,
 
 ---
 
-### MEDIAN
+### [MEDIÁN](#median)
 
-<mark>MEDIÁN</mark>: Vrátí střední hodnotu z neprázdných hodnot.
+Vrátí střední hodnotu z neprázdných hodnot.
 
 #### Konstruktor
 
@@ -671,9 +671,9 @@ var median = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,2
 
 ---
 
-### MODE
+### [MODUS](#mode)
 
-<mark>MODUS</mark>: Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu).
+Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu).
 
 #### Konstruktor
 
@@ -707,9 +707,9 @@ var z = new BooleanVector(true, false, true).mode(); /* = true */
 
 ---
 
-### SEM
+### [SMĚRODATNÁ CHYBA PRŮMĚRU](#SEM)
 
-<mark>SMĚRODATNÁ CHYBA PRŮMĚRU</mark>: Vrátí hodnotu směrodatné chyby odhadu průměru.
+Vrátí hodnotu směrodatné chyby odhadu průměru.
 
 #### Konstruktor
 
@@ -741,9 +741,9 @@ var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,2
 
 ---
 
-### SKEWNESS
+### [ŠIKMOST](#skewness)
 
-<mark>ŠIKMOST</mark>: Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru.
+Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru.
 
 #### Konstruktor
 
@@ -782,9 +782,9 @@ var skewness_sample = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,2
 
 ---
 
-### KURTOSIS
+### [ŠPIČATOST](#kurtosis)
 
-<mark>ŠPIČATOST</mark>: Vrátí hodnotu excesu množiny dat.
+Vrátí hodnotu excesu množiny dat.
 
 #### Konstruktor
 
@@ -816,9 +816,9 @@ var kurtosis = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24
 
 ---
 
-### TTEST
+### [JEDNOVÝBĚROVÝ T-TEST](#ttest)
 
-<mark>JEDNOVÝBĚROVÝ T-TEST</mark>: Vrátí statistický protokol pro jednovýběrový t-test při zadání populačního průměru.
+Vrátí statistický protokol pro jednovýběrový t-test při zadání populačního průměru.
 
 #### Konstruktor
 

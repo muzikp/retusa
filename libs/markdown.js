@@ -7,7 +7,7 @@ var e_no = "-" // "❌" // ":no_entry_sign:"
 
 function VectorMarkdown(method, level = 1) {
     var wiki = method;
-    var _ = `${hash(level)} ${wiki.name.toUpperCase()}\n\n<mark>${$(wiki.title.toUpperCase())}</mark>${wiki.description ? ": " + wiki.description + (wiki.url ? " " + "[" + $("WLsu") + "](" + wiki.url + ")" : "") : ""}`;
+    var _ = `${hash(level)} [${wiki.title.toUpperCase()}](#${wiki.name})${wiki.description ? "\n\n" + wiki.description + (wiki.url ? " " + "[" + $("WLsu") + "](" + wiki.url + ")" : "") : ""}`;
     _ += `\n\n${hash(level + 1)} Konstruktor\n\n${createVectorMethodConstructor(wiki)}`
     if(wiki.filter) {
         _ += `\n\n${hash(level+1)} ${$("VVSN")}\n\n${wiki.filter}`;
@@ -44,7 +44,7 @@ function VectorOverview(Models) {
     _ += objArrayToTable([$("wRbe"),$("rlTY"),$("zPyP"),$("LOYN"),$("zoiB"),$("OkoC")],models.map(function(m) { 
         var row = [
             `[${m.wiki.name}](#${m.wiki.name})`,
-            m.wiki.title,
+            `[${m.wiki.title}](#${m.wiki.name})`,
             m.wiki.description,
             m.wiki.applies[0].apply ? e_yes : e_no,
             m.wiki.applies[1].apply ? e_yes : e_no,
