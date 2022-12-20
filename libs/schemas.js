@@ -57,18 +57,18 @@ class Schema {
     }
     createMDTypeBadge(type) {
       var types = [
-        {t: "string", c: "brown", l: "RFGF"},
-        {t: "number", c: "yellow", l: "pelN"},
-        {t: "integer", c: "yellow", l: "llQx"},
-        {t: "boolean", c: "gray", l: "XPGc"},
-        {t: "object", c: "green", l: "kLhB"},
-        {t: "array", c: "blue", l: "qdkt"},
-        {t: "any", c: "blue", l: "oMas"}
+        {t: "string", c: "🟢", l: "RFGF"},
+        {t: "number", c: "🔴", l: "pelN"},
+        {t: "integer", c: "🟠", l: "llQx"},
+        {t: "boolean", c: "🟡", l: "XPGc"},
+        {t: "object", c: "🔵", l: "kLhB"},
+        {t: "array", c: "🟣", l: "qdkt"},
+        {t: "any", c: "🟤", l: "oMas"}
       ];
       
       var s = types.find(i => i.t == type) || {c: "red", l: "oMas"};
       //return `<span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: ${s.c}">${$(s.l)}</span>`
-      return `\`${$(s.l)}\``
+      return `${s.c} \` ${s.c} ${$(s.l)}\``
     }
   }
 
