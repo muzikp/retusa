@@ -52,8 +52,8 @@ Pouze číselné hodnoty (včetně nul).
 | binární |  |
 
 #### Schéma výsledku
-```diff
-- + *přirozené číslo* `přirozené číslo`
+```
+- *přirozené číslo* `přirozené číslo`
   ```
 
 #### Příklad
