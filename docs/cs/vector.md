@@ -1,7 +1,7 @@
 # Vektor
 
 Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v aplikaci využívá výhradně skrze zděděné třídy (NumericVector atd.), které zajišťují validaci jednotlivých hodnot řady (např. do NumericVector instance nelze přidat hodnotu 'nazdar').
-
+`#RRGGBB`
 ## Statistické metody
 
 | funkce | metoda | popis | numerická | nominální | binární |
