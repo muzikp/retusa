@@ -35,9 +35,7 @@ Vrátí součet všech neprázdných číselných hodnot vektoru. [Zjistit více
 
 #### Konstruktor
 
-
 > (NumericVector).<mark>**sum**()
-
 
 #### Pre-filtr
 

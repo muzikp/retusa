@@ -249,8 +249,9 @@ const VectorMethodsModels = [
                 schema: "boolean",
                 type: "boolean",
                 validator: validators.boolean
-                }
             }
+        },
+        url: "https://en.wikipedia.org/wiki/Variance"
     },
     {
         name: "histogram",
@@ -324,7 +325,8 @@ const VectorMethodsModels = [
                 type: "number",
                 validator: validators.positiveDecimal,
                 }
-        }
+        },
+        url: "https://en.wikipedia.org/wiki/Histogram"
     },
     {
         name: "min",
@@ -368,7 +370,8 @@ const VectorMethodsModels = [
         returns: "number",
         example: function(){
             var range = new NumericVector(5,2,-15,-16.3,12,null, null, 12,13,7).range(); /* = 22 */
-        }
+        },
+        url: "https://en.wikipedia.org/wiki/Range_(statistics)"
     },
     {
         name: "varc",
@@ -395,8 +398,9 @@ const VectorMethodsModels = [
                 schema: "boolean",
                 type: "boolean",
                 validator: validators.boolean
-                }
             }
+        },
+        url: "https://en.wikipedia.org/wiki/Coefficient_of_variation"
     },
     {
         name: "percentile",
@@ -425,7 +429,9 @@ const VectorMethodsModels = [
                 type: "decimal",
                 validator: validators.zeroToOneInc
                 }
-            }
+        },
+        url: "https://en.wikipedia.org/wiki/Percentile"
+
     },
     {
         name: "frequency",
@@ -505,8 +511,9 @@ const VectorMethodsModels = [
                         }
                     ]
                 })
-                }
             }
+        },
+        url: "https://en.wikipedia.org/wiki/Frequency_(statistics)"
     },
     {
         name: "geomean",
@@ -520,7 +527,8 @@ const VectorMethodsModels = [
         returns: "number",
         example: function(){
             var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).geomean(); /* = 21.24*/
-        }
+        },
+        url: "https://en.wikipedia.org/wiki/Geometric_mean"
     },
     {
         name: "harmean",
@@ -534,7 +542,8 @@ const VectorMethodsModels = [
         returns: "number",
         example: function(){
             var x = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).harmean(); /* = 21.03*/
-        }
+        },
+        url: "https://en.wikipedia.org/wiki/Harmonic_mean"
     },
     {
         name: "median",

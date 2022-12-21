@@ -252,7 +252,7 @@ module.exports = {
 	/* Empty instance - calling VectorMethod without the parent specified */
 	"hKRq": "Pokud není určena konkrétní instance vektoru coby vlastnosti instance třídy VectorMethod, je při volání výpočetní nebo validační metody vrácen prázdný výsledek.",
 	/* MD vector filter level (title) */
-	"VVSN": "Pre-filtr",
+	"VVSN": "Automatický filtr hodnot",
 	/* MD vector arguments (title) */
 	"FRpk": "Argumenty",
 	/* MD vector argument table header - id */
