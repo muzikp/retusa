@@ -29,15 +29,17 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 
 ---
 
-### [SOUČET](#sum)
+### [SOUČET](#sum): sum
 
 Vrátí součet všech neprázdných číselných hodnot vektoru. [Zjistit více.](https://en.wikipedia.org/wiki/Addition)
 
 #### Konstruktor
 
+
 > (NumericVector).<mark>**sum**()
 
-#### Pre-filtr
+
+#### Automatický filtr hodnot
 
 Pouze číselné hodnoty (včetně nul).
 
@@ -61,7 +63,7 @@ var cashflow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 
 
 ---
 
-### [POČET](#count)
+### [POČET](#count): count
 
 Vrátí počet všech polí ve vektoru (včetně prázdných).
 
@@ -97,7 +99,7 @@ var total_boolean = new BooleanVector(true, true, false, null, false, true).coun
 
 ---
 
-### [ARYTMETICKÝ PRŮMĚR](#avg)
+### [ARYTMETICKÝ PRŮMĚR](#avg): avg
 
 Vrátí arytmetický průměr z neprázdných hodnot. [Zjistit více.](https://en.wikipedia.org/wiki/Arithmetic_mean)
 
@@ -107,7 +109,7 @@ Vrátí arytmetický průměr z neprázdných hodnot. [Zjistit více.](https://e
 > (NumericVector).<mark>**avg**()
 
 
-#### Pre-filtr
+#### Automatický filtr hodnot
 
 Pouze číselné hodnoty (včetně nul).
 
@@ -131,7 +133,7 @@ var avgCashFlow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /*
 
 ---
 
-### [SMĚRODATNÁ ODCHYLKA](#stdev)
+### [SMĚRODATNÁ ODCHYLKA](#stdev): stdev
 
 Vrátí směrodatnou odchylku neprázdných hodnot. [Zjistit více.](https://en.wikipedia.org/wiki/Standard_deviation)
 
@@ -141,7 +143,7 @@ Vrátí směrodatnou odchylku neprázdných hodnot. [Zjistit více.](https://en.
 > (NumericVector).<mark>**stdev**(*výběrový soubor*)
 
 
-#### Pre-filtr
+#### Automatický filtr hodnot
 
 Pouze číselné hodnoty (včetně nul).
 
@@ -172,9 +174,9 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).stdev(true); /* = 
 
 ---
 
-### [ROZPTYL](#variance)
+### [ROZPTYL](#variance): variance
 
-Vrátí hodnotu rozptylu tohoto vektoru.
+Vrátí hodnotu rozptylu tohoto vektoru. [Zjistit více.](https://en.wikipedia.org/wiki/Variance)
 
 #### Konstruktor
 
@@ -182,7 +184,7 @@ Vrátí hodnotu rozptylu tohoto vektoru.
 > (NumericVector).<mark>**variance**(*výběrový soubor*)
 
 
-#### Pre-filtr
+#### Automatický filtr hodnot
 
 Pouze číselné hodnoty (včetně nul).
 
@@ -213,9 +215,9 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).variance(true); /*
 
 ---
 
-### [HISTOGRAM](#histogram)
+### [HISTOGRAM](#histogram): histogram
 
-Vrátí matici histogramu daného vektoru.
+Vrátí matici histogramu daného vektoru. [Zjistit více.](https://en.wikipedia.org/wiki/Histogram)
 
 #### Konstruktor
 
@@ -223,7 +225,7 @@ Vrátí matici histogramu daného vektoru.
 > (NumericVector).<mark>**histogram**(*Maximální počet intervalů*, *Pevná velikost intervalu*)
 
 
-#### Pre-filtr
+#### Automatický filtr hodnot
 
 Pouze číselné hodnoty (včetně nul).
 
@@ -296,7 +298,7 @@ var h3 = score.histogram(null, 2)
 
 ---
 
-### [MINIMÁLNÍ HODNOTA](#min)
+### [MINIMÁLNÍ HODNOTA](#min): min
 
 Vrátí nejmenší hodnotu z neprázdných hodnot. V případě textu vrátí první hodnotu z abecedního řazení.
 
@@ -310,7 +312,7 @@ Vrátí nejmenší hodnotu z neprázdných hodnot. V případě textu vrátí pr
 > (BooleanVector).<mark>**min**()
 
 
-#### Pre-filtr
+#### Automatický filtr hodnot
 
 jakákoliv neprázdná hodnota (u číselných řad akceptuje nuly, u binárních proměnných argumenty false).
 
@@ -335,7 +337,7 @@ var string_min = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 ---
 
-### [MAXIMÁLNÍ HODNOTA](#max)
+### [MAXIMÁLNÍ HODNOTA](#max): max
 
 Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení.
 
@@ -349,7 +351,7 @@ Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí p
 > (BooleanVector).<mark>**max**()
 
 
-#### Pre-filtr
+#### Automatický filtr hodnot
 
 jakákoliv neprázdná hodnota (u číselných řad akceptuje nuly, u binárních proměnných argumenty false).
 
@@ -374,9 +376,9 @@ var string_max = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 ---
 
-### [VARIAČNÍ ROZPĚTÍ](#range)
+### [VARIAČNÍ ROZPĚTÍ](#range): range
 
-Vrátí rozdíl největší a nejmenší neprázdné hodnoty.
+Vrátí rozdíl největší a nejmenší neprázdné hodnoty. [Zjistit více.](https://en.wikipedia.org/wiki/Range_(statistics))
 
 #### Konstruktor
 
@@ -384,7 +386,7 @@ Vrátí rozdíl největší a nejmenší neprázdné hodnoty.
 > (NumericVector).<mark>**range**()
 
 
-#### Pre-filtr
+#### Automatický filtr hodnot
 
 Pouze číselné hodnoty (včetně nul).
 
@@ -408,9 +410,9 @@ var range = new NumericVector(5,2,-15,-16.3,12,null, null, 12,13,7).range(); /* 
 
 ---
 
-### [VARIAČNÍ KOEFICIENT](#varc)
+### [VARIAČNÍ KOEFICIENT](#varc): varc
 
-Vrátí hodnotu variačního koeficientu neprázdných hodnot.
+Vrátí hodnotu variačního koeficientu neprázdných hodnot. [Zjistit více.](https://en.wikipedia.org/wiki/Coefficient_of_variation)
 
 #### Konstruktor
 
@@ -418,7 +420,7 @@ Vrátí hodnotu variačního koeficientu neprázdných hodnot.
 > (NumericVector).<mark>**varc**(*výběrový soubor*)
 
 
-#### Pre-filtr
+#### Automatický filtr hodnot
 
 Pouze číselné hodnoty (včetně nul).
 
@@ -449,9 +451,9 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc(true); /* = 0
 
 ---
 
-### [PERCENTIL](#percentile)
+### [PERCENTIL](#percentile): percentile
 
-Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru.
+Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru. [Zjistit více.](https://en.wikipedia.org/wiki/Percentile)
 
 #### Konstruktor
 
@@ -459,7 +461,7 @@ Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru.
 > (NumericVector).<mark>**percentile**(***NaN***)
 
 
-#### Pre-filtr
+#### Automatický filtr hodnot
 
 Pouze číselné hodnoty (včetně nul).
 
@@ -492,9 +494,9 @@ var max = score.percentile(1); /* = 25 */
 
 ---
 
-### [FREKVENČNÍ TABULKA](#frequency)
+### [FREKVENČNÍ TABULKA](#frequency): frequency
 
-Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností.
+Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností. [Zjistit více.](https://en.wikipedia.org/wiki/Frequency_(statistics))
 
 #### Konstruktor
 
@@ -567,9 +569,9 @@ var boolean_vector_desc_frequency = new BooleanVector(true, false, null, true, n
 
 ---
 
-### [GEOMETRICKÝ PRŮMĚR](#geomean)
+### [GEOMETRICKÝ PRŮMĚR](#geomean): geomean
 
-Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovný než průměr arytmetický.
+Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovný než průměr arytmetický. [Zjistit více.](https://en.wikipedia.org/wiki/Geometric_mean)
 
 #### Konstruktor
 
@@ -577,7 +579,7 @@ Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovn
 > (NumericVector).<mark>**geomean**()
 
 
-#### Pre-filtr
+#### Automatický filtr hodnot
 
 Pouze číselné hodnoty (včetně nul).
 
@@ -601,9 +603,9 @@ var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29
 
 ---
 
-### [HARMONICKÝ PRŮMĚR](#harmean)
+### [HARMONICKÝ PRŮMĚR](#harmean): harmean
 
-Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti.
+Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti. [Zjistit více.](https://en.wikipedia.org/wiki/Harmonic_mean)
 
 #### Konstruktor
 
@@ -611,7 +613,7 @@ Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vž
 > (NumericVector).<mark>**harmean**()
 
 
-#### Pre-filtr
+#### Automatický filtr hodnot
 
 Pouze číselné hodnoty (včetně nul).
 
@@ -635,9 +637,9 @@ var x = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,
 
 ---
 
-### [MEDIÁN](#median)
+### [MEDIÁN](#median): median
 
-Vrátí střední hodnotu z neprázdných hodnot.
+Vrátí střední hodnotu z neprázdných hodnot. [Zjistit více.](https://en.wikipedia.org/wiki/Median)
 
 #### Konstruktor
 
@@ -645,7 +647,7 @@ Vrátí střední hodnotu z neprázdných hodnot.
 > (NumericVector).<mark>**median**()
 
 
-#### Pre-filtr
+#### Automatický filtr hodnot
 
 Pouze číselné hodnoty (včetně nul).
 
@@ -669,9 +671,9 @@ var median = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,2
 
 ---
 
-### [MODUS](#mode)
+### [MODUS](#mode): mode
 
-Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu).
+Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu). [Zjistit více.](https://en.wikipedia.org/wiki/Mode_(statistics))
 
 #### Konstruktor
 
@@ -705,9 +707,9 @@ var z = new BooleanVector(true, false, true).mode(); /* = true */
 
 ---
 
-### [SMĚRODATNÁ CHYBA PRŮMĚRU](#SEM)
+### [SMĚRODATNÁ CHYBA PRŮMĚRU](#SEM): SEM
 
-Vrátí hodnotu směrodatné chyby odhadu průměru.
+Vrátí hodnotu směrodatné chyby odhadu průměru. [Zjistit více.](https://en.wikipedia.org/wiki/Standard_error#Standard_error_of_the_sample_mean)
 
 #### Konstruktor
 
@@ -715,7 +717,7 @@ Vrátí hodnotu směrodatné chyby odhadu průměru.
 > (NumericVector).<mark>**SEM**()
 
 
-#### Pre-filtr
+#### Automatický filtr hodnot
 
 Pouze číselné hodnoty (včetně nul).
 
@@ -739,9 +741,9 @@ var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,2
 
 ---
 
-### [ŠIKMOST](#skewness)
+### [ŠIKMOST](#skewness): skewness
 
-Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru.
+Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru. [Zjistit více.](https://en.wikipedia.org/wiki/Skewness)
 
 #### Konstruktor
 
@@ -749,7 +751,7 @@ Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem st
 > (NumericVector).<mark>**skewness**(*výběrový soubor*)
 
 
-#### Pre-filtr
+#### Automatický filtr hodnot
 
 Pouze číselné hodnoty (včetně nul).
 
@@ -780,9 +782,9 @@ var skewness_sample = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,2
 
 ---
 
-### [ŠPIČATOST](#kurtosis)
+### [ŠPIČATOST](#kurtosis): kurtosis
 
-Vrátí hodnotu excesu množiny dat.
+Vrátí hodnotu excesu množiny dat. [Zjistit více.](https://en.wikipedia.org/wiki/Kurtosis)
 
 #### Konstruktor
 
@@ -790,7 +792,7 @@ Vrátí hodnotu excesu množiny dat.
 > (NumericVector).<mark>**kurtosis**()
 
 
-#### Pre-filtr
+#### Automatický filtr hodnot
 
 Pouze číselné hodnoty (včetně nul).
 
@@ -814,7 +816,7 @@ var kurtosis = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24
 
 ---
 
-### [JEDNOVÝBĚROVÝ T-TEST](#ttest)
+### [JEDNOVÝBĚROVÝ T-TEST](#ttest): ttest
 
 Vrátí statistický protokol pro jednovýběrový t-test při zadání populačního průměru.
 
@@ -824,7 +826,7 @@ Vrátí statistický protokol pro jednovýběrový t-test při zadání populač
 > (NumericVector).<mark>**ttest**(***NaN***)
 
 
-#### Pre-filtr
+#### Automatický filtr hodnot
 
 Pouze číselné hodnoty (včetně nul).
 
@@ -852,8 +854,12 @@ Pouze číselné hodnoty (včetně nul).
 #### Příklad
 
 ```js
-var score = new NumericVector(10,20,15,25,23,19,18,17,24,23);
-var median = score.percentile(0.5); /* = 19.5 */
-var q25 = score.percentile(0.25); /* = 17.25 */
-var max = score.percentile(1); /* = 25 */
+var T = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1).ttest(10);
+/*
+{
+"t": 2.0519223838763545,
+"p": 0.05806,
+"n": 16
+}
+*/
 ```

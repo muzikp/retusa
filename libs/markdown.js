@@ -7,7 +7,7 @@ var e_no = "-" // "❌" // ":no_entry_sign:"
 
 function VectorMarkdown(method, level = 1) {
     var wiki = method;
-    var _ = `${hash(level)} [${wiki.title.toUpperCase()}](#${wiki.name})${wiki.description ? "\n\n" + wiki.description + (wiki.url ? " " + "[" + $("WLsu") + "](" + wiki.url + ")" : "") : ""}`;
+    var _ = `${hash(level)} [${wiki.title.toUpperCase()}](#${wiki.name}): ${$(wiki.name)}${wiki.description ? "\n\n" + wiki.description + (wiki.url ? " " + "[" + $("WLsu") + "](" + wiki.url + ")" : "") : ""}`;
     _ += `\n\n${hash(level + 1)} Konstruktor\n\n${createVectorMethodConstructor(wiki)}`
     if(wiki.filter) {
         _ += `\n\n${hash(level+1)} ${$("VVSN")}\n\n${wiki.filter}`;
