@@ -22,10 +22,11 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 | [harmean](#harmean) | [harmonický průměr](#harmean) | Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti. | ✔️ | - | - |
 | [median](#median) | [medián](#median) | Vrátí střední hodnotu z neprázdných hodnot. | ✔️ | - | - |
 | [mode](#mode) | [modus](#mode) | Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu). | ✔️ | ✔️ | ✔️ |
-| [SEM](#SEM) | [směrodatná chyba průměru](#SEM) | Vrátí hodnotu směrodatné chyby odhadu průměru. | ✔️ | - | - |
+| [SEM](#SEM) | [střední chyba průměru](#SEM) | Vrátí hodnotu směrodatné chyby odhadu průměru. | ✔️ | - | - |
 | [skewness](#skewness) | [šikmost](#skewness) | Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru. | ✔️ | - | - |
 | [kurtosis](#kurtosis) | [špičatost](#kurtosis) | Vrátí hodnotu excesu množiny dat. | ✔️ | - | - |
 | [ttest](#ttest) | [jednovýběrový t-test](#ttest) | Vrátí statistický protokol pro jednovýběrový t-test při zadání populačního průměru. | ✔️ | - | - |
+| [mci](#mci) | [interval spolehlivosti průměru](#mci) | Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normálín rozdělení. | ✔️ | - | - |
 
 ---
 
@@ -707,7 +708,7 @@ var z = new BooleanVector(true, false, true).mode(); /* = true */
 
 ---
 
-### [SMĚRODATNÁ CHYBA PRŮMĚRU](#SEM): SEM
+### [STŘEDNÍ CHYBA PRŮMĚRU](#SEM): SEM
 
 Vrátí hodnotu směrodatné chyby odhadu průměru. [Zjistit více.](https://en.wikipedia.org/wiki/Standard_error#Standard_error_of_the_sample_mean)
 
@@ -863,3 +864,40 @@ var T = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1)
 }
 */
 ```
+
+---
+
+### [INTERVAL SPOLEHLIVOSTI PRŮMĚRU](#mci): mci
+
+Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normálín rozdělení. [Zjistit více.](https://en.wikipedia.org/wiki/Confidence_interval)
+
+#### Konstruktor
+
+
+> (NumericVector).<mark>**mci**(*hladina významnosti*)
+
+
+#### Automatický filtr hodnot
+
+Pouze číselné hodnoty (včetně nul).
+
+#### Argumenty
+
+| argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
+| **confidenceLevel** | hladina významnosti | 🔴 číslo | Ověří, zdali je hodnota číslo mezi 0 a 1 (včetně hraničních hodnot). V opačném případě vyvolá chybu. | - | 0.95 |
+
+#### Integrace dle třídy
+
+| typ vektoru | integrace |
+| --- |  :---: | 
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
+
+#### Schéma výsledku
+
+- *T-test s jedním výběrem* `🟦 objekt`
+  - **t**: *testovací hodnota* `🔴 číslo`
+  - **p**: *hladina významnosti* `🔴 číslo`
+  - **n**: *počet případů* `🟠 celé číslo`

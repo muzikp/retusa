@@ -11,5 +11,5 @@ module.exports = {
     libraryTarget: "umd" || 'commonjs',
     globalObject: "this"
   },
-  mode: "production"
+  mode: "development"
 };

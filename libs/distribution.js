@@ -16,6 +16,7 @@ module.exports = {
     normsdist: normsdist,
     normsinv: normsinv,
     tdist: tdist,
+    tinv: tinv,
     wilcoxondist: wilcoxondist
 }
 
@@ -478,6 +479,12 @@ function tdist(x,df) {
     }		
     tcdf=Math.round(tcdf*100000)/100000;
     return tcdf;
+}
+
+function tinv(p,dof) {
+    var x = ibetainv(2 * Math.min(p, 1 - p), 0.5 * dof, 0.5);
+    x = Math.sqrt(dof * (1 - x) / x);
+    return (p > 0.5) ? x : -x;
 }
 
 function chisqdist(x, df) {

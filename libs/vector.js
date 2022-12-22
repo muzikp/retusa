@@ -669,6 +669,33 @@ const VectorMethodsModels = [
                 }
             }
     },
+    {
+        name: "mci",
+        fn: Array.prototype.cim,
+        filter: filters.number,
+        wiki: {
+            title: "yHjW",
+            description: "DDpa"
+        },
+        type: [1],
+        returns: "ttest",
+        example: function(){
+        },
+        args: {
+            confidenceLevel: {
+                wiki: {
+                    title: "lFlm",
+                    description: "SMbe"
+                },
+                schema: "number",
+                required: false,
+                default: 0.95,
+                type: "number",
+                validator: validators.zeroToOneInc
+            }
+        },
+        url: "https://en.wikipedia.org/wiki/Confidence_interval"
+    }
 ].sort((a,b) => a.name > b.name);
 
 class VectorMethod {

@@ -14,6 +14,8 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
+var dist = require("./distribution");
+
 Array.prototype.sum = function () {
   return this.reduce(function (a, b) {
     return a + b;
@@ -26,6 +28,19 @@ Array.prototype.count = function () {
 
 Array.prototype.avg = function () {
   return this.sum() / this.count();
+};
+
+Array.prototype.cim = function (p) {
+  p = 1 - (1 - p) / 2;
+  var m = this.avg();
+  var q = this.length > 30 ? dist.normsinv(p, this.length - 1) : dist.tinv(p, this.length - 1);
+  var delta = q * this.stdev(true) / Math.sqrt(this.length);
+  return {
+    m: m,
+    delta: delta,
+    lb: m - delta,
+    ub: m + delta
+  };
 };
 
 Array.prototype.distinct = function () {
@@ -65,7 +80,10 @@ Array.prototype.stdev = function (sample) {
 };
 
 Array.prototype.variance = function (sample) {
-  return Math.pow(this.stdev(sample), 2);
+  var m = this.avg();
+  return this.map(function (_) {
+    return Math.pow(_ - m, 2);
+  }).sum() / (this.length - (sample ? 1 : 0));
 };
 
 Array.prototype.histogram = function () {
@@ -190,7 +208,7 @@ Array.prototype.harmean = function () {
 };
 
 Array.prototype.SEM = function () {
-  return this.stdev(true) / Math.pow(this.count(), 0.5);
+  return this.stdev(true) / Math.sqrt(this.length);
 };
 
 Array.prototype.skewness = function (sample) {
@@ -214,6 +232,21 @@ Array.prototype.kurtosis = function () {
   var c = 3 * Math.pow(n - 1, 2) / ((n - 2) * (n - 3));
   var k = a * b - c;
   return k;
+};
+
+Array.prototype.ttest = function (mean) {
+  var n = this.length;
+  var m = this.avg();
+  var t = (m - mean) / this.SEM();
+  var p = (1 - dist.tdist(t, n - 1)) * 2;
+  return {
+    t: t,
+    p: p,
+    n: n //df: n-1,
+    //sample_mean: m,
+    //population_mean: mean
+
+  };
 };
 
 Array.prototype.getRankIndexes = function () {
@@ -254,6 +287,22 @@ Array.prototype.toAvgRank = function () {
     return (fi !== li ? (li + fi) / 2 : fi) + 1;
   });
   return sorted;
+};
+
+Array.prototype.intersection = function (arr) {
+  if (arr.length == 0) return this;
+  return this.filter(function (v) {
+    return arr.indexOf(v) > -1;
+  });
+};
+
+Array.prototype.covariance = function (arr) {
+  var sample = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var xm = this.avg();
+  var ym = arr.avg();
+  return this.map(function (x, i) {
+    return (x - xm) * (arr[i] * ym);
+  }).sum(arr.length - (sample ? 1 : 0));
 };
 
 String.prototype.fill = function (what, repetition) {

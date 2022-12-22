@@ -106,7 +106,7 @@ module.exports = {
 	/* filter boolean text */
 	"uUYu": "Pouze hodnoty pravda a nepravda (true/false).",
 	/* vector SEM fce (title) */
-	"dLmV": "směrodatná chyba průměru",
+	"dLmV": "střední chyba průměru",
 	/* vector SEM fce (description) */
 	"ZBnI": "Vrátí hodnotu směrodatné chyby odhadu průměru.",
 	/* vector kurtosis fce (deescription) */
@@ -357,10 +357,14 @@ module.exports = {
 	"nJbe": "Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru.",
 	/* MD url "read more" */
 	"WLsu": "Zjistit více.",
-	"yHjW": "",
-	"DDpa": "",
-	"lFlm": "",
-	"SMbe": "",
+	/* vector fce Confidence intervals for the mean (title) */
+	"yHjW": "interval spolehlivosti průměru",
+	/* vector fce Confidence intervals for the mean (description) */
+	"DDpa": "Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normálín rozdělení.",
+	/* vector fce Confidence intervals for the mean (confidenceLevel argument - title) */
+	"lFlm": "hladina významnosti",
+	/* vector fce Confidence intervals for the mean (confidenceLevel argument - Description) */
+	"SMbe": "Hodnota hladiny významnosti, na které se interval testuje. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normálín rozdělení.",
 	"NzBg": "",
 	"GynK": "",
 	"iIPc": "",

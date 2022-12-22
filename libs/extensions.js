@@ -12,6 +12,14 @@ Array.prototype.avg = function() {
     return this.sum()/this.count()
 }
 
+Array.prototype.cim = function(p) {
+    p = 1-(1-p)/2;
+    var m = this.avg();
+    var q = this.length > 30 ? dist.normsinv(p, this.length -1 ) : dist.tinv(p, this.length -1);
+    var delta = q * this.stdev(true)/Math.sqrt(this.length);
+    return {m: m, delta: delta, lb: m-delta, ub: m+delta};
+}
+
 Array.prototype.distinct = function() {
     return [...new Set(this)]
 }
@@ -50,7 +58,8 @@ Array.prototype.stdev = function(sample){
 }
 
 Array.prototype.variance = function(sample) {
-    return Math.pow(this.stdev(sample), 2);
+    var m = this.avg();
+    return this.map(_ => Math.pow(_ - m,2)).sum()/(this.length - (sample ? 1 : 0));
 }
 
 Array.prototype.histogram = function(maxIntervals = null, fixedInterval = null){
@@ -119,7 +128,7 @@ Array.prototype.harmean = function(){
 }
 
 Array.prototype.SEM = function(){
-    return this.stdev(true)/Math.pow(this.count(),0.5);
+    return this.stdev(true)/Math.sqrt(this.length);
 }
 
 Array.prototype.skewness = function(sample) {
