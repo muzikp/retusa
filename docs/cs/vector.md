@@ -897,7 +897,8 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Schéma výsledku
 
-- *T-test s jedním výběrem* `🟦 objekt`
-  - **t**: *testovací hodnota* `🔴 číslo`
-  - **p**: *hladina významnosti* `🔴 číslo`
-  - **n**: *počet případů* `🟠 celé číslo`
+- *interval spolehlivosti průměru* `🟦 objekt`
+  - **m**: *aritmetický průměr* `🔴 číslo`
+  - **delta**: *hodnota intervalu spolehlivosti* `🔴 číslo`
+  - **lb**: *spodní hranice intervalu* `🔴 číslo`
+  - **ub**: *horní hranice intervalu* `🔴 číslo`

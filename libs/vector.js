@@ -678,7 +678,7 @@ const VectorMethodsModels = [
             description: "DDpa"
         },
         type: [1],
-        returns: "ttest",
+        returns: "mci",
         example: function(){
         },
         args: {
