@@ -1,8 +1,17 @@
-const { Matrix } = require("./index");
 const console = require("console");
+const { Matrix } = require("./index");
 var framework = require("./index");
 
+
 with (framework) {
+    var b = require("./dist/bundle");
+    console.log(b);
+    debugger;
+    var age = new BooleanVector(true, false, true);
+console.log(age.name("věk"))
+/* BooleanVector [true, false, true
+    return;
+
     //var M = new Matrix([1,2,3,4,5,6,7,8,9,10],[1,3,5,7,9,11,13,15,17,19]).mannwhitney(0,1);
     //var M = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1).ttest(5);
 

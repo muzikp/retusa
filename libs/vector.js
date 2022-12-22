@@ -85,7 +85,7 @@ Vector.prototype.isVector = true;
 
 const vectorParser = {
     numeric: function(value) {
-        if(value === 0 || value === "0") return 0;
+        if(value === 0 || value === "0" || value === false) return 0;
         else if(!value) return null;
         else if(!isNaN(value)) return Number(value);
         else throw new VectorValueError($("UyOj", {value}), {vector: this, value: value});
@@ -96,7 +96,7 @@ const vectorParser = {
     },
     boolean: function(value) {
         if(value) return true;
-        else if(value === false || value === 0) return false;
+        else if(value === false || value === 0 || value === "0" || value === "false") return false;
         else return null;
     }
 }
