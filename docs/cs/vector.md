@@ -8,7 +8,7 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | [sum](#sum) | [součet](#sum) | Vrátí součet všech neprázdných číselných hodnot vektoru. | ✔️ | - | - |
 | [count](#count) | [počet](#count) | Vrátí počet všech polí ve vektoru (včetně prázdných). | ✔️ | ✔️ | ✔️ |
-| [avg](#avg) | [arytmetický průměr](#avg) | Vrátí arytmetický průměr z neprázdných hodnot. | ✔️ | - | - |
+| [avg](#avg) | [aritmetický průměr](#avg) | Vrátí arytmetický průměr z neprázdných hodnot. | ✔️ | - | - |
 | [stdev](#stdev) | [směrodatná odchylka](#stdev) | Vrátí směrodatnou odchylku neprázdných hodnot. | ✔️ | - | - |
 | [variance](#variance) | [rozptyl](#variance) | Vrátí hodnotu rozptylu tohoto vektoru. | ✔️ | - | - |
 | [histogram](#histogram) | [histogram](#histogram) | Vrátí matici histogramu daného vektoru. | ✔️ | - | - |
@@ -100,7 +100,7 @@ var total_boolean = new BooleanVector(true, true, false, null, false, true).coun
 
 ---
 
-### [ARYTMETICKÝ PRŮMĚR](#avg): avg
+### [ARITMETICKÝ PRŮMĚR](#avg): avg
 
 Vrátí arytmetický průměr z neprázdných hodnot. [Zjistit více.](https://en.wikipedia.org/wiki/Arithmetic_mean)
 

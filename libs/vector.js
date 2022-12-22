@@ -671,7 +671,7 @@ const VectorMethodsModels = [
     },
     {
         name: "mci",
-        fn: Array.prototype.cim,
+        fn: Array.prototype.mci,
         filter: filters.number,
         wiki: {
             title: "yHjW",

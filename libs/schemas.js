@@ -76,17 +76,17 @@ class Schema {
     }
   }
 
-  class ArgumentSchema extends Schema {
-    constructor() {
-        super(...arguments);
-        this.lsign = "";
-        this.lstart = "";
-        this.typeHighlight = "";
+class ArgumentSchema extends Schema {
+constructor() {
+    super(...arguments);
+    this.lsign = "";
+    this.lstart = "";
+    this.typeHighlight = "";
+}
+createPropTitle(e, indent = 1) {
+    this.to +=this.createMDTypeBadge(e.type);
     }
-    createPropTitle(e, indent = 1) {
-        this.to +=this.createMDTypeBadge(e.type);
-      }
-  }
+}
 
 
 
@@ -334,7 +334,53 @@ const vectorResultSchemas = {
                 "default": 0
             }
         }
+    },
+    mci: {
+        "definitions": {},
+        "$schema": "http://json-schema.org/draft-07/schema#", 
+        "$id": "https://example.com/object1671725902.json", 
+        "title": "yHjW", 
+        "type": "object",
+        "properties": {
+            "m": {
+                "$id": "#root/m", 
+                "title": "eFdj", 
+                "type": "number",
+                "examples": [
+                    6
+                ],
+                "default": 0
+            },
+            "delta": {
+                "$id": "#root/delta", 
+                "title": "NzBg", 
+                "type": "number",
+                "examples": [
+                    1.0110352875838695
+                ],
+                "default": 0.0
+            },
+            "lb": {
+                "$id": "#root/lb", 
+                "title": "GynK", 
+                "type": "number",
+                "examples": [
+                    4.988964712416131
+                ],
+                "default": 0.0
+            },
+            "ub": {
+                "$id": "#root/ub", 
+                "title": "iIPc", 
+                "type": "number",
+                "examples": [
+                    7.011035287583869
+                ],
+                "default": 0.0
+            }
+        }
     }
+    
     
 }
 /*

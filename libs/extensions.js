@@ -12,7 +12,8 @@ Array.prototype.avg = function() {
     return this.sum()/this.count()
 }
 
-Array.prototype.cim = function(p) {
+Array.prototype.mci = function(p) {
+    return Math.mci(this.avg(),this.stdev(true),this.length, p)
     p = 1-(1-p)/2;
     var m = this.avg();
     var q = this.length > 30 ? dist.normsinv(p, this.length -1 ) : dist.tinv(p, this.length -1);
@@ -232,6 +233,13 @@ Math.getRandomIndexes = function(total_of_elements, samplesize) {
         if(indexes.indexOf(v) < 0) indexes.push(v);
     };
     return indexes;
+}
+
+Math.mci = function(m,stdev,n,p) {
+    p = 1-(1-p)/2;
+    var q = n > 30 ? dist.normsinv(p, n - 1 ) : dist.tinv(p, n -1);
+    var delta = q * stdev/Math.sqrt(n);
+    return {m: m, delta: delta, lb: m-delta, ub: m+delta};
 }
 
 Function.prototype.stringify = function(indent = "\t") {

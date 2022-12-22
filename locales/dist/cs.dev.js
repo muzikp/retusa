@@ -17,7 +17,7 @@ module.exports = {
   "tdrm": "počet",
 
   /* vector mean/average fce (title) */
-  "eFdj": "arytmetický průměr",
+  "eFdj": "aritmetický průměr",
 
   /* vector geometric mean fce (title) */
   "iuTi": "geometrický průměr",
@@ -550,9 +550,15 @@ module.exports = {
 
   /* vector fce Confidence intervals for the mean (confidenceLevel argument - Description) */
   "SMbe": "Hodnota hladiny významnosti, na které se interval testuje. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normálín rozdělení.",
-  "NzBg": "",
-  "GynK": "",
-  "iIPc": "",
+
+  /* schema MCI - delta */
+  "NzBg": "hodnota intervalu spolehlivosti",
+
+  /* schema MCI - lower bound */
+  "GynK": "spodní hranice intervalu",
+
+  /* schema MCI - upper bound */
+  "iIPc": "horní hranice intervalu",
   "AgIP": "",
   "zxmM": "",
   "TSCM": "",
