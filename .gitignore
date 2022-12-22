@@ -104,3 +104,4 @@ typings/
 
 test.js
 .vscode/
+webpack.config.js
