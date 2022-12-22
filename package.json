@@ -4,7 +4,9 @@
   "description": "Statistical library for social sciences running in Node.js and browsers",
   "main": "index.js",
   "scripts": {
-    "test": "npm run "
+    "test": "npm run ",
+    "build": "webpack",
+    "start": "serve dist"
   },
   "repository": {
     "type": "git",

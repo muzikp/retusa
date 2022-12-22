@@ -7,6 +7,7 @@ const {Array, Math, String, Function} = require("./extensions");
 const dist = require("./distribution");
 //const {VectorMarkdown, VectorOverview} = require("./markdown");
 var {VectorValueError, ArgumentError, Empty} = require("./errors");
+const { type } = require("jquery");
 
 const registry = new WeakMap();
 
@@ -187,7 +188,15 @@ class Matrix extends Array {
  * Allows inserting only NumericVector members,.
  */
 class NumericMatrix extends Matrix 
-{}
+{
+    push() {
+        for(let a of [...arguments].filter(v => v)) {
+            if(a?.type() === 1) super.push(a)
+            else if(Array.isArray(a)) super.push(a.numerify());
+            else throw new ArgumentError("Argument is not a numeric vector or a numeric array.");
+        };
+    }
+}
 
 // //#endregion
 
@@ -245,9 +254,9 @@ class MatrixMethod {
             }
         } else return {};
     }
-    /* Generates a markdown documentation for the vector method */
+    /* Generates a markdown documentation for the matrix method */
     markdown(level = 1) {
-        return VectorMarkdown(this.wiki, level);
+        //return MatrixMarkdown(this.wiki, level);
     }
     
     /**
@@ -549,20 +558,22 @@ const MatrixMethodsModels = [
             title: "pTvR",
             description: "wPyG"
         },
-        args: {
-            x: {
+        args: [
+            {
+                name: "x",
                 wiki: {title: "qFEM"},
-                type: [1],
+                type: [ats.nv],
                 required: true,
-                validator: validators.generalCorrelVector
+                validator: validators.isNumericVector
             },        
-            y: {
+            {
+                name: "y",
                 wiki: {title: "tpUu"},
-                type: [1],
+                type: [ats.nv],
                 required: true,
-                validator: validators.generalCorrelVector
-        }            
-        }
+                validator: validators.isNumericVector
+            }            
+        ]
     },
     {   name: "correlSpearman",
         fn: matrixMethods.correlSpearman,
@@ -571,20 +582,22 @@ const MatrixMethodsModels = [
             title: "eJTT",
             description: "jAGi"
         },
-        args: {
-            x: {
+        args: [
+            {
+                name: "x",
                 wiki: {title: "qFEM"},
-                type: [1],
+                type: [ats.nv],
                 required: true,
-                validator: validators.generalCorrelVariable
+                validator: validators.isNumericVector
             },        
-            y: {
+            {
+                name: "y",
                 wiki: {title: "tpUu"},
-                type: [1],
+                type: [ats.nv],
                 required: true,
-                validator: validators.generalCorrelVariable
+                validator: validators.isNumericVector
         }            
-        }
+    ]
     },
     {   name: "correlKendall",
         fn: matrixMethods.correlKendall,
@@ -593,20 +606,22 @@ const MatrixMethodsModels = [
             title: "eJTT",
             description: "jAGi"
         },
-        args: {
-            x: {
+        args: [
+            {
+                name: "x",
                 wiki: {title: "qFEM"},
-                type: [1],
+                type: [ats.nv],
                 required: true,
-                validator: validators.generalCorrelVariable
+                validator: validators.isNumericVector
             },        
-            y: {
+            {
+                name: "y",
                 wiki: {title: "tpUu"},
-                type: [1],
+                type: [ats.nv],
                 required: true,
-                validator: validators.generalCorrelVariable
-        }            
-        }
+                validator: validators.isNumericVector
+            }            
+        ]
     },
     {   name: "correlPartial",
         fn: matrixMethods.correlPartial,
@@ -820,12 +835,13 @@ const MatrixMethodsModels = [
             description: "qqQo"
         },
         args: [{
-                name: "x",
+                name: "matrix",
                 wiki: {title: "qFEM"},
                 required: true,
                 validator: validators.isNumericMatrix,
                 class: 2
-            }]
+            }
+        ]
     }
 ].sort((a,b) => a.name < b.name);
 

@@ -1,8 +1,7 @@
 "use strict";
-
 var $ = require("./locale").call;
 var {filters, validators} = require("./parsers");
-var {vectorResultSchemas, Schema, ArgumentSchema} = require("./schemas");
+var {vectorResultSchemas} = require("./schemas");
 const {Array, Math, String, Function} = require("./extensions");
 const {VectorMarkdown, VectorOverview} = require("./markdown");
 var {VectorValueError, ArgumentError, Empty} = require("./errors");

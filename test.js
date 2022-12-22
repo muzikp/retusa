@@ -1,39 +1,10 @@
-const console = require("console");
-const { Matrix } = require("./index");
 var framework = require("./index");
 
-
 with (framework) {
-    var b = require("./dist/bundle");
-    console.log(b);
+    //var T = new Matrix([4,5,6,7,8,9,10],[5,5,6,7,8,9,10]).ttestind(0,1);
+    var M = new Matrix([4,5,6,7,8,9,10],[5,5,6,7,8,9,10]).correlPearson(0,1);
     debugger;
-    var age = new BooleanVector(true, false, true);
-console.log(age.name("věk"))
-/* BooleanVector [true, false, true
     return;
-
-    //var M = new Matrix([1,2,3,4,5,6,7,8,9,10],[1,3,5,7,9,11,13,15,17,19]).mannwhitney(0,1);
-    //var M = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1).ttest(5);
-
-    //var M = new StringVector("a","a","b","c").frequency();
-    //console.log(JSON.stringify(M,null,"\t"));
-    //return;
-    //debugger;
-    /*
-    var a = new NumericVector([10,20,15,25,23,19,18,17,24,23]).name("A")
-    console.dir(new NumericVector([10,20,15,25,23,19,18,17,24,23]).name("A").ttest(12));
-    sdebugger;
-    var b = new NumericVector([11,19,20,25,15,20,19,17,23,25]).name("B");
-    var factor = new StringVector("A","B","A", "B", "C","C");
-    var target = new NumericVector(3,4,7,8, -2, -7);
-    console.table(new Matrix(factor, target).pivot(target, factor, []).toTable());
-    debugger;
-    var M = new Matrix(a, b);
-    //var t = M.filter("A", (v) => v > 19, 1, (v) => v > 19);
-    console.log(JSON.stringify(M.correlSpearman(0,1), null, "\t"))
-    debugger;
-    */
-    
     var x = VectorOverview;
     var fs = require("fs");
     fs.writeFileSync("./docs/cs/vector.md", x)

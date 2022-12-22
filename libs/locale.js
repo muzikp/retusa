@@ -5,7 +5,6 @@ let _ = built_in_locales.cs;
 
 module.exports = {
     config: function (setup = "cs") {        
-        debugger;
         if(typeof setup == "string") {
             _ = built_in_locales[setup];
             if(!_) throw new Error("Locale " + setup + " not found.")
