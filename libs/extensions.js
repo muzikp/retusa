@@ -133,13 +133,11 @@ Array.prototype.SEM = function(){
 }
 
 Array.prototype.skewness = function(sample) {
-    var n = this.count();
+    var n = this.length;
     var m = this.avg();
-    var s = this.stdev();
-    var base = 1/n * this.map(e => Math.pow((e - m)/s,3)).sum();
-    if(sample) return base * (n/((n-1)*(n-2)));
-    else return base;
-    
+    var s = this.stdev(sample);
+    if(sample) return (n/((n-1)*(n-2)))* this.map(x => Math.pow((x-m)/s,3)).sum();
+    else return this.map(x => Math.pow((x-m)/s,3)).sum() / n;
 }
 
 Array.prototype.kurtosis = function(){
@@ -235,7 +233,14 @@ Math.getRandomIndexes = function(total_of_elements, samplesize) {
     return indexes;
 }
 
-Math.mci = function(m,stdev,n,p) {
+Math.mci = function(proportion,n,p) {
+    p = 1-(1-p)/2;
+    var q = n > 30 ? dist.normsinv(p, n - 1 ) : dist.tinv(p, n -1);
+    var delta = q * stdev/Math.sqrt(n);
+    return {m: m, delta: delta, lb: m-delta, ub: m+delta};
+}
+
+Math.pci = function(m,stdev,n,p) {
     p = 1-(1-p)/2;
     var q = n > 30 ? dist.normsinv(p, n - 1 ) : dist.tinv(p, n -1);
     var delta = q * stdev/Math.sqrt(n);

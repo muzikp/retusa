@@ -1,6 +1,16 @@
+Math.factorial = function (n) {
+    if (n === 0) {
+      return 1;
+    } else {
+      return n * Math.factorial(n - 1);
+    }
+  }
+
 module.exports = {
     betacf: betacf,
     betinc: betinc,
+    binomdist: binomdist,
+    binominv: binominv,
     chisqdist: chisqdist,
     chisqinv: chisqinv,
     erf: erf,
@@ -534,3 +544,36 @@ function wilcoxondist(n,w) {
 	}
 	return Prob
 }
+
+function binominv(trials, probability, alpha, successes) {
+    if (successes === undefined) {
+      successes = 0;
+    }
+    let p = alpha;
+    let result = successes;
+    while (p > binomdist(result, trials, probability, true)) {
+      result++;
+    }
+    return result;
+}
+
+function binomdist(successes, trials, probability, cumulative = false) {
+    if (cumulative) {
+    let result = 0;
+    for (let i = 0; i <= successes; i++) {
+        result += binomialCoefficient(trials, i) * Math.pow(probability, i) * Math.pow(1 - probability, trials - i);
+    }
+    return result;
+    } else {
+    return binomialCoefficient(trials, successes) * Math.pow(probability, successes) * Math.pow(1 - probability, trials - successes);
+    }
+}
+
+function binomialCoefficient(n, k) {
+    let result = 1;
+    for (let i = 1; i <= k; i++) {
+    result = result * (n - i + 1) / i;
+    }
+    return result;
+}
+  
