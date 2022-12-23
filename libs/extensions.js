@@ -233,16 +233,17 @@ Math.getRandomIndexes = function(total_of_elements, samplesize) {
     return indexes;
 }
 
-Math.mci = function(proportion,n,p) {
-    p = 1-(1-p)/2;
-    var q = n > 30 ? dist.normsinv(p, n - 1 ) : dist.tinv(p, n -1);
-    var delta = q * stdev/Math.sqrt(n);
-    return {m: m, delta: delta, lb: m-delta, ub: m+delta};
+Math.pci = function(p,n,alfa) {
+    alfa = 1-(1-alfa)/2;
+    var z = n > 30 ? dist.normsinv(alfa, n - 1 ) : dist.tinv(alfa, n -1);
+    var delta = Math.sqrt(p * (p - 1) / n);
+    return p;
+    return {z: z, p: p, delta: delta, lb: p-delta, ub: p+delta};
 }
 
-Math.pci = function(m,stdev,n,p) {
-    p = 1-(1-p)/2;
-    var q = n > 30 ? dist.normsinv(p, n - 1 ) : dist.tinv(p, n -1);
+Math.mci = function(m,stdev,n,alfa) {
+    alfa = 1-(1-p)/2;
+    var q = n > 30 ? dist.normsinv(alfa, n - 1 ) : dist.tinv(alfa, n -1);
     var delta = q * stdev/Math.sqrt(n);
     return {m: m, delta: delta, lb: m-delta, ub: m+delta};
 }
