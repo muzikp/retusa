@@ -5,9 +5,7 @@ var {filters, validators} = require("./parsers");
 var schemas = require("./schemas");
 const {Array, Math, String, Function} = require("./extensions");
 const dist = require("./distribution");
-//const {VectorMarkdown, VectorOverview} = require("./markdown");
 var {VectorValueError, ArgumentError, Empty} = require("./errors");
-const { type } = require("jquery");
 
 const registry = new WeakMap();
 

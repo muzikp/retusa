@@ -97,6 +97,9 @@ function normsinv(value, type = 0) {
             break;
             // 0.975 = 1.96
             // 0.05 = 1.96
+        case 1: 
+            value = value;
+            break;
         case 2:
             value = value / 2;
             break;

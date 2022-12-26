@@ -88,8 +88,6 @@ createPropTitle(e, indent = 1) {
     }
 }
 
-
-
 const vectorResultSchemas = {
     number: {
         "definitions": {},
@@ -379,49 +377,57 @@ const vectorResultSchemas = {
                 "default": 0.0
             }
         }
-    }
-    
-    
-}
-/*
-
-
-
-
-
-const frequencyOrderEnum = {
-    name: "order",
-    type: "enum",
-    title: "gZCx",
-    values: [
-        {
-            key: 1, 
-            title: "AUbD"
-        },
-        {
-            key: 2, 
-            title: "WSJH"
-        },
-        {
-            key: 3, 
-            title: "dkxz"
-        },
-        {
-            key: 4, 
-            title: "vJCU"
+    },
+    shapirowilk: {
+        "definitions": {},
+        "$schema": "http://json-schema.org/draft-07/schema#", 
+        "$id": "https://example.com/object1672094205.json", 
+        "title": "Root", 
+        "type": "object",
+        "required": [
+            "w",
+            "df",
+            "p"
+        ],
+        "properties": {
+            "W": {
+                "$id": "#root/w", 
+                "title": "nZvR", 
+                "type": "number",
+                "examples": [
+                    0.9664039647188553
+                ],
+                "default": 0.0
+            },
+            "df": {
+                "$id": "#root/df", 
+                "title": "OYQu", 
+                "type": "integer",
+                "examples": [
+                    23
+                ],
+                "default": 0
+            },
+            "p": {
+                "$id": "#root/p", 
+                "title": "MpjZ", 
+                "type": "number",
+                "examples": [
+                    0.6036566524076283
+                ],
+                "default": 0.0
+            }
         }
-    ]
-}
-
-const pearsonR = {
-    type: "object",
-    children: {
-        r: correlationCoefficient
     }
+    
 }
-*/
 module.exports = {
     Schema: Schema,
     ArgumentSchema: ArgumentSchema,
-    vectorResultSchemas: vectorResultSchemas
+    vectorResultSchemas: vectorResultSchemas,
+    register: function(name, schema) {
+        if(vectorResultSchemas[name]) console.warn(`You are overwriting another schema named (${name}). The original schema will be overwritten, nevertheless, you may consider using another name.`);
+        vectorResultSchemas[name] = schema;
+        return module.exports;
+    }
 }

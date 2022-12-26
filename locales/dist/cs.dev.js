@@ -565,14 +565,30 @@ module.exports = {
 
   /* validator text - isObject */
   "MFvf": "Ověří, zdali je hodnota typu object. Pokud je hodnota typu string, pokusí se hodnotu parsovat na object. Pokud se nejedná ani o object, ani se nepodaří hodnotu parsovat, vyvolá chybu. Hodntoa typu Array zde není považována za object.",
-  "AgIP": "",
-  "zxmM": "",
-  "TSCM": "",
-  "yhzq": "",
-  "byTa": "",
-  "LHkd": "",
-  "OYQu": "",
-  "nZvR": "",
+
+  /* fce vector Shapiro-Wilk - empty result (not enough cases) */
+  "AgIP": "Pro výpočet hodnoty W Shapiro-Wilkova testu je potřeba více příkladů (minimálně 3).",
+
+  /* fce vector Shapiro-Wilk - empty result (range too small) */
+  "zxmM": "Rozpětí hodnot je příliš malá: ${range}",
+
+  /* fce vector Shapiro-Wilk - empty result (range too big) */
+  "TSCM": "Rozpětí hodnot je příliš velké: ${range}",
+
+  /* fce vector Shapiro-Wilk - empty result (range many cases) */
+  "yhzq": "Příliš mnoho hodnot ve vektoru (přes 5000).",
+
+  /* fce vector Shapiro-Wilk (title) */
+  "byTa": "Shapirův-Wilkův W test",
+
+  /* fce vector Shapiro-Wilk (description) */
+  "LHkd": "Vrátí statistický protokol Shapiro-Wilkova W testu normality rozdělení hodnot vektoru.",
+
+  /* shema - DF (degrees of freedom) */
+  "OYQu": "počet stupňů volnosti",
+
+  /* shema - Shapiro-Wilk W (degrees of freedom) */
+  "nZvR": "hodnota Shapiro-Wilkova W testu",
   "obxp": "",
   "QOvf": "",
   "nCHN": "",

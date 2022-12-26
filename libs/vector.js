@@ -62,8 +62,7 @@ class Vector extends Array {
     }
     clone(flush = false) {
         if(!flush) return new this.constructor();
-        else return new this.constructor(...this);
-        
+        else return new this.constructor(...this);  
     }
     /**
     * Instead of values, this method extracts indexes of values matching the filter (see @param) and return an array of indexes. 
@@ -76,6 +75,30 @@ class Vector extends Array {
             else return -1;
         }).filter(x => x > -1 );
     }
+    /**
+     * Coverts the array into a text where values are delimited by line break. This makes it easy to copy and paste the values to Excel etc.
+     * @param {boolean} includeHeader True to have the vector name (or empty) as the first value. Default false.
+     */
+    toColumn(includeHeader = false) {
+        var c = includeHeader ? this.name() || "<header>" : "";
+        this.forEach(v => c += "\n" + v);
+        return c;
+    }
+    /**
+     * 
+     * @param {string} data 
+     * @returns 
+     */
+    static fromColumn(data, config = {delimiter: "\n"}) {
+        var delimiter = new RegExp(`\\${config.delimiter || "\n"}`,"g") 
+        var _ = data.split(delimiter);
+        if(config.includeHeader) {
+            var name = _[0];
+            _ = _.slice(1, _.length);
+        }
+        return name ? new this(_).name(name) : new this(_);
+
+    }
 }
 
 /**
@@ -85,6 +108,7 @@ Vector.prototype.isVector = true;
 
 const vectorParser = {
     numeric: function(value) {
+        if(typeof value == "string") value = value.replace(/\,/g, ".").trim();
         if(value === 0 || value === "0" || value === false) return 0;
         else if(!value) return null;
         else if(!isNaN(value)) return Number(value);
@@ -175,6 +199,7 @@ class StringVector extends Vector {
     };
 }
 StringVector.prototype.parse = vectorParser.string;
+
 class BooleanVector extends Vector {
     constructor(){
         super(...arguments);
@@ -805,7 +830,29 @@ const VectorMethodsModels = [
             }
         },
         url: "https://en.wikipedia.org/wiki/Confidence_interval"
-    }
+    },    
+    {
+        name: "shapirowilk",
+        fn: Array.prototype.shapirowilk,
+        filter: filters.number,
+        wiki: {
+            title: "byTa",
+            description: "LHkd"
+        },
+        type: [1],
+        returns: "shapirowilk",
+        example: function(){
+            var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).shapiro(); 
+            /* 
+            {
+                "W": 0.9664039647188553,
+                "df": 23,
+                "p": 0.6036566524076283
+            }
+            */
+        },
+        url: "https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test"
+    },  
 ].sort((a,b) => a.name > b.name);
 
 class VectorMethod {
@@ -954,7 +1001,20 @@ function getVectorTypeLabelCode(vector) {
 }
 
 const Models = {}
-VectorMethodsModels.map(function(m){Models[m.name] = new VectorMethod(m)});
+function mapModels() {
+    VectorMethodsModels.map(function(m){Models[m.name] = new VectorMethod(m)});
+}
+mapModels();
+
+
+function register(model) {
+    VectorMethodsModels.push(model);
+    Vector.prototype[model.name] = function() {
+        var M = new VectorMethod(model, this);
+        return M.call(...arguments);
+    };
+    mapModels();
+}
 
 module.exports = {
     $: $,
@@ -963,5 +1023,7 @@ module.exports = {
     BooleanVector: BooleanVector,
     VectorMethod: VectorMethod,
     Models: Models,
-    VectorOverview: VectorOverview(Models)
+    VectorOverview: function() {
+        return VectorOverview(Models)},
+    register: register
 }

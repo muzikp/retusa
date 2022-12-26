@@ -16,6 +16,11 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 var dist = require("./distribution");
 
+var _require = require("./errors"),
+    Empty = _require.Empty;
+
+var $ = require("./locale").call;
+
 Array.prototype.sum = function () {
   return this.reduce(function (a, b) {
     return a + b;
@@ -307,6 +312,163 @@ Array.prototype.covariance = function (arr) {
   }).sum(arr.length - (sample ? 1 : 0));
 };
 
+Array.prototype.shapiroWilk = function () {
+  function poly(cc, nord, x) {
+    var p;
+    var ret_val;
+    ret_val = cc[0];
+
+    if (nord > 1) {
+      p = x * cc[nord - 1];
+
+      for (j = nord - 2; j > 0; j--) {
+        p = (p + cc[j]) * x;
+      }
+
+      ret_val += p;
+    }
+
+    return ret_val;
+  }
+
+  var x = this.sort(function (a, b) {
+    return a - b;
+  });
+  var n = x.length;
+  if (n < 3) return new Empty($("AgIP"));
+  var nn2 = Math.floor(n / 2);
+  var a = new Array(Math.floor(nn2) + 1);
+  var small = 1e-19;
+  var g = [-2.273, 0.459];
+  var c1 = [0, 0.221157, -0.147981, -2.07119, 4.434685, -2.706056];
+  var c2 = [0, 0.042981, -0.293762, -1.752461, 5.682633, -3.582633];
+  var c3 = [0.544, -0.39978, 0.025054, -6.714e-4];
+  var c4 = [1.3822, -0.77857, 0.062767, -0.0020322];
+  var c5 = [-1.5861, -0.31082, -0.083751, 0.0038915];
+  var c6 = [-0.4803, -0.082676, 0.0030302];
+  var i, j, i1;
+  var ssassx, summ2, ssumm2, gamma, range;
+  var a1, a2, an, m, s, sa, xi, sx, xx, y, w1;
+  var fac, asa, an25, ssa, sax, rsn, ssx, xsx;
+  var pw = 1;
+  an = n;
+  if (n == 3) a[1] = 0.7071067811865476;else {
+    an25 = an + 0.25;
+    summ2 = 0.0;
+
+    for (i = 1; i <= nn2; i++) {
+      a[i] = dist.normsinv((i - 0.375) / an25, 1);
+      var r__1 = a[i];
+      summ2 += r__1 * r__1;
+    }
+
+    summ2 *= 2;
+    ssumm2 = Math.sqrt(summ2);
+    rsn = 1 / Math.sqrt(an);
+    a1 = poly(c1, 6, rsn) - a[1] / ssumm2;
+
+    if (n > 5) {
+      i1 = 3;
+      a2 = -a[2] / ssumm2 + poly(c2, 6, rsn);
+      fac = Math.sqrt((summ2 - 2 * (a[1] * a[1]) - 2 * (a[2] * a[2])) / (1 - 2 * (a1 * a1) - 2 * (a2 * a2)));
+      a[2] = a2;
+    } else {
+      i1 = 2;
+      fac = Math.sqrt((summ2 - 2 * (a[1] * a[1])) / (1 - 2 * (a1 * a1)));
+    }
+
+    a[1] = a1;
+
+    for (i = i1; i <= nn2; i++) {
+      a[i] /= -fac;
+    }
+  }
+  range = x[n - 1] - x[0];
+
+  if (range < small) {
+    return new Empty($("zxmM", {
+      range: range
+    }));
+  }
+
+  xx = x[0] / range;
+  sx = xx;
+  sa = -a[1];
+
+  for (i = 1, j = n - 1; i < n; j--) {
+    xi = x[i] / range;
+
+    if (xx - xi > small) {
+      return new Empty($("TSCM", {
+        range: xx - xi
+      }));
+    }
+
+    sx += xi;
+    i++;
+    if (i != j) sa += Math.sign(i - j) * a[Math.min(i, j)];
+    xx = xi;
+  }
+
+  if (n > 5000) {
+    return new Empty($("yhzq"));
+  }
+
+  sa /= n;
+  sx /= n;
+  ssa = ssx = sax = 0.;
+
+  for (i = 0, j = n - 1; i < n; i++, j--) {
+    if (i != j) asa = Math.sign(i - j) * a[1 + Math.min(i, j)] - sa;else asa = -sa;
+    xsx = x[i] / range - sx;
+    ssa += asa * asa;
+    ssx += xsx * xsx;
+    sax += asa * xsx;
+  }
+
+  ssassx = Math.sqrt(ssa * ssx);
+  w1 = (ssassx - sax) * (ssassx + sax) / (ssa * ssx);
+  var w = 1 - w1;
+
+  if (n == 3) {
+    var pi6 = 6 / Math.PI;
+    var stqr = Math.asin(Math.sqrt(3 / 4));
+    pw = pi6 * (Math.asin(Math.sqrt(w)) - stqr);
+    if (pw < 0.) pw = 0;
+    return w;
+  }
+
+  y = Math.log(w1);
+  xx = Math.log(an);
+
+  if (n <= 11) {
+    gamma = poly(g, 2, an);
+
+    if (y >= gamma) {
+      pw = 1e-99;
+      /* an "obvious" value, was 'small' which was 1e-19f */
+
+      return w;
+    }
+
+    y = -Math.log(gamma - y);
+    m = poly(c3, 4, an);
+    s = Math.exp(poly(c4, 4, an));
+    debugger;
+  } else {
+    m = poly(c5, 4, xx);
+    s = Math.exp(poly(c6, 3, xx));
+  }
+
+  var z = (Math.log(1 - w) - m) / s;
+  var p = 1 - dist.normsdist(z);
+  return {
+    W: w,
+    df: n,
+    p: p
+  };
+};
+
 String.prototype.fill = function (what, repetition) {
   var x = "";
 
@@ -366,7 +528,7 @@ Math.pci = function (p, n, alfa) {
 };
 
 Math.mci = function (m, stdev, n, alfa) {
-  alfa = 1 - (1 - p) / 2;
+  alfa = 1 - (1 - alfa) / 2;
   var q = n > 30 ? dist.normsinv(alfa, n - 1) : dist.tinv(alfa, n - 1);
   var delta = q * stdev / Math.sqrt(n);
   return {
@@ -402,6 +564,11 @@ Math.rndSelect = function (array) {
 
 Math.rndSelectOne = function (array) {
   return array[Math.floor(Math.random() * array.length)];
+};
+
+Math.sign = function (x) {
+  if (x == 0) return 0;
+  return x > 0 ? 1 : -1;
 };
 
 Function.prototype.stringify = function () {

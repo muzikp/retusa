@@ -27,6 +27,8 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 | [kurtosis](#kurtosis) | [špičatost](#kurtosis) | Vrátí hodnotu excesu množiny dat. | ✔️ | - | - |
 | [ttest](#ttest) | [jednovýběrový t-test](#ttest) | Vrátí statistický protokol pro jednovýběrový t-test při zadání populačního průměru. | ✔️ | - | - |
 | [mci](#mci) | [interval spolehlivosti průměru](#mci) | Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normálín rozdělení. | ✔️ | - | - |
+| [pci](#pci) | [interval spolehlivosti průměru](#pci) | Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normálín rozdělení. | ✔️ | - | - |
+| [shapirowilk](#shapirowilk) | [Shapirův-Wilkův W test](#shapirowilk) | Vrátí statistický protokol Shapiro-Wilkova W testu normality rozdělení hodnot vektoru. | ✔️ | - | - |
 
 ---
 
@@ -902,3 +904,85 @@ Pouze číselné hodnoty (včetně nul).
   - **delta**: *hodnota intervalu spolehlivosti* `🔴 číslo`
   - **lb**: *spodní hranice intervalu* `🔴 číslo`
   - **ub**: *horní hranice intervalu* `🔴 číslo`
+
+---
+
+### [INTERVAL SPOLEHLIVOSTI PRŮMĚRU](#pci): pci
+
+Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normálín rozdělení. [Zjistit více.](https://en.wikipedia.org/wiki/Confidence_interval)
+
+#### Konstruktor
+
+
+> (NumericVector).<mark>**pci**(*hladina významnosti*)
+
+
+#### Automatický filtr hodnot
+
+Pouze číselné hodnoty (včetně nul).
+
+#### Argumenty
+
+| argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
+| **confidenceLevel** | hladina významnosti | 🔴 číslo | Ověří, zdali je hodnota číslo mezi 0 a 1 (včetně hraničních hodnot). V opačném případě vyvolá chybu. | - | 0.95 |
+
+#### Integrace dle třídy
+
+| typ vektoru | integrace |
+| --- |  :---: | 
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
+
+#### Schéma výsledku
+
+- *interval spolehlivosti průměru* `🟦 objekt`
+  - **m**: *aritmetický průměr* `🔴 číslo`
+  - **delta**: *hodnota intervalu spolehlivosti* `🔴 číslo`
+  - **lb**: *spodní hranice intervalu* `🔴 číslo`
+  - **ub**: *horní hranice intervalu* `🔴 číslo`
+
+---
+
+### [SHAPIRŮV-WILKŮV W TEST](#shapirowilk): shapirowilk
+
+Vrátí statistický protokol Shapiro-Wilkova W testu normality rozdělení hodnot vektoru. [Zjistit více.](https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test)
+
+#### Konstruktor
+
+
+> (NumericVector).<mark>**shapirowilk**()
+
+
+#### Automatický filtr hodnot
+
+Pouze číselné hodnoty (včetně nul).
+
+#### Integrace dle třídy
+
+| typ vektoru | integrace |
+| --- |  :---: | 
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
+
+#### Schéma výsledku
+
+- *Root* `🟦 objekt`
+  - **W**: *hodnota Shapiro-Wilkova W testu* `🔴 číslo`
+  - **df**: *počet stupňů volnosti* `🟠 celé číslo`
+  - **p**: *hladina významnosti* `🔴 číslo`
+
+#### Příklad
+
+```js
+var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).shapiro();
+/*
+{
+"W": 0.9664039647188553,
+"df": 23,
+"p": 0.6036566524076283
+}
+*/
+```
