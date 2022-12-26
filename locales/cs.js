@@ -371,6 +371,10 @@ module.exports = {
 	"GynK": "spodní hranice intervalu",
 	/* schema MCI - upper bound */
 	"iIPc": "horní hranice intervalu",
+	/* error: not an object value */
+	"YpHg": "Nejedná se o hodnotu typu object: ${value}.",
+	/* validator text - isObject */
+	"MFvf": "Ověří, zdali je hodnota typu object. Pokud je hodnota typu string, pokusí se hodnotu parsovat na object. Pokud se nejedná ani o object, ani se nepodaří hodnotu parsovat, vyvolá chybu. Hodntoa typu Array zde není považována za object.",
 	"AgIP": "",
 	"zxmM": "",
 	"TSCM": "",

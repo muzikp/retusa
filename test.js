@@ -1,7 +1,19 @@
-const console = require("console");
 var framework = require("./index");
 
 with (framework) {
+    var n = NumericVector.generate({total: 100, min: 0, nullprob: 0.5});
+    console.log(n);
+    debugger;
+
+
+    var loop = [];
+    for(var i = 0; i < 10; i++) {
+        var start = Date.now();
+        var gen = NumericVector.generate({min: -20000, max: 20000, decimal: 2, total: 1000000, nullprop: 0.1});
+        loop.push((Date.now() - start)/1000);
+    }
+    console.log(loop);
+    debugger;
     console.log("HJnůj")
     var T = new Matrix([4,5,6,7,8,9,10],[5,5,6,7,8,9,10]).ttestind(0,1);
     var n = new NumericVector(5,4,5,6,7,6,9,5,7,7,6,8,5,7,8,1).mci();

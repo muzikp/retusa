@@ -377,6 +377,33 @@ Math.mci = function (m, stdev, n, alfa) {
   };
 };
 
+Math.rndNumber = function (min, max) {
+  var decimal = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 2;
+  var multiplier = Math.pow(10, decimal || 0);
+  return Math.floor(Math.random() * (max - min) * multiplier + min * multiplier) / multiplier;
+};
+
+Math.rndSelect = function (array) {
+  var total = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+  var allowDuplicates = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+  if (total >= array.length) return array;
+  var _sample = [];
+
+  while (_sample.length < total) {
+    var index = Math.floor(Math.random() * array.length);
+
+    if (!allowDuplicates) {
+      if (_sample.indexOf(array[index] < 0)) _sample.push(array[index]);
+    } else _sample.push(array[index]);
+  }
+
+  return _sample;
+};
+
+Math.rndSelectOne = function (array) {
+  return array[Math.floor(Math.random() * array.length)];
+};
+
 Function.prototype.stringify = function () {
   var indent = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "\t";
   var raw = this.toString().match(/function[^{]+\{([\s\S]*)\}$/)[1];

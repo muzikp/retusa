@@ -29,6 +29,19 @@ const filters = {
 
 // #region VALIDATORS
 
+let v_isObject = function(v) {
+    if(typeof v == "object") {
+        if(!Array.isArray(v)) return v;
+        else new TypeError($("YpHg", {value: v}));
+    } else if(typeof v == "string") {
+        try {
+            return v_isObject(JSON.parse(v));
+        } catch(e) {
+            new TypeError($("YpHg", {value: v}));
+        }
+    }
+}
+
 let v_isNumber = function(v) {
     if(v === 0 || !isNaN(v)) return Number(v);
     else throw new RangeError($("Jphg", {value: v}));
@@ -101,6 +114,7 @@ let v_isNumericMatrix = function(v) {
 }
 
 const validators = {
+    isObject: {fn: v_isObject, text: "MFvf"},
     isNumber: {fn: v_isNumber, text: "NfvF"},
     isArray: {fn: v_isArray, text: ""},
     isNotEmpty: {fn: v_isNotEmpty, text: ""},

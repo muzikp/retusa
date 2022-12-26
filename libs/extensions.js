@@ -248,6 +248,27 @@ Math.mci = function(m,stdev,n,alfa) {
     return {m: m, delta: delta, lb: m-delta, ub: m+delta};
 }
 
+Math.rndNumber = function(min,max,decimal = 2) {
+    let multiplier = Math.pow(10, decimal || 0);
+    return Math.floor(Math.random() * (max - min) * multiplier + min * multiplier) / multiplier;
+}
+
+Math.rndSelect = function(array, total = 1, allowDuplicates = false) {
+    if(total >= array.length) return array;
+    var _sample = [];
+    while (_sample.length < total) {
+        var index = Math.floor(Math.random() * array.length);
+        if(!allowDuplicates) {
+            if(_sample.indexOf(array[index] < 0)) _sample.push(array[index]);   
+        } else _sample.push(array[index]);
+    }
+    return _sample;
+}
+
+Math.rndSelectOne = function(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
 Function.prototype.stringify = function(indent = "\t") {
     var raw = this.toString().match(/function[^{]+\{([\s\S]*)\}$/)[1];
     var formatted = "";
