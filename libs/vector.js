@@ -276,7 +276,7 @@ Array.prototype.vectorify = function() {
 
 // #endregion
 
-const VectorMethodsModels = [
+let VectorMethodsModels = [
     {   name: "sum",
         fn: Array.prototype.sum,
         filter: filters.number,
@@ -688,7 +688,7 @@ const VectorMethodsModels = [
         url: "https://en.wikipedia.org/wiki/Mode_(statistics)"
 
     },
-    {   name: "SEM",
+    {   name: "sem",
         fn: Array.prototype.SEM,
         filter: filters.number,
         wiki: {
@@ -861,8 +861,8 @@ const VectorMethodsModels = [
         },
         url: "https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test"
     },  
-]
-VectorMethodsModels.sort((a,b) => a.name > b.name);
+].sort((a,b) => a.name > b.name ? 1 : -1)
+debugger;
 
 class VectorMethod {
     constructor(model, parent) {
