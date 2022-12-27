@@ -394,7 +394,7 @@ module.exports = {
 	/* vector fce Confidence intervals for the proportion (title) */
 	"ZhjW": "interval spolehlivosti podílu",
 	/* vector fce Confidence intervals for the proportion (description) */
-	"KLpa": "Vrátí statistický protokol odhadu intervalu spolehlivosti podílu výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normální rozdělení.",
+	"KLpa": "Vrátí statistický protokol odhadu intervalu spolehlivosti podílu výběrového souboru při určité hladině významnosti.",
 	/* vector fce Confidence intervals for the proportion - value argument (title) */
 	"obxp": "hledaná hodnota",
 	/* vector fce Confidence intervals for the proportion - value argument (description) */
@@ -403,7 +403,8 @@ module.exports = {
 	"nCHN": "podíl hledané hodnoty na celku",
 	/* schema vector mci/pci - sig */
 	"mjPq": "hladina výzmnamnosti intervalu",
-	"Blaz": "",
+	/* validator v_any title */
+	"Blaz": "Vstupem může být libovolná hodnota, validátor nevrací chybu.",
 	"DLoe": "",
 	"yQZd": "",
 	"jBSf": "",

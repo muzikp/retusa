@@ -29,6 +29,8 @@ const filters = {
 
 // #region VALIDATORS
 
+let v_any = function(v) {return v};
+
 let v_isObject = function(v) {
     if(typeof v == "object") {
         if(!Array.isArray(v)) return v;
@@ -114,6 +116,7 @@ let v_isNumericMatrix = function(v) {
 }
 
 const validators = {
+    any: {fn: v_any, text: "Blaz"},
     isObject: {fn: v_isObject, text: "MFvf"},
     isNumber: {fn: v_isNumber, text: "NfvF"},
     isArray: {fn: v_isArray, text: ""},

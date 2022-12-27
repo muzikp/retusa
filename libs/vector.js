@@ -861,7 +861,8 @@ const VectorMethodsModels = [
         },
         url: "https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test"
     },  
-].sort((a,b) => a.name > b.name);
+]
+VectorMethodsModels.sort((a,b) => a.name > b.name);
 
 class VectorMethod {
     constructor(model, parent) {

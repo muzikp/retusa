@@ -27,7 +27,7 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 | [kurtosis](#kurtosis) | [špičatost](#kurtosis) | Vrátí hodnotu excesu množiny dat. | ✔️ | - | - |
 | [ttest](#ttest) | [jednovýběrový t-test](#ttest) | Vrátí statistický protokol pro jednovýběrový t-test při zadání populačního průměru. | ✔️ | - | - |
 | [mci](#mci) | [interval spolehlivosti průměru](#mci) | Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normální rozdělení. | ✔️ | - | - |
-| [pci](#pci) | [interval spolehlivosti podílu](#pci) | Vrátí statistický protokol odhadu intervalu spolehlivosti podílu výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normální rozdělení. | ✔️ | ✔️ | ✔️ |
+| [pci](#pci) | [interval spolehlivosti podílu](#pci) | Vrátí statistický protokol odhadu intervalu spolehlivosti podílu výběrového souboru při určité hladině významnosti. | ✔️ | ✔️ | ✔️ |
 | [shapirowilk](#shapirowilk) | [Shapirův-Wilkův W test](#shapirowilk) | Vrátí statistický protokol Shapiro-Wilkova W testu normality rozdělení hodnot vektoru. | ✔️ | - | - |
 
 ---
@@ -910,7 +910,7 @@ Pouze číselné hodnoty (včetně nul).
 
 ### [INTERVAL SPOLEHLIVOSTI PODÍLU](#pci): pci
 
-Vrátí statistický protokol odhadu intervalu spolehlivosti podílu výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normální rozdělení. [Zjistit více.](https://en.wikipedia.org/wiki/Confidence_interval)
+Vrátí statistický protokol odhadu intervalu spolehlivosti podílu výběrového souboru při určité hladině významnosti. [Zjistit více.](https://en.wikipedia.org/wiki/Confidence_interval)
 
 #### Konstruktor
 
@@ -930,7 +930,7 @@ jakákoliv hodnota
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **value** | hledaná hodnota | 🟤 cokoliv | null | ✔️ |  |
+| **value** | hledaná hodnota | 🟤 cokoliv | Vstupem může být libovolná hodnota, validátor nevrací chybu. | ✔️ |  |
 | **confidenceLevel** | hladina významnosti | 🔴 číslo | Ověří, zdali je hodnota číslo mezi 0 a 1 (včetně hraničních hodnot). V opačném případě vyvolá chybu. | - | 0.95 |
 
 #### Integrace dle třídy
