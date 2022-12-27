@@ -786,6 +786,16 @@ let VectorMethodsModels = [
         type: [1],
         returns: "mci",
         example: function(){
+            var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).mci(0.95);
+            /*
+            {
+                "m": 6.173913043478261,
+                "sig": 0.050000000000000044,
+                "delta": 1.1189603407528825,
+                "lb": 5.054952702725378,
+                "ub": 7.292873384231143
+            }
+            */
         },
         args: {
             confidenceLevel: {
@@ -812,6 +822,16 @@ let VectorMethodsModels = [
         type: [1,2,3],
         returns: "pci",
         example: function(){
+            var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).pci(5, 0.95);
+            /*
+            {
+                "p": 0.17391304347826086,
+                "sig": 0.050000000000000044,
+                "delta": 0.1549041787089759,
+                "lb": 0.019008864769284955,
+                "ub": 0.32881722218723675
+            }
+            */
         },
         args: {
             value: {
@@ -839,8 +859,7 @@ let VectorMethodsModels = [
         },
         url: "https://en.wikipedia.org/wiki/Confidence_interval"
     },    
-    {
-        name: "shapirowilk",
+    {   name: "shapirowilk",
         fn: Array.prototype.shapirowilk,
         filter: filters.number,
         wiki: {
@@ -850,7 +869,7 @@ let VectorMethodsModels = [
         type: [1],
         returns: "shapirowilk",
         example: function(){
-            var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).shapiro(); 
+            var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).shapirowilk(); 
             /* 
             {
                 "W": 0.9664039647188553,
@@ -860,9 +879,29 @@ let VectorMethodsModels = [
             */
         },
         url: "https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test"
+    },
+    {   name: "kstest",
+        fn: Array.prototype.kolmogorovSmirnovTest,
+        filter: filters.number,
+        wiki: {
+            title: "DLoe",
+            description: "yQZd"
+        },
+        type: [1],
+        returns: "kstest",
+        example: function(){
+            var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).kstest(); 
+            /* 
+            {
+                "W": 0.9664039647188553,
+                "df": 23,
+                "p": 0.6036566524076283
+            }
+            */
+        },
+        url: "https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test#One-sample_Kolmogorov%E2%80%93Smirnov_statistic"
     },  
 ].sort((a,b) => a.name > b.name ? 1 : -1)
-debugger;
 
 class VectorMethod {
     constructor(model, parent) {

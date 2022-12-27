@@ -12,6 +12,7 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 | [geomean](#geomean) | [geometrický průměr](#geomean) | Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovný než průměr arytmetický. | ✔️ | - | - |
 | [harmean](#harmean) | [harmonický průměr](#harmean) | Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti. | ✔️ | - | - |
 | [histogram](#histogram) | [histogram](#histogram) | Vrátí matici histogramu daného vektoru. | ✔️ | - | - |
+| [kstest](#kstest) | [Kolmogorov-Smirnovův test](#kstest) | Vrátí statistický protokol Komogorov-Smirnova testu normality rozdělení hodnot vektoru. Aktuálně nepočítá hladinu významnosti testu. | ✔️ | - | - |
 | [kurtosis](#kurtosis) | [špičatost](#kurtosis) | Vrátí hodnotu excesu množiny dat. | ✔️ | - | - |
 | [max](#max) | [maximální hodnota](#max) | Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení. | ✔️ | ✔️ | ✔️ |
 | [mci](#mci) | [interval spolehlivosti průměru](#mci) | Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normální rozdělení. | ✔️ | - | - |
@@ -328,6 +329,50 @@ var h3 = score.histogram(null, 2)
 
 ---
 
+### [KOLMOGOROV-SMIRNOVŮV TEST](#kstest): kstest
+
+Vrátí statistický protokol Komogorov-Smirnova testu normality rozdělení hodnot vektoru. Aktuálně nepočítá hladinu významnosti testu. [Zjistit více.](https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test#One-sample_Kolmogorov%E2%80%93Smirnov_statistic)
+
+#### Konstruktor
+
+
+> (NumericVector).<mark>**kstest**()
+
+
+#### Automatický filtr hodnot
+
+Pouze číselné hodnoty (včetně nul).
+
+#### Integrace dle třídy
+
+| typ vektoru | integrace |
+| --- |  :---: | 
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
+
+#### Schéma výsledku
+
+- *Kolmogorov-Smirnovův test* `🟦 objekt`
+  - **T**: *hodnota Kolmogorov-Smirnova testu* `🔴 číslo`
+  - **df**: *počet stupňů volnosti* `🟠 celé číslo`
+  - **p**: *hladina významnosti* `🔴 číslo`
+
+#### Příklad
+
+```js
+var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).kstest();
+/*
+{
+"W": 0.9664039647188553,
+"df": 23,
+"p": 0.6036566524076283
+}
+*/
+```
+
+---
+
 ### [ŠPIČATOST](#kurtosis): kurtosis
 
 Vrátí hodnotu excesu množiny dat. [Zjistit více.](https://en.wikipedia.org/wiki/Kurtosis)
@@ -437,6 +482,21 @@ Pouze číselné hodnoty (včetně nul).
   - **delta**: *hodnota intervalu spolehlivosti* `🔴 číslo`
   - **lb**: *spodní hranice intervalu* `🔴 číslo`
   - **ub**: *horní hranice intervalu* `🔴 číslo`
+
+#### Příklad
+
+```js
+var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).mci(0.95);
+/*
+{
+"m": 6.173913043478261,
+"sig": 0.050000000000000044,
+"delta": 1.1189603407528825,
+"lb": 5.054952702725378,
+"ub": 7.292873384231143
+}
+*/
+```
 
 ---
 
@@ -584,12 +644,27 @@ jakákoliv hodnota
 
 #### Schéma výsledku
 
-- *Root* `🟦 objekt`
+- *interval spolehlivosti podílu* `🟦 objekt`
   - **p**: *podíl hledané hodnoty na celku* `🔴 číslo`
   - **sig**: *hladina výzmnamnosti intervalu* `🔴 číslo`
   - **delta**: *hodnota intervalu spolehlivosti* `🔴 číslo`
   - **lb**: *spodní hranice intervalu* `🔴 číslo`
   - **ub**: *horní hranice intervalu* `🔴 číslo`
+
+#### Příklad
+
+```js
+var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).pci(5, 0.95);
+/*
+{
+"p": 0.17391304347826086,
+"sig": 0.050000000000000044,
+"delta": 0.1549041787089759,
+"lb": 0.019008864769284955,
+"ub": 0.32881722218723675
+}
+*/
+```
 
 ---
 
@@ -728,7 +803,7 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Schéma výsledku
 
-- *Root* `🟦 objekt`
+- *Shapirův-Wilkův W test* `🟦 objekt`
   - **W**: *hodnota Shapiro-Wilkova W testu* `🔴 číslo`
   - **df**: *počet stupňů volnosti* `🟠 celé číslo`
   - **p**: *hladina významnosti* `🔴 číslo`
@@ -736,7 +811,7 @@ Pouze číselné hodnoty (včetně nul).
 #### Příklad
 
 ```js
-var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).shapiro();
+var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).shapirowilk();
 /*
 {
 "W": 0.9664039647188553,

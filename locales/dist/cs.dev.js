@@ -610,9 +610,15 @@ module.exports = {
 
   /* validator v_any title */
   "Blaz": "Vstupem může být libovolná hodnota, validátor nevrací chybu.",
-  "DLoe": "",
-  "yQZd": "",
-  "jBSf": "",
+
+  /* fce vector - kolmogorov-smirnov test (title) */
+  "DLoe": "Kolmogorov-Smirnovův test",
+
+  /* fce vector - kolmogorov-smirnov test (description) */
+  "yQZd": "Vrátí statistický protokol Komogorov-Smirnova testu normality rozdělení hodnot vektoru. Aktuálně nepočítá hladinu významnosti testu.",
+
+  /* schema kstest - T (test value) */
+  "jBSf": "hodnota Kolmogorov-Smirnova testu",
   "oPEt": "",
   "KwSQ": "",
   "celD": ""

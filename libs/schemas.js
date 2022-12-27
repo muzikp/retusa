@@ -391,7 +391,7 @@ const vectorResultSchemas = {
         "definitions": {},
         "$schema": "http://json-schema.org/draft-07/schema#", 
         "$id": "https://example.com/object1672151042.json", 
-        "title": "Root", 
+        "title": "ZhjW", 
         "type": "object",
         "required": [
             "p",
@@ -452,7 +452,7 @@ const vectorResultSchemas = {
         "definitions": {},
         "$schema": "http://json-schema.org/draft-07/schema#", 
         "$id": "https://example.com/object1672094205.json", 
-        "title": "Root", 
+        "title": "byTa", 
         "type": "object",
         "required": [
             "w",
@@ -488,7 +488,49 @@ const vectorResultSchemas = {
                 "default": 0.0
             }
         }
+    },
+    kstest: {
+        "definitions": {},
+        "$schema": "http://json-schema.org/draft-07/schema#", 
+        "$id": "https://example.com/object1672154013.json", 
+        "title": "DLoe", 
+        "type": "object",
+        "required": [
+            "T",
+            "df",
+            "p"
+        ],
+        "properties": {
+            "T": {
+                "$id": "#root/T", 
+                "title": "jBSf", 
+                "type": "number",
+                "examples": [
+                    0.10974921094762696
+                ],
+                "default": 0.0
+            },
+            "df": {
+                "$id": "#root/df", 
+                "title": "OYQu", 
+                "type": "integer",
+                "examples": [
+                    23
+                ],
+                "default": 0
+            },
+            "p": {
+                "$id": "#root/p", 
+                "title": "MpjZ", 
+                "type": "number",
+                "examples": [
+                    0.6
+                ],
+                "default": 0.0
+            }
+        }
     }
+    
     
 }
 module.exports = {

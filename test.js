@@ -1,16 +1,15 @@
-const { NumericVector } = require("./index");
 var framework = require("./index");
 
 with (framework) {
     framework.docs.publish(require("fs"));
-    return;
     //var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]);
     //var x = v.sample(3);
     //debugger;
     //var v = [2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5].kolmogorovSmirnovTest();
     var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).pci(5, 0.95);
-    var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).mci(0.95);
-    //var v = [1.2, 1.6, 1.8, 1.9, 1.9, 2, 2.2, 2.6, 3, 3.5, 4, 4.8, 5.6, 6.6, 7.6].kolmogorovSmirnovTest();
+    //var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).mci(0.95);
+    var v = new NumericVector([1.2, 1.6, 1.8, 1.9, 1.9, 2, 2.2, 2.6, 3, 3.5, 4, 4.8, 5.6, 6.6, 7.6]).kstest();
+    var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).kstest();
     console.log(JSON.stringify(v,null,"\t"));
     debugger;
     return;
