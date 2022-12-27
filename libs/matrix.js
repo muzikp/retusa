@@ -21,7 +21,9 @@ class Matrix extends Array {
     }
     push() {
         for(let a of [...arguments].filter(v => v)) {
-            if(a.isVector) super.push(a)
+            if(a.isVector) {
+                super.push(a);
+            }
             else if(Array.isArray(a)) super.push(a.vectorify());
             else throw new ArgumentError("Argument is not a vector or array.");
         };
@@ -157,7 +159,7 @@ class Matrix extends Array {
      */
     flush() {
         for(var v of this) {
-            v = v.clone(true);
+            v.flush();
         };
         return this;
     }
@@ -196,7 +198,7 @@ class NumericMatrix extends Matrix
     }
 }
 
-// //#endregion
+// #endregion
 
 class MatrixMethod {
     constructor(model, parent = null) {
@@ -317,7 +319,7 @@ const matrixMethods = {
        x = T[0];
        y = T[1];
        var arr = x.map(function(_,i){ return [_,y[i]]});
-       var n = arr.length;
+       var n = T.maxRows();
        var nSxy = n * arr.map(v => v[0] * v[1]).sum();
        var SxSy =  x.sum() * y.sum();
        var nSx2_Sx2 = n * (x.map(v => Math.pow(v, 2))).sum() - Math.pow(x.sum(), 2);
@@ -328,7 +330,7 @@ const matrixMethods = {
        var p = (1-dist.tdist(t_test,df))*2;
        return {
            r: r,
-           N: n,
+           n: n,
            p: p
        };
     },
@@ -336,7 +338,6 @@ const matrixMethods = {
         var T = new Matrix(x,y).removeEmpty();
         x = T[0].toAvgRank();
         y = T[1].toAvgRank();
-        debugger;
         var n = x.length;
         var d2 = x.map((_x, i) => Math.pow(_x - y[i],2)).sum();
         var rs = 1 - ((6 * d2) / (n * (Math.pow(n, 2) - 1)));
@@ -363,8 +364,16 @@ const matrixMethods = {
         var c = Math.combinations(_.length, 2);
         var taua = (cor-dis)/c;
         var taub = (cor-dis)/Math.sqrt((c-t_cor)*(c-t_dis));
-        var z = (3 * taub * Math.pow(n*(n-1), .5))/Math.pow(2*(2*n+5), .5);
+        var z = (3 * taua * Math.pow(n*(n-1), .5))/Math.pow(2*(2*n+5), .5);
+        //var z = (3 * taub * Math.pow(n*(n-1), .5))/Math.pow(2*(2*n+5), .5);
         var p = 2* (1 - dist.normsdist(Math.abs(z)));
+        /* matches SPSS results */
+        return {
+            r: taua,
+            n: n,
+            p: p
+        }
+        /* obsolete */
         return {
             r: taub,
             A: taua,
@@ -497,18 +506,20 @@ const matrixMethods = {
     },
     mannwhitney: function(x,y){
         var M = new Matrix(x,y).removeEmpty();
+        x = M[0];
+        y = M[1];
         var all = x.concat(y);
         var ac = all.length;
         var xa = x.map(function(v,i){
             var vd = all.rankAvg(v, 0);
             var va = all.rankAvg(v, 1);
             return vd + (ac + 1 - vd - va)/2;
-        })
+        });
         var ya = y.map(function(v,i){
             var vd = all.rankAvg(v, 0);
             var va = all.rankAvg(v, 1);
             return vd + (ac + 1 - vd - va)/2;
-        })
+        });
         var R1 = xa.sum();
         var R2 = ya.sum();
         var N1 = xa.length;
@@ -525,6 +536,40 @@ const matrixMethods = {
             n1: N1,
             n2: N2
         }
+    },
+    linreg: function(x,y){
+        var T = new Matrix(x,y).removeEmpty();
+        x = T[0];
+        y = T[1];
+        var n = x.length;
+        var x2 = x.map(_ => Math.pow(_,2))
+        var xy = x.map((_,i) => _*y[i]);
+        var _xy_ = n * xy.sum();
+        var x_y_ = x.sum() * y.sum();
+        var _x2_ = n * x2.sum();
+        var x_2 = Math.pow(x.sum(),2);
+        var beta1 = (_xy_- x_y_)/(_x2_-x_2 );
+        var beta0 = y.sum()/n - beta1 * x.sum()/n;
+        var s_total = (y.map(_ => Math.pow(_-y.avg(),2))).sum();
+        var s_res = (x.map((_,i) => Math.pow(y[i] - (beta0 + beta1*_),2))).sum();
+        var s_reg = s_total - s_res;
+        var s_err = Math.pow(s_reg/(n-2),0.5);
+        var r = matrixMethods.correlPearson(x,y).r;
+        var r2 = Math.pow(r,2);
+        //var r2 = 1-(s_res/s_reg);
+        //var r = Math.sqrt(r2);
+        var F = (s_reg)/(s_res/(n-2));
+        var p = dist.fdistrt(F,1,n-2);
+        return {
+            r2: r2 < 0 ? null : r2,
+            r: r,
+            F: F,
+            p: isNaN(p) ? null : p,
+            beta0: beta0,
+            beta1: beta1,
+            fn: function(x){ return beta0 + x * beta1},
+            n: x.length
+        };
     }
 };
 
@@ -546,16 +591,17 @@ const MatrixMethodsModels = [
             var correl = new Table([1,2,3,4,5],[4,5,6,7,8]).correlPearson(0,1);
             /*
             {
-	"r": 0.7341461196855918,
-	"n": 10,
-	"p": 0.015619999999999967
-}
+                "r": 0.7341461196855918,
+                "n": 10,
+                "p": 0.015619999999999967
+            }
             */
         },
         wiki: {
             title: "pTvR",
             description: "wPyG"
         },
+        returns: "correlPearson",
         args: [
             {
                 name: "x",
@@ -840,7 +886,40 @@ const MatrixMethodsModels = [
                 class: 2
             }
         ]
-    }
+    },
+    {   name: "linreg",
+        fn: matrixMethods.linreg,
+        example: function(x,y) {
+            var r = new Table([1,2,3,4,5],[4,5,6,7,8]).linreg(0,1);
+            /*
+            {
+                "r": 0.7341461196855918,
+                "n": 10,
+                "p": 0.015619999999999967
+            }
+            */
+        },
+        wiki: {
+            title: "pTvR",
+            description: "wPyG"
+        },
+        args: [
+            {
+                name: "x",
+                wiki: {title: "qFEM"},
+                type: [ats.nv],
+                required: true,
+                validator: validators.isNumericVector
+            },        
+            {
+                name: "y",
+                wiki: {title: "tpUu"},
+                type: [ats.nv],
+                required: true,
+                validator: validators.isNumericVector
+            }            
+        ]
+    },
 ].sort((a,b) => a.name < b.name);
 
 MatrixMethodsModels.forEach(function(m) {

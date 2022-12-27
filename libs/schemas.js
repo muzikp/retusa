@@ -530,13 +530,17 @@ const vectorResultSchemas = {
             }
         }
     }
-    
-    
 }
+
+matrixResultSchemas = {
+    correlPearson: {}
+}
+
 module.exports = {
     Schema: Schema,
     ArgumentSchema: ArgumentSchema,
     vectorResultSchemas: vectorResultSchemas,
+    matrixResultSchemas: this.matrixResultSchemas,
     register: function(name, schema) {
         if(vectorResultSchemas[name]) console.warn(`You are overwriting another schema named (${name}). The original schema will be overwritten, nevertheless, you may consider using another name.`);
         vectorResultSchemas[name] = schema;

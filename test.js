@@ -1,63 +1,24 @@
+const { NumericVector } = require("./index");
 var framework = require("./index");
 
 with (framework) {
-    framework.docs.publish(require("fs"));
-    //var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]);
-    //var x = v.sample(3);
-    //debugger;
-    //var v = [2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5].kolmogorovSmirnovTest();
-    var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).pci(5, 0.95);
-    //var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).mci(0.95);
-    var v = new NumericVector([1.2, 1.6, 1.8, 1.9, 1.9, 2, 2.2, 2.6, 3, 3.5, 4, 4.8, 5.6, 6.6, 7.6]).kstest();
-    var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).kstest();
-    console.log(JSON.stringify(v,null,"\t"));
+    var M = new Matrix([160,160,162,163,161,170,172,177,179,178,182,184,183],[57,55,59,60,52,67,69,74,75,76,78,80,87]);
+    console.log(M.linreg(0,1))
     debugger;
-    return;
-
-
-    var pudel = NumericVector.fromColumn(
-            `Sloupec
-            20
-            19
-            21
-            22
-            21
-            18
-            23
-            22
-            27
-            16
-            17
-            19
-            19
-            21
-            29
-            24
-            23
-            25
-            24
-            21
-            22
-            19
-            
-    `
-    ,{includeHeader: true})
-    var pudel = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).toColumn();
-    console.log(pudel);
+    var MW = M.mannwhitney(0,1);
+    console.dir(MW);
     debugger;
-    return;
-    var vector = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).name("Sloupec").toColumn(true);
-    console.log(vector);
-    return;
-    var A = StringVector.generate({total: 10000, list: 5});
-    var B = NumericVector.generate({total: 10000});
-    var M = new Matrix(A,B).pivot(B,A).anovaow();
+    var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).shapirowilk(); 
+    //framework.docs.publish(require("fs"));
+    /*
+    var a = new NumericVector([3, 7, 5, 10, 9, 8, 4, 1, 6, 2]);
+    var b = new NumericVector([4, 9, 2, 10, 8, 7, 6, 3, 5, 1]);
+    var M = new Matrix(a,b);
+    var cp = M.correlKendall(0,1);
+    var cs = M.correlSpearman(0,1);
+    console.log(cp);
+    console.log(cs);
     debugger;
-    return;
-    var x = VectorOverview;
-    var fs = require("fs");
-    fs.writeFileSync("./docs/cs/vector.md", x)
-    debugger
-    //vectorOverview();
+    */
     
 }

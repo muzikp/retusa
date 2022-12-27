@@ -245,7 +245,7 @@ Array.prototype.kurtosis = function () {
   }).sum() / Math.pow(s, 4);
   var c = 3 * Math.pow(n - 1, 2) / ((n - 2) * (n - 3));
   var k = a * b - c;
-  return k;
+  return k || new Empty();
 };
 
 Array.prototype.ttest = function (mean) {
@@ -319,7 +319,7 @@ Array.prototype.covariance = function (arr) {
   }).sum(arr.length - (sample ? 1 : 0));
 };
 
-Array.prototype.shapiroWilk = function () {
+Array.prototype.shapirowilk = function () {
   function poly(cc, nord, x) {
     var p;
     var ret_val;

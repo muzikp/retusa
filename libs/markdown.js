@@ -8,7 +8,38 @@ var e_no = "-" // "❌" // ":no_entry_sign:"
 function VectorMarkdown(method, level = 1) {
     var wiki = method;
     var _ = `${hash(level)} [${wiki.title.toUpperCase()}](#${wiki.name}): ${$(wiki.name)}${wiki.description ? "\n\n" + wiki.description + (wiki.url ? " " + "[" + $("WLsu") + "](" + wiki.url + ")" : "") : ""}`;
-    _ += `\n\n${hash(level + 1)} Konstruktor\n\n${createVectorMethodConstructor(wiki)}`
+    _ += `\n\n${hash(level + 1)} ${$("oPEt")}\n\n${createVectorMethodConstructor(wiki)}`
+    if(wiki.filter) {
+        _ += `\n\n${hash(level+1)} ${$("VVSN")}\n\n${wiki.filter}`;
+    }
+    constructor = createVectorMethodConstructor(wiki);
+    if(wiki.arguments?.length > 0) {
+        var headers = [$("QUJS"), $("jBGO"), $("dmmV"), $("tGqA"), $("VPYX"), $("pDgb")];
+        var values = wiki.arguments.map(function(a){
+            return [
+                `**${a.name}**`,
+                a.title,
+                new ArgumentSchema(a.schema).markdown(),
+                a.validator,
+                a.required ? e_yes : e_no,
+                a.default || a.default === 0 || a.default === false ? a.default : "",
+            ]
+        });
+        _ += `\n\n${hash(level+1)} ${$("FRpk")}\n\n${objArrayToTable(headers, values, [1,1,0,1,1,1])}`;
+    }
+    if(wiki.applies?.length > 0) {
+        _ += `\n\n${hash(level+1)} ${$("NizL")}\n\n${objArrayToTable([$("AfXp"), $("picU")], wiki.applies.map(v => [v.title, v.apply ? e_yes : e_no]), [0,1])}`;
+    }
+    _ += `\n\n${hash(level+1)} ${$("Schéma výsledku")}\n` + new Schema(wiki.returns).markdown();
+    if(wiki.example) {
+        _ += `\n\n${hash(level+1)} ${$("nzmJ")}\n\n\`\`\`js\n${wiki.example}\n\`\`\``;
+    }
+    return _;
+}
+
+function MatrixMarkdown(method, level = 1) {
+    var _ = `${hash(level)} [${method.wiki.title.toUpperCase()}](#${method.name}): ${$(mthod.wiki.name)}${method.wiki.description ? "\n\n" + method.wiki.description + (wiki.url ? " " + "[" + $("WLsu") + "](" + wiki.url + ")" : "") : ""}`;
+    _ += `\n\n${hash(level + 1)} ${$("oPEt")}\n\n${createVectorMethodConstructor(wiki)}`
     if(wiki.filter) {
         _ += `\n\n${hash(level+1)} ${$("VVSN")}\n\n${wiki.filter}`;
     }

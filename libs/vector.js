@@ -26,15 +26,6 @@ class Vector extends Array {
         if([...arguments].length > 0) this.push(...arguments);
         registry.set(this, {});
     }
-    /**
-     * Returns the type of this vector, either as an enumeration (integer) or as a class name.
-     * @param {boolean} verbose If the argument is true, it returns the full class name of the vector (eg NominalVector). Otherwise, it returns an enumeration (eg 3).
-     * @returns {number | string} Returns the type of this vector.
-     */
-    type(verbose) {
-        if(verbose) return this.constructor.name;
-        else return enums[`_${this.constructor.name.replace("Vector","").toLocaleLowerCase()}`]
-    }
     push(){
         for(let i of [...arguments].flat(Infinity - 1)){
             if(this.parse) super.push(this.parse(i));
@@ -65,6 +56,15 @@ class Vector extends Array {
         var _ = flush ? new this.constructor() : new this.constructor(...this);
         _.name(this.name());
         return _;
+    }
+    /**
+     * Removes the values from this vector.
+     */
+    flush() {
+        while (this.length > 0) {
+            this.pop();
+        }
+        return this;
     }
     /**
     * Instead of values, this method extracts indexes of values matching the filter (see @param) and return an array of indexes. 
@@ -152,6 +152,15 @@ class NumericVector extends Vector {
         super(...arguments);
     }
     /**
+     * Returns the type of this vector, either as an enumeration (integer) or as a class name.
+     * @param {boolean} verbose If the argument is true, it returns the full class name of the vector (eg NominalVector). Otherwise, it returns an enumeration (eg 3).
+     * @returns {number | string} Returns the type of this vector.
+     */
+    type(verbose) {
+        if(verbose) return "NumericVector";
+        else return 1;
+    }
+    /**
      * Generates a new numeric vector with 'total' randomly generated values ranging between 'min' and 'max' and with a 'nullprob' probability of null value occurrence.
      * @param {object} config Eg. {min: -50, max: 200, total: 1000, nullprob: 0.1}
      * @example var n = NumericVector.generate();
@@ -192,6 +201,15 @@ class StringVector extends Vector {
         super(...arguments);
     }
     /**
+     * Returns the type of this vector, either as an enumeration (integer) or as a class name.
+     * @param {boolean} verbose If the argument is true, it returns the full class name of the vector (eg NominalVector). Otherwise, it returns an enumeration (eg 3).
+     * @returns {number | string} Returns the type of this vector.
+     */
+    type(verbose) {
+        if(verbose) return "StringVector";
+        else return 2;
+    }
+    /**
      * Generates a string vector with 'total' of random text values selected from the 'list' of values. The list argument can be either an array of values or an integer. If the latter is provided, N values are randomly selected from a built-in list of nouns (max 1000 otems).
      * @param {object} config Eg. {total: 500, list: ["A","B","C"]} or {total: 500, list: 5}
      * @example var strings = StringVector.generate({list: ["A","B", "C"], total: 100000, nullprob: 0.5})
@@ -223,6 +241,15 @@ StringVector.prototype.parse = vectorParser.string;
 class BooleanVector extends Vector {
     constructor(){
         super(...arguments);
+    }
+    /**
+     * Returns the type of this vector, either as an enumeration (integer) or as a class name.
+     * @param {boolean} verbose If the argument is true, it returns the full class name of the vector (eg NominalVector). Otherwise, it returns an enumeration (eg 3).
+     * @returns {number | string} Returns the type of this vector.
+     */
+    type(verbose) {
+        if(verbose) return "BooleanVector";
+        else return 3;
     }
     /**
      * Generates a boolean vector with 'total' of random boolean (true/false) values.

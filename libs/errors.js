@@ -20,6 +20,7 @@ class Empty {
         this.default = message || "";
     }
 }
+Empty.prototype.isEmptyResult = true;
 
 module.exports = {
     VectorValueError: VectorValueError,
