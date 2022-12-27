@@ -87,7 +87,7 @@ function createVectorMethodConstructor(wiki) {
         else if(t.type == 3) _ += "BooleanVector";
         _ += `).<mark>**${wiki.name}**(${wiki.arguments.length > 0 ? "" : ")"}`;
         for(var a of wiki.arguments) {
-            _ += a.required ? "***" + + a.title + "***" : "*" + a.title + "*";
+            _ += a.required ? "***" + a.title + "***" : "*" + a.title + "*";
             if(wiki.arguments.indexOf(a) < wiki.arguments.length - 1) _ += ", ";
             else _+= ")";
         }

@@ -49,6 +49,13 @@ Array.prototype.mci = function (p) {
   };
 };
 
+Array.prototype.pci = function (value, alfa) {
+  var proportion = this.filter(function (_) {
+    return _ === value;
+  }).length / this.length;
+  return Math.pci(proportion, this.length, alfa);
+};
+
 Array.prototype.distinct = function () {
   return _toConsumableArray(new Set(this));
 };
@@ -469,6 +476,27 @@ Array.prototype.shapiroWilk = function () {
   };
 };
 
+Array.prototype.kolmogorovSmirnovTest = function () {
+  var sample = this.sort(function (a, b) {
+    return a - b;
+  });
+  var sampleCdf = sample.map(function (x, i) {
+    return (i + 1) / sample.length;
+  });
+  var maxDistance = 0;
+  var mean = sample.avg();
+  var s = sample.stdev(true);
+
+  for (var i = 0; i < sample.length; i++) {
+    maxDistance = Math.max(maxDistance, Math.abs(sampleCdf[i] - dist.normsdist((sample[i] - mean) / s)));
+  }
+
+  return {
+    T: maxDistance,
+    df: sample.length
+  };
+};
+
 String.prototype.fill = function (what, repetition) {
   var x = "";
 
@@ -515,15 +543,14 @@ Math.getRandomIndexes = function (total_of_elements, samplesize) {
 
 Math.pci = function (p, n, alfa) {
   alfa = 1 - (1 - alfa) / 2;
-  var z = n > 30 ? dist.normsinv(alfa, n - 1) : dist.tinv(alfa, n - 1);
-  var delta = Math.sqrt(p * (p - 1) / n);
-  return p;
+  var z = dist.normsinv(alfa, 1);
+  var delta = z * Math.sqrt(p * (1 - p) / n);
   return {
-    z: z,
     p: p,
+    sig: (1 - alfa) * 2,
     delta: delta,
-    lb: p - delta,
-    ub: p + delta
+    lb: p - delta < 0 ? 0 : p - delta,
+    ub: p + delta > 1 ? 1 : p + delta
   };
 };
 
@@ -533,6 +560,7 @@ Math.mci = function (m, stdev, n, alfa) {
   var delta = q * stdev / Math.sqrt(n);
   return {
     m: m,
+    sig: (1 - alfa) * 2,
     delta: delta,
     lb: m - delta,
     ub: m + delta

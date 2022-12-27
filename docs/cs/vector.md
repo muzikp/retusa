@@ -26,8 +26,8 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 | [skewness](#skewness) | [šikmost](#skewness) | Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru. | ✔️ | - | - |
 | [kurtosis](#kurtosis) | [špičatost](#kurtosis) | Vrátí hodnotu excesu množiny dat. | ✔️ | - | - |
 | [ttest](#ttest) | [jednovýběrový t-test](#ttest) | Vrátí statistický protokol pro jednovýběrový t-test při zadání populačního průměru. | ✔️ | - | - |
-| [mci](#mci) | [interval spolehlivosti průměru](#mci) | Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normálín rozdělení. | ✔️ | - | - |
-| [pci](#pci) | [interval spolehlivosti průměru](#pci) | Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normálín rozdělení. | ✔️ | - | - |
+| [mci](#mci) | [interval spolehlivosti průměru](#mci) | Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normální rozdělení. | ✔️ | - | - |
+| [pci](#pci) | [interval spolehlivosti podílu](#pci) | Vrátí statistický protokol odhadu intervalu spolehlivosti podílu výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normální rozdělení. | ✔️ | ✔️ | ✔️ |
 | [shapirowilk](#shapirowilk) | [Shapirův-Wilkův W test](#shapirowilk) | Vrátí statistický protokol Shapiro-Wilkova W testu normality rozdělení hodnot vektoru. | ✔️ | - | - |
 
 ---
@@ -461,7 +461,7 @@ Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru. 
 #### Konstruktor
 
 
-> (NumericVector).<mark>**percentile**(***NaN***)
+> (NumericVector).<mark>**percentile**(***hodnota percentilu***)
 
 
 #### Automatický filtr hodnot
@@ -826,7 +826,7 @@ Vrátí statistický protokol pro jednovýběrový t-test při zadání populač
 #### Konstruktor
 
 
-> (NumericVector).<mark>**ttest**(***NaN***)
+> (NumericVector).<mark>**ttest**(***populační průměr***)
 
 
 #### Automatický filtr hodnot
@@ -871,7 +871,7 @@ var T = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1)
 
 ### [INTERVAL SPOLEHLIVOSTI PRŮMĚRU](#mci): mci
 
-Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normálín rozdělení. [Zjistit více.](https://en.wikipedia.org/wiki/Confidence_interval)
+Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normální rozdělení. [Zjistit více.](https://en.wikipedia.org/wiki/Confidence_interval)
 
 #### Konstruktor
 
@@ -901,30 +901,36 @@ Pouze číselné hodnoty (včetně nul).
 
 - *interval spolehlivosti průměru* `🟦 objekt`
   - **m**: *aritmetický průměr* `🔴 číslo`
+  - **sig**: *hladina výzmnamnosti intervalu* `🔴 číslo`
   - **delta**: *hodnota intervalu spolehlivosti* `🔴 číslo`
   - **lb**: *spodní hranice intervalu* `🔴 číslo`
   - **ub**: *horní hranice intervalu* `🔴 číslo`
 
 ---
 
-### [INTERVAL SPOLEHLIVOSTI PRŮMĚRU](#pci): pci
+### [INTERVAL SPOLEHLIVOSTI PODÍLU](#pci): pci
 
-Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normálín rozdělení. [Zjistit více.](https://en.wikipedia.org/wiki/Confidence_interval)
+Vrátí statistický protokol odhadu intervalu spolehlivosti podílu výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normální rozdělení. [Zjistit více.](https://en.wikipedia.org/wiki/Confidence_interval)
 
 #### Konstruktor
 
 
-> (NumericVector).<mark>**pci**(*hladina významnosti*)
+> (NumericVector).<mark>**pci**(***hledaná hodnota***, *hladina významnosti*)
+
+> (StringVector).<mark>**pci**(***hledaná hodnota***, *hladina významnosti*)
+
+> (BooleanVector).<mark>**pci**(***hledaná hodnota***, *hladina významnosti*)
 
 
 #### Automatický filtr hodnot
 
-Pouze číselné hodnoty (včetně nul).
+jakákoliv hodnota
 
 #### Argumenty
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
+| **value** | hledaná hodnota | 🟤 cokoliv | null | ✔️ |  |
 | **confidenceLevel** | hladina významnosti | 🔴 číslo | Ověří, zdali je hodnota číslo mezi 0 a 1 (včetně hraničních hodnot). V opačném případě vyvolá chybu. | - | 0.95 |
 
 #### Integrace dle třídy
@@ -932,13 +938,14 @@ Pouze číselné hodnoty (včetně nul).
 | typ vektoru | integrace |
 | --- |  :---: | 
 | numerický | ✔️ |
-| nominální | - |
-| binární | - |
+| nominální | ✔️ |
+| binární | ✔️ |
 
 #### Schéma výsledku
 
-- *interval spolehlivosti průměru* `🟦 objekt`
-  - **m**: *aritmetický průměr* `🔴 číslo`
+- *Root* `🟦 objekt`
+  - **p**: *podíl hledané hodnoty na celku* `🔴 číslo`
+  - **sig**: *hladina výzmnamnosti intervalu* `🔴 číslo`
   - **delta**: *hodnota intervalu spolehlivosti* `🔴 číslo`
   - **lb**: *spodní hranice intervalu* `🔴 číslo`
   - **ub**: *horní hranice intervalu* `🔴 číslo`

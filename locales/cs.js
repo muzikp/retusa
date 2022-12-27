@@ -360,11 +360,11 @@ module.exports = {
 	/* vector fce Confidence intervals for the mean (title) */
 	"yHjW": "interval spolehlivosti průměru",
 	/* vector fce Confidence intervals for the mean (description) */
-	"DDpa": "Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normálín rozdělení.",
+	"DDpa": "Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normální rozdělení.",
 	/* vector fce Confidence intervals for the mean (confidenceLevel argument - title) */
 	"lFlm": "hladina významnosti",
 	/* vector fce Confidence intervals for the mean (confidenceLevel argument - Description) */
-	"SMbe": "Hodnota hladiny významnosti, na které se interval testuje. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normálín rozdělení.",
+	"SMbe": "Hodnota hladiny významnosti, na které se interval testuje. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normální rozdělení.",
 	/* schema MCI - delta */
 	"NzBg": "hodnota intervalu spolehlivosti",
 	/* schema MCI - lower bound */
@@ -391,10 +391,18 @@ module.exports = {
 	"OYQu": "počet stupňů volnosti",
 	/* shema - Shapiro-Wilk W (degrees of freedom) */
 	"nZvR": "hodnota Shapiro-Wilkova W testu",
-	"obxp": "",
-	"QOvf": "",
-	"nCHN": "",
-	"mjPq": "",
+	/* vector fce Confidence intervals for the proportion (title) */
+	"ZhjW": "interval spolehlivosti podílu",
+	/* vector fce Confidence intervals for the proportion (description) */
+	"KLpa": "Vrátí statistický protokol odhadu intervalu spolehlivosti podílu výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normální rozdělení.",
+	/* vector fce Confidence intervals for the proportion - value argument (title) */
+	"obxp": "hledaná hodnota",
+	/* vector fce Confidence intervals for the proportion - value argument (description) */
+	"QOvf": "Hodnota, jejíž podíl v rámci vektoru má být vypočten. Může se jednat o libovolnou hodnotu, měla by ovšem splňovat kritéria faktoru (např. u nominálního vektoru text apod.).",
+	/* schema vector pci - p */
+	"nCHN": "podíl hledané hodnoty na celku",
+	/* schema vector mci/pci - sig */
+	"mjPq": "hladina výzmnamnosti intervalu",
 	"Blaz": "",
 	"DLoe": "",
 	"yQZd": "",

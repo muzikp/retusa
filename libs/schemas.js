@@ -349,6 +349,15 @@ const vectorResultSchemas = {
                 ],
                 "default": 0
             },
+            "sig": {
+                "$id": "#root/sig", 
+                "title": "mjPq", 
+                "type": "number",
+                "examples": [
+                    0.050000000000000044
+                ],
+                "default": 0.0
+            },
             "delta": {
                 "$id": "#root/delta", 
                 "title": "NzBg", 
@@ -378,6 +387,67 @@ const vectorResultSchemas = {
             }
         }
     },
+    pci: {
+        "definitions": {},
+        "$schema": "http://json-schema.org/draft-07/schema#", 
+        "$id": "https://example.com/object1672151042.json", 
+        "title": "Root", 
+        "type": "object",
+        "required": [
+            "p",
+            "sig",
+            "delta",
+            "lb",
+            "ub"
+        ],
+        "properties": {
+            "p": {
+                "$id": "#root/p", 
+                "title": "nCHN", 
+                "type": "number",
+                "examples": [
+                    0.17391304347826086
+                ],
+                "default": 0.0
+            },
+            "sig": {
+                "$id": "#root/sig", 
+                "title": "mjPq", 
+                "type": "number",
+                "examples": [
+                    0.050000000000000044
+                ],
+                "default": 0.0
+            },
+            "delta": {
+                "$id": "#root/delta", 
+                "title": "NzBg", 
+                "type": "number",
+                "examples": [
+                    0.1549041787089759
+                ],
+                "default": 0.0
+            },
+            "lb": {
+                "$id": "#root/lb", 
+                "title": "GynK", 
+                "type": "number",
+                "examples": [
+                    0.019008864769284955
+                ],
+                "default": 0.0
+            },
+            "ub": {
+                "$id": "#root/ub", 
+                "title": "iIPc", 
+                "type": "number",
+                "examples": [
+                    0.32881722218723675
+                ],
+                "default": 0.0
+            }
+        }
+    },    
     shapirowilk: {
         "definitions": {},
         "$schema": "http://json-schema.org/draft-07/schema#", 

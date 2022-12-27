@@ -41,9 +41,11 @@ module.exports = {
     distribution: dist
   },
   docs: {
-    publish: function publish() {
-      var fs = require("fs");
-
+    /**
+     * 
+     * @param {module} fs FileStream module is required.
+     */
+    publish: function publish(fs) {
       fs.writeFileSync("./docs/cs/vector.md", Vector.VectorOverview());
     }
   }

@@ -57,12 +57,14 @@ class Vector extends Array {
         var obj = {
             values: this,
             name: this.name(),
+            type: this.type()
         };
         return obj;
     }
     clone(flush = false) {
-        if(!flush) return new this.constructor();
-        else return new this.constructor(...this);  
+        var _ = flush ? new this.constructor() : new this.constructor(...this);
+        _.name(this.name());
+        return _;
     }
     /**
     * Instead of values, this method extracts indexes of values matching the filter (see @param) and return an array of indexes. 
@@ -70,7 +72,7 @@ class Vector extends Array {
     * @return {Array<integer>} Returns an array of indexes of values matching the given filter.
     */
     ifilter(filter = () => true) {
-        return new Array(...this._values).map(function(v, i){
+        return new Array(...this).map(function(v, i){
             if(filter(v)) return i;
             else return -1;
         }).filter(x => x > -1 );
@@ -98,6 +100,24 @@ class Vector extends Array {
         }
         return name ? new this(_).name(name) : new this(_);
 
+    }
+    static deserialize(data) {
+        var _ = new this(...data.values || []);
+        Object.keys(data).forEach(function(k) {
+            if(k !== "values") _[k](data[k]);
+        });
+        return _;
+    }
+    sample(size = 0) {
+        var clone = this.clone(true);
+        if(size <= 0) return clone;
+        else if(size < 1) size = this.length * size;
+        if(size > this.length) return clone;
+        else {
+            var indexes = Math.getRandomIndexes(this.length, size);
+            clone.push(...this.filter((v,i) => indexes.indexOf(i) > - 1));
+            return clone;
+        }
     }
 }
 
@@ -176,7 +196,7 @@ class StringVector extends Vector {
      * @param {object} config Eg. {total: 500, list: ["A","B","C"]} or {total: 500, list: 5}
      * @example var strings = StringVector.generate({list: ["A","B", "C"], total: 100000, nullprob: 0.5})
      * @example var strings = StringVector.generate({list: 4, total: 100000, nullprob: 0.2})
-     * @example var strings = StringVector.generate({list: 5, null, 0.1})
+     * @example var strings = StringVector.generate({list: 5, nullprob: 0.175})
      * @example var strings = StringVector.generate({list: 5})
      * Returns a new instance of the vector with random values.
      */
@@ -257,8 +277,7 @@ Array.prototype.vectorify = function() {
 // #endregion
 
 const VectorMethodsModels = [
-    {
-        name: "sum",
+    {   name: "sum",
         fn: Array.prototype.sum,
         filter: filters.number,
         wiki: {
@@ -272,8 +291,7 @@ const VectorMethodsModels = [
         },
         url: "https://en.wikipedia.org/wiki/Addition"
     },    
-    {
-        name: "count",
+    {   name: "count",
         fn: Array.prototype.count,
         wiki: {
             title: "tdrm",
@@ -287,8 +305,7 @@ const VectorMethodsModels = [
             var total_boolean = new BooleanVector(true, true, false, null, false, true).count();  /* = 6 */
         }
     },
-    {
-        name: "avg",
+    {   name: "avg",
         fn: Array.prototype.avg,
         filter: filters.number,
         wiki: {
@@ -302,8 +319,7 @@ const VectorMethodsModels = [
         },
         url: "https://en.wikipedia.org/wiki/Arithmetic_mean"
     },
-    {
-        name: "stdev",
+    {   name: "stdev",
         fn: Array.prototype.stdev,
         filter: filters.number,
         wiki: {
@@ -331,8 +347,7 @@ const VectorMethodsModels = [
             },
         url: "https://en.wikipedia.org/wiki/Standard_deviation"
     },
-    {
-        name: "variance",
+    {   name: "variance",
         fn: Array.prototype.variance,
         filter: filters.number,
         wiki: {
@@ -360,8 +375,7 @@ const VectorMethodsModels = [
         },
         url: "https://en.wikipedia.org/wiki/Variance"
     },
-    {
-        name: "histogram",
+    {   name: "histogram",
         fn: Array.prototype.histogram,
         filter: filters.number,
         wiki: {
@@ -435,8 +449,7 @@ const VectorMethodsModels = [
         },
         url: "https://en.wikipedia.org/wiki/Histogram"
     },
-    {
-        name: "min",
+    {   name: "min",
         fn: Array.prototype.min,
         filter: filters.notnull,
         wiki: {
@@ -450,8 +463,7 @@ const VectorMethodsModels = [
         },
         returns: "any",
     },
-    {
-        name: "max",
+    {   name: "max",
         fn: Array.prototype.max,
         filter: filters.notnull,
         wiki: {
@@ -465,8 +477,7 @@ const VectorMethodsModels = [
             var string_max = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale", "Gauss", "Poisson").max(); /* = Poisson */
         }
     },
-    {
-        name: "range",
+    {   name: "range",
         fn: Array.prototype.range,
         filter: filters.number,
         wiki: {
@@ -480,8 +491,7 @@ const VectorMethodsModels = [
         },
         url: "https://en.wikipedia.org/wiki/Range_(statistics)"
     },
-    {
-        name: "varc",
+    {   name: "varc",
         fn: Array.prototype.varc,
         filter: filters.number,
         wiki: {
@@ -509,8 +519,7 @@ const VectorMethodsModels = [
         },
         url: "https://en.wikipedia.org/wiki/Coefficient_of_variation"
     },
-    {
-        name: "percentile",
+    {   name: "percentile",
         fn: Array.prototype.percentile,
         filter: filters.number,
         wiki: {
@@ -540,8 +549,7 @@ const VectorMethodsModels = [
         url: "https://en.wikipedia.org/wiki/Percentile"
 
     },
-    {
-        name: "frequency",
+    {   name: "frequency",
         fn: Array.prototype.frequency,
         filter: null,
         wiki: {
@@ -622,8 +630,7 @@ const VectorMethodsModels = [
         },
         url: "https://en.wikipedia.org/wiki/Frequency_(statistics)"
     },
-    {
-        name: "geomean",
+    {   name: "geomean",
         fn: Array.prototype.geomean,
         filter: filters.number,
         wiki: {
@@ -637,8 +644,7 @@ const VectorMethodsModels = [
         },
         url: "https://en.wikipedia.org/wiki/Geometric_mean"
     },
-    {
-        name: "harmean",
+    {   name: "harmean",
         fn: Array.prototype.harmean,
         filter: filters.number,
         wiki: {
@@ -652,8 +658,7 @@ const VectorMethodsModels = [
         },
         url: "https://en.wikipedia.org/wiki/Harmonic_mean"
     },
-    {
-        name: "median",
+    {   name: "median",
         fn: Array.prototype.median,
         filter: filters.number,
         wiki: {
@@ -667,8 +672,7 @@ const VectorMethodsModels = [
         },
         url: "https://en.wikipedia.org/wiki/Median"
     },
-    {
-        name: "mode",
+    {   name: "mode",
         fn: Array.prototype.mode,
         wiki: {
             title: "StQx",
@@ -684,9 +688,7 @@ const VectorMethodsModels = [
         url: "https://en.wikipedia.org/wiki/Mode_(statistics)"
 
     },
-        /* směrodatná chyba průměru */
-    {
-        name: "SEM",
+    {   name: "SEM",
         fn: Array.prototype.SEM,
         filter: filters.number,
         wiki: {
@@ -700,8 +702,7 @@ const VectorMethodsModels = [
         },
         url: "https://en.wikipedia.org/wiki/Standard_error#Standard_error_of_the_sample_mean"
     },
-    {
-        name: "skewness",
+    {   name: "skewness",
         fn: Array.prototype.skewness,
         filter: filters.number,
         wiki: {
@@ -729,8 +730,7 @@ const VectorMethodsModels = [
             },
             url: "https://en.wikipedia.org/wiki/Skewness"
     },
-    {
-        name: "kurtosis",
+    {   name: "kurtosis",
         fn: Array.prototype.kurtosis,
         filter: filters.number,
         wiki: {
@@ -744,8 +744,7 @@ const VectorMethodsModels = [
         },
         url: "https://en.wikipedia.org/wiki/Kurtosis"
     },
-    {
-        name: "ttest",
+    {   name: "ttest",
         fn: Array.prototype.ttest,
         filter: filters.number,
         wiki: {
@@ -777,8 +776,7 @@ const VectorMethodsModels = [
                 }
             }
     },
-    {
-        name: "mci",
+    {   name: "mci",
         fn: Array.prototype.mci,
         filter: filters.number,
         wiki: {
@@ -804,19 +802,29 @@ const VectorMethodsModels = [
         },
         url: "https://en.wikipedia.org/wiki/Confidence_interval"
     },
-    {
-        name: "pci",
-        fn: Array.prototype.mci,
-        filter: filters.number,
+    {   name: "pci",
+        fn: Array.prototype.pci,
+        filter: filters.any,
         wiki: {
-            title: "yHjW",
-            description: "DDpa"
+            title: "ZhjW",
+            description: "KLpa"
         },
-        type: [1],
-        returns: "mci",
+        type: [1,2,3],
+        returns: "pci",
         example: function(){
         },
         args: {
+            value: {
+                wiki: {
+                    title: "obxp",
+                    description: "QOvf"
+                },
+                schema: "any",
+                required: true,
+                default: null,
+                type: "any",
+                validator: validators.any
+            },
             confidenceLevel: {
                 wiki: {
                     title: "lFlm",
