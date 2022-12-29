@@ -423,11 +423,16 @@ module.exports = {
 	"jFVv": "závislá proměnná y",
 	/* filter metrix RemoveEmpty text */
 	"SExL": "Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahují ani jednu prázdnou hodnotu (null).",
-	"gLcr":"",
-	"yWUM":"",
-	"DfLu":"",
-	"boQk":"",
-	"Hwus":"",
+	/* schema - numeric matrix (title) */
+	"gLcr":"matice numerických vektorů",
+	/* schema - numeric vector */
+	"yWUM":"numerický vektor",
+	/* schema - matrix (type) */
+	"DfLu":"matice",
+	/* schema - boolean vector */
+	"boQk":"binární vektor",
+	/* schema - string vector */
+	"Hwus": "textový vektor",
 	"iJaa":"",
 	"Jdfb":"",
 	"HksP":"",

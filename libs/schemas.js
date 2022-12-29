@@ -67,9 +67,13 @@ class Schema {
         {t: "boolean", c: "🟣", l: "XPGc"},
         {t: "object", c: "🟦", l: "kLhB"},
         {t: "array", c: "🟩", l: "qdkt"},
-        {t: "any", c: "🟤", l: "oMas"}
+        {t: "any", c: "🟤", l: "oMas"},
+        {t: "Matrix", c: "[❤️💛💜]", l: "DfLu"},
+        {t: "NumericMatrix", c: "[❤️]", l: "gLcr"},
+        {t: "NumericVector", c: "❤️", l: "yWUM"},
+        {t: "StringVector", c: "💛", l: "Hwus"},
+        {t: "BooleanVector", c: "💜", l: "boQk"}
       ];
-      
       var s = types.find(i => i.t == type) || {c: "🟤", l: "oMas"};
       //return `<span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: ${s.c}">${$(s.l)}</span>`
       return `${this.typeHighlight}${s.c} ${$(s.l)}${this.typeHighlight}`
@@ -532,15 +536,67 @@ const vectorResultSchemas = {
     }
 }
 
-matrixResultSchemas = {
+const matrixResultSchemas = {
     correlPearson: {}
+}
+
+const argumentSchemas = {
+    numericMatrix: {
+        "definitions": {},
+        "$schema": "http://json-schema.org/draft-07/schema#", 
+        "$id": "https://example.com/object1672335343.json", 
+        "title": "gLcr", 
+        "type": "Matrix",
+        "default": [],
+        "items":{
+            "$id": "#root/items", 
+            "title": "yWUM", 
+            "type": "array",
+            "default": [],
+            "items":{
+                "$id": "#root/items/items", 
+                "title": "pelN", 
+                "type": "number",
+                "default": 0
+            }
+        }
+    },
+    numericVector: {
+        "definitions": {},
+        "$schema": "http://json-schema.org/draft-07/schema#", 
+        "$id": "https://example.com/object1672335343.json", 
+        "title": "yWUM", 
+        "type": "NumericVector",
+        "default": [],
+        "items":{
+            "$id": "#root/items", 
+            "title": "pelN", 
+            "type": "number",
+            "default": []
+        }
+    },
+    booleanVector: {
+        "definitions": {},
+        "$schema": "http://json-schema.org/draft-07/schema#", 
+        "$id": "https://example.com/object1672335343.json", 
+        "title": "WiEE", 
+        "type": "BooleanVector",
+        "default": [],
+        "items":{
+            "$id": "#root/items", 
+            "title": "pelN", 
+            "type": "number",
+            "default": []
+        }
+    }
 }
 
 module.exports = {
     Schema: Schema,
     ArgumentSchema: ArgumentSchema,
     vectorResultSchemas: vectorResultSchemas,
-    matrixResultSchemas: this.matrixResultSchemas,
+    matrixResultSchemas: matrixResultSchemas,
+    argumentSchemas: argumentSchemas,
     register: function(name, schema) {
         if(vectorResultSchemas[name]) console.warn(`You are overwriting another schema named (${name}). The original schema will be overwritten, nevertheless, you may consider using another name.`);
         vectorResultSchemas[name] = schema;

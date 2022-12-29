@@ -246,7 +246,8 @@ class MatrixMethod {
                                 description: $(a.wiki?.description) || null,
                                 required: a.required,
                                 default: a.default || null,
-                                validator: a.validator ? $(a.validator.text) : null
+                                validator: a.validator ? $(a.validator.text) : null,
+                                schema: a.schema
                             })
                         }
                     }
@@ -610,14 +611,16 @@ const MatrixMethodsModels = [
                 wiki: {title: "qFEM"},
                 type: [ats.nv],
                 required: true,
-                validator: validators.isNumericVector
+                validator: validators.isNumericVector,
+                schema: schemas.argumentSchemas.numericVector
             },        
             {
                 name: "y",
                 wiki: {title: "tpUu"},
                 type: [ats.nv],
                 required: true,
-                validator: validators.isNumericVector
+                validator: validators.isNumericVector,
+                schema: schemas.argumentSchemas.numericVector
             }            
         ]
     },
@@ -635,14 +638,16 @@ const MatrixMethodsModels = [
                 wiki: {title: "qFEM"},
                 type: [ats.nv],
                 required: true,
-                validator: validators.isNumericVector
+                validator: validators.isNumericVector,
+                schema: schemas.argumentSchemas.numericVector
             },        
             {
                 name: "y",
                 wiki: {title: "tpUu"},
                 type: [ats.nv],
                 required: true,
-                validator: validators.isNumericVector
+                validator: validators.isNumericVector,
+                schema: schemas.argumentSchemas.numericVector
         }            
     ]
     },
@@ -660,14 +665,16 @@ const MatrixMethodsModels = [
                 wiki: {title: "qFEM"},
                 type: [ats.nv],
                 required: true,
-                validator: validators.isNumericVector
+                validator: validators.isNumericVector,
+                schema: schemas.argumentSchemas.numericVector
             },        
             {
                 name: "y",
                 wiki: {title: "tpUu"},
                 type: [ats.nv],
                 required: true,
-                validator: validators.isNumericVector
+                validator: validators.isNumericVector,
+                schema: schemas.argumentSchemas.numericVector
             }            
         ]
     },
@@ -679,26 +686,32 @@ const MatrixMethodsModels = [
             title: "sjoW",
             description: "hHaW"
         },
-        args: {
-            x: {
+        args: [ 
+            {
+                name: "x",
                 wiki: {title: "qFEM"},
                 type: [1],
                 required: true,
-                validator: validators.generalCorrelVariable
+                validator: validators.generalCorrelVariable,
+                schema: schemas.argumentSchemas.numericVector
             },        
-            y: {
+            {
+                name: "y",
                 wiki: {title: "tpUu"},
                 type: [1],
                 required: true,
-                validator: validators.generalCorrelVariable
+                validator: validators.generalCorrelVariable,
+                schema: schemas.argumentSchemas.numericVector
             },
-            z: {
+            {
+                name: "z",
                 wiki: {title: "tpUR"},
                 type: [1],
                 required: true,
-                validator: validators.generalCorrelVariable
+                validator: validators.generalCorrelVariable,
+                schema: schemas.argumentSchemas.numericVector
             }            
-        }
+        ]
     },
     {   name: "correlBiserial",
         fn: matrixMethods.correlBiserial,
@@ -708,20 +721,24 @@ const MatrixMethodsModels = [
             title: "eJTT",
             description: "jAGi"
         },
-        args: {
-            x: {
+        args: [
+            {
+                name: "x",
                 wiki: {title: "qFEM"},
                 type: [3],
                 required: true,
-                validator: validators.booleanVariable
+                validator: validators.booleanVariable,
+                schema: schemas.argumentSchemas.booleanVector
             },        
-            y: {
+            {
+                name: "y",
                 wiki: {title: "tpUu"},
                 type: [1],
                 required: true,
-                validator: validators.generalCorrelVariable
-        }            
-        }
+                validator: validators.generalCorrelVariable,
+                schema: schemas.argumentSchemas.numericVector
+            }
+        ]
     },
     {   name: "correlPhi",
         fn: matrixMethods.correlPhi,
@@ -731,20 +748,24 @@ const MatrixMethodsModels = [
             title: "eJTT",
             description: "jAGi"
         },
-        args: {
-            x: {
+        args: [
+            {
+                name: "x",
                 wiki: {title: "qFEM"},
                 type: [3],
                 required: true,
-                validator: validators.booleanVariable
+                validator: validators.booleanVariable,
+                schema: schemas.argumentSchemas.booleanVector
             },        
-            y: {
+            {
+                name: "y",
                 wiki: {title: "tpUu"},
                 type: [3],
                 required: true,
-                validator: validators.booleanVariable
-        }            
-        }
+                validator: validators.booleanVariable,
+                schema: schemas.argumentSchemas.booleanVector
+            }            
+        ]
     },
     {   name: "ttestind",
         fn: matrixMethods.ttest_independent,
@@ -761,14 +782,16 @@ const MatrixMethodsModels = [
                 wiki: {title: "qFEM"},
                 type: [ats.nv],
                 required: true,
-                validator: validators.isNumericVector
+                validator: validators.isNumericVector,
+                schema: schemas.argumentSchemas.numericVector
             },        
             {
                 name: "y",
                 wiki: {title: "tpUu"},
                 type: [ats.nv],
                 required: true,
-                validator: validators.isNumericVector
+                validator: validators.isNumericVector,
+                schema: schemas.argumentSchemas.numericVector
         }]
     },
     {   name: "ttestpair",
@@ -796,6 +819,7 @@ const MatrixMethodsModels = [
                 type: [ats.nv],
                 required: true,
                 validator: validators.isNumericVector,
+                schema: schemas.argumentSchemas.numericVector,
                 class: 1
             },        
             {
@@ -804,6 +828,7 @@ const MatrixMethodsModels = [
                 type: [ats.nv],
                 required: true,
                 validator: validators.isNumericVector,
+                schema: schemas.argumentSchemas.numericVector,
                 class: 1
         }]
     },
@@ -853,6 +878,7 @@ const MatrixMethodsModels = [
                 wiki: {title: "qFEM"},
                 required: true,
                 validator: validators.isNumericMatrix,
+                schema: schemas.argumentSchemas.numericMatrix,
                 class: 2
             }]
     },
@@ -871,14 +897,16 @@ const MatrixMethodsModels = [
             wiki: {title: "qFEM"},
             type: [ats.nv],
             required: true,
-            validator: validators.isNumericVector
+            validator: validators.isNumericVector,
+            schema: schemas.argumentSchemas.numericVector
         },        
         {
             name: "y",
             wiki: {title: "tpUu"},
             type: [ats.nv],
             required: true,
-            validator: validators.isNumericVector
+            validator: validators.isNumericVector,
+            schema: schemas.argumentSchemas.numericVector
     }]
     },
     {   name: "linreg",
@@ -904,14 +932,16 @@ const MatrixMethodsModels = [
                 wiki: {title: "jDlm"},
                 type: [ats.nv],
                 required: true,
-                validator: validators.isNumericVector
+                validator: validators.isNumericVector,
+                schema: schemas.argumentSchemas.numericVector
             },        
             {
                 name: "dependent",
                 wiki: {title: "jFVv"},
                 type: [ats.nv],
                 required: true,
-                validator: validators.isNumericVector
+                validator: validators.isNumericVector,
+                schema: schemas.argumentSchemas.numericVector
             }            
         ]
     },
@@ -937,6 +967,11 @@ mapModels();
 Array.prototype.toNumericMatrix = function() {
     return new NumericMatrix(...this);
 }
+
+// #endregion
+
+// #region MISC
+
 
 // #endregion
 

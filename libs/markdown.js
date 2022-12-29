@@ -44,11 +44,11 @@ function MatrixMarkdown(method, level = 1) {
     if(method.wiki?.filter) _ += `\n\n${hash(level+1)} ${$("VVSN")}\n\n${method.wiki.filter}`;
     if(method.wiki?.arguments?.length > 0) {
         var headers = [$("QUJS"), $("jBGO"), $("dmmV"), $("tGqA"), $("VPYX"), $("pDgb")];
-        var values = method.wiki.arguments.map(function(a){
+        var values = method.wiki.arguments.map(function(a){            
             return [
                 `**${a.name}**`,
                 a.title,
-                new ArgumentSchema(a.schema).markdown(),
+                new ArgumentSchema((method.model.args || []).find(s => s.name == a.name)?.schema).markdown(),
                 a.validator,
                 a.required ? e_yes : e_no,
                 a.default || a.default === 0 || a.default === false ? a.default : "",

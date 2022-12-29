@@ -25,7 +25,7 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | první proměnná |  | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
+| **x** | první proměnná | [❤️💛💜] matice | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
 
 ---
 
@@ -35,7 +35,7 @@ Vrátí statistický protokol Spearmanova korelačního koeficientu.
 
 #### Způsob volání metody
 
-> [Matrix instance].**correlBiserial**()***první proměnná***, ***druhá proměnná***)
+> [Matrix instance].**correlBiserial**(***první proměnná***, ***druhá proměnná***)
 
 
 #### Automatický filtr hodnot
@@ -46,8 +46,8 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **undefined** | první proměnná |  | null | ✔️ |  |
-| **undefined** | druhá proměnná |  | null | ✔️ |  |
+| **x** | první proměnná | 💜 binární vektor | null | ✔️ |  |
+| **y** | druhá proměnná | ❤️ numerický vektor | null | ✔️ |  |
 
 ---
 
@@ -68,8 +68,8 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | první proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **y** | druhá proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **x** | první proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
 ---
 
@@ -79,7 +79,7 @@ Vrátí statistický protokol parciálního korelačního koeficientu.
 
 #### Způsob volání metody
 
-> [Matrix instance].**correlPartial**()***první proměnná***, ***druhá proměnná***, ***třetí proměnná***)
+> [Matrix instance].**correlPartial**(***první proměnná***, ***druhá proměnná***, ***třetí proměnná***)
 
 
 #### Automatický filtr hodnot
@@ -90,9 +90,9 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **undefined** | první proměnná |  | null | ✔️ |  |
-| **undefined** | druhá proměnná |  | null | ✔️ |  |
-| **undefined** | třetí proměnná |  | null | ✔️ |  |
+| **x** | první proměnná | ❤️ numerický vektor | null | ✔️ |  |
+| **y** | druhá proměnná | ❤️ numerický vektor | null | ✔️ |  |
+| **z** | třetí proměnná | ❤️ numerický vektor | null | ✔️ |  |
 
 ---
 
@@ -113,8 +113,8 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | první proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **y** | druhá proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **x** | první proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
 ---
 
@@ -124,7 +124,7 @@ Vrátí statistický protokol Spearmanova korelačního koeficientu.
 
 #### Způsob volání metody
 
-> [Matrix instance].**correlPhi**()***první proměnná***, ***druhá proměnná***)
+> [Matrix instance].**correlPhi**(***první proměnná***, ***druhá proměnná***)
 
 
 #### Automatický filtr hodnot
@@ -135,8 +135,8 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **undefined** | první proměnná |  | null | ✔️ |  |
-| **undefined** | druhá proměnná |  | null | ✔️ |  |
+| **x** | první proměnná | 💜 binární vektor | null | ✔️ |  |
+| **y** | druhá proměnná | 💜 binární vektor | null | ✔️ |  |
 
 ---
 
@@ -157,8 +157,8 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | první proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **y** | druhá proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **x** | první proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
 ---
 
@@ -179,8 +179,8 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **independent** | nezávislá proměnná x |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **dependent** | závislá proměnná y |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **independent** | nezávislá proměnná x | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **dependent** | závislá proměnná y | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
 ---
 
@@ -201,8 +201,8 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | první proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **y** | druhá proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **x** | první proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
 ---
 
@@ -223,8 +223,8 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | první proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **y** | druhá proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **x** | první proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
 ---
 
@@ -245,5 +245,5 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | první proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **y** | druhá proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **x** | první proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
