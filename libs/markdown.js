@@ -58,7 +58,6 @@ function MatrixMarkdown(method, level = 1) {
     }
     if(method.model.returns) _ += `\n\n${hash(level+1)} ${$("KxQM")}\n` + new Schema(method.model.returns).markdown();
     if(method.model.example) _ += `\n\n${hash(level+1)} ${$("nzmJ")}\n\n\`\`\`js\n${method.wiki.example}\n\`\`\``;
-    console.log(_);
     return _;
 }
 

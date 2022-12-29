@@ -668,10 +668,22 @@ const MatrixMethodsModels = [
     {   name: "correlKendall",
         fn: matrixMethods.correlKendall,
         filter: filters.matrixNotEmpty,
-        example: null,
+        returns: schemas.matrixResultSchemas.correlKendall,
+        example: function() {
+            var a = new NumericVector([3, 7, 5, 10, 9, 8, 4, 1, 6, 1]);
+            var b = new NumericVector([4, 9, 2, 10, 8, 7, 6, 3, 5, 1]);
+            var M = new Matrix(a,b).correlKendall(a,b);
+            /*
+            {
+                "r": 0.7111111111111111,
+                "n": 10,
+                "p": 0.004207551285491773
+            }
+            */
+        },
         wiki: {
-            title: "eJTT",
-            description: "jAGi"
+            title: "mgBC",
+            description: "VOmC"
         },
         args: [
             {
@@ -925,15 +937,24 @@ const MatrixMethodsModels = [
     {   name: "linreg",
         fn: matrixMethods.linreg,
         filter: filters.matrixNotEmpty,
+        returns: schemas.matrixResultSchemas.linreg,
         example: function(x,y) {
-            var r = new Table([1,2,3,4,5],[4,5,6,7,8]).linreg(0,1);
+            var M = new Matrix([160,160,162,163,161,170,172,177,179,178,182,184,183],[57,55,59,60,52,67,69,74,75,76,78,80,87]);
+            var model = M.linreg(0,1);
             /*
             {
-                "r": 0.7341461196855918,
-                "n": 10,
-                "p": 0.015619999999999967
+                "r2": 0.949355403714833,
+                "r": 0.974348707452744,
+                "F": 206.19987534428648,
+                "p": 1.802343407852902e-8,
+                "beta0": -126.2043685121107,
+                "beta1": 1.1338667820069204,
+                "n": 13,
+                "fn": function (x) { return beta0 + x * beta1}
             }
             */
+           var x190 = model.fn(190); /* 89.23032006920417 */
+
         },
         wiki: {
             title: "KwSQ",

@@ -72,7 +72,8 @@ class Schema {
         {t: "NumericMatrix", c: "[❤️]", l: "gLcr"},
         {t: "NumericVector", c: "❤️", l: "yWUM"},
         {t: "StringVector", c: "💛", l: "Hwus"},
-        {t: "BooleanVector", c: "💜", l: "boQk"}
+        {t: "BooleanVector", c: "💜", l: "boQk"},
+        {t: "function", c: "#️⃣", l: "GPHk"},
       ];
       var s = types.find(i => i.t == type) || {c: "🟤", l: "oMas"};
       //return `<span style="margin-left: 1rem; padding: 2px 4px; border-radius: 5px; background-color: ${s.c}">${$(s.l)}</span>`
@@ -706,7 +707,7 @@ const matrixResultSchemas = {
         "properties": {
             "r": {
                 "$id": "#root/r", 
-                "title": "eJTT", 
+                "title": "mgBA", 
                 "type": "number",
                 "default": 0.0
             },
@@ -723,7 +724,65 @@ const matrixResultSchemas = {
                 "default": 0.0
             }
         }
+    },
+    linreg: {
+        "definitions": {},
+        "$schema": "http://json-schema.org/draft-07/schema#", 
+        "$id": "https://example.com/object1672348356.json", 
+        "title": "KwSQ", 
+        "type": "object",
+        "properties": {
+            "r2": {
+                "$id": "#root/r2", 
+                "title": "klvS", 
+                "type": "number",
+                "default": 0.0
+            },
+            "r": {
+                "$id": "#root/r", 
+                "title": "pTvR", 
+                "type": "number",
+                "default": 0.0
+            },
+            "F": {
+                "$id": "#root/F", 
+                "title": "Jdfb", 
+                "type": "number",
+                "default": 0.0
+            },
+            "p": {
+                "$id": "#root/p", 
+                "title": "MpjZ", 
+                "type": "number",
+                "default": 0.0
+            },
+            "beta0": {
+                "$id": "#root/beta0", 
+                "title": "slkz", 
+                "type": "number",
+                "default": 0.0
+            },
+            "beta1": {
+                "$id": "#root/beta1", 
+                "title": "XfCm", 
+                "type": "number",
+                "default": 0.0
+            },
+            "n": {
+                "$id": "#root/n", 
+                "title": "bLoI", 
+                "type": "integer",
+                "default": 0
+            },
+            "fn": {
+                "$id": "#root/fn", 
+                "title": "FeBv", 
+                "type": "function",
+                "default": "🌀"
+            }
+        }
     }
+    
     
     
 }

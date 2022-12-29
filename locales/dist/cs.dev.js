@@ -624,7 +624,7 @@ module.exports = {
   "oPEt": "Způsob volání metody",
 
   /* matrix fce linreg (title) */
-  "KwSQ": "Lineární regrese",
+  "KwSQ": "lineární regrese",
 
   /* matrix fce linreg (description) */
   "celD": "Vrátí statistický protokol lineární regrese. Součástí vráceného objektu je i funkce (fn), pomocí které lze modelovat situace závislé proměnné při zadání hodnoty závislé proměnné.",
@@ -679,13 +679,30 @@ module.exports = {
 
   /* schema general output protocol label */
   "IIlO": "protokol výstupu metody",
-  "mgBC": "",
-  "VOmC": "",
-  "klvS": "",
-  "slkz": "",
-  "XfCm": "",
-  "FeBv": "",
-  "GPHk": "",
+
+  /* fce matrix - Kendall correlation coefficient (title) */
+  "mgBC": "Kendallův koreelační koeficient",
+
+  /* fce matrix - Kendall correlation coefficient (description) */
+  "VOmC": "Vrátí statistický protokol Kendallova korelačního koeficientu Tau. Podobně jako v SPSS je coby korelační koeficient (r) vrácena hodota statistiky Tau-A, nikoliv Tau-b, jak je metoda obvykle nazývána.",
+
+  /* schema - Kendall correl - r */
+  "mgBA": "Kendallův korelační koeficient Tau-a",
+
+  /* schema - linear regression - r2 */
+  "klvS": "koeficient determinace",
+
+  /* schema - linear regression - beta0 */
+  "slkz": "konstanta beta0 (nezávislá na x)",
+
+  /* schema - linear regression - beta1 */
+  "XfCm": "konstanta beta1 (závislá na x)",
+
+  /* schema - linear regression - function */
+  "FeBv": "funkční model",
+
+  /* schema - function type */
+  "GPHk": "funkce",
   "xfSf": "",
   "UcfZ": "",
   "gxOb": "",
