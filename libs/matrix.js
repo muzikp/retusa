@@ -6,6 +6,7 @@ var schemas = require("./schemas");
 const {Array, Math, String, Function} = require("./extensions");
 const dist = require("./distribution");
 var {VectorValueError, ArgumentError, Empty} = require("./errors");
+const {MatrixMarkdown, MatrixOverview} = require("./markdown");
 
 const registry = new WeakMap();
 
@@ -238,14 +239,14 @@ class MatrixMethod {
                     if(!args) return [];
                     else {
                         for(let k of Object.keys(args)) {
+                            var a = args[k];
                             _.push({
-                                name: k,
-                                title: $(args[k].wiki.title),
-                                description: $(args[k].wiki.description),
-                                required: args[k].required,
-                                default: args[k].default,
-                                validator: null,
-                                multiple: args[k].multiple
+                                name: a.name,
+                                title: $(a.wiki?.title) || null,
+                                description: $(a.wiki?.description) || null,
+                                required: a.required,
+                                default: a.default || null,
+                                validator: a.validator ? $(a.validator.text) : null
                             })
                         }
                     }
@@ -256,7 +257,7 @@ class MatrixMethod {
     }
     /* Generates a markdown documentation for the matrix method */
     markdown(level = 1) {
-        //return MatrixMarkdown(this.wiki, level);
+        return MatrixMarkdown(this, level);
     }
     
     /**
@@ -587,6 +588,7 @@ var ats = {
 const MatrixMethodsModels = [
     {   name: "correlPearson",
         fn: matrixMethods.correlPearson,
+        filter: validators.matrixNotEmpty,
         example: function(x,y) {
             var correl = new Table([1,2,3,4,5],[4,5,6,7,8]).correlPearson(0,1);
             /*
@@ -869,24 +871,6 @@ const MatrixMethodsModels = [
             validator: validators.isNumericVector
     }]
     },
-    {   name: "jonckheere",
-        fn: matrixMethods.anova_oneway,
-        argsToMatrix: true,
-        example: function(){
-        },
-        wiki: {
-            title: "baJo",
-            description: "qqQo"
-        },
-        args: [{
-                name: "matrix",
-                wiki: {title: "qFEM"},
-                required: true,
-                validator: validators.isNumericMatrix,
-                class: 2
-            }
-        ]
-    },
     {   name: "linreg",
         fn: matrixMethods.linreg,
         example: function(x,y) {
@@ -900,27 +884,27 @@ const MatrixMethodsModels = [
             */
         },
         wiki: {
-            title: "pTvR",
-            description: "wPyG"
+            title: "KwSQ",
+            description: "celD"
         },
         args: [
             {
-                name: "x",
-                wiki: {title: "qFEM"},
+                name: "independent",
+                wiki: {title: "jDlm"},
                 type: [ats.nv],
                 required: true,
                 validator: validators.isNumericVector
             },        
             {
-                name: "y",
-                wiki: {title: "tpUu"},
+                name: "dependent",
+                wiki: {title: "jFVv"},
                 type: [ats.nv],
                 required: true,
                 validator: validators.isNumericVector
             }            
         ]
     },
-].sort((a,b) => a.name < b.name);
+].sort((a,b) => a.name > b.name ? 1 : -1);
 
 MatrixMethodsModels.forEach(function(m) {
     Matrix.prototype[m.name] = function() {
@@ -928,6 +912,12 @@ MatrixMethodsModels.forEach(function(m) {
         return M.call(...arguments);
     };
 });
+
+const Models = {}
+function mapModels() {
+    MatrixMethodsModels.map(function(m){Models[m.name] = new MatrixMethod(m)});
+}
+mapModels();
 
 // #endregion
 
@@ -941,5 +931,7 @@ Array.prototype.toNumericMatrix = function() {
 
 module.exports = {
     Matrix: Matrix,
-    NumericMatrix: NumericMatrix
+    NumericMatrix: NumericMatrix,
+    MatrixOverview: function() {
+        return MatrixOverview(Models)},
 };

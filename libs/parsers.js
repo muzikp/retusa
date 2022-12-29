@@ -17,12 +17,17 @@ let f_boolean = function(v) {
     return v === true || v === false
 }
 
+let f_removeEmpty = function() {
+    return true;
+}
+
 const filters = {
     any: {fn: () => true, text: "FxzE"},
     notnull: {fn: f_notnull, text: "ndPx"},
     number: {fn: f_number, text: "GDkm"},
     string: {fn: f_string, text: "jocS"},
-    boolean: {fn: f_boolean, text: "uUYu"}
+    boolean: {fn: f_boolean, text: "uUYu"},
+    matrixNotEmpty: {fn: f_removeEmpty, text: "SExL"}
 }
 
 // #endregion

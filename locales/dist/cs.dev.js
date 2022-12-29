@@ -622,11 +622,21 @@ module.exports = {
 
   /* markdown - method calling template title */
   "oPEt": "Způsob volání metody",
-  "KwSQ": "",
-  "celD": "",
-  "jDlm": "",
-  "jFVv": "",
-  "SExL": "",
+
+  /* matrix fce linreg (title) */
+  "KwSQ": "Lineární regrese",
+
+  /* matrix fce linreg (description) */
+  "celD": "Vrátí statistický protokol lineární regrese. Součástí vráceného objektu je i funkce (fn), pomocí které lze modelovat situace závislé proměnné při zadání hodnoty závislé proměnné.",
+
+  /* matrix fce linreg (arg x) */
+  "jDlm": "nezávislá proměnná x",
+
+  /* matrix fce linreg (arg y) */
+  "jFVv": "závislá proměnná y",
+
+  /* filter metrix RemoveEmpty text */
+  "SExL": "Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahují ani jednu prázdnou hodnotu (null).",
   "gLcr": "",
   "yWUM": "",
   "DfLu": "",

@@ -12,7 +12,7 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 | [geomean](#geomean) | [geometrický průměr](#geomean) | Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovný než průměr arytmetický. | ✔️ | - | - |
 | [harmean](#harmean) | [harmonický průměr](#harmean) | Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti. | ✔️ | - | - |
 | [histogram](#histogram) | [histogram](#histogram) | Vrátí matici histogramu daného vektoru. | ✔️ | - | - |
-| [kstest](#kstest) | [Kolmogorov-Smirnovův test](#kstest) | Vrátí statistický protokol Komogorov-Smirnova testu normality rozdělení hodnot vektoru. Aktuálně nepočítá hladinu významnosti testu. | ✔️ | - | - |
+| [kstest](#kstest) | [Kolmogorov-Smirnovův test](#kstest) | Vrátí statistický protokol Komogorov-Smirnovova testu normality rozdělení hodnot vektoru. Aktuálně nepočítá hladinu významnosti testu. | ✔️ | - | - |
 | [kurtosis](#kurtosis) | [špičatost](#kurtosis) | Vrátí hodnotu excesu množiny dat. | ✔️ | - | - |
 | [max](#max) | [maximální hodnota](#max) | Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení. | ✔️ | ✔️ | ✔️ |
 | [mci](#mci) | [interval spolehlivosti průměru](#mci) | Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normální rozdělení. | ✔️ | - | - |
@@ -37,7 +37,7 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 
 Vrátí arytmetický průměr z neprázdných hodnot. [Zjistit více.](https://en.wikipedia.org/wiki/Arithmetic_mean)
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**avg**()
@@ -71,7 +71,7 @@ var avgCashFlow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /*
 
 Vrátí počet všech polí ve vektoru (včetně prázdných).
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**count**()
@@ -107,7 +107,7 @@ var total_boolean = new BooleanVector(true, true, false, null, false, true).coun
 
 Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností. [Zjistit více.](https://en.wikipedia.org/wiki/Frequency_(statistics))
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**frequency**(*způsob řazení dat tabulky*)
@@ -182,7 +182,7 @@ var boolean_vector_desc_frequency = new BooleanVector(true, false, null, true, n
 
 Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovný než průměr arytmetický. [Zjistit více.](https://en.wikipedia.org/wiki/Geometric_mean)
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**geomean**()
@@ -216,7 +216,7 @@ var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29
 
 Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti. [Zjistit více.](https://en.wikipedia.org/wiki/Harmonic_mean)
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**harmean**()
@@ -250,7 +250,7 @@ var x = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,
 
 Vrátí matici histogramu daného vektoru. [Zjistit více.](https://en.wikipedia.org/wiki/Histogram)
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**histogram**(*Maximální počet intervalů*, *Pevná velikost intervalu*)
@@ -331,9 +331,9 @@ var h3 = score.histogram(null, 2)
 
 ### [KOLMOGOROV-SMIRNOVŮV TEST](#kstest): kstest
 
-Vrátí statistický protokol Komogorov-Smirnova testu normality rozdělení hodnot vektoru. Aktuálně nepočítá hladinu významnosti testu. [Zjistit více.](https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test#One-sample_Kolmogorov%E2%80%93Smirnov_statistic)
+Vrátí statistický protokol Komogorov-Smirnovova testu normality rozdělení hodnot vektoru. Aktuálně nepočítá hladinu významnosti testu. [Zjistit více.](https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test#One-sample_Kolmogorov%E2%80%93Smirnov_statistic)
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**kstest**()
@@ -354,7 +354,7 @@ Pouze číselné hodnoty (včetně nul).
 #### Schéma výsledku
 
 - *Kolmogorov-Smirnovův test* `🟦 objekt`
-  - **T**: *hodnota Kolmogorov-Smirnova testu* `🔴 číslo`
+  - **T**: *hodnota Kolmogorov-Smirnovova testu* `🔴 číslo`
   - **df**: *počet stupňů volnosti* `🟠 celé číslo`
   - **p**: *hladina významnosti* `🔴 číslo`
 
@@ -377,7 +377,7 @@ var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).kst
 
 Vrátí hodnotu excesu množiny dat. [Zjistit více.](https://en.wikipedia.org/wiki/Kurtosis)
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**kurtosis**()
@@ -411,7 +411,7 @@ var kurtosis = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24
 
 Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení.
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**max**()
@@ -450,7 +450,7 @@ var string_max = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normální rozdělení. [Zjistit více.](https://en.wikipedia.org/wiki/Confidence_interval)
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**mci**(*hladina významnosti*)
@@ -504,7 +504,7 @@ var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).mc
 
 Vrátí střední hodnotu z neprázdných hodnot. [Zjistit více.](https://en.wikipedia.org/wiki/Median)
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**median**()
@@ -538,7 +538,7 @@ var median = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,2
 
 Vrátí nejmenší hodnotu z neprázdných hodnot. V případě textu vrátí první hodnotu z abecedního řazení.
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**min**()
@@ -577,7 +577,7 @@ var string_min = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu). [Zjistit více.](https://en.wikipedia.org/wiki/Mode_(statistics))
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**mode**()
@@ -613,7 +613,7 @@ var z = new BooleanVector(true, false, true).mode(); /* = true */
 
 Vrátí statistický protokol odhadu intervalu spolehlivosti podílu výběrového souboru při určité hladině významnosti. [Zjistit více.](https://en.wikipedia.org/wiki/Confidence_interval)
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**pci**(***hledaná hodnota***, *hladina významnosti*)
@@ -672,7 +672,7 @@ var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).pc
 
 Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru. [Zjistit více.](https://en.wikipedia.org/wiki/Percentile)
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**percentile**(***hodnota percentilu***)
@@ -715,7 +715,7 @@ var max = score.percentile(1); /* = 25 */
 
 Vrátí rozdíl největší a nejmenší neprázdné hodnoty. [Zjistit více.](https://en.wikipedia.org/wiki/Range_(statistics))
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**range**()
@@ -749,7 +749,7 @@ var range = new NumericVector(5,2,-15,-16.3,12,null, null, 12,13,7).range(); /* 
 
 Vrátí hodnotu směrodatné chyby odhadu průměru. [Zjistit více.](https://en.wikipedia.org/wiki/Standard_error#Standard_error_of_the_sample_mean)
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**sem**()
@@ -783,7 +783,7 @@ var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,2
 
 Vrátí statistický protokol Shapiro-Wilkova W testu normality rozdělení hodnot vektoru. [Zjistit více.](https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test)
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**shapirowilk**()
@@ -827,7 +827,7 @@ var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).sha
 
 Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru. [Zjistit více.](https://en.wikipedia.org/wiki/Skewness)
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**skewness**(*výběrový soubor*)
@@ -868,7 +868,7 @@ var skewness_sample = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,2
 
 Vrátí směrodatnou odchylku neprázdných hodnot. [Zjistit více.](https://en.wikipedia.org/wiki/Standard_deviation)
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**stdev**(*výběrový soubor*)
@@ -909,7 +909,7 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).stdev(true); /* = 
 
 Vrátí součet všech neprázdných číselných hodnot vektoru. [Zjistit více.](https://en.wikipedia.org/wiki/Addition)
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**sum**()
@@ -943,7 +943,7 @@ var cashflow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 
 
 Vrátí statistický protokol pro jednovýběrový t-test při zadání populačního průměru.
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**ttest**(***populační průměr***)
@@ -993,7 +993,7 @@ var T = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1)
 
 Vrátí hodnotu variačního koeficientu neprázdných hodnot. [Zjistit více.](https://en.wikipedia.org/wiki/Coefficient_of_variation)
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**varc**(*výběrový soubor*)
@@ -1034,7 +1034,7 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc(true); /* = 0
 
 Vrátí hodnotu rozptylu tohoto vektoru. [Zjistit více.](https://en.wikipedia.org/wiki/Variance)
 
-#### Konstruktor
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**variance**(*výběrový soubor*)

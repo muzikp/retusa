@@ -47,6 +47,7 @@ module.exports = {
      */
     publish: function publish(fs) {
       fs.writeFileSync("./docs/cs/vector.md", Vector.VectorOverview());
+      fs.writeFileSync("./docs/cs/matrix.md", Matrix.MatrixOverview());
     }
   }
 };
