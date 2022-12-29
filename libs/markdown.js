@@ -30,7 +30,7 @@ function VectorMarkdown(method, level = 1) {
     if(wiki.applies?.length > 0) {
         _ += `\n\n${hash(level+1)} ${$("NizL")}\n\n${objArrayToTable([$("AfXp"), $("picU")], wiki.applies.map(v => [v.title, v.apply ? e_yes : e_no]), [0,1])}`;
     }
-    _ += `\n\n${hash(level+1)} ${$("Schéma výsledku")}\n` + new Schema(wiki.returns).markdown();
+    _ += `\n\n${hash(level+1)} ${$("KxQM")}\n` + new Schema(wiki.returns).markdown();
     if(wiki.example) {
         _ += `\n\n${hash(level+1)} ${$("nzmJ")}\n\n\`\`\`js\n${wiki.example}\n\`\`\``;
     }
@@ -56,7 +56,8 @@ function MatrixMarkdown(method, level = 1) {
         });
         _ += `\n\n${hash(level+1)} ${$("FRpk")}\n\n${objArrayToTable(headers, values, [1,1,0,1,1,1])}`;
     }
-    if(method.example) _ += `\n\n${hash(level+1)} ${$("nzmJ")}\n\n\`\`\`js\n${method.example}\n\`\`\``;
+    if(method.model.returns) _ += `\n\n${hash(level+1)} ${$("KxQM")}\n` + new Schema(method.model.returns).markdown();
+    if(method.model.example) _ += `\n\n${hash(level+1)} ${$("nzmJ")}\n\n\`\`\`js\n${method.wiki.example}\n\`\`\``;
     console.log(_);
     return _;
 }

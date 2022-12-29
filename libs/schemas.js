@@ -15,7 +15,7 @@ class Schema {
             this.append(this.schema);
             return this.to;
         } catch(e) {
-            //console.warn(e);
+            console.warn(e);
             return "";
         }
       
@@ -537,7 +537,113 @@ const vectorResultSchemas = {
 }
 
 const matrixResultSchemas = {
-    correlPearson: {}
+    anovaow: {
+        "definitions": {},
+        "$schema": "http://json-schema.org/draft-07/schema#", 
+        "$id": "https://example.com/object1672343763.json", 
+        "title": "baJo", 
+        "type": "object",
+        "properties": {
+            "F": {
+                "$id": "#root/F", 
+                "title": "Jdfb", 
+                "type": "number",
+                "default": 0.0
+            },
+            "P2": {
+                "$id": "#root/P2", 
+                "title": "HksP", 
+                "type": "number",
+                "default": 0.0
+            },
+            "p": {
+                "$id": "#root/p", 
+                "title": "MpjZ", 
+                "type": "number",
+                "default": 0.0
+            },
+            "n": {
+                "$id": "#root/N", 
+                "title": "bLoI", 
+                "type": "integer",
+                "default": 0
+            },
+            "ANOVA": {
+                "$id": "#root/ANOVA", 
+                "title": "qCgT", 
+                "type": "object",
+                "properties": {
+                    "totalOfGroups": {
+                        "$id": "#root/ANOVA/totalOfGroups", 
+                        "title": "cXCr", 
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "betweenGroups": {
+                        "$id": "#root/ANOVA/betweenGroups", 
+                        "title": "thNv", 
+                        "type": "object",
+                        "properties": {
+                            "sumOfSquares": {
+                                "$id": "#root/ANOVA/betweenGroups/sumOfSquares", 
+                                "title": "SqTd", 
+                                "type": "number",
+                                "default": 0.0
+                            },
+                            "df": {
+                                "$id": "#root/ANOVA/betweenGroups/df", 
+                                "title": "OYQu", 
+                                "type": "integer",
+                                "default": 0
+                            }
+                        }
+                    },
+                    "withinGroups": {
+                        "$id": "#root/ANOVA/withinGroups", 
+                        "title": "GiRP", 
+                        "type": "object",
+                        "properties": {
+                            "sumOfsquares": {
+                                "$id": "#root/ANOVA/withinGroups/sumOfsquares", 
+                                "title": "SqTd", 
+                                "type": "number",
+                                "default": 0.0
+                            },
+                            "df": {
+                                "$id": "#root/ANOVA/withinGroups/df", 
+                                "title": "OYQu", 
+                                "type": "integer",
+                                "default": 0
+                            }
+                        }
+                    }
+    ,
+                    "total": {
+                        "$id": "#root/ANOVA/total", 
+                        "title": "Total", 
+                        "type": "object",
+                        "properties": {
+                            "sumOfSquares": {
+                                "$id": "#root/ANOVA/total/sumOfSquares", 
+                                "title": "Sumofsquares", 
+                                "type": "number",
+                                "default": 0.0
+                            },
+                            "df": {
+                                "$id": "#root/ANOVA/total/df", 
+                                "title": "Df", 
+                                "type": "integer",
+                                "default": 0
+                            }
+                        }
+                    }
+    
+                }
+            }
+    
+        }
+    }
+    
 }
 
 const argumentSchemas = {

@@ -495,7 +495,7 @@ module.exports = {
   "baJo": "ANOVA",
 
   /* Matrix fce One-way ANOVA (description) */
-  "qqQo": "Vrátí statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Vstupem analýzy je matice s již předvybranými numerickými vektory.",
+  "qqQo": "Vrátí statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Vstupem analýzy je matice s již předvybranými numerickými vektory, to znamená, že vstupní proměnné (vektory) není nutné specifikovat.",
 
   /* validators text - isNumericMatrix */
   "OrZc": "Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu.",
@@ -519,7 +519,7 @@ module.exports = {
   "oMas": "cokoliv",
 
   /* MD docs header - result schema */
-  "KxQM": "Schéma výsledku",
+  "KxQM": "Struktura vrácené hodnoty",
 
   /* schema t-test - T value */
   "GmAh": "testovací hodnota",
@@ -652,14 +652,30 @@ module.exports = {
 
   /* schema - string vector */
   "Hwus": "textový vektor",
-  "iJaa": "",
-  "Jdfb": "",
-  "HksP": "",
-  "qCgT": "",
-  "cXCr": "",
-  "thNv": "",
-  "SqTd": "",
-  "GiRP": "",
+
+  /* fce matrix - anovaow - argument vectors */
+  "iJaa": "identifikátor(y) vektorů",
+
+  /* schema ANOVA one-way - F */
+  "Jdfb": "F test",
+
+  /* schema ANOVA one-way - P2 */
+  "HksP": "koeficient závislosti",
+
+  /* schema ANOVA one-way - ANOVA obj. */
+  "qCgT": "statistiky ANOVA",
+
+  /* schema ANOVA one-way - Totalofgroups */
+  "cXCr": "celkem skupin",
+
+  /* schema ANOVA one-way - betweenGroups */
+  "thNv": "meziskuponové efekty",
+
+  /* schema ANOVA one-way - sumOfSquares */
+  "SqTd": "suma čtverců",
+
+  /* schema ANOVA one-way - withinGroups */
+  "GiRP": "vnitroskupinové efekty",
   "IIlO": "",
   "mgBC": "",
   "VOmC": "",

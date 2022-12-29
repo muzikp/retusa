@@ -10,11 +10,11 @@ Bablablablabla.
 
 ### [ANOVA](#anovaow): anovaow
 
-Vrátí statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Vstupem analýzy je matice s již předvybranými numerickými vektory.
+Vrátí statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Vstupem analýzy je matice s již předvybranými numerickými vektory, to znamená, že vstupní proměnné (vektory) není nutné specifikovat.
 
 #### Způsob volání metody
 
-> [Matrix instance].**anovaow**(***první proměnná***)
+> [Matrix instance].**anovaow**(*identifikátor(y) vektorů*)
 
 
 #### Automatický filtr hodnot
@@ -25,7 +25,60 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | první proměnná | [❤️💛💜] matice | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
+| **vectors** | identifikátor(y) vektorů | [❤️💛💜] matice | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | - |  |
+
+#### Struktura vrácené hodnoty
+
+- *ANOVA* `🟦 objekt`
+  - **F**: *F test* `🔴 číslo`
+  - **P2**: *koeficient závislosti* `🔴 číslo`
+  - **p**: *hladina významnosti* `🔴 číslo`
+  - **n**: *počet případů* `🟠 celé číslo`
+  - **ANOVA**: *statistiky ANOVA* `🟦 objekt`
+    - **totalOfGroups**: *celkem skupin* `🟠 celé číslo`
+    - **betweenGroups**: *meziskuponové efekty* `🟦 objekt`
+      - **sumOfSquares**: *suma čtverců* `🔴 číslo`
+      - **df**: *počet stupňů volnosti* `🟠 celé číslo`
+    - **withinGroups**: *vnitroskupinové efekty* `🟦 objekt`
+      - **sumOfsquares**: *suma čtverců* `🔴 číslo`
+      - **df**: *počet stupňů volnosti* `🟠 celé číslo`
+    - **total**: *Total* `🟦 objekt`
+      - **sumOfSquares**: *Sumofsquares* `🔴 číslo`
+      - **df**: *Df* `🟠 celé číslo`
+
+#### Příklad
+
+```js
+var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow(0,1,2);
+/* OR */
+var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow();
+debugger;
+/* OR */
+var M = new Matrix([2,3,2,4,5,9,8,7,9,10,1,7,19,32,90],[1,1,1,1,1,2,2,2,2,2,3,3,3,3,3]).pivot(0,1).anovaow();
+/*
+{
+"F": 2.3227069789300536,
+"P2": 0.2790807107363349,
+"p": 0.1403847313472082,
+"N": 15,
+"ANOVA": {
+"totalOfGroups": 3,
+"betweenGroups": {
+"sumOfSquares": 1976.9333333333336,
+"df": 2
+},
+"withinGroups": {
+"sumOfsquares": 5106.800000000001,
+"df": 12
+},
+"total": {
+"sumOfSquares": 7083.7333333333345,
+"df": 14
+}
+}
+}
+*/
+```
 
 ---
 
@@ -116,6 +169,23 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 | **x** | první proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 | **y** | druhá proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
+#### Struktura vrácené hodnoty
+
+- ** `🟤 cokoliv`
+
+#### Příklad
+
+```js
+var correl = new Table([1,2,3,4,5],[4,5,6,7,8]).correlPearson(0,1);
+/*
+{
+"r": 0.7341461196855918,
+"n": 10,
+"p": 0.015619999999999967
+}
+*/
+```
+
 ---
 
 ### [SPEARMANŮV KORELAČNÍ KOEFICIENT](#correlPhi): correlPhi
@@ -182,6 +252,19 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 | **independent** | nezávislá proměnná x | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 | **dependent** | závislá proměnná y | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
+#### Příklad
+
+```js
+var r = new Table([1,2,3,4,5],[4,5,6,7,8]).linreg(0,1);
+/*
+{
+"r": 0.7341461196855918,
+"n": 10,
+"p": 0.015619999999999967
+}
+*/
+```
+
 ---
 
 ### [MANN-WHITNEY](#mannwhitney): mannwhitney
@@ -203,6 +286,12 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | první proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 | **y** | druhá proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+
+#### Příklad
+
+```js
+var M = new Matrix([1,2,3,4,5,6,7,8,9,10],[1,3,5,7,9,11,13,15,17,19]).mannwhitney();
+```
 
 ---
 
@@ -226,6 +315,12 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 | **x** | první proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 | **y** | druhá proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
+#### Příklad
+
+```js
+var M = new Matrix([],[]).ttestind(0,1);
+```
+
 ---
 
 ### [T-TEST (PÁROVÝ)](#ttestpair): ttestpair
@@ -247,3 +342,18 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | první proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 | **y** | druhá proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+
+#### Příklad
+
+```js
+var test = new Matrix([2,3,2,4,5], [9,8,7,9,10]).ttestpair(0,1);
+/*
+{
+"t": -13.500000000000025,
+"p": 0,
+"n": 5,
+"mx": 3.2,
+"my": 8.6
+}
+*/
+```

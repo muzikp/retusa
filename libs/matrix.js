@@ -836,7 +836,7 @@ const MatrixMethodsModels = [
         fn: matrixMethods.anova_oneway,
         argsToMatrix: true,
         filter: filters.matrixNotEmpty,
-        filter: filters.matrixNotEmpty,
+        returns: schemas.matrixResultSchemas.anovaow,
         example: function(){
             var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow(0,1,2);
             /* OR */
@@ -874,9 +874,9 @@ const MatrixMethodsModels = [
             description: "qqQo"
         },
         args: [{
-                name: "x",
-                wiki: {title: "qFEM"},
-                required: true,
+                name: "vectors",
+                wiki: {title: "iJaa"},
+                required: false,
                 validator: validators.isNumericMatrix,
                 schema: schemas.argumentSchemas.numericMatrix,
                 class: 2
