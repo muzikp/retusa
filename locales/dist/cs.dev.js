@@ -251,7 +251,7 @@ module.exports = {
   "eJTT": "Spearmanův korelační koeficient",
 
   /* table Spearman correlation fce (description) */
-  "jAGi": "Vrátí statistický protokol Spearmanova korelačního koeficientu.",
+  "jAGi": "Vrátí statistický protokol Spearmanova koeficientu pořadové korelace.",
   "JoAY": "",
 
   /* vector histogram fce (title) */
@@ -676,7 +676,9 @@ module.exports = {
 
   /* schema ANOVA one-way - withinGroups */
   "GiRP": "vnitroskupinové efekty",
-  "IIlO": "",
+
+  /* schema general output protocol label */
+  "IIlO": "protokol výstupu metody",
   "mgBC": "",
   "VOmC": "",
   "klvS": "",

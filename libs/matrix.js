@@ -488,7 +488,7 @@ const matrixMethods = {
             F: F,
             P2: P2,
             p: p,
-            N: ns.sum(),
+            n: ns.sum(),
             ANOVA: {
                 totalOfGroups: arrays.length,
                 betweenGroups: {
@@ -591,12 +591,14 @@ const MatrixMethodsModels = [
         fn: matrixMethods.correlPearson,
         filter: filters.matrixNotEmpty,
         example: function(x,y) {
-            var correl = new Table([1,2,3,4,5],[4,5,6,7,8]).correlPearson(0,1);
+            var a = new NumericVector([3, 7, 5, 10, 9, 8, 4, 1, 6, 2]);
+            var b = new NumericVector([4, 9, 2, 10, 8, 7, 6, 3, 5, 1]);
+            var correl = new Matrix(a,b).correlPearson(a,b);
             /*
             {
-                "r": 0.7341461196855918,
+                "r": 0.8424242424242424,
                 "n": 10,
-                "p": 0.015619999999999967
+                "p": 0.0022200000000001108
             }
             */
         },
@@ -604,7 +606,7 @@ const MatrixMethodsModels = [
             title: "pTvR",
             description: "wPyG"
         },
-        returns: "correlPearson",
+        returns: schemas.matrixResultSchemas.correlPearson,
         args: [
             {
                 name: "x",
@@ -627,7 +629,19 @@ const MatrixMethodsModels = [
     {   name: "correlSpearman",
         fn: matrixMethods.correlSpearman,
         filter: filters.matrixNotEmpty,
-        example: null,
+        returns: schemas.matrixResultSchemas.correlSpearman,
+        example: function() {
+            var a = new NumericVector([3, 7, 5, 10, 9, 8, 4, 1, 6, 1]);
+            var b = new NumericVector([4, 9, 2, 10, 8, 7, 6, 3, 5, 1]);
+            var M = new Matrix(a,b).correlSpearman(a,b);
+            /*
+            {
+                "r": 0.8575757575757575,
+                "n": 10,
+                "p": 0.0015199999999999658
+            }
+            */
+        },
         wiki: {
             title: "eJTT",
             description: "jAGi"
@@ -841,7 +855,6 @@ const MatrixMethodsModels = [
             var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow(0,1,2);
             /* OR */
             var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow();
-            debugger;
             /* OR */
             var M = new Matrix([2,3,2,4,5,9,8,7,9,10,1,7,19,32,90],[1,1,1,1,1,2,2,2,2,2,3,3,3,3,3]).pivot(0,1).anovaow();
             /*
@@ -849,7 +862,7 @@ const MatrixMethodsModels = [
                 "F": 2.3227069789300536,
                 "P2": 0.2790807107363349,
                 "p": 0.1403847313472082,
-                "N": 15,
+                "n": 15,
                 "ANOVA": {
                     "totalOfGroups": 3,
                     "betweenGroups": {

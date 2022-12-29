@@ -52,7 +52,6 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow(0,1,2);
 /* OR */
 var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow();
-debugger;
 /* OR */
 var M = new Matrix([2,3,2,4,5,9,8,7,9,10,1,7,19,32,90],[1,1,1,1,1,2,2,2,2,2,3,3,3,3,3]).pivot(0,1).anovaow();
 /*
@@ -60,7 +59,7 @@ var M = new Matrix([2,3,2,4,5,9,8,7,9,10,1,7,19,32,90],[1,1,1,1,1,2,2,2,2,2,3,3,
 "F": 2.3227069789300536,
 "P2": 0.2790807107363349,
 "p": 0.1403847313472082,
-"N": 15,
+"n": 15,
 "ANOVA": {
 "totalOfGroups": 3,
 "betweenGroups": {
@@ -84,7 +83,7 @@ var M = new Matrix([2,3,2,4,5,9,8,7,9,10,1,7,19,32,90],[1,1,1,1,1,2,2,2,2,2,3,3,
 
 ### [SPEARMANŮV KORELAČNÍ KOEFICIENT](#correlBiserial): correlBiserial
 
-Vrátí statistický protokol Spearmanova korelačního koeficientu.
+Vrátí statistický protokol Spearmanova koeficientu pořadové korelace.
 
 #### Způsob volání metody
 
@@ -106,7 +105,7 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 
 ### [SPEARMANŮV KORELAČNÍ KOEFICIENT](#correlKendall): correlKendall
 
-Vrátí statistický protokol Spearmanova korelačního koeficientu.
+Vrátí statistický protokol Spearmanova koeficientu pořadové korelace.
 
 #### Způsob volání metody
 
@@ -171,17 +170,22 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 
 #### Struktura vrácené hodnoty
 
-- ** `🟤 cokoliv`
+- *protokol výstupu metody* `🟦 objekt`
+  - **r**: *Pearsonův korelační koeficient* `🔴 číslo`
+  - **n**: *počet případů* `🟠 celé číslo`
+  - **p**: *hladina významnosti* `🔴 číslo`
 
 #### Příklad
 
 ```js
-var correl = new Table([1,2,3,4,5],[4,5,6,7,8]).correlPearson(0,1);
+var a = new NumericVector([3, 7, 5, 10, 9, 8, 4, 1, 6, 2]);
+var b = new NumericVector([4, 9, 2, 10, 8, 7, 6, 3, 5, 1]);
+var correl = new Matrix(a,b).correlPearson(a,b);
 /*
 {
-"r": 0.7341461196855918,
+"r": 0.8424242424242424,
 "n": 10,
-"p": 0.015619999999999967
+"p": 0.0022200000000001108
 }
 */
 ```
@@ -190,7 +194,7 @@ var correl = new Table([1,2,3,4,5],[4,5,6,7,8]).correlPearson(0,1);
 
 ### [SPEARMANŮV KORELAČNÍ KOEFICIENT](#correlPhi): correlPhi
 
-Vrátí statistický protokol Spearmanova korelačního koeficientu.
+Vrátí statistický protokol Spearmanova koeficientu pořadové korelace.
 
 #### Způsob volání metody
 
@@ -212,7 +216,7 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 
 ### [SPEARMANŮV KORELAČNÍ KOEFICIENT](#correlSpearman): correlSpearman
 
-Vrátí statistický protokol Spearmanova korelačního koeficientu.
+Vrátí statistický protokol Spearmanova koeficientu pořadové korelace.
 
 #### Způsob volání metody
 
@@ -229,6 +233,28 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | první proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 | **y** | druhá proměnná | ❤️ numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+
+#### Struktura vrácené hodnoty
+
+- *protokol výstupu metody* `🟦 objekt`
+  - **r**: *Spearmanův korelační koeficient* `🔴 číslo`
+  - **n**: *počet případů* `🟠 celé číslo`
+  - **p**: *hladina významnosti* `🔴 číslo`
+
+#### Příklad
+
+```js
+var a = new NumericVector([3, 7, 5, 10, 9, 8, 4, 1, 6, 1]);
+var b = new NumericVector([4, 9, 2, 10, 8, 7, 6, 3, 5, 1]);
+var M = new Matrix(a,b).correlSpearman(a,b);
+/*
+{
+"r": 0.8575757575757575,
+"n": 10,
+"p": 0.0015199999999999658
+}
+*/
+```
 
 ---
 

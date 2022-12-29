@@ -1,7 +1,14 @@
+const console = require("console");
 const { NumericVector } = require("./index");
 var framework = require("./index");
 
 with (framework) {
+    framework.docs.publish(require("fs"));
+    var a = new NumericVector([3, 7, 5, 10, 9, 8, 4, 1, 6, 1]);
+    var b = new NumericVector([4, 9, 2, 10, 8, 7, 6, 3, 5, 1]);
+    var M = new Matrix(a,b).correlSpearman(a,b);
+    console.log(JSON.stringify(M, null, "\t"));
+    return;
     framework.docs.publish(require("fs"));
     return;
     var M = new Matrix([160,160,162,163,161,170,172,177,179,178,182,184,183],[57,55,59,60,52,67,69,74,75,76,78,80,87]);
