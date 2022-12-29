@@ -63,16 +63,16 @@ class Schema {
       var types = [
         {t: "string", c: "🟡", l: "RFGF"},
         {t: "number", c: "🔴", l: "pelN"},
-        {t: "integer", c: "🟠", l: "llQx"},
+        {t: "integer", c: "c", l: "llQx"},
         {t: "boolean", c: "🟣", l: "XPGc"},
         {t: "object", c: "🟦", l: "kLhB"},
         {t: "array", c: "🟩", l: "qdkt"},
         {t: "any", c: "🟤", l: "oMas"},
-        {t: "Matrix", c: "[❤️💛💜]", l: "DfLu"},
-        {t: "NumericMatrix", c: "[❤️]", l: "gLcr"},
-        {t: "NumericVector", c: "❤️", l: "yWUM"},
-        {t: "StringVector", c: "💛", l: "Hwus"},
-        {t: "BooleanVector", c: "💜", l: "boQk"},
+        {t: "Matrix", c: "🔢", l: "DfLu"},
+        {t: "NumericMatrix", c: "🔢", l: "gLcr"},
+        {t: "NumericVector", c: "[🔴]", l: "yWUM"},
+        {t: "StringVector", c: "[🟡]", l: "Hwus"},
+        {t: "BooleanVector", c: "[🟣]", l: "boQk"},
         {t: "function", c: "#️⃣", l: "GPHk"},
       ];
       var s = types.find(i => i.t == type) || {c: "🟤", l: "oMas"};
