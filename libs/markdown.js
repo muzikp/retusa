@@ -41,9 +41,22 @@ function MatrixMarkdown(method, level = 1) {
     var wiki = method.wiki;
     var _ = `${hash(level)} [${method.wiki.title.toUpperCase()}](#${method.name}): ${$(method.name)}${method.wiki.description ? "\n\n" + method.wiki.description + (method.url ? " " + "[" + $("WLsu") + "](" + method.url + ")" : "") : ""}`;
     _ += `\n\n${hash(level + 1)} ${$("oPEt")}\n${createMatrixMethodConstructor(method)}`;
-    debugger;
     if(method.wiki?.filter) _ += `\n\n${hash(level+1)} ${$("VVSN")}\n\n${method.wiki.filter}`;
-    
+    if(method.wiki?.arguments?.length > 0) {
+        var headers = [$("QUJS"), $("jBGO"), $("dmmV"), $("tGqA"), $("VPYX"), $("pDgb")];
+        var values = method.wiki.arguments.map(function(a){
+            return [
+                `**${a.name}**`,
+                a.title,
+                new ArgumentSchema(a.schema).markdown(),
+                a.validator,
+                a.required ? e_yes : e_no,
+                a.default || a.default === 0 || a.default === false ? a.default : "",
+            ]
+        });
+        _ += `\n\n${hash(level+1)} ${$("FRpk")}\n\n${objArrayToTable(headers, values, [1,1,0,1,1,1])}`;
+    }
+    if(method.example) _ += `\n\n${hash(level+1)} ${$("nzmJ")}\n\n\`\`\`js\n${method.example}\n\`\`\``;
     console.log(_);
     return _;
 }

@@ -17,6 +17,16 @@ Vrátí statistický protokol analýzy rozptylu jednoduchého třídění (One-w
 > [Matrix instance].**anovaow**(***první proměnná***)
 
 
+#### Automatický filtr hodnot
+
+Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahují ani jednu prázdnou hodnotu (null).
+
+#### Argumenty
+
+| argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
+| **x** | první proměnná |  | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
+
 ---
 
 ### [SPEARMANŮV KORELAČNÍ KOEFICIENT](#correlBiserial): correlBiserial
@@ -27,6 +37,17 @@ Vrátí statistický protokol Spearmanova korelačního koeficientu.
 
 > [Matrix instance].**correlBiserial**()***první proměnná***, ***druhá proměnná***)
 
+
+#### Automatický filtr hodnot
+
+Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahují ani jednu prázdnou hodnotu (null).
+
+#### Argumenty
+
+| argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
+| **undefined** | první proměnná |  | null | ✔️ |  |
+| **undefined** | druhá proměnná |  | null | ✔️ |  |
 
 ---
 
@@ -39,6 +60,17 @@ Vrátí statistický protokol Spearmanova korelačního koeficientu.
 > [Matrix instance].**correlKendall**(***první proměnná***, ***druhá proměnná***)
 
 
+#### Automatický filtr hodnot
+
+Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahují ani jednu prázdnou hodnotu (null).
+
+#### Argumenty
+
+| argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
+| **x** | první proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+
 ---
 
 ### [PARCIÁLNÍ KORELACE](#correlPartial): correlPartial
@@ -49,6 +81,18 @@ Vrátí statistický protokol parciálního korelačního koeficientu.
 
 > [Matrix instance].**correlPartial**()***první proměnná***, ***druhá proměnná***, ***třetí proměnná***)
 
+
+#### Automatický filtr hodnot
+
+Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahují ani jednu prázdnou hodnotu (null).
+
+#### Argumenty
+
+| argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
+| **undefined** | první proměnná |  | null | ✔️ |  |
+| **undefined** | druhá proměnná |  | null | ✔️ |  |
+| **undefined** | třetí proměnná |  | null | ✔️ |  |
 
 ---
 
@@ -61,6 +105,17 @@ Vrátí statistický protokol Pearsonova korelačního koeficientu.
 > [Matrix instance].**correlPearson**(***první proměnná***, ***druhá proměnná***)
 
 
+#### Automatický filtr hodnot
+
+Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahují ani jednu prázdnou hodnotu (null).
+
+#### Argumenty
+
+| argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
+| **x** | první proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+
 ---
 
 ### [SPEARMANŮV KORELAČNÍ KOEFICIENT](#correlPhi): correlPhi
@@ -71,6 +126,17 @@ Vrátí statistický protokol Spearmanova korelačního koeficientu.
 
 > [Matrix instance].**correlPhi**()***první proměnná***, ***druhá proměnná***)
 
+
+#### Automatický filtr hodnot
+
+Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahují ani jednu prázdnou hodnotu (null).
+
+#### Argumenty
+
+| argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
+| **undefined** | první proměnná |  | null | ✔️ |  |
+| **undefined** | druhá proměnná |  | null | ✔️ |  |
 
 ---
 
@@ -83,6 +149,17 @@ Vrátí statistický protokol Spearmanova korelačního koeficientu.
 > [Matrix instance].**correlSpearman**(***první proměnná***, ***druhá proměnná***)
 
 
+#### Automatický filtr hodnot
+
+Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahují ani jednu prázdnou hodnotu (null).
+
+#### Argumenty
+
+| argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
+| **x** | první proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+
 ---
 
 ### [LINEÁRNÍ REGRESE](#linreg): linreg
@@ -93,6 +170,17 @@ Vrátí statistický protokol lineární regrese. Součástí vráceného objekt
 
 > [Matrix instance].**linreg**(***nezávislá proměnná x***, ***závislá proměnná y***)
 
+
+#### Automatický filtr hodnot
+
+Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahují ani jednu prázdnou hodnotu (null).
+
+#### Argumenty
+
+| argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
+| **independent** | nezávislá proměnná x |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **dependent** | závislá proměnná y |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
 ---
 
@@ -105,6 +193,17 @@ Vrátí statistický protokol Mann-Whitneyho U testu.
 > [Matrix instance].**mannwhitney**(***první proměnná***, ***druhá proměnná***)
 
 
+#### Automatický filtr hodnot
+
+Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahují ani jednu prázdnou hodnotu (null).
+
+#### Argumenty
+
+| argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
+| **x** | první proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+
 ---
 
 ### [T-TEST (NEZÁVISLÝ)](#ttestind): ttestind
@@ -116,6 +215,17 @@ Vrátí statistický protokol Studentova t-testu pro dva nezávislé výběry, k
 > [Matrix instance].**ttestind**(***první proměnná***, ***druhá proměnná***)
 
 
+#### Automatický filtr hodnot
+
+Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahují ani jednu prázdnou hodnotu (null).
+
+#### Argumenty
+
+| argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
+| **x** | první proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+
 ---
 
 ### [T-TEST (PÁROVÝ)](#ttestpair): ttestpair
@@ -125,3 +235,15 @@ Vrátí statistický protokol párového t-testu pro dva závislé výběry.
 #### Způsob volání metody
 
 > [Matrix instance].**ttestpair**(***první proměnná***, ***druhá proměnná***)
+
+
+#### Automatický filtr hodnot
+
+Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahují ani jednu prázdnou hodnotu (null).
+
+#### Argumenty
+
+| argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
+| **x** | první proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná |  | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |

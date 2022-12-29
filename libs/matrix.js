@@ -588,7 +588,7 @@ var ats = {
 const MatrixMethodsModels = [
     {   name: "correlPearson",
         fn: matrixMethods.correlPearson,
-        filter: validators.matrixNotEmpty,
+        filter: filters.matrixNotEmpty,
         example: function(x,y) {
             var correl = new Table([1,2,3,4,5],[4,5,6,7,8]).correlPearson(0,1);
             /*
@@ -623,6 +623,7 @@ const MatrixMethodsModels = [
     },
     {   name: "correlSpearman",
         fn: matrixMethods.correlSpearman,
+        filter: filters.matrixNotEmpty,
         example: null,
         wiki: {
             title: "eJTT",
@@ -647,6 +648,7 @@ const MatrixMethodsModels = [
     },
     {   name: "correlKendall",
         fn: matrixMethods.correlKendall,
+        filter: filters.matrixNotEmpty,
         example: null,
         wiki: {
             title: "eJTT",
@@ -672,6 +674,7 @@ const MatrixMethodsModels = [
     {   name: "correlPartial",
         fn: matrixMethods.correlPartial,
         example: null,
+        filter: filters.matrixNotEmpty,
         wiki: {
             title: "sjoW",
             description: "hHaW"
@@ -700,6 +703,7 @@ const MatrixMethodsModels = [
     {   name: "correlBiserial",
         fn: matrixMethods.correlBiserial,
         example: null,
+        filter: filters.matrixNotEmpty,
         wiki: {
             title: "eJTT",
             description: "jAGi"
@@ -722,6 +726,7 @@ const MatrixMethodsModels = [
     {   name: "correlPhi",
         fn: matrixMethods.correlPhi,
         example: null,
+        filter: filters.matrixNotEmpty,
         wiki: {
             title: "eJTT",
             description: "jAGi"
@@ -743,6 +748,7 @@ const MatrixMethodsModels = [
     },
     {   name: "ttestind",
         fn: matrixMethods.ttest_independent,
+        filter: filters.matrixNotEmpty,
         example: function(){
             var M = new Matrix([],[]).ttestind(0,1);
         },
@@ -767,6 +773,7 @@ const MatrixMethodsModels = [
     },
     {   name: "ttestpair",
         fn: matrixMethods.ttest_paired,
+        filter: filters.matrixNotEmpty,
         example: function(){
             var test = new Matrix([2,3,2,4,5], [9,8,7,9,10]).ttestpair(0,1);
             /*
@@ -803,6 +810,8 @@ const MatrixMethodsModels = [
     {   name: "anovaow",
         fn: matrixMethods.anova_oneway,
         argsToMatrix: true,
+        filter: filters.matrixNotEmpty,
+        filter: filters.matrixNotEmpty,
         example: function(){
             var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow(0,1,2);
             /* OR */
@@ -852,6 +861,7 @@ const MatrixMethodsModels = [
     example: function(){
         var M = new Matrix([1,2,3,4,5,6,7,8,9,10],[1,3,5,7,9,11,13,15,17,19]).mannwhitney();
     },
+    filter: filters.matrixNotEmpty,
     wiki: {
         title: "rPQr",
         description: "vzHj"
@@ -873,6 +883,7 @@ const MatrixMethodsModels = [
     },
     {   name: "linreg",
         fn: matrixMethods.linreg,
+        filter: filters.matrixNotEmpty,
         example: function(x,y) {
             var r = new Table([1,2,3,4,5],[4,5,6,7,8]).linreg(0,1);
             /*
