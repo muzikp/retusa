@@ -68,14 +68,13 @@ function VectorOverview(Models) {
     _ += objArrayToTable([$("wRbe"),$("rlTY"),$("zPyP"),$("LOYN"),$("zoiB"),$("OkoC")],models.map(function(m) { 
         var row = [
             `[${m.wiki.name}](#${m.wiki.name})`,
-            `[${m.wiki.title}](#${m.wiki.name})`,
-            m.wiki.description,
+            `${m.wiki.title}`,
             m.wiki.applies[0].apply ? e_yes : e_no,
             m.wiki.applies[1].apply ? e_yes : e_no,
             m.wiki.applies[2].apply ? e_yes : e_no,
         ];
         return row;
-    }),[1,1,0,1,1,1]);
+    }),[1,1,1,1,1]);
     models.forEach(function(m) {
         _ += "\n\n\---\n\n" + VectorMarkdown(m.wiki, 3);
     });

@@ -5,33 +5,31 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 ## Statistické metody
 
 | funkce | metoda | popis | numerický | nominální | binární |
-| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| [avg](#avg) | [aritmetický průměr](#avg) | Vrátí arytmetický průměr z neprázdných hodnot. | ✔️ | - | - |
-| [count](#count) | [počet](#count) | Vrátí počet všech polí ve vektoru (včetně prázdných). | ✔️ | ✔️ | ✔️ |
-| [frequency](#frequency) | [frekvenční tabulka](#frequency) | Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností. | ✔️ | ✔️ | ✔️ |
-| [geomean](#geomean) | [geometrický průměr](#geomean) | Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovný než průměr arytmetický. | ✔️ | - | - |
-| [harmean](#harmean) | [harmonický průměr](#harmean) | Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti. | ✔️ | - | - |
-| [histogram](#histogram) | [histogram](#histogram) | Vrátí matici histogramu daného vektoru. | ✔️ | - | - |
-| [kstest](#kstest) | [Kolmogorov-Smirnovův test](#kstest) | Vrátí statistický protokol Komogorov-Smirnovova testu normality rozdělení hodnot vektoru. Aktuálně nepočítá hladinu významnosti testu. Kolmogorov-Smirnov test (často také zkracovaný jako K-S test) je statistický test, který se používá k testování hypotézy, že data pocházejí z určitého rozdělení. Tento test porovnává rozdělení dat s teoretickým rozdělením, které se předpokládá, že data vycházejí, a vyhodnocuje, zda jsou datové hodnoty s teoretickým rozdělením dostatečně blízko, aby se mohla hypotéza o tom, že data pocházejí z daného rozdělení, považovat za pravdivou.Test Kolmogorov-Smirnov se často používá k ověření normality dat, ale může být také použit k ověření, zda data pocházejí z jiného teoretického rozdělení, jako je například exponenciální nebo binomické rozdělení. Test Kolmogorov-Smirnov je obecně považován za jeden z nejpřesnějších testů normality, ale má omezenou citlivost pro malé vzorky, tj. pro malé vzorky může být méně spolehlivý při detekci ne-normality. Pro malé vzorky se proto často používají jiné testy normality, jako například test Shapiro-Wilk nebo test Anderson-Darling. | ✔️ | - | - |
-| [kurtosis](#kurtosis) | [špičatost](#kurtosis) | Vrátí hodnotu excesu množiny dat. Ve statistice špičatost (kurtosis) označuje míru, jak moc se hodnoty v sbírce dat liší od průměrné hodnoty. Špičatost se obvykle počítá pro křivku rozdělení dat, která je grafickým zobrazením rozložení hodnot v dané sbírce dat.
-Existují dva základní typy špičatosti: platykurtóza a leptokurtóza. Platykurtóza se vyskytuje, když hodnoty v sbírce dat jsou rozloženy víceméně rovnoměrně kolem průměrné hodnoty. Toto rozložení se projevuje jako křivka rozdělení tvaru "písmene U", která má plochý vrchol. Naopak leptokurtóza se vyskytuje, když hodnoty v sbírce dat jsou rozloženy s výraznou odchylkou od průměrné hodnoty. Toto rozložení se projevuje jako křivka rozdělení tvaru "písmene špičatého kopce" nebo "písmene špičatého údolí".
-Špičatost se používá k určení, zda je rozložení hodnot v sbírce dat víceméně rovnoměrné, nebo zda existují nějaké výrazné odchylky od průměrné hodnoty. Špičatost se často používá spolu s dalšími metrikami, jako je medián, šikmost a kvantily, které vám pomohou lépe porozumět rozložení dat a určit, zda existují nějaké výrazné odchylky od průměrné hodnoty. | ✔️ | - | - |
-| [max](#max) | [maximální hodnota](#max) | Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení. | ✔️ | ✔️ | ✔️ |
-| [mci](#mci) | [interval spolehlivosti průměru](#mci) | Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normální rozdělení. | ✔️ | - | - |
-| [median](#median) | [medián](#median) | Vrátí střední hodnotu z neprázdných hodnot. | ✔️ | - | - |
-| [min](#min) | [minimální hodnota](#min) | Vrátí nejmenší hodnotu z neprázdných hodnot. V případě textu vrátí první hodnotu z abecedního řazení. | ✔️ | ✔️ | ✔️ |
-| [mode](#mode) | [modus](#mode) | Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu). | ✔️ | ✔️ | ✔️ |
-| [pci](#pci) | [interval spolehlivosti podílu](#pci) | Vrátí statistický protokol odhadu intervalu spolehlivosti podílu výběrového souboru při určité hladině významnosti. | ✔️ | ✔️ | ✔️ |
-| [percentile](#percentile) | [percentil](#percentile) | Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru. | ✔️ | - | - |
-| [range](#range) | [variační rozpětí](#range) | Vrátí rozdíl největší a nejmenší neprázdné hodnoty. | ✔️ | - | - |
-| [sem](#sem) | [střední chyba průměru](#sem) | Vrátí hodnotu směrodatné chyby odhadu průměru. | ✔️ | - | - |
-| [shapirowilk](#shapirowilk) | [Shapirův-Wilkův W test](#shapirowilk) | Vrátí statistický protokol Shapiro-Wilkova W testu normality rozdělení hodnot vektoru. Shapiro-Wilk test je statistický test, který se používá k testování hypotézy, že data pocházejí z normálního rozdělení. Tento test je často používán k ověření normality dat v rámci statistické analýzy. Test Shapiro-Wilk se zakládá na porovnání hodnoty kvartilů dat s hodnotami kvartilů normálního rozdělení. Když jsou hodnoty kvartilů dat podobné hodnotám kvartilů normálního rozdělení, je pravděpodobné, že data pocházejí z normálního rozdělení. V opačném případě je pravděpodobné, že data nejsou normální. Při použití testu Shapiro-Wilk je třeba si uvědomit, že tento test má nízkou citlivost pro velké vzorky, tj. pro velké vzorky může být test méně spolehlivý při detekci ne-normality. Proto se pro velké vzorky často používají jiné testy normality, jako například test Anderson-Darling nebo test Kolmogorov-Smirnov. | ✔️ | - | - |
-| [skewness](#skewness) | [šikmost](#skewness) | Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru.  | ✔️ | - | - |
-| [stdev](#stdev) | [směrodatná odchylka](#stdev) | Vrátí směrodatnou odchylku neprázdných hodnot. Směrodatná odchylka je statistický ukazatel, který udává, jak moc se hodnoty v daném souboru dat od sebe liší. Směrodatná odchylka je vyjádřena jako číslo, které udává, o kolik se průměrná hodnota odchýlí od skutečné hodnoty v daném souboru dat. Směrodatná odchylka je užitečná při porovnávání velikosti rozptýlení dat v různých souborech nebo v různých skupinách v rámci jednoho souboru dat. Čím je směrodatná odchylka větší, tím více se hodnoty v daném souboru dat od sebe liší. | ✔️ | - | - |
-| [sum](#sum) | [součet](#sum) | Vrátí součet všech neprázdných číselných hodnot vektoru. | ✔️ | - | - |
-| [ttest](#ttest) | [jednovýběrový t-test](#ttest) | Vrátí statistický protokol pro jednovýběrový t-test při zadání populačního průměru. | ✔️ | - | - |
-| [varc](#varc) | [variační koeficient](#varc) | Vrátí hodnotu variačního koeficientu neprázdných hodnot. | ✔️ | - | - |
-| [variance](#variance) | [rozptyl](#variance) | Vrátí hodnotu rozptylu tohoto vektoru. | ✔️ | - | - |
+| :---: |  :---: |  :---: |  :---: |  :---: |  --- | 
+| [avg](#avg) | aritmetický průměr | ✔️ | - | - |
+| [count](#count) | počet | ✔️ | ✔️ | ✔️ |
+| [frequency](#frequency) | frekvenční tabulka | ✔️ | ✔️ | ✔️ |
+| [geomean](#geomean) | geometrický průměr | ✔️ | - | - |
+| [harmean](#harmean) | harmonický průměr | ✔️ | - | - |
+| [histogram](#histogram) | histogram | ✔️ | - | - |
+| [kstest](#kstest) | Kolmogorov-Smirnovův test | ✔️ | - | - |
+| [kurtosis](#kurtosis) | špičatost | ✔️ | - | - |
+| [max](#max) | maximální hodnota | ✔️ | ✔️ | ✔️ |
+| [mci](#mci) | interval spolehlivosti průměru | ✔️ | - | - |
+| [median](#median) | medián | ✔️ | - | - |
+| [min](#min) | minimální hodnota | ✔️ | ✔️ | ✔️ |
+| [mode](#mode) | modus | ✔️ | ✔️ | ✔️ |
+| [pci](#pci) | interval spolehlivosti podílu | ✔️ | ✔️ | ✔️ |
+| [percentile](#percentile) | percentil | ✔️ | - | - |
+| [range](#range) | variační rozpětí | ✔️ | - | - |
+| [sem](#sem) | střední chyba průměru | ✔️ | - | - |
+| [shapirowilk](#shapirowilk) | Shapirův-Wilkův W test | ✔️ | - | - |
+| [skewness](#skewness) | šikmost | ✔️ | - | - |
+| [stdev](#stdev) | směrodatná odchylka | ✔️ | - | - |
+| [sum](#sum) | součet | ✔️ | - | - |
+| [ttest](#ttest) | jednovýběrový t-test | ✔️ | - | - |
+| [varc](#varc) | variační koeficient | ✔️ | - | - |
+| [variance](#variance) | rozptyl | ✔️ | - | - |
 
 ---
 
