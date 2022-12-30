@@ -56,7 +56,7 @@ module.exports = {
 	/* standard deviation vector fce (title) */
 	"oUcc": "směrodatná odchylka",
 	/* standard deviation vector fce (description) */
-	"ZgSc": "Vrátí směrodatnou odchylku neprázdných hodnot.",
+	"ZgSc": "Vrátí směrodatnou odchylku neprázdných hodnot. Směrodatná odchylka je statistický ukazatel, který udává, jak moc se hodnoty v daném souboru dat od sebe liší. Směrodatná odchylka je vyjádřena jako číslo, které udává, o kolik se průměrná hodnota odchýlí od skutečné hodnoty v daném souboru dat. Směrodatná odchylka je užitečná při porovnávání velikosti rozptýlení dat v různých souborech nebo v různých skupinách v rámci jednoho souboru dat. Čím je směrodatná odchylka větší, tím více se hodnoty v daném souboru dat od sebe liší.",
 	/* standard deviation vector fce sample param (title) */
 	"eJTq": "výběrový soubor",
 	/* standard deviation vector fce sample param (description) */
@@ -386,7 +386,7 @@ module.exports = {
 	/* fce vector Shapiro-Wilk (title) */
 	"byTa": "Shapirův-Wilkův W test",
 	/* fce vector Shapiro-Wilk (description) */
-	"LHkd": "Vrátí statistický protokol Shapiro-Wilkova W testu normality rozdělení hodnot vektoru.",
+	"LHkd": "Vrátí statistický protokol Shapiro-Wilkova W testu normality rozdělení hodnot vektoru. Shapiro-Wilk test je statistický test, který se používá k testování hypotézy, že data pocházejí z normálního rozdělení. Tento test je často používán k ověření normality dat v rámci statistické analýzy. Test Shapiro-Wilk se zakládá na porovnání hodnoty kvartilů dat s hodnotami kvartilů normálního rozdělení. Když jsou hodnoty kvartilů dat podobné hodnotám kvartilů normálního rozdělení, je pravděpodobné, že data pocházejí z normálního rozdělení. V opačném případě je pravděpodobné, že data nejsou normální. Při použití testu Shapiro-Wilk je třeba si uvědomit, že tento test má nízkou citlivost pro velké vzorky, tj. pro velké vzorky může být test méně spolehlivý při detekci ne-normality. Proto se pro velké vzorky často používají jiné testy normality, jako například test Anderson-Darling nebo test Kolmogorov-Smirnov.",
 	/* shema - DF (degrees of freedom) */
 	"OYQu": "počet stupňů volnosti",
 	/* shema - Shapiro-Wilk W (degrees of freedom) */
@@ -408,7 +408,7 @@ module.exports = {
 	/* fce vector - kolmogorov-smirnov test (title) */
 	"DLoe": "Kolmogorov-Smirnovův test",
 	/* fce vector - kolmogorov-smirnov test (description) */
-	"yQZd": "Vrátí statistický protokol Komogorov-Smirnovova testu normality rozdělení hodnot vektoru. Aktuálně nepočítá hladinu významnosti testu.",
+	"yQZd": "Vrátí statistický protokol Komogorov-Smirnovova testu normality rozdělení hodnot vektoru. Aktuálně nepočítá hladinu významnosti testu. Kolmogorov-Smirnov test (často také zkracovaný jako K-S test) je statistický test, který se používá k testování hypotézy, že data pocházejí z určitého rozdělení. Tento test porovnává rozdělení dat s teoretickým rozdělením, které se předpokládá, že data vycházejí, a vyhodnocuje, zda jsou datové hodnoty s teoretickým rozdělením dostatečně blízko, aby se mohla hypotéza o tom, že data pocházejí z daného rozdělení, považovat za pravdivou.Test Kolmogorov-Smirnov se často používá k ověření normality dat, ale může být také použit k ověření, zda data pocházejí z jiného teoretického rozdělení, jako je například exponenciální nebo binomické rozdělení. Test Kolmogorov-Smirnov je obecně považován za jeden z nejpřesnějších testů normality, ale má omezenou citlivost pro malé vzorky, tj. pro malé vzorky může být méně spolehlivý při detekci ne-normality. Pro malé vzorky se proto často používají jiné testy normality, jako například test Shapiro-Wilk nebo test Anderson-Darling.",
 	/* schema kstest - T (test value) */
 	"jBSf": "hodnota Kolmogorov-Smirnovova testu",
 	/* markdown - method calling template title */
@@ -452,7 +452,7 @@ module.exports = {
 	/* schema general output protocol label */
 	"IIlO":"protokol výstupu metody",
 	/* fce matrix - Kendall correlation coefficient (title) */
-	"mgBC":"Kendallův koreelační koeficient",
+	"mgBC":"Kendallův korelační koeficient",
 	/* fce matrix - Kendall correlation coefficient (description) */
 	"VOmC":"Vrátí statistický protokol Kendallova korelačního koeficientu Tau. Podobně jako v SPSS je coby korelační koeficient (r) vrácena hodota statistiky Tau-A, nikoliv Tau-b, jak je metoda obvykle nazývána.",
 	/* schema - Kendall correl - r */
@@ -474,7 +474,7 @@ module.exports = {
 	/* fce matrix partial correlation (3rd argument - z) */
 	"gxOb":"kontrolní proměnná",
 	/* fce matrix binary correlation (title) */
-	"AagR":"biseeriální korelace",
+	"AagR":"biseriální korelace",
 	/* fce matrix binary correlation (description) */
 	"OMiA":"Biseriální korelace je statistická metoda, která se používá k vyhodnocení vztahu mezi dvěma binárními proměnnými (tj. proměnnými, které mohou mít pouze dvě možné hodnoty, například 'ano' nebo 'ne'). Binární proměnné se často používají v sociálních vědách, například při zkoumání vztahu mezi vzděláním a zaměstnáním nebo mezi kouřením a zdravím. Biseriální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že biseriální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost.",
 	"pwfO":"",

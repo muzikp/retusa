@@ -12,7 +12,7 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 | [geomean](#geomean) | [geometrický průměr](#geomean) | Vrátí geometrický průměr z neprázdných hodnot. Je vždy menší nebo rovný než průměr arytmetický. | ✔️ | - | - |
 | [harmean](#harmean) | [harmonický průměr](#harmean) | Vrátí harmonický průměr z neprázdných hodnot. Harmonický průměr je vždy menší než průměr geometrický, tedy i než průměr arytmetický. Používá se např. při výpočtu průměrné rychlosti. | ✔️ | - | - |
 | [histogram](#histogram) | [histogram](#histogram) | Vrátí matici histogramu daného vektoru. | ✔️ | - | - |
-| [kstest](#kstest) | [Kolmogorov-Smirnovův test](#kstest) | Vrátí statistický protokol Komogorov-Smirnovova testu normality rozdělení hodnot vektoru. Aktuálně nepočítá hladinu významnosti testu. | ✔️ | - | - |
+| [kstest](#kstest) | [Kolmogorov-Smirnovův test](#kstest) | Vrátí statistický protokol Komogorov-Smirnovova testu normality rozdělení hodnot vektoru. Aktuálně nepočítá hladinu významnosti testu. Kolmogorov-Smirnov test (často také zkracovaný jako K-S test) je statistický test, který se používá k testování hypotézy, že data pocházejí z určitého rozdělení. Tento test porovnává rozdělení dat s teoretickým rozdělením, které se předpokládá, že data vycházejí, a vyhodnocuje, zda jsou datové hodnoty s teoretickým rozdělením dostatečně blízko, aby se mohla hypotéza o tom, že data pocházejí z daného rozdělení, považovat za pravdivou.Test Kolmogorov-Smirnov se často používá k ověření normality dat, ale může být také použit k ověření, zda data pocházejí z jiného teoretického rozdělení, jako je například exponenciální nebo binomické rozdělení. Test Kolmogorov-Smirnov je obecně považován za jeden z nejpřesnějších testů normality, ale má omezenou citlivost pro malé vzorky, tj. pro malé vzorky může být méně spolehlivý při detekci ne-normality. Pro malé vzorky se proto často používají jiné testy normality, jako například test Shapiro-Wilk nebo test Anderson-Darling. | ✔️ | - | - |
 | [kurtosis](#kurtosis) | [špičatost](#kurtosis) | Vrátí hodnotu excesu množiny dat. | ✔️ | - | - |
 | [max](#max) | [maximální hodnota](#max) | Vrátí největší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení. | ✔️ | ✔️ | ✔️ |
 | [mci](#mci) | [interval spolehlivosti průměru](#mci) | Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normální rozdělení. | ✔️ | - | - |
@@ -23,9 +23,9 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 | [percentile](#percentile) | [percentil](#percentile) | Vrátí hodnotu, která odpovídá k-tému percentilu v oblasti hodnot vektoru. | ✔️ | - | - |
 | [range](#range) | [variační rozpětí](#range) | Vrátí rozdíl největší a nejmenší neprázdné hodnoty. | ✔️ | - | - |
 | [sem](#sem) | [střední chyba průměru](#sem) | Vrátí hodnotu směrodatné chyby odhadu průměru. | ✔️ | - | - |
-| [shapirowilk](#shapirowilk) | [Shapirův-Wilkův W test](#shapirowilk) | Vrátí statistický protokol Shapiro-Wilkova W testu normality rozdělení hodnot vektoru. | ✔️ | - | - |
+| [shapirowilk](#shapirowilk) | [Shapirův-Wilkův W test](#shapirowilk) | Vrátí statistický protokol Shapiro-Wilkova W testu normality rozdělení hodnot vektoru. Shapiro-Wilk test je statistický test, který se používá k testování hypotézy, že data pocházejí z normálního rozdělení. Tento test je často používán k ověření normality dat v rámci statistické analýzy. Test Shapiro-Wilk se zakládá na porovnání hodnoty kvartilů dat s hodnotami kvartilů normálního rozdělení. Když jsou hodnoty kvartilů dat podobné hodnotám kvartilů normálního rozdělení, je pravděpodobné, že data pocházejí z normálního rozdělení. V opačném případě je pravděpodobné, že data nejsou normální. Při použití testu Shapiro-Wilk je třeba si uvědomit, že tento test má nízkou citlivost pro velké vzorky, tj. pro velké vzorky může být test méně spolehlivý při detekci ne-normality. Proto se pro velké vzorky často používají jiné testy normality, jako například test Anderson-Darling nebo test Kolmogorov-Smirnov. | ✔️ | - | - |
 | [skewness](#skewness) | [šikmost](#skewness) | Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru. | ✔️ | - | - |
-| [stdev](#stdev) | [směrodatná odchylka](#stdev) | Vrátí směrodatnou odchylku neprázdných hodnot. | ✔️ | - | - |
+| [stdev](#stdev) | [směrodatná odchylka](#stdev) | Vrátí směrodatnou odchylku neprázdných hodnot. Směrodatná odchylka je statistický ukazatel, který udává, jak moc se hodnoty v daném souboru dat od sebe liší. Směrodatná odchylka je vyjádřena jako číslo, které udává, o kolik se průměrná hodnota odchýlí od skutečné hodnoty v daném souboru dat. Směrodatná odchylka je užitečná při porovnávání velikosti rozptýlení dat v různých souborech nebo v různých skupinách v rámci jednoho souboru dat. Čím je směrodatná odchylka větší, tím více se hodnoty v daném souboru dat od sebe liší. | ✔️ | - | - |
 | [sum](#sum) | [součet](#sum) | Vrátí součet všech neprázdných číselných hodnot vektoru. | ✔️ | - | - |
 | [ttest](#ttest) | [jednovýběrový t-test](#ttest) | Vrátí statistický protokol pro jednovýběrový t-test při zadání populačního průměru. | ✔️ | - | - |
 | [varc](#varc) | [variační koeficient](#varc) | Vrátí hodnotu variačního koeficientu neprázdných hodnot. | ✔️ | - | - |
@@ -55,7 +55,7 @@ Pouze číselné hodnoty (včetně nul).
 | nominální | - |
 | binární | - |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *číslo* `🔴 číslo`
 
@@ -89,9 +89,9 @@ Vrátí počet všech polí ve vektoru (včetně prázdných).
 | nominální | ✔️ |
 | binární | ✔️ |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
-- *celé číslo větší nebo rovné nule* `🟠 celé číslo`
+- *celé číslo větší nebo rovné nule* `c celé číslo`
 
 #### Příklad
 
@@ -121,7 +121,7 @@ Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností. [Zjis
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **order** | způsob řazení dat tabulky | 🟠 celé číslo | Ověří, zdali je hodnota platným členem enumerace. V opačném případě vyvolá chybu. | - | 1 |
+| **order** | způsob řazení dat tabulky | c celé číslo | Ověří, zdali je hodnota platným členem enumerace. V opačném případě vyvolá chybu. | - | 1 |
 
 #### Integrace dle třídy
 
@@ -131,11 +131,11 @@ Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností. [Zjis
 | nominální | ✔️ |
 | binární | ✔️ |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *frekvenční tabulka* `🟩 řada`
   - **value**: *hodnota* `🟤 cokoliv`
-  - **frequency**: *četnost* `🟠 celé číslo`
+  - **frequency**: *četnost* `c celé číslo`
 
 #### Příklad
 
@@ -200,7 +200,7 @@ Pouze číselné hodnoty (včetně nul).
 | nominální | - |
 | binární | - |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *číslo* `🔴 číslo`
 
@@ -234,7 +234,7 @@ Pouze číselné hodnoty (včetně nul).
 | nominální | - |
 | binární | - |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *číslo* `🔴 číslo`
 
@@ -275,14 +275,14 @@ Pouze číselné hodnoty (včetně nul).
 | nominální | - |
 | binární | - |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *histogram* `🟩 řada`
   - **from**: *spodní mez intervalu* `🔴 číslo`
   - **to**: *horní mez intervalu* `🔴 číslo`
   - **i**: *interval (slovní vyjádření)* `🟡 text`
-  - **n**: *četnost (abs.)* `🟠 celé číslo`
-  - **nc**: *kumulativní četnost (abs.)* `🟠 celé číslo`
+  - **n**: *četnost (abs.)* `c celé číslo`
+  - **nc**: *kumulativní četnost (abs.)* `c celé číslo`
   - **p**: *četnost (%)* `🔴 číslo`
   - **pc**: *kumulativní četnost (%)* `🔴 číslo`
 
@@ -331,7 +331,7 @@ var h3 = score.histogram(null, 2)
 
 ### [KOLMOGOROV-SMIRNOVŮV TEST](#kstest): kstest
 
-Vrátí statistický protokol Komogorov-Smirnovova testu normality rozdělení hodnot vektoru. Aktuálně nepočítá hladinu významnosti testu. [Zjistit více.](https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test#One-sample_Kolmogorov%E2%80%93Smirnov_statistic)
+Vrátí statistický protokol Komogorov-Smirnovova testu normality rozdělení hodnot vektoru. Aktuálně nepočítá hladinu významnosti testu. Kolmogorov-Smirnov test (často také zkracovaný jako K-S test) je statistický test, který se používá k testování hypotézy, že data pocházejí z určitého rozdělení. Tento test porovnává rozdělení dat s teoretickým rozdělením, které se předpokládá, že data vycházejí, a vyhodnocuje, zda jsou datové hodnoty s teoretickým rozdělením dostatečně blízko, aby se mohla hypotéza o tom, že data pocházejí z daného rozdělení, považovat za pravdivou.Test Kolmogorov-Smirnov se často používá k ověření normality dat, ale může být také použit k ověření, zda data pocházejí z jiného teoretického rozdělení, jako je například exponenciální nebo binomické rozdělení. Test Kolmogorov-Smirnov je obecně považován za jeden z nejpřesnějších testů normality, ale má omezenou citlivost pro malé vzorky, tj. pro malé vzorky může být méně spolehlivý při detekci ne-normality. Pro malé vzorky se proto často používají jiné testy normality, jako například test Shapiro-Wilk nebo test Anderson-Darling. [Zjistit více.](https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test#One-sample_Kolmogorov%E2%80%93Smirnov_statistic)
 
 #### Způsob volání metody
 
@@ -351,11 +351,11 @@ Pouze číselné hodnoty (včetně nul).
 | nominální | - |
 | binární | - |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *Kolmogorov-Smirnovův test* `🟦 objekt`
   - **T**: *hodnota Kolmogorov-Smirnovova testu* `🔴 číslo`
-  - **df**: *počet stupňů volnosti* `🟠 celé číslo`
+  - **df**: *počet stupňů volnosti* `c celé číslo`
   - **p**: *hladina významnosti* `🔴 číslo`
 
 #### Příklad
@@ -395,7 +395,7 @@ Pouze číselné hodnoty (včetně nul).
 | nominální | - |
 | binární | - |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *číslo* `🔴 číslo`
 
@@ -433,7 +433,7 @@ jakákoliv neprázdná hodnota (u číselných řad akceptuje nuly, u binárníc
 | nominální | ✔️ |
 | binární | ✔️ |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *jakákoliv hodnota* `🟤 cokoliv`
 
@@ -474,7 +474,7 @@ Pouze číselné hodnoty (včetně nul).
 | nominální | - |
 | binární | - |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *interval spolehlivosti průměru* `🟦 objekt`
   - **m**: *aritmetický průměr* `🔴 číslo`
@@ -522,7 +522,7 @@ Pouze číselné hodnoty (včetně nul).
 | nominální | - |
 | binární | - |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *číslo* `🔴 číslo`
 
@@ -560,7 +560,7 @@ jakákoliv neprázdná hodnota (u číselných řad akceptuje nuly, u binárníc
 | nominální | ✔️ |
 | binární | ✔️ |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *jakákoliv hodnota* `🟤 cokoliv`
 
@@ -595,7 +595,7 @@ Vrátí nejčastější hodnotu (pokud je nejčastější prázdná hodnota, vr�
 | nominální | ✔️ |
 | binární | ✔️ |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *jakákoliv hodnota* `🟤 cokoliv`
 
@@ -642,7 +642,7 @@ jakákoliv hodnota
 | nominální | ✔️ |
 | binární | ✔️ |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *interval spolehlivosti podílu* `🟦 objekt`
   - **p**: *podíl hledané hodnoty na celku* `🔴 číslo`
@@ -696,7 +696,7 @@ Pouze číselné hodnoty (včetně nul).
 | nominální | - |
 | binární | - |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *číslo* `🔴 číslo`
 
@@ -733,7 +733,7 @@ Pouze číselné hodnoty (včetně nul).
 | nominální | - |
 | binární | - |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *číslo* `🔴 číslo`
 
@@ -767,7 +767,7 @@ Pouze číselné hodnoty (včetně nul).
 | nominální | - |
 | binární | - |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *číslo* `🔴 číslo`
 
@@ -781,7 +781,7 @@ var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,2
 
 ### [SHAPIRŮV-WILKŮV W TEST](#shapirowilk): shapirowilk
 
-Vrátí statistický protokol Shapiro-Wilkova W testu normality rozdělení hodnot vektoru. [Zjistit více.](https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test)
+Vrátí statistický protokol Shapiro-Wilkova W testu normality rozdělení hodnot vektoru. Shapiro-Wilk test je statistický test, který se používá k testování hypotézy, že data pocházejí z normálního rozdělení. Tento test je často používán k ověření normality dat v rámci statistické analýzy. Test Shapiro-Wilk se zakládá na porovnání hodnoty kvartilů dat s hodnotami kvartilů normálního rozdělení. Když jsou hodnoty kvartilů dat podobné hodnotám kvartilů normálního rozdělení, je pravděpodobné, že data pocházejí z normálního rozdělení. V opačném případě je pravděpodobné, že data nejsou normální. Při použití testu Shapiro-Wilk je třeba si uvědomit, že tento test má nízkou citlivost pro velké vzorky, tj. pro velké vzorky může být test méně spolehlivý při detekci ne-normality. Proto se pro velké vzorky často používají jiné testy normality, jako například test Anderson-Darling nebo test Kolmogorov-Smirnov. [Zjistit více.](https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test)
 
 #### Způsob volání metody
 
@@ -801,11 +801,11 @@ Pouze číselné hodnoty (včetně nul).
 | nominální | - |
 | binární | - |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *Shapirův-Wilkův W test* `🟦 objekt`
   - **W**: *hodnota Shapiro-Wilkova W testu* `🔴 číslo`
-  - **df**: *počet stupňů volnosti* `🟠 celé číslo`
+  - **df**: *počet stupňů volnosti* `c celé číslo`
   - **p**: *hladina významnosti* `🔴 číslo`
 
 #### Příklad
@@ -851,7 +851,7 @@ Pouze číselné hodnoty (včetně nul).
 | nominální | - |
 | binární | - |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *číslo* `🔴 číslo`
 
@@ -866,7 +866,7 @@ var skewness_sample = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,2
 
 ### [SMĚRODATNÁ ODCHYLKA](#stdev): stdev
 
-Vrátí směrodatnou odchylku neprázdných hodnot. [Zjistit více.](https://en.wikipedia.org/wiki/Standard_deviation)
+Vrátí směrodatnou odchylku neprázdných hodnot. Směrodatná odchylka je statistický ukazatel, který udává, jak moc se hodnoty v daném souboru dat od sebe liší. Směrodatná odchylka je vyjádřena jako číslo, které udává, o kolik se průměrná hodnota odchýlí od skutečné hodnoty v daném souboru dat. Směrodatná odchylka je užitečná při porovnávání velikosti rozptýlení dat v různých souborech nebo v různých skupinách v rámci jednoho souboru dat. Čím je směrodatná odchylka větší, tím více se hodnoty v daném souboru dat od sebe liší. [Zjistit více.](https://en.wikipedia.org/wiki/Standard_deviation)
 
 #### Způsob volání metody
 
@@ -892,7 +892,7 @@ Pouze číselné hodnoty (včetně nul).
 | nominální | - |
 | binární | - |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *číslo* `🔴 číslo`
 
@@ -927,7 +927,7 @@ Pouze číselné hodnoty (včetně nul).
 | nominální | - |
 | binární | - |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *číslo* `🔴 číslo`
 
@@ -967,12 +967,12 @@ Pouze číselné hodnoty (včetně nul).
 | nominální | - |
 | binární | - |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *T-test s jedním výběrem* `🟦 objekt`
   - **t**: *testovací hodnota* `🔴 číslo`
   - **p**: *hladina významnosti* `🔴 číslo`
-  - **n**: *počet případů* `🟠 celé číslo`
+  - **n**: *počet případů* `c celé číslo`
 
 #### Příklad
 
@@ -1017,7 +1017,7 @@ Pouze číselné hodnoty (včetně nul).
 | nominální | - |
 | binární | - |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *číslo* `🔴 číslo`
 
@@ -1058,7 +1058,7 @@ Pouze číselné hodnoty (včetně nul).
 | nominální | - |
 | binární | - |
 
-#### Schéma výsledku
+#### Struktura vrácené hodnoty
 
 - *číslo* `🔴 číslo`
 
