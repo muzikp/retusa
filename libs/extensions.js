@@ -393,7 +393,6 @@ Math.getRandomIndexes = function(total_of_elements, samplesize) {
 Math.pci = function(p,n,alfa) {
     alfa = 1-(1-alfa)/2;
     var z = dist.normsinv(alfa, 1 );
-    console.log(z);
     var delta = z * Math.sqrt((p * (1 - p)) / n);
     return {p: p, sig: (1-alfa)*2,delta: delta, lb: p-delta < 0 ? 0 : p-delta, ub: p+delta > 1 ? 1 : p+delta};
 }

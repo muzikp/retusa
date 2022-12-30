@@ -4,26 +4,23 @@ Bablablablabla.
 
 ## Statistické metody
 
-| funkce | metoda | popis |
-| :---: |  :---: |  --- | 
-| [anovaow](#anovaow) | [ANOVA](#anovaow) | Vrátí statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Vstupem analýzy je matice s již předvybranými numerickými vektory, to znamená, že vstupní proměnné (vektory) není nutné specifikovat. |
-| [correlBiserial](#correlBiserial) | [biseriální korelace](#correlBiserial) | Biseriální korelace je statistická metoda, která se používá k vyhodnocení vztahu mezi dvěma binárními proměnnými (tj. proměnnými, které mohou mít pouze dvě možné hodnoty, například 'ano' nebo 'ne'). Binární proměnné se často používají v sociálních vědách, například při zkoumání vztahu mezi vzděláním a zaměstnáním nebo mezi kouřením a zdravím. Biseriální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že biseriální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost. |
-| [correlKendall](#correlKendall) | [Kendallův korelační koeficient](#correlKendall) | Vrátí statistický protokol Kendallova korelačního koeficientu Tau. Podobně jako v SPSS je coby korelační koeficient (r) vrácena hodota statistiky Tau-A, nikoliv Tau-b, jak je metoda obvykle nazývána. |
-| [correlPartial](#correlPartial) | [koeficient parciální korelace](#correlPartial) | Parciální korelace je statistická metoda, která vám umožňuje zjistit, jaký je vztah mezi dvěma proměnnými, přičemž se zohlední vliv třetí proměnné. To je užitečné, pokud chcete zjistit, zda existuje přímý vztah mezi dvěma proměnnými, aniž byste byli ovlivněni vlivem jiných proměnných. Například, pokud chcete zjistit, zda existuje vztah mezi úrovní školení a úspěšností v práci, může být užitečné zohlednit také vliv věku nebo pohlaví. V takovém případě byste mohli použít parciální korelaci k zjištění vztahu mezi úrovní školení a úspěšností v práci při zohlednění vlivu věku a pohlaví. Parciální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že parciální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost. Zdroj: https://chat.openai.com/chat. |
-| [correlPearson](#correlPearson) | [Pearsonův korelační koeficient](#correlPearson) | Vrátí statistický protokol Pearsonova korelačního koeficientu.
-Pearsonova korelace je statistická metoda, která se používá k měření vztahu mezi dvěma veličinami. Jejím cílem je zjistit, zda existuje lineární vztah mezi těmito veličinami a jaký je jeho intenzita.
-Pearsonova korelace se vypočítá pomocí vzorce, který se nazývá Pearsonův koeficient korelace. Tento koeficient se pohybuje v rozmezí od -1 do 1 a udává, jak silně je mezi veličinami vztah. Pokud je koeficient blízký -1, znamená to, že mezi veličinami je silný negativní vztah, což znamená, že když se hodnota jedné veličiny zvyšuje, hodnota druhé veličiny klesá. Naopak pokud je koeficient blízký 1, znamená to, že mezi veličinami je silný pozitivní vztah, což znamená, že když se hodnota jedné veličiny zvyšuje, hodnota druhé veličiny také roste. Pokud je koeficient blízký 0, znamená to, že mezi veličinami není žádný vztah nebo je vztah velmi slabý.
-Pearsonova korelace se používá především k porovnávání dvou kvantitativních veličin, tj. veličin, které jsou měřitelné na škále s přesnými hodnotami (například věk, výška nebo hmotnost). Může se použít k určení, zda existuje vztah mezi těmito veličinami a jaký je jeho charakter. Například může být Pearsonova korelace použita k porovnání věku a hmotnosti a zjistit, zda existuje vztah mezi těmito veličinami a jaký je jeho charakter. Může se také použít k porovnání výsledků dvou různých testů a zjistit, zda existuje vztah mezi výsledky těchto testů. Zdroj: https://chat.openai.com/chat |
-| [correlPhi](#correlPhi) | [Spearmanův korelační koeficient](#correlPhi) | Vrátí statistický protokol Spearmanova koeficientu pořadové korelace. |
-| [correlSpearman](#correlSpearman) | [Spearmanův korelační koeficient](#correlSpearman) | Vrátí statistický protokol Spearmanova koeficientu pořadové korelace. |
-| [linreg](#linreg) | [lineární regrese](#linreg) | Vrátí statistický protokol lineární regrese. Součástí vráceného objektu je i funkce (fn), pomocí které lze modelovat situace závislé proměnné při zadání hodnoty závislé proměnné. |
-| [mannwhitney](#mannwhitney) | [Mann-Whitney](#mannwhitney) | Vrátí statistický protokol Mann-Whitneyho U testu. |
-| [ttestind](#ttestind) | [T-test (nezávislý)](#ttestind) | Vrátí statistický protokol Studentova t-testu pro dva nezávislé výběry, které jsou definovány vlastní proměnnou (tedy dvěma numerickými vektory). |
-| [ttestpair](#ttestpair) | [T-test (párový)](#ttestpair) | Vrátí statistický protokol párového t-testu pro dva závislé výběry. |
+| funkce | metoda |
+| :---: |  :---: | 
+| [anovaow](#anovaow) | ANOVA (jednofaktorová) |
+| [correlBiserial](#correlBiserial) | biseriální korelace |
+| [correlKendall](#correlKendall) | Kendallův korelační koeficient |
+| [correlPartial](#correlPartial) | koeficient parciální korelace |
+| [correlPearson](#correlPearson) | Pearsonův korelační koeficient |
+| [correlPhi](#correlPhi) | Spearmanův korelační koeficient |
+| [correlSpearman](#correlSpearman) | Spearmanův korelační koeficient |
+| [linreg](#linreg) | lineární regrese |
+| [mannwhitney](#mannwhitney) | Mann-Whitney |
+| [ttestind](#ttestind) | T-test (nezávislý) |
+| [ttestpair](#ttestpair) | T-test (párový) |
 
 ---
 
-### [ANOVA](#anovaow): anovaow
+### [ANOVA (JEDNOFAKTOROVÁ)](#anovaow): anovaow
 
 Vrátí statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Vstupem analýzy je matice s již předvybranými numerickými vektory, to znamená, že vstupní proměnné (vektory) není nutné specifikovat.
 
@@ -44,7 +41,7 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 
 #### Struktura vrácené hodnoty
 
-- *ANOVA* `🟦 objekt`
+- *ANOVA (jednofaktorová)* `🟦 objekt`
   - **F**: *F test* `🔴 číslo`
   - **P2**: *koeficient závislosti* `🔴 číslo`
   - **p**: *hladina významnosti* `🔴 číslo`

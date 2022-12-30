@@ -492,7 +492,7 @@ module.exports = {
   "kPqo": "Vrátí statistický protokol párového t-testu pro dva závislé výběry.",
 
   /* Matrix fce One-way ANOVA (title) */
-  "baJo": "ANOVA",
+  "baJo": "ANOVA (jednofaktorová)",
 
   /* Matrix fce One-way ANOVA (description) */
   "qqQo": "Vrátí statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Vstupem analýzy je matice s již předvybranými numerickými vektory, to znamená, že vstupní proměnné (vektory) není nutné specifikovat.",

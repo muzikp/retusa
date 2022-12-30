@@ -85,11 +85,11 @@ function MatrixOverview(Models) {
     var models = Object.entries(Models).map(x => x[1]);
     var _ = "# Matice\n\nBablablablabla.";
     _ += "\n\n## Statistické metody\n\n";
-    _ += objArrayToTable([$("wRbe"),$("rlTY"),$("zPyP")],models.map(function(m) { 
+    _ += objArrayToTable([$("wRbe"),$("rlTY")],models.map(function(m) { 
         var row = [
             `[${m.wiki.name}](#${m.wiki.name})`,
-            `[${m.wiki.title}](#${m.wiki.name})`,
-            m.wiki.description,
+            `${m.wiki.title}`,
+            //m.wiki.description,
         ];
         return row;
     }),[1,1,0]);
