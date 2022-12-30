@@ -4,8 +4,8 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 
 ## Statistické metody
 
-| funkce | metoda | popis | numerický | nominální | binární |
-| :---: |  :---: |  :---: |  :---: |  :---: |  --- | 
+| funkce | metoda | numerický | nominální | binární |
+| :---: |  :---: |  :---: |  :---: |  :---: | 
 | [avg](#avg) | aritmetický průměr | ✔️ | - | - |
 | [count](#count) | počet | ✔️ | ✔️ | ✔️ |
 | [frequency](#frequency) | frekvenční tabulka | ✔️ | ✔️ | ✔️ |
