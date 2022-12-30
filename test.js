@@ -2,6 +2,8 @@ var framework = require("./index");
 
 with (framework) {
     framework.docs.publish(require("fs"));
+    console.log(Math.pci(0.5,500,0.95));
+    return;
     var x = new BooleanVector(true,true,true,true,true,false,false,false,false,false);
     var y = new NumericVector(3,5,4,6,5,7,8,9,1,11);
     var partial = new Matrix(x,y).correlBiserial(0,1);

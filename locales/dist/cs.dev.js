@@ -166,14 +166,14 @@ module.exports = {
   /* vector SEM fce (description) */
   "ZBnI": "Vrátí hodnotu směrodatné chyby odhadu průměru.",
 
-  /* vector kurtosis fce (deescription) */
-  "UOBG": "Vrátí hodnotu excesu množiny dat.",
+  /* vector kurtosis fce (description) */
+  "UOBG": "Vr\xE1t\xED hodnotu excesu mno\u017Einy dat. Ve statistice \u0161pi\u010Datost (kurtosis) ozna\u010Duje m\xEDru, jak moc se hodnoty v sb\xEDrce dat li\u0161\xED od pr\u016Fm\u011Brn\xE9 hodnoty. \u0160pi\u010Datost se obvykle po\u010D\xEDt\xE1 pro k\u0159ivku rozd\u011Blen\xED dat, kter\xE1 je grafick\xFDm zobrazen\xEDm rozlo\u017Een\xED hodnot v dan\xE9 sb\xEDrce dat.\nExistuj\xED dva z\xE1kladn\xED typy \u0161pi\u010Datosti: platykurt\xF3za a leptokurt\xF3za. Platykurt\xF3za se vyskytuje, kdy\u017E hodnoty v sb\xEDrce dat jsou rozlo\u017Eeny v\xEDcem\xE9n\u011B rovnom\u011Brn\u011B kolem pr\u016Fm\u011Brn\xE9 hodnoty. Toto rozlo\u017Een\xED se projevuje jako k\u0159ivka rozd\u011Blen\xED tvaru \"p\xEDsmene U\", kter\xE1 m\xE1 ploch\xFD vrchol. Naopak leptokurt\xF3za se vyskytuje, kdy\u017E hodnoty v sb\xEDrce dat jsou rozlo\u017Eeny s v\xFDraznou odchylkou od pr\u016Fm\u011Brn\xE9 hodnoty. Toto rozlo\u017Een\xED se projevuje jako k\u0159ivka rozd\u011Blen\xED tvaru \"p\xEDsmene \u0161pi\u010Dat\xE9ho kopce\" nebo \"p\xEDsmene \u0161pi\u010Dat\xE9ho \xFAdol\xED\".\n\u0160pi\u010Datost se pou\u017E\xEDv\xE1 k ur\u010Den\xED, zda je rozlo\u017Een\xED hodnot v sb\xEDrce dat v\xEDcem\xE9n\u011B rovnom\u011Brn\xE9, nebo zda existuj\xED n\u011Bjak\xE9 v\xFDrazn\xE9 odchylky od pr\u016Fm\u011Brn\xE9 hodnoty. \u0160pi\u010Datost se \u010Dasto pou\u017E\xEDv\xE1 spolu s dal\u0161\xEDmi metrikami, jako je medi\xE1n, \u0161ikmost a kvantily, kter\xE9 v\xE1m pomohou l\xE9pe porozum\u011Bt rozlo\u017Een\xED dat a ur\u010Dit, zda existuj\xED n\u011Bjak\xE9 v\xFDrazn\xE9 odchylky od pr\u016Fm\u011Brn\xE9 hodnoty.",
 
   /* table Pearson correlation fce (title) */
   "pTvR": "Pearsonův korelační koeficient",
 
   /* table Pearson correlation fce (description) */
-  "wPyG": "Vrátí statistický protokol Pearsonova korelačního koeficientu.",
+  "wPyG": "Vrátí statistický protokol Pearsonova korelačního koeficientu.\nPearsonova korelace je statistická metoda, která se používá k měření vztahu mezi dvěma veličinami. Jejím cílem je zjistit, zda existuje lineární vztah mezi těmito veličinami a jaký je jeho intenzita.\nPearsonova korelace se vypočítá pomocí vzorce, který se nazývá Pearsonův koeficient korelace. Tento koeficient se pohybuje v rozmezí od -1 do 1 a udává, jak silně je mezi veličinami vztah. Pokud je koeficient blízký -1, znamená to, že mezi veličinami je silný negativní vztah, což znamená, že když se hodnota jedné veličiny zvyšuje, hodnota druhé veličiny klesá. Naopak pokud je koeficient blízký 1, znamená to, že mezi veličinami je silný pozitivní vztah, což znamená, že když se hodnota jedné veličiny zvyšuje, hodnota druhé veličiny také roste. Pokud je koeficient blízký 0, znamená to, že mezi veličinami není žádný vztah nebo je vztah velmi slabý.\nPearsonova korelace se používá především k porovnávání dvou kvantitativních veličin, tj. veličin, které jsou měřitelné na škále s přesnými hodnotami (například věk, výška nebo hmotnost). Může se použít k určení, zda existuje vztah mezi těmito veličinami a jaký je jeho charakter. Například může být Pearsonova korelace použita k porovnání věku a hmotnosti a zjistit, zda existuje vztah mezi těmito veličinami a jaký je jeho charakter. Může se také použít k porovnání výsledků dvou různých testů a zjistit, zda existuje vztah mezi výsledky těchto testů. Zdroj: https://chat.openai.com/chat",
 
   /* table correlation 1st argument (title) */
   "qFEM": "první proměnná",
@@ -534,7 +534,7 @@ module.exports = {
   "dmmV": "typ hodnoty",
 
   /* Vektor fce skewness (description)*/
-  "nJbe": "Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru.",
+  "nJbe": "Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru. ",
 
   /* MD url "read more" */
   "WLsu": "Zjistit více.",

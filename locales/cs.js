@@ -109,12 +109,12 @@ module.exports = {
 	"dLmV": "střední chyba průměru",
 	/* vector SEM fce (description) */
 	"ZBnI": "Vrátí hodnotu směrodatné chyby odhadu průměru.",
-	/* vector kurtosis fce (deescription) */
-	"UOBG": "Vrátí hodnotu excesu množiny dat.",
+	/* vector kurtosis fce (description) */
+	"UOBG": `Vrátí hodnotu excesu množiny dat. Ve statistice špičatost (kurtosis) označuje míru, jak moc se hodnoty v sbírce dat liší od průměrné hodnoty. Špičatost se obvykle počítá pro křivku rozdělení dat, která je grafickým zobrazením rozložení hodnot v dané sbírce dat.\nExistují dva základní typy špičatosti: platykurtóza a leptokurtóza. Platykurtóza se vyskytuje, když hodnoty v sbírce dat jsou rozloženy víceméně rovnoměrně kolem průměrné hodnoty. Toto rozložení se projevuje jako křivka rozdělení tvaru "písmene U", která má plochý vrchol. Naopak leptokurtóza se vyskytuje, když hodnoty v sbírce dat jsou rozloženy s výraznou odchylkou od průměrné hodnoty. Toto rozložení se projevuje jako křivka rozdělení tvaru "písmene špičatého kopce" nebo "písmene špičatého údolí".\nŠpičatost se používá k určení, zda je rozložení hodnot v sbírce dat víceméně rovnoměrné, nebo zda existují nějaké výrazné odchylky od průměrné hodnoty. Špičatost se často používá spolu s dalšími metrikami, jako je medián, šikmost a kvantily, které vám pomohou lépe porozumět rozložení dat a určit, zda existují nějaké výrazné odchylky od průměrné hodnoty.`,
 	/* table Pearson correlation fce (title) */
 	"pTvR": "Pearsonův korelační koeficient",
 	/* table Pearson correlation fce (description) */
-	"wPyG": "Vrátí statistický protokol Pearsonova korelačního koeficientu.",
+	"wPyG": "Vrátí statistický protokol Pearsonova korelačního koeficientu.\nPearsonova korelace je statistická metoda, která se používá k měření vztahu mezi dvěma veličinami. Jejím cílem je zjistit, zda existuje lineární vztah mezi těmito veličinami a jaký je jeho intenzita.\nPearsonova korelace se vypočítá pomocí vzorce, který se nazývá Pearsonův koeficient korelace. Tento koeficient se pohybuje v rozmezí od -1 do 1 a udává, jak silně je mezi veličinami vztah. Pokud je koeficient blízký -1, znamená to, že mezi veličinami je silný negativní vztah, což znamená, že když se hodnota jedné veličiny zvyšuje, hodnota druhé veličiny klesá. Naopak pokud je koeficient blízký 1, znamená to, že mezi veličinami je silný pozitivní vztah, což znamená, že když se hodnota jedné veličiny zvyšuje, hodnota druhé veličiny také roste. Pokud je koeficient blízký 0, znamená to, že mezi veličinami není žádný vztah nebo je vztah velmi slabý.\nPearsonova korelace se používá především k porovnávání dvou kvantitativních veličin, tj. veličin, které jsou měřitelné na škále s přesnými hodnotami (například věk, výška nebo hmotnost). Může se použít k určení, zda existuje vztah mezi těmito veličinami a jaký je jeho charakter. Například může být Pearsonova korelace použita k porovnání věku a hmotnosti a zjistit, zda existuje vztah mezi těmito veličinami a jaký je jeho charakter. Může se také použít k porovnání výsledků dvou různých testů a zjistit, zda existuje vztah mezi výsledky těchto testů. Zdroj: https://chat.openai.com/chat",
 	/* table correlation 1st argument (title) */
 	"qFEM": "první proměnná",
 	/* table correlation 2nd argument (title) */
@@ -354,7 +354,7 @@ module.exports = {
 	/* argument schema (title) */
 	"dmmV": "typ hodnoty",
 	/* Vektor fce skewness (description)*/
-	"nJbe": "Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru.",
+	"nJbe": "Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru. ",
 	/* MD url "read more" */
 	"WLsu": "Zjistit více.",
 	/* vector fce Confidence intervals for the mean (title) */
