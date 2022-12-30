@@ -305,7 +305,7 @@ class MatrixMethod {
                 else output.push(ts[i].validator.fn(arg));
             }
             else {
-                    if(!arg && arg !== false && arg !== 0) throw new ArgumentError($("dSWt", {name: ts[i].name, title: $(ts[i]?.title), method: $(this.model.wiki?.title)}), this); 
+                if(!arg && arg !== false && arg !== 0) throw new ArgumentError($("dSWt", {name: ts[i].name, title: $(ts[i]?.title), method: $(this.model.wiki?.title)}), this); 
                 else output.push(ts[i].validator.fn(arg))    
             }
         }
@@ -387,7 +387,7 @@ const matrixMethods = {
         }
     },
     correlPartial: function(x,y,z){
-        var T = new Matrix(x,y,z).removeEmpty();
+        var T = new Matrix(z,y,x).removeEmpty();
         var n = T.maxRows();
         var ryz = T.correlPearson(1,2);
         var ryx = T.correlPearson(1,0);
@@ -397,16 +397,16 @@ const matrixMethods = {
         var p = (1 - dist.tdist(t, n-3)) * 2;
         return {
             r: rp,
-            N: n,
-            t: t,
+            n: n,
+            //t: t,
             p: p
         }
     },
     correlBiserial: function(x,y){
-        var T = new Table(x,y).removeEmpty();
-        x = Variable.numeric(new Array(...T.item(0)._values).map(v => v ? 1 : 0));
+        var T = new Matrix(x,y).removeEmpty();
+        var zeroOne = new Array(...T[0]).map(v => v ? 1 : 0);
+        x = new NumericVector(zeroOne);
         y = T.item(1);
-        var n = T.max();
         return matrixMethods.correlPearson(x,y);
     },
     /** https://en.wikipedia.org/wiki/Phi_coefficient */
@@ -706,11 +706,24 @@ const MatrixMethodsModels = [
     },
     {   name: "correlPartial",
         fn: matrixMethods.correlPartial,
-        example: null,
+        returns: schemas.matrixResultSchemas.correlPartial,
+        example: function() {
+            var x = new NumericVector(2,3,4,5,6,7,8,9,10,11);
+            var y = new NumericVector(3,5,4,6,5,7,8,9,1,11);
+            var z = new NumericVector(-5,-4,1,2,3,-2,6,8,10,12);
+            var partial = new Matrix(x,y,z).correlPartial(0,1,2);
+            /*
+            {
+                "r": 0.3222896122166014,
+                "n": 10,
+                "p": 0.39764
+            }
+            */
+        },
         filter: filters.matrixNotEmpty,
         wiki: {
-            title: "sjoW",
-            description: "hHaW"
+            title: "xfSf",
+            description: "UcfZ"
         },
         args: [ 
             {
@@ -718,7 +731,7 @@ const MatrixMethodsModels = [
                 wiki: {title: "qFEM"},
                 type: [1],
                 required: true,
-                validator: validators.generalCorrelVariable,
+                validator: validators.isNumericVector,
                 schema: schemas.argumentSchemas.numericVector
             },        
             {
@@ -726,26 +739,29 @@ const MatrixMethodsModels = [
                 wiki: {title: "tpUu"},
                 type: [1],
                 required: true,
-                validator: validators.generalCorrelVariable,
+                validator: validators.isNumericVector,
                 schema: schemas.argumentSchemas.numericVector
             },
             {
                 name: "z",
-                wiki: {title: "tpUR"},
+                wiki: {title: "gxOb"},
                 type: [1],
                 required: true,
-                validator: validators.generalCorrelVariable,
+                validator: validators.isNumericVector,
                 schema: schemas.argumentSchemas.numericVector
             }            
         ]
     },
     {   name: "correlBiserial",
         fn: matrixMethods.correlBiserial,
-        example: null,
+        example: function() {
+
+        },
         filter: filters.matrixNotEmpty,
+        returns: schemas.matrixResultSchemas.correlPearson,
         wiki: {
-            title: "eJTT",
-            description: "jAGi"
+            title: "AagR",
+            description: "OMiA"
         },
         args: [
             {
@@ -753,7 +769,7 @@ const MatrixMethodsModels = [
                 wiki: {title: "qFEM"},
                 type: [3],
                 required: true,
-                validator: validators.booleanVariable,
+                validator: validators.isBooleanVector,
                 schema: schemas.argumentSchemas.booleanVector
             },        
             {
@@ -761,7 +777,7 @@ const MatrixMethodsModels = [
                 wiki: {title: "tpUu"},
                 type: [1],
                 required: true,
-                validator: validators.generalCorrelVariable,
+                validator: validators.isNumericVector,
                 schema: schemas.argumentSchemas.numericVector
             }
         ]

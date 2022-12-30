@@ -4,7 +4,19 @@ Bablablablabla.
 
 ## Statistické metody
 
-
+| funkce | metoda | popis |
+| :---: |  :---: |  --- | 
+| [anovaow](#anovaow) | [ANOVA](#anovaow) | Vrátí statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Vstupem analýzy je matice s již předvybranými numerickými vektory, to znamená, že vstupní proměnné (vektory) není nutné specifikovat. |
+| [correlBiserial](#correlBiserial) | [biseeriální korelace](#correlBiserial) | Biseriální korelace je statistická metoda, která se používá k vyhodnocení vztahu mezi dvěma binárními proměnnými (tj. proměnnými, které mohou mít pouze dvě možné hodnoty, například 'ano' nebo 'ne'). Binární proměnné se často používají v sociálních vědách, například při zkoumání vztahu mezi vzděláním a zaměstnáním nebo mezi kouřením a zdravím. Biseriální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že biseriální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost. |
+| [correlKendall](#correlKendall) | [Kendallův koreelační koeficient](#correlKendall) | Vrátí statistický protokol Kendallova korelačního koeficientu Tau. Podobně jako v SPSS je coby korelační koeficient (r) vrácena hodota statistiky Tau-A, nikoliv Tau-b, jak je metoda obvykle nazývána. |
+| [correlPartial](#correlPartial) | [koeficient parciální korelace](#correlPartial) | Parciální korelace je statistická metoda, která vám umožňuje zjistit, jaký je vztah mezi dvěma proměnnými, přičemž se zohlední vliv třetí proměnné. To je užitečné, pokud chcete zjistit, zda existuje přímý vztah mezi dvěma proměnnými, aniž byste byli ovlivněni vlivem jiných proměnných. Například, pokud chcete zjistit, zda existuje vztah mezi úrovní školení a úspěšností v práci, může být užitečné zohlednit také vliv věku nebo pohlaví. V takovém případě byste mohli použít parciální korelaci k zjištění vztahu mezi úrovní školení a úspěšností v práci při zohlednění vlivu věku a pohlaví. Parciální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že parciální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost. Zdroj: https://chat.openai.com/chat. |
+| [correlPearson](#correlPearson) | [Pearsonův korelační koeficient](#correlPearson) | Vrátí statistický protokol Pearsonova korelačního koeficientu. |
+| [correlPhi](#correlPhi) | [Spearmanův korelační koeficient](#correlPhi) | Vrátí statistický protokol Spearmanova koeficientu pořadové korelace. |
+| [correlSpearman](#correlSpearman) | [Spearmanův korelační koeficient](#correlSpearman) | Vrátí statistický protokol Spearmanova koeficientu pořadové korelace. |
+| [linreg](#linreg) | [lineární regrese](#linreg) | Vrátí statistický protokol lineární regrese. Součástí vráceného objektu je i funkce (fn), pomocí které lze modelovat situace závislé proměnné při zadání hodnoty závislé proměnné. |
+| [mannwhitney](#mannwhitney) | [Mann-Whitney](#mannwhitney) | Vrátí statistický protokol Mann-Whitneyho U testu. |
+| [ttestind](#ttestind) | [T-test (nezávislý)](#ttestind) | Vrátí statistický protokol Studentova t-testu pro dva nezávislé výběry, které jsou definovány vlastní proměnnou (tedy dvěma numerickými vektory). |
+| [ttestpair](#ttestpair) | [T-test (párový)](#ttestpair) | Vrátí statistický protokol párového t-testu pro dva závislé výběry. |
 
 ---
 
@@ -81,9 +93,9 @@ var M = new Matrix([2,3,2,4,5,9,8,7,9,10,1,7,19,32,90],[1,1,1,1,1,2,2,2,2,2,3,3,
 
 ---
 
-### [SPEARMANŮV KORELAČNÍ KOEFICIENT](#correlBiserial): correlBiserial
+### [BISEERIÁLNÍ KORELACE](#correlBiserial): correlBiserial
 
-Vrátí statistický protokol Spearmanova koeficientu pořadové korelace.
+Biseriální korelace je statistická metoda, která se používá k vyhodnocení vztahu mezi dvěma binárními proměnnými (tj. proměnnými, které mohou mít pouze dvě možné hodnoty, například 'ano' nebo 'ne'). Binární proměnné se často používají v sociálních vědách, například při zkoumání vztahu mezi vzděláním a zaměstnáním nebo mezi kouřením a zdravím. Biseriální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že biseriální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost.
 
 #### Způsob volání metody
 
@@ -98,8 +110,21 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | první proměnná | [🟣] binární vektor | null | ✔️ |  |
-| **y** | druhá proměnná | [🔴] numerický vektor | null | ✔️ |  |
+| **x** | první proměnná | [🟣] binární vektor | Ověří, zdali je hodnota typu binární proměnné. V opačném případě vyvolá chybu. | ✔️ |  |
+| **y** | druhá proměnná | [🔴] numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+
+#### Struktura vrácené hodnoty
+
+- *protokol výstupu metody* `🟦 objekt`
+  - **r**: *Pearsonův korelační koeficient* `🔴 číslo`
+  - **n**: *počet případů* `c celé číslo`
+  - **p**: *hladina významnosti* `🔴 číslo`
+
+#### Příklad
+
+```js
+
+```
 
 ---
 
@@ -147,13 +172,13 @@ var M = new Matrix(a,b).correlKendall(a,b);
 
 ---
 
-### [PARCIÁLNÍ KORELACE](#correlPartial): correlPartial
+### [KOEFICIENT PARCIÁLNÍ KORELACE](#correlPartial): correlPartial
 
-Vrátí statistický protokol parciálního korelačního koeficientu.
+Parciální korelace je statistická metoda, která vám umožňuje zjistit, jaký je vztah mezi dvěma proměnnými, přičemž se zohlední vliv třetí proměnné. To je užitečné, pokud chcete zjistit, zda existuje přímý vztah mezi dvěma proměnnými, aniž byste byli ovlivněni vlivem jiných proměnných. Například, pokud chcete zjistit, zda existuje vztah mezi úrovní školení a úspěšností v práci, může být užitečné zohlednit také vliv věku nebo pohlaví. V takovém případě byste mohli použít parciální korelaci k zjištění vztahu mezi úrovní školení a úspěšností v práci při zohlednění vlivu věku a pohlaví. Parciální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že parciální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost. Zdroj: https://chat.openai.com/chat.
 
 #### Způsob volání metody
 
-> [Matrix instance].**correlPartial**(***první proměnná***, ***druhá proměnná***, ***třetí proměnná***)
+> [Matrix instance].**correlPartial**(***první proměnná***, ***druhá proměnná***, ***kontrolní proměnná***)
 
 
 #### Automatický filtr hodnot
@@ -164,9 +189,32 @@ Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahuj�
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | první proměnná | [🔴] numerický vektor | null | ✔️ |  |
-| **y** | druhá proměnná | [🔴] numerický vektor | null | ✔️ |  |
-| **z** | třetí proměnná | [🔴] numerický vektor | null | ✔️ |  |
+| **x** | první proměnná | [🔴] numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná | [🔴] numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **z** | kontrolní proměnná | [🔴] numerický vektor | Ověří, zdali je hodnota instancí třídy Variable číselného typu (typ 1, hodnota typu NumericArray). V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+
+#### Struktura vrácené hodnoty
+
+- *protokol výstupu metody* `🟦 objekt`
+  - **r**: *Pearsonův korelační koeficient* `🔴 číslo`
+  - **n**: *počet případů* `c celé číslo`
+  - **p**: *hladina významnosti* `🔴 číslo`
+
+#### Příklad
+
+```js
+var x = new NumericVector(2,3,4,5,6,7,8,9,10,11);
+var y = new NumericVector(3,5,4,6,5,7,8,9,1,11);
+var z = new NumericVector(-5,-4,1,2,3,-2,6,8,10,12);
+var partial = new Matrix(x,y,z).correlPartial(0,1,2);
+/*
+{
+"r": 0.3222896122166014,
+"n": 10,
+"p": 0.39764
+}
+*/
+```
 
 ---
 

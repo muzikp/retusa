@@ -725,6 +725,33 @@ const matrixResultSchemas = {
             }
         }
     },
+    correlPartial: {
+        "definitions": {},
+        "$schema": "http://json-schema.org/draft-07/schema#", 
+        "$id": "https://example.com/object1672345987.json", 
+        "title": "IIlO", 
+        "type": "object",
+        "properties": {
+            "r": {
+                "$id": "#root/r", 
+                "title": "pTvR", 
+                "type": "number",
+                "default": 0.0
+            },
+            "n": {
+                "$id": "#root/n", 
+                "title": "bLoI", 
+                "type": "integer",
+                "default": 0
+            },
+            "p": {
+                "$id": "#root/p", 
+                "title": "MpjZ", 
+                "type": "number",
+                "default": 0.0
+            }
+        }
+    },
     linreg: {
         "definitions": {},
         "$schema": "http://json-schema.org/draft-07/schema#", 

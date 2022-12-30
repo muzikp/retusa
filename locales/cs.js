@@ -467,11 +467,16 @@ module.exports = {
 	"FeBv": "funkční model",
 	/* schema - function type */
 	"GPHk": "funkce",
-	"xfSf":"",
-	"UcfZ":"",
-	"gxOb":"",
-	"AagR":"",
-	"OMiA":"",
+	/* fce matrix partial correlation (title) */
+	"xfSf":"koeficient parciální korelace",
+	/* fce matrix partial correlation (description) */
+	"UcfZ":"Parciální korelace je statistická metoda, která vám umožňuje zjistit, jaký je vztah mezi dvěma proměnnými, přičemž se zohlední vliv třetí proměnné. To je užitečné, pokud chcete zjistit, zda existuje přímý vztah mezi dvěma proměnnými, aniž byste byli ovlivněni vlivem jiných proměnných. Například, pokud chcete zjistit, zda existuje vztah mezi úrovní školení a úspěšností v práci, může být užitečné zohlednit také vliv věku nebo pohlaví. V takovém případě byste mohli použít parciální korelaci k zjištění vztahu mezi úrovní školení a úspěšností v práci při zohlednění vlivu věku a pohlaví. Parciální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že parciální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost. Zdroj: https://chat.openai.com/chat.",
+	/* fce matrix partial correlation (3rd argument - z) */
+	"gxOb":"kontrolní proměnná",
+	/* fce matrix binary correlation (title) */
+	"AagR":"biseeriální korelace",
+	/* fce matrix binary correlation (description) */
+	"OMiA":"Biseriální korelace je statistická metoda, která se používá k vyhodnocení vztahu mezi dvěma binárními proměnnými (tj. proměnnými, které mohou mít pouze dvě možné hodnoty, například 'ano' nebo 'ne'). Binární proměnné se často používají v sociálních vědách, například při zkoumání vztahu mezi vzděláním a zaměstnáním nebo mezi kouřením a zdravím. Biseriální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že biseriální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost.",
 	"pwfO":"",
 	"gRix":"",
 	"fqwd":"",

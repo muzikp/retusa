@@ -2,7 +2,11 @@ var framework = require("./index");
 
 with (framework) {
     framework.docs.publish(require("fs"));
-    var M = new Matrix([160,160,162,163,161,170,172,177,179,178,182,184,183],[57,55,59,60,52,67,69,74,75,76,78,80,87]);
+    var x = new BooleanVector(true,true,true,true,true,false,false,false,false,false);
+    var y = new NumericVector(3,5,4,6,5,7,8,9,1,11);
+    var partial = new Matrix(x,y).correlBiserial(0,1);
+    console.log(JSON.stringify(partial, null, "\t"));
+    debugger;
     var reg = M.linreg(0,1);
     console.dir(reg.fn(190));
     debugger;
