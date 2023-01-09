@@ -1,7 +1,14 @@
 var framework = require("./index");
 
 with (framework) {
+    var M = new Matrix(new NumericVector(10, 12, 13, 20, 21, 25).name("score"), new StringVector("a", "a", "a", "b", "b", "b").name("group"));
+    var fM = M.filter("score", function (value, index) { return value < 13 }, 1, function (v) {return v === "a" });
+    console.dir(fM)
+    debugger;
+    //return;
+
     framework.docs.publish(require("fs"));
+    return;
     console.log(Math.pci(0.5,500,0.95));
     return;
     var x = new BooleanVector(true,true,true,true,true,false,false,false,false,false);

@@ -342,7 +342,7 @@ let VectorMethodsModels = [
         type: [1],
         returns: "number",
         example: function(){
-            var avgCashFlow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 75 */
+            var avgCashFlow = new NumericVector(200,250,150,320,240,-250,10,-320).avg();  /* = 75 */
         },
         url: "https://en.wikipedia.org/wiki/Arithmetic_mean"
     },
@@ -886,7 +886,7 @@ let VectorMethodsModels = [
         },
         url: "https://en.wikipedia.org/wiki/Confidence_interval"
     },    
-    {   name: "shapirowilk",
+    {   name: "swtest",
         fn: Array.prototype.shapirowilk,
         filter: filters.number,
         wiki: {
@@ -896,7 +896,7 @@ let VectorMethodsModels = [
         type: [1],
         returns: "shapirowilk",
         example: function(){
-            var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).shapirowilk(); 
+            var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).swtest(); 
             /* 
             {
                 "W": 0.9664039647188553,

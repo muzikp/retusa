@@ -23,10 +23,10 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 | [percentile](#percentile) | percentil | ✔️ | - | - |
 | [range](#range) | variační rozpětí | ✔️ | - | - |
 | [sem](#sem) | střední chyba průměru | ✔️ | - | - |
-| [shapirowilk](#shapirowilk) | Shapirův-Wilkův W test | ✔️ | - | - |
 | [skewness](#skewness) | šikmost | ✔️ | - | - |
 | [stdev](#stdev) | směrodatná odchylka | ✔️ | - | - |
 | [sum](#sum) | součet | ✔️ | - | - |
+| [swtest](#swtest) | Shapirův-Wilkův W test | ✔️ | - | - |
 | [ttest](#ttest) | jednovýběrový t-test | ✔️ | - | - |
 | [varc](#varc) | variační koeficient | ✔️ | - | - |
 | [variance](#variance) | rozptyl | ✔️ | - | - |
@@ -62,7 +62,7 @@ Pouze číselné hodnoty (včetně nul).
 #### Příklad
 
 ```js
-var avgCashFlow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 75 */
+var avgCashFlow = new NumericVector(200,250,150,320,240,-250,10,-320).avg();  /* = 75 */
 ```
 
 ---
@@ -781,50 +781,6 @@ var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,2
 
 ---
 
-### [SHAPIRŮV-WILKŮV W TEST](#shapirowilk): shapirowilk
-
-Vrátí statistický protokol Shapiro-Wilkova W testu normality rozdělení hodnot vektoru. Shapiro-Wilk test je statistický test, který se používá k testování hypotézy, že data pocházejí z normálního rozdělení. Tento test je často používán k ověření normality dat v rámci statistické analýzy. Test Shapiro-Wilk se zakládá na porovnání hodnoty kvartilů dat s hodnotami kvartilů normálního rozdělení. Když jsou hodnoty kvartilů dat podobné hodnotám kvartilů normálního rozdělení, je pravděpodobné, že data pocházejí z normálního rozdělení. V opačném případě je pravděpodobné, že data nejsou normální. Při použití testu Shapiro-Wilk je třeba si uvědomit, že tento test má nízkou citlivost pro velké vzorky, tj. pro velké vzorky může být test méně spolehlivý při detekci ne-normality. Proto se pro velké vzorky často používají jiné testy normality, jako například test Anderson-Darling nebo test Kolmogorov-Smirnov. [Zjistit více.](https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test)
-
-#### Způsob volání metody
-
-
-> (NumericVector).<mark>**shapirowilk**()
-
-
-#### Automatický filtr hodnot
-
-Pouze číselné hodnoty (včetně nul).
-
-#### Integrace dle třídy
-
-| typ vektoru | integrace |
-| --- |  :---: | 
-| numerický | ✔️ |
-| nominální | - |
-| binární | - |
-
-#### Struktura vrácené hodnoty
-
-- *Shapirův-Wilkův W test* `🟦 objekt`
-  - **W**: *hodnota Shapiro-Wilkova W testu* `🔴 číslo`
-  - **df**: *počet stupňů volnosti* `c celé číslo`
-  - **p**: *hladina významnosti* `🔴 číslo`
-
-#### Příklad
-
-```js
-var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).shapirowilk();
-/*
-{
-"W": 0.9664039647188553,
-"df": 23,
-"p": 0.6036566524076283
-}
-*/
-```
-
----
-
 ### [ŠIKMOST](#skewness): skewness
 
 Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru.  [Zjistit více.](https://en.wikipedia.org/wiki/Skewness)
@@ -937,6 +893,50 @@ Pouze číselné hodnoty (včetně nul).
 
 ```js
 var cashflow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 600 */
+```
+
+---
+
+### [SHAPIRŮV-WILKŮV W TEST](#swtest): swtest
+
+Vrátí statistický protokol Shapiro-Wilkova W testu normality rozdělení hodnot vektoru. Shapiro-Wilk test je statistický test, který se používá k testování hypotézy, že data pocházejí z normálního rozdělení. Tento test je často používán k ověření normality dat v rámci statistické analýzy. Test Shapiro-Wilk se zakládá na porovnání hodnoty kvartilů dat s hodnotami kvartilů normálního rozdělení. Když jsou hodnoty kvartilů dat podobné hodnotám kvartilů normálního rozdělení, je pravděpodobné, že data pocházejí z normálního rozdělení. V opačném případě je pravděpodobné, že data nejsou normální. Při použití testu Shapiro-Wilk je třeba si uvědomit, že tento test má nízkou citlivost pro velké vzorky, tj. pro velké vzorky může být test méně spolehlivý při detekci ne-normality. Proto se pro velké vzorky často používají jiné testy normality, jako například test Anderson-Darling nebo test Kolmogorov-Smirnov. [Zjistit více.](https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test)
+
+#### Způsob volání metody
+
+
+> (NumericVector).<mark>**swtest**()
+
+
+#### Automatický filtr hodnot
+
+Pouze číselné hodnoty (včetně nul).
+
+#### Integrace dle třídy
+
+| typ vektoru | integrace |
+| --- |  :---: | 
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
+
+#### Struktura vrácené hodnoty
+
+- *Shapirův-Wilkův W test* `🟦 objekt`
+  - **W**: *hodnota Shapiro-Wilkova W testu* `🔴 číslo`
+  - **df**: *počet stupňů volnosti* `c celé číslo`
+  - **p**: *hladina významnosti* `🔴 číslo`
+
+#### Příklad
+
+```js
+var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).swtest();
+/*
+{
+"W": 0.9664039647188553,
+"df": 23,
+"p": 0.6036566524076283
+}
+*/
 ```
 
 ---

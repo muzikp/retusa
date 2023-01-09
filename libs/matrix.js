@@ -12,6 +12,14 @@ const registry = new WeakMap();
 
 // #region MATRIX
 
+Array.prototype.matrify = function() {
+    var M = new Matrix();
+    for(var i = 0; i < this.length; i++) {
+        M.push(!this[i].isVector ? this[i].vectorify() : this[i])
+    }
+    return M;
+}
+
 class Matrix extends Array {
     /**
      * Initializes a new instance of the Matrix class.
