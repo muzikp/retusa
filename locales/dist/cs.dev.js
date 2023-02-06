@@ -92,7 +92,7 @@ module.exports = {
   "eJTq": "výběrový soubor",
 
   /* standard deviation vector fce sample param (description) */
-  "FfpU": "Určuje, zdali se jedná o výběrový soubor. Nabývá hodnot pravda (jedná se o výběrový sobour) nebo nepravda (jedná se o základí soubor)",
+  "FfpU": "Určuje, zdali se jedná o výběrový soubor. Nabývá hodnot pravda (jedná se o výběrový sobour) nebo nepravda (jedná se o základní soubor)",
 
   /* vector max fce (title) */
   "nKuF": "maximální hodnota",
@@ -552,7 +552,7 @@ module.exports = {
   "SMbe": "Hodnota hladiny významnosti, na které se interval testuje. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normální rozdělení.",
 
   /* schema MCI - delta */
-  "NzBg": "hodnota intervalu spolehlivosti",
+  "NzBg": "interval spolehlivosti (+-)",
 
   /* schema MCI - lower bound */
   "GynK": "spodní hranice intervalu",
@@ -606,7 +606,7 @@ module.exports = {
   "nCHN": "podíl hledané hodnoty na celku",
 
   /* schema vector mci/pci - sig */
-  "mjPq": "hladina výzmnamnosti intervalu",
+  "mjPq": "hladina významnosti intervalu",
 
   /* validator v_any title */
   "Blaz": "Vstupem může být libovolná hodnota, validátor nevrací chybu.",

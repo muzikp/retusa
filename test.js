@@ -1,11 +1,24 @@
+const console = require("console");
+const { vectorModels, NumericVector } = require("./index");
 var framework = require("./index");
+const { StringVector } = require("./libs/vector");
 
 with (framework) {
-    var M = new Matrix(new NumericVector(10, 12, 13, 20, 21, 25).name("score"), new StringVector("a", "a", "a", "b", "b", "b").name("group"));
-    var fM = M.filter("score", function (value, index) { return value < 13 }, 1, function (v) {return v === "a" });
-    console.dir(fM)
+
+    //var c = new StringVector("A","A","B","B","B","C","D","D","D","D", "D", "E","E","E","E").frequency(4);
+    var c = StringVector.generate({total: 500, list: 5});
+    console.table(c);
+
     debugger;
-    //return;
+    return
+    var a = new NumericVector( 3, 2,1,2,3,4,5).name("A");
+    var b = new NumericVector( 6, 7,1,2,3,4,5).name("B");
+    var c = new NumericVector(-2, -4, -7, -5, 8, 10).name("C");
+    var M = new Matrix(a, b, c);
+    var correl = M.correlPearson("A", b);
+    
+    debugger;
+    return;
 
     framework.docs.publish(require("fs"));
     return;

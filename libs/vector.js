@@ -1,7 +1,7 @@
 "use strict";
 var $ = require("./locale").call;
-var {filters, validators} = require("./parsers");
-var {vectorResultSchemas} = require("./schemas");
+var {filters, validators, enumerators} = require("./parsers");
+var {vectorResultSchemas, OutputSchema, FormVectorSchema} = require("./schemas");
 const {Array, Math, String, Function} = require("./extensions");
 const {VectorMarkdown, VectorOverview} = require("./markdown");
 var {VectorValueError, ArgumentError, Empty} = require("./errors");
@@ -518,6 +518,7 @@ let VectorMethodsModels = [
         },
         url: "https://en.wikipedia.org/wiki/Range_(statistics)"
     },
+    /* coefficient of variation */
     {   name: "varc",
         fn: Array.prototype.varc,
         filter: filters.number,
@@ -630,29 +631,8 @@ let VectorMethodsModels = [
                 schema: "integer",
                 default: 1,
                 type: "enum",
-                validator: validators.enumValidator({
-                    name: "order",
-                    type: "enum",
-                    title: "gZCx",
-                    values: [
-                        {
-                            key: 1, 
-                            title: "AUbD"
-                        },
-                        {
-                            key: 2, 
-                            title: "WSJH"
-                        },
-                        {
-                            key: 3, 
-                            title: "dkxz"
-                        },
-                        {
-                            key: 4, 
-                            title: "vJCU"
-                        }
-                    ]
-                })
+                validator: validators.enumValidator(enumerators.frequencyOrder),
+                enums: enumerators.frequencyOrder
             }
         },
         url: "https://en.wikipedia.org/wiki/Frequency_(statistics)"
@@ -990,6 +970,16 @@ class VectorMethod {
                 })(this.model.args)
             }
         } else return {};
+    }
+    /**
+     * Returns a router for input and output schema.
+     */
+    get schema() {
+        return {
+            input: null,
+            output: new OutputSchema(vectorResultSchemas[this.model.returns]),
+            form: new FormVectorSchema(this.model.args)
+        }
     }
     /* Generates a markdown documentation for the vector method */
     markdown(level = 1) {

@@ -25,6 +25,11 @@ module.exports = {
     Locale.config(_locale);
     return module.exports;
   },
+  Schema: {
+    Vector: {
+      result: Schema.vectorResultSchemas
+    }
+  },
   register: {
     vectorMethod: function vectorMethod(model) {
       Vector.register(model);

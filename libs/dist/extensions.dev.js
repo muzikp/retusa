@@ -111,8 +111,6 @@ Array.prototype.histogram = function () {
   var _i = 0;
 
   for (var i = mn; i <= mx; i += interval) {
-    var _int = "".concat(Math.ceil(i).toFixed(fixed), " - ").concat(Math.floor(i + interval).toFixed(fixed));
-
     var n = this.filter(function (f) {
       return (_i === 0 ? f >= i : f > i) && f <= i + interval;
     }).length;
@@ -122,7 +120,6 @@ Array.prototype.histogram = function () {
     h.push({
       from: i,
       to: i + interval,
-      i: _int,
       n: n,
       nc: nc,
       p: p,
@@ -176,13 +173,13 @@ Array.prototype.frequency = function (order) {
   }
 
   ;
-  if (order == 1) return f.sort(function (a, b) {
+  if (order == 3) return f.sort(function (a, b) {
     return a.value - b.value;
-  });else if (order == 2) return f.sort(function (a, b) {
-    return a.value - b.value;
-  }).reverse();else if (order == 3) return f.sort(function (a, b) {
-    return a.frequency - b.frequency;
   });else if (order == 4) return f.sort(function (a, b) {
+    return a.value - b.value;
+  }).reverse();else if (order == 2) return f.sort(function (a, b) {
+    return a.frequency - b.frequency;
+  });else if (order == 1) return f.sort(function (a, b) {
     return a.frequency - b.frequency;
   }).reverse();else return f;
 };

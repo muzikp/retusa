@@ -146,9 +146,37 @@ const validators = {
     }
 }
 
+const enumerators= {
+    frequencyOrder: {
+        name: "order",
+        type: "enum",
+        title: "gZCx",
+        default: 1,
+        values: [
+            {
+                key: 1, 
+                title: "AUbD"
+            },
+            {
+                key: 2, 
+                title: "WSJH"
+            },
+            {
+                key: 3, 
+                title: "dkxz"
+            },
+            {
+                key: 4, 
+                title: "vJCU"
+            }
+        ]
+    }
+}
+
 // #endregion
 
 module.exports = {
     filters: filters,
-    validators: validators
+    validators: validators,
+    enumerators: enumerators
 }

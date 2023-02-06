@@ -80,12 +80,11 @@ Array.prototype.histogram = function(maxIntervals = null, fixedInterval = null){
     var _i = 0;
     for(var i = mn; i <= mx; i += interval)
     {
-        var int = `${Math.ceil(i).toFixed(fixed)} - ${(Math.floor(i + interval)).toFixed(fixed)}`;
         var n = (this.filter(f => (_i === 0 ? f >=i : f > i) && (f <= (i + interval)))).length;
         var nc = _i > 0 ? n + h[_i-1].nc : n;
         var p = n/l;
         var pc = _i > 0 ? p + h[_i-1].pc : p;
-        h.push({from: i, to: i + interval, i: int, n:n, nc: nc, p:p, pc:pc})
+        h.push({from: i, to: i + interval, n:n, nc: nc, p:p, pc:pc})
         _i++;
     }
     return h;
@@ -100,10 +99,10 @@ Array.prototype.frequency = function(order){
     for(let k of this.distinct()) {
         f.push({value: k, frequency: this.filter(v => v === k).length});
     };
-    if(order == 1) return f.sort((a, b) => a.value - b.value);
-    else if(order == 2) return f.sort((a, b) => a.value - b.value).reverse();
-    else if(order == 3) return f.sort((a, b) => a.frequency - b.frequency);
-    else if(order == 4) return f.sort((a, b) => a.frequency - b.frequency).reverse();
+    if(order == 3) return f.sort((a, b) => a.value - b.value);
+    else if(order == 4) return f.sort((a, b) => a.value - b.value).reverse();
+    else if(order == 2) return f.sort((a, b) => a.frequency - b.frequency);
+    else if(order == 1) return f.sort((a, b) => a.frequency - b.frequency).reverse();
     else return f;
 }
 

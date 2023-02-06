@@ -93,6 +93,69 @@ createPropTitle(e, indent = 1) {
     }
 }
 
+class OutputSchema {
+    constructor(schema) {
+        this.type = schema.type;
+        this.title = $(schema.title);
+        /**
+        * Returns true if the element is not a kind of object (object, array, function etc.).
+        */
+        this.isSimple = !(this.type == "object" || this.type == "array");
+        this.isObject = this.type == "object";
+        this.isArray = this.type == "array";
+        this.format = schema.format || null;
+        if(schema?.properties){
+            this.properties = [];
+            for(let key of Object.keys(schema.properties))
+            {
+                var p = new OutputSchema(schema.properties[key]);
+                p.id = key;
+                this.properties.push(p);
+            }
+        } 
+        else if(schema?.items?.properties){
+            this.items = [];
+            for(let key of Object.keys(schema.items.properties))
+            {
+                var i = new OutputSchema(schema.items.properties[key]);
+                i.id = key;
+                this.items.push(i);
+            }                
+        }
+    }
+}
+
+class FormVectorSchema {
+    constructor(args) {
+        if(!args) return null;
+        var items = [];
+        for(let key of Object.keys(args)) {
+            var i = args[key];
+            var _i = {
+                id: key,
+                title: i.wiki?.title ? $(i.wiki.title) : null,
+                description: i.wiki?.description ? $(i.wiki.description) : null,
+                required: i.required,
+                default: i.default,
+                type: i.type,
+                fn: i.validator?.fn ? i.validator.fn : null,
+                validatorText: i.validator?.text ? $(i.validator.text) : null,
+            };
+            if(i.enums) {
+                _i.enums = [];
+                for(let e of i.enums.values) {
+                    _i.enums.push({
+                        id: e.key,
+                        title: $(e.title)
+                    });
+                }
+            }
+            items.push(_i);
+        }
+        return items;
+    }
+}
+
 const vectorResultSchemas = {
     number: {
         "definitions": {},
@@ -103,7 +166,8 @@ const vectorResultSchemas = {
         "examples": [
             1.5
         ],
-        "default": 0.0
+        "default": 0.0,
+        "numeral": "0.00"
     },
     any: {
         "definitions": {},
@@ -117,9 +181,6 @@ const vectorResultSchemas = {
         "default": 0.0
     },
     integer : {
-        "definitions": {},
-        "$schema": "http://json-schema.org/draft-07/schema#", 
-        "$id": "https://example.com/object1671554312.json", 
         "title": "DQnl", 
         "type": "integer",
         "examples": [
@@ -128,20 +189,15 @@ const vectorResultSchemas = {
         "default": 0.0
     },
     uint : {
-        "definitions": {},
-        "$schema": "http://json-schema.org/draft-07/schema#", 
-        "$id": "https://example.com/object1671554312.json", 
         "title": "IrhN", 
         "type": "integer",
         "examples": [
             1.5
         ],
-        "default": 0.0
+        "default": 0
+
     },
     zeroToOneInc : {
-        "definitions": {},
-        "$schema": "http://json-schema.org/draft-07/schema#", 
-        "$id": "https://example.com/object1671554312.json", 
         "title": "OQnL", 
         "type": "number",
         "examples": [
@@ -149,9 +205,6 @@ const vectorResultSchemas = {
         ]
     },
     string : {
-        "definitions": {},
-        "$schema": "http://json-schema.org/draft-07/schema#", 
-        "$id": "https://example.com/object1671554312.json", 
         "title": "RFGF", 
         "type": "number",
         "examples": [
@@ -159,10 +212,7 @@ const vectorResultSchemas = {
         ],
         "default": 0.0
     },
-    boolean : {
-        "definitions": {},
-        "$schema": "http://json-schema.org/draft-07/schema#", 
-        "$id": "https://example.com/object1671554312.json", 
+    boolean : { 
         "title": "XPGc", 
         "type": "boolean",
         "examples": [
@@ -171,9 +221,6 @@ const vectorResultSchemas = {
         "default": 0.0
     },
     histogram: {
-        "definitions": {},
-        "$schema": "http://json-schema.org/draft-07/schema#", 
-        "$id": "https://example.com/object1671560926.json", 
         "title": "PAwR", 
         "type": "array",
         "default": [],
@@ -184,7 +231,6 @@ const vectorResultSchemas = {
             "required": [
                 "from",
                 "to",
-                "i",
                 "n",
                 "nc",
                 "p",
@@ -209,16 +255,6 @@ const vectorResultSchemas = {
                     ],
                     "default": 0.0
                 },
-                "i": {
-                    "$id": "#root/items/i", 
-                    "title": "VyzG", 
-                    "type": "string",
-                    "default": "",
-                    "examples": [
-                        "1.00 - 3.00"
-                    ],
-                    "pattern": "^.*$"
-                },
                 "n": {
                     "$id": "#root/items/n", 
                     "title": "eHkc", 
@@ -240,31 +276,27 @@ const vectorResultSchemas = {
                 "p": {
                     "$id": "#root/items/p", 
                     "title": "iDVx", 
-                    "type": "number",
+                    "type": "percent",
                     "examples": [
                         0.0625
                     ],
-                    "default": 0.0
+                    "default": 0.0,
                 },
                 "pc": {
                     "$id": "#root/items/pc", 
                     "title": "oIyG", 
-                    "type": "number",
+                    "type": "percent",
                     "examples": [
                         0.0625
                     ],
-                    "default": 0.0
+                    "default": 0.0,
                 }
             }
         }        
     },
     frequency: {
-        "definitions": {},
-        "$schema": "http://json-schema.org/draft-07/schema#", 
-        "$id": "https://example.com/object1671561419.json", 
         "title": "dYJK", 
         "type": "array",
-        "default": [],
         "items":{
             "$id": "#root/items", 
             "title": "Items", 
@@ -409,7 +441,7 @@ const vectorResultSchemas = {
             "p": {
                 "$id": "#root/p", 
                 "title": "nCHN", 
-                "type": "number",
+                "type": "percent",
                 "examples": [
                     0.17391304347826086
                 ],
@@ -427,7 +459,7 @@ const vectorResultSchemas = {
             "delta": {
                 "$id": "#root/delta", 
                 "title": "NzBg", 
-                "type": "number",
+                "type": "percent",
                 "examples": [
                     0.1549041787089759
                 ],
@@ -436,7 +468,7 @@ const vectorResultSchemas = {
             "lb": {
                 "$id": "#root/lb", 
                 "title": "GynK", 
-                "type": "number",
+                "type": "percent",
                 "examples": [
                     0.019008864769284955
                 ],
@@ -445,7 +477,7 @@ const vectorResultSchemas = {
             "ub": {
                 "$id": "#root/ub", 
                 "title": "iIPc", 
-                "type": "number",
+                "type": "percent",
                 "examples": [
                     0.32881722218723675
                 ],
@@ -868,6 +900,8 @@ const argumentSchemas = {
 module.exports = {
     Schema: Schema,
     ArgumentSchema: ArgumentSchema,
+    OutputSchema: OutputSchema,
+    FormVectorSchema: FormVectorSchema,
     vectorResultSchemas: vectorResultSchemas,
     matrixResultSchemas: matrixResultSchemas,
     argumentSchemas: argumentSchemas,
