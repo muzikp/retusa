@@ -4,6 +4,17 @@ var framework = require("./index");
 const { StringVector } = require("./libs/vector");
 
 with (framework) {
+    var a = new NumericVector( 3, 2,1,2,3,4,5, null, 6).name("A");
+    var b = new NumericVector( 6, 7,1,2,3,4,5, 6, null).name("B");
+    var M = new Matrix(a, b);
+    var analysis = M.analyze("correlPearson");
+    console.log(analysis.parent.maxRows());
+    analysis.run(0,1);
+    console.log(analysis.matrix.maxRows());
+    debugger;
+    return;
+
+
     var c = new NumericVector(1,2,3,null,0,7,null,8,4,5);
     var an = c.analyse("pci").validate(3).run();
     console.log(an);

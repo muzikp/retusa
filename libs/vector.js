@@ -128,7 +128,7 @@ class Vector extends Array {
     model(name) {
         return new VectorMethod(VectorMethodsModels.find(m => m.name == name), this);
     }
-    analyse(name) {
+    analyze(name) {
         return new VectorAnalysis(name, this);
     }
 }

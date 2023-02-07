@@ -21,13 +21,18 @@ let f_removeEmpty = function() {
     return true;
 }
 
+let f_removeMatrixEmpty = function(matrix) {
+    var fs = new Array(...matrix).map((v,i) => [i, (v) => v !== null]).flat(Infinity);
+    return matrix.filter(...fs);
+}
+
 const filters = {
     any: {fn: () => true, text: "FxzE"},
     notnull: {fn: f_notnull, text: "ndPx"},
     number: {fn: f_number, text: "GDkm"},
     string: {fn: f_string, text: "jocS"},
     boolean: {fn: f_boolean, text: "uUYu"},
-    matrixNotEmpty: {fn: f_removeEmpty, text: "SExL"}
+    matrixNotEmpty: {fn: f_removeMatrixEmpty, text: "SExL"}
 }
 
 // #endregion
