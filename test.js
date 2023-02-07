@@ -4,10 +4,19 @@ var framework = require("./index");
 const { StringVector } = require("./libs/vector");
 
 with (framework) {
-
-    //var c = new StringVector("A","A","B","B","B","C","D","D","D","D", "D", "E","E","E","E").frequency(4);
-    var c = StringVector.generate({total: 500, list: 5});
-    console.table(c);
+    var c = new NumericVector(1,2,3,null,0,7,null,8,4,5);
+    var an = c.analyse("pci").validate(3).run();
+    console.log(an);
+    debugger;
+    return;
+    var matrix = new Matrix();
+    var pearson = matrix.model("correlPearson");
+    console.log(pearson);
+    debugger;
+    var c = new StringVector("A","A","B","B","B","C","D","D","D","D", "D", "E","E","E","E").frequency(4);
+    var c = NumericVector.generate({total: 500, min: 200, max: 500, nullprob: 0.2}).name("Randoms");
+    var text = c.model("avg").wiki.filter;
+    var size = c.filter(c.model("avg").filter).length;
 
     debugger;
     return

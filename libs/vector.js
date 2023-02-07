@@ -72,6 +72,7 @@ class Vector extends Array {
     * @return {Array<integer>} Returns an array of indexes of values matching the given filter.
     */
     ifilter(filter = () => true) {
+
         return new Array(...this).map(function(v, i){
             if(filter(v)) return i;
             else return -1;
@@ -118,6 +119,17 @@ class Vector extends Array {
             clone.push(...this.filter((v,i) => indexes.indexOf(i) > - 1));
             return clone;
         }
+    }
+    /**
+     * Returns a model of the specified method with this vector set as its parent.
+     * @param {string} name Name of the vector method.
+     * @returns {NumericVector | StringVector | BooleanVector}
+     */
+    model(name) {
+        return new VectorMethod(VectorMethodsModels.find(m => m.name == name), this);
+    }
+    analyse(name) {
+        return new VectorAnalysis(name, this);
     }
 }
 
@@ -910,14 +922,148 @@ let VectorMethodsModels = [
     },  
 ].sort((a,b) => a.name > b.name ? 1 : -1)
 
+class VectorAnalysis {
+    constructor(model, parent) {
+        if(parent) this.parent = parent?.isVector ? parent : null;
+        if(typeof model == "string") {            
+            if(!VectorMethodsModels.find(m => m.name == model)) throw new Error("Model not found: " + model);
+            else this.model = VectorMethodsModels.find(m => m.name == model);
+        } else if(typeof model == "object") this.model = model;
+        else throw new Error("Unknown VectorMethod constructor parameter type.");
+    }
+    /**
+     * Returns the name of the method.
+     */
+    get name() {return this.model.name};
+    /**
+     * Returns the calculation method.
+     */
+    get fn() {return this.model.fn};
+    /**
+     * Returns default filter function applied before the method is calculated.
+     */
+    get filter() {return this.model.filter ? this.model.filter.fn : () => true}
+    /**
+     * Applies the model filter to the parent and stores the sample data into the "filterLog" property object.
+     * @param {object} config Not imployed yet.
+     * @return {self}
+     */
+    get wiki() {
+        if(this.model.wiki) {
+            return {
+                title: $(this.model.wiki.title),
+                description: $(this.model.wiki.description),
+                filter: this.model.filter ? $(this.model.filter.text) : null,
+                url: this.model.url || null,
+                applies: [
+                    {type: 1, title: $("LOYN"), apply: this.model.type.indexOf(1) > -1},
+                    {type: 2, title: $("zoiB"), apply: this.model.type.indexOf(2) > -1},
+                    {type: 3, title: $("OkoC"), apply: this.model.type.indexOf(3) > -1}
+                ],
+                returns: vectorResultSchemas[this.model.returns],
+                arguments: (function(args){
+                    var _ = [];
+                    if(!args) return [];
+                    else {
+                        for(let k of Object.keys(args)) {
+                            _.push({
+                                name: k,
+                                title: args[k].wiki?.title ? $(args[k].wiki.title) : null,
+                                validator: args[k].validator?.text ? $(args[k].validator?.text) : null,
+                                description: args[k]?.wiki?.description ? $(args[k].wiki.description) : null,
+                                schema: vectorResultSchemas[args[k].schema],
+                                required: !!args[k]?.required,
+                                default: args[k].default || null,
+                            })
+                        }
+                    }
+                    return _;
+                })(this.model.args)
+            }
+        } else return {};
+    }
+    /**
+     * Returns an inteface for input and output schemas.
+     */
+    get schema() {
+        return {
+            input: null,
+            output: new OutputSchema(vectorResultSchemas[this.model.returns]),
+            form: new FormVectorSchema(this.model.args)
+        }
+    }
+    /**
+     * Applies the model filter to the parent, stores the result into the "vector" property and returns self. The Vector is the method ultimate input.
+     * @param {*} config No imployed yet.
+     * @returns {self}
+     */
+    prepare(config){
+        if(!this.parent) throw new Error("The method cannot be called without a parent specified")
+        this.vector = this.filter ? this.parent.filter(this.filter) : this.parent;
+        return this;
+    }
+    /**
+     * Validates method arguments and returns self.
+     * @param {any} * The method arguments.
+     * @returns {self}
+     */
+    validate() {
+        if(!this.parent) return new Empty($("hKRq"));
+        var i = 0;
+        var args = Array.prototype.slice.call(arguments);
+        var rebuilt = [];
+        if((this.model.args || []).length === 0) return args;
+        for(let k of Object.keys(this.model.args)) {
+            var _validator = this.model.args[k]?.validator?.fn || function(v){return v};
+            if((!args[i] && args[i] !== 0 && args[i] !== false))
+            {
+                if(this.model.args[k]?.required) throw new ArgumentError($("dSWt", {name: k, title: $(this.model.args[k].wiki?.title), method: $(this.model.wiki?.title)}), this);
+                else rebuilt.push(this.model.args[k].default);
+            }
+            else {
+                try {
+                    rebuilt.push(_validator(args[i]));
+                } catch(e) {
+                    throw new ArgumentError(e, this)
+                }
+            }
+            i++;
+        }
+        this.args = rebuilt;
+        return this;
+    }
+    /**
+     * Call the calculation function and returns either the VectorAnalysis instance with the result property storing the result or the result itself (see params). If either input preparation or validation has not been called before, it is automatically called.
+     * @param {boolean} returnSelf If true, the VectorAnalysis is returned, with the result property storing the calculation result. Otherwise the result is returned. Default true.
+     * @returns {self | any}
+     */
+    run() {
+        if(!this.parent) return new Empty($("hKRq"));
+        else if(this.model.type.indexOf(this.parent?.type()) === -1) return new Empty($("ibNu", {method: $(this.model.wiki.title), type: $(getVectorTypeLabelCode(this.parent))}))
+        if(!this.input) this.prepare({});
+        if([...arguments].length > 0) this.validate(...arguments);
+        this.result = this.fn.call(this.vector, ...(this.args || []));
+        return this;
+    }
+    /**
+     * 
+     * @param {Vector} parent Specifies the vector on which the method should be applied.
+     * @returns {VectorMethod} Returns the original VectorMethod instance.
+     */
+    with(parent) {
+        this.parent = parent;
+        return this;
+    }
+}
+
 class VectorMethod {
     constructor(model, parent) {
         if(parent) this.parent = parent;
         if(typeof model == "string") {            
             if(!VectorMethodsModels[model]) throw new Error("Model not found: " + model);
-            else this.model = Models.vector[model];
+            else this.model = VectorMethodsModels[model];
         } else if(typeof model == "object") this.model = model;
-        else throw new Error("Unknown VectorMethod constructor parameter type.")
+        else throw new Error("Unknown VectorMethod constructor parameter type.");
     }
     /**
      * Returns the name of the method.
@@ -984,8 +1130,7 @@ class VectorMethod {
     /* Generates a markdown documentation for the vector method */
     markdown(level = 1) {
         return VectorMarkdown(this.wiki, level);
-    }
-    
+    }    
     /**
      * 
      * @returns {any} Returns the result of the main function.

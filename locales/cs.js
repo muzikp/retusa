@@ -170,7 +170,7 @@ module.exports = {
 	/* vector histogram fce (title) */
 	"PAwR": "histogram",
 	/* vector histogram fce (description) */
-	"AISp": "Vrátí matici histogramu daného vektoru.",
+	"AISp": "Vrátí matici histogramu daného vektoru. Metodu lze volit s upřesněním parametrů nebo i bez nich. Pokud není upřesněn parametr 'maximální počet intervalů' (maxIntervals), je jeho hodnota automaticky vypočítána jako variační rozpětí/odmocnina z počtu prvků. Pokud je uveden parametr 'pevná velikost intervalu' (fixedInterval), je brána tato hodnota jako rozhodující pro počet intervalu. Obě dvě hodnoty nejsou slučitelné (ačkoliv nebrací chybu), při zadání obou dvou je jako prioritní brán paramtr maxIntervals (nebo možná fixedIntervals?).",
 	/* validator error - its decimal, not integer */
 	"tEdu": "Je potřeba zadat celé, ne desetinné číslo.",
 	/* validator error - its not positive integer */

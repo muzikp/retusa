@@ -21,6 +21,7 @@ module.exports = {
   StringVector: Vector.StringVector,
   BooleanVector: Vector.BooleanVector,
   vectorModels: Vector.Models,
+  matrixModels: Matrix.Models,
   locale: function locale(_locale) {
     Locale.config(_locale);
     return module.exports;
