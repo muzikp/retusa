@@ -34,8 +34,11 @@ function normsdist(x){
     return normdist(x,0,1);
 }
 
-function normdist(x, mean, std) {
-    return 0.5 * (1 + erf((x - mean) / Math.sqrt(2 * std * std)));
+function normdist(x, mean, std, cumulative = false) {
+    if(!cumulative) {
+        return Math.exp(-0.5 * Math.log(2 * Math.PI) - Math.log(std) - Math.pow(x - mean, 2) / (2 * std * std));
+    }
+    else return 0.5 * (1 + erf((x - mean) / Math.sqrt(2 * std * std)));
 }
 
 /**

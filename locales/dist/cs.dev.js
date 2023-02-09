@@ -636,7 +636,7 @@ module.exports = {
   "jFVv": "závislá proměnná y",
 
   /* filter metrix RemoveEmpty text */
-  "SExL": "Vybere napříč maticí pouze ty řádky, které v rámci své řady neobsahují ani jednu prázdnou hodnotu (null).",
+  "SExL": "Vybere napříč relevantních vektorů matice pouze ty řádky, které v rámci své řady neobsahují ani jednu prázdnou hodnotu.",
 
   /* schema - numeric matrix (title) */
   "gLcr": "matice numerických vektorů",
@@ -718,7 +718,9 @@ module.exports = {
 
   /* fce matrix binary correlation (description) */
   "OMiA": "Biseriální korelace je statistická metoda, která se používá k vyhodnocení vztahu mezi dvěma binárními proměnnými (tj. proměnnými, které mohou mít pouze dvě možné hodnoty, například 'ano' nebo 'ne'). Binární proměnné se často používají v sociálních vědách, například při zkoumání vztahu mezi vzděláním a zaměstnáním nebo mezi kouřením a zdravím. Biseriální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že biseriální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost.",
-  "pwfO": "",
+
+  /* vector validator error - not acccepted type of vector */
+  "pwfO": "Pro argument ${name} (${title}) nelze použít vektor typu ${type}.",
   "gRix": "",
   "fqwd": "",
   "gLRN": "",

@@ -1,16 +1,21 @@
-const console = require("console");
 const { vectorModels, NumericVector } = require("./index");
 var framework = require("./index");
 const { StringVector } = require("./libs/vector");
 
 with (framework) {
+    var d = utils.distribution;
+    var curve = [];
+    
+    debugger;
+    return;
+
+
     var a = new NumericVector( 3, 2,1,2,3,4,5, null, 6).name("A");
     var b = new NumericVector( 6, 7,1,2,3,4,5, 6, null).name("B");
     var M = new Matrix(a, b);
     var analysis = M.analyze("correlPearson");
-    console.log(analysis.parent.maxRows());
-    analysis.run(0,1);
-    console.log(analysis.matrix.maxRows());
+    analysis.run(0,"B");
+    console.dir(analysis.schema);
     debugger;
     return;
 

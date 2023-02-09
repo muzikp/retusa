@@ -37,7 +37,11 @@ function normsdist(x) {
 }
 
 function normdist(x, mean, std) {
-  return 0.5 * (1 + erf((x - mean) / Math.sqrt(2 * std * std)));
+  var cumulative = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+
+  if (!cumulative) {
+    return Math.exp(-0.5 * Math.log(2 * Math.PI) - Math.log(std) - Math.pow(x - mean, 2) / (2 * std * std));
+  } else return 0.5 * (1 + erf((x - mean) / Math.sqrt(2 * std * std)));
 }
 /**
  * @source https://github.com/jstat/jstat/

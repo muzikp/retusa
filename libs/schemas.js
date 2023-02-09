@@ -95,6 +95,7 @@ createPropTitle(e, indent = 1) {
 
 class OutputSchema {
     constructor(schema) {
+        if(!schema) throw new Error("Schema argument cannot be empty")
         this.type = schema.type;
         this.title = $(schema.title);
         /**
@@ -902,6 +903,7 @@ module.exports = {
     ArgumentSchema: ArgumentSchema,
     OutputSchema: OutputSchema,
     FormVectorSchema: FormVectorSchema,
+    FormMatrixSchema: FormVectorSchema,
     vectorResultSchemas: vectorResultSchemas,
     matrixResultSchemas: matrixResultSchemas,
     argumentSchemas: argumentSchemas,

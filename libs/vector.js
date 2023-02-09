@@ -987,7 +987,6 @@ class VectorAnalysis {
      */
     get schema() {
         return {
-            input: null,
             output: new OutputSchema(vectorResultSchemas[this.model.returns]),
             form: new FormVectorSchema(this.model.args)
         }
@@ -1232,6 +1231,7 @@ module.exports = {
     StringVector: StringVector,
     BooleanVector: BooleanVector,
     VectorMethod: VectorMethod,
+    VectorAnalysis: VectorAnalysis,
     Models: Models,
     VectorOverview: function() {
         return VectorOverview(Models)},

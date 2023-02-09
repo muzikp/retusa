@@ -2,7 +2,7 @@
 
 var {NumericVector, StringVector, BooleanVector, $} = require("./vector");
 var {filters, validators} = require("./parsers");
-var schemas = require("./schemas");
+var {matrixResultSchemas, argumentSchemas, OutputSchema, FormMatrixSchema} = require("./schemas");
 const {Array, Math, String, Function} = require("./extensions");
 const dist = require("./distribution");
 var {VectorValueError, ArgumentError, Empty} = require("./errors");
@@ -273,9 +273,8 @@ class MatrixAnalysis {
      */
     get schema() {
         return {
-            input: null,
-            output: new OutputSchema(vectorResultSchemas[this.model.returns]),
-            form: new FormVectorSchema(this.model.args)
+            output: new OutputSchema(this.model.returns),
+            form: new FormMatrixSchema(this.model.args)
         }
     }
     /**
@@ -308,9 +307,12 @@ class MatrixAnalysis {
         let ts = this.model.args;
         for(var i = 0; i < ts.length; i++) {            
             let arg = args[i];
-            if(ts[i].class === 1 || !ts[i].class) arg = this.parent.item(arg);
+            if(ts[i].class === 1 || !ts[i].class) {
+                arg = this.parent.item(arg);    "Pro argument ${name} (${title}) nelze použít vektor typu ${type}."
+                if((ts[i].type || [1,2,3]).indexOf(arg?.type()) < 0) throw new ArgumentError($("dSWt", {name: ts[i].name, title: $(ts[i]?.wiki.title), type: $(arg?.constructor?.name)}), this); 
+            }
             else if (ts[i].class === 2) {
-
+                /* pokud má být argument matrix */ 
             }
             if(!ts[i].required) {
                 if((arg === null || arg === undefined)) T.push(ts[i].default || null);
@@ -333,8 +335,6 @@ class MatrixAnalysis {
         if(!this.parent) return new Empty($("jrQP"));
         if([...arguments].length > 0) this.validate(...arguments);
         if(!this.matrix) this.prepare();
-        var x = this.args;
-        debugger;
         this.result = this.model.fn(...(this.args || []));
         return this;
     }
@@ -345,6 +345,15 @@ class MatrixAnalysis {
      */
     with(parent) {
         this.parent = parent;
+        return this;
+    }
+    /**
+     * Releases the matrix resources of this method while changing their values from Matrix to its length (maxRows property).
+     * @returns {self}
+     */
+    free() {
+        this.parent = this.parent.maxRows();
+        this.matrix = this.matrix.maxRows();
         return this;
     }
 }
@@ -755,30 +764,32 @@ const MatrixMethodsModels = [
             title: "pTvR",
             description: "wPyG"
         },
-        returns: schemas.matrixResultSchemas.correlPearson,
+        returns: matrixResultSchemas.correlPearson,
         args: [
             {
                 name: "x",
                 wiki: {title: "qFEM"},
-                type: [ats.nv],
+                type: [1],
                 required: true,
                 validator: validators.isNumericVector,
-                schema: schemas.argumentSchemas.numericVector
+                schema: argumentSchemas.numericVector,
+                class: 1
             },        
             {
                 name: "y",
                 wiki: {title: "tpUu"},
-                type: [ats.nv],
+                type: [1],
                 required: true,
                 validator: validators.isNumericVector,
-                schema: schemas.argumentSchemas.numericVector
+                schema: argumentSchemas.numericVector,
+                class: 1
             }            
         ]
     },
     {   name: "correlSpearman",
         fn: matrixMethods.correlSpearman,
         filter: filters.matrixNotEmpty,
-        returns: schemas.matrixResultSchemas.correlSpearman,
+        returns: matrixResultSchemas.correlSpearman,
         example: function() {
             var a = new NumericVector([3, 7, 5, 10, 9, 8, 4, 1, 6, 1]);
             var b = new NumericVector([4, 9, 2, 10, 8, 7, 6, 3, 5, 1]);
@@ -799,25 +810,27 @@ const MatrixMethodsModels = [
             {
                 name: "x",
                 wiki: {title: "qFEM"},
-                type: [ats.nv],
+                type: [1],
                 required: true,
                 validator: validators.isNumericVector,
-                schema: schemas.argumentSchemas.numericVector
+                schema: argumentSchemas.numericVector,
+                class: 1
             },        
             {
                 name: "y",
                 wiki: {title: "tpUu"},
-                type: [ats.nv],
+                type: [1],
                 required: true,
                 validator: validators.isNumericVector,
-                schema: schemas.argumentSchemas.numericVector
+                schema: argumentSchemas.numericVector,
+                class: 1
         }            
     ]
     },
     {   name: "correlKendall",
         fn: matrixMethods.correlKendall,
         filter: filters.matrixNotEmpty,
-        returns: schemas.matrixResultSchemas.correlKendall,
+        returns: matrixResultSchemas.correlKendall,
         example: function() {
             var a = new NumericVector([3, 7, 5, 10, 9, 8, 4, 1, 6, 1]);
             var b = new NumericVector([4, 9, 2, 10, 8, 7, 6, 3, 5, 1]);
@@ -838,24 +851,26 @@ const MatrixMethodsModels = [
             {
                 name: "x",
                 wiki: {title: "qFEM"},
-                type: [ats.nv],
+                type: [1],
                 required: true,
                 validator: validators.isNumericVector,
-                schema: schemas.argumentSchemas.numericVector
+                schema: argumentSchemas.numericVector,
+                class: 1
             },        
             {
                 name: "y",
                 wiki: {title: "tpUu"},
-                type: [ats.nv],
+                type: [1],
                 required: true,
                 validator: validators.isNumericVector,
-                schema: schemas.argumentSchemas.numericVector
+                schema: argumentSchemas.numericVector,
+                class: 1
             }            
         ]
     },
     {   name: "correlPartial",
         fn: matrixMethods.correlPartial,
-        returns: schemas.matrixResultSchemas.correlPartial,
+        returns: matrixResultSchemas.correlPartial,
         example: function() {
             var x = new NumericVector(2,3,4,5,6,7,8,9,10,11);
             var y = new NumericVector(3,5,4,6,5,7,8,9,1,11);
@@ -881,7 +896,8 @@ const MatrixMethodsModels = [
                 type: [1],
                 required: true,
                 validator: validators.isNumericVector,
-                schema: schemas.argumentSchemas.numericVector
+                schema: argumentSchemas.numericVector,
+                class: 1
             },        
             {
                 name: "y",
@@ -889,7 +905,8 @@ const MatrixMethodsModels = [
                 type: [1],
                 required: true,
                 validator: validators.isNumericVector,
-                schema: schemas.argumentSchemas.numericVector
+                schema: argumentSchemas.numericVector,
+                class: 1
             },
             {
                 name: "z",
@@ -897,7 +914,8 @@ const MatrixMethodsModels = [
                 type: [1],
                 required: true,
                 validator: validators.isNumericVector,
-                schema: schemas.argumentSchemas.numericVector
+                schema: argumentSchemas.numericVector,
+                class: 1
             }            
         ]
     },
@@ -907,7 +925,7 @@ const MatrixMethodsModels = [
 
         },
         filter: filters.matrixNotEmpty,
-        returns: schemas.matrixResultSchemas.correlPearson,
+        returns: matrixResultSchemas.correlPearson,
         wiki: {
             title: "AagR",
             description: "OMiA"
@@ -919,7 +937,8 @@ const MatrixMethodsModels = [
                 type: [3],
                 required: true,
                 validator: validators.isBooleanVector,
-                schema: schemas.argumentSchemas.booleanVector
+                schema: argumentSchemas.booleanVector,
+                class: 1
             },        
             {
                 name: "y",
@@ -927,7 +946,8 @@ const MatrixMethodsModels = [
                 type: [1],
                 required: true,
                 validator: validators.isNumericVector,
-                schema: schemas.argumentSchemas.numericVector
+                schema: argumentSchemas.numericVector,
+                class: 1
             }
         ]
     },
@@ -946,7 +966,8 @@ const MatrixMethodsModels = [
                 type: [3],
                 required: true,
                 validator: validators.booleanVariable,
-                schema: schemas.argumentSchemas.booleanVector
+                schema: argumentSchemas.booleanVector,
+                class: 1
             },        
             {
                 name: "y",
@@ -954,7 +975,8 @@ const MatrixMethodsModels = [
                 type: [3],
                 required: true,
                 validator: validators.booleanVariable,
-                schema: schemas.argumentSchemas.booleanVector
+                schema: argumentSchemas.booleanVector,
+                class: 1
             }            
         ]
     },
@@ -974,7 +996,7 @@ const MatrixMethodsModels = [
                 type: [ats.nv],
                 required: true,
                 validator: validators.isNumericVector,
-                schema: schemas.argumentSchemas.numericVector
+                schema: argumentSchemas.numericVector
             },        
             {
                 name: "y",
@@ -982,7 +1004,7 @@ const MatrixMethodsModels = [
                 type: [ats.nv],
                 required: true,
                 validator: validators.isNumericVector,
-                schema: schemas.argumentSchemas.numericVector
+                schema: argumentSchemas.numericVector
         }]
     },
     {   name: "ttestpair",
@@ -1010,7 +1032,7 @@ const MatrixMethodsModels = [
                 type: [ats.nv],
                 required: true,
                 validator: validators.isNumericVector,
-                schema: schemas.argumentSchemas.numericVector,
+                schema: argumentSchemas.numericVector,
                 class: 1
             },        
             {
@@ -1019,7 +1041,7 @@ const MatrixMethodsModels = [
                 type: [ats.nv],
                 required: true,
                 validator: validators.isNumericVector,
-                schema: schemas.argumentSchemas.numericVector,
+                schema: argumentSchemas.numericVector,
                 class: 1
         }]
     },
@@ -1027,7 +1049,7 @@ const MatrixMethodsModels = [
         fn: matrixMethods.anova_oneway,
         argsToMatrix: true,
         filter: filters.matrixNotEmpty,
-        returns: schemas.matrixResultSchemas.anovaow,
+        returns: matrixResultSchemas.anovaow,
         example: function(){
             var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow(0,1,2);
             /* OR */
@@ -1066,9 +1088,12 @@ const MatrixMethodsModels = [
         args: [{
                 name: "vectors",
                 wiki: {title: "iJaa"},
+                /* numeric matrix only */
+                type: [2],
                 required: false,
                 validator: validators.isNumericMatrix,
-                schema: schemas.argumentSchemas.numericMatrix,
+                schema: argumentSchemas.numericMatrix,
+                /* matrix class */
                 class: 2
             }]
     },
@@ -1088,7 +1113,7 @@ const MatrixMethodsModels = [
             type: [ats.nv],
             required: true,
             validator: validators.isNumericVector,
-            schema: schemas.argumentSchemas.numericVector
+            schema: argumentSchemas.numericVector
         },        
         {
             name: "y",
@@ -1096,13 +1121,13 @@ const MatrixMethodsModels = [
             type: [ats.nv],
             required: true,
             validator: validators.isNumericVector,
-            schema: schemas.argumentSchemas.numericVector
+            schema: argumentSchemas.numericVector
     }]
     },
     {   name: "linreg",
         fn: matrixMethods.linreg,
         filter: filters.matrixNotEmpty,
-        returns: schemas.matrixResultSchemas.linreg,
+        returns: matrixResultSchemas.linreg,
         example: function(x,y) {
             var M = new Matrix([160,160,162,163,161,170,172,177,179,178,182,184,183],[57,55,59,60,52,67,69,74,75,76,78,80,87]);
             var model = M.linreg(0,1);
@@ -1132,7 +1157,7 @@ const MatrixMethodsModels = [
                 type: [ats.nv],
                 required: true,
                 validator: validators.isNumericVector,
-                schema: schemas.argumentSchemas.numericVector
+                schema: argumentSchemas.numericVector
             },        
             {
                 name: "dependent",
@@ -1140,7 +1165,7 @@ const MatrixMethodsModels = [
                 type: [ats.nv],
                 required: true,
                 validator: validators.isNumericVector,
-                schema: schemas.argumentSchemas.numericVector
+                schema: argumentSchemas.numericVector
             }            
         ]
     },
@@ -1177,7 +1202,9 @@ Array.prototype.toNumericMatrix = function() {
 module.exports = {
     Matrix: Matrix,
     NumericMatrix: NumericMatrix,
-    Models: Models,
+    MatrixAnalysis: MatrixAnalysis,
+    //Models: Models,
+    methods: matrixMethods,
     MatrixOverview: function() {
         return MatrixOverview(Models)},
 };

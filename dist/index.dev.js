@@ -20,8 +20,11 @@ module.exports = {
   NumericVector: Vector.NumericVector,
   StringVector: Vector.StringVector,
   BooleanVector: Vector.BooleanVector,
+  VectorAnalysis: Vector.VectorAnalysis,
+  MatrixAnalysis: Matrix.MatrixAnalysis,
   vectorModels: Vector.Models,
   matrixModels: Matrix.Models,
+  matrixMethods: Matrix.methods,
   locale: function locale(_locale) {
     Locale.config(_locale);
     return module.exports;
