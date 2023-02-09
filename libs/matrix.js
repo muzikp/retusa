@@ -1,6 +1,6 @@
 "use strict";
 
-var {NumericVector, StringVector, BooleanVector, $} = require("./vector");
+var {NumericVector, StringVector, BooleanVector, Vector, $} = require("./vector");
 var {filters, validators} = require("./parsers");
 var {matrixResultSchemas, argumentSchemas, OutputSchema, FormMatrixSchema} = require("./schemas");
 const {Array, Math, String, Function} = require("./extensions");
@@ -193,6 +193,29 @@ class Matrix extends Array {
     }
     analyze(method) {
         return new MatrixAnalysis(method, this);
+    }
+    serialize() {
+        var _m = {
+            name: null,
+            vectors: []
+        };
+        for(var v of this) {
+            _m.vectors.push(v.serialize());
+        }
+        return _m;
+    }
+    static deserialize(data) {
+        if(typeof data != "object") {
+            try {
+                data = JSON.parse(data);
+            } catch(e) {
+                console.error("Failed to parse the matrix data.")
+                return null;
+            }
+        }
+        var M = new Matrix();
+        data.vectors.forEach(v => M.push(Vector.deserialize(v)));
+        return M;
     }
 }
 
@@ -487,7 +510,8 @@ const matrixMethods = {
        var r = (nSxy - SxSy) / Math.pow(nSx2_Sx2 * nSy2_Sy2, 0.5);
        var df = n -2;
        var t_test = (r * Math.pow(n -2, 0.5)/Math.pow(1-Math.pow(r,2),0.5));
-       var p = (1-dist.tdist(t_test,df))*2;
+       //var p = (1-dist.tdist(t_test,df))*2;
+       var p = dist.tdist(t_test,df);
        return {
            r: r,
            n: n,
@@ -503,7 +527,8 @@ const matrixMethods = {
         var rs = 1 - ((6 * d2) / (n * (Math.pow(n, 2) - 1)));
         var df = n - 2;
         var t_test = rs / (Math.pow(1-Math.pow(rs,2),0.5))*Math.pow(n-2,0.5);
-        var p = (1-dist.tdist(t_test,df)) * 2;
+        //var p = (1-dist.tdist(t_test,df)) * 2;
+        var p = dist.tdist(t_test,df);
         return {
             r: rs,
             n: n,
@@ -526,10 +551,10 @@ const matrixMethods = {
         var taub = (cor-dis)/Math.sqrt((c-t_cor)*(c-t_dis));
         var z = (3 * taua * Math.pow(n*(n-1), .5))/Math.pow(2*(2*n+5), .5);
         //var z = (3 * taub * Math.pow(n*(n-1), .5))/Math.pow(2*(2*n+5), .5);
-        var p = 2* (1 - dist.normsdist(Math.abs(z)));
-        /* matches SPSS results */
+        //var p = 2* (1 - dist.normsdist(Math.abs(z)));
+        var p = dist.normsdist(Math.abs(z));
         return {
-            r: taua,
+            r: taub,
             n: n,
             p: p
         }

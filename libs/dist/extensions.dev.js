@@ -71,11 +71,15 @@ Array.prototype.desc = function (self) {
 };
 
 Array.prototype.min = function () {
-  if (this.length == 0) return null;else if (this.length == 1) return this[0];else return _construct(Array, _toConsumableArray(this)).sort()[0];
+  if (this.length == 0) return null;else if (this.length == 1) return this[0];else return _construct(Array, _toConsumableArray(this)).sort(function (a, b) {
+    return a < b ? -1 : 1;
+  })[0];
 };
 
 Array.prototype.max = function () {
-  if (this.length == 0) return null;else if (this.length == 1) return this[0];else return _construct(Array, _toConsumableArray(this)).sort().reverse()[0];
+  if (this.length == 0) return null;else if (this.length == 1) return this[0];else return _construct(Array, _toConsumableArray(this)).sort(function (a, b) {
+    return a > b ? -1 : 1;
+  })[0];
 };
 
 Array.prototype.range = function () {
@@ -504,16 +508,44 @@ String.prototype.fill = function (what, repetition) {
   return x;
 };
 
-Math.combinations = function (n, r, repeats) {
-  if (n < r) return 0;
-  if (n === r) return 1;
-
-  if (repeats) {
-    return Math.factorial(n + r - 1) / (Math.factorial(r) * Math.factorial(n - 1));
+Math.combinations = function (n, k) {
+  if (k > n) {
+    return 0;
   }
 
-  return Math.factorial(n) / (Math.factorial(r) * Math.factorial(n - r));
+  if (k === 0 || k === n) {
+    return 1;
+  }
+
+  var numerator = 1;
+
+  for (var i = 0; i < k; i++) {
+    numerator *= n - i;
+  }
+
+  var denominator = 1;
+
+  for (var _i2 = 1; _i2 <= k; _i2++) {
+    denominator *= _i2;
+  }
+
+  return numerator / denominator;
 };
+/*
+Math.combinations = function(n, r, repeats) {
+    if(n< r) return 0;
+    if(n=== r) return 1;
+    if(repeats){
+        return Math.factorial(n+r-1)/((Math.factorial(r)*Math.factorial(n-1)));
+    }
+    console.log(Math.factorial(n));
+    console.log(((Math.factorial(r)*Math.factorial(n-r))))
+    var f = Math.factorial(n)/((Math.factorial(r)*Math.factorial(n-r)));
+    debugger;
+    return f;
+}
+*/
+
 
 Math.factorial = function (n) {
   var i = n;

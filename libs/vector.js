@@ -44,6 +44,7 @@ class Vector extends Array {
             return this;
         } else return registry.get(this).parent
     }
+    /* Returns an object with this vector's values and attributes. */
     serialize() {
         var obj = {
             values: this,
@@ -103,11 +104,19 @@ class Vector extends Array {
 
     }
     static deserialize(data) {
-        var _ = new this(...data.values || []);
-        Object.keys(data).forEach(function(k) {
-            if(k !== "values") _[k](data[k]);
-        });
-        return _;
+        if(typeof data != "object") {
+            try {
+                data = JSON.parse(data);
+            } catch(e) {
+                console.error("Failed to parse the vector data.")
+                return null;
+            }
+        }
+        if([1,2,3].indexOf(data.type) < 0) throw new Error("Unknown vector type: " + data.type);
+        else {
+            var vector = (data.type == 1 ? new NumericVector(...data.values) : data.type == 2 ? new StringVector(...data.values) : new BooleanVector(...data.values)).name(data.name);
+        }
+        return vector;
     }
     sample(size = 0) {
         var clone = this.clone(true);
@@ -1227,6 +1236,7 @@ function register(model) {
 
 module.exports = {
     $: $,
+    Vector: Vector,
     NumericVector: NumericVector,
     StringVector: StringVector,
     BooleanVector: BooleanVector,

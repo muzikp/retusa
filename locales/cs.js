@@ -454,7 +454,7 @@ module.exports = {
 	/* fce matrix - Kendall correlation coefficient (title) */
 	"mgBC":"Kendallův korelační koeficient",
 	/* fce matrix - Kendall correlation coefficient (description) */
-	"VOmC":"Vrátí statistický protokol Kendallova korelačního koeficientu Tau. Podobně jako v SPSS je coby korelační koeficient (r) vrácena hodota statistiky Tau-A, nikoliv Tau-b, jak je metoda obvykle nazývána.",
+	"VOmC":"Vrátí statistický protokol Kendallova korelačního koeficientu Tau-B. Podobně jako v SPSS je coby korelační koeficient (r) vrácena hodota statistiky Tau-B, nikoliv Tau-b, jak je metoda obvykle nazývána.",
 	/* schema - Kendall correl - r */
 	"mgBA":"Kendallův korelační koeficient Tau-a",
 	/* schema - linear regression - r2 */

@@ -46,13 +46,14 @@ Array.prototype.desc = function(self) {
 Array.prototype.min = function(){
     if(this.length == 0) return null;
     else if(this.length == 1) return this[0];
-    else return new Array(...this).sort()[0];
+    else return new Array(...this).sort((a,b) => a < b ? -1 : 1)[0];
 }
 
 Array.prototype.max = function(){
     if(this.length == 0) return null;
     else if(this.length == 1) return this[0];
-    else return new Array(...this).sort().reverse()[0];
+    else return new Array(...this).sort((a,b) => a > b ? -1 : 1)[0];
+        
 }
 
 Array.prototype.range = function(){
@@ -364,14 +365,37 @@ String.prototype.fill = function(what, repetition) {
     return x;
 }
 
+Math.combinations = function(n, k) {
+    if (k > n) {
+      return 0;
+    }
+    if (k === 0 || k === n) {
+      return 1;
+    }
+    let numerator = 1;
+    for (let i = 0; i < k; i++) {
+      numerator *= (n - i);
+    }
+    let denominator = 1;
+    for (let i = 1; i <= k; i++) {
+      denominator *= i;
+    }
+    return numerator / denominator;
+  }
+/*
 Math.combinations = function(n, r, repeats) {
     if(n< r) return 0;
     if(n=== r) return 1;
     if(repeats){
         return Math.factorial(n+r-1)/((Math.factorial(r)*Math.factorial(n-1)));
     }
-    return Math.factorial(n)/((Math.factorial(r)*Math.factorial(n-r)));
+    console.log(Math.factorial(n));
+    console.log(((Math.factorial(r)*Math.factorial(n-r))))
+    var f = Math.factorial(n)/((Math.factorial(r)*Math.factorial(n-r)));
+    debugger;
+    return f;
 }
+*/
 
 Math.factorial = function(n) {
     var i= n;
