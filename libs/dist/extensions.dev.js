@@ -22,6 +22,7 @@ var _require = require("./errors"),
 var $ = require("./locale").call;
 
 Array.prototype.sum = function () {
+  if (this.length === 0) return 0;
   return this.reduce(function (a, b) {
     return a + b;
   });
@@ -57,7 +58,11 @@ Array.prototype.pci = function (value, alfa) {
 };
 
 Array.prototype.distinct = function () {
-  return _toConsumableArray(new Set(this));
+  return this.filter(function (obj, index, self) {
+    return self.findIndex(function (t) {
+      return JSON.stringify(t) === JSON.stringify(obj);
+    }) === index;
+  }); //return [...new Set(this)];
 };
 
 Array.prototype.asc = function (self) {

@@ -21,6 +21,10 @@ let f_removeEmpty = function() {
     return true;
 }
 
+let f_bypassMatrix = function(matrix) {
+    return matrix
+}
+
 let f_removeMatrixEmpty = function(matrix) {
     var fs = new Array(...matrix).map((v,i) => [i, (v) => v !== null]).flat(Infinity);
     return matrix.filter(...fs);
@@ -32,7 +36,8 @@ const filters = {
     number: {fn: f_number, text: "GDkm"},
     string: {fn: f_string, text: "jocS"},
     boolean: {fn: f_boolean, text: "uUYu"},
-    matrixNotEmpty: {fn: f_removeMatrixEmpty, text: "SExL"}
+    bypassMatrix: {fn: f_boolean, text: ""},
+    matrixNotEmpty: {fn: f_removeMatrixEmpty, text: "rAyq"}
 }
 
 // #endregion

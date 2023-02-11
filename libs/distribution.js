@@ -477,25 +477,84 @@ function betinc(X,A,B) {
 	return A1/A
 }
 
-function tdist(x,df) {    
-    var betacdf, tcdf;
-    var A=df/2;
-    var S=A+.5;
-    var Z=df/(df+x*x);
-    var BT=Math.exp(gammaln(S)-gammaln(.5)-gammaln(A)+A*Math.log(Z)+.5* Math.log(1-Z));
-    if (Z<(A+1)/(S+2)) {
-        betacdf=BT * betinc(Z,A,.5)
+/**
+ * Returns Student T distribution value.
+ * @param {number} x Value
+ * @param {integer} df Degrees of freedom
+ * @param {boolean} cumulative Is cumulative function:
+ * @returns T distribution.
+ */
+function tdist(x,df,cumulative) {
+    if(!cumulative) {
+        df = df > 1e100 ? 1e100 : df;
+        return (1/(Math.sqrt(df) * betafn(0.5, df/2))) * Math.pow(1 + ((x * x) / df), -((df + 1) / 2));
     } else {
-        betacdf=1-BT * betinc(1-Z,.5,A)
+        var df2 = df / 2;
+        return ibeta((x + Math.sqrt(x * x + df)) / (2 * Math.sqrt(x * x + df)), df2, df2);
     }
-    if (x<0) {
-        tcdf=betacdf/2
-    } else {
-        tcdf=1-betacdf/2
-    }		
-    tcdf=Math.round(tcdf*100000)/100000;
-    return tcdf;
 }
+
+function betafn(x,y) {
+    if (x <= 0 || y <= 0)
+    return undefined;
+  // make sure x + y doesn't exceed the upper limit of usable values
+    return (x + y > 170) ? Math.exp(betaln(x, y)) : gammafn(x) * gammafn(y) / gammafn(x + y);
+}
+
+function gammafn(x) {
+    var p = [-1.716185138865495, 24.76565080557592, -379.80425647094563,
+             629.3311553128184, 866.9662027904133, -31451.272968848367,
+             -36144.413418691176, 66456.14382024054
+    ];
+    var q = [-30.8402300119739, 315.35062697960416, -1015.1563674902192,
+             -3107.771671572311, 22538.118420980151, 4755.8462775278811,
+             -134659.9598649693, -115132.2596755535];
+    var fact = false;
+    var n = 0;
+    var xden = 0;
+    var xnum = 0;
+    var y = x;
+    var i, z, yi, res;
+    if (x > 171.6243769536076) {
+      return Infinity;
+    }
+    if (y <= 0) {
+      res = y % 1 + 3.6e-16;
+      if (res) {
+        fact = (!(y & 1) ? 1 : -1) * Math.PI / Math.sin(Math.PI * res);
+        y = 1 - y;
+      } else {
+        return Infinity;
+      }
+    }
+    yi = y;
+    if (y < 1) {
+      z = y++;
+    } else {
+      z = (y -= n = (y | 0) - 1) - 1;
+    }
+    for (i = 0; i < 8; ++i) {
+      xnum = (xnum + p[i]) * z;
+      xden = xden * z + q[i];
+    }
+    res = xnum / xden + 1;
+    if (yi < y) {
+      res /= yi;
+    } else if (yi > y) {
+      for (i = 0; i < n; ++i) {
+        res *= y;
+        y++;
+      }
+    }
+    if (fact) {
+      res = fact / res;
+    }
+    return res;
+  };
+
+  function betaln(x, y) {
+    return gammaln(x) + gammaln(y) - gammaln(x + y);
+  };
 
 function tinv(p,dof) {
     var x = ibetainv(2 * Math.min(p, 1 - p), 0.5 * dof, 0.5);
@@ -503,9 +562,10 @@ function tinv(p,dof) {
     return (p > 0.5) ? x : -x;
 }
 
-function chisqdist(x, df) {
+function chisqdist(x, df, cumulative = false) {
     if (x < 0) return 0;
-    return (x === 0 && df === 2) ? 0.5 : Math.exp((df / 2 - 1) * Math.log(x) - x / 2 - (df / 2) * Math.log(2) - gammaln(df / 2));
+    else if(!cumulative) return (x === 0 && df === 2) ? 0.5 : Math.exp((df / 2 - 1) * Math.log(x) - x / 2 - (df / 2) * Math.log(2) - gammaln(df / 2));
+    else return lowRegGamma(df / 2, x / 2);
 }
 
 function chisqinv(p, df) {

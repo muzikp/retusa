@@ -32,6 +32,11 @@ class Vector extends Array {
             else super.push(i);
         }
     }
+    /**
+     * Gets or sets the name of this vector. If the argument 'value' is empty, it returns the name of this vector (if set before). Otherwise the name of the vector is set and the vector itself is returned.
+     * @param {Vector | string} value Optional: name of the vector.
+     * @returns Either name or the vector itself.
+     */
     name(value){
         if(value) {
             setRegistryProperty(this, "name", value)
@@ -929,7 +934,7 @@ let VectorMethodsModels = [
         },
         url: "https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test#One-sample_Kolmogorov%E2%80%93Smirnov_statistic"
     },  
-].sort((a,b) => a.name > b.name ? 1 : -1)
+].sort((a,b) => a.wiki?.title > b.wiki?.title ? 1 : -1)
 
 class VectorAnalysis {
     constructor(model, parent) {

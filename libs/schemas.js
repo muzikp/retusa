@@ -786,9 +786,6 @@ const matrixResultSchemas = {
         }
     },
     linreg: {
-        "definitions": {},
-        "$schema": "http://json-schema.org/draft-07/schema#", 
-        "$id": "https://example.com/object1672348356.json", 
         "title": "KwSQ", 
         "type": "object",
         "properties": {
@@ -841,7 +838,59 @@ const matrixResultSchemas = {
                 "default": "🌀"
             }
         }
+    },
+    contingency: {
+        "title": "gRix", 
+        "type": "object",
+        "properties": {
+            "phi": {
+                "$id": "#root/phi", 
+                "title": "GfeP", 
+                "type": "number",
+                "examples": [
+                    36.80097109889032
+                ],
+                "default": 0.0
+            },
+            "p": {
+                "$id": "#root/p", 
+                "title": "sDgR", 
+                "type": "number",
+                "examples": [
+                    0.000001925387777546028
+                ],
+                "default": 0.0
+            },
+            "df": {
+                "$id": "#root/df", 
+                "title": "OYQu", 
+                "type": "integer",
+                "examples": [
+                    6
+                ],
+                "default": 0
+            },
+            "C": {
+                "$id": "#root/C", 
+                "title": "BUaN", 
+                "type": "number",
+                "examples": [
+                    0.29026043504540816
+                ],
+                "default": 0.0
+            },
+            "V": {
+                "$id": "#root/V", 
+                "title": "VYQH", 
+                "type": "number",
+                "examples": [
+                    0.21447893573405502
+                ],
+                "default": 0.0
+            }
+        }
     }
+    
     
     
     
@@ -866,6 +915,20 @@ const argumentSchemas = {
                 "type": "number",
                 "default": 0
             }
+        }
+    },
+    vector: {
+        "definitions": {},
+        "$schema": "http://json-schema.org/draft-07/schema#", 
+        "$id": "https://example.com/object1672335343.json", 
+        "title": "zRT3", 
+        "type": "Vector",
+        "default": [],
+        "items":{
+            "$id": "#root/items", 
+            "title": "te8N", 
+            "type": "any",
+            "default": []
         }
     },
     numericVector: {

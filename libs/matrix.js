@@ -7,6 +7,7 @@ const {Array, Math, String, Function} = require("./extensions");
 const dist = require("./distribution");
 var {VectorValueError, ArgumentError, Empty} = require("./errors");
 const {MatrixMarkdown, MatrixOverview} = require("./markdown");
+var matrixName = null;
 
 const registry = new WeakMap();
 
@@ -27,6 +28,17 @@ class Matrix extends Array {
     constructor(){
         super();
         this.push(...arguments);
+    }
+    /**
+     * Gets or sets the name of this matrix. If the argument 'value' is empty, it returns the name of this matrix (if set before). Otherwise the name of the matrix is set and the matrix itself is returned.
+     * @param {Matrix | string} value Optional: name of the matrix.
+     * @returns Either name or the matrix itself.
+     */
+    name(value){
+        if(value) {
+            matrixName = value;
+            return this;
+        } else return matrixName;
     }
     push() {
         for(let a of [...arguments].filter(v => v)) {
@@ -196,7 +208,7 @@ class Matrix extends Array {
     }
     serialize() {
         var _m = {
-            name: null,
+            name: this.name(),
             vectors: []
         };
         for(var v of this) {
@@ -213,6 +225,7 @@ class Matrix extends Array {
                 return null;
             }
         }
+        matrixName = data.name;
         var M = new Matrix();
         data.vectors.forEach(v => M.push(Vector.deserialize(v)));
         return M;
@@ -259,7 +272,7 @@ class MatrixAnalysis {
      * Returns default filter function applied before the method is calculated.
      */
     get filter() {
-        return this.model.filter ? this.model.filter.fn : () => true
+        return this.model.filter ? this.model.filter.fn : () => this.parent;
     }
     get wiki() {
         if(this.model) {
@@ -307,7 +320,7 @@ class MatrixAnalysis {
      */
     prepare(config){
         if(!this.parent) throw new Error("The method cannot be called without a parent specified.")
-        this.matrix = this.filter ? this.filter(this.parent) : this.parent;
+        this.matrix = this.filter(this.parent);
         return this;
     }
     /**
@@ -320,7 +333,7 @@ class MatrixAnalysis {
      * Validates the method arguments.
      * @returns {Array} Returns an array of validated arguments (or nothing if a validation error is thrown before).
      */
-    validate(...args) {
+    validate(...args) {        
         if(!this.parent) return new Empty($("jrQP"));
         if(this.model.argsToMatrix) {
             var M = (args.length === 0) ? this.parent : this.parent.select(...args);
@@ -331,14 +344,17 @@ class MatrixAnalysis {
         for(var i = 0; i < ts.length; i++) {            
             let arg = args[i];
             if(ts[i].class === 1 || !ts[i].class) {
-                arg = this.parent.item(arg);    "Pro argument ${name} (${title}) nelze použít vektor typu ${type}."
-                if((ts[i].type || [1,2,3]).indexOf(arg?.type()) < 0) throw new ArgumentError($("dSWt", {name: ts[i].name, title: $(ts[i]?.wiki.title), type: $(arg?.constructor?.name)}), this); 
+                arg = this.parent.item(arg);    //"Pro argument ${name} (${title}) nelze použít vektor typu ${type}."
+                if((ts[i].type || [1,2,3]).indexOf(arg?.type()) < 0) 
+                {
+                    if(ts[i]?.required) throw new ArgumentError($("dSWt", {name: ts[i].name, title: $(ts[i]?.wiki.title), type: $(arg?.constructor?.name)}), this); 
+                }
             }
             else if (ts[i].class === 2) {
                 /* pokud má být argument matrix */ 
             }
             if(!ts[i].required) {
-                if((arg === null || arg === undefined)) T.push(ts[i].default || null);
+                if((arg === null || arg === undefined)) output.push(ts[i].default || null);
                 else output.push(ts[i].validator.fn(arg));
             }
             else {
@@ -356,6 +372,7 @@ class MatrixAnalysis {
      */
     run() {
         if(!this.parent) return new Empty($("jrQP"));
+        //if(!this.matrix) this.prepare();
         if([...arguments].length > 0) this.validate(...arguments);
         if(!this.matrix) this.prepare();
         this.result = this.model.fn(...(this.args || []));
@@ -755,6 +772,39 @@ const matrixMethods = {
             fn: function(x){ return beta0 + x * beta1},
             n: x.length
         };
+    },
+    contingency: function(x,y,n) {
+        var xd = x.distinct();
+        var yd = y.distinct();
+        var xy = new Array(...x.map(function(_x,i){return {x: _x, y: y[i], n: n ? n[i] || 0 : 1}}));
+        var xyn = xy.map(function(_){return {x:_.x, y: _.y}}).distinct().map(function(_,i){
+            _.n = xy.filter(o => (o.x === _.x && o.y === _.y)).map(_ => _.n).sum();
+            return _;
+        });
+        var total = (xyn.map(_ => _.n)).sum();
+        var sx = xd.map(function(_){return {x: _ ,t: (xyn.filter(f => f.x === _).map(_ => _.n)).sum()}});
+        var sy = yd.map(function(_){return {y: _ ,t: (xyn.filter(f => f.y === _).map(_ => _.n)).sum()}});
+        xd = xd.map(function(_,i){return {k: _, t: sx[i].t}});
+        yd = yd.map(function(_,i){return {k: _, t: sy[i].t}});
+        var _xyn = xyn.map(function(_,i){
+            var _n = yd.find(_y => _y.k === _.y).t * xd.find(_x => _x.k === _.x).t / total;
+            return {x: _.x, y: _.y, n: _n};
+        });
+        var __xyn = _xyn.map(function(_){
+            return {x: _.x, y: _.y, n: Math.pow(_.n  -xyn.find(o => o.x === _.x && o.y === _.y).n,2)/_.n};
+        })
+        var G = (__xyn.map(_ => _.n)).sum(); /* G = phi square */
+        var df = (xd.length -1)*(yd.length -1); /* degrees of freedom */
+        var p = 1 - dist.chisqdist(G,df,true); /* significance value*/ 
+        var C = Math.sqrt(G/(G+total)); /* C = Pearson's C */
+        var V = Math.sqrt(G/(total*2)); /* V = Cramer's V */
+        return {
+            phi: G,
+            p: p,
+            df: df,
+            C: C,
+            V: V,
+        }
     }
 };
 
@@ -1194,7 +1244,63 @@ const MatrixMethodsModels = [
             }            
         ]
     },
-].sort((a,b) => a.name > b.name ? 1 : -1);
+    {   name: "contingency",
+        fn: matrixMethods.contingency,
+        filter: null,
+        example: function(x,y,n) {
+            var a = new StringVector("A","A","A","B","B","B","C","C","C","C");
+            var b = new StringVector("X","Y","X","Y","X","Y","X","Y","X","Y");
+            var n = new NumericVector(5,6,4,5,7,3,9,3,4,6);
+            var m = new Matrix(a,b,n);
+            var c1 = m.contingency(a,b);
+            /*
+            {
+
+            }
+            */
+           var c2 = m.continency(a,b,n);
+           /*
+            {
+
+            }
+            */
+        },
+        wiki: {
+            title: "gRix",
+            description: "fqwd"
+        },
+        returns: matrixResultSchemas.contingency,
+        args: [
+            {
+                name: "x",
+                wiki: {title: "gLRN"},
+                type: [1,2,3],
+                required: true,
+                validator: validators.isVector,
+                schema: argumentSchemas.vector,
+                class: 1
+            },        
+            {
+                name: "y",
+                wiki: {title: "bpjC"},
+                type: [1,2,3],
+                required: true,
+                validator: validators.isVector,
+                schema: argumentSchemas.vector,
+                class: 1
+            },        
+            {
+                name: "n",
+                wiki: {title: "fqUi"},
+                type: [1],
+                required: false,
+                validator: validators.isNumericVector,
+                schema: argumentSchemas.numericVector,
+                class: 1
+            }               
+        ]
+    }
+].sort((a,b) => $(a.wiki?.title) > $(b.wiki?.title) ? 1 : -1);
 
 MatrixMethodsModels.forEach(function(m) {
     Matrix.prototype[m.name] = function() {

@@ -3,6 +3,7 @@ const {Empty} = require("./errors");
 const $ = require("./locale").call;
 
 Array.prototype.sum = function() {
+    if(this.length === 0) return 0;
     return this.reduce((a,b) => a+b);
 }
 
@@ -29,7 +30,10 @@ Array.prototype.pci = function(value, alfa) {
 }
 
 Array.prototype.distinct = function() {
-    return [...new Set(this)]
+    return this.filter((obj, index, self) => {
+        return self.findIndex(t => JSON.stringify(t) === JSON.stringify(obj)) === index;
+      });
+    //return [...new Set(this)];
 }
 
 Array.prototype.asc = function(self) {
