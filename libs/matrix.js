@@ -49,6 +49,13 @@ class Matrix extends Array {
             else throw new ArgumentError("Argument is not a vector or array.");
         };
     }
+    smap(fn) {
+        var _m = [];
+        for(let v of this) {
+            _m.push(fn(v));
+        };
+        return _m;
+    }
     /**
      * Similar to a pivot table in Excel without aggregation. Converts a matrix of two vectors to a new matrix where the new factors are named after the unique values from the original factor. Nov vectors are filled with values that match the row filter in the original matrix.
      * @param {Vector identifier} target 
@@ -227,9 +234,11 @@ class NumericMatrix extends Matrix
 {
     push() {
         for(let a of [...arguments].filter(v => v)) {
-            if(a?.type() === 1) super.push(a)
+            if(a?.type === 1) super.push(a)
             else if(Array.isArray(a)) super.push(a.numerify());
-            else throw new ArgumentError("Argument is not a numeric vector or a numeric array.");
+            else {
+                throw new ArgumentError("Argument is not a numeric vector or a numeric array.");
+            }
         };
     }
 }
@@ -304,9 +313,30 @@ class MatrixAnalysis {
      * @param {*} config No imployed yet.
      * @returns {self}
      */
-    prepare(config){
-        if(!this.parent) throw new Error("The method cannot be called without a parent specified.")
-        this.matrix = this.filter(this.parent);
+    prepare(){
+        if(!this.parent) throw new Error("The method cannot be called without a parent specified.");
+        if([...arguments].length > 0) this.validate(...arguments);
+        if(this.args.find(a => Array.isArray(a) ? a.hasOnlyVectorChildren() : false)) {
+            var multiples = (this.args.filter(a => Array.isArray(a) ? !a?.isVector ? a.filter(aa => a?.isVector) : false : false)).flat() || [];
+            var selectors = new Array(...multiples, ...this.args.filter(a => a?.isVector));
+            this.matrix = this.filter(this.parent.select(...selectors));
+            for(var i = 0; i < this.args.length; i++) {
+                if(this.args[i]?.isVector) {
+                    this.args[i] = this.matrix[i];
+                }
+                else if(!Array.isArray(this.args[i])) {
+                    this.args[i] = this.args[i];
+                }
+                else if(this.args[i].hasOnlyVectorChildren()) {
+                    this.args[i] = new Array(...this.matrix).slice(0, this.args[i].length);
+                    i += this.args[i].length;
+                }
+                else this.args[i] = this.args[i];
+            }
+        } 
+        else {
+            this.matrix = this.filter(this.parent.select(...this.args));
+        }
         return this;
     }
     /**
@@ -321,39 +351,54 @@ class MatrixAnalysis {
      */
     validate(...args) {        
         if(!this.parent) return new Empty($("jrQP"));
+        /*
         if(this.model.argsToMatrix) {
             var M = (args.length === 0) ? this.parent : this.parent.select(...args);
             return this.model.args[0].validator.fn(M);
         }
+        */
         var output = [];
         let ts = this.model.args;
         for(var i = 0; i < ts.length; i++) {            
             let arg = args[i];
+            var validatorFn = (ts[i].validator?.fn) || ((value) => value);
             if(ts[i].class === 1 || !ts[i].class) {
                 arg = this.parent.item(arg);    //"Pro argument ${name} (${title}) nelze použít vektor typu ${type}."
-                if((ts[i].type || [1,2,3]).indexOf(arg?.type()) < 0) 
-                {
-                    if(ts[i]?.required) {
-                        throw new ArgumentError($("dSWt", {name: ts[i].name, title: $(ts[i]?.wiki.title), type: $(arg?.constructor?.name)}), this); 
-                    }
-                }
+                var types = (ts[i].type || [1,2,3]);
+                if(!arg && ts[i].required) throw new Error("Vektor nenalezen");//ArgumentError($("RLob", {value: arg}), this); 
+                else if(!arg && !ts[i].required) output.push(null);
+                else if(types.indexOf(arg?.type()) < 0){
+                    throw new Error(`This type of vector (${arg.type()}) is not allowed. Allowed types: ` + types.toString());
+                    //throw new ArgumentError($("dSWt", {name: ts[i].name, title: $(ts[i]?.wiki.title), type: $(arg?.constructor?.name)}), this);   
+                } 
+                else if(ts[i].required && !arg) throw new Error("The argument is required!");
+                else output.push(arg);                
             }
             else if (ts[i].class === 2) {
-                /* pokud má být argument matrix */ 
+                var _varr = [];
+                var types = ts[i].type || [1,2,3];
+                for(let v of arg) {
+                    v = this.parent.item(v);
+                    if(!v?.isVector || types.indexOf(v?.type()) < 0) throw new ArgumentError($("nQvK", {type: v.constructor.name}), this); 
+                    else _varr.push(v);
+                }
+                output.push(_varr);            
             }
             /* all other types expcept vector and matrix */
             else if (ts[i].class === 3) {
                 if(ts[i].type == "enum") {
-                    output.push(ts[i].validator.fn(arg));
+                    output.push(validatorFn(arg));
                 }
             }
+            /*
             if(!ts[i].required) {
                 if((arg === null || arg === undefined)) output.push(ts[i].default || null);
-                else output.push(ts[i].validator.fn(arg));
+                else output.push(validatorFn(arg));
             }
+            */
             else {
                 if(!arg && arg !== false && arg !== 0) throw new ArgumentError($("dSWt", {name: ts[i].name, title: $(ts[i]?.title), method: $(this.model.wiki?.title)}), this); 
-                else output.push(ts[i].validator.fn(arg))    
+                else output.push(validatorFn(arg))    
             }
         }
         this.args = output;
@@ -396,7 +441,7 @@ class MatrixAnalysis {
      * Returns duration of the "run" method (whatever it includes inside) in milliseconds.
      */
     duration() {
-        if(this.runStart && this.runEnd) return this.runEnd.getTime - this.runStart.getTime();
+        if(this.runStart && this.runEnd) return this.runEnd.getTime() - this.runStart.getTime();
         else return null;
     }
 }
@@ -673,7 +718,43 @@ const matrixMethods = {
             my: y.avg()
         }
     },
-    anova_oneway: function(...M) {
+    anova_oneway: function(vectors, factor) {
+        var arrays = factor ? new Array(...new Matrix(factor, vectors[0]).pivot(1,0)) : new Array(...vectors);
+        var ns = arrays.map(a => a.length);
+        var g_avg = arrays.map(a => a.avg());
+        var yi_total = (arrays.map((a, i) => a.sum())).sum();
+        var yi_avg = yi_total / ns.sum();
+        var pow_yi_min = arrays.map((a, i) => a.map(_ => Math.pow(_ - g_avg[i], 2)));
+        var pow_yi_min_total = (pow_yi_min.map(a => a.sum())).sum();
+        var yi_yn = g_avg.map((g, i) => Math.pow(g - yi_avg, 2) * ns[i]);
+        var yi_yn_total = yi_yn.sum();
+        var dfwg = (ns.sum() - ns.length);
+        var F = (yi_yn.sum() / (ns.length - 1)) / (pow_yi_min_total / dfwg);
+        var P2 = yi_yn_total / (yi_yn_total + pow_yi_min_total);
+        var p = dist.fdistrt(F, ns.length - 1, dfwg);
+        return {
+            F: F,
+            P2: P2,
+            p: p,
+            n: ns.sum(),
+            ANOVA: {
+                totalOfGroups: arrays.length,
+                betweenGroups: {
+                    sumOfSquares: yi_yn_total,
+                    df: ns.length - 1
+                },
+                withinGroups: {
+                    sumOfsquares: pow_yi_min_total,
+                    df: dfwg
+                },
+                total: {
+                    sumOfSquares: yi_yn_total + pow_yi_min_total,
+                    df: ns.length - 1 + dfwg
+                }
+            }
+        };
+    },
+    _anova_oneway: function(...M) {
         var arrays = new Array(...M);
         var ns = arrays.map(a => a.length);
         var g_avg = arrays.map(a => a.avg());
@@ -1217,17 +1298,29 @@ const MatrixMethodsModels = [
             title: "baJo",
             description: "qqQo"
         },
-        args: [{
-                name: "vectors",
-                wiki: {title: "iJaa"},
-                /* numeric matrix only */
-                type: [2],
-                required: false,
-                validator: validators.isNumericMatrix,
-                schema: argumentSchemas.numericMatrix,
-                /* matrix class */
-                class: 2
-            }]
+        args: [
+                {
+                    name: "vectors",
+                    wiki: {title: "iJaa"},
+                    /* numeric matrix only */
+                    type: [1],
+                    required: true,
+                    //validator: validators.isNumericMatrix,
+                    schema: argumentSchemas.numericMatrix,
+                    /* matrix class */
+                    class: 2
+                },{
+                    name: "factor",
+                    wiki: {title: "iJEe"},
+                    /* numeric matrix only */
+                    type: [1,2,3],
+                    required: false,
+                    validator: validators.isVector,
+                    schema: argumentSchemas.numericMatrix,
+                    /* matrix class */
+                    class: 1
+                }
+        ]
     },
     {   name: "mannwhitney",
     fn: matrixMethods.mannwhitney,

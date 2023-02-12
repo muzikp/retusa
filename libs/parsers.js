@@ -125,7 +125,7 @@ let v_isNumericMatrix = function(v) {
     v = v_isNotEmpty(v);
     if(v.constructor?.name !== "NumericMatrix") {
         if(!Array.isArray(v)) throw new Error($("FIQW", {value: v}))    
-        else if(v.find(i => i.constructor?.name !== "NumericVector")) throw new Error($("FIQW", {value: v}));
+        else if(v.find(i => i?.type !== 1)) throw new Error($("FIQW", {value: v}));
         else return v.toNumericMatrix();
     } else return v
 }

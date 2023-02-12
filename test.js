@@ -3,6 +3,18 @@ var framework = require("./index");
 const { StringVector } = require("./libs/vector");
 
 with (framework) {
+    var a1 = new NumericVector(null, 1,2,3,4,5,6,9);
+    var a2 = new NumericVector(-4, 7,6,3,4,5,6, 7);
+    var a3 = new NumericVector(-2,-3,-4,-5,-4,-3,-2,-1);
+    var a4 = new StringVector("A", "A","A","A","B","B","B", null);
+    var b1 = new NumericVector(4,5,6,7,8,9,1,3,2,1,2,1);
+    var b2 = new StringVector("A","A","A","A","A","A","B","B","B","B","B","B");
+    var M = new Matrix(a1,a2,a3,a4);
+    //var M = new Matrix(b1,b2);
+    var anova = M.analyze("anovaow").run([0,1,2],3)
+    debugger;
+    return;
+
     var x = new NumericVector(180,197,240,210,180,160,179,185,183,150,110,190,170).name("X");
     var y = new NumericVector(75,82,100,80,75,60,75,71,77,63,46,81,70).name("Y");
     var m = new Matrix(x,y);

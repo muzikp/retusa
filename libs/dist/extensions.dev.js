@@ -21,6 +21,10 @@ var _require = require("./errors"),
 
 var $ = require("./locale").call;
 
+Array.prototype.onlyVectorChildren = function () {
+  return this.find();
+};
+
 Array.prototype.sum = function () {
   if (this.length === 0) return 0;
   return this.reduce(function (a, b) {

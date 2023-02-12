@@ -39,7 +39,7 @@ class Vector extends Array {
      */
     name(value){
         if(value) {
-            setRegistryProperty(this, "name", value)
+            setRegistryProperty(this, "name", value);
             return this;
         } else return registry.get(this).name
     }
@@ -1073,7 +1073,7 @@ class VectorAnalysis {
     * Returns duration of the "run" method (whatever it includes inside) in milliseconds.
      */
     duration() {
-        if(this.runStart && this.runEnd) return this.runEnd.getTime - this.runStart.getTime();
+        if(this.runStart && this.runEnd) return this.runEnd.getTime() - this.runStart.getTime();
         else return null;
     }
 }

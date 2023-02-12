@@ -330,7 +330,7 @@ module.exports = {
 	/* Matrix fce One-way ANOVA (title) */
 	"baJo": "ANOVA (jednofaktorová)",
 	/* Matrix fce One-way ANOVA (description) */
-	"qqQo": "Vrátí statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Vstupem analýzy je matice s již předvybranými numerickými vektory, to znamená, že vstupní proměnné (vektory) není nutné specifikovat.",
+	"qqQo": "Vrátí statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Metoda má dva argumenty. První tvoří řada numerických vektorů, kde minimálně jeden vektor je povinný. Druhý argument je nepovinný a představuje shlukovací faktor, tedy textovou proměnnou, která v řádcích určuje příslučnost numerického faktoru ke skupině. Pokud je zadán druhý parametr, z první skupiny vektorů je zohledňován pouze první.",
 	/* validators text - isNumericMatrix */
 	"OrZc": "Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu.",
 	/* validators isNumericMatrix error */
@@ -440,7 +440,9 @@ module.exports = {
 	/* schema - string vector */
 	"Hwus": "textový vektor",
 	/* fce matrix - anovaow - argument vectors */
-	"iJaa":"identifikátor(y) vektorů",
+	"iJaa":"vektor/y",
+	/* schema ANOVA one-way - F */
+	"iJEe":"skupinový faktor",
 	/* schema ANOVA one-way - F */
 	"Jdfb":"F test",
 	/* schema ANOVA one-way - P2 */
@@ -504,7 +506,7 @@ module.exports = {
 	/* matrix method - contingecy - output schema - C */
 	"BUaN":"Pearsonovo C",
 	/* matrix method - general regression - title */
-	"vlCA":"Obecná regrese",
+	"vlCA":"regrese",
 	/* matrix method - general regression - description */
 	"dzFE":"Nějaké povídání o regresi. Parametry (x,y,typ).",
 	/* matrix method - general regression - param type - linear */
@@ -525,7 +527,8 @@ module.exports = {
 	"TDpu":"konstanta (beta0)",
 	/* matrix method - general regression - output schema - beta1 */
 	"eFcW":"koeficient (beta1)",
-	"nQvK":"",
+	/* matrix analysis validator error- class 2 - vector not matching allowed types */
+	"nQvK":"Vektor typu ${type} nelze v dané sadě vektorů použít.",
 	"cBNP":"",
 	"eJTP":"",
 	"kdjd":"",

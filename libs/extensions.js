@@ -2,6 +2,10 @@ const dist = require("./distribution");
 const {Empty} = require("./errors");
 const $ = require("./locale").call;
 
+Array.prototype.hasOnlyVectorChildren = function() {
+    return this.filter(e => !e?.isVector).length == 0;
+}
+
 Array.prototype.sum = function() {
     if(this.length === 0) return 0;
     return this.reduce((a,b) => a+b);
