@@ -218,7 +218,7 @@ module.exports = {
 	/* validators text - enumValidator */
 	"aaVG": "Ověří, zdali je hodnota platným členem enumerace. V opačném případě vyvolá chybu.",
 	/* validators enumValidator error */
-	"HhLt": "Neznámá hodnota enumerátoru ${name} (${title}): ${value}. Možné hodnoty jsou ${keys}",
+	"HhLt": "Neznámá hodnota enumerátoru ${name}: ${value}; možné hodnoty jsou ${keys}",
 	/* numeric vector value parse error */
 	"UyOj": "Tento typ vektoru akceptuje pouze numerické a prázdné hodnoty. Vrácená chybná hodnota: ${value}",
 	/* NotApplicable class vector message */
@@ -503,17 +503,28 @@ module.exports = {
 	"VYQH":"Cramerovo V",
 	/* matrix method - contingecy - output schema - C */
 	"BUaN":"Pearsonovo C",
-	"vlCA":"",
-	"dzFE":"",
-	"Cpsw":"",
-	"UtZD":"",
-	"SCOx":"",
-	"QaJi":"",
-	"HUMA":"",
-	"OBml":"",
-	"VqBH":"",
-	"TDpu":"",
-	"eFcW":"",
+	/* matrix method - general regression - title */
+	"vlCA":"Obecná regrese",
+	/* matrix method - general regression - description */
+	"dzFE":"Nějaké povídání o regresi. Parametry (x,y,typ).",
+	/* matrix method - general regression - param type - linear */
+	"Cpsw":"lineární",
+	/* matrix method - general regression - param type - log */
+	"UtZD":"logaritmovaný",
+	/* matrix method - general regression - param type - hyperbole */
+	"SCOx":"hyperbolický",
+	/* matrix method - general regression - param type - exponential */
+	"QaJi":"exponenciální",
+	/* matrix method - general regression - param type - quadratic */
+	"HUMA":"kvadratický",
+	/* matrix method - general regression - param type - title */
+	"OBml":"regresní model",
+	/* matrix method - general regression - output schema - r2 */
+	"VqBH":"R2 (koeficient determinace)",
+	/* matrix method - general regression - output schema - beta0 */
+	"TDpu":"konstanta (beta0)",
+	/* matrix method - general regression - output schema - beta1 */
+	"eFcW":"koeficient (beta1)",
 	"nQvK":"",
 	"cBNP":"",
 	"eJTP":"",

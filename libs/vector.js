@@ -1052,10 +1052,12 @@ class VectorAnalysis {
      */
     run() {
         if(!this.parent) return new Empty($("hKRq"));
-        else if(this.model.type.indexOf(this.parent?.type()) === -1) return new Empty($("ibNu", {method: $(this.model.wiki.title), type: $(getVectorTypeLabelCode(this.parent))}))
+        else if(this.model.type.indexOf(this.parent?.type()) === -1) return new Empty($("ibNu", {method: $(this.model.wiki.title), type: $(getVectorTypeLabelCode(this.parent))}));
+        this.runStart = new Date();
         if(!this.input) this.prepare({});
         if([...arguments].length > 0) this.validate(...arguments);
         this.result = this.fn.call(this.vector, ...(this.args || []));
+        this.runEnd = new Date();
         return this;
     }
     /**
@@ -1066,6 +1068,13 @@ class VectorAnalysis {
     with(parent) {
         this.parent = parent;
         return this;
+    }
+    /**
+    * Returns duration of the "run" method (whatever it includes inside) in milliseconds.
+     */
+    duration() {
+        if(this.runStart && this.runEnd) return this.runEnd.getTime - this.runStart.getTime();
+        else return null;
     }
 }
 

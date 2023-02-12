@@ -150,13 +150,41 @@ const validators = {
         return {
             fn: function(v) {
                 if(es.values.find(e => e.key == v)) return v;
-                else throw new Error($("HhLt", {name: es.name, title: $(es.title), value: v, keys: es.values.map(e => e.key).toString()}))
+                else throw new Error($("HhLt", {name: es.name, value: v, keys: es.values.map(e => e.key).toString()}))
             }
             , text: "aaVG"}       
     }
 }
 
 const enumerators= {
+    regressionModel: {
+        name: "model",
+        type: "enum",
+        title: "OBml",
+        default: 1,
+        values: [
+            {
+                key: 1, //linear
+                title: "Cpsw"
+            },
+            {
+                key: 2, // logistic
+                title: "UtZD"
+            },
+            {
+                key: 3, //hyperbole
+                title: "SCOx"
+            },
+            {
+                key: 4, //exponential
+                title: "QaJi"
+            },
+            {
+                key: 5, //quadratic
+                title: "HUMA"
+            }
+        ]
+    },
     frequencyOrder: {
         name: "order",
         type: "enum",

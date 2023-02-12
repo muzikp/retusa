@@ -839,6 +839,47 @@ const matrixResultSchemas = {
             }
         }
     },
+    genreg: {
+        "title": "Root", 
+        "type": "object",
+        "properties": {
+            "model": {
+                "$id": "#root/model", 
+                "title": "OBml", 
+                "type": "string"              
+            },
+            "r2": {
+                "$id": "#root/r2", 
+                "title": "VqBH", 
+                "type": "number"
+            },
+            "r": {
+                "$id": "#root/r", 
+                "title": "pTvR", 
+                "type": "number"
+            },
+            "F": {
+                "$id": "#root/F", 
+                "title": "Jdfb", 
+                "type": "number"
+            },
+            "p": {
+                "$id": "#root/p", 
+                "title": "MpjZ", 
+                "type": "number"
+            },
+            "beta0": {
+                "$id": "#root/beta0", 
+                "title": "TDpu", 
+                "type": "number"
+            },
+            "beta1": {
+                "$id": "#root/beta1", 
+                "title": "eFcW", 
+                "type": "number"
+            }
+        }
+    },
     contingency: {
         "title": "gRix", 
         "type": "object",

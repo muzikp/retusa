@@ -1,7 +1,7 @@
 "use strict";
 
 var {NumericVector, StringVector, BooleanVector, Vector, $} = require("./vector");
-var {filters, validators} = require("./parsers");
+var {filters, validators, enumerators} = require("./parsers");
 var {matrixResultSchemas, argumentSchemas, OutputSchema, FormMatrixSchema} = require("./schemas");
 const {Array, Math, String, Function} = require("./extensions");
 const dist = require("./distribution");
@@ -65,20 +65,6 @@ class Matrix extends Array {
             pivot.push(new target.constructor(...selection.filter(factor, (v) => v === key)[0]).name(key));
         }
         return pivot;
-    }
-    /** Converts the Matrix into an array with key-value object values.
-     * @returns {Array}
-    */
-    toTable() {
-        var table = [];
-        for(var r = 0; r < this.maxRows(); r++) {
-            var row = {};
-            for(var v = 0; v < this.length; v++) {
-                row[this[v].name() || v] = this[v][r];
-            }
-            table.push(row);
-        }
-        return table;
     }
     clone(flush = false) {
         return new Matrix(...new Array(...this).map(v => v.clone()));
@@ -347,11 +333,19 @@ class MatrixAnalysis {
                 arg = this.parent.item(arg);    //"Pro argument ${name} (${title}) nelze použít vektor typu ${type}."
                 if((ts[i].type || [1,2,3]).indexOf(arg?.type()) < 0) 
                 {
-                    if(ts[i]?.required) throw new ArgumentError($("dSWt", {name: ts[i].name, title: $(ts[i]?.wiki.title), type: $(arg?.constructor?.name)}), this); 
+                    if(ts[i]?.required) {
+                        throw new ArgumentError($("dSWt", {name: ts[i].name, title: $(ts[i]?.wiki.title), type: $(arg?.constructor?.name)}), this); 
+                    }
                 }
             }
             else if (ts[i].class === 2) {
                 /* pokud má být argument matrix */ 
+            }
+            /* all other types expcept vector and matrix */
+            else if (ts[i].class === 3) {
+                if(ts[i].type == "enum") {
+                    output.push(ts[i].validator.fn(arg));
+                }
             }
             if(!ts[i].required) {
                 if((arg === null || arg === undefined)) output.push(ts[i].default || null);
@@ -371,11 +365,13 @@ class MatrixAnalysis {
      * @returns {self | any}
      */
     run() {
+        this.runStart = new Date();
         if(!this.parent) return new Empty($("jrQP"));
         //if(!this.matrix) this.prepare();
         if([...arguments].length > 0) this.validate(...arguments);
         if(!this.matrix) this.prepare();
         this.result = this.model.fn(...(this.args || []));
+        this.runEnd = new Date();
         return this;
     }
     /**
@@ -395,6 +391,13 @@ class MatrixAnalysis {
         this.parent = this.parent.maxRows();
         this.matrix = this.matrix.maxRows();
         return this;
+    }
+    /**
+     * Returns duration of the "run" method (whatever it includes inside) in milliseconds.
+     */
+    duration() {
+        if(this.runStart && this.runEnd) return this.runEnd.getTime - this.runStart.getTime();
+        else return null;
     }
 }
 
@@ -738,9 +741,61 @@ const matrixMethods = {
             n1: N1,
             n2: N2
         }
+    },    
+    genreg: function(x,y,t = 1){
+        var T = new Matrix(x,y)//.removeEmpty();
+        var model = $(enumerators.regressionModel.values.find(_ => _.key == t)?.title);
+        x = T[0];
+        y = T[1];
+        switch (t) {
+            case 1:
+                break;
+            case 2: 
+                x = x.map(e => Math.log(e));
+                break;
+            case 3:
+                x = x.map(e => 1/e);
+                break;
+            case 4:
+                y = y.map(e => Math.log(e));
+                break;
+            case 5:
+                x = x.map(e => Math.log(e));
+                y = y.map(e => Math.log(e));
+                break;
+            default:
+                break;
+        }
+        var n = x.length;
+        var x2 = x.map(_ => Math.pow(_,2)); // x2i
+        var xy = x.map((_,i) => _ * y[i]); // xiyi
+        var mx = x.avg();
+        var my = y.avg();
+        var mx2 = x2.avg();
+        var mxy = xy.avg();
+        var beta1 = (mxy-mx*my)/(mx2-Math.pow(mx,2));
+        var beta0 = my - beta1 * mx;
+        var yexp = x.map(_ => beta0 + beta1*_);
+        var sr = y.map((_,i) => Math.pow(yexp[i] - _, 2)).sum();
+        var st = y.map(_ => Math.pow(_ - my,2)).sum();
+        var r2 = (st-sr)/st;
+        var r = matrixMethods.correlPearson(x,y).r; //Math.sqrt(r2);
+        var F = (st-sr)/(sr/(n-2));
+        var p = dist.fdistrt(F,1,n-2);
+        return {
+            model: model,
+            r2: r2,
+            r: r,
+            F: F,
+            p: p,
+            beta0: beta0,
+            beta1: beta1,
+            fn: function(x){ return beta0 + x * beta1},
+            //n: x.length
+        };
     },
     linreg: function(x,y){
-        var T = new Matrix(x,y).removeEmpty();
+        var T = new Matrix(x,y)//.removeEmpty();
         x = T[0];
         y = T[1];
         var n = x.length;
@@ -1068,18 +1123,20 @@ const MatrixMethodsModels = [
         args: [{
                 name: "x",
                 wiki: {title: "qFEM"},
-                type: [ats.nv],
+                type: [1],
                 required: true,
                 validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector
+                schema: argumentSchemas.numericVector,
+                class: 1
             },        
             {
                 name: "y",
                 wiki: {title: "tpUu"},
-                type: [ats.nv],
+                type: [1],
                 required: true,
                 validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector
+                schema: argumentSchemas.numericVector,
+                class: 1
         }]
     },
     {   name: "ttestpair",
@@ -1104,7 +1161,7 @@ const MatrixMethodsModels = [
         args: [{
                 name: "x",
                 wiki: {title: "qFEM"},
-                type: [ats.nv],
+                type: [1],
                 required: true,
                 validator: validators.isNumericVector,
                 schema: argumentSchemas.numericVector,
@@ -1113,7 +1170,7 @@ const MatrixMethodsModels = [
             {
                 name: "y",
                 wiki: {title: "tpUu"},
-                type: [ats.nv],
+                type: [1],
                 required: true,
                 validator: validators.isNumericVector,
                 schema: argumentSchemas.numericVector,
@@ -1199,6 +1256,47 @@ const MatrixMethodsModels = [
             schema: argumentSchemas.numericVector
     }]
     },
+    {   name: "genreg",
+        fn: matrixMethods.genreg,
+        filter: filters.matrixNotEmpty,
+        returns: matrixResultSchemas.genreg,
+        example: function(x,y,t) {},
+        wiki: {
+            title: "vlCA",
+            description: "dzFE"
+        },
+        args: [
+            {
+                name: "independent",
+                wiki: {title: "jDlm"},
+                type: [1],
+                required: true,
+                validator: validators.isNumericVector,
+                schema: argumentSchemas.numericVector,
+                class: 1
+            },        
+            {
+                name: "dependent",
+                wiki: {title: "jFVv"},
+                type: [1],
+                required: true,
+                validator: validators.isNumericVector,
+                schema: argumentSchemas.numericVector,
+                class: 1
+            },
+            {
+                name: "model",
+                wiki: {title: "OBml"},
+                type: "enum",
+                required: true,
+                schema: "integer",
+                default: 1,
+                validator: validators.enumValidator(enumerators.regressionModel),
+                enums: enumerators.regressionModel,
+                class: 3
+            }            
+        ]
+    },
     {   name: "linreg",
         fn: matrixMethods.linreg,
         filter: filters.matrixNotEmpty,
@@ -1229,18 +1327,20 @@ const MatrixMethodsModels = [
             {
                 name: "independent",
                 wiki: {title: "jDlm"},
-                type: [ats.nv],
+                type: [1],
                 required: true,
                 validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector
+                schema: argumentSchemas.numericVector,
+                class: 1
             },        
             {
                 name: "dependent",
                 wiki: {title: "jFVv"},
-                type: [ats.nv],
+                type: [1],
                 required: true,
                 validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector
+                schema: argumentSchemas.numericVector,
+                class: 1
             }            
         ]
     },
