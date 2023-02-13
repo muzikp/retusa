@@ -1,5 +1,34 @@
 var $ = require("./locale").call;
 
+const snippets = {
+    sig: {
+        "$id": "#root/p", 
+        "title": "sDgR", 
+        "type": "number",
+        "examples": [
+            0.000001925387777546028
+        ],
+        "default": 0.0
+    },
+    ttest: {
+        "title": "cBNP", 
+        "type": "number",
+        "examples": [
+            8.2
+        ],
+        "default": 0.0
+    },
+    df: {
+        "$id": "#root/df", 
+        "title": "OYQu", 
+        "type": "integer",
+        "examples": [
+            6
+        ],
+        "default": 0
+    }
+}
+
 class Schema {
     lsign = "- ";
     lstart = "\n";
@@ -902,15 +931,7 @@ const matrixResultSchemas = {
                 ],
                 "default": 0.0
             },
-            "df": {
-                "$id": "#root/df", 
-                "title": "OYQu", 
-                "type": "integer",
-                "examples": [
-                    6
-                ],
-                "default": 0
-            },
+            "df": snippets.df,
             "C": {
                 "$id": "#root/C", 
                 "title": "BUaN", 
@@ -930,12 +951,28 @@ const matrixResultSchemas = {
                 "default": 0.0
             }
         }
+    },
+    ttestpair: {
+        "title": "Root", 
+        "type": "object",
+        "properties": {
+            "t": snippets.ttest,
+            "p": snippets.sig,
+            "df": snippets.df
+        }
+    },
+    ttestind: {
+        "title": "Root", 
+        "type": "object",
+        "properties": {
+            "t": snippets.ttest,
+            "p": snippets.sig,
+            "df": snippets.df
+        }
     }
-    
-    
-    
-    
 }
+
+
 
 const argumentSchemas = {
     numericMatrix: {

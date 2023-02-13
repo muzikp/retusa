@@ -41,14 +41,14 @@ Array.prototype.distinct = function() {
 }
 
 Array.prototype.asc = function(self) {
-    if(self) return this.sort();
-    else return new Array(...this).sort();
+    if(self) return this.sort((a,b) => a < b ? -1 : 1);
+    else return new Array(...this).sort((a,b) => a < b ? -1 : 1);
 }
 
 Array.prototype.desc = function(self) {
     if(self) {
-        return this.sort().reverse();
-    } else return new Array(...this).sort().reverse();
+        return this.asc().reverse();
+    } else return new Array(...this).asc().reverse();
 }
 
 Array.prototype.min = function(){
@@ -120,7 +120,7 @@ Array.prototype.mode = function() {
 }
 
 Array.prototype.percentile = function(q){
-    let _ = this.asc(true);
+    let _ = this.asc();
     var pos = ((_.length) - 1) * q;
     var base = Math.floor(pos);
     var rest = pos - base;

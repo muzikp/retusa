@@ -30,6 +30,18 @@ let f_removeMatrixEmpty = function(matrix) {
     return matrix.filter(...fs);
 }
 
+let f_anovaLikeMatrix = function(matrix, args) {
+    if(!args) {
+        var _ = new new Array(...matrix).map(v => v.removeEmpty());
+        return _;
+    }
+    else if(args[1].isVector) {
+        var notEmptyFactorIndexes = new Array(...args[1]).map((v,i) => v !== null ? i : -1).filter(i => i > -1);
+        var m = (!matrix.isMatrix ? matrix.matrify() : matrix).filterByIndex(...notEmptyFactorIndexes);
+        return m;
+    } else return new new Array(...matrix).map(v => v.removeEmpty());
+}
+
 const filters = {
     any: {fn: () => true, text: "FxzE"},
     notnull: {fn: f_notnull, text: "ndPx"},
@@ -37,7 +49,8 @@ const filters = {
     string: {fn: f_string, text: "jocS"},
     boolean: {fn: f_boolean, text: "uUYu"},
     bypassMatrix: {fn: f_boolean, text: ""},
-    matrixNotEmpty: {fn: f_removeMatrixEmpty, text: "rAyq"}
+    matrixNotEmpty: {fn: f_removeMatrixEmpty, text: "rAyq"},
+    anovaLikeMatrix: {fn: f_anovaLikeMatrix, text: "CPwN"}
 }
 
 // #endregion

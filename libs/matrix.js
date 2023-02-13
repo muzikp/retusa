@@ -10,13 +10,20 @@ const {MatrixMarkdown, MatrixOverview} = require("./markdown");
 var matrixName = null;
 
 const registry = new WeakMap();
-
+function getRegistryProperty(parent, key = null) {
+    return key ? registry.get(parent)[key] : registry.get(parent);
+}
+function setRegistryProperty(parent, key, value) {
+    var data = getRegistryProperty(parent);
+    data[key] = value;
+    registry.set(parent, data);
+}
 // #region MATRIX
 
 Array.prototype.matrify = function() {
     var M = new Matrix();
     for(var i = 0; i < this.length; i++) {
-        M.push(!this[i].isVector ? this[i].vectorify() : this[i])
+        M.push(!this[i]?.isVector ? this[i].vectorify() : this[i])
     }
     return M;
 }
@@ -31,14 +38,14 @@ class Matrix extends Array {
     }
     /**
      * Gets or sets the name of this matrix. If the argument 'value' is empty, it returns the name of this matrix (if set before). Otherwise the name of the matrix is set and the matrix itself is returned.
-     * @param {Matrix | string} value Optional: name of the matrix.
+     * @param {string | empty} value Optional: name of the matrix.
      * @returns Either name or the matrix itself.
      */
     name(value){
         if(value) {
-            matrixName = value;
+            setRegistryProperty(this, "name", value);
             return this;
-        } else return matrixName;
+        } else return registry.get(this).name
     }
     push() {
         for(let a of [...arguments].filter(v => v)) {
@@ -146,6 +153,13 @@ class Matrix extends Array {
             }
             return target;
         }
+    }
+    filterByIndex(...indexes) {
+        var _ = new Matrix();
+        for(let v of this) {
+            _.push(v.filterByIndex(...indexes));
+        }
+        return _;
     }
     /** Removes rows with any null value across all values in the row. */
     removeEmpty() {
@@ -319,7 +333,7 @@ class MatrixAnalysis {
         if(this.args.find(a => Array.isArray(a) ? a.hasOnlyVectorChildren() : false)) {
             var multiples = (this.args.filter(a => Array.isArray(a) ? !a?.isVector ? a.filter(aa => a?.isVector) : false : false)).flat() || [];
             var selectors = new Array(...multiples, ...this.args.filter(a => a?.isVector));
-            this.matrix = this.filter(this.parent.select(...selectors));
+            this.matrix = this.filter(this.parent.select(...selectors), this.args);
             for(var i = 0; i < this.args.length; i++) {
                 if(this.args[i]?.isVector) {
                     this.args[i] = this.matrix[i];
@@ -335,7 +349,7 @@ class MatrixAnalysis {
             }
         } 
         else {
-            this.matrix = this.filter(this.parent.select(...this.args));
+            this.matrix = this.filter(this.parent.select(...this.args), this.args);
         }
         return this;
     }
@@ -349,14 +363,8 @@ class MatrixAnalysis {
      * Validates the method arguments.
      * @returns {Array} Returns an array of validated arguments (or nothing if a validation error is thrown before).
      */
-    validate(...args) {        
+    validate(...args) {
         if(!this.parent) return new Empty($("jrQP"));
-        /*
-        if(this.model.argsToMatrix) {
-            var M = (args.length === 0) ? this.parent : this.parent.select(...args);
-            return this.model.args[0].validator.fn(M);
-        }
-        */
         var output = [];
         let ts = this.model.args;
         for(var i = 0; i < ts.length; i++) {            
@@ -375,11 +383,20 @@ class MatrixAnalysis {
                 else output.push(arg);                
             }
             else if (ts[i].class === 2) {
+                if(!Array.isArray(arg)) throw new ArgumentError($("eJTP", {name: ts[i].name, title: $(this.model.args[i].wiki.title)}));
                 var _varr = [];
                 var types = ts[i].type || [1,2,3];
+                for(var v = 0; v < arg.length; v++) {
+                    var _v;
+                    if(arg[v]?.isVector) _v = arg[v];
+                    else if(!arg[v]?.isVector) _v = this.parent.item(arg[v]);
+                    if(!_v) throw new ArgumentError(`The argument array item of index ${v} is neither a vector nor a valid identifier: ${arg[v]}`);
+                    else arg[v] = _v;
+                }
+                if(Number(ts[i].min) > 0 && arg.length < Number(ts[i].min)) throw new ArgumentError($("kdjd", {name: ts[i].name, title: $(this.model.args[i].wiki.title), value: ts[i].min, param: arg.length}));
+                if(Number(ts[i].max) > 0 && arg.length > Number(ts[i].max)) throw new ArgumentError($("qkPg", {name: ts[i].name, title: $(this.model.args[i].wiki.title), value: ts[i].max, param: arg.length}))
                 for(let v of arg) {
-                    v = this.parent.item(v);
-                    if(!v?.isVector || types.indexOf(v?.type()) < 0) throw new ArgumentError($("nQvK", {type: v.constructor.name}), this); 
+                    if(types.indexOf(v.type()) < 0) throw new ArgumentError($("nQvK", {type: v?.constructor?.name}), this);
                     else _varr.push(v);
                 }
                 output.push(_varr);            
@@ -675,13 +692,13 @@ const matrixMethods = {
         debugger;
         return {};
     },
-    ttest_independent: function(x,y){
-        var T = new Matrix(x,y).removeEmpty();
-        var x = T[0];
-        var y = T[1];
+    ttest_independent: function(vectors,factor){
+        var arrays = factor ? new Array(...new Matrix(factor, vectors[0]).pivot(1,0)).slice(0,2) : new Array(...vectors).slice(0,2);
+        var x = arrays[0];
+        var y = arrays[1];
         var nx = x.length;
         var ny = y.length;
-        var df = nx+ny-2;
+        var df = nx + ny-2;
         var sx2 = Math.pow(x.sum(),2);
         var sy2 = Math.pow(y.sum(),2);
         var mx = x.avg();
@@ -692,34 +709,23 @@ const matrixMethods = {
         var p = dist.tdist(t, df) * 2;
         return {
             t: t,
-            mx: mx,
-            my: my,
-            nx: nx,
-            ny: ny,
-            df: df,
             p: p
         }
     },
     ttest_paired: function(x,y){
-        var M = new Matrix(x,y).removeEmpty();
-        x = M[0];
-        y = M[1];
-        var xy = x.map(function(_,i){return {x: x[i].toString() ? Number(x[i]) : null, y: y[i].toString() ? Number(y[i]) : null}}).filter(_ => _.x && _.y);
+        var xy = x.map((_,i) => [_,y[i]]);
         var n = xy.length;
         var df = n * 2 - 2;
-        var x_y = xy.map(_ => _.x - _.y);
+        var x_y = xy.map(_ => _[0] - _[1]);
         var t = (x_y.sum()/n)/Math.pow(((x_y.map(_ => Math.pow(_,2))).sum() - Math.pow(x_y.sum(),2)/n)/(n*(n-1)),0.5);    
         var p = dist.tdist(t, df) * 2;
         return {
             t: t,
-            p: p,
-            n: x.length,
-            mx: x.avg(),
-            my: y.avg()
+            p: p
         }
     },
     anova_oneway: function(vectors, factor) {
-        var arrays = factor ? new Array(...new Matrix(factor, vectors[0]).pivot(1,0)) : new Array(...vectors);
+        var arrays = (factor ? new Array(...new Matrix(factor, vectors[0]).pivot(1,0)) : new Array(...vectors)).map(v => v.removeEmpty());
         var ns = arrays.map(a => a.length);
         var g_avg = arrays.map(a => a.avg());
         var yi_total = (arrays.map((a, i) => a.sum())).sum();
@@ -736,42 +742,7 @@ const matrixMethods = {
             F: F,
             P2: P2,
             p: p,
-            n: ns.sum(),
-            ANOVA: {
-                totalOfGroups: arrays.length,
-                betweenGroups: {
-                    sumOfSquares: yi_yn_total,
-                    df: ns.length - 1
-                },
-                withinGroups: {
-                    sumOfsquares: pow_yi_min_total,
-                    df: dfwg
-                },
-                total: {
-                    sumOfSquares: yi_yn_total + pow_yi_min_total,
-                    df: ns.length - 1 + dfwg
-                }
-            }
-        };
-    },
-    _anova_oneway: function(...M) {
-        var arrays = new Array(...M);
-        var ns = arrays.map(a => a.length);
-        var g_avg = arrays.map(a => a.avg());
-        var yi_total = (arrays.map((a, i) => a.sum())).sum();
-        var yi_avg = yi_total / ns.sum();
-        var pow_yi_min = arrays.map((a, i) => a.map(_ => Math.pow(_ - g_avg[i], 2)));
-        var pow_yi_min_total = (pow_yi_min.map(a => a.sum())).sum();
-        var yi_yn = g_avg.map((g, i) => Math.pow(g - yi_avg, 2) * ns[i]);
-        var yi_yn_total = yi_yn.sum();
-        var dfwg = (ns.sum() - ns.length);
-        var F = (yi_yn.sum() / (ns.length - 1)) / (pow_yi_min_total / dfwg);
-        var P2 = yi_yn_total / (yi_yn_total + pow_yi_min_total);
-        var p = dist.fdistrt(F, ns.length - 1, dfwg);
-        return {
-            F: F,
-            P2: P2,
-            p: p,
+            df: dfwg,
             n: ns.sum(),
             ANOVA: {
                 totalOfGroups: arrays.length,
@@ -875,6 +846,7 @@ const matrixMethods = {
             //n: x.length
         };
     },
+    /*
     linreg: function(x,y){
         var T = new Matrix(x,y)//.removeEmpty();
         x = T[0];
@@ -908,7 +880,7 @@ const matrixMethods = {
             fn: function(x){ return beta0 + x * beta1},
             n: x.length
         };
-    },
+    },*/
     contingency: function(x,y,n) {
         var xd = x.distinct();
         var yd = y.distinct();
@@ -1193,7 +1165,7 @@ const MatrixMethodsModels = [
     },
     {   name: "ttestind",
         fn: matrixMethods.ttest_independent,
-        filter: filters.matrixNotEmpty,
+        filter: filters.anovaLikeMatrix,
         example: function(){
             var M = new Matrix([],[]).ttestind(0,1);
         },
@@ -1201,20 +1173,23 @@ const MatrixMethodsModels = [
             title: "YqRh",
             description: "gILL"
         },
+        returns: matrixResultSchemas.ttestpair,
         args: [{
-                name: "x",
+                name: "vectors",
                 wiki: {title: "qFEM"},
                 type: [1],
+                min: 1,
+                max: 2,
                 required: true,
-                validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector,
-                class: 1
+                validator: validators.isNumericMatrix,
+                schema: argumentSchemas.numericMatrix,
+                class: 2
             },        
             {
-                name: "y",
+                name: "factor",
                 wiki: {title: "tpUu"},
-                type: [1],
-                required: true,
+                type: [1,2,3],
+                required: false,
                 validator: validators.isNumericVector,
                 schema: argumentSchemas.numericVector,
                 class: 1
@@ -1239,6 +1214,7 @@ const MatrixMethodsModels = [
             title: "mmXD",
             description: "kPqo"
         },
+        returns: matrixResultSchemas.ttestpair,
         args: [{
                 name: "x",
                 wiki: {title: "qFEM"},
@@ -1261,7 +1237,7 @@ const MatrixMethodsModels = [
     {   name: "anovaow",
         fn: matrixMethods.anova_oneway,
         argsToMatrix: true,
-        filter: filters.matrixNotEmpty,
+        filter: filters.anovaLikeMatrix,
         returns: matrixResultSchemas.anovaow,
         example: function(){
             var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow(0,1,2);
@@ -1302,22 +1278,19 @@ const MatrixMethodsModels = [
                 {
                     name: "vectors",
                     wiki: {title: "iJaa"},
-                    /* numeric matrix only */
+                    min: 1,
                     type: [1],
                     required: true,
-                    //validator: validators.isNumericMatrix,
+                    validator: validators.isNumericMatrix,
                     schema: argumentSchemas.numericMatrix,
-                    /* matrix class */
                     class: 2
                 },{
                     name: "factor",
                     wiki: {title: "iJEe"},
-                    /* numeric matrix only */
                     type: [1,2,3],
                     required: false,
                     validator: validators.isVector,
                     schema: argumentSchemas.numericMatrix,
-                    /* matrix class */
                     class: 1
                 }
         ]
@@ -1493,7 +1466,7 @@ const MatrixMethodsModels = [
             }               
         ]
     }
-].sort((a,b) => $(a.wiki?.title) > $(b.wiki?.title) ? 1 : -1);
+];
 
 MatrixMethodsModels.forEach(function(m) {
     Matrix.prototype[m.name] = function() {

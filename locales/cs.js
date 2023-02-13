@@ -308,7 +308,7 @@ module.exports = {
 	/* Matrix fce t-test independent plain (title) */
 	"YqRh": "T-test (nezávislý)",
 	/* Matrix fce t-test independent plain (description) */
-	"gILL": "Vrátí statistický protokol Studentova t-testu pro dva nezávislé výběry, které jsou definovány vlastní proměnnou (tedy dvěma numerickými vektory).",
+	"gILL": "Vrátí statistický protokol Studentova t-testu pro dva nezávislé výběry, které jsou definovány vlastní proměnnou (tedy dvěma numerickými vektory). Argumenty tvoří buď dva numerické vektory, nebo jeden numerický a jen faktorový vektor (obvykle text, ale může být i numerický či binární). Pokud je použit jako faktor vektor, který má více než dvě unikátní hodnoty, jsou pro test uvažovány pouze první dvě unikátní nalezené hodnoty (ostatní se ignorují) - v takovém případě je informace o velikosti čistého vzorku nepodstatná, nicméně hladina významnosti, do které velikost vzorku vstupuje, je již založena na čistých případech.",
 	/* Vector fce t-test one sample (title) */
 	"sOyV": "T-test s jedním výběrem",
 	/* Vector fce t-test one sample (title) */
@@ -326,7 +326,7 @@ module.exports = {
 	/* Matrix fce t-test paired (title) */
 	"mmXD": "T-test (párový)",
 	/* Matrix fce t-test paired (description) */
-	"kPqo": "Vrátí statistický protokol párového t-testu pro dva závislé výběry.",
+	"kPqo": "Vrátí statistický protokol párového t-testu pro dva závislé výběry. Prázdné hodnoty jsou vyřezeny v průřezu řádků, tzn. že pokud v jednom řádku chybí alespoň jedna hodnota, je z analýzy vyřezen celý řádek.",
 	/* Matrix fce One-way ANOVA (title) */
 	"baJo": "ANOVA (jednofaktorová)",
 	/* Matrix fce One-way ANOVA (description) */
@@ -502,7 +502,7 @@ module.exports = {
 	/* matrix method - contingecy - output schema - p */
 	"sDgR":"hladina významnosti (dvoustranná)",
 	/* matrix method - contingecy - output schema - V */
-	"VYQH":"Cramerovo V",
+	"VYQH":"Cramérovo V",
 	/* matrix method - contingecy - output schema - C */
 	"BUaN":"Pearsonovo C",
 	/* matrix method - general regression - title */
@@ -529,11 +529,16 @@ module.exports = {
 	"eFcW":"koeficient (beta1)",
 	/* matrix analysis validator error- class 2 - vector not matching allowed types */
 	"nQvK":"Vektor typu ${type} nelze v dané sadě vektorů použít.",
-	"cBNP":"",
-	"eJTP":"",
-	"kdjd":"",
-	"qkPg":"",
-	"CPwN":"",
+	/* matrix method - t-test - T output schema */
+	"cBNP":"T hodnota testu",
+	/* argument error - only matrix or array of vectors is accepted as an argument */
+	"eJTP":"Hodnotou parametru ${title} (${name}) může být pouze sada vektorů nebo jejich identifikátorů (i v případě, že by se mělo pouze o jediný prvek v sadě).",
+	/* argument error - minimum vectors in array - not enough */
+	"kdjd":"Minimální počet vektorů v sadě pro parametr '${title}' (${name}) je ${value}, zadáno ${param}.",
+	/* argument error - minimum vectors in array - too many */
+	"qkPg":"Maximální počet vektorů v sadě pro parametr '${title}' (${name}) je ${value}, zadáno ${param}.",
+	/* filter - vectorNotEmptyIndependent */
+	"CPwN":"Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom vektoru ovlivnilo jiný vektor.",
 	"TkNf":"",
 	"Shpv":"",
 	"DFpw":"",

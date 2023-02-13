@@ -43,6 +43,9 @@ class Vector extends Array {
             return this;
         } else return registry.get(this).name
     }
+    removeEmpty() {
+        return this.filter(v => v !==null);
+    }
     parent(value){
         if(value) {
             setRegistryProperty(this, "parent", value)
@@ -83,6 +86,10 @@ class Vector extends Array {
             if(filter(v)) return i;
             else return -1;
         }).filter(x => x > -1 );
+    }
+    
+    filterByIndex(...indexes) {
+        return this.filter((e,i) => indexes.indexOf(i) > -1);
     }
     /**
      * Coverts the array into a text where values are delimited by line break. This makes it easy to copy and paste the values to Excel etc.

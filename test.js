@@ -11,7 +11,7 @@ with (framework) {
     var b2 = new StringVector("A","A","A","A","A","A","B","B","B","B","B","B");
     var M = new Matrix(a1,a2,a3,a4);
     //var M = new Matrix(b1,b2);
-    var anova = M.analyze("anovaow").run([0,1,2],3)
+    var anova = M.analyze("anovaow").run([0],3);
     debugger;
     return;
 
