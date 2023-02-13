@@ -36,7 +36,6 @@ let f_anovaLikeMatrix = function(matrix, args) {
     }
     else if(args[1]?.isVector) {
         var notEmptyFactorIndexes = new Array(...args[1]).map((v,i) => v !== null ? i : -1).filter(i => i > -1);
-        debugger;
         return (!matrix.isMatrix ? matrix.matrify() : matrix).filterByIndex(...notEmptyFactorIndexes);
     } else {        
         var x =  new Array(...matrix).map(v => v.removeEmpty());

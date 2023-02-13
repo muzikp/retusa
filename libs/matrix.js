@@ -322,12 +322,10 @@ class MatrixAnalysis {
     prepare(){
         if(!this.parent) throw new Error("The method cannot be called without a parent specified.");
         if([...arguments].length > 0) this.validate(...arguments);
-        /* tady ještě jména jsou */
         if(this.args.find(a => Array.isArray(a) ? a.hasOnlyVectorChildren() : false)) {
             var multiples = (this.args.filter(a => Array.isArray(a) ? !a?.isVector ? a.filter(aa => a?.isVector) : false : false)).flat() || [];
-            var selectors = new Array(...multiples, ...this.args.filter(a => a?.isVector));
+            var selectors = new Array(...multiples, ...this.args.filter(a => a?.isVector));            
             this.matrix = this.filter(this.parent.select(...selectors), this.args);
-
             for(var i = 0; i < this.args.length; i++) {
                 if(this.args[i]?.isVector) {
                     this.args[i] = this.matrix[i];
@@ -390,7 +388,7 @@ class MatrixAnalysis {
                 if(Number(ts[i].min) > 0 && arg.length < Number(ts[i].min)) throw new ArgumentError($("kdjd", {name: ts[i].name, title: $(this.model.args[i].wiki.title), value: ts[i].min, param: arg.length}));
                 if(Number(ts[i].max) > 0 && arg.length > Number(ts[i].max)) throw new ArgumentError($("qkPg", {name: ts[i].name, title: $(this.model.args[i].wiki.title), value: ts[i].max, param: arg.length}))
                 for(let v of arg) {
-                    if(types.indexOf(v.type()) < 0) throw new ArgumentError($("nQvK", {type: v?.constructor?.name}), this);
+                    if(types.indexOf(v.type()) < 0) throw new ArgumentError($("nQvK", {type: v?.constructor?.name, allowed: types.toString()}), this);
                     else _varr.push(v);
                 }
                 output.push(_varr);            
@@ -590,7 +588,6 @@ const matrixMethods = {
        var p = dist.tdist(t_test,df);
        return {
            r: r,
-           n: n,
            p: p
        };
     },
@@ -607,7 +604,7 @@ const matrixMethods = {
         var p = dist.tdist(t_test,df);
         return {
             r: rs,
-            n: n,
+            df: df,
             p: p
         }
     },
@@ -703,7 +700,8 @@ const matrixMethods = {
         var p = dist.tdist(t, df) * 2;
         return {
             t: t,
-            p: p
+            p: p,
+            df: df
         }
     },
     ttest_paired: function(x,y){
@@ -715,7 +713,8 @@ const matrixMethods = {
         var p = dist.tdist(t, df) * 2;
         return {
             t: t,
-            p: p
+            p: p,
+            df: df
         }
     },
     anova_oneway: function(vectors, factor) {
@@ -840,41 +839,6 @@ const matrixMethods = {
             //n: x.length
         };
     },
-    /*
-    linreg: function(x,y){
-        var T = new Matrix(x,y)//.removeEmpty();
-        x = T[0];
-        y = T[1];
-        var n = x.length;
-        var x2 = x.map(_ => Math.pow(_,2))
-        var xy = x.map((_,i) => _*y[i]);
-        var _xy_ = n * xy.sum();
-        var x_y_ = x.sum() * y.sum();
-        var _x2_ = n * x2.sum();
-        var x_2 = Math.pow(x.sum(),2);
-        var beta1 = (_xy_- x_y_)/(_x2_-x_2 );
-        var beta0 = y.sum()/n - beta1 * x.sum()/n;
-        var s_total = (y.map(_ => Math.pow(_-y.avg(),2))).sum();
-        var s_res = (x.map((_,i) => Math.pow(y[i] - (beta0 + beta1*_),2))).sum();
-        var s_reg = s_total - s_res;
-        var s_err = Math.pow(s_reg/(n-2),0.5);
-        var r = matrixMethods.correlPearson(x,y).r;
-        var r2 = Math.pow(r,2);
-        //var r2 = 1-(s_res/s_reg);
-        //var r = Math.sqrt(r2);
-        var F = (s_reg)/(s_res/(n-2));
-        var p = dist.fdistrt(F,1,n-2);
-        return {
-            r2: r2 < 0 ? null : r2,
-            r: r,
-            F: F,
-            p: isNaN(p) ? null : p,
-            beta0: beta0,
-            beta1: beta1,
-            fn: function(x){ return beta0 + x * beta1},
-            n: x.length
-        };
-    },*/
     contingency: function(x,y,n) {
         var xd = x.distinct();
         var yd = y.distinct();
@@ -909,17 +873,6 @@ const matrixMethods = {
         }
     }
 };
-
-var ats = {
-    /**Numeric vector only */
-    nv: "NumericVector",
-    /**String vector only */
-    sv: "StringVector",
-    /**Boolean vector only */
-    bv: "BooleanVector",
-    m: "Matrix",
-    mv: "NumericMatrix",
-}
 
 const MatrixMethodsModels = [
     {   name: "correlPearson",
@@ -1300,20 +1253,22 @@ const MatrixMethodsModels = [
         description: "vzHj"
     },
     args: [{
-            name: "x",
+            name: "vectors",
             wiki: {title: "qFEM"},
-            type: [ats.nv],
+            min: 1,
+            type: [1],
             required: true,
-            validator: validators.isNumericVector,
-            schema: argumentSchemas.numericVector
+            validator: validators.anovaLikeMatrix,
+            schema: argumentSchemas.numericMatrix,
+            class: 2
         },        
         {
-            name: "y",
+            name: "factor",
             wiki: {title: "tpUu"},
-            type: [ats.nv],
-            required: true,
-            validator: validators.isNumericVector,
-            schema: argumentSchemas.numericVector
+            type: [1,2,3],
+            required: false,
+            validator: validators.isVector,
+            schema: argumentSchemas.vector
     }]
     },
     {   name: "genreg",

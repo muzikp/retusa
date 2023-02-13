@@ -93,7 +93,7 @@ class Vector extends Array {
     }
     
     filterByIndex(...indexes) {
-        return this.filter((e,i) => indexes.indexOf(i) > -1);
+        return new this.constructor(...this).filter((e,i) => indexes.indexOf(i) > -1).name(this.name());
     }
     /**
      * Coverts the array into a text where values are delimited by line break. This makes it easy to copy and paste the values to Excel etc.

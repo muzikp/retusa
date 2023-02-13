@@ -719,18 +719,7 @@ const matrixResultSchemas = {
                 "type": "number",
                 "default": 0.0
             },
-            "n": {
-                "$id": "#root/n", 
-                "title": "bLoI", 
-                "type": "integer",
-                "default": 0
-            },
-            "p": {
-                "$id": "#root/p", 
-                "title": "MpjZ", 
-                "type": "number",
-                "default": 0.0
-            }
+            "p": snippets.sig
         }
     },
     correlSpearman: {
@@ -746,18 +735,8 @@ const matrixResultSchemas = {
                 "type": "number",
                 "default": 0.0
             },
-            "n": {
-                "$id": "#root/n", 
-                "title": "bLoI", 
-                "type": "integer",
-                "default": 0
-            },
-            "p": {
-                "$id": "#root/p", 
-                "title": "MpjZ", 
-                "type": "number",
-                "default": 0.0
-            }
+            "df": snippets.df,
+            "p": snippets.sig
         }
     },
     correlKendall: {
@@ -773,18 +752,8 @@ const matrixResultSchemas = {
                 "type": "number",
                 "default": 0.0
             },
-            "n": {
-                "$id": "#root/n", 
-                "title": "bLoI", 
-                "type": "integer",
-                "default": 0
-            },
-            "p": {
-                "$id": "#root/p", 
-                "title": "MpjZ", 
-                "type": "number",
-                "default": 0.0
-            }
+            "df": snippets.df,
+            "p": snippets.sig
         }
     },
     correlPartial: {
@@ -800,18 +769,7 @@ const matrixResultSchemas = {
                 "type": "number",
                 "default": 0.0
             },
-            "n": {
-                "$id": "#root/n", 
-                "title": "bLoI", 
-                "type": "integer",
-                "default": 0
-            },
-            "p": {
-                "$id": "#root/p", 
-                "title": "MpjZ", 
-                "type": "number",
-                "default": 0.0
-            }
+            "p": snippets.sig
         }
     },
     linreg: {
@@ -836,12 +794,7 @@ const matrixResultSchemas = {
                 "type": "number",
                 "default": 0.0
             },
-            "p": {
-                "$id": "#root/p", 
-                "title": "MpjZ", 
-                "type": "number",
-                "default": 0.0
-            },
+            "p": snippets.sig,
             "beta0": {
                 "$id": "#root/beta0", 
                 "title": "slkz", 
@@ -853,12 +806,6 @@ const matrixResultSchemas = {
                 "title": "XfCm", 
                 "type": "number",
                 "default": 0.0
-            },
-            "n": {
-                "$id": "#root/n", 
-                "title": "bLoI", 
-                "type": "integer",
-                "default": 0
             },
             "fn": {
                 "$id": "#root/fn", 

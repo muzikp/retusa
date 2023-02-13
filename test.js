@@ -12,8 +12,8 @@ with (framework) {
     var M = new Matrix(a1,a2,a3,a4);
     console.log(M.name("kunda"));
     //var M = new Matrix(b1,b2);
-    var anova = M.analyze("anovaow").prepare([0,1,2]);
-    console.dir(anova.matrix.map(v => v.name()));
+    var anova = M.analyze("anovaow").prepare([0],3);
+    console.dir(anova.matrix.smap(v => v.name()));
     debugger;
     return;
 
