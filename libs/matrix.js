@@ -9,15 +9,6 @@ var {VectorValueError, ArgumentError, Empty} = require("./errors");
 const {MatrixMarkdown, MatrixOverview} = require("./markdown");
 var matrixName = null;
 
-const registry = new WeakMap();
-function getRegistryProperty(parent, key = null) {
-    return key ? registry.get(parent)[key] : registry.get(parent);
-}
-function setRegistryProperty(parent, key, value) {
-    var data = getRegistryProperty(parent);
-    data[key] = value;
-    registry.set(parent, data);
-}
 // #region MATRIX
 
 Array.prototype.matrify = function() {
@@ -38,14 +29,15 @@ class Matrix extends Array {
     }
     /**
      * Gets or sets the name of this matrix. If the argument 'value' is empty, it returns the name of this matrix (if set before). Otherwise the name of the matrix is set and the matrix itself is returned.
+     * So far, there can be only one name for all possible matrices as WeakMap seems to not support array keys (matrix is an array in fact).
      * @param {string | empty} value Optional: name of the matrix.
      * @returns Either name or the matrix itself.
      */
     name(value){
         if(value) {
-            setRegistryProperty(this, "name", value);
+            matrixName = value;
             return this;
-        } else return registry.get(this).name
+        } else return matrixName;
     }
     push() {
         for(let a of [...arguments].filter(v => v)) {
@@ -330,10 +322,12 @@ class MatrixAnalysis {
     prepare(){
         if(!this.parent) throw new Error("The method cannot be called without a parent specified.");
         if([...arguments].length > 0) this.validate(...arguments);
+        /* tady ještě jména jsou */
         if(this.args.find(a => Array.isArray(a) ? a.hasOnlyVectorChildren() : false)) {
             var multiples = (this.args.filter(a => Array.isArray(a) ? !a?.isVector ? a.filter(aa => a?.isVector) : false : false)).flat() || [];
             var selectors = new Array(...multiples, ...this.args.filter(a => a?.isVector));
             this.matrix = this.filter(this.parent.select(...selectors), this.args);
+
             for(var i = 0; i < this.args.length; i++) {
                 if(this.args[i]?.isVector) {
                     this.args[i] = this.matrix[i];

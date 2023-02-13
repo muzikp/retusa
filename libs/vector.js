@@ -43,8 +43,12 @@ class Vector extends Array {
             return this;
         } else return registry.get(this).name
     }
+    /**
+     * 
+     * @returns {this} This vector filtered from the null values.
+     */
     removeEmpty() {
-        return this.filter(v => v !==null);
+        return new this.constructor(...this).name(this.name());
     }
     parent(value){
         if(value) {
@@ -62,7 +66,7 @@ class Vector extends Array {
         return obj;
     }
     clone(flush = false) {
-        var _ = flush ? new this.constructor() : new this.constructor(...this);
+        var _ = (flush ? new this.constructor() : new this.constructor(...this).name(this.name()));
         _.name(this.name());
         return _;
     }

@@ -32,14 +32,16 @@ let f_removeMatrixEmpty = function(matrix) {
 
 let f_anovaLikeMatrix = function(matrix, args) {
     if(!args) {
-        var _ = new new Array(...matrix).map(v => v.removeEmpty());
-        return _;
+        return new Array(...matrix).map(v => v.removeEmpty());
     }
-    else if(args[1].isVector) {
+    else if(args[1]?.isVector) {
         var notEmptyFactorIndexes = new Array(...args[1]).map((v,i) => v !== null ? i : -1).filter(i => i > -1);
-        var m = (!matrix.isMatrix ? matrix.matrify() : matrix).filterByIndex(...notEmptyFactorIndexes);
-        return m;
-    } else return new new Array(...matrix).map(v => v.removeEmpty());
+        debugger;
+        return (!matrix.isMatrix ? matrix.matrify() : matrix).filterByIndex(...notEmptyFactorIndexes);
+    } else {        
+        var x =  new Array(...matrix).map(v => v.removeEmpty());
+        return x;
+    }
 }
 
 const filters = {
