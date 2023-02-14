@@ -507,10 +507,10 @@ module.exports = {
   "FIQW": "Očekávala se hodnota typu NumericMatrix, místo toho byla zjištěna hodnota ${value}",
 
   /* Matrix fce Mann-Whitney U (title) */
-  "rPQr": "Mann-Whitney",
+  "rPQr": "Mann-Whitneyho test",
 
   /* Matrix fce Mann-Whitney U (description) */
-  "vzHj": "Vrátí statistický protokol Mann-Whitneyho U testu.",
+  "vzHj": "Vrátí statistický protokol Mann-Whitneyho U testu. Ve statistice je tento tent (také nazývaný Mann–Whitney–Wilcoxon (MWW/MWU), Wilcoxonův rank-sum test nebo Wilcoxon–Mann–Whitney test) neparametrický test nulové hypotézy, která náhodně vybrané hodnoty X a Y ze dvou populací, přičemž pravděpodobnost, že X bude větší než Y, se rovná pravděpodobnosti, že Y bude větší než X.",
 
   /* schema type object */
   "kLhB": "objekt",
@@ -738,7 +738,7 @@ module.exports = {
   "gRix": "kontingence",
 
   /* matrix method - contingency (description) */
-  "fqwd": "Vrátí statistický protokol kontingence. Parametry metody jsou a) řádková proměnná, b) sloupcová proměnná a volitelně c) četnost skupiny a/b (pokud je prázdná, bere se, že četnost průniku je 1). Výstupem metody jsou jak statistiky kontingence (Cramérovo V, Phi ad)..",
+  "fqwd": "Vrátí statistický protokol kontingence. Parametry metody jsou a) řádková proměnná, b) sloupcová proměnná a volitelně c) četnost skupiny a/b (pokud je prázdná, bere se, že četnost průniku je 1). Výstupem metody jsou jak statistiky kontingence (chí^2), Cramérovo V, Pearsonovo C, ad)..",
 
   /* matrix method - contingency - x parameter */
   "gLRN": "řádková proměnná",
@@ -749,8 +749,8 @@ module.exports = {
   /* matrix method - contingency - frequency */
   "fqUi": "proměnná četnosti",
 
-  /* matrix method - contingecy - output schema - phi */
-  "GfeP": "chí~2",
+  /* matrix method - contingecy - output schema - phi^2 */
+  "GfeP": "chí^2",
 
   /* matrix method - contingecy - output schema - p */
   "sDgR": "hladina významnosti (dvoustranná)",
@@ -811,8 +811,12 @@ module.exports = {
 
   /* filter - vectorNotEmptyIndependent */
   "CPwN": "Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom vektoru ovlivnilo jiný vektor.",
-  "TkNf": "",
-  "Shpv": "",
+
+  /* Matrix fce Mann-Whitney - output - U (title) */
+  "TkNf": "U (hodnota testu)",
+
+  /* Matrix fce Mann-Whitney - output - Z (title) */
+  "Shpv": "Z (hodnota testu)",
   "DFpw": "",
   "WssH": "",
   "BCgp": "",

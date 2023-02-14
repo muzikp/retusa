@@ -754,10 +754,10 @@ const matrixMethods = {
             }
         };
     },
-    mannwhitney: function(x,y){
-        var M = new Matrix(x,y).removeEmpty();
-        x = M[0];
-        y = M[1];
+    mannwhitney: function(vectors,factor){
+        var arrays = factor ? new Array(...new Matrix(factor, vectors[0]).pivot(1,0)).slice(0,2) : new Array(...vectors).slice(0,2);
+        var x = arrays[0];
+        var y = arrays[1];
         var all = x.concat(y);
         var ac = all.length;
         var xa = x.map(function(v,i){
@@ -783,8 +783,8 @@ const matrixMethods = {
             U: U,
             Z: z,
             p: p,
-            n1: N1,
-            n2: N2
+            //n1: N1,
+            //n2: N2
         }
     },    
     genreg: function(x,y,t = 1){
@@ -1242,34 +1242,35 @@ const MatrixMethodsModels = [
                 }
         ]
     },
-    {   name: "mannwhitney",
-    fn: matrixMethods.mannwhitney,
-    example: function(){
-        var M = new Matrix([1,2,3,4,5,6,7,8,9,10],[1,3,5,7,9,11,13,15,17,19]).mannwhitney();
-    },
-    filter: filters.matrixNotEmpty,
-    wiki: {
-        title: "rPQr",
-        description: "vzHj"
-    },
-    args: [{
-            name: "vectors",
-            wiki: {title: "qFEM"},
-            min: 1,
-            type: [1],
-            required: true,
-            validator: validators.anovaLikeMatrix,
-            schema: argumentSchemas.numericMatrix,
-            class: 2
-        },        
-        {
-            name: "factor",
-            wiki: {title: "tpUu"},
-            type: [1,2,3],
-            required: false,
-            validator: validators.isVector,
-            schema: argumentSchemas.vector
-    }]
+    {   name: "mwu",
+        fn: matrixMethods.mannwhitney,
+        example: function(){
+            var M = new Matrix([1,2,3,4,5,6,7,8,9,10],[1,3,5,7,9,11,13,15,17,19]).mwu();
+        },
+        filter: filters.anovaLikeMatrix,
+        wiki: {
+            title: "rPQr",
+            description: "vzHj"
+        },
+        url: "https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test",
+        args: [{
+                name: "vectors",
+                wiki: {title: "qFEM"},
+                min: 1,
+                type: [1],
+                required: true,
+                validator: validators.anovaLikeMatrix,
+                schema: argumentSchemas.numericMatrix,
+                class: 2
+            },        
+            {
+                name: "factor",
+                wiki: {title: "tpUu"},
+                type: [1,2,3],
+                required: false,
+                validator: validators.isVector,
+                schema: argumentSchemas.vector
+        }]
     },
     {   name: "genreg",
         fn: matrixMethods.genreg,

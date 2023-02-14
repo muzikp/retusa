@@ -916,6 +916,31 @@ const matrixResultSchemas = {
             "p": snippets.sig,
             "df": snippets.df
         }
+    },
+    mwu: {
+        "title": "Root", 
+        "type": "object",
+        "properties": {
+            "U": {
+                "$id": "#root/p", 
+                "title": "TkNf", 
+                "type": "number",
+                "examples": [
+                    5.4
+                ],
+                "default": 0.0
+            },
+            "Z": {
+                "$id": "#root/p", 
+                "title": "Shpv", 
+                "type": "number",
+                "examples": [
+                    5.4
+                ],
+                "default": 0.0
+            },
+            "p": snippets.sig,
+        }
     }
 }
 
