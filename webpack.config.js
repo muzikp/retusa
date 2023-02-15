@@ -9,5 +9,5 @@ module.exports = {
     libraryTarget: "umd" || 'commonjs',
     globalObject: "this"
   },
-  mode: "development" || "production"
+  mode: "production" || "development"
 };
