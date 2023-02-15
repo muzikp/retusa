@@ -2,6 +2,12 @@ const dist = require("./distribution");
 const {Empty} = require("./errors");
 const $ = require("./locale").call;
 
+Array.prototype.toCSV = function(delimiter) {
+    var t = "";
+    this.forEach((e,i,a) => t += (!isNaN(Number(e)) ? delimiter ? String(e).replace(/\./g,delimiter) : e : e) + "\n");
+    return t;
+}
+
 Array.prototype.hasOnlyVectorChildren = function() {
     return this.filter(e => !e?.isVector).length == 0;
 }
@@ -188,7 +194,7 @@ Array.prototype.getRankIndexes = function(order = 0){
 }
 
 Array.prototype.rankAvg = function(value, dir) {
-    var array = new Array(...this).sort((a,b) => a - b);
+    var array = new Array(...this).sort((a,b) => a < b ? -1 : a == b ? 0 : 1);
     var fi = Number(array.indexOf(value));
     var li = Number(array.lastIndexOf(value));
     return (fi !== li ? (li+fi)/2 : fi) + 1;

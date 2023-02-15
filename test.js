@@ -5,7 +5,31 @@ const { StringVector } = require("./libs/vector");
 framework.docs.publish(require("fs"));
 
 with (framework) {
-    
+    //var arr = [...Array(40).keys()].map((e,i,a) => i * 0.1).map(e => utils.distribution.normdist(e,10,5)).toCSV(",");
+    //console.log(arr);
+    //debugger;
+    var M = new Matrix(
+        new NumericVector(1,2,3,4,4,5,6,7,7,8,9,10,11,11,12,13,14,15,16,16).name("proměnná x"),
+        new NumericVector(20,19,2,4,5,7,6,8,9,10,10,20,13,12,14,13,19,16,18,6).name("proměnná y"),
+        new NumericVector(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20).name("proměnná z"),
+        new BooleanVector(0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1).name("proměnná b")
+    );
+    var KW = new Matrix(
+        new NumericVector(4,5,6,7,7,8,9,10,11,11,12,13,14,15,16,16,20,19,2,4,5,7,6,8,9,10,10,20,13,12,14,13,19,16,18,6,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20).name("vektor"),
+        new StringVector(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3).name("faktor")
+    )
+        var spearman = M.analyze("correlSpearman").run(0,1);
+        var kendall = M.analyze("correlKendall").run(0,1);
+        var partial = M.analyze("correlPartial").run(0,1,2);
+        var biserial = M.analyze("correlBiserial").run(3,0);
+        var kwanova = KW.analyze("kwanova").run([0],1);
+        //console.log(spearman.result);
+        //console.log(kendall.result);
+        //console.log(biserial.result);
+        console.log(kwanova.result);
+
+    debugger;
+    return;
     var a1 = new NumericVector(null, 1,2,3,4,5,6,9).name("A 1");
     var a2 = new NumericVector(-4, 7,6,3,4,5,6, 7).name("A 2");
     var a3 = new NumericVector(-2,-3,-4,-5,-4,-3,-2,-1).name("A 3");

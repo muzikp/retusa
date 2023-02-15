@@ -18,6 +18,7 @@ Bablablablabla.
 | [mwu](#mwu) | Mann-Whitneyho test |
 | [genreg](#genreg) | regrese |
 | [contingency](#contingency) | kontingence |
+| [kwanova](#kwanova) | ANOVA (jednofaktorová) |
 
 ---
 
@@ -113,7 +114,7 @@ var M = new Matrix(a,b).correlSpearman(a,b);
 
 ### [KENDALLŮV KORELAČNÍ KOEFICIENT](#correlKendall): correlKendall
 
-Vrátí statistický protokol Kendallova korelačního koeficientu Tau-B. Podobně jako v SPSS je coby korelační koeficient (r) vrácena hodota statistiky Tau-B, nikoliv Tau-b, jak je metoda obvykle nazývána.
+Vrátí statistický protokol Kendallova korelačního koeficientu Tau-B. Podobně jako v SPSS je coby korelační koeficient (r) vrácena hodota statistiky Tau-B. Pokud byste tutéž operaci počítali v SPSS, patrně dostanete mírně odlišný výsledek. Podle všeho je to vlivem odlišné citlivosti na desetinná místa u obou systémů. Na interpretaci výsledku by to nicméně zásadní vliv mít nemělo.
 
 #### Způsob volání metody
 
@@ -134,7 +135,8 @@ Vybere všechna data z půdodní matice (tj. žádná filtrace).
 #### Struktura vrácené hodnoty
 
 - *protokol výstupu metody* `🟦 objekt`
-  - **r**: *Kendallův korelační koeficient Tau-a* `🔴 číslo`
+  - **taub**: *Tau-b* `🔴 číslo`
+  - **taua**: *Tau-a* `🔴 číslo`
   - **df**: *počet stupňů volnosti* `c celé číslo`
   - **p**: *hladina významnosti (dvoustranná)* `🔴 číslo`
 
@@ -411,7 +413,7 @@ var M = new Matrix([2,3,2,4,5,9,8,7,9,10,1,7,19,32,90],[1,1,1,1,1,2,2,2,2,2,3,3,
 
 ### [MANN-WHITNEYHO TEST](#mwu): mwu
 
-Vrátí statistický protokol Mann-Whitneyho U testu. Ve statistice je tento tent (také nazývaný Mann–Whitney–Wilcoxon (MWW/MWU), Wilcoxonův rank-sum test nebo Wilcoxon–Mann–Whitney test) neparametrický test nulové hypotézy, která náhodně vybrané hodnoty X a Y ze dvou populací, přičemž pravděpodobnost, že X bude větší než Y, se rovná pravděpodobnosti, že Y bude větší než X.
+Vrátí statistický protokol Mann-Whitneyho U testu. Ve statistice je tento tent (také nazývaný Mann–Whitney–Wilcoxon (MWW/MWU), Wilcoxonův rank-sum test nebo Wilcoxon–Mann–Whitney test) neparametrický test nulové hypotézy, která náhodně vybrané hodnoty X a Y ze dvou populací, přičemž pravděpodobnost, že X bude větší než Y, se rovná pravděpodobnosti, že Y bude větší než X. Zdroj: https://en.wikipedia.org/wiki/Mann-Whitney_U_test
 
 #### Způsob volání metody
 
@@ -426,8 +428,15 @@ Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom v
 
 | argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | první proměnná | 🔢 matice | null | ✔️ |  |
+| **vectors** | první proměnná | 🔢 matice | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
 | **factor** | druhá proměnná | 🟤 cokoliv | Ověří, zdali je hodnota instancí třídy Variable. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
+
+#### Struktura vrácené hodnoty
+
+- *Root* `🟦 objekt`
+  - **U**: *U (hodnota testu)* `🔴 číslo`
+  - **Z**: *Z (hodnota testu)* `🔴 číslo`
+  - **p**: *hladina významnosti (dvoustranná)* `🔴 číslo`
 
 #### Příklad
 
@@ -522,4 +531,55 @@ var c2 = m.continency(a,b,n);
 
 }
 */
+```
+
+---
+
+### [ANOVA (JEDNOFAKTOROVÁ)](#kwanova): kwanova
+
+Vrátí statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Metoda má dva argumenty. První tvoří řada numerických vektorů, kde minimálně jeden vektor je povinný. Druhý argument je nepovinný a představuje shlukovací faktor, tedy textovou proměnnou, která v řádcích určuje příslučnost numerického faktoru ke skupině. Pokud je zadán druhý parametr, z první skupiny vektorů je zohledňován pouze první.
+
+#### Způsob volání metody
+
+> [Matrix instance].**kwanova**(***vektor/y***, *skupinový faktor*)
+
+
+#### Automatický filtr hodnot
+
+Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom vektoru ovlivnilo jiný vektor.
+
+#### Argumenty
+
+| argument | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
+| **vectors** | vektor/y | 🔢 matice | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
+| **factor** | skupinový faktor | 🔢 matice | Ověří, zdali je hodnota instancí třídy Variable. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
+
+#### Struktura vrácené hodnoty
+
+- *ANOVA (jednofaktorová)* `🟦 objekt`
+  - **F**: *F test* `🔴 číslo`
+  - **P2**: *koeficient závislosti* `🔴 číslo`
+  - **p**: *hladina významnosti* `🔴 číslo`
+  - **n**: *počet případů* `c celé číslo`
+  - **ANOVA**: *statistiky ANOVA* `🟦 objekt`
+    - **totalOfGroups**: *celkem skupin* `c celé číslo`
+    - **betweenGroups**: *meziskuponové efekty* `🟦 objekt`
+      - **sumOfSquares**: *suma čtverců* `🔴 číslo`
+      - **df**: *počet stupňů volnosti* `c celé číslo`
+    - **withinGroups**: *vnitroskupinové efekty* `🟦 objekt`
+      - **sumOfsquares**: *suma čtverců* `🔴 číslo`
+      - **df**: *počet stupňů volnosti* `c celé číslo`
+    - **total**: *Total* `🟦 objekt`
+      - **sumOfSquares**: *Sumofsquares* `🔴 číslo`
+      - **df**: *Df* `c celé číslo`
+
+#### Příklad
+
+```js
+var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow(0,1,2);
+/* OR */
+var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow();
+/* OR */
+var M = new Matrix([2,3,2,4,5,9,8,7,9,10,1,7,19,32,90],[1,1,1,1,1,2,2,2,2,2,3,3,3,3,3]).pivot(0,1).kwanova();
 ```

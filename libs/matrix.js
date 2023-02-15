@@ -592,15 +592,16 @@ const matrixMethods = {
        };
     },
     correlSpearman: function(x,y) {
-        var T = new Matrix(x,y).removeEmpty();
-        x = T[0].toAvgRank();
-        y = T[1].toAvgRank();
+        x = x.toAvgRank();
+        y = y.toAvgRank();
         var n = x.length;
         var d2 = x.map((_x, i) => Math.pow(_x - y[i],2)).sum();
         var rs = 1 - ((6 * d2) / (n * (Math.pow(n, 2) - 1)));
         var df = n - 2;
+
         var t_test = rs / (Math.pow(1-Math.pow(rs,2),0.5))*Math.pow(n-2,0.5);
         //var p = (1-dist.tdist(t_test,df)) * 2;
+
         var p = dist.tdist(t_test,df);
         return {
             r: rs,
@@ -609,61 +610,77 @@ const matrixMethods = {
         }
     },
     correlKendall: function(x,y){
-        var T = new Matrix(x,y).removeEmpty();
-        x = T[0];
-        y = T[1];
-        const n = x.length;
-        const yr = y.toAvgRank(0);
-        var _ = x.toAvgRank(0).map(function(v,i){return {x: v, y: yr[i]}}).sort((a,b) => a.x < b.x ? -1 : 1);
-        var cor = (_.map((r,i) => (_.slice(i+1, _.length).filter(__ => (__.x > r.x && __.y > r.y))))).flat(2).filter( i => i !== 0).length;
-        var dis = (_.map((r,i) => (_.slice(i+1, _.length).filter(__ => (__.x > r.x && __.y < r.y))))).flat(2).filter( i => i !== 0).length;
-        var t_cor = (_.map(function(v,i){return (_.slice(i+1, _.length).filter(__ => __.x === v.x)).length})).sum();
-        var t_dis = (_.map(function(v,i){return (_.slice(i+1, _.length).filter(__ => __.y === v.y)).length})).sum();
-        var c = Math.combinations(_.length, 2);
-        var taua = (cor-dis)/c;
-        var taub = (cor-dis)/Math.sqrt((c-t_cor)*(c-t_dis));
-        var z = (3 * taua * Math.pow(n*(n-1), .5))/Math.pow(2*(2*n+5), .5);
-        //var z = (3 * taub * Math.pow(n*(n-1), .5))/Math.pow(2*(2*n+5), .5);
-        //var p = 2* (1 - dist.normsdist(Math.abs(z)));
-        var p = dist.normsdist(Math.abs(z));
-        return {
-            r: taub,
-            n: n,
-            p: p
+        let n = x.length;
+        let numPairs = n * (n - 1) / 2;
+        let numConcordant = 0;
+        let numDiscordant = 0;
+        let numTiesX = 0;
+        let numTiesY = 0;
+        let numTiesXY = 0;
+        for (let i = 0; i < n - 1; i++) {
+            for (let j = i + 1; j < n; j++) {
+            let x1 = x[i];
+            let x2 = x[j];
+            let y1 = y[i];
+            let y2 = y[j];
+            let xDiff = x1 - x2;
+            let yDiff = y1 - y2;
+            if (xDiff === 0 && yDiff === 0) {
+                numTiesX++;
+                numTiesY++;
+                numTiesXY++;
+            } else if (xDiff === 0) {
+                numTiesX++;
+                if (yDiff > 0) {
+                numConcordant++;
+                } else if (yDiff < 0) {
+                numDiscordant++;
+                }
+            } else if (yDiff === 0) {
+                numTiesY++;
+                if (xDiff > 0) {
+                numConcordant++;
+                } else if (xDiff < 0) {
+                numDiscordant++;
+                }
+            } else {
+                if (xDiff > 0 && yDiff > 0 || xDiff < 0 && yDiff < 0) {
+                numConcordant++;
+                } else {
+                numDiscordant++;
+                }
+            }
+            }
         }
-        /* obsolete */
+        let denominator = Math.sqrt((numPairs - numTiesX) * (numPairs - numTiesY));
+        var taub = (numConcordant - numDiscordant) / denominator;
+        var taua = (numConcordant - numDiscordant)/ Math.combinations(n, 2);
+        var z = (3 * taua * Math.pow(n*(n-1), .5))/Math.pow(2*(2*n+5), .5);
+        var p = dist.normsdist(Math.abs(z))/2;
         return {
-            r: taub,
-            A: taua,
-            B: taub,
-            N: n,
-            df: n-1,
-            z:z,
-            p:p,
+            taub: taub,
+            taua: taua,
+            df: n - 2,
+            p: p
         }
     },
     correlPartial: function(x,y,z){
-        var T = new Matrix(z,y,x).removeEmpty();
+        var T = new Matrix(x,y,z);
         var n = T.maxRows();
-        var ryz = T.correlPearson(1,2);
-        var ryx = T.correlPearson(1,0);
-        var rzx = T.correlPearson(2,0);
-        var rp = (ryz.r - ryx.r * rzx.r)/Math.sqrt((1-Math.pow(ryx.r,2))*(1-Math.pow(rzx.r,2)));
+        var r12 = T.correlPearson(0,1).r;
+        var r13 = T.correlPearson(0,2).r;
+        var r23 = T.correlPearson(1,2).r;
+        var rp = (r13 - r12 * r23) / Math.sqrt((1 - r12 * r12) * (1 - r23 * r23))
         var t = (rp * Math.sqrt((n-3)))/(Math.sqrt(1-Math.pow(rp,2)));
-        var p = (1 - dist.tdist(t, n-3)) * 2;
+        var p = dist.tdist(t, n-3);
         return {
             r: rp,
-            n: n,
-            //t: t,
+            //n: n,
             p: p
         }
     },
     correlBiserial: function(x,y){
-        var T = new Matrix(x,y).removeEmpty();
-        var zeroOne = new Array(...T[0]).map(v => v ? 1 : 0);
-        x = new NumericVector(zeroOne);
-        y = T.item(1);
-        return matrixMethods.correlPearson(x,y);
+        return matrixMethods.correlPearson(new NumericVector(new Array(...x).map(v => v ? 1 : 0)).name(x.name),y);
     },
     /** https://en.wikipedia.org/wiki/Phi_coefficient */
     correlPhi: function(x,y) {
@@ -796,17 +813,17 @@ const matrixMethods = {
             case 1:
                 break;
             case 2: 
-                x = x.map(e => Math.log(e));
+                x = x.reload(x.map(e => Math.log(e)));
                 break;
             case 3:
-                x = x.map(e => 1/e);
+                x = x.reload(x.map(e => 1/e));
                 break;
             case 4:
-                y = y.map(e => Math.log(e));
+                y = y.reload(y.map(e => Math.log(e)));
                 break;
             case 5:
-                x = x.map(e => Math.log(e));
-                y = y.map(e => Math.log(e));
+                x = x.reload(x.map(e => Math.log(e)));
+                y = y.reload(y.map(e => Math.log(e)));
                 break;
             default:
                 break;
@@ -871,6 +888,27 @@ const matrixMethods = {
             C: C,
             V: V,
         }
+    },
+    kwanova: function(vectors, factor) {
+        var data = (factor ? new Array(...new Matrix(factor, vectors[0]).pivot(1,0)) : new Array(...vectors)).map(v => v.removeEmpty());
+        const flatData = data.flat().sort((a, b) => a - b);
+        const nGroups = data.length;
+        const nObs = data.map(group => group.length);
+        const ranks = flatData.map((value, index) => index + 1);
+        //const groupRanks = data.map(group => group.reduce((sum, value) => sum + ranks[flatData.indexOf(value)], 0));
+        const groupRanks = data.map(group => group.reduce((sum, value) => sum + ranks[Math.round(flatData.rankAvg(value))], 0));
+        const meanRanks = groupRanks.map((sum, index) => sum / nObs[index]);
+        const grandMeanRank = ranks.reduce((sum, value) => sum + value, 0) / flatData.length;
+        const ssTotal = ranks.reduce((sum, value) => sum + (value - grandMeanRank) ** 2, 0);
+        const ssBetween = nObs.reduce((sum, n, index) => sum + n * (meanRanks[index] - grandMeanRank) ** 2, 0);
+        const dfBetween = nGroups - 1;
+        const dfWithin = flatData.length - nGroups;
+        const h = (ssBetween / dfBetween) / ((ssTotal - ssBetween) / dfWithin);
+        const p = 1 - dist.chisqdist(h, dfBetween, true);
+        return {
+            H: h,
+            p: p
+        };
     }
 };
 
@@ -1253,13 +1291,14 @@ const MatrixMethodsModels = [
             description: "vzHj"
         },
         url: "https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test",
+        returns: matrixResultSchemas.mwu,
         args: [{
                 name: "vectors",
                 wiki: {title: "qFEM"},
                 min: 1,
                 type: [1],
                 required: true,
-                validator: validators.anovaLikeMatrix,
+                validator: validators.isNumericMatrix,
                 schema: argumentSchemas.numericMatrix,
                 class: 2
             },        
@@ -1269,7 +1308,8 @@ const MatrixMethodsModels = [
                 type: [1,2,3],
                 required: false,
                 validator: validators.isVector,
-                schema: argumentSchemas.vector
+                schema: argumentSchemas.vector,
+                class: 1
         }]
     },
     {   name: "genreg",
@@ -1367,6 +1407,43 @@ const MatrixMethodsModels = [
                 schema: argumentSchemas.numericVector,
                 class: 1
             }               
+        ]
+    },
+    {   name: "kwanova",
+        fn: matrixMethods.kwanova,
+        argsToMatrix: true,
+        filter: filters.anovaLikeMatrix,
+        returns: matrixResultSchemas.anovaow,
+        example: function(){
+            var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow(0,1,2);
+            /* OR */
+            var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow();
+            /* OR */
+            var M = new Matrix([2,3,2,4,5,9,8,7,9,10,1,7,19,32,90],[1,1,1,1,1,2,2,2,2,2,3,3,3,3,3]).pivot(0,1).kwanova();
+        },
+        wiki: {
+            title: "baJo",
+            description: "qqQo"
+        },
+        args: [
+                {
+                    name: "vectors",
+                    wiki: {title: "iJaa"},
+                    min: 1,
+                    type: [1],
+                    required: true,
+                    validator: validators.isNumericMatrix,
+                    schema: argumentSchemas.numericMatrix,
+                    class: 2
+                },{
+                    name: "factor",
+                    wiki: {title: "iJEe"},
+                    type: [1,2,3],
+                    required: false,
+                    validator: validators.isVector,
+                    schema: argumentSchemas.numericMatrix,
+                    class: 1
+                }
         ]
     }
 ];

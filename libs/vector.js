@@ -45,10 +45,18 @@ class Vector extends Array {
     }
     /**
      * 
+     * @param  {...any} values An array or set of values delimited by comma.
+     * @returns {self}
+     */
+    reload(...values) {
+        return new this.constructor(...values).name(this.name());
+    }
+    /**
+     * 
      * @returns {this} This vector filtered from the null values.
      */
     removeEmpty() {
-        return new this.constructor(...this).name(this.name());
+        return new this.constructor(new Array(...this).filter(v => v !== null)).name(this.name());
     }
     parent(value){
         if(value) {

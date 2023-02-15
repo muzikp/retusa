@@ -338,7 +338,7 @@ module.exports = {
 	/* Matrix fce Mann-Whitney U (title) */
 	"rPQr": "Mann-Whitneyho test",
 	/* Matrix fce Mann-Whitney U (description) */
-	"vzHj": "Vrátí statistický protokol Mann-Whitneyho U testu. Ve statistice je tento tent (také nazývaný Mann–Whitney–Wilcoxon (MWW/MWU), Wilcoxonův rank-sum test nebo Wilcoxon–Mann–Whitney test) neparametrický test nulové hypotézy, která náhodně vybrané hodnoty X a Y ze dvou populací, přičemž pravděpodobnost, že X bude větší než Y, se rovná pravděpodobnosti, že Y bude větší než X.",
+	"vzHj": "Vrátí statistický protokol Mann-Whitneyho U testu. Ve statistice je tento tent (také nazývaný Mann–Whitney–Wilcoxon (MWW/MWU), Wilcoxonův rank-sum test nebo Wilcoxon–Mann–Whitney test) neparametrický test nulové hypotézy, která náhodně vybrané hodnoty X a Y ze dvou populací, přičemž pravděpodobnost, že X bude větší než Y, se rovná pravděpodobnosti, že Y bude větší než X. Zdroj: https://en.wikipedia.org/wiki/Mann-Whitney_U_test",
 	/* schema type object */
 	"kLhB": "objekt",
 	/* schema type array */
@@ -462,9 +462,11 @@ module.exports = {
 	/* fce matrix - Kendall correlation coefficient (title) */
 	"mgBC":"Kendallův korelační koeficient",
 	/* fce matrix - Kendall correlation coefficient (description) */
-	"VOmC":"Vrátí statistický protokol Kendallova korelačního koeficientu Tau-B. Podobně jako v SPSS je coby korelační koeficient (r) vrácena hodota statistiky Tau-B, nikoliv Tau-b, jak je metoda obvykle nazývána.",
-	/* schema - Kendall correl - r */
-	"mgBA":"Kendallův korelační koeficient Tau-a",
+	"VOmC":"Vrátí statistický protokol Kendallova korelačního koeficientu Tau-B. Podobně jako v SPSS je coby korelační koeficient (r) vrácena hodota statistiky Tau-B. Pokud byste tutéž operaci počítali v SPSS, patrně dostanete mírně odlišný výsledek. Podle všeho je to vlivem odlišné citlivosti na desetinná místa u obou systémů. Na interpretaci výsledku by to nicméně zásadní vliv mít nemělo.",
+	/* schema - Kendall correl - Tau A*/
+	"mgBA":"Tau-a",
+	/* schema - Kendall correl - Tau B*/
+	"NgVa":"Tau-b",
 	/* schema - linear regression - r2 */
 	"klvS": "koeficient determinace",
 	/* schema - linear regression - beta0 */

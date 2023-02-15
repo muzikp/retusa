@@ -133,6 +133,7 @@ class OutputSchema {
         this.isSimple = !(this.type == "object" || this.type == "array");
         this.isObject = this.type == "object";
         this.isArray = this.type == "array";
+        this.isAddon = schema.target == "addon";
         this.format = schema.format || null;
         if(schema?.properties){
             this.properties = [];
@@ -635,6 +636,7 @@ const matrixResultSchemas = {
                 "$id": "#root/ANOVA", 
                 "title": "qCgT", 
                 "type": "object",
+                "target": "addon",
                 "properties": {
                     "totalOfGroups": {
                         "$id": "#root/ANOVA/totalOfGroups", 
@@ -746,11 +748,13 @@ const matrixResultSchemas = {
         "title": "IIlO", 
         "type": "object",
         "properties": {
-            "r": {
-                "$id": "#root/r", 
+            "taub": {
+                "title": "NgVa", 
+                "type": "number",
+            },
+            "taua": {
                 "title": "mgBA", 
                 "type": "number",
-                "default": 0.0
             },
             "df": snippets.df,
             "p": snippets.sig
@@ -770,49 +774,6 @@ const matrixResultSchemas = {
                 "default": 0.0
             },
             "p": snippets.sig
-        }
-    },
-    linreg: {
-        "title": "KwSQ", 
-        "type": "object",
-        "properties": {
-            "r2": {
-                "$id": "#root/r2", 
-                "title": "klvS", 
-                "type": "number",
-                "default": 0.0
-            },
-            "r": {
-                "$id": "#root/r", 
-                "title": "pTvR", 
-                "type": "number",
-                "default": 0.0
-            },
-            "F": {
-                "$id": "#root/F", 
-                "title": "Jdfb", 
-                "type": "number",
-                "default": 0.0
-            },
-            "p": snippets.sig,
-            "beta0": {
-                "$id": "#root/beta0", 
-                "title": "slkz", 
-                "type": "number",
-                "default": 0.0
-            },
-            "beta1": {
-                "$id": "#root/beta1", 
-                "title": "XfCm", 
-                "type": "number",
-                "default": 0.0
-            },
-            "fn": {
-                "$id": "#root/fn", 
-                "title": "FeBv", 
-                "type": "function",
-                "default": "🌀"
-            }
         }
     },
     genreg: {
