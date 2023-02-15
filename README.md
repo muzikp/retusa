@@ -1,3 +1,3 @@
 # RETUSA
 
-Statistical library for social sciences running in Node.js and browsers
+Retusa is a statistical method module in Node.js. It is created as a thesis project and is currently not suitable for integration into other applications.
