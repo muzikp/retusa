@@ -103,30 +103,6 @@ class Vector extends Array {
     filterByIndex(...indexes) {
         return new this.constructor(...this).filter((e,i) => indexes.indexOf(i) > -1).name(this.name());
     }
-    /**
-     * Coverts the array into a text where values are delimited by line break. This makes it easy to copy and paste the values to Excel etc.
-     * @param {boolean} includeHeader True to have the vector name (or empty) as the first value. Default false.
-     */
-    toColumn(includeHeader = false) {
-        var c = includeHeader ? this.name() || "<header>" : "";
-        this.forEach(v => c += "\n" + v);
-        return c;
-    }
-    /**
-     * 
-     * @param {string} data 
-     * @returns 
-     */
-    static fromColumn(data, config = {delimiter: "\n"}) {
-        var delimiter = new RegExp(`\\${config.delimiter || "\n"}`,"g") 
-        var _ = data.split(delimiter);
-        if(config.includeHeader) {
-            var name = _[0];
-            _ = _.slice(1, _.length);
-        }
-        return name ? new this(_).name(name) : new this(_);
-
-    }
     static deserialize(data) {
         if(typeof data != "object") {
             try {
@@ -163,6 +139,28 @@ class Vector extends Array {
     }
     analyze(name) {
         return new VectorAnalysis(name, this);
+    }
+    /**
+     * Converts the vector to a destinated type. Returns an error if failed. If type type arguments is equal to this vector's type value, returns itself.
+     * @param {integer} type The target type this vector should be converted to.
+     * @param {*} fn Optional: A function that converts the underlying data to the appropriate type.
+     * @returns {NumericVector | StringVector | BooleanVector} New converted vector or itself.
+     */
+    convert(type, fn) {
+        if(this.type() == type) return this;
+        else if(type == 1) {
+            if(!fn) fn = (v,i,a) => v;
+            return new NumericVector(...this.map(fn)).name(this.name());
+        }
+        else if(type == 2) {
+            if(!fn) fn = (v,i,a) => String(v);
+            return new StringVector(...this.map(fn)).name(this.name());
+        }
+        else if(type == 3) {
+            if(!fn) fn = (v,i,a) => v === null ? null : v ? true : false;
+            return new BooleanVector(...this.map(fn)).name(this.name());
+        } else throw new Error(`Unrecognized vector type: ${type}. Possible types: 1,2,3.`);
+    
     }
 }
 

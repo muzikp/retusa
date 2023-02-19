@@ -45,7 +45,9 @@ class Matrix extends Array {
                 super.push(a);
             }
             else if(Array.isArray(a)) super.push(a.vectorify());
-            else throw new ArgumentError("Argument is not a vector or array.");
+            else {
+                throw new ArgumentError("Argument is not a vector or array.");
+            }
         };
     }
     smap(fn) {
@@ -137,7 +139,6 @@ class Matrix extends Array {
                 });
             };
             var target = this.clone().flush();
-            const interval = Math.round(Math.sqrt(this.maxRows()));
             for(var r = 0; r < this.maxRows(); r++) {   
                 if(groups.map(g => g.f(g.v[r], r, g.v)).filter(g => g).length === groups.length) {
                     target.appendRow(...this.row(r))

@@ -204,13 +204,13 @@ module.exports = {
 	/* vector frequency fce (description) */
 	"Tzyp": "Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností.",
 	/* vector frequency fce order enum - 1 (by frequency desc) */
-	"AUbD": "dle četnosti sestupně",
+	"AUbD": "dle četnosti sestupně (max-min)",
 	/* vector frequency fce order enum - 2 (by frequency asc) */
-	"WSJH": "dle četnost vzestupně",
+	"WSJH": "dle četnosti vzestupně (min-max)",
 	/* vector frequency fce order enum - 3 (by value desc) */
-	"dkxz": "dle hodnoty vzestupně",
+	"dkxz": "dle hodnoty vzestupně (A-Z)",
 	/* vector frequency fce order enum - 3 (by value asc) */
-	"vJCU": "dle hodnoty sestupně",
+	"vJCU": "dle hodnoty sestupně (Z-A)",
 	/* schema type uint */
 	"IrhN": "celé číslo větší nebo rovné nule",
 	/* vector frequency fce order (title) */
@@ -460,7 +460,7 @@ module.exports = {
 	/* schema general output protocol label */
 	"IIlO":"protokol výstupu metody",
 	/* fce matrix - Kendall correlation coefficient (title) */
-	"mgBC":"Kendallův korelační koeficient",
+	"mgBC":"Kendallovo Tau-b",
 	/* fce matrix - Kendall correlation coefficient (description) */
 	"VOmC":"Vrátí statistický protokol Kendallova korelačního koeficientu Tau-B. Podobně jako v SPSS je coby korelační koeficient (r) vrácena hodota statistiky Tau-B. Pokud byste tutéž operaci počítali v SPSS, patrně dostanete mírně odlišný výsledek. Podle všeho je to vlivem odlišné citlivosti na desetinná místa u obou systémů. Na interpretaci výsledku by to nicméně zásadní vliv mít nemělo.",
 	/* schema - Kendall correl - Tau A*/
@@ -478,7 +478,7 @@ module.exports = {
 	/* schema - function type */
 	"GPHk": "funkce",
 	/* fce matrix partial correlation (title) */
-	"xfSf":"koeficient parciální korelace",
+	"xfSf":"parciální korelace",
 	/* fce matrix partial correlation (description) */
 	"UcfZ":"Parciální korelace je statistická metoda, která vám umožňuje zjistit, jaký je vztah mezi dvěma proměnnými, přičemž se zohlední vliv třetí proměnné. To je užitečné, pokud chcete zjistit, zda existuje přímý vztah mezi dvěma proměnnými, aniž byste byli ovlivněni vlivem jiných proměnných. Například, pokud chcete zjistit, zda existuje vztah mezi úrovní školení a úspěšností v práci, může být užitečné zohlednit také vliv věku nebo pohlaví. V takovém případě byste mohli použít parciální korelaci k zjištění vztahu mezi úrovní školení a úspěšností v práci při zohlednění vlivu věku a pohlaví. Parciální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že parciální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost. Zdroj: https://chat.openai.com/chat.",
 	/* fce matrix partial correlation (3rd argument - z) */
@@ -508,7 +508,7 @@ module.exports = {
 	/* matrix method - contingecy - output schema - C */
 	"BUaN":"Pearsonovo C",
 	/* matrix method - general regression - title */
-	"vlCA":"regrese",
+	"vlCA":"lineární regrese",
 	/* matrix method - general regression - description */
 	"dzFE":"Nějaké povídání o regresi. Parametry (x,y,typ).",
 	/* matrix method - general regression - param type - linear */
