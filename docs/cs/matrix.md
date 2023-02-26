@@ -35,9 +35,9 @@ wPyG
 
 rAyq
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | qFEM | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 | **y** | tpUu | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
@@ -78,9 +78,9 @@ jAGi
 
 rAyq
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | qFEM | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 | **y** | tpUu | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
@@ -89,7 +89,7 @@ rAyq
 
 - *IIlO* `🟦 kLhB`
   - **r**: *eJTT* `🔴 číslo`
-  - **df**: *stupně volnostsi* `c llQx`
+  - **df**: *stupně volnostsi* `c celé číslo`
   - **p**: *významnost* `🔴 číslo`
 
 #### Příklad
@@ -122,9 +122,9 @@ VOmC
 
 rAyq
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | qFEM | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 | **y** | tpUu | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
@@ -134,7 +134,7 @@ rAyq
 - *IIlO* `🟦 kLhB`
   - **taub**: *NgVa* `🔴 číslo`
   - **taua**: *mgBA* `🔴 číslo`
-  - **df**: *stupně volnostsi* `c llQx`
+  - **df**: *stupně volnostsi* `c celé číslo`
   - **p**: *významnost* `🔴 číslo`
 
 #### Příklad
@@ -167,9 +167,9 @@ UcfZ
 
 rAyq
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | qFEM | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 | **y** | tpUu | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
@@ -212,9 +212,9 @@ OMiA
 
 rAyq
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | qFEM | [🟣] boQk | OCKc | ✔️ |  |
 | **y** | tpUu | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
@@ -246,9 +246,9 @@ jAGi
 
 rAyq
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | qFEM | [🟣] boQk | null | ✔️ |  |
 | **y** | tpUu | [🟣] boQk | null | ✔️ |  |
@@ -268,9 +268,9 @@ gILL
 
 CPwN
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **vectors** | qFEM | 🔢 DfLu | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
 | **factor** | tpUu | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
@@ -280,7 +280,7 @@ CPwN
 - *Root* `🟦 kLhB`
   - **t**: *hodnota testu T* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
-  - **df**: *stupně volnostsi* `c llQx`
+  - **df**: *stupně volnostsi* `c celé číslo`
 
 #### Příklad
 
@@ -303,9 +303,9 @@ kPqo
 
 rAyq
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | qFEM | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 | **y** | tpUu | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
@@ -315,7 +315,7 @@ rAyq
 - *Root* `🟦 kLhB`
   - **t**: *hodnota testu T* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
-  - **df**: *stupně volnostsi* `c llQx`
+  - **df**: *stupně volnostsi* `c celé číslo`
 
 #### Příklad
 
@@ -347,9 +347,9 @@ qqQo
 
 CPwN
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **vectors** | iJaa | 🔢 DfLu | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
 | **factor** | iJEe | 🔢 DfLu | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
@@ -360,18 +360,18 @@ CPwN
   - **F**: *Jdfb* `🔴 číslo`
   - **P2**: *HksP* `🔴 číslo`
   - **p**: *MpjZ* `🔴 číslo`
-  - **n**: *počet případů* `c llQx`
+  - **n**: *počet případů* `c celé číslo`
   - **ANOVA**: *qCgT* `🟦 kLhB`
-    - **totalOfGroups**: *cXCr* `c llQx`
+    - **totalOfGroups**: *cXCr* `c celé číslo`
     - **betweenGroups**: *thNv* `🟦 kLhB`
       - **sumOfSquares**: *SqTd* `🔴 číslo`
-      - **df**: *stupně volnostsi* `c llQx`
+      - **df**: *stupně volnostsi* `c celé číslo`
     - **withinGroups**: *GiRP* `🟦 kLhB`
       - **sumOfsquares**: *SqTd* `🔴 číslo`
-      - **df**: *stupně volnostsi* `c llQx`
+      - **df**: *stupně volnostsi* `c celé číslo`
     - **total**: *Total* `🟦 kLhB`
       - **sumOfSquares**: *Sumofsquares* `🔴 číslo`
-      - **df**: *Df* `c llQx`
+      - **df**: *Df* `c celé číslo`
 
 #### Příklad
 
@@ -421,12 +421,12 @@ vzHj
 
 CPwN
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **vectors** | qFEM | 🔢 DfLu | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
-| **factor** | tpUu | 🟤 oMas | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
+| **factor** | tpUu | 🟤 cokoliv | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
 
 #### Struktura vrácené hodnoty
 
@@ -456,13 +456,13 @@ dzFE
 
 rAyq
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **independent** | jDlm | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 | **dependent** | jFVv | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **model** | OBml | 🟤 oMas | aaVG | ✔️ | 1 |
+| **model** | OBml | 🟤 cokoliv | aaVG | ✔️ | 1 |
 
 #### Struktura vrácené hodnoty
 
@@ -492,12 +492,12 @@ fqwd
 > [Matrix instance].**contingency**(***gLRN***, ***bpjC***, *fqUi*)
 
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | gLRN | 🟤 oMas | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **y** | bpjC | 🟤 oMas | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **x** | gLRN | 🟤 cokoliv | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | bpjC | 🟤 cokoliv | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 | **n** | fqUi | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
 
 #### Struktura vrácené hodnoty
@@ -505,7 +505,7 @@ fqwd
 - *gRix* `🟦 kLhB`
   - **phi**: *GfeP* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
-  - **df**: *stupně volnostsi* `c llQx`
+  - **df**: *stupně volnostsi* `c celé číslo`
   - **C**: *BUaN* `🔴 číslo`
   - **V**: *VYQH* `🔴 číslo`
 
@@ -545,9 +545,9 @@ qqQo
 
 CPwN
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **vectors** | iJaa | 🔢 DfLu | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
 | **factor** | iJEe | 🔢 DfLu | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
@@ -558,18 +558,18 @@ CPwN
   - **F**: *Jdfb* `🔴 číslo`
   - **P2**: *HksP* `🔴 číslo`
   - **p**: *MpjZ* `🔴 číslo`
-  - **n**: *počet případů* `c llQx`
+  - **n**: *počet případů* `c celé číslo`
   - **ANOVA**: *qCgT* `🟦 kLhB`
-    - **totalOfGroups**: *cXCr* `c llQx`
+    - **totalOfGroups**: *cXCr* `c celé číslo`
     - **betweenGroups**: *thNv* `🟦 kLhB`
       - **sumOfSquares**: *SqTd* `🔴 číslo`
-      - **df**: *stupně volnostsi* `c llQx`
+      - **df**: *stupně volnostsi* `c celé číslo`
     - **withinGroups**: *GiRP* `🟦 kLhB`
       - **sumOfsquares**: *SqTd* `🔴 číslo`
-      - **df**: *stupně volnostsi* `c llQx`
+      - **df**: *stupně volnostsi* `c celé číslo`
     - **total**: *Total* `🟦 kLhB`
       - **sumOfSquares**: *Sumofsquares* `🔴 číslo`
-      - **df**: *Df* `c llQx`
+      - **df**: *Df* `c celé číslo`
 
 #### Příklad
 

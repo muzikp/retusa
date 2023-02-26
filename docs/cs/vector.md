@@ -35,7 +35,7 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 
 ### [KOLMOGOROV-SMIRNOVŮV TEST](#kstest): kstest
 
-Vrátí statistický protokol Komogorov-Smirnovova testu normality rozdělení hodnot vektoru. Aktuálně nepočítá hladinu významnosti testu. Kolmogorov-Smirnov test (často také zkracovaný jako K-S test) je statistický test, který se používá k testování hypotézy, že data pocházejí z určitého rozdělení. Tento test porovnává rozdělení dat s teoretickým rozdělením, které se předpokládá, že data vycházejí, a vyhodnocuje, zda jsou datové hodnoty s teoretickým rozdělením dostatečně blízko, aby se mohla hypotéza o tom, že data pocházejí z daného rozdělení, považovat za pravdivou.Test Kolmogorov-Smirnov se často používá k ověření normality dat, ale může být také použit k ověření, zda data pocházejí z jiného teoretického rozdělení, jako je například exponenciální nebo binomické rozdělení. Test Kolmogorov-Smirnov je obecně považován za jeden z nejpřesnějších testů normality, ale má omezenou citlivost pro malé vzorky, tj. pro malé vzorky může být méně spolehlivý při detekci ne-normality. Pro malé vzorky se proto často používají jiné testy normality, jako například test Shapiro-Wilk nebo test Anderson-Darling. [WLsu](https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test#One-sample_Kolmogorov%E2%80%93Smirnov_statistic)
+Vrátí statistický protokol Komogorov-Smirnovova testu normality rozdělení hodnot vektoru. Aktuálně nepočítá hladinu významnosti testu. Kolmogorov-Smirnov test (často také zkracovaný jako K-S test) je statistický test, který se používá k testování hypotézy, že data pocházejí z určitého rozdělení. Tento test porovnává rozdělení dat s teoretickým rozdělením, které se předpokládá, že data vycházejí, a vyhodnocuje, zda jsou datové hodnoty s teoretickým rozdělením dostatečně blízko, aby se mohla hypotéza o tom, že data pocházejí z daného rozdělení, považovat za pravdivou.Test Kolmogorov-Smirnov se často používá k ověření normality dat, ale může být také použit k ověření, zda data pocházejí z jiného teoretického rozdělení, jako je například exponenciální nebo binomické rozdělení. Test Kolmogorov-Smirnov je obecně považován za jeden z nejpřesnějších testů normality, ale má omezenou citlivost pro malé vzorky, tj. pro malé vzorky může být méně spolehlivý při detekci ne-normality. Pro malé vzorky se proto často používají jiné testy normality, jako například test Shapiro-Wilk nebo test Anderson-Darling. [Zjistit více](https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test#One-sample_Kolmogorov%E2%80%93Smirnov_statistic)
 
 #### Způsob volání metody
 
@@ -59,7 +59,7 @@ Pouze číselné hodnoty (včetně nul).
 
 - *Kolmogorov-Smirnovův test* `🟦 kLhB`
   - **T**: *hodnota Kolmogorov-Smirnovova testu* `🔴 číslo`
-  - **df**: *stupně volnostsi* `c llQx`
+  - **df**: *stupně volnostsi* `c celé číslo`
   - **p**: *významnost* `🔴 číslo`
 
 #### Příklad
@@ -105,7 +105,7 @@ ndPx
 
 #### Struktura vrácené hodnoty
 
-- *jakýkoliv typ hodnoty* `🟤 oMas`
+- *jakýkoliv typ hodnoty* `🟤 cokoliv`
 
 #### Příklad
 
@@ -118,7 +118,7 @@ var string_min = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 ### [ŠIKMOST](#skewness): skewness
 
-Vrátí zešikmení rozdělení, tedy asymetrii rozdělení kolem střední hodnoty vektoru. [WLsu](https://en.wikipedia.org/wiki/Skewness)
+Vrátí zešikmení rozdělení, tedy asymetrii rozdělení kolem střední hodnoty vektoru. [Zjistit více](https://en.wikipedia.org/wiki/Skewness)
 
 #### Způsob volání metody
 
@@ -130,9 +130,9 @@ Vrátí zešikmení rozdělení, tedy asymetrii rozdělení kolem střední hodn
 
 Pouze číselné hodnoty (včetně nul).
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **s** | výběrový soubor | 🟣 binární | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - |  |
 
@@ -159,7 +159,7 @@ var skewness_sample = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,2
 
 ### [HISTOGRAM](#histogram): histogram
 
-Vrátí matici histogramu daného vektoru. Metodu lze volit s upřesněním parametrů nebo i bez nich. Pokud není upřesněn parametr 'maximální počet intervalů' (maxIntervals), je jeho hodnota automaticky vypočítána jako variační rozpětí/odmocnina z počtu prvků. Pokud je uveden parametr 'pevná velikost intervalu' (fixedInterval), je brána tato hodnota jako rozhodující pro počet intervalu. Obě dvě hodnoty nejsou slučitelné (ačkoliv nevrací chybu), při zadání obou dvou je jako prioritní brán parametr maxIntervals. [WLsu](https://en.wikipedia.org/wiki/Histogram)
+Vrátí matici histogramu daného vektoru. Metodu lze volit s upřesněním parametrů nebo i bez nich. Pokud není upřesněn parametr 'maximální počet intervalů' (maxIntervals), je jeho hodnota automaticky vypočítána jako variační rozpětí/odmocnina z počtu prvků. Pokud je uveden parametr 'pevná velikost intervalu' (fixedInterval), je brána tato hodnota jako rozhodující pro počet intervalu. Obě dvě hodnoty nejsou slučitelné (ačkoliv nevrací chybu), při zadání obou dvou je jako prioritní brán parametr maxIntervals. [Zjistit více](https://en.wikipedia.org/wiki/Histogram)
 
 #### Způsob volání metody
 
@@ -171,9 +171,9 @@ Vrátí matici histogramu daného vektoru. Metodu lze volit s upřesněním para
 
 Pouze číselné hodnoty (včetně nul).
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **maxIntervals** | maximální počet intervalů | 🔴 číslo | dFiw | - |  |
 | **fixedInterval** | pevná velikost intervalu | 🔴 číslo | bpCq | - |  |
@@ -191,10 +191,10 @@ Pouze číselné hodnoty (včetně nul).
 - *histogram* `🟩 qdkt`
   - **from**: *spodní mez intervalu* `🔴 číslo`
   - **to**: *horní mez intervalu* `🔴 číslo`
-  - **n**: *četnost (abs.)* `c llQx`
-  - **nc**: *kumulativní četnost (abs.)* `c llQx`
-  - **p**: *četnost (%)* `🟤 oMas`
-  - **pc**: *kumulativní četnost (%)* `🟤 oMas`
+  - **n**: *četnost (abs.)* `c celé číslo`
+  - **nc**: *kumulativní četnost (abs.)* `c celé číslo`
+  - **p**: *četnost (%)* `🔴 číslo`
+  - **pc**: *kumulativní četnost (%)* `🔴 číslo`
 
 #### Příklad
 
@@ -241,7 +241,7 @@ var h3 = score.histogram(null, 2)
 
 ### [MEDIÁN](#median): median
 
-Vrátí medián neboli střední hodnotu z neprázdných hodnot vektoru. Jedná se o 50% percentil. [WLsu](https://en.wikipedia.org/wiki/Median)
+Vrátí medián neboli střední hodnotu z neprázdných hodnot vektoru. Jedná se o 50% percentil. [Zjistit více](https://en.wikipedia.org/wiki/Median)
 
 #### Způsob volání metody
 
@@ -275,7 +275,7 @@ var median = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,2
 
 ### [MODUS](#mode): mode
 
-Vrátí nejčastější hodnotu ve vektoru (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu). Pokud je nejčastějších hodnot více (např. četnost hodnot X  a Y je shodná), vrátí tu hodnotu, kterou ve vektoru nalezne jako první. [WLsu](https://en.wikipedia.org/wiki/Mode_(statistics))
+Vrátí nejčastější hodnotu ve vektoru (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu). Pokud je nejčastějších hodnot více (např. četnost hodnot X  a Y je shodná), vrátí tu hodnotu, kterou ve vektoru nalezne jako první. [Zjistit více](https://en.wikipedia.org/wiki/Mode_(statistics))
 
 #### Způsob volání metody
 
@@ -297,7 +297,7 @@ Vrátí nejčastější hodnotu ve vektoru (pokud je nejčastější prázdná h
 
 #### Struktura vrácené hodnoty
 
-- *jakýkoliv typ hodnoty* `🟤 oMas`
+- *jakýkoliv typ hodnoty* `🟤 cokoliv`
 
 #### Příklad
 
@@ -311,7 +311,7 @@ var z = new BooleanVector(true, false, true).mode(); /* = true */
 
 ### [ROZPTYL](#variance): variance
 
-Vrátí hodnotu rozptylu tohoto vektoru. Hodnota rozptylu je rovná druhé mocnině ze směrodatné odchylky. [WLsu](https://en.wikipedia.org/wiki/Variance)
+Vrátí hodnotu rozptylu tohoto vektoru. Hodnota rozptylu je rovná druhé mocnině ze směrodatné odchylky. [Zjistit více](https://en.wikipedia.org/wiki/Variance)
 
 #### Způsob volání metody
 
@@ -323,9 +323,9 @@ Vrátí hodnotu rozptylu tohoto vektoru. Hodnota rozptylu je rovná druhé mocni
 
 Pouze číselné hodnoty (včetně nul).
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **s** | výběrový soubor | 🟣 binární | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - |  |
 
@@ -364,9 +364,9 @@ Vrátí statistický protokol pro jednovýběrový t-test při zadání populač
 
 Pouze číselné hodnoty (včetně nul).
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **populationMean** | populační průměr | 🔴 číslo | Ověří, zdali je hodnota číslo. V opačném případě vyvolá chybu. | ✔️ |  |
 
@@ -383,7 +383,7 @@ Pouze číselné hodnoty (včetně nul).
 - *jednovýběrový t-test* `🟦 kLhB`
   - **t**: *hodnota testu T* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
-  - **n**: *počet případů* `c llQx`
+  - **n**: *počet případů* `c celé číslo`
 
 #### Příklad
 
@@ -402,7 +402,7 @@ var T = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1)
 
 ### [INTERVAL SPOLEHLIVOSTI PODÍLU](#pci): pci
 
-Vrátí statistický protokol odhadu intervalu spolehlivosti podílu výběrového souboru při určité hladině významnosti. [WLsu](https://en.wikipedia.org/wiki/Confidence_interval)
+Vrátí statistický protokol odhadu intervalu spolehlivosti podílu výběrového souboru při určité hladině významnosti. [Zjistit více](https://en.wikipedia.org/wiki/Confidence_interval)
 
 #### Způsob volání metody
 
@@ -418,11 +418,11 @@ Vrátí statistický protokol odhadu intervalu spolehlivosti podílu výběrové
 
 jakýkoliv typ hodnoty
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **value** | hledaná hodnota | 🟤 oMas | Blaz | ✔️ |  |
+| **value** | hledaná hodnota | 🟤 cokoliv | Blaz | ✔️ |  |
 | **confidenceLevel** | hladina významnosti | 🔴 číslo | Ověří, zdali je hodnota číslo mezi 0 a 1 (včetně hraničních hodnot). V opačném případě vyvolá chybu. | - | 0.95 |
 
 #### Integrace dle třídy
@@ -436,11 +436,11 @@ jakýkoliv typ hodnoty
 #### Struktura vrácené hodnoty
 
 - *interval spolehlivosti podílu* `🟦 kLhB`
-  - **p**: *podíl hodnoty v %* `🟤 oMas`
+  - **p**: *podíl hodnoty v %* `🔴 číslo`
   - **sig**: *hladina významnosti* `🔴 číslo`
-  - **delta**: *interval spolehlivosti (+-)* `🟤 oMas`
-  - **lb**: *spodní hranice intervalu* `🟤 oMas`
-  - **ub**: *horní hranice intervalu* `🟤 oMas`
+  - **delta**: *interval spolehlivosti (+-)* `🔴 číslo`
+  - **lb**: *spodní hranice intervalu* `🔴 číslo`
+  - **ub**: *horní hranice intervalu* `🔴 číslo`
 
 #### Příklad
 
@@ -461,7 +461,7 @@ var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).pc
 
 ### [SHAPIRŮV-WILKŮV W TEST](#swtest): swtest
 
-Vrátí statistický protokol Shapiro-Wilkova W testu normality rozdělení hodnot vektoru. Shapiro-Wilk test je statistický test, který se používá k testování hypotézy, že data pocházejí z normálního rozdělení. Tento test je často používán k ověření normality dat v rámci statistické analýzy. Test Shapiro-Wilk se zakládá na porovnání hodnoty kvartilů dat s hodnotami kvartilů normálního rozdělení. Když jsou hodnoty kvartilů dat podobné hodnotám kvartilů normálního rozdělení, je pravděpodobné, že data pocházejí z normálního rozdělení. V opačném případě je pravděpodobné, že data nejsou normální. Při použití testu Shapiro-Wilk je třeba si uvědomit, že tento test má nízkou citlivost pro velké vzorky, tj. pro velké vzorky může být test méně spolehlivý při detekci ne-normality. Proto se pro velké vzorky často používají jiné testy normality, jako například test Anderson-Darling nebo test Kolmogorov-Smirnov. [WLsu](https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test)
+Vrátí statistický protokol Shapiro-Wilkova W testu normality rozdělení hodnot vektoru. Shapiro-Wilk test je statistický test, který se používá k testování hypotézy, že data pocházejí z normálního rozdělení. Tento test je často používán k ověření normality dat v rámci statistické analýzy. Test Shapiro-Wilk se zakládá na porovnání hodnoty kvartilů dat s hodnotami kvartilů normálního rozdělení. Když jsou hodnoty kvartilů dat podobné hodnotám kvartilů normálního rozdělení, je pravděpodobné, že data pocházejí z normálního rozdělení. V opačném případě je pravděpodobné, že data nejsou normální. Při použití testu Shapiro-Wilk je třeba si uvědomit, že tento test má nízkou citlivost pro velké vzorky, tj. pro velké vzorky může být test méně spolehlivý při detekci ne-normality. Proto se pro velké vzorky často používají jiné testy normality, jako například test Anderson-Darling nebo test Kolmogorov-Smirnov. [Zjistit více](https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test)
 
 #### Způsob volání metody
 
@@ -485,7 +485,7 @@ Pouze číselné hodnoty (včetně nul).
 
 - *Shapirův-Wilkův W test* `🟦 kLhB`
   - **W**: *hodnota W-testu* `🔴 číslo`
-  - **df**: *stupně volnostsi* `c llQx`
+  - **df**: *stupně volnostsi* `c celé číslo`
   - **p**: *významnost* `🔴 číslo`
 
 #### Příklad
@@ -505,7 +505,7 @@ var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).swt
 
 ### [STŘEDNÍ CHYBA PRŮMĚRU](#sem): sem
 
-Vrátí hodnotu směrodatné chyby odhadu průměru. Střední chyba průměru (anglicky 'standard error of the mean', odtud zkratka SEM) je statistická míra variability výběrového průměru odhadovaného parametru v celé populaci. Jedná se o odhad standardní odchylky průměru výběrového souboru. Střední chyba průměru se vypočítá jako poměr odhadované standardní odchylky výběrového průměru k odmocnině z velikosti výběru. Čím větší je velikost výběru, tím menší je střední chyba průměru, což znamená, že odhad výběrového průměru je přesnější a blíže se shoduje s průměrem celé populace. Střední chyba průměru je užitečná pro odhadování intervalů spolehlivosti výběrového průměru, což umožňuje určit, jak přesně odhaduje průměr populace. [WLsu](https://en.wikipedia.org/wiki/Standard_error#Standard_error_of_the_sample_mean)
+Vrátí hodnotu směrodatné chyby odhadu průměru. Střední chyba průměru (anglicky 'standard error of the mean', odtud zkratka SEM) je statistická míra variability výběrového průměru odhadovaného parametru v celé populaci. Jedná se o odhad standardní odchylky průměru výběrového souboru. Střední chyba průměru se vypočítá jako poměr odhadované standardní odchylky výběrového průměru k odmocnině z velikosti výběru. Čím větší je velikost výběru, tím menší je střední chyba průměru, což znamená, že odhad výběrového průměru je přesnější a blíže se shoduje s průměrem celé populace. Střední chyba průměru je užitečná pro odhadování intervalů spolehlivosti výběrového průměru, což umožňuje určit, jak přesně odhaduje průměr populace. [Zjistit více](https://en.wikipedia.org/wiki/Standard_error#Standard_error_of_the_sample_mean)
 
 #### Způsob volání metody
 
@@ -539,7 +539,7 @@ var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,2
 
 ### [FREKVENČNÍ TABULKA](#frequency): frequency
 
-Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností. [WLsu](https://en.wikipedia.org/wiki/Frequency_(statistics))
+Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností. [Zjistit více](https://en.wikipedia.org/wiki/Frequency_(statistics))
 
 #### Způsob volání metody
 
@@ -551,11 +551,11 @@ Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností. [WLsu
 > (BooleanVector).<mark>**frequency**(*způsob řazení dat tabulky*)
 
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **order** | způsob řazení dat tabulky | c llQx | aaVG | - | 1 |
+| **order** | způsob řazení dat tabulky | c celé číslo | aaVG | - | 1 |
 
 #### Integrace dle třídy
 
@@ -568,8 +568,8 @@ Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností. [WLsu
 #### Struktura vrácené hodnoty
 
 - *frekvenční tabulka* `🟩 qdkt`
-  - **value**: *hodnota* `🟤 oMas`
-  - **frequency**: *četnost* `c llQx`
+  - **value**: *hodnota* `🟤 cokoliv`
+  - **frequency**: *četnost* `c celé číslo`
 
 #### Příklad
 
@@ -614,7 +614,7 @@ var boolean_vector_desc_frequency = new BooleanVector(true, false, null, true, n
 
 ### [GEOMETRICKÝ PRŮMĚR](#geomean): geomean
 
-Geometrický průměr je statistický ukazatel, který se používá k výpočtu průměrné hodnoty nějakého množství čísel nebo veličin. Na rozdíl od aritmetického průměru, který se počítá jako součet všech hodnot v sadě dělený počtem těchto hodnot, se geometrický průměr počítá jako n-tá odmocnina součinu n čísel v sadě. Geometrický průměr se často používá pro výpočet růstu nebo kumulativního výnosu v investicích, protože zohledňuje změny v procentuálním růstu hodnot v průběhu času. Dále se používá v geometrii pro výpočet průměrné délky strany n-úhelníku a v biologii pro výpočet průměrné velikosti buněk nebo organismů v populaci. [WLsu](https://en.wikipedia.org/wiki/Geometric_mean)
+Geometrický průměr je statistický ukazatel, který se používá k výpočtu průměrné hodnoty nějakého množství čísel nebo veličin. Na rozdíl od aritmetického průměru, který se počítá jako součet všech hodnot v sadě dělený počtem těchto hodnot, se geometrický průměr počítá jako n-tá odmocnina součinu n čísel v sadě. Geometrický průměr se často používá pro výpočet růstu nebo kumulativního výnosu v investicích, protože zohledňuje změny v procentuálním růstu hodnot v průběhu času. Dále se používá v geometrii pro výpočet průměrné délky strany n-úhelníku a v biologii pro výpočet průměrné velikosti buněk nebo organismů v populaci. [Zjistit více](https://en.wikipedia.org/wiki/Geometric_mean)
 
 #### Způsob volání metody
 
@@ -648,7 +648,7 @@ var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29
 
 ### [PERCENTIL](#percentile): percentile
 
-Pomocí percentilu můžeme zkoumat rozdělení numerické řady, a to tak, že řadu nejprve seřadíme od nejmenšího po největšího člena (číslo), a následně vybereme první N % členů (toto N je parametrem), kdy poslední člen ve výběru představuje daný percentil, konkrétní číslo. Pokud je počet členů ve výběru sudý, počítá se percentil jako průměr z dvou sousedících hodnot, pokud je sudý, percentilem je právě poslední hodnota. [WLsu](https://en.wikipedia.org/wiki/Percentile)
+Pomocí percentilu můžeme zkoumat rozdělení numerické řady, a to tak, že řadu nejprve seřadíme od nejmenšího po největšího člena (číslo), a následně vybereme první N % členů (toto N je parametrem), kdy poslední člen ve výběru představuje daný percentil, konkrétní číslo. Pokud je počet členů ve výběru sudý, počítá se percentil jako průměr z dvou sousedících hodnot, pokud je sudý, percentilem je právě poslední hodnota. [Zjistit více](https://en.wikipedia.org/wiki/Percentile)
 
 #### Způsob volání metody
 
@@ -660,9 +660,9 @@ Pomocí percentilu můžeme zkoumat rozdělení numerické řady, a to tak, že 
 
 Pouze číselné hodnoty (včetně nul).
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **k** | hodnota percentilu | 🔴 číslo | Ověří, zdali je hodnota číslo mezi 0 a 1 (včetně hraničních hodnot). V opačném případě vyvolá chybu. | ✔️ |  |
 
@@ -691,7 +691,7 @@ var max = score.percentile(1); /* = 25 */
 
 ### [SOUČET](#sum): sum
 
-Vrátí součet všech neprázdných číselných hodnot vektoru. [WLsu](https://en.wikipedia.org/wiki/Addition)
+Vrátí součet všech neprázdných číselných hodnot vektoru. [Zjistit více](https://en.wikipedia.org/wiki/Addition)
 
 #### Způsob volání metody
 
@@ -725,7 +725,7 @@ var cashflow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 
 
 ### [HARMONICKÝ PRŮMĚR](#harmean): harmean
 
-Harmonický průměr je statistický ukazatel, který se používá k výpočtu průměrné hodnoty nějakého množství čísel nebo veličin. Na rozdíl od aritmetického průměru a geometrického průměru, které jsou založeny na sčítání nebo násobení hodnot, se harmonický průměr počítá jako podíl počtu čísel v sadě a součtu jejich převrácených hodnot. Harmonický průměr se používá v situacích, kdy je důležité zohlednit, jak se rychlost nebo výkon mění v průběhu času nebo v různých situacích. Například se používá k výpočtu průměrné rychlosti, průměrného výkonu nebo průměrného odporu v elektronických obvodech. Také se používá v oblasti finance pro výpočet průměrného výnosu z investic v různých časových obdobích. [WLsu](https://en.wikipedia.org/wiki/Harmonic_mean)
+Harmonický průměr je statistický ukazatel, který se používá k výpočtu průměrné hodnoty nějakého množství čísel nebo veličin. Na rozdíl od aritmetického průměru a geometrického průměru, které jsou založeny na sčítání nebo násobení hodnot, se harmonický průměr počítá jako podíl počtu čísel v sadě a součtu jejich převrácených hodnot. Harmonický průměr se používá v situacích, kdy je důležité zohlednit, jak se rychlost nebo výkon mění v průběhu času nebo v různých situacích. Například se používá k výpočtu průměrné rychlosti, průměrného výkonu nebo průměrného odporu v elektronických obvodech. Také se používá v oblasti finance pro výpočet průměrného výnosu z investic v různých časových obdobích. [Zjistit více](https://en.wikipedia.org/wiki/Harmonic_mean)
 
 #### Způsob volání metody
 
@@ -759,7 +759,7 @@ var x = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,
 
 ### [VARIAČNÍ ROZPĚTÍ](#range): range
 
-Vrátí rozdíl největší a nejmenší neprázdné hodnoty. [WLsu](https://en.wikipedia.org/wiki/Range_(statistics))
+Vrátí rozdíl největší a nejmenší neprázdné hodnoty. [Zjistit více](https://en.wikipedia.org/wiki/Range_(statistics))
 
 #### Způsob volání metody
 
@@ -819,7 +819,7 @@ ndPx
 
 #### Struktura vrácené hodnoty
 
-- *jakýkoliv typ hodnoty* `🟤 oMas`
+- *jakýkoliv typ hodnoty* `🟤 cokoliv`
 
 #### Příklad
 
@@ -834,7 +834,7 @@ var string_max = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 Vrátí hodnotu excesu množiny dat. Ve statistice špičatost (kurtosis) označuje míru, jak moc se hodnoty v sbírce dat liší od průměrné hodnoty. Špičatost se obvykle počítá pro křivku rozdělení dat, která je grafickým zobrazením rozložení hodnot v dané sbírce dat.
 Existují dva základní typy špičatosti: platykurtóza a leptokurtóza. Platykurtóza se vyskytuje, když hodnoty vektoru jsou rozloženy víceméně rovnoměrně kolem průměrné hodnoty. Toto rozložení se projevuje jako křivka rozdělení tvaru písmene U, která má plochý vrchol. Naopak leptokurtóza se vyskytuje, když hodnoty v sbírce dat jsou rozloženy s výraznou odchylkou od průměrné hodnoty. Toto rozložení se projevuje jako křivka rozdělení tvaru 'písmene špičatého kopce' nebo 'písmene špičatého údolí'.
-Špičatost se používá k určení, zda je rozložení hodnot v sbírce dat víceméně rovnoměrné, nebo zda existují nějaké výrazné odchylky od průměrné hodnoty. Špičatost se často používá spolu s dalšími metrikami, jako je medián, šikmost a kvantily, které vám pomohou lépe porozumět rozložení dat a určit, zda existují nějaké výrazné odchylky od průměrné hodnoty. [WLsu](https://en.wikipedia.org/wiki/Kurtosis)
+Špičatost se používá k určení, zda je rozložení hodnot v sbírce dat víceméně rovnoměrné, nebo zda existují nějaké výrazné odchylky od průměrné hodnoty. Špičatost se často používá spolu s dalšími metrikami, jako je medián, šikmost a kvantily, které vám pomohou lépe porozumět rozložení dat a určit, zda existují nějaké výrazné odchylky od průměrné hodnoty. [Zjistit více](https://en.wikipedia.org/wiki/Kurtosis)
 
 #### Způsob volání metody
 
@@ -868,7 +868,7 @@ var kurtosis = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24
 
 ### [SMĚRODATNÁ ODCHYLKA](#stdev): stdev
 
-Vrátí směrodatnou odchylku neprázdných hodnot. Směrodatná odchylka je statistický ukazatel, který udává, jak moc se hodnoty v daném souboru dat od sebe liší. Směrodatná odchylka je vyjádřena jako číslo, které udává, o kolik se průměrná hodnota odchýlí od skutečné hodnoty v daném souboru dat. Směrodatná odchylka je užitečná při porovnávání velikosti rozptýlení dat v různých souborech nebo v různých skupinách v rámci jednoho souboru dat. Čím je směrodatná odchylka větší, tím více se hodnoty v daném souboru dat od sebe liší. [WLsu](https://en.wikipedia.org/wiki/Standard_deviation)
+Vrátí směrodatnou odchylku neprázdných hodnot. Směrodatná odchylka je statistický ukazatel, který udává, jak moc se hodnoty v daném souboru dat od sebe liší. Směrodatná odchylka je vyjádřena jako číslo, které udává, o kolik se průměrná hodnota odchýlí od skutečné hodnoty v daném souboru dat. Směrodatná odchylka je užitečná při porovnávání velikosti rozptýlení dat v různých souborech nebo v různých skupinách v rámci jednoho souboru dat. Čím je směrodatná odchylka větší, tím více se hodnoty v daném souboru dat od sebe liší. [Zjistit více](https://en.wikipedia.org/wiki/Standard_deviation)
 
 #### Způsob volání metody
 
@@ -880,9 +880,9 @@ Vrátí směrodatnou odchylku neprázdných hodnot. Směrodatná odchylka je sta
 
 Pouze číselné hodnoty (včetně nul).
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **s** | výběrový soubor | 🟣 binární | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - |  |
 
@@ -909,7 +909,7 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).stdev(true); /* = 
 
 ### [ARITMETICKÝ PRŮMĚR](#avg): avg
 
-Vrátí aritmetický průměr (tedy podíl součtu a počtu hodnot vektoru) ze všech neprázdných hodnot (tedy včetně nul). [WLsu](https://en.wikipedia.org/wiki/Arithmetic_mean)
+Vrátí aritmetický průměr (tedy podíl součtu a počtu hodnot vektoru) ze všech neprázdných hodnot (tedy včetně nul). [Zjistit více](https://en.wikipedia.org/wiki/Arithmetic_mean)
 
 #### Způsob volání metody
 
@@ -965,7 +965,7 @@ Vrátí počet všech členů vektoru, včetně prázdných hodnot.
 
 #### Struktura vrácené hodnoty
 
-- *celé číslo větší nebo rovné nule* `c llQx`
+- *celé číslo větší nebo rovné nule* `c celé číslo`
 
 #### Příklad
 
@@ -979,7 +979,7 @@ var total_boolean = new BooleanVector(true, true, false, null, false, true).coun
 
 ### [VARIAČNÍ KOEFICIENT](#varc): varc
 
-Variační koeficient (také nazývaný relativní rozptyl) je statistický ukazatel, který měří míru variability nebo rozptýlení dat vzhledem k jejich střední hodnotě. Je to bezrozměrná míra variability, která umožňuje porovnávat rozptyl různých souborů dat bez ohledu na jednotky, ve kterých jsou data vyjádřena. Variační koeficient se počítá jako poměr směrodatné odchylky (sigma) a střední hodnoty (x) v sadě dat, násobený 100 pro vyjádření v procentech. okud je variační koeficient nízký, znamená to, že data jsou poměrně homogenní nebo málo rozptýlená vzhledem k průměru. Pokud je naopak vysoký, znamená to, že data jsou velmi různorodá nebo se výrazně liší od průměru.Variační koeficient se používá především k porovnávání variability mezi různými soubory dat. Například se často používá v biologii, medicíně, ekonomii, psychologii a sociologii pro měření variability různých populací nebo skupin. [WLsu](https://en.wikipedia.org/wiki/Coefficient_of_variation)
+Variační koeficient (také nazývaný relativní rozptyl) je statistický ukazatel, který měří míru variability nebo rozptýlení dat vzhledem k jejich střední hodnotě. Je to bezrozměrná míra variability, která umožňuje porovnávat rozptyl různých souborů dat bez ohledu na jednotky, ve kterých jsou data vyjádřena. Variační koeficient se počítá jako poměr směrodatné odchylky (sigma) a střední hodnoty (x) v sadě dat, násobený 100 pro vyjádření v procentech. okud je variační koeficient nízký, znamená to, že data jsou poměrně homogenní nebo málo rozptýlená vzhledem k průměru. Pokud je naopak vysoký, znamená to, že data jsou velmi různorodá nebo se výrazně liší od průměru.Variační koeficient se používá především k porovnávání variability mezi různými soubory dat. Například se často používá v biologii, medicíně, ekonomii, psychologii a sociologii pro měření variability různých populací nebo skupin. [Zjistit více](https://en.wikipedia.org/wiki/Coefficient_of_variation)
 
 #### Způsob volání metody
 
@@ -991,9 +991,9 @@ Variační koeficient (také nazývaný relativní rozptyl) je statistický ukaz
 
 Pouze číselné hodnoty (včetně nul).
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **s** | výběrový soubor | 🟣 binární | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - |  |
 
@@ -1020,7 +1020,7 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc(true); /* = 0
 
 ### [INTERVAL SPOLEHLIVOSTI PRŮMĚRU](#mci): mci
 
-Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normální rozdělení. [WLsu](https://en.wikipedia.org/wiki/Confidence_interval)
+Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normální rozdělení. [Zjistit více](https://en.wikipedia.org/wiki/Confidence_interval)
 
 #### Způsob volání metody
 
@@ -1032,9 +1032,9 @@ Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrov
 
 Pouze číselné hodnoty (včetně nul).
 
-#### FRpk
+#### Argumenty
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **confidenceLevel** | hladina významnosti | 🔴 číslo | Ověří, zdali je hodnota číslo mezi 0 a 1 (včetně hraničních hodnot). V opačném případě vyvolá chybu. | - | 0.95 |
 

@@ -133,5 +133,16 @@ module.exports = {
 	"AfXp": "typ vektoru",
 	"picU": "dostupnost",
 	"KxQM": "Struktura vrácené hodnoty",
-	"nzmJ": "Příklad"
+	"nzmJ": "Příklad",
+	"FRpk": "Argumenty",
+	"QUJS": "id",
+	"jBGO": "popis",
+	"dmmV": "typ hodnoty",
+	"tGqA": "validátor",
+	"VPYX": "povinný",
+	"pDgb": "defaultní hodnota",
+	"WLsu": "Zjistit více",
+	"llQx": "celé číslo",
+	"oMas": "cokoliv",
+	"schema type object": "objekt"
 }

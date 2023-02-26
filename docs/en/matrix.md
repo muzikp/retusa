@@ -35,9 +35,9 @@ wPyG
 
 rAyq
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | qFEM | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 | **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
@@ -78,9 +78,9 @@ jAGi
 
 rAyq
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | qFEM | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 | **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
@@ -89,7 +89,7 @@ rAyq
 
 - *IIlO* `🟦 kLhB`
   - **r**: *eJTT* `🔴 number`
-  - **df**: *degrees of freedom* `c llQx`
+  - **df**: *degrees of freedom* `c whole number (integer)`
   - **p**: *significance* `🔴 number`
 
 #### Example
@@ -122,9 +122,9 @@ VOmC
 
 rAyq
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | qFEM | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 | **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
@@ -134,7 +134,7 @@ rAyq
 - *IIlO* `🟦 kLhB`
   - **taub**: *NgVa* `🔴 number`
   - **taua**: *mgBA* `🔴 number`
-  - **df**: *degrees of freedom* `c llQx`
+  - **df**: *degrees of freedom* `c whole number (integer)`
   - **p**: *significance* `🔴 number`
 
 #### Example
@@ -167,9 +167,9 @@ UcfZ
 
 rAyq
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | qFEM | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 | **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
@@ -212,9 +212,9 @@ OMiA
 
 rAyq
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | qFEM | [🟣] boQk | OCKc | ✔️ |  |
 | **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
@@ -246,9 +246,9 @@ jAGi
 
 rAyq
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | qFEM | [🟣] boQk | null | ✔️ |  |
 | **y** | tpUu | [🟣] boQk | null | ✔️ |  |
@@ -268,9 +268,9 @@ gILL
 
 CPwN
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **vectors** | qFEM | 🔢 DfLu | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
 | **factor** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
@@ -280,7 +280,7 @@ CPwN
 - *Root* `🟦 kLhB`
   - **t**: *T-value* `🔴 number`
   - **p**: *significance* `🔴 number`
-  - **df**: *degrees of freedom* `c llQx`
+  - **df**: *degrees of freedom* `c whole number (integer)`
 
 #### Example
 
@@ -303,9 +303,9 @@ kPqo
 
 rAyq
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | qFEM | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 | **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
@@ -315,7 +315,7 @@ rAyq
 - *Root* `🟦 kLhB`
   - **t**: *T-value* `🔴 number`
   - **p**: *significance* `🔴 number`
-  - **df**: *degrees of freedom* `c llQx`
+  - **df**: *degrees of freedom* `c whole number (integer)`
 
 #### Example
 
@@ -347,9 +347,9 @@ qqQo
 
 CPwN
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **vectors** | iJaa | 🔢 DfLu | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
 | **factor** | iJEe | 🔢 DfLu | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
@@ -360,18 +360,18 @@ CPwN
   - **F**: *Jdfb* `🔴 number`
   - **P2**: *HksP* `🔴 number`
   - **p**: *MpjZ* `🔴 number`
-  - **n**: *total of cases* `c llQx`
+  - **n**: *total of cases* `c whole number (integer)`
   - **ANOVA**: *qCgT* `🟦 kLhB`
-    - **totalOfGroups**: *cXCr* `c llQx`
+    - **totalOfGroups**: *cXCr* `c whole number (integer)`
     - **betweenGroups**: *thNv* `🟦 kLhB`
       - **sumOfSquares**: *SqTd* `🔴 number`
-      - **df**: *degrees of freedom* `c llQx`
+      - **df**: *degrees of freedom* `c whole number (integer)`
     - **withinGroups**: *GiRP* `🟦 kLhB`
       - **sumOfsquares**: *SqTd* `🔴 number`
-      - **df**: *degrees of freedom* `c llQx`
+      - **df**: *degrees of freedom* `c whole number (integer)`
     - **total**: *Total* `🟦 kLhB`
       - **sumOfSquares**: *Sumofsquares* `🔴 number`
-      - **df**: *Df* `c llQx`
+      - **df**: *Df* `c whole number (integer)`
 
 #### Example
 
@@ -421,12 +421,12 @@ vzHj
 
 CPwN
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **vectors** | qFEM | 🔢 DfLu | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
-| **factor** | tpUu | 🟤 oMas | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
+| **factor** | tpUu | 🟤 any type | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
 
 #### Output structure
 
@@ -456,13 +456,13 @@ dzFE
 
 rAyq
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **independent** | jDlm | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 | **dependent** | jFVv | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **model** | OBml | 🟤 oMas | aaVG | ✔️ | 1 |
+| **model** | OBml | 🟤 any type | aaVG | ✔️ | 1 |
 
 #### Output structure
 
@@ -492,12 +492,12 @@ fqwd
 > [Matrix instance].**contingency**(***gLRN***, ***bpjC***, *fqUi*)
 
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | gLRN | 🟤 oMas | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **y** | bpjC | 🟤 oMas | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **x** | gLRN | 🟤 any type | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **y** | bpjC | 🟤 any type | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 | **n** | fqUi | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
 
 #### Output structure
@@ -505,7 +505,7 @@ fqwd
 - *gRix* `🟦 kLhB`
   - **phi**: *GfeP* `🔴 number`
   - **p**: *significance* `🔴 number`
-  - **df**: *degrees of freedom* `c llQx`
+  - **df**: *degrees of freedom* `c whole number (integer)`
   - **C**: *BUaN* `🔴 number`
   - **V**: *VYQH* `🔴 number`
 
@@ -545,9 +545,9 @@ qqQo
 
 CPwN
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **vectors** | iJaa | 🔢 DfLu | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
 | **factor** | iJEe | 🔢 DfLu | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
@@ -558,18 +558,18 @@ CPwN
   - **F**: *Jdfb* `🔴 number`
   - **P2**: *HksP* `🔴 number`
   - **p**: *MpjZ* `🔴 number`
-  - **n**: *total of cases* `c llQx`
+  - **n**: *total of cases* `c whole number (integer)`
   - **ANOVA**: *qCgT* `🟦 kLhB`
-    - **totalOfGroups**: *cXCr* `c llQx`
+    - **totalOfGroups**: *cXCr* `c whole number (integer)`
     - **betweenGroups**: *thNv* `🟦 kLhB`
       - **sumOfSquares**: *SqTd* `🔴 number`
-      - **df**: *degrees of freedom* `c llQx`
+      - **df**: *degrees of freedom* `c whole number (integer)`
     - **withinGroups**: *GiRP* `🟦 kLhB`
       - **sumOfsquares**: *SqTd* `🔴 number`
-      - **df**: *degrees of freedom* `c llQx`
+      - **df**: *degrees of freedom* `c whole number (integer)`
     - **total**: *Total* `🟦 kLhB`
       - **sumOfSquares**: *Sumofsquares* `🔴 number`
-      - **df**: *Df* `c llQx`
+      - **df**: *Df* `c whole number (integer)`
 
 #### Example
 

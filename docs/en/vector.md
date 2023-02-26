@@ -35,7 +35,7 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 
 ### [KOLMOGOROV-SMIRNOV TEST](#kstest): kstest
 
-Returns the statistical log of the Komogorov-Smirnov normality test of the distribution of vector values. It does not currently calculate the significance level of the test. The Kolmogorov-Smirnov test (often abbreviated as the K-S test) is a statistical test used to test the hypothesis that data come from a particular distribution. This test compares the data distribution to the theoretical distribution that the data is assumed to come from and evaluates whether the data values are close enough to the theoretical distribution that the hypothesis that the data come from the given distribution can be considered true.Kolmogorov test -Smirnov is often used to test the normality of data, but it can also be used to test if the data comes from another theoretical distribution, such as the exponential or binomial distribution. The Kolmogorov-Smirnov test is generally considered to be one of the most accurate tests of normality, but it has limited sensitivity for small samples, i.e. it may be less reliable in detecting non-normality for small samples. Therefore, other tests of normality, such as the Shapiro-Wilk test or the Anderson-Darling test, are often used for small samples. [WLsu](https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test#One-sample_Kolmogorov%E2%80%93Smirnov_statistic)
+Returns the statistical log of the Komogorov-Smirnov normality test of the distribution of vector values. It does not currently calculate the significance level of the test. The Kolmogorov-Smirnov test (often abbreviated as the K-S test) is a statistical test used to test the hypothesis that data come from a particular distribution. This test compares the data distribution to the theoretical distribution that the data is assumed to come from and evaluates whether the data values are close enough to the theoretical distribution that the hypothesis that the data come from the given distribution can be considered true.Kolmogorov test -Smirnov is often used to test the normality of data, but it can also be used to test if the data comes from another theoretical distribution, such as the exponential or binomial distribution. The Kolmogorov-Smirnov test is generally considered to be one of the most accurate tests of normality, but it has limited sensitivity for small samples, i.e. it may be less reliable in detecting non-normality for small samples. Therefore, other tests of normality, such as the Shapiro-Wilk test or the Anderson-Darling test, are often used for small samples. [Read more](https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test#One-sample_Kolmogorov%E2%80%93Smirnov_statistic)
 
 #### Method calling syntax
 
@@ -59,7 +59,7 @@ Only numeric values including zeros.
 
 - *Kolmogorov-Smirnov test* `🟦 kLhB`
   - **T**: *Kolmogorov-Smirnov test value* `🔴 number`
-  - **df**: *degrees of freedom* `c llQx`
+  - **df**: *degrees of freedom* `c whole number (integer)`
   - **p**: *significance* `🔴 number`
 
 #### Example
@@ -105,7 +105,7 @@ ndPx
 
 #### Output structure
 
-- *any value type* `🟤 oMas`
+- *any value type* `🟤 any type`
 
 #### Example
 
@@ -118,7 +118,7 @@ var string_min = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 ### [SKEWNESS](#skewness): skewness
 
-Returns the skewness of the distribution, i.e. the asymmetry of the distribution around the mean value of the vector. [WLsu](https://en.wikipedia.org/wiki/Skewness)
+Returns the skewness of the distribution, i.e. the asymmetry of the distribution around the mean value of the vector. [Read more](https://en.wikipedia.org/wiki/Skewness)
 
 #### Method calling syntax
 
@@ -130,9 +130,9 @@ Returns the skewness of the distribution, i.e. the asymmetry of the distribution
 
 Only numeric values including zeros.
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **s** | is sample | 🟣 binary | Checks if the value is binary in nature. Otherwise, it automatically converts the value to the boolean type and therefore never returns an error. | - |  |
 
@@ -159,7 +159,7 @@ var skewness_sample = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,2
 
 ### [HISTOGRAM](#histogram): histogram
 
-Returns the histogram matrix of the given vector. The method can be chosen with or without parameter specification. If the parameter 'maximum number of intervals' (maxIntervals) is not specified, its value is automatically calculated as the variation range/root of the number of elements. If the parameter 'fixed interval size' (fixedInterval) is specified, this value is taken as decisive for the number of intervals. The two values are not compatible (although they do not return an error), when specifying both, the maxIntervals parameter is taken as a priority. [WLsu](https://en.wikipedia.org/wiki/Histogram)
+Returns the histogram matrix of the given vector. The method can be chosen with or without parameter specification. If the parameter 'maximum number of intervals' (maxIntervals) is not specified, its value is automatically calculated as the variation range/root of the number of elements. If the parameter 'fixed interval size' (fixedInterval) is specified, this value is taken as decisive for the number of intervals. The two values are not compatible (although they do not return an error), when specifying both, the maxIntervals parameter is taken as a priority. [Read more](https://en.wikipedia.org/wiki/Histogram)
 
 #### Method calling syntax
 
@@ -171,9 +171,9 @@ Returns the histogram matrix of the given vector. The method can be chosen with 
 
 Only numeric values including zeros.
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **maxIntervals** | maximum intervals | 🔴 number | dFiw | - |  |
 | **fixedInterval** | fixed interval | 🔴 number | bpCq | - |  |
@@ -191,10 +191,10 @@ Only numeric values including zeros.
 - *histogram* `🟩 qdkt`
   - **from**: *the lower limit of the interval* `🔴 number`
   - **to**: *the upper limit of the interval* `🔴 number`
-  - **n**: *frequency (abs.)* `c llQx`
-  - **nc**: *cumulative frequency (abs.)* `c llQx`
-  - **p**: *frequency (%)* `🟤 oMas`
-  - **pc**: *cumulative frequency (%)* `🟤 oMas`
+  - **n**: *frequency (abs.)* `c whole number (integer)`
+  - **nc**: *cumulative frequency (abs.)* `c whole number (integer)`
+  - **p**: *frequency (%)* `🔴 number`
+  - **pc**: *cumulative frequency (%)* `🔴 number`
 
 #### Example
 
@@ -241,7 +241,7 @@ var h3 = score.histogram(null, 2)
 
 ### [MEDIAN](#median): median
 
-Returns the median, or middle value, of the non-empty values of a vector. This is the 50% percentile. [WLsu](https://en.wikipedia.org/wiki/Median)
+Returns the median, or middle value, of the non-empty values of a vector. This is the 50% percentile. [Read more](https://en.wikipedia.org/wiki/Median)
 
 #### Method calling syntax
 
@@ -275,7 +275,7 @@ var median = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,2
 
 ### [MODE](#mode): mode
 
-Returns the most frequent value in the vector (if the most frequent value is empty, returns the empty value). If there are more of the most frequent values (e.g. the frequency of X and Y values is the same), it returns the first value found in the vector. [WLsu](https://en.wikipedia.org/wiki/Mode_(statistics))
+Returns the most frequent value in the vector (if the most frequent value is empty, returns the empty value). If there are more of the most frequent values (e.g. the frequency of X and Y values is the same), it returns the first value found in the vector. [Read more](https://en.wikipedia.org/wiki/Mode_(statistics))
 
 #### Method calling syntax
 
@@ -297,7 +297,7 @@ Returns the most frequent value in the vector (if the most frequent value is emp
 
 #### Output structure
 
-- *any value type* `🟤 oMas`
+- *any value type* `🟤 any type`
 
 #### Example
 
@@ -311,7 +311,7 @@ var z = new BooleanVector(true, false, true).mode(); /* = true */
 
 ### [VARIANCE](#variance): variance
 
-Returns the variance value of this vector. The variance value is equal to the square of the standard deviation. [WLsu](https://en.wikipedia.org/wiki/Variance)
+Returns the variance value of this vector. The variance value is equal to the square of the standard deviation. [Read more](https://en.wikipedia.org/wiki/Variance)
 
 #### Method calling syntax
 
@@ -323,9 +323,9 @@ Returns the variance value of this vector. The variance value is equal to the sq
 
 Only numeric values including zeros.
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **s** | is sample | 🟣 binary | Checks if the value is binary in nature. Otherwise, it automatically converts the value to the boolean type and therefore never returns an error. | - |  |
 
@@ -364,9 +364,9 @@ Returns the statistical log for a one-sample t-test given the population mean.
 
 Only numeric values including zeros.
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **populationMean** | population mean | 🔴 number | Checks if the value is a number. Otherwise, it will throw an error. | ✔️ |  |
 
@@ -383,7 +383,7 @@ Only numeric values including zeros.
 - *one-sample t-test* `🟦 kLhB`
   - **t**: *T-value* `🔴 number`
   - **p**: *significance* `🔴 number`
-  - **n**: *total of cases* `c llQx`
+  - **n**: *total of cases* `c whole number (integer)`
 
 #### Example
 
@@ -402,7 +402,7 @@ var T = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1)
 
 ### [CONFIDENCE INTERVAL OF THE PROPORTION](#pci): pci
 
-Returns the statistical log of the confidence interval estimate of the sample proportion at a specified significance level. [WLsu](https://en.wikipedia.org/wiki/Confidence_interval)
+Returns the statistical log of the confidence interval estimate of the sample proportion at a specified significance level. [Read more](https://en.wikipedia.org/wiki/Confidence_interval)
 
 #### Method calling syntax
 
@@ -418,11 +418,11 @@ Returns the statistical log of the confidence interval estimate of the sample pr
 
 any value type
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **value** | the lookup value | 🟤 oMas | Blaz | ✔️ |  |
+| **value** | the lookup value | 🟤 any type | Blaz | ✔️ |  |
 | **confidenceLevel** | level of importance | 🔴 number | Checks if the value is a number between 0 and 1 (including boundary values). Otherwise, it will throw an error. | - | 0.95 |
 
 #### Integration by Vector type
@@ -436,11 +436,11 @@ any value type
 #### Output structure
 
 - *confidence interval of the proportion* `🟦 kLhB`
-  - **p**: *value share in %* `🟤 oMas`
+  - **p**: *value share in %* `🔴 number`
   - **sig**: *level of significance* `🔴 number`
-  - **delta**: *confidence interval (+-)* `🟤 oMas`
-  - **lb**: *lower limit of the interval* `🟤 oMas`
-  - **ub**: *upper limit of the interval* `🟤 oMas`
+  - **delta**: *confidence interval (+-)* `🔴 number`
+  - **lb**: *lower limit of the interval* `🔴 number`
+  - **ub**: *upper limit of the interval* `🔴 number`
 
 #### Example
 
@@ -461,7 +461,7 @@ var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).pc
 
 ### [SHAPIRO-WILK W TEST](#swtest): swtest
 
-Returns the statistical log of the Shapiro-Wilk W test of normality of the distribution of vector values. The Shapiro-Wilk test is a statistical test used to test the hypothesis that the data come from a normal distribution. This test is often used to verify the normality of data in statistical analysis. The Shapiro-Wilk test is based on comparing the value of the quartiles of the data with the values of the quartiles of a normal distribution. When the quartile values of the data are similar to the quartile values of the normal distribution, it is likely that the data comes from a normal distribution. Otherwise, it is likely that the data is not normal. When using the Shapiro-Wilk test, it should be noted that this test has low sensitivity for large samples, i.e. for large samples the test may be less reliable in detecting non-normality. Therefore, other tests of normality, such as the Anderson-Darling test or the Kolmogorov-Smirnov test, are often used for large samples. [WLsu](https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test)
+Returns the statistical log of the Shapiro-Wilk W test of normality of the distribution of vector values. The Shapiro-Wilk test is a statistical test used to test the hypothesis that the data come from a normal distribution. This test is often used to verify the normality of data in statistical analysis. The Shapiro-Wilk test is based on comparing the value of the quartiles of the data with the values of the quartiles of a normal distribution. When the quartile values of the data are similar to the quartile values of the normal distribution, it is likely that the data comes from a normal distribution. Otherwise, it is likely that the data is not normal. When using the Shapiro-Wilk test, it should be noted that this test has low sensitivity for large samples, i.e. for large samples the test may be less reliable in detecting non-normality. Therefore, other tests of normality, such as the Anderson-Darling test or the Kolmogorov-Smirnov test, are often used for large samples. [Read more](https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test)
 
 #### Method calling syntax
 
@@ -485,7 +485,7 @@ Only numeric values including zeros.
 
 - *Shapiro-Wilk W test* `🟦 kLhB`
   - **W**: *W-test value* `🔴 number`
-  - **df**: *degrees of freedom* `c llQx`
+  - **df**: *degrees of freedom* `c whole number (integer)`
   - **p**: *significance* `🔴 number`
 
 #### Example
@@ -505,7 +505,7 @@ var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).swt
 
 ### [STANDARD ERROR OF THE MEAN](#sem): sem
 
-Returns the value of the standard error of the estimate of the mean. The standard error of the mean is a statistical measure of the variability of the sample mean of the estimated parameter in the entire population. This is an estimate of the standard deviation of the sample mean. The mean error of the mean is calculated as the ratio of the estimated standard deviation of the sample mean to the square root of the sample size. The larger the sample size, the smaller the mean error of the mean, meaning that the estimate of the sample mean is more accurate and more closely aligned with the entire population mean. The mean error of the mean is useful for estimating confidence intervals of the sample mean, which allows us to determine how accurately it estimates the population mean. [WLsu](https://en.wikipedia.org/wiki/Standard_error#Standard_error_of_the_sample_mean)
+Returns the value of the standard error of the estimate of the mean. The standard error of the mean is a statistical measure of the variability of the sample mean of the estimated parameter in the entire population. This is an estimate of the standard deviation of the sample mean. The mean error of the mean is calculated as the ratio of the estimated standard deviation of the sample mean to the square root of the sample size. The larger the sample size, the smaller the mean error of the mean, meaning that the estimate of the sample mean is more accurate and more closely aligned with the entire population mean. The mean error of the mean is useful for estimating confidence intervals of the sample mean, which allows us to determine how accurately it estimates the population mean. [Read more](https://en.wikipedia.org/wiki/Standard_error#Standard_error_of_the_sample_mean)
 
 #### Method calling syntax
 
@@ -539,7 +539,7 @@ var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,2
 
 ### [FREQUENCY TABLE](#frequency): frequency
 
-Returns a frequency table object with the breakdown of elements and their frequency. [WLsu](https://en.wikipedia.org/wiki/Frequency_(statistics))
+Returns a frequency table object with the breakdown of elements and their frequency. [Read more](https://en.wikipedia.org/wiki/Frequency_(statistics))
 
 #### Method calling syntax
 
@@ -551,11 +551,11 @@ Returns a frequency table object with the breakdown of elements and their freque
 > (BooleanVector).<mark>**frequency**(*table order mode*)
 
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **order** | table order mode | c llQx | aaVG | - | 1 |
+| **order** | table order mode | c whole number (integer) | aaVG | - | 1 |
 
 #### Integration by Vector type
 
@@ -568,8 +568,8 @@ Returns a frequency table object with the breakdown of elements and their freque
 #### Output structure
 
 - *frequency table* `🟩 qdkt`
-  - **value**: *value* `🟤 oMas`
-  - **frequency**: *frequency table* `c llQx`
+  - **value**: *value* `🟤 any type`
+  - **frequency**: *frequency table* `c whole number (integer)`
 
 #### Example
 
@@ -614,7 +614,7 @@ var boolean_vector_desc_frequency = new BooleanVector(true, false, null, true, n
 
 ### [GEOMETRIC MEAN](#geomean): geomean
 
-The geometric mean is a statistical indicator that is used to calculate the average value of some number or quantity. Unlike the arithmetic mean, which is calculated as the sum of all values in a set divided by the number of those values, the geometric mean is calculated as the nth root of the product of n numbers in the set. The geometric mean is often used to calculate growth or cumulative return in investments because it accounts for changes in the percentage growth of values over time. It is also used in geometry to calculate the average side length of an n-gon and in biology to calculate the average size of cells or organisms in a population. [WLsu](https://en.wikipedia.org/wiki/Geometric_mean)
+The geometric mean is a statistical indicator that is used to calculate the average value of some number or quantity. Unlike the arithmetic mean, which is calculated as the sum of all values in a set divided by the number of those values, the geometric mean is calculated as the nth root of the product of n numbers in the set. The geometric mean is often used to calculate growth or cumulative return in investments because it accounts for changes in the percentage growth of values over time. It is also used in geometry to calculate the average side length of an n-gon and in biology to calculate the average size of cells or organisms in a population. [Read more](https://en.wikipedia.org/wiki/Geometric_mean)
 
 #### Method calling syntax
 
@@ -648,7 +648,7 @@ var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29
 
 ### [PERCENTILE](#percentile): percentile
 
-Using the percentile, we can examine the distribution of a numerical series, by first sorting the series from the smallest to the largest member (number), and then selecting the first N % of members (this N is a parameter), where the last member in the selection represents the given percentile, a specific number . If the number of members in the sample is even, the percentile is calculated as the average of two adjacent values, if it is even, the percentile is just the last value. [WLsu](https://en.wikipedia.org/wiki/Percentile)
+Using the percentile, we can examine the distribution of a numerical series, by first sorting the series from the smallest to the largest member (number), and then selecting the first N % of members (this N is a parameter), where the last member in the selection represents the given percentile, a specific number . If the number of members in the sample is even, the percentile is calculated as the average of two adjacent values, if it is even, the percentile is just the last value. [Read more](https://en.wikipedia.org/wiki/Percentile)
 
 #### Method calling syntax
 
@@ -660,9 +660,9 @@ Using the percentile, we can examine the distribution of a numerical series, by 
 
 Only numeric values including zeros.
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **k** | percentile value | 🔴 number | Checks if the value is a number between 0 and 1 (including boundary values). Otherwise, it will throw an error. | ✔️ |  |
 
@@ -691,7 +691,7 @@ var max = score.percentile(1); /* = 25 */
 
 ### [SUM](#sum): sum
 
-Returns the sum of all non-empty numeric values of a vector. [WLsu](https://en.wikipedia.org/wiki/Addition)
+Returns the sum of all non-empty numeric values of a vector. [Read more](https://en.wikipedia.org/wiki/Addition)
 
 #### Method calling syntax
 
@@ -725,7 +725,7 @@ var cashflow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 
 
 ### [HARMONIC MEAN](#harmean): harmean
 
-The harmonic mean is a statistical indicator that is used to calculate the average value of some number or quantity. Unlike the arithmetic mean and the geometric mean, which are based on the addition or multiplication of values, the harmonic mean is calculated as the quotient of the number of numbers in the set and the sum of their reciprocals. The harmonic mean is used in situations where it is important to account for how speed or power changes over time or in different situations. For example, it is used to calculate average speed, average power or average resistance in electronic circuits. It is also used in finance to calculate the average return on investments over different time periods. [WLsu](https://en.wikipedia.org/wiki/Harmonic_mean)
+The harmonic mean is a statistical indicator that is used to calculate the average value of some number or quantity. Unlike the arithmetic mean and the geometric mean, which are based on the addition or multiplication of values, the harmonic mean is calculated as the quotient of the number of numbers in the set and the sum of their reciprocals. The harmonic mean is used in situations where it is important to account for how speed or power changes over time or in different situations. For example, it is used to calculate average speed, average power or average resistance in electronic circuits. It is also used in finance to calculate the average return on investments over different time periods. [Read more](https://en.wikipedia.org/wiki/Harmonic_mean)
 
 #### Method calling syntax
 
@@ -759,7 +759,7 @@ var x = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,
 
 ### [RANGE](#range): range
 
-Returns the difference between the largest and smallest non-empty values. [WLsu](https://en.wikipedia.org/wiki/Range_(statistics))
+Returns the difference between the largest and smallest non-empty values. [Read more](https://en.wikipedia.org/wiki/Range_(statistics))
 
 #### Method calling syntax
 
@@ -819,7 +819,7 @@ ndPx
 
 #### Output structure
 
-- *any value type* `🟤 oMas`
+- *any value type* `🟤 any type`
 
 #### Example
 
@@ -834,7 +834,7 @@ var string_max = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 Returns the excess value of the data set. In statistics, kurtosis refers to the measure of how much the values in a collection of data differ from the mean value. Skewness is usually calculated for a data distribution curve, which is a graphical representation of the distribution of values in a given collection of data.
 There are two basic types of kurtosis: platykurtosis and leptokurtosis. Platykurtosis occurs when the values of a vector are distributed more or less uniformly around the mean value. This distribution appears as a U-shaped distribution curve that has a flat top. Conversely, leptokurtosis occurs when the values in a data collection are distributed with a significant deviation from the mean value. This distribution manifests itself as a 'peaked hill letter' or 'pointed valley letter' shaped distribution curve.
-Skewedness is used to determine whether the distribution of values in a collection of data is more or less uniform, or whether there are any significant deviations from the mean value. Skewness is often used along with other metrics such as median, skewness, and quantiles to help you better understand the distribution of data and determine if there are any significant deviations from the mean value. [WLsu](https://en.wikipedia.org/wiki/Kurtosis)
+Skewedness is used to determine whether the distribution of values in a collection of data is more or less uniform, or whether there are any significant deviations from the mean value. Skewness is often used along with other metrics such as median, skewness, and quantiles to help you better understand the distribution of data and determine if there are any significant deviations from the mean value. [Read more](https://en.wikipedia.org/wiki/Kurtosis)
 
 #### Method calling syntax
 
@@ -868,7 +868,7 @@ var kurtosis = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24
 
 ### [STANDARD DEVIATION](#stdev): stdev
 
-Returns the standard deviation of non-empty values. The standard deviation is a statistical indicator that indicates how much the values in a given data set differ from each other. The standard deviation is expressed as a number that indicates how much the average value deviates from the true value in a given data set. The standard deviation is useful when comparing the amount of dispersion of data in different sets or in different groups within a single data set. The larger the standard deviation, the more the values in a given data set differ from each other. [WLsu](https://en.wikipedia.org/wiki/Standard_deviation)
+Returns the standard deviation of non-empty values. The standard deviation is a statistical indicator that indicates how much the values in a given data set differ from each other. The standard deviation is expressed as a number that indicates how much the average value deviates from the true value in a given data set. The standard deviation is useful when comparing the amount of dispersion of data in different sets or in different groups within a single data set. The larger the standard deviation, the more the values in a given data set differ from each other. [Read more](https://en.wikipedia.org/wiki/Standard_deviation)
 
 #### Method calling syntax
 
@@ -880,9 +880,9 @@ Returns the standard deviation of non-empty values. The standard deviation is a 
 
 Only numeric values including zeros.
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **s** | is sample | 🟣 binary | Checks if the value is binary in nature. Otherwise, it automatically converts the value to the boolean type and therefore never returns an error. | - |  |
 
@@ -909,7 +909,7 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).stdev(true); /* = 
 
 ### [ARITHMETIC MEAN](#avg): avg
 
-Returns the arithmetic mean (i.e. the quotient of the sum and the number of vector values) of all non-empty values (i.e. including zeros). [WLsu](https://en.wikipedia.org/wiki/Arithmetic_mean)
+Returns the arithmetic mean (i.e. the quotient of the sum and the number of vector values) of all non-empty values (i.e. including zeros). [Read more](https://en.wikipedia.org/wiki/Arithmetic_mean)
 
 #### Method calling syntax
 
@@ -965,7 +965,7 @@ Returns the count of all members of a vector, including empty values.
 
 #### Output structure
 
-- *whole positive nunber (inc. zero)* `c llQx`
+- *whole positive nunber (inc. zero)* `c whole number (integer)`
 
 #### Example
 
@@ -979,7 +979,7 @@ var total_boolean = new BooleanVector(true, true, false, null, false, true).coun
 
 ### [COEFFICIENT OF VARIATION](#varc): varc
 
-The coefficient of variation (also called relative variance) is a statistical indicator that measures the degree of variability or dispersion of data relative to its mean value. It is a dimensionless measure of variability that allows the variance of different data sets to be compared regardless of the units in which the data are expressed. The coefficient of variation is calculated as the ratio of the standard deviation (sigma) to the mean (x) in the data set, multiplied by 100 to express it as a percentage. where the coefficient of variation is low, it means that the data are relatively homogeneous or not widely dispersed relative to the mean. If, on the other hand, it is high, it means that the data is very diverse or significantly different from the average. The coefficient of variation is mainly used to compare the variability between different data sets. For example, it is often used in biology, medicine, economics, psychology, and sociology to measure the variability of different populations or groups. [WLsu](https://en.wikipedia.org/wiki/Coefficient_of_variation)
+The coefficient of variation (also called relative variance) is a statistical indicator that measures the degree of variability or dispersion of data relative to its mean value. It is a dimensionless measure of variability that allows the variance of different data sets to be compared regardless of the units in which the data are expressed. The coefficient of variation is calculated as the ratio of the standard deviation (sigma) to the mean (x) in the data set, multiplied by 100 to express it as a percentage. where the coefficient of variation is low, it means that the data are relatively homogeneous or not widely dispersed relative to the mean. If, on the other hand, it is high, it means that the data is very diverse or significantly different from the average. The coefficient of variation is mainly used to compare the variability between different data sets. For example, it is often used in biology, medicine, economics, psychology, and sociology to measure the variability of different populations or groups. [Read more](https://en.wikipedia.org/wiki/Coefficient_of_variation)
 
 #### Method calling syntax
 
@@ -991,9 +991,9 @@ The coefficient of variation (also called relative variance) is a statistical in
 
 Only numeric values including zeros.
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **s** | is sample | 🟣 binary | Checks if the value is binary in nature. Otherwise, it automatically converts the value to the boolean type and therefore never returns an error. | - |  |
 
@@ -1020,7 +1020,7 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc(true); /* = 0
 
 ### [CONFIDENCE INTERVAL OF THE MEAN](#mci): mci
 
-Returns the statistical log of the confidence interval estimate of the sample mean at a specified significance level. If the number of cases is less than 30, the Student's T-distribution is used, otherwise the standardized normal distribution is used. [WLsu](https://en.wikipedia.org/wiki/Confidence_interval)
+Returns the statistical log of the confidence interval estimate of the sample mean at a specified significance level. If the number of cases is less than 30, the Student's T-distribution is used, otherwise the standardized normal distribution is used. [Read more](https://en.wikipedia.org/wiki/Confidence_interval)
 
 #### Method calling syntax
 
@@ -1032,9 +1032,9 @@ Returns the statistical log of the confidence interval estimate of the sample me
 
 Only numeric values including zeros.
 
-#### FRpk
+#### Arguments
 
-| QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
+| id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **confidenceLevel** | level of importance | 🔴 number | Checks if the value is a number between 0 and 1 (including boundary values). Otherwise, it will throw an error. | - | 0.95 |
 

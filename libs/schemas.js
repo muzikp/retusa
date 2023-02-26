@@ -102,6 +102,7 @@ class Schema {
       var types = [
         {t: "string", c: "🟡", l: "RFGF"},
         {t: "number", c: "🔴", l: "pelN"},
+        {t: "percent", c: "🔴", l: "pelN"},
         {t: "integer", c: "c", l: "llQx"},
         {t: "boolean", c: "🟣", l: "XPGc"},
         {t: "object", c: "🟦", l: "kLhB"},

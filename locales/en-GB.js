@@ -133,5 +133,16 @@ module.exports = {
 	"AfXp": "vector type",
 	"picU": "availability",
 	"KxQM": "Output structure",
-	"nzmJ": "Example"
+	"nzmJ": "Example",
+	"FRpk": "Arguments",
+	"QUJS": "id",
+	"jBGO": "description",
+	"dmmV": "value type",
+	"tGqA": "validator",
+	"VPYX": "required",
+	"pDgb": "default value",
+	"WLsu": "Read more",
+	"llQx": "whole number (integer)",
+	"oMas": "any type",
+	"schema type object": "object"
 }
