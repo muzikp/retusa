@@ -6,14 +6,13 @@ Bablablablabla.
 
 | function | method |
 | :---: |  :---: | 
-| [correlPearson](#correlPearson) | pTvR |
-| [correlSpearman](#correlSpearman) | eJTT |
-| [correlKendall](#correlKendall) | mgBC |
-| [correlPartial](#correlPartial) | xfSf |
-| [correlBiserial](#correlBiserial) | AagR |
-| [correlPhi](#correlPhi) | eJTT |
-| [ttestind](#ttestind) | YqRh |
-| [ttestpair](#ttestpair) | mmXD |
+| [correlPearson](#correlPearson) | Pearson correlation coefficient |
+| [correlSpearman](#correlSpearman) | Spearman's correlation coefficient |
+| [correlKendall](#correlKendall) | Kendall Tau-b |
+| [correlPartial](#correlPartial) | partial correlation |
+| [correlBiserial](#correlBiserial) | biserial correlation |
+| [ttestind](#ttestind) | T-test (independent) |
+| [ttestpair](#ttestpair) | T-test (paired) |
 | [anovaow](#anovaow) | baJo |
 | [mwu](#mwu) | rPQr |
 | [genreg](#genreg) | vlCA |
@@ -22,13 +21,16 @@ Bablablablabla.
 
 ---
 
-### [PTVR](#correlPearson): correlPearson
+### [PEARSON CORRELATION COEFFICIENT](#correlPearson): correlPearson
 
-wPyG
+Returns the statistical log of the Pearson correlation coefficient.
+The Pearson correlation is a statistical method used to measure the relationship between two quantities. Its goal is to find out if there is a linear relationship between these quantities and what its intensity is.
+Pearson's correlation is calculated using a formula called Pearson's correlation coefficient. This coefficient ranges from -1 to 1 and indicates how strong the relationship is between the quantities. If the coefficient is close to -1, it means that there is a strong negative relationship between the quantities, which means that when the value of one quantity increases, the value of the other quantity decreases. On the contrary, if the coefficient is close to 1, it means that there is a strong positive relationship between the quantities, which means that when the value of one quantity increases, the value of the other quantity also increases. If the coefficient is close to 0, it means that there is no relationship between the quantities or the relationship is very weak.
+Pearson's correlation is mainly used to compare two quantitative quantities, i.e. quantities that can be measured on a scale with exact values (for example, age, height or weight). It can be used to determine whether there is a relationship between these quantities and what its character is. For example, Pearson's correlation can be used to compare age and weight and see if there is a relationship between these quantities and what its nature is. It can also be used to compare the results of two different tests and see if there is a relationship between the results of those tests. Source: https://chat.openai.com/chat
 
 #### Method calling syntax
 
-> [Matrix instance].**correlPearson**(***qFEM***, ***tpUu***)
+> [Matrix instance].**correlPearson**(***first variable***, ***second variable***)
 
 
 #### In-built default value filter
@@ -39,13 +41,13 @@ rAyq
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | qFEM | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **x** | first variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **y** | second variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 
 #### Output structure
 
 - *IIlO* `🟦 object`
-  - **r**: *pTvR* `🔴 number`
+  - **r**: *Pearson correlation coefficient* `🔴 number`
   - **p**: *significance* `🔴 number`
 
 #### Example
@@ -65,13 +67,13 @@ var correl = new Matrix(a,b).correlPearson(a,b);
 
 ---
 
-### [EJTT](#correlSpearman): correlSpearman
+### [SPEARMAN'S CORRELATION COEFFICIENT](#correlSpearman): correlSpearman
 
 jAGi
 
 #### Method calling syntax
 
-> [Matrix instance].**correlSpearman**(***qFEM***, ***tpUu***)
+> [Matrix instance].**correlSpearman**(***first variable***, ***second variable***)
 
 
 #### In-built default value filter
@@ -82,13 +84,13 @@ rAyq
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | qFEM | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **x** | first variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **y** | second variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 
 #### Output structure
 
 - *IIlO* `🟦 object`
-  - **r**: *eJTT* `🔴 number`
+  - **r**: *Spearman's correlation coefficient* `🔴 number`
   - **df**: *degrees of freedom* `🔴 whole number (integer)`
   - **p**: *significance* `🔴 number`
 
@@ -109,13 +111,13 @@ var M = new Matrix(a,b).correlSpearman(a,b);
 
 ---
 
-### [MGBC](#correlKendall): correlKendall
+### [KENDALL TAU-B](#correlKendall): correlKendall
 
-VOmC
+Returns the statistical log of Kendall's Tau-B correlation coefficient. If you were to calculate the same operation in SPSS, you would probably get a slightly different result. Apparently, this is due to the different sensitivity to decimal places in the two systems. However, it should not have a major influence on the interpretation of the result.
 
 #### Method calling syntax
 
-> [Matrix instance].**correlKendall**(***qFEM***, ***tpUu***)
+> [Matrix instance].**correlKendall**(***first variable***, ***second variable***)
 
 
 #### In-built default value filter
@@ -126,8 +128,8 @@ rAyq
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | qFEM | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **x** | first variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **y** | second variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 
 #### Output structure
 
@@ -154,13 +156,13 @@ var M = new Matrix(a,b).correlKendall(a,b);
 
 ---
 
-### [XFSF](#correlPartial): correlPartial
+### [PARTIAL CORRELATION](#correlPartial): correlPartial
 
-UcfZ
+Partial correlation is a statistical method that allows you to find out what the relationship is between two variables while taking into account the influence of a third variable. This is useful if you want to see if there is a direct relationship between two variables without being affected by the influence of other variables. For example, if you want to find out if there is a relationship between level of training and success at work, it may be useful to consider the effect of age or gender as well. In that case, you could use partial correlation to find the relationship between level of training and success at work while controlling for the effects of age and gender. The partial correlation is calculated using a formula that is derived from the Pearson correlation coefficient. It is important to note that partial correlation does not imply causation, i.e. that one variable does not cause the other, but only shows that there is some association between them. Source: https://chat.openai.com/chat.
 
 #### Method calling syntax
 
-> [Matrix instance].**correlPartial**(***qFEM***, ***tpUu***, ***gxOb***)
+> [Matrix instance].**correlPartial**(***first variable***, ***second variable***, ***gxOb***)
 
 
 #### In-built default value filter
@@ -171,14 +173,14 @@ rAyq
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | qFEM | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **x** | first variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **y** | second variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 | **z** | gxOb | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 
 #### Output structure
 
 - *IIlO* `🟦 object`
-  - **r**: *pTvR* `🔴 number`
+  - **r**: *Pearson correlation coefficient* `🔴 number`
   - **p**: *significance* `🔴 number`
 
 #### Example
@@ -199,13 +201,13 @@ var partial = new Matrix(x,y,z).correlPartial(0,1,2);
 
 ---
 
-### [AAGR](#correlBiserial): correlBiserial
+### [BISERIAL CORRELATION](#correlBiserial): correlBiserial
 
-OMiA
+Biserial correlation is a statistical method that is used to evaluate the relationship between two binary variables (ie variables that can have only two possible values, such as 'yes' or 'no'). Binary variables are often used in the social sciences, for example when examining the relationship between education and employment or between smoking and health. Biserial correlation is calculated using a formula that is derived from the Pearson correlation coefficient. It is important to note that biserial correlation does not imply causation, i.e. that one variable does not cause the other, but only shows that there is some association between them.
 
 #### Method calling syntax
 
-> [Matrix instance].**correlBiserial**(***qFEM***, ***tpUu***)
+> [Matrix instance].**correlBiserial**(***first variable***, ***second variable***)
 
 
 #### In-built default value filter
@@ -216,13 +218,13 @@ rAyq
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | qFEM | [🟣] boQk | OCKc | ✔️ |  |
-| **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **x** | first variable | [🟣] boQk | OCKc | ✔️ |  |
+| **y** | second variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 
 #### Output structure
 
 - *IIlO* `🟦 object`
-  - **r**: *pTvR* `🔴 number`
+  - **r**: *Pearson correlation coefficient* `🔴 number`
   - **p**: *significance* `🔴 number`
 
 #### Example
@@ -233,35 +235,13 @@ rAyq
 
 ---
 
-### [EJTT](#correlPhi): correlPhi
+### [T-TEST (INDEPENDENT)](#ttestind): ttestind
 
-jAGi
-
-#### Method calling syntax
-
-> [Matrix instance].**correlPhi**(***qFEM***, ***tpUu***)
-
-
-#### In-built default value filter
-
-rAyq
-
-#### Arguments
-
-| id | description | value type | validator | required | default value |
-| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | qFEM | [🟣] boQk | null | ✔️ |  |
-| **y** | tpUu | [🟣] boQk | null | ✔️ |  |
-
----
-
-### [YQRH](#ttestind): ttestind
-
-gILL
+Returns the statistical log of the Student's t-test for two independent samples that are defined by an eigenvariable (that is, two numeric vectors). Arguments are either two numeric vectors, or one numeric and only a factor vector (usually text, but can also be numeric or binary). If a vector that has more than two unique values is used as a factor, only the first two unique values found are considered for the test (the others are ignored) - in this case, the information about the size of the pure sample is irrelevant, however, the level of significance to which the sample size enters, it is already based on pure cases.
 
 #### Method calling syntax
 
-> [Matrix instance].**ttestind**(***qFEM***, *tpUu*)
+> [Matrix instance].**ttestind**(***first variable***, *second variable*)
 
 
 #### In-built default value filter
@@ -272,8 +252,8 @@ CPwN
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | qFEM | 🔢 DfLu | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
-| **factor** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
+| **vectors** | first variable | 🔢 DfLu | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
+| **factor** | second variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
 
 #### Output structure
 
@@ -290,13 +270,13 @@ var M = new Matrix([],[]).ttestind(0,1);
 
 ---
 
-### [MMXD](#ttestpair): ttestpair
+### [T-TEST (PAIRED)](#ttestpair): ttestpair
 
-kPqo
+Returns the statistical log of a paired t-test for two dependent samples. Empty values are cut out in the row cross-section, i.e. that if at least one value is missing in one row, the entire row is cut from the analysis.
 
 #### Method calling syntax
 
-> [Matrix instance].**ttestpair**(***qFEM***, ***tpUu***)
+> [Matrix instance].**ttestpair**(***first variable***, ***second variable***)
 
 
 #### In-built default value filter
@@ -307,8 +287,8 @@ rAyq
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | qFEM | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **x** | first variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **y** | second variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 
 #### Output structure
 
@@ -414,7 +394,7 @@ vzHj
 
 #### Method calling syntax
 
-> [Matrix instance].**mwu**(***qFEM***, *tpUu*)
+> [Matrix instance].**mwu**(***first variable***, *second variable*)
 
 
 #### In-built default value filter
@@ -425,8 +405,8 @@ CPwN
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | qFEM | 🔢 DfLu | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
-| **factor** | tpUu | 🟤 any type | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
+| **vectors** | first variable | 🔢 DfLu | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
+| **factor** | second variable | 🟤 any type | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
 
 #### Output structure
 
@@ -469,7 +449,7 @@ rAyq
 - *Root* `🟦 object`
   - **model**: *OBml* `🟡 string`
   - **r2**: *VqBH* `🔴 number`
-  - **r**: *pTvR* `🔴 number`
+  - **r**: *Pearson correlation coefficient* `🔴 number`
   - **F**: *Jdfb* `🔴 number`
   - **p**: *MpjZ* `🔴 number`
   - **beta0**: *TDpu* `🔴 number`

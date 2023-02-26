@@ -6,14 +6,13 @@ Bablablablabla.
 
 | funkce | metoda |
 | :---: |  :---: | 
-| [correlPearson](#correlPearson) | pTvR |
-| [correlSpearman](#correlSpearman) | eJTT |
-| [correlKendall](#correlKendall) | mgBC |
-| [correlPartial](#correlPartial) | xfSf |
-| [correlBiserial](#correlBiserial) | AagR |
-| [correlPhi](#correlPhi) | eJTT |
-| [ttestind](#ttestind) | YqRh |
-| [ttestpair](#ttestpair) | mmXD |
+| [correlPearson](#correlPearson) | Pearsonův korelační koeficient |
+| [correlSpearman](#correlSpearman) | Spearmanův korelační koeficient |
+| [correlKendall](#correlKendall) | Kendallovo Tau-b |
+| [correlPartial](#correlPartial) | parciální korelace |
+| [correlBiserial](#correlBiserial) | biseriální korelace |
+| [ttestind](#ttestind) | T-test (nezávislý) |
+| [ttestpair](#ttestpair) | T-test (párový) |
 | [anovaow](#anovaow) | baJo |
 | [mwu](#mwu) | rPQr |
 | [genreg](#genreg) | vlCA |
@@ -22,13 +21,16 @@ Bablablablabla.
 
 ---
 
-### [PTVR](#correlPearson): correlPearson
+### [PEARSONŮV KORELAČNÍ KOEFICIENT](#correlPearson): correlPearson
 
-wPyG
+Vrátí statistický protokol Pearsonova korelačního koeficientu.
+Pearsonova korelace je statistická metoda, která se používá k měření vztahu mezi dvěma veličinami. Jejím cílem je zjistit, zda existuje lineární vztah mezi těmito veličinami a jaký je jeho intenzita.
+Pearsonova korelace se vypočítá pomocí vzorce, který se nazývá Pearsonův koeficient korelace. Tento koeficient se pohybuje v rozmezí od -1 do 1 a udává, jak silně je mezi veličinami vztah. Pokud je koeficient blízký -1, znamená to, že mezi veličinami je silný negativní vztah, což znamená, že když se hodnota jedné veličiny zvyšuje, hodnota druhé veličiny klesá. Naopak pokud je koeficient blízký 1, znamená to, že mezi veličinami je silný pozitivní vztah, což znamená, že když se hodnota jedné veličiny zvyšuje, hodnota druhé veličiny také roste. Pokud je koeficient blízký 0, znamená to, že mezi veličinami není žádný vztah nebo je vztah velmi slabý.
+Pearsonova korelace se používá především k porovnávání dvou kvantitativních veličin, tj. veličin, které jsou měřitelné na škále s přesnými hodnotami (například věk, výška nebo hmotnost). Může se použít k určení, zda existuje vztah mezi těmito veličinami a jaký je jeho charakter. Například může být Pearsonova korelace použita k porovnání věku a hmotnosti a zjistit, zda existuje vztah mezi těmito veličinami a jaký je jeho charakter. Může se také použít k porovnání výsledků dvou různých testů a zjistit, zda existuje vztah mezi výsledky těchto testů. Zdroj: https://chat.openai.com/chat
 
 #### Způsob volání metody
 
-> [Matrix instance].**correlPearson**(***qFEM***, ***tpUu***)
+> [Matrix instance].**correlPearson**(***první proměnná***, ***druhá proměnná***)
 
 
 #### Automatický filtr hodnot
@@ -39,13 +41,13 @@ rAyq
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | qFEM | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **y** | tpUu | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **x** | první proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
 #### Struktura vrácené hodnoty
 
 - *IIlO* `🟦 objekt`
-  - **r**: *pTvR* `🔴 číslo`
+  - **r**: *Pearsonův korelační koeficient* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
 
 #### Příklad
@@ -65,13 +67,13 @@ var correl = new Matrix(a,b).correlPearson(a,b);
 
 ---
 
-### [EJTT](#correlSpearman): correlSpearman
+### [SPEARMANŮV KORELAČNÍ KOEFICIENT](#correlSpearman): correlSpearman
 
 jAGi
 
 #### Způsob volání metody
 
-> [Matrix instance].**correlSpearman**(***qFEM***, ***tpUu***)
+> [Matrix instance].**correlSpearman**(***první proměnná***, ***druhá proměnná***)
 
 
 #### Automatický filtr hodnot
@@ -82,13 +84,13 @@ rAyq
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | qFEM | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **y** | tpUu | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **x** | první proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
 #### Struktura vrácené hodnoty
 
 - *IIlO* `🟦 objekt`
-  - **r**: *eJTT* `🔴 číslo`
+  - **r**: *Spearmanův korelační koeficient* `🔴 číslo`
   - **df**: *stupně volnostsi* `🔴 celé číslo`
   - **p**: *významnost* `🔴 číslo`
 
@@ -109,13 +111,13 @@ var M = new Matrix(a,b).correlSpearman(a,b);
 
 ---
 
-### [MGBC](#correlKendall): correlKendall
+### [KENDALLOVO TAU-B](#correlKendall): correlKendall
 
-VOmC
+Vrátí statistický protokol Kendallova korelačního koeficientu Tau-B. Pokud byste tutéž operaci počítali v SPSS, patrně dostanete mírně odlišný výsledek. Podle všeho je to vlivem odlišné citlivosti na desetinná místa u obou systémů. Na interpretaci výsledku by to nicméně zásadní vliv mít nemělo.
 
 #### Způsob volání metody
 
-> [Matrix instance].**correlKendall**(***qFEM***, ***tpUu***)
+> [Matrix instance].**correlKendall**(***první proměnná***, ***druhá proměnná***)
 
 
 #### Automatický filtr hodnot
@@ -126,8 +128,8 @@ rAyq
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | qFEM | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **y** | tpUu | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **x** | první proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
 #### Struktura vrácené hodnoty
 
@@ -154,13 +156,13 @@ var M = new Matrix(a,b).correlKendall(a,b);
 
 ---
 
-### [XFSF](#correlPartial): correlPartial
+### [PARCIÁLNÍ KORELACE](#correlPartial): correlPartial
 
-UcfZ
+Parciální korelace je statistická metoda, která vám umožňuje zjistit, jaký je vztah mezi dvěma proměnnými, přičemž se zohlední vliv třetí proměnné. To je užitečné, pokud chcete zjistit, zda existuje přímý vztah mezi dvěma proměnnými, aniž byste byli ovlivněni vlivem jiných proměnných. Například, pokud chcete zjistit, zda existuje vztah mezi úrovní školení a úspěšností v práci, může být užitečné zohlednit také vliv věku nebo pohlaví. V takovém případě byste mohli použít parciální korelaci k zjištění vztahu mezi úrovní školení a úspěšností v práci při zohlednění vlivu věku a pohlaví. Parciální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že parciální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost. Zdroj: https://chat.openai.com/chat.
 
 #### Způsob volání metody
 
-> [Matrix instance].**correlPartial**(***qFEM***, ***tpUu***, ***gxOb***)
+> [Matrix instance].**correlPartial**(***první proměnná***, ***druhá proměnná***, ***gxOb***)
 
 
 #### Automatický filtr hodnot
@@ -171,14 +173,14 @@ rAyq
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | qFEM | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **y** | tpUu | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **x** | první proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 | **z** | gxOb | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
 #### Struktura vrácené hodnoty
 
 - *IIlO* `🟦 objekt`
-  - **r**: *pTvR* `🔴 číslo`
+  - **r**: *Pearsonův korelační koeficient* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
 
 #### Příklad
@@ -199,13 +201,13 @@ var partial = new Matrix(x,y,z).correlPartial(0,1,2);
 
 ---
 
-### [AAGR](#correlBiserial): correlBiserial
+### [BISERIÁLNÍ KORELACE](#correlBiserial): correlBiserial
 
-OMiA
+Biseriální korelace je statistická metoda, která se používá k vyhodnocení vztahu mezi dvěma binárními proměnnými (tj. proměnnými, které mohou mít pouze dvě možné hodnoty, například 'ano' nebo 'ne'). Binární proměnné se často používají v sociálních vědách, například při zkoumání vztahu mezi vzděláním a zaměstnáním nebo mezi kouřením a zdravím. Biseriální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že biseriální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost.
 
 #### Způsob volání metody
 
-> [Matrix instance].**correlBiserial**(***qFEM***, ***tpUu***)
+> [Matrix instance].**correlBiserial**(***první proměnná***, ***druhá proměnná***)
 
 
 #### Automatický filtr hodnot
@@ -216,13 +218,13 @@ rAyq
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | qFEM | [🟣] boQk | OCKc | ✔️ |  |
-| **y** | tpUu | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **x** | první proměnná | [🟣] boQk | OCKc | ✔️ |  |
+| **y** | druhá proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
 #### Struktura vrácené hodnoty
 
 - *IIlO* `🟦 objekt`
-  - **r**: *pTvR* `🔴 číslo`
+  - **r**: *Pearsonův korelační koeficient* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
 
 #### Příklad
@@ -233,35 +235,13 @@ rAyq
 
 ---
 
-### [EJTT](#correlPhi): correlPhi
+### [T-TEST (NEZÁVISLÝ)](#ttestind): ttestind
 
-jAGi
-
-#### Způsob volání metody
-
-> [Matrix instance].**correlPhi**(***qFEM***, ***tpUu***)
-
-
-#### Automatický filtr hodnot
-
-rAyq
-
-#### Argumenty
-
-| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
-| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | qFEM | [🟣] boQk | null | ✔️ |  |
-| **y** | tpUu | [🟣] boQk | null | ✔️ |  |
-
----
-
-### [YQRH](#ttestind): ttestind
-
-gILL
+Vrátí statistický protokol Studentova t-testu pro dva nezávislé výběry, které jsou definovány vlastní proměnnou (tedy dvěma numerickými vektory). Argumenty tvoří buď dva numerické vektory, nebo jeden numerický a jen faktorový vektor (obvykle text, ale může být i numerický či binární). Pokud je použit jako faktor vektor, který má více než dvě unikátní hodnoty, jsou pro test uvažovány pouze první dvě unikátní nalezené hodnoty (ostatní se ignorují) - v takovém případě je informace o velikosti čistého vzorku nepodstatná, nicméně hladina významnosti, do které velikost vzorku vstupuje, je již založena na čistých případech.
 
 #### Způsob volání metody
 
-> [Matrix instance].**ttestind**(***qFEM***, *tpUu*)
+> [Matrix instance].**ttestind**(***první proměnná***, *druhá proměnná*)
 
 
 #### Automatický filtr hodnot
@@ -272,8 +252,8 @@ CPwN
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | qFEM | 🔢 DfLu | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
-| **factor** | tpUu | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
+| **vectors** | první proměnná | 🔢 DfLu | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
+| **factor** | druhá proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
 
 #### Struktura vrácené hodnoty
 
@@ -290,13 +270,13 @@ var M = new Matrix([],[]).ttestind(0,1);
 
 ---
 
-### [MMXD](#ttestpair): ttestpair
+### [T-TEST (PÁROVÝ)](#ttestpair): ttestpair
 
-kPqo
+Vrátí statistický protokol párového t-testu pro dva závislé výběry. Prázdné hodnoty jsou vyřezeny v průřezu řádků, tzn. že pokud v jednom řádku chybí alespoň jedna hodnota, je z analýzy vyřezen celý řádek.
 
 #### Způsob volání metody
 
-> [Matrix instance].**ttestpair**(***qFEM***, ***tpUu***)
+> [Matrix instance].**ttestpair**(***první proměnná***, ***druhá proměnná***)
 
 
 #### Automatický filtr hodnot
@@ -307,8 +287,8 @@ rAyq
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | qFEM | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **y** | tpUu | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **x** | první proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
 #### Struktura vrácené hodnoty
 
@@ -414,7 +394,7 @@ vzHj
 
 #### Způsob volání metody
 
-> [Matrix instance].**mwu**(***qFEM***, *tpUu*)
+> [Matrix instance].**mwu**(***první proměnná***, *druhá proměnná*)
 
 
 #### Automatický filtr hodnot
@@ -425,8 +405,8 @@ CPwN
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | qFEM | 🔢 DfLu | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
-| **factor** | tpUu | 🟤 cokoliv | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
+| **vectors** | první proměnná | 🔢 DfLu | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
+| **factor** | druhá proměnná | 🟤 cokoliv | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
 
 #### Struktura vrácené hodnoty
 
@@ -469,7 +449,7 @@ rAyq
 - *Root* `🟦 objekt`
   - **model**: *OBml* `🟡 text`
   - **r2**: *VqBH* `🔴 číslo`
-  - **r**: *pTvR* `🔴 číslo`
+  - **r**: *Pearsonův korelační koeficient* `🔴 číslo`
   - **F**: *Jdfb* `🔴 číslo`
   - **p**: *MpjZ* `🔴 číslo`
   - **beta0**: *TDpu* `🔴 číslo`

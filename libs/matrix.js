@@ -1114,6 +1114,7 @@ const MatrixMethodsModels = [
             }
         ]
     },
+    /*
     {   name: "correlPhi",
         fn: matrixMethods.correlPhi,
         example: null,
@@ -1143,6 +1144,7 @@ const MatrixMethodsModels = [
             }            
         ]
     },
+    */
     {   name: "ttestind",
         fn: matrixMethods.ttest_independent,
         filter: filters.anovaLikeMatrix,
