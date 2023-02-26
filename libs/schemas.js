@@ -737,11 +737,7 @@ const matrixResultSchemas = {
                 "title": "Jdfb", 
                 "type": "number"
             },
-            "p": {
-                "$id": "#root/p", 
-                "title": "MpjZ", 
-                "type": "number"
-            },
+            "p": snippets.sig,
             "beta0": {
                 "$id": "#root/beta0", 
                 "title": "TDpu", 

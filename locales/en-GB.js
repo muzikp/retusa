@@ -195,5 +195,11 @@ module.exports = {
 	"UtZD": "log",
 	"SCOx": "hyperbole",
 	"QaJi": "exponential",
-	"HUMA": "quadratic"
+	"HUMA": "quadratic",
+	"TkNf": "U test",
+	"Shpv": "Z test",
+	"VqBH": "R2 ( coefficient of determination)",
+	"Jdfb": "F test",
+	"TDpu": "beta0 (constant)",
+	"eFcW": "beta1 (coefficient)"
 }

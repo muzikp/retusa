@@ -195,5 +195,11 @@ module.exports = {
 	"UtZD": "logarytmovaný",
 	"SCOx": "hyperbolický",
 	"QaJi": "exponenciální",
-	"HUMA": "kvadratický"
+	"HUMA": "kvadratický",
+	"TkNf": "U test",
+	"Shpv": "Z test",
+	"VqBH": "R2 (koeficient determinace)",
+	"Jdfb": "F test",
+	"TDpu": "beta0 (konstanta)",
+	"eFcW": "beta1 (koeficient)"
 }

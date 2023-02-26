@@ -337,7 +337,7 @@ Removes empty values from vectors without deleting a row in one vector affecting
 #### Output structure
 
 - *ANOVA (one-way)* `🟦 object`
-  - **F**: *Jdfb* `🔴 number`
+  - **F**: *F test* `🔴 number`
   - **P2**: *HksP* `🔴 number`
   - **p**: *MpjZ* `🔴 number`
   - **n**: *total of cases* `🔴 whole number (integer)`
@@ -411,8 +411,8 @@ Removes empty values from vectors without deleting a row in one vector affecting
 #### Output structure
 
 - *Root* `🟦 object`
-  - **U**: *TkNf* `🔴 number`
-  - **Z**: *Shpv* `🔴 number`
+  - **U**: *U test* `🔴 number`
+  - **Z**: *Z test* `🔴 number`
   - **p**: *significance* `🔴 number`
 
 #### Example
@@ -450,12 +450,12 @@ Selects all data from the original matrix (ie no filtering).
 
 - *Root* `🟦 object`
   - **model**: *regression model* `🟡 string`
-  - **r2**: *VqBH* `🔴 number`
+  - **r2**: *R2 ( coefficient of determination)* `🔴 number`
   - **r**: *Pearson correlation coefficient* `🔴 number`
-  - **F**: *Jdfb* `🔴 number`
-  - **p**: *MpjZ* `🔴 number`
-  - **beta0**: *TDpu* `🔴 number`
-  - **beta1**: *eFcW* `🔴 number`
+  - **F**: *F test* `🔴 number`
+  - **p**: *significance* `🔴 number`
+  - **beta0**: *beta0 (constant)* `🔴 number`
+  - **beta1**: *beta1 (coefficient)* `🔴 number`
 
 #### Example
 
@@ -537,7 +537,7 @@ Removes empty values from vectors without deleting a row in one vector affecting
 #### Output structure
 
 - *ANOVA (one-way)* `🟦 object`
-  - **F**: *Jdfb* `🔴 number`
+  - **F**: *F test* `🔴 number`
   - **P2**: *HksP* `🔴 number`
   - **p**: *MpjZ* `🔴 number`
   - **n**: *total of cases* `🔴 whole number (integer)`

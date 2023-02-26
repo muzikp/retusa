@@ -337,7 +337,7 @@ Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom v
 #### Struktura vrácené hodnoty
 
 - *ANOVA (jednofaktorová)* `🟦 objekt`
-  - **F**: *Jdfb* `🔴 číslo`
+  - **F**: *F test* `🔴 číslo`
   - **P2**: *HksP* `🔴 číslo`
   - **p**: *MpjZ* `🔴 číslo`
   - **n**: *počet případů* `🔴 celé číslo`
@@ -411,8 +411,8 @@ Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom v
 #### Struktura vrácené hodnoty
 
 - *Root* `🟦 objekt`
-  - **U**: *TkNf* `🔴 číslo`
-  - **Z**: *Shpv* `🔴 číslo`
+  - **U**: *U test* `🔴 číslo`
+  - **Z**: *Z test* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
 
 #### Příklad
@@ -450,12 +450,12 @@ Vybere všechna data z původní matice (tj. žádná filtrace).
 
 - *Root* `🟦 objekt`
   - **model**: *regresní model* `🟡 text`
-  - **r2**: *VqBH* `🔴 číslo`
+  - **r2**: *R2 (koeficient determinace)* `🔴 číslo`
   - **r**: *Pearsonův korelační koeficient* `🔴 číslo`
-  - **F**: *Jdfb* `🔴 číslo`
-  - **p**: *MpjZ* `🔴 číslo`
-  - **beta0**: *TDpu* `🔴 číslo`
-  - **beta1**: *eFcW* `🔴 číslo`
+  - **F**: *F test* `🔴 číslo`
+  - **p**: *významnost* `🔴 číslo`
+  - **beta0**: *beta0 (konstanta)* `🔴 číslo`
+  - **beta1**: *beta1 (koeficient)* `🔴 číslo`
 
 #### Příklad
 
@@ -537,7 +537,7 @@ Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom v
 #### Struktura vrácené hodnoty
 
 - *ANOVA (jednofaktorová)* `🟦 objekt`
-  - **F**: *Jdfb* `🔴 číslo`
+  - **F**: *F test* `🔴 číslo`
   - **P2**: *HksP* `🔴 číslo`
   - **p**: *MpjZ* `🔴 číslo`
   - **n**: *počet případů* `🔴 celé číslo`
