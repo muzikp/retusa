@@ -1,6 +1,7 @@
 "use strict";
 
-var {NumericVector, StringVector, BooleanVector, Vector, $} = require("./vector");
+var {NumericVector, StringVector, BooleanVector, Vector} = require("./vector");
+var $ = require("./locale").call;
 var {filters, validators, enumerators} = require("./parsers");
 var {matrixResultSchemas, argumentSchemas, OutputSchema, FormMatrixSchema} = require("./schemas");
 const {Array, Math, String, Function} = require("./extensions");
@@ -400,12 +401,6 @@ class MatrixAnalysis {
                     output.push(validatorFn(arg));
                 }
             }
-            /*
-            if(!ts[i].required) {
-                if((arg === null || arg === undefined)) output.push(ts[i].default || null);
-                else output.push(validatorFn(arg));
-            }
-            */
             else {
                 if(!arg && arg !== false && arg !== 0) throw new ArgumentError($("dSWt", {name: ts[i].name, title: $(ts[i]?.title), method: $(this.model.wiki?.title)}), this); 
                 else output.push(validatorFn(arg))    
@@ -422,7 +417,6 @@ class MatrixAnalysis {
     run() {
         this.runStart = new Date();
         if(!this.parent) return new Empty($("jrQP"));
-        //if(!this.matrix) this.prepare();
         if([...arguments].length > 0) this.validate(...arguments);
         if(!this.matrix) this.prepare();
         this.result = this.model.fn(...(this.args || []));
