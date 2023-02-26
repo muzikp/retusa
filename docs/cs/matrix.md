@@ -13,11 +13,11 @@ Bablablablabla.
 | [correlBiserial](#correlBiserial) | biseriální korelace |
 | [ttestind](#ttestind) | T-test (nezávislý) |
 | [ttestpair](#ttestpair) | T-test (párový) |
-| [anovaow](#anovaow) | baJo |
-| [mwu](#mwu) | rPQr |
-| [genreg](#genreg) | vlCA |
+| [anovaow](#anovaow) | ANOVA (jednofaktorová) |
+| [mwu](#mwu) | Mann-Whitneyho test |
+| [genreg](#genreg) | lineární regrese |
 | [contingency](#contingency) | gRix |
-| [kwanova](#kwanova) | baJo |
+| [kwanova](#kwanova) | ANOVA (jednofaktorová) |
 
 ---
 
@@ -314,13 +314,13 @@ var test = new Matrix([2,3,2,4,5], [9,8,7,9,10]).ttestpair(0,1);
 
 ---
 
-### [BAJO](#anovaow): anovaow
+### [ANOVA (JEDNOFAKTOROVÁ)](#anovaow): anovaow
 
-qqQo
+Vrátí statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Metoda má dva argumenty. První tvoří řada numerických vektorů, kde minimálně jeden vektor je povinný. Druhý argument je nepovinný a představuje shlukovací faktor, tedy textovou proměnnou, která v řádcích určuje příslučnost numerického faktoru ke skupině. Pokud je zadán druhý parametr, z první skupiny vektorů je zohledňován pouze první.
 
 #### Způsob volání metody
 
-> [Matrix instance].**anovaow**(***iJaa***, *iJEe*)
+> [Matrix instance].**anovaow**(***vektor/y***, *skupinový faktor*)
 
 
 #### Automatický filtr hodnot
@@ -331,12 +331,12 @@ Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom v
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | iJaa | 🔢 matice | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
-| **factor** | iJEe | 🔢 matice | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
+| **vectors** | vektor/y | 🔢 matice | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
+| **factor** | skupinový faktor | 🔢 matice | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
 
 #### Struktura vrácené hodnoty
 
-- *baJo* `🟦 objekt`
+- *ANOVA (jednofaktorová)* `🟦 objekt`
   - **F**: *Jdfb* `🔴 číslo`
   - **P2**: *HksP* `🔴 číslo`
   - **p**: *MpjZ* `🔴 číslo`
@@ -388,9 +388,9 @@ var M = new Matrix([2,3,2,4,5,9,8,7,9,10,1,7,19,32,90],[1,1,1,1,1,2,2,2,2,2,3,3,
 
 ---
 
-### [RPQR](#mwu): mwu
+### [MANN-WHITNEYHO TEST](#mwu): mwu
 
-vzHj
+Vrátí statistický protokol Mann-Whitneyho U testu. Ve statistice je tento tent (také nazývaný Mann–Whitney–Wilcoxon (MWW/MWU), Wilcoxonův rank-sum test nebo Wilcoxon–Mann–Whitney test) neparametrický test nulové hypotézy, která náhodně vybrané hodnoty X a Y ze dvou populací, přičemž pravděpodobnost, že X bude větší než Y, se rovná pravděpodobnosti, že Y bude větší než X. Zdroj: https://en.wikipedia.org/wiki/Mann-Whitney_U_test
 
 #### Způsob volání metody
 
@@ -423,13 +423,15 @@ var M = new Matrix([1,2,3,4,5,6,7,8,9,10],[1,3,5,7,9,11,13,15,17,19]).mwu();
 
 ---
 
-### [VLCA](#genreg): genreg
+### [LINEÁRNÍ REGRESE](#genreg): genreg
 
-dzFE
+Lineární regrese je statistická metoda používaná k nalezení vztahu mezi dvěma spojitými proměnnými. Tyto proměnné jsou obvykle označeny jako závislá proměnná a nezávislá proměnná. Cílem lineární regrese je najít nejlepší lineární aproximaci závislé proměnné v závislosti na nezávislé proměnné. Lineární regrese se používá k predikci hodnoty závislé proměnné pro danou hodnotu nezávislé proměnné, když mezi nimi existuje lineární vztah. Tento vztah je reprezentován pomocí rovnice lineární regrese, která popisuje, jak se hodnoty závislé proměnné mění v závislosti na hodnotách nezávislé proměnné. Lineární regrese je často používána v různých oblastech, jako je ekonomie, sociologie, biologie, psychologie, inženýrství a dalších.
+
+Metoda umožňuje upřesnit, pro jakou transformaci modelu (např. lineární, logaritmovanou) hledáme koeficient determinace.
 
 #### Způsob volání metody
 
-> [Matrix instance].**genreg**(***jDlm***, ***jFVv***, ***OBml***)
+> [Matrix instance].**genreg**(***nezávislá proměnná (x)***, ***závislá proměnná (y)***, ***regresní model***)
 
 
 #### Automatický filtr hodnot
@@ -440,14 +442,14 @@ Vybere všechna data z původní matice (tj. žádná filtrace).
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **independent** | jDlm | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **dependent** | jFVv | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **model** | OBml | 🟤 cokoliv | Ověří, zdali je hodnota platným členem enumerace. V opačném případě vyvolá chybu. | ✔️ | 1 |
+| **independent** | nezávislá proměnná (x) | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **dependent** | závislá proměnná (y) | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **model** | regresní model | 🟤 cokoliv | Ověří, zdali je hodnota platným členem enumerace. V opačném případě vyvolá chybu. | ✔️ | 1 |
 
 #### Struktura vrácené hodnoty
 
 - *Root* `🟦 objekt`
-  - **model**: *OBml* `🟡 text`
+  - **model**: *regresní model* `🟡 text`
   - **r2**: *VqBH* `🔴 číslo`
   - **r**: *Pearsonův korelační koeficient* `🔴 číslo`
   - **F**: *Jdfb* `🔴 číslo`
@@ -512,13 +514,13 @@ var c2 = m.continency(a,b,n);
 
 ---
 
-### [BAJO](#kwanova): kwanova
+### [ANOVA (JEDNOFAKTOROVÁ)](#kwanova): kwanova
 
-qqQo
+Vrátí statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Metoda má dva argumenty. První tvoří řada numerických vektorů, kde minimálně jeden vektor je povinný. Druhý argument je nepovinný a představuje shlukovací faktor, tedy textovou proměnnou, která v řádcích určuje příslučnost numerického faktoru ke skupině. Pokud je zadán druhý parametr, z první skupiny vektorů je zohledňován pouze první.
 
 #### Způsob volání metody
 
-> [Matrix instance].**kwanova**(***iJaa***, *iJEe*)
+> [Matrix instance].**kwanova**(***vektor/y***, *skupinový faktor*)
 
 
 #### Automatický filtr hodnot
@@ -529,12 +531,12 @@ Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom v
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | iJaa | 🔢 matice | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
-| **factor** | iJEe | 🔢 matice | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
+| **vectors** | vektor/y | 🔢 matice | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
+| **factor** | skupinový faktor | 🔢 matice | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
 
 #### Struktura vrácené hodnoty
 
-- *baJo* `🟦 objekt`
+- *ANOVA (jednofaktorová)* `🟦 objekt`
   - **F**: *Jdfb* `🔴 číslo`
   - **P2**: *HksP* `🔴 číslo`
   - **p**: *MpjZ* `🔴 číslo`

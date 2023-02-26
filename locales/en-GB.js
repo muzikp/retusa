@@ -178,5 +178,22 @@ module.exports = {
 	"mgBA": "Tau-a",
 	"boQk": "binary (boolean) vector",
 	"OCKc": "Checks if the value is of type binary (boolean) vector. Otherwise, it will throw an error.",
-	"CPwN": "Removes empty values from vectors without deleting a row in one vector affecting another vector."
+	"CPwN": "Removes empty values from vectors without deleting a row in one vector affecting another vector.",
+	"Blaz": "The input can be any value, the validator does not return an error.",
+	"baJo": "ANOVA (one-way)",
+	"qqQo": "Returns the One-way ANOVA statistical log. The method has two arguments. The first consists of a series of numerical vectors, where at least one vector is mandatory. The second argument is optional and represents the grouping factor, i.e. a text variable that determines whether the numerical factor belongs to the group in the rows. If the second parameter is specified, only the first of the first group of vectors is taken into account.",
+	"iJaa": "vector(s)",
+	"iJEe": "grouping factor",
+	"rPQr": "Mann-Whitney test",
+	"vzHj": "Returns the statistical log of the Mann-Whitney U test. In statistics, this test (also called Mann–Whitney–Wilcoxon (MWW/MWU), Wilcoxon rank-sum test, or Wilcoxon–Mann–Whitney test) is a nonparametric test of the null hypothesis that randomly selected values of X and Y from two populations, with the probability , that X will be greater than Y is equal to the probability that Y will be greater than X. Source: https://en.wikipedia.org/wiki/Mann-Whitney_U_test",
+	"vlCA": "linear regression",
+	"dzFE": "Linear regression is a statistical method used to find the relationship between two continuous variables. These variables are usually labeled as the dependent variable and the independent variable. The goal of linear regression is to find the best linear approximation of the dependent variable as a function of the independent variable. Linear regression is used to predict the value of the dependent variable for a given value of the independent variable when there is a linear relationship between them. This relationship is represented using a linear regression equation that describes how the values of the dependent variable change depending on the values of the independent variable. Linear regression is often used in various fields such as economics, sociology, biology, psychology, engineering and others.\n\nThe method allows us to specify for which transformation of the model (eg linear, logarithmic) we are looking for the coefficient of determination.",
+	"jDlm": "independent variable (x)",
+	"jFVv": "dependent variable (y)",
+	"OBml": "regression model",
+	"Cpsw": "linear",
+	"UtZD": "log",
+	"SCOx": "hyperbole",
+	"QaJi": "exponential",
+	"HUMA": "quadratic"
 }

@@ -13,11 +13,11 @@ Bablablablabla.
 | [correlBiserial](#correlBiserial) | biserial correlation |
 | [ttestind](#ttestind) | T-test (independent) |
 | [ttestpair](#ttestpair) | T-test (paired) |
-| [anovaow](#anovaow) | baJo |
-| [mwu](#mwu) | rPQr |
-| [genreg](#genreg) | vlCA |
+| [anovaow](#anovaow) | ANOVA (one-way) |
+| [mwu](#mwu) | Mann-Whitney test |
+| [genreg](#genreg) | linear regression |
 | [contingency](#contingency) | gRix |
-| [kwanova](#kwanova) | baJo |
+| [kwanova](#kwanova) | ANOVA (one-way) |
 
 ---
 
@@ -314,13 +314,13 @@ var test = new Matrix([2,3,2,4,5], [9,8,7,9,10]).ttestpair(0,1);
 
 ---
 
-### [BAJO](#anovaow): anovaow
+### [ANOVA (ONE-WAY)](#anovaow): anovaow
 
-qqQo
+Returns the One-way ANOVA statistical log. The method has two arguments. The first consists of a series of numerical vectors, where at least one vector is mandatory. The second argument is optional and represents the grouping factor, i.e. a text variable that determines whether the numerical factor belongs to the group in the rows. If the second parameter is specified, only the first of the first group of vectors is taken into account.
 
 #### Method calling syntax
 
-> [Matrix instance].**anovaow**(***iJaa***, *iJEe*)
+> [Matrix instance].**anovaow**(***vector(s)***, *grouping factor*)
 
 
 #### In-built default value filter
@@ -331,12 +331,12 @@ Removes empty values from vectors without deleting a row in one vector affecting
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | iJaa | 🔢 matrix | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
-| **factor** | iJEe | 🔢 matrix | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
+| **vectors** | vector(s) | 🔢 matrix | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
+| **factor** | grouping factor | 🔢 matrix | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
 
 #### Output structure
 
-- *baJo* `🟦 object`
+- *ANOVA (one-way)* `🟦 object`
   - **F**: *Jdfb* `🔴 number`
   - **P2**: *HksP* `🔴 number`
   - **p**: *MpjZ* `🔴 number`
@@ -388,9 +388,9 @@ var M = new Matrix([2,3,2,4,5,9,8,7,9,10,1,7,19,32,90],[1,1,1,1,1,2,2,2,2,2,3,3,
 
 ---
 
-### [RPQR](#mwu): mwu
+### [MANN-WHITNEY TEST](#mwu): mwu
 
-vzHj
+Returns the statistical log of the Mann-Whitney U test. In statistics, this test (also called Mann–Whitney–Wilcoxon (MWW/MWU), Wilcoxon rank-sum test, or Wilcoxon–Mann–Whitney test) is a nonparametric test of the null hypothesis that randomly selected values of X and Y from two populations, with the probability , that X will be greater than Y is equal to the probability that Y will be greater than X. Source: https://en.wikipedia.org/wiki/Mann-Whitney_U_test
 
 #### Method calling syntax
 
@@ -423,13 +423,15 @@ var M = new Matrix([1,2,3,4,5,6,7,8,9,10],[1,3,5,7,9,11,13,15,17,19]).mwu();
 
 ---
 
-### [VLCA](#genreg): genreg
+### [LINEAR REGRESSION](#genreg): genreg
 
-dzFE
+Linear regression is a statistical method used to find the relationship between two continuous variables. These variables are usually labeled as the dependent variable and the independent variable. The goal of linear regression is to find the best linear approximation of the dependent variable as a function of the independent variable. Linear regression is used to predict the value of the dependent variable for a given value of the independent variable when there is a linear relationship between them. This relationship is represented using a linear regression equation that describes how the values of the dependent variable change depending on the values of the independent variable. Linear regression is often used in various fields such as economics, sociology, biology, psychology, engineering and others.
+
+The method allows us to specify for which transformation of the model (eg linear, logarithmic) we are looking for the coefficient of determination.
 
 #### Method calling syntax
 
-> [Matrix instance].**genreg**(***jDlm***, ***jFVv***, ***OBml***)
+> [Matrix instance].**genreg**(***independent variable (x)***, ***dependent variable (y)***, ***regression model***)
 
 
 #### In-built default value filter
@@ -440,14 +442,14 @@ Selects all data from the original matrix (ie no filtering).
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **independent** | jDlm | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **dependent** | jFVv | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **model** | OBml | 🟤 any type | Checks if the value is a valid enumeration member. Otherwise, it will throw an error. | ✔️ | 1 |
+| **independent** | independent variable (x) | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **dependent** | dependent variable (y) | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **model** | regression model | 🟤 any type | Checks if the value is a valid enumeration member. Otherwise, it will throw an error. | ✔️ | 1 |
 
 #### Output structure
 
 - *Root* `🟦 object`
-  - **model**: *OBml* `🟡 string`
+  - **model**: *regression model* `🟡 string`
   - **r2**: *VqBH* `🔴 number`
   - **r**: *Pearson correlation coefficient* `🔴 number`
   - **F**: *Jdfb* `🔴 number`
@@ -512,13 +514,13 @@ var c2 = m.continency(a,b,n);
 
 ---
 
-### [BAJO](#kwanova): kwanova
+### [ANOVA (ONE-WAY)](#kwanova): kwanova
 
-qqQo
+Returns the One-way ANOVA statistical log. The method has two arguments. The first consists of a series of numerical vectors, where at least one vector is mandatory. The second argument is optional and represents the grouping factor, i.e. a text variable that determines whether the numerical factor belongs to the group in the rows. If the second parameter is specified, only the first of the first group of vectors is taken into account.
 
 #### Method calling syntax
 
-> [Matrix instance].**kwanova**(***iJaa***, *iJEe*)
+> [Matrix instance].**kwanova**(***vector(s)***, *grouping factor*)
 
 
 #### In-built default value filter
@@ -529,12 +531,12 @@ Removes empty values from vectors without deleting a row in one vector affecting
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | iJaa | 🔢 matrix | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
-| **factor** | iJEe | 🔢 matrix | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
+| **vectors** | vector(s) | 🔢 matrix | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
+| **factor** | grouping factor | 🔢 matrix | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
 
 #### Output structure
 
-- *baJo* `🟦 object`
+- *ANOVA (one-way)* `🟦 object`
   - **F**: *Jdfb* `🔴 number`
   - **P2**: *HksP* `🔴 number`
   - **p**: *MpjZ* `🔴 number`

@@ -422,7 +422,7 @@ any value type
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **value** | the lookup value | 🟤 any type | Blaz | ✔️ |  |
+| **value** | the lookup value | 🟤 any type | The input can be any value, the validator does not return an error. | ✔️ |  |
 | **confidenceLevel** | level of importance | 🔴 number | Checks if the value is a number between 0 and 1 (including boundary values). Otherwise, it will throw an error. | - | 0.95 |
 
 #### Integration by Vector type

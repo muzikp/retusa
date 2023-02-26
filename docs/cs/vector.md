@@ -422,7 +422,7 @@ jakýkoliv typ hodnoty
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **value** | hledaná hodnota | 🟤 cokoliv | Blaz | ✔️ |  |
+| **value** | hledaná hodnota | 🟤 cokoliv | Vstupem může být libovolná hodnota, validátor nevrací chybu. | ✔️ |  |
 | **confidenceLevel** | hladina významnosti | 🔴 číslo | Ověří, zdali je hodnota číslo mezi 0 a 1 (včetně hraničních hodnot). V opačném případě vyvolá chybu. | - | 0.95 |
 
 #### Integrace dle třídy

@@ -178,5 +178,22 @@ module.exports = {
 	"mgBA": "Tau-a",
 	"boQk": "binární vektor",
 	"OCKc": "Ověří, zdali je hodnota typu binárního vektoru. V opačném případě vyvolá chybu.",
-	"CPwN": "Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom vektoru ovlivnilo jiný vektor."
+	"CPwN": "Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom vektoru ovlivnilo jiný vektor.",
+	"Blaz": "Vstupem může být libovolná hodnota, validátor nevrací chybu.",
+	"baJo": "ANOVA (jednofaktorová)",
+	"qqQo": "Vrátí statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Metoda má dva argumenty. První tvoří řada numerických vektorů, kde minimálně jeden vektor je povinný. Druhý argument je nepovinný a představuje shlukovací faktor, tedy textovou proměnnou, která v řádcích určuje příslučnost numerického faktoru ke skupině. Pokud je zadán druhý parametr, z první skupiny vektorů je zohledňován pouze první.",
+	"iJaa": "vektor/y",
+	"iJEe": "skupinový faktor",
+	"rPQr": "Mann-Whitneyho test",
+	"vzHj": "Vrátí statistický protokol Mann-Whitneyho U testu. Ve statistice je tento tent (také nazývaný Mann–Whitney–Wilcoxon (MWW/MWU), Wilcoxonův rank-sum test nebo Wilcoxon–Mann–Whitney test) neparametrický test nulové hypotézy, která náhodně vybrané hodnoty X a Y ze dvou populací, přičemž pravděpodobnost, že X bude větší než Y, se rovná pravděpodobnosti, že Y bude větší než X. Zdroj: https://en.wikipedia.org/wiki/Mann-Whitney_U_test",
+	"vlCA": "lineární regrese",
+	"dzFE": "Lineární regrese je statistická metoda používaná k nalezení vztahu mezi dvěma spojitými proměnnými. Tyto proměnné jsou obvykle označeny jako závislá proměnná a nezávislá proměnná. Cílem lineární regrese je najít nejlepší lineární aproximaci závislé proměnné v závislosti na nezávislé proměnné. Lineární regrese se používá k predikci hodnoty závislé proměnné pro danou hodnotu nezávislé proměnné, když mezi nimi existuje lineární vztah. Tento vztah je reprezentován pomocí rovnice lineární regrese, která popisuje, jak se hodnoty závislé proměnné mění v závislosti na hodnotách nezávislé proměnné. Lineární regrese je často používána v různých oblastech, jako je ekonomie, sociologie, biologie, psychologie, inženýrství a dalších.\n\nMetoda umožňuje upřesnit, pro jakou transformaci modelu (např. lineární, logaritmovanou) hledáme koeficient determinace.",
+	"jDlm": "nezávislá proměnná (x)",
+	"jFVv": "závislá proměnná (y)",
+	"OBml": "regresní model",
+	"Cpsw": "lineární",
+	"UtZD": "logarytmovaný",
+	"SCOx": "hyperbolický",
+	"QaJi": "exponenciální",
+	"HUMA": "kvadratický"
 }
