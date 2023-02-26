@@ -4,7 +4,7 @@ Bablablablabla.
 
 ## Statistické metody
 
-| wRbe | rlTY |
+| funkce | metoda |
 | :---: |  :---: | 
 | [correlPearson](#correlPearson) | pTvR |
 | [correlSpearman](#correlSpearman) | eJTT |
@@ -26,12 +26,12 @@ Bablablablabla.
 
 wPyG
 
-#### oPEt
+#### Způsob volání metody
 
 > [Matrix instance].**correlPearson**(***qFEM***, ***tpUu***)
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
 rAyq
 
@@ -39,16 +39,16 @@ rAyq
 
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | qFEM | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **x** | qFEM | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | tpUu | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
 - *IIlO* `🟦 kLhB`
-  - **r**: *pTvR* `🔴 number`
-  - **p**: *significance* `🔴 number`
+  - **r**: *pTvR* `🔴 číslo`
+  - **p**: *významnost* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var a = new NumericVector([3, 7, 5, 10, 9, 8, 4, 1, 6, 2]);
@@ -69,12 +69,12 @@ var correl = new Matrix(a,b).correlPearson(a,b);
 
 jAGi
 
-#### oPEt
+#### Způsob volání metody
 
 > [Matrix instance].**correlSpearman**(***qFEM***, ***tpUu***)
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
 rAyq
 
@@ -82,17 +82,17 @@ rAyq
 
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | qFEM | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **x** | qFEM | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | tpUu | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
 - *IIlO* `🟦 kLhB`
-  - **r**: *eJTT* `🔴 number`
-  - **df**: *degrees of freedom* `c llQx`
-  - **p**: *significance* `🔴 number`
+  - **r**: *eJTT* `🔴 číslo`
+  - **df**: *stupně volnostsi* `c llQx`
+  - **p**: *významnost* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var a = new NumericVector([3, 7, 5, 10, 9, 8, 4, 1, 6, 1]);
@@ -113,12 +113,12 @@ var M = new Matrix(a,b).correlSpearman(a,b);
 
 VOmC
 
-#### oPEt
+#### Způsob volání metody
 
 > [Matrix instance].**correlKendall**(***qFEM***, ***tpUu***)
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
 rAyq
 
@@ -126,18 +126,18 @@ rAyq
 
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | qFEM | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **x** | qFEM | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | tpUu | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
 - *IIlO* `🟦 kLhB`
-  - **taub**: *NgVa* `🔴 number`
-  - **taua**: *mgBA* `🔴 number`
-  - **df**: *degrees of freedom* `c llQx`
-  - **p**: *significance* `🔴 number`
+  - **taub**: *NgVa* `🔴 číslo`
+  - **taua**: *mgBA* `🔴 číslo`
+  - **df**: *stupně volnostsi* `c llQx`
+  - **p**: *významnost* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var a = new NumericVector([3, 7, 5, 10, 9, 8, 4, 1, 6, 1]);
@@ -158,12 +158,12 @@ var M = new Matrix(a,b).correlKendall(a,b);
 
 UcfZ
 
-#### oPEt
+#### Způsob volání metody
 
 > [Matrix instance].**correlPartial**(***qFEM***, ***tpUu***, ***gxOb***)
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
 rAyq
 
@@ -171,17 +171,17 @@ rAyq
 
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | qFEM | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **z** | gxOb | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **x** | qFEM | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | tpUu | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **z** | gxOb | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
 - *IIlO* `🟦 kLhB`
-  - **r**: *pTvR* `🔴 number`
-  - **p**: *significance* `🔴 number`
+  - **r**: *pTvR* `🔴 číslo`
+  - **p**: *významnost* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var x = new NumericVector(2,3,4,5,6,7,8,9,10,11);
@@ -203,12 +203,12 @@ var partial = new Matrix(x,y,z).correlPartial(0,1,2);
 
 OMiA
 
-#### oPEt
+#### Způsob volání metody
 
 > [Matrix instance].**correlBiserial**(***qFEM***, ***tpUu***)
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
 rAyq
 
@@ -217,15 +217,15 @@ rAyq
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | qFEM | [🟣] boQk | OCKc | ✔️ |  |
-| **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **y** | tpUu | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
 - *IIlO* `🟦 kLhB`
-  - **r**: *pTvR* `🔴 number`
-  - **p**: *significance* `🔴 number`
+  - **r**: *pTvR* `🔴 číslo`
+  - **p**: *významnost* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 
@@ -237,12 +237,12 @@ rAyq
 
 jAGi
 
-#### oPEt
+#### Způsob volání metody
 
 > [Matrix instance].**correlPhi**(***qFEM***, ***tpUu***)
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
 rAyq
 
@@ -259,12 +259,12 @@ rAyq
 
 gILL
 
-#### oPEt
+#### Způsob volání metody
 
 > [Matrix instance].**ttestind**(***qFEM***, *tpUu*)
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
 CPwN
 
@@ -272,17 +272,17 @@ CPwN
 
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | qFEM | 🔢 DfLu | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
-| **factor** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
+| **vectors** | qFEM | 🔢 DfLu | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
+| **factor** | tpUu | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
 - *Root* `🟦 kLhB`
-  - **t**: *T-value* `🔴 number`
-  - **p**: *significance* `🔴 number`
-  - **df**: *degrees of freedom* `c llQx`
+  - **t**: *hodnota testu T* `🔴 číslo`
+  - **p**: *významnost* `🔴 číslo`
+  - **df**: *stupně volnostsi* `c llQx`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var M = new Matrix([],[]).ttestind(0,1);
@@ -294,12 +294,12 @@ var M = new Matrix([],[]).ttestind(0,1);
 
 kPqo
 
-#### oPEt
+#### Způsob volání metody
 
 > [Matrix instance].**ttestpair**(***qFEM***, ***tpUu***)
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
 rAyq
 
@@ -307,17 +307,17 @@ rAyq
 
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | qFEM | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **x** | qFEM | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | tpUu | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
 - *Root* `🟦 kLhB`
-  - **t**: *T-value* `🔴 number`
-  - **p**: *significance* `🔴 number`
-  - **df**: *degrees of freedom* `c llQx`
+  - **t**: *hodnota testu T* `🔴 číslo`
+  - **p**: *významnost* `🔴 číslo`
+  - **df**: *stupně volnostsi* `c llQx`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var test = new Matrix([2,3,2,4,5], [9,8,7,9,10]).ttestpair(0,1);
@@ -338,12 +338,12 @@ var test = new Matrix([2,3,2,4,5], [9,8,7,9,10]).ttestpair(0,1);
 
 qqQo
 
-#### oPEt
+#### Způsob volání metody
 
 > [Matrix instance].**anovaow**(***iJaa***, *iJEe*)
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
 CPwN
 
@@ -351,29 +351,29 @@ CPwN
 
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | iJaa | 🔢 DfLu | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
-| **factor** | iJEe | 🔢 DfLu | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
+| **vectors** | iJaa | 🔢 DfLu | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
+| **factor** | iJEe | 🔢 DfLu | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
 - *baJo* `🟦 kLhB`
-  - **F**: *Jdfb* `🔴 number`
-  - **P2**: *HksP* `🔴 number`
-  - **p**: *MpjZ* `🔴 number`
-  - **n**: *total of cases* `c llQx`
+  - **F**: *Jdfb* `🔴 číslo`
+  - **P2**: *HksP* `🔴 číslo`
+  - **p**: *MpjZ* `🔴 číslo`
+  - **n**: *počet případů* `c llQx`
   - **ANOVA**: *qCgT* `🟦 kLhB`
     - **totalOfGroups**: *cXCr* `c llQx`
     - **betweenGroups**: *thNv* `🟦 kLhB`
-      - **sumOfSquares**: *SqTd* `🔴 number`
-      - **df**: *degrees of freedom* `c llQx`
+      - **sumOfSquares**: *SqTd* `🔴 číslo`
+      - **df**: *stupně volnostsi* `c llQx`
     - **withinGroups**: *GiRP* `🟦 kLhB`
-      - **sumOfsquares**: *SqTd* `🔴 number`
-      - **df**: *degrees of freedom* `c llQx`
+      - **sumOfsquares**: *SqTd* `🔴 číslo`
+      - **df**: *stupně volnostsi* `c llQx`
     - **total**: *Total* `🟦 kLhB`
-      - **sumOfSquares**: *Sumofsquares* `🔴 number`
+      - **sumOfSquares**: *Sumofsquares* `🔴 číslo`
       - **df**: *Df* `c llQx`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow(0,1,2);
@@ -412,12 +412,12 @@ var M = new Matrix([2,3,2,4,5,9,8,7,9,10,1,7,19,32,90],[1,1,1,1,1,2,2,2,2,2,3,3,
 
 vzHj
 
-#### oPEt
+#### Způsob volání metody
 
 > [Matrix instance].**mwu**(***qFEM***, *tpUu*)
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
 CPwN
 
@@ -425,17 +425,17 @@ CPwN
 
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | qFEM | 🔢 DfLu | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
-| **factor** | tpUu | 🟤 oMas | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
+| **vectors** | qFEM | 🔢 DfLu | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
+| **factor** | tpUu | 🟤 oMas | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
 - *Root* `🟦 kLhB`
-  - **U**: *TkNf* `🔴 number`
-  - **Z**: *Shpv* `🔴 number`
-  - **p**: *significance* `🔴 number`
+  - **U**: *TkNf* `🔴 číslo`
+  - **Z**: *Shpv* `🔴 číslo`
+  - **p**: *významnost* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var M = new Matrix([1,2,3,4,5,6,7,8,9,10],[1,3,5,7,9,11,13,15,17,19]).mwu();
@@ -447,12 +447,12 @@ var M = new Matrix([1,2,3,4,5,6,7,8,9,10],[1,3,5,7,9,11,13,15,17,19]).mwu();
 
 dzFE
 
-#### oPEt
+#### Způsob volání metody
 
 > [Matrix instance].**genreg**(***jDlm***, ***jFVv***, ***OBml***)
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
 rAyq
 
@@ -460,22 +460,22 @@ rAyq
 
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **independent** | jDlm | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **dependent** | jFVv | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **independent** | jDlm | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **dependent** | jFVv | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 | **model** | OBml | 🟤 oMas | aaVG | ✔️ | 1 |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
 - *Root* `🟦 kLhB`
-  - **model**: *OBml* `🟡 string`
-  - **r2**: *VqBH* `🔴 number`
-  - **r**: *pTvR* `🔴 number`
-  - **F**: *Jdfb* `🔴 number`
-  - **p**: *MpjZ* `🔴 number`
-  - **beta0**: *TDpu* `🔴 number`
-  - **beta1**: *eFcW* `🔴 number`
+  - **model**: *OBml* `🟡 text`
+  - **r2**: *VqBH* `🔴 číslo`
+  - **r**: *pTvR* `🔴 číslo`
+  - **F**: *Jdfb* `🔴 číslo`
+  - **p**: *MpjZ* `🔴 číslo`
+  - **beta0**: *TDpu* `🔴 číslo`
+  - **beta1**: *eFcW* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 
@@ -487,7 +487,7 @@ rAyq
 
 fqwd
 
-#### oPEt
+#### Způsob volání metody
 
 > [Matrix instance].**contingency**(***gLRN***, ***bpjC***, *fqUi*)
 
@@ -496,20 +496,20 @@ fqwd
 
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | gLRN | 🟤 oMas | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **y** | bpjC | 🟤 oMas | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **n** | fqUi | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
+| **x** | gLRN | 🟤 oMas | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | bpjC | 🟤 oMas | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **n** | fqUi | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
 - *gRix* `🟦 kLhB`
-  - **phi**: *GfeP* `🔴 number`
-  - **p**: *significance* `🔴 number`
-  - **df**: *degrees of freedom* `c llQx`
-  - **C**: *BUaN* `🔴 number`
-  - **V**: *VYQH* `🔴 number`
+  - **phi**: *GfeP* `🔴 číslo`
+  - **p**: *významnost* `🔴 číslo`
+  - **df**: *stupně volnostsi* `c llQx`
+  - **C**: *BUaN* `🔴 číslo`
+  - **V**: *VYQH* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var a = new StringVector("A","A","A","B","B","B","C","C","C","C");
@@ -536,12 +536,12 @@ var c2 = m.continency(a,b,n);
 
 qqQo
 
-#### oPEt
+#### Způsob volání metody
 
 > [Matrix instance].**kwanova**(***iJaa***, *iJEe*)
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
 CPwN
 
@@ -549,29 +549,29 @@ CPwN
 
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | iJaa | 🔢 DfLu | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
-| **factor** | iJEe | 🔢 DfLu | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
+| **vectors** | iJaa | 🔢 DfLu | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
+| **factor** | iJEe | 🔢 DfLu | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
 - *baJo* `🟦 kLhB`
-  - **F**: *Jdfb* `🔴 number`
-  - **P2**: *HksP* `🔴 number`
-  - **p**: *MpjZ* `🔴 number`
-  - **n**: *total of cases* `c llQx`
+  - **F**: *Jdfb* `🔴 číslo`
+  - **P2**: *HksP* `🔴 číslo`
+  - **p**: *MpjZ* `🔴 číslo`
+  - **n**: *počet případů* `c llQx`
   - **ANOVA**: *qCgT* `🟦 kLhB`
     - **totalOfGroups**: *cXCr* `c llQx`
     - **betweenGroups**: *thNv* `🟦 kLhB`
-      - **sumOfSquares**: *SqTd* `🔴 number`
-      - **df**: *degrees of freedom* `c llQx`
+      - **sumOfSquares**: *SqTd* `🔴 číslo`
+      - **df**: *stupně volnostsi* `c llQx`
     - **withinGroups**: *GiRP* `🟦 kLhB`
-      - **sumOfsquares**: *SqTd* `🔴 number`
-      - **df**: *degrees of freedom* `c llQx`
+      - **sumOfsquares**: *SqTd* `🔴 číslo`
+      - **df**: *stupně volnostsi* `c llQx`
     - **total**: *Total* `🟦 kLhB`
-      - **sumOfSquares**: *Sumofsquares* `🔴 number`
+      - **sumOfSquares**: *Sumofsquares* `🔴 číslo`
       - **df**: *Df* `c llQx`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow(0,1,2);

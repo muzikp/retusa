@@ -4,65 +4,65 @@ Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v 
 
 ## Statistické metody
 
-| wRbe | rlTY | LOYN | zoiB | OkoC |
+| funkce | metoda | numerický | nominální | binární |
 | :---: |  :---: |  :---: |  :---: |  :---: | 
-| [kstest](#kstest) | Kolmogorov-Smirnov test | ✔️ | - | - |
+| [kstest](#kstest) | Kolmogorov-Smirnovův test | ✔️ | - | - |
 | [min](#min) | minimum | ✔️ | ✔️ | ✔️ |
-| [skewness](#skewness) | skewness | ✔️ | - | - |
+| [skewness](#skewness) | šikmost | ✔️ | - | - |
 | [histogram](#histogram) | histogram | ✔️ | - | - |
-| [median](#median) | median | ✔️ | - | - |
-| [mode](#mode) | mode | ✔️ | ✔️ | ✔️ |
-| [variance](#variance) | variance | ✔️ | - | - |
-| [ttest](#ttest) | one-sample t-test | ✔️ | - | - |
-| [pci](#pci) | confidence interval of the proportion | ✔️ | ✔️ | ✔️ |
-| [swtest](#swtest) | Shapiro-Wilk W test | ✔️ | - | - |
-| [sem](#sem) | standard error of the mean | ✔️ | - | - |
-| [frequency](#frequency) | frequency table | ✔️ | ✔️ | ✔️ |
-| [geomean](#geomean) | geometric mean | ✔️ | - | - |
-| [percentile](#percentile) | percentile | ✔️ | - | - |
-| [sum](#sum) | sum | ✔️ | - | - |
-| [harmean](#harmean) | harmonic mean | ✔️ | - | - |
-| [range](#range) | range | ✔️ | - | - |
+| [median](#median) | medián | ✔️ | - | - |
+| [mode](#mode) | modus | ✔️ | ✔️ | ✔️ |
+| [variance](#variance) | rozptyl | ✔️ | - | - |
+| [ttest](#ttest) | jednovýběrový t-test | ✔️ | - | - |
+| [pci](#pci) | interval spolehlivosti podílu | ✔️ | ✔️ | ✔️ |
+| [swtest](#swtest) | Shapirův-Wilkův W test | ✔️ | - | - |
+| [sem](#sem) | střední chyba průměru | ✔️ | - | - |
+| [frequency](#frequency) | frekvenční tabulka | ✔️ | ✔️ | ✔️ |
+| [geomean](#geomean) | geometrický průměr | ✔️ | - | - |
+| [percentile](#percentile) | percentil | ✔️ | - | - |
+| [sum](#sum) | součet | ✔️ | - | - |
+| [harmean](#harmean) | harmonický průměr | ✔️ | - | - |
+| [range](#range) | variační rozpětí | ✔️ | - | - |
 | [max](#max) | maximum | ✔️ | ✔️ | ✔️ |
-| [kurtosis](#kurtosis) | kurtosis | ✔️ | - | - |
-| [stdev](#stdev) | standard deviation | ✔️ | - | - |
-| [avg](#avg) | arithmetic mean | ✔️ | - | - |
-| [count](#count) | count | ✔️ | ✔️ | ✔️ |
-| [varc](#varc) | coefficient of variation | ✔️ | - | - |
-| [mci](#mci) | confidence interval of the mean | ✔️ | - | - |
+| [kurtosis](#kurtosis) | špičatost | ✔️ | - | - |
+| [stdev](#stdev) | směrodatná odchylka | ✔️ | - | - |
+| [avg](#avg) | aritmetický průměr | ✔️ | - | - |
+| [count](#count) | počet | ✔️ | ✔️ | ✔️ |
+| [varc](#varc) | variační koeficient | ✔️ | - | - |
+| [mci](#mci) | interval spolehlivosti průměru | ✔️ | - | - |
 
 ---
 
-### [KOLMOGOROV-SMIRNOV TEST](#kstest): kstest
+### [KOLMOGOROV-SMIRNOVŮV TEST](#kstest): kstest
 
-Returns the statistical log of the Komogorov-Smirnov normality test of the distribution of vector values. It does not currently calculate the significance level of the test. The Kolmogorov-Smirnov test (often abbreviated as the K-S test) is a statistical test used to test the hypothesis that data come from a particular distribution. This test compares the data distribution to the theoretical distribution that the data is assumed to come from and evaluates whether the data values are close enough to the theoretical distribution that the hypothesis that the data come from the given distribution can be considered true.Kolmogorov test -Smirnov is often used to test the normality of data, but it can also be used to test if the data comes from another theoretical distribution, such as the exponential or binomial distribution. The Kolmogorov-Smirnov test is generally considered to be one of the most accurate tests of normality, but it has limited sensitivity for small samples, i.e. it may be less reliable in detecting non-normality for small samples. Therefore, other tests of normality, such as the Shapiro-Wilk test or the Anderson-Darling test, are often used for small samples. [WLsu](https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test#One-sample_Kolmogorov%E2%80%93Smirnov_statistic)
+Vrátí statistický protokol Komogorov-Smirnovova testu normality rozdělení hodnot vektoru. Aktuálně nepočítá hladinu významnosti testu. Kolmogorov-Smirnov test (často také zkracovaný jako K-S test) je statistický test, který se používá k testování hypotézy, že data pocházejí z určitého rozdělení. Tento test porovnává rozdělení dat s teoretickým rozdělením, které se předpokládá, že data vycházejí, a vyhodnocuje, zda jsou datové hodnoty s teoretickým rozdělením dostatečně blízko, aby se mohla hypotéza o tom, že data pocházejí z daného rozdělení, považovat za pravdivou.Test Kolmogorov-Smirnov se často používá k ověření normality dat, ale může být také použit k ověření, zda data pocházejí z jiného teoretického rozdělení, jako je například exponenciální nebo binomické rozdělení. Test Kolmogorov-Smirnov je obecně považován za jeden z nejpřesnějších testů normality, ale má omezenou citlivost pro malé vzorky, tj. pro malé vzorky může být méně spolehlivý při detekci ne-normality. Pro malé vzorky se proto často používají jiné testy normality, jako například test Shapiro-Wilk nebo test Anderson-Darling. [WLsu](https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test#One-sample_Kolmogorov%E2%80%93Smirnov_statistic)
 
-#### oPEt
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**kstest**()
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
-GDkm
+Pouze číselné hodnoty (včetně nul).
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | - |
-| OkoC | - |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- *Kolmogorov-Smirnov test* `🟦 kLhB`
-  - **T**: *Kolmogorov-Smirnov test value* `🔴 number`
-  - **df**: *degrees of freedom* `c llQx`
-  - **p**: *significance* `🔴 number`
+- *Kolmogorov-Smirnovův test* `🟦 kLhB`
+  - **T**: *hodnota Kolmogorov-Smirnovova testu* `🔴 číslo`
+  - **df**: *stupně volnostsi* `c llQx`
+  - **p**: *významnost* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).kstest();
@@ -79,9 +79,9 @@ var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).kst
 
 ### [MINIMUM](#min): min
 
-Returns the least non-empty value. For text, returns the first value from the alphabetical order.
+Vrátí nejnižší hodnotu z neprázdných hodnot. V případě textu vrátí první hodnotu z abecedního řazení.
 
-#### oPEt
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**min**()
@@ -91,23 +91,23 @@ Returns the least non-empty value. For text, returns the first value from the al
 > (BooleanVector).<mark>**min**()
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
 ndPx
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | ✔️ |
-| OkoC | ✔️ |
+| numerický | ✔️ |
+| nominální | ✔️ |
+| binární | ✔️ |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- *any value type* `🟤 oMas`
+- *jakýkoliv typ hodnoty* `🟤 oMas`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var numeric_min = new NumericVector(4.5, 3.9, 5, 6, 7, 5.7, 9.1, 5.3, 7.2, 6.9, 6, 7.5, 5.3, 7.1, 8.2, 1).min(); /* = 1 */;
@@ -116,39 +116,39 @@ var string_min = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 ---
 
-### [SKEWNESS](#skewness): skewness
+### [ŠIKMOST](#skewness): skewness
 
-Returns the skewness of the distribution, i.e. the asymmetry of the distribution around the mean value of the vector. [WLsu](https://en.wikipedia.org/wiki/Skewness)
+Vrátí zešikmení rozdělení, tedy asymetrii rozdělení kolem střední hodnoty vektoru. [WLsu](https://en.wikipedia.org/wiki/Skewness)
 
-#### oPEt
-
-
-> (NumericVector).<mark>**skewness**(*is sample*)
+#### Způsob volání metody
 
 
-#### VVSN
+> (NumericVector).<mark>**skewness**(*výběrový soubor*)
 
-GDkm
+
+#### Automatický filtr hodnot
+
+Pouze číselné hodnoty (včetně nul).
 
 #### FRpk
 
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **s** | is sample | 🟣 binary | Checks if the value is binary in nature. Otherwise, it automatically converts the value to the boolean type and therefore never returns an error. | - |  |
+| **s** | výběrový soubor | 🟣 binární | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - |  |
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | - |
-| OkoC | - |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- ** `🔴 number`
+- *číslo* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var skewness_population = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).skewness(false); /* = 0.52*/
@@ -159,44 +159,44 @@ var skewness_sample = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,2
 
 ### [HISTOGRAM](#histogram): histogram
 
-Returns the histogram matrix of the given vector. The method can be chosen with or without parameter specification. If the parameter 'maximum number of intervals' (maxIntervals) is not specified, its value is automatically calculated as the variation range/root of the number of elements. If the parameter 'fixed interval size' (fixedInterval) is specified, this value is taken as decisive for the number of intervals. The two values are not compatible (although they do not return an error), when specifying both, the maxIntervals parameter is taken as a priority. [WLsu](https://en.wikipedia.org/wiki/Histogram)
+Vrátí matici histogramu daného vektoru. Metodu lze volit s upřesněním parametrů nebo i bez nich. Pokud není upřesněn parametr 'maximální počet intervalů' (maxIntervals), je jeho hodnota automaticky vypočítána jako variační rozpětí/odmocnina z počtu prvků. Pokud je uveden parametr 'pevná velikost intervalu' (fixedInterval), je brána tato hodnota jako rozhodující pro počet intervalu. Obě dvě hodnoty nejsou slučitelné (ačkoliv nevrací chybu), při zadání obou dvou je jako prioritní brán parametr maxIntervals. [WLsu](https://en.wikipedia.org/wiki/Histogram)
 
-#### oPEt
-
-
-> (NumericVector).<mark>**histogram**(*maximum intervals*, *fixed interval*)
+#### Způsob volání metody
 
 
-#### VVSN
+> (NumericVector).<mark>**histogram**(*maximální počet intervalů*, *pevná velikost intervalu*)
 
-GDkm
+
+#### Automatický filtr hodnot
+
+Pouze číselné hodnoty (včetně nul).
 
 #### FRpk
 
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **maxIntervals** | maximum intervals | 🔴 number | dFiw | - |  |
-| **fixedInterval** | fixed interval | 🔴 number | bpCq | - |  |
+| **maxIntervals** | maximální počet intervalů | 🔴 číslo | dFiw | - |  |
+| **fixedInterval** | pevná velikost intervalu | 🔴 číslo | bpCq | - |  |
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | - |
-| OkoC | - |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
 - *histogram* `🟩 qdkt`
-  - **from**: *the lower limit of the interval* `🔴 number`
-  - **to**: *the upper limit of the interval* `🔴 number`
-  - **n**: *frequency (abs.)* `c llQx`
-  - **nc**: *cumulative frequency (abs.)* `c llQx`
-  - **p**: *frequency (%)* `🟤 oMas`
-  - **pc**: *cumulative frequency (%)* `🟤 oMas`
+  - **from**: *spodní mez intervalu* `🔴 číslo`
+  - **to**: *horní mez intervalu* `🔴 číslo`
+  - **n**: *četnost (abs.)* `c llQx`
+  - **nc**: *kumulativní četnost (abs.)* `c llQx`
+  - **p**: *četnost (%)* `🟤 oMas`
+  - **pc**: *kumulativní četnost (%)* `🟤 oMas`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var score = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1);
@@ -239,33 +239,33 @@ var h3 = score.histogram(null, 2)
 
 ---
 
-### [MEDIAN](#median): median
+### [MEDIÁN](#median): median
 
-Returns the median, or middle value, of the non-empty values of a vector. This is the 50% percentile. [WLsu](https://en.wikipedia.org/wiki/Median)
+Vrátí medián neboli střední hodnotu z neprázdných hodnot vektoru. Jedná se o 50% percentil. [WLsu](https://en.wikipedia.org/wiki/Median)
 
-#### oPEt
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**median**()
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
-GDkm
+Pouze číselné hodnoty (včetně nul).
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | - |
-| OkoC | - |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- ** `🔴 number`
+- *číslo* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var median = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).median(); /* = 21*/
@@ -273,11 +273,11 @@ var median = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,2
 
 ---
 
-### [MODE](#mode): mode
+### [MODUS](#mode): mode
 
-Returns the most frequent value in the vector (if the most frequent value is empty, returns the empty value). If there are more of the most frequent values (e.g. the frequency of X and Y values is the same), it returns the first value found in the vector. [WLsu](https://en.wikipedia.org/wiki/Mode_(statistics))
+Vrátí nejčastější hodnotu ve vektoru (pokud je nejčastější prázdná hodnota, vrátí prázdnou hodnotu). Pokud je nejčastějších hodnot více (např. četnost hodnot X  a Y je shodná), vrátí tu hodnotu, kterou ve vektoru nalezne jako první. [WLsu](https://en.wikipedia.org/wiki/Mode_(statistics))
 
-#### oPEt
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**mode**()
@@ -287,19 +287,19 @@ Returns the most frequent value in the vector (if the most frequent value is emp
 > (BooleanVector).<mark>**mode**()
 
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | ✔️ |
-| OkoC | ✔️ |
+| numerický | ✔️ |
+| nominální | ✔️ |
+| binární | ✔️ |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- *any value type* `🟤 oMas`
+- *jakýkoliv typ hodnoty* `🟤 oMas`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var x = new NumericVector(1,2,3,4,3,4,5,3).mode(); /* = 3 */
@@ -309,39 +309,39 @@ var z = new BooleanVector(true, false, true).mode(); /* = true */
 
 ---
 
-### [VARIANCE](#variance): variance
+### [ROZPTYL](#variance): variance
 
-Returns the variance value of this vector. The variance value is equal to the square of the standard deviation. [WLsu](https://en.wikipedia.org/wiki/Variance)
+Vrátí hodnotu rozptylu tohoto vektoru. Hodnota rozptylu je rovná druhé mocnině ze směrodatné odchylky. [WLsu](https://en.wikipedia.org/wiki/Variance)
 
-#### oPEt
-
-
-> (NumericVector).<mark>**variance**(*is sample*)
+#### Způsob volání metody
 
 
-#### VVSN
+> (NumericVector).<mark>**variance**(*výběrový soubor*)
 
-GDkm
+
+#### Automatický filtr hodnot
+
+Pouze číselné hodnoty (včetně nul).
 
 #### FRpk
 
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **s** | is sample | 🟣 binary | Checks if the value is binary in nature. Otherwise, it automatically converts the value to the boolean type and therefore never returns an error. | - |  |
+| **s** | výběrový soubor | 🟣 binární | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - |  |
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | - |
-| OkoC | - |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- ** `🔴 number`
+- *číslo* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var population = new NumericVector(10,20,15,25,23,19,18,17,24,23).variance();  /* = 19.44 */
@@ -350,42 +350,42 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).variance(true); /*
 
 ---
 
-### [ONE-SAMPLE T-TEST](#ttest): ttest
+### [JEDNOVÝBĚROVÝ T-TEST](#ttest): ttest
 
-Returns the statistical log for a one-sample t-test given the population mean.
+Vrátí statistický protokol pro jednovýběrový t-test při zadání populačního průměru.
 
-#### oPEt
-
-
-> (NumericVector).<mark>**ttest**(***population mean***)
+#### Způsob volání metody
 
 
-#### VVSN
+> (NumericVector).<mark>**ttest**(***populační průměr***)
 
-GDkm
+
+#### Automatický filtr hodnot
+
+Pouze číselné hodnoty (včetně nul).
 
 #### FRpk
 
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **populationMean** | population mean | 🔴 number | Checks if the value is a number. Otherwise, it will throw an error. | ✔️ |  |
+| **populationMean** | populační průměr | 🔴 číslo | Ověří, zdali je hodnota číslo. V opačném případě vyvolá chybu. | ✔️ |  |
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | - |
-| OkoC | - |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- *one-sample t-test* `🟦 kLhB`
-  - **t**: *T-value* `🔴 number`
-  - **p**: *significance* `🔴 number`
-  - **n**: *total of cases* `c llQx`
+- *jednovýběrový t-test* `🟦 kLhB`
+  - **t**: *hodnota testu T* `🔴 číslo`
+  - **p**: *významnost* `🔴 číslo`
+  - **n**: *počet případů* `c llQx`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var T = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1).ttest(10);
@@ -400,49 +400,49 @@ var T = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1)
 
 ---
 
-### [CONFIDENCE INTERVAL OF THE PROPORTION](#pci): pci
+### [INTERVAL SPOLEHLIVOSTI PODÍLU](#pci): pci
 
-Returns the statistical log of the confidence interval estimate of the sample proportion at a specified significance level. [WLsu](https://en.wikipedia.org/wiki/Confidence_interval)
+Vrátí statistický protokol odhadu intervalu spolehlivosti podílu výběrového souboru při určité hladině významnosti. [WLsu](https://en.wikipedia.org/wiki/Confidence_interval)
 
-#### oPEt
-
-
-> (NumericVector).<mark>**pci**(***the lookup value***, *level of importance*)
-
-> (StringVector).<mark>**pci**(***the lookup value***, *level of importance*)
-
-> (BooleanVector).<mark>**pci**(***the lookup value***, *level of importance*)
+#### Způsob volání metody
 
 
-#### VVSN
+> (NumericVector).<mark>**pci**(***hledaná hodnota***, *hladina významnosti*)
 
-any value type
+> (StringVector).<mark>**pci**(***hledaná hodnota***, *hladina významnosti*)
+
+> (BooleanVector).<mark>**pci**(***hledaná hodnota***, *hladina významnosti*)
+
+
+#### Automatický filtr hodnot
+
+jakýkoliv typ hodnoty
 
 #### FRpk
 
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **value** | the lookup value | 🟤 oMas | Blaz | ✔️ |  |
-| **confidenceLevel** | level of importance | 🔴 number | Checks if the value is a number between 0 and 1 (including boundary values). Otherwise, it will throw an error. | - | 0.95 |
+| **value** | hledaná hodnota | 🟤 oMas | Blaz | ✔️ |  |
+| **confidenceLevel** | hladina významnosti | 🔴 číslo | Ověří, zdali je hodnota číslo mezi 0 a 1 (včetně hraničních hodnot). V opačném případě vyvolá chybu. | - | 0.95 |
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | ✔️ |
-| OkoC | ✔️ |
+| numerický | ✔️ |
+| nominální | ✔️ |
+| binární | ✔️ |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- *confidence interval of the proportion* `🟦 kLhB`
-  - **p**: *value share in %* `🟤 oMas`
-  - **sig**: *level of significance* `🔴 number`
-  - **delta**: *confidence interval (+-)* `🟤 oMas`
-  - **lb**: *lower limit of the interval* `🟤 oMas`
-  - **ub**: *upper limit of the interval* `🟤 oMas`
+- *interval spolehlivosti podílu* `🟦 kLhB`
+  - **p**: *podíl hodnoty v %* `🟤 oMas`
+  - **sig**: *hladina významnosti* `🔴 číslo`
+  - **delta**: *interval spolehlivosti (+-)* `🟤 oMas`
+  - **lb**: *spodní hranice intervalu* `🟤 oMas`
+  - **ub**: *horní hranice intervalu* `🟤 oMas`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).pci(5, 0.95);
@@ -459,36 +459,36 @@ var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).pc
 
 ---
 
-### [SHAPIRO-WILK W TEST](#swtest): swtest
+### [SHAPIRŮV-WILKŮV W TEST](#swtest): swtest
 
-Returns the statistical log of the Shapiro-Wilk W test of normality of the distribution of vector values. The Shapiro-Wilk test is a statistical test used to test the hypothesis that the data come from a normal distribution. This test is often used to verify the normality of data in statistical analysis. The Shapiro-Wilk test is based on comparing the value of the quartiles of the data with the values of the quartiles of a normal distribution. When the quartile values of the data are similar to the quartile values of the normal distribution, it is likely that the data comes from a normal distribution. Otherwise, it is likely that the data is not normal. When using the Shapiro-Wilk test, it should be noted that this test has low sensitivity for large samples, i.e. for large samples the test may be less reliable in detecting non-normality. Therefore, other tests of normality, such as the Anderson-Darling test or the Kolmogorov-Smirnov test, are often used for large samples. [WLsu](https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test)
+Vrátí statistický protokol Shapiro-Wilkova W testu normality rozdělení hodnot vektoru. Shapiro-Wilk test je statistický test, který se používá k testování hypotézy, že data pocházejí z normálního rozdělení. Tento test je často používán k ověření normality dat v rámci statistické analýzy. Test Shapiro-Wilk se zakládá na porovnání hodnoty kvartilů dat s hodnotami kvartilů normálního rozdělení. Když jsou hodnoty kvartilů dat podobné hodnotám kvartilů normálního rozdělení, je pravděpodobné, že data pocházejí z normálního rozdělení. V opačném případě je pravděpodobné, že data nejsou normální. Při použití testu Shapiro-Wilk je třeba si uvědomit, že tento test má nízkou citlivost pro velké vzorky, tj. pro velké vzorky může být test méně spolehlivý při detekci ne-normality. Proto se pro velké vzorky často používají jiné testy normality, jako například test Anderson-Darling nebo test Kolmogorov-Smirnov. [WLsu](https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test)
 
-#### oPEt
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**swtest**()
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
-GDkm
+Pouze číselné hodnoty (včetně nul).
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | - |
-| OkoC | - |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- *Shapiro-Wilk W test* `🟦 kLhB`
-  - **W**: *W-test value* `🔴 number`
-  - **df**: *degrees of freedom* `c llQx`
-  - **p**: *significance* `🔴 number`
+- *Shapirův-Wilkův W test* `🟦 kLhB`
+  - **W**: *hodnota W-testu* `🔴 číslo`
+  - **df**: *stupně volnostsi* `c llQx`
+  - **p**: *významnost* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).swtest();
@@ -503,33 +503,33 @@ var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).swt
 
 ---
 
-### [STANDARD ERROR OF THE MEAN](#sem): sem
+### [STŘEDNÍ CHYBA PRŮMĚRU](#sem): sem
 
-Returns the value of the standard error of the estimate of the mean. The standard error of the mean is a statistical measure of the variability of the sample mean of the estimated parameter in the entire population. This is an estimate of the standard deviation of the sample mean. The mean error of the mean is calculated as the ratio of the estimated standard deviation of the sample mean to the square root of the sample size. The larger the sample size, the smaller the mean error of the mean, meaning that the estimate of the sample mean is more accurate and more closely aligned with the entire population mean. The mean error of the mean is useful for estimating confidence intervals of the sample mean, which allows us to determine how accurately it estimates the population mean. [WLsu](https://en.wikipedia.org/wiki/Standard_error#Standard_error_of_the_sample_mean)
+Vrátí hodnotu směrodatné chyby odhadu průměru. Střední chyba průměru (anglicky 'standard error of the mean', odtud zkratka SEM) je statistická míra variability výběrového průměru odhadovaného parametru v celé populaci. Jedná se o odhad standardní odchylky průměru výběrového souboru. Střední chyba průměru se vypočítá jako poměr odhadované standardní odchylky výběrového průměru k odmocnině z velikosti výběru. Čím větší je velikost výběru, tím menší je střední chyba průměru, což znamená, že odhad výběrového průměru je přesnější a blíže se shoduje s průměrem celé populace. Střední chyba průměru je užitečná pro odhadování intervalů spolehlivosti výběrového průměru, což umožňuje určit, jak přesně odhaduje průměr populace. [WLsu](https://en.wikipedia.org/wiki/Standard_error#Standard_error_of_the_sample_mean)
 
-#### oPEt
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**sem**()
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
-GDkm
+Pouze číselné hodnoty (včetně nul).
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | - |
-| OkoC | - |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- ** `🔴 number`
+- *číslo* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).SEM(); /* = 0.67*/
@@ -537,41 +537,41 @@ var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,2
 
 ---
 
-### [FREQUENCY TABLE](#frequency): frequency
+### [FREKVENČNÍ TABULKA](#frequency): frequency
 
-Returns a frequency table object with the breakdown of elements and their frequency. [WLsu](https://en.wikipedia.org/wiki/Frequency_(statistics))
+Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností. [WLsu](https://en.wikipedia.org/wiki/Frequency_(statistics))
 
-#### oPEt
+#### Způsob volání metody
 
 
-> (NumericVector).<mark>**frequency**(*table order mode*)
+> (NumericVector).<mark>**frequency**(*způsob řazení dat tabulky*)
 
-> (StringVector).<mark>**frequency**(*table order mode*)
+> (StringVector).<mark>**frequency**(*způsob řazení dat tabulky*)
 
-> (BooleanVector).<mark>**frequency**(*table order mode*)
+> (BooleanVector).<mark>**frequency**(*způsob řazení dat tabulky*)
 
 
 #### FRpk
 
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **order** | table order mode | c llQx | aaVG | - | 1 |
+| **order** | způsob řazení dat tabulky | c llQx | aaVG | - | 1 |
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | ✔️ |
-| OkoC | ✔️ |
+| numerický | ✔️ |
+| nominální | ✔️ |
+| binární | ✔️ |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- *frequency table* `🟩 qdkt`
-  - **value**: *value* `🟤 oMas`
-  - **frequency**: *frequency table* `c llQx`
+- *frekvenční tabulka* `🟩 qdkt`
+  - **value**: *hodnota* `🟤 oMas`
+  - **frequency**: *četnost* `c llQx`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var numeric_vector_no_order = new NumericVector(5,2,3,2,3,3,1,6,3).frequency();
@@ -612,33 +612,33 @@ var boolean_vector_desc_frequency = new BooleanVector(true, false, null, true, n
 
 ---
 
-### [GEOMETRIC MEAN](#geomean): geomean
+### [GEOMETRICKÝ PRŮMĚR](#geomean): geomean
 
-The geometric mean is a statistical indicator that is used to calculate the average value of some number or quantity. Unlike the arithmetic mean, which is calculated as the sum of all values in a set divided by the number of those values, the geometric mean is calculated as the nth root of the product of n numbers in the set. The geometric mean is often used to calculate growth or cumulative return in investments because it accounts for changes in the percentage growth of values over time. It is also used in geometry to calculate the average side length of an n-gon and in biology to calculate the average size of cells or organisms in a population. [WLsu](https://en.wikipedia.org/wiki/Geometric_mean)
+Geometrický průměr je statistický ukazatel, který se používá k výpočtu průměrné hodnoty nějakého množství čísel nebo veličin. Na rozdíl od aritmetického průměru, který se počítá jako součet všech hodnot v sadě dělený počtem těchto hodnot, se geometrický průměr počítá jako n-tá odmocnina součinu n čísel v sadě. Geometrický průměr se často používá pro výpočet růstu nebo kumulativního výnosu v investicích, protože zohledňuje změny v procentuálním růstu hodnot v průběhu času. Dále se používá v geometrii pro výpočet průměrné délky strany n-úhelníku a v biologii pro výpočet průměrné velikosti buněk nebo organismů v populaci. [WLsu](https://en.wikipedia.org/wiki/Geometric_mean)
 
-#### oPEt
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**geomean**()
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
-GDkm
+Pouze číselné hodnoty (včetně nul).
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | - |
-| OkoC | - |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- ** `🔴 number`
+- *číslo* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).geomean(); /* = 21.24*/
@@ -646,39 +646,39 @@ var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29
 
 ---
 
-### [PERCENTILE](#percentile): percentile
+### [PERCENTIL](#percentile): percentile
 
-Using the percentile, we can examine the distribution of a numerical series, by first sorting the series from the smallest to the largest member (number), and then selecting the first N % of members (this N is a parameter), where the last member in the selection represents the given percentile, a specific number . If the number of members in the sample is even, the percentile is calculated as the average of two adjacent values, if it is even, the percentile is just the last value. [WLsu](https://en.wikipedia.org/wiki/Percentile)
+Pomocí percentilu můžeme zkoumat rozdělení numerické řady, a to tak, že řadu nejprve seřadíme od nejmenšího po největšího člena (číslo), a následně vybereme první N % členů (toto N je parametrem), kdy poslední člen ve výběru představuje daný percentil, konkrétní číslo. Pokud je počet členů ve výběru sudý, počítá se percentil jako průměr z dvou sousedících hodnot, pokud je sudý, percentilem je právě poslední hodnota. [WLsu](https://en.wikipedia.org/wiki/Percentile)
 
-#### oPEt
-
-
-> (NumericVector).<mark>**percentile**(***percentile value***)
+#### Způsob volání metody
 
 
-#### VVSN
+> (NumericVector).<mark>**percentile**(***hodnota percentilu***)
 
-GDkm
+
+#### Automatický filtr hodnot
+
+Pouze číselné hodnoty (včetně nul).
 
 #### FRpk
 
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **k** | percentile value | 🔴 number | Checks if the value is a number between 0 and 1 (including boundary values). Otherwise, it will throw an error. | ✔️ |  |
+| **k** | hodnota percentilu | 🔴 číslo | Ověří, zdali je hodnota číslo mezi 0 a 1 (včetně hraničních hodnot). V opačném případě vyvolá chybu. | ✔️ |  |
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | - |
-| OkoC | - |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- ** `🔴 number`
+- *číslo* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var score = new NumericVector(10,20,15,25,23,19,18,17,24,23);
@@ -689,33 +689,33 @@ var max = score.percentile(1); /* = 25 */
 
 ---
 
-### [SUM](#sum): sum
+### [SOUČET](#sum): sum
 
-Returns the sum of all non-empty numeric values of a vector. [WLsu](https://en.wikipedia.org/wiki/Addition)
+Vrátí součet všech neprázdných číselných hodnot vektoru. [WLsu](https://en.wikipedia.org/wiki/Addition)
 
-#### oPEt
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**sum**()
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
-GDkm
+Pouze číselné hodnoty (včetně nul).
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | - |
-| OkoC | - |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- ** `🔴 number`
+- *číslo* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var cashflow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 600 */
@@ -723,33 +723,33 @@ var cashflow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 
 
 ---
 
-### [HARMONIC MEAN](#harmean): harmean
+### [HARMONICKÝ PRŮMĚR](#harmean): harmean
 
-The harmonic mean is a statistical indicator that is used to calculate the average value of some number or quantity. Unlike the arithmetic mean and the geometric mean, which are based on the addition or multiplication of values, the harmonic mean is calculated as the quotient of the number of numbers in the set and the sum of their reciprocals. The harmonic mean is used in situations where it is important to account for how speed or power changes over time or in different situations. For example, it is used to calculate average speed, average power or average resistance in electronic circuits. It is also used in finance to calculate the average return on investments over different time periods. [WLsu](https://en.wikipedia.org/wiki/Harmonic_mean)
+Harmonický průměr je statistický ukazatel, který se používá k výpočtu průměrné hodnoty nějakého množství čísel nebo veličin. Na rozdíl od aritmetického průměru a geometrického průměru, které jsou založeny na sčítání nebo násobení hodnot, se harmonický průměr počítá jako podíl počtu čísel v sadě a součtu jejich převrácených hodnot. Harmonický průměr se používá v situacích, kdy je důležité zohlednit, jak se rychlost nebo výkon mění v průběhu času nebo v různých situacích. Například se používá k výpočtu průměrné rychlosti, průměrného výkonu nebo průměrného odporu v elektronických obvodech. Také se používá v oblasti finance pro výpočet průměrného výnosu z investic v různých časových obdobích. [WLsu](https://en.wikipedia.org/wiki/Harmonic_mean)
 
-#### oPEt
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**harmean**()
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
-GDkm
+Pouze číselné hodnoty (včetně nul).
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | - |
-| OkoC | - |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- ** `🔴 number`
+- *číslo* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var x = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).harmean(); /* = 21.03*/
@@ -757,33 +757,33 @@ var x = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,
 
 ---
 
-### [RANGE](#range): range
+### [VARIAČNÍ ROZPĚTÍ](#range): range
 
-Returns the difference between the largest and smallest non-empty values. [WLsu](https://en.wikipedia.org/wiki/Range_(statistics))
+Vrátí rozdíl největší a nejmenší neprázdné hodnoty. [WLsu](https://en.wikipedia.org/wiki/Range_(statistics))
 
-#### oPEt
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**range**()
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
-GDkm
+Pouze číselné hodnoty (včetně nul).
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | - |
-| OkoC | - |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- ** `🔴 number`
+- *číslo* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var range = new NumericVector(5,2,-15,-16.3,12,null, null, 12,13,7).range(); /* = 22 */
@@ -793,9 +793,9 @@ var range = new NumericVector(5,2,-15,-16.3,12,null, null, 12,13,7).range(); /* 
 
 ### [MAXIMUM](#max): max
 
-Returns the highest non-empty value. In the case of text, it returns the last value from the alphabetical order.
+Vrátí nejvyšší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení.
 
-#### oPEt
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**max**()
@@ -805,23 +805,23 @@ Returns the highest non-empty value. In the case of text, it returns the last va
 > (BooleanVector).<mark>**max**()
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
 ndPx
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | ✔️ |
-| OkoC | ✔️ |
+| numerický | ✔️ |
+| nominální | ✔️ |
+| binární | ✔️ |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- *any value type* `🟤 oMas`
+- *jakýkoliv typ hodnoty* `🟤 oMas`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var numeric_max = new NumericVector(4.5, 3.9, 5, 6, 7, 5.7, 9.1, 5.3, 7.2, 6.9, 6, 7.5, 5.3, 7.1, 8.2, 1).max(); /* = 9.1 */;
@@ -830,35 +830,35 @@ var string_max = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 ---
 
-### [KURTOSIS](#kurtosis): kurtosis
+### [ŠPIČATOST](#kurtosis): kurtosis
 
-Returns the excess value of the data set. In statistics, kurtosis refers to the measure of how much the values in a collection of data differ from the mean value. Skewness is usually calculated for a data distribution curve, which is a graphical representation of the distribution of values in a given collection of data.
-There are two basic types of kurtosis: platykurtosis and leptokurtosis. Platykurtosis occurs when the values of a vector are distributed more or less uniformly around the mean value. This distribution appears as a U-shaped distribution curve that has a flat top. Conversely, leptokurtosis occurs when the values in a data collection are distributed with a significant deviation from the mean value. This distribution manifests itself as a 'peaked hill letter' or 'pointed valley letter' shaped distribution curve.
-Skewedness is used to determine whether the distribution of values in a collection of data is more or less uniform, or whether there are any significant deviations from the mean value. Skewness is often used along with other metrics such as median, skewness, and quantiles to help you better understand the distribution of data and determine if there are any significant deviations from the mean value. [WLsu](https://en.wikipedia.org/wiki/Kurtosis)
+Vrátí hodnotu excesu množiny dat. Ve statistice špičatost (kurtosis) označuje míru, jak moc se hodnoty v sbírce dat liší od průměrné hodnoty. Špičatost se obvykle počítá pro křivku rozdělení dat, která je grafickým zobrazením rozložení hodnot v dané sbírce dat.
+Existují dva základní typy špičatosti: platykurtóza a leptokurtóza. Platykurtóza se vyskytuje, když hodnoty vektoru jsou rozloženy víceméně rovnoměrně kolem průměrné hodnoty. Toto rozložení se projevuje jako křivka rozdělení tvaru písmene U, která má plochý vrchol. Naopak leptokurtóza se vyskytuje, když hodnoty v sbírce dat jsou rozloženy s výraznou odchylkou od průměrné hodnoty. Toto rozložení se projevuje jako křivka rozdělení tvaru 'písmene špičatého kopce' nebo 'písmene špičatého údolí'.
+Špičatost se používá k určení, zda je rozložení hodnot v sbírce dat víceméně rovnoměrné, nebo zda existují nějaké výrazné odchylky od průměrné hodnoty. Špičatost se často používá spolu s dalšími metrikami, jako je medián, šikmost a kvantily, které vám pomohou lépe porozumět rozložení dat a určit, zda existují nějaké výrazné odchylky od průměrné hodnoty. [WLsu](https://en.wikipedia.org/wiki/Kurtosis)
 
-#### oPEt
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**kurtosis**()
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
-GDkm
+Pouze číselné hodnoty (včetně nul).
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | - |
-| OkoC | - |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- ** `🔴 number`
+- *číslo* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var kurtosis = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).kurtosis(); /* = 0.425*/
@@ -866,39 +866,39 @@ var kurtosis = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24
 
 ---
 
-### [STANDARD DEVIATION](#stdev): stdev
+### [SMĚRODATNÁ ODCHYLKA](#stdev): stdev
 
-Returns the standard deviation of non-empty values. The standard deviation is a statistical indicator that indicates how much the values in a given data set differ from each other. The standard deviation is expressed as a number that indicates how much the average value deviates from the true value in a given data set. The standard deviation is useful when comparing the amount of dispersion of data in different sets or in different groups within a single data set. The larger the standard deviation, the more the values in a given data set differ from each other. [WLsu](https://en.wikipedia.org/wiki/Standard_deviation)
+Vrátí směrodatnou odchylku neprázdných hodnot. Směrodatná odchylka je statistický ukazatel, který udává, jak moc se hodnoty v daném souboru dat od sebe liší. Směrodatná odchylka je vyjádřena jako číslo, které udává, o kolik se průměrná hodnota odchýlí od skutečné hodnoty v daném souboru dat. Směrodatná odchylka je užitečná při porovnávání velikosti rozptýlení dat v různých souborech nebo v různých skupinách v rámci jednoho souboru dat. Čím je směrodatná odchylka větší, tím více se hodnoty v daném souboru dat od sebe liší. [WLsu](https://en.wikipedia.org/wiki/Standard_deviation)
 
-#### oPEt
-
-
-> (NumericVector).<mark>**stdev**(*is sample*)
+#### Způsob volání metody
 
 
-#### VVSN
+> (NumericVector).<mark>**stdev**(*výběrový soubor*)
 
-GDkm
+
+#### Automatický filtr hodnot
+
+Pouze číselné hodnoty (včetně nul).
 
 #### FRpk
 
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **s** | is sample | 🟣 binary | Checks if the value is binary in nature. Otherwise, it automatically converts the value to the boolean type and therefore never returns an error. | - |  |
+| **s** | výběrový soubor | 🟣 binární | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - |  |
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | - |
-| OkoC | - |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- ** `🔴 number`
+- *číslo* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var population = new NumericVector(10,20,15,25,23,19,18,17,24,23).stdev();  /* = 4.41 */
@@ -907,33 +907,33 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).stdev(true); /* = 
 
 ---
 
-### [ARITHMETIC MEAN](#avg): avg
+### [ARITMETICKÝ PRŮMĚR](#avg): avg
 
-Returns the arithmetic mean (i.e. the quotient of the sum and the number of vector values) of all non-empty values (i.e. including zeros). [WLsu](https://en.wikipedia.org/wiki/Arithmetic_mean)
+Vrátí aritmetický průměr (tedy podíl součtu a počtu hodnot vektoru) ze všech neprázdných hodnot (tedy včetně nul). [WLsu](https://en.wikipedia.org/wiki/Arithmetic_mean)
 
-#### oPEt
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**avg**()
 
 
-#### VVSN
+#### Automatický filtr hodnot
 
-GDkm
+Pouze číselné hodnoty (včetně nul).
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | - |
-| OkoC | - |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- ** `🔴 number`
+- *číslo* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var avgCashFlow = new NumericVector(200,250,150,320,240,-250,10,-320).avg();  /* = 75 */
@@ -941,11 +941,11 @@ var avgCashFlow = new NumericVector(200,250,150,320,240,-250,10,-320).avg();  /*
 
 ---
 
-### [COUNT](#count): count
+### [POČET](#count): count
 
-Returns the count of all members of a vector, including empty values.
+Vrátí počet všech členů vektoru, včetně prázdných hodnot.
 
-#### oPEt
+#### Způsob volání metody
 
 
 > (NumericVector).<mark>**count**()
@@ -955,19 +955,19 @@ Returns the count of all members of a vector, including empty values.
 > (BooleanVector).<mark>**count**()
 
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | ✔️ |
-| OkoC | ✔️ |
+| numerický | ✔️ |
+| nominální | ✔️ |
+| binární | ✔️ |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- *whole positive nunber (inc. zero)* `c llQx`
+- *celé číslo větší nebo rovné nule* `c llQx`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var total_numeric = new NumericVector(200,250,null,150,320,240,-250,null,10,-320).count();  /* = 10 */
@@ -977,39 +977,39 @@ var total_boolean = new BooleanVector(true, true, false, null, false, true).coun
 
 ---
 
-### [COEFFICIENT OF VARIATION](#varc): varc
+### [VARIAČNÍ KOEFICIENT](#varc): varc
 
-The coefficient of variation (also called relative variance) is a statistical indicator that measures the degree of variability or dispersion of data relative to its mean value. It is a dimensionless measure of variability that allows the variance of different data sets to be compared regardless of the units in which the data are expressed. The coefficient of variation is calculated as the ratio of the standard deviation (sigma) to the mean (x) in the data set, multiplied by 100 to express it as a percentage. where the coefficient of variation is low, it means that the data are relatively homogeneous or not widely dispersed relative to the mean. If, on the other hand, it is high, it means that the data is very diverse or significantly different from the average. The coefficient of variation is mainly used to compare the variability between different data sets. For example, it is often used in biology, medicine, economics, psychology, and sociology to measure the variability of different populations or groups. [WLsu](https://en.wikipedia.org/wiki/Coefficient_of_variation)
+Variační koeficient (také nazývaný relativní rozptyl) je statistický ukazatel, který měří míru variability nebo rozptýlení dat vzhledem k jejich střední hodnotě. Je to bezrozměrná míra variability, která umožňuje porovnávat rozptyl různých souborů dat bez ohledu na jednotky, ve kterých jsou data vyjádřena. Variační koeficient se počítá jako poměr směrodatné odchylky (sigma) a střední hodnoty (x) v sadě dat, násobený 100 pro vyjádření v procentech. okud je variační koeficient nízký, znamená to, že data jsou poměrně homogenní nebo málo rozptýlená vzhledem k průměru. Pokud je naopak vysoký, znamená to, že data jsou velmi různorodá nebo se výrazně liší od průměru.Variační koeficient se používá především k porovnávání variability mezi různými soubory dat. Například se často používá v biologii, medicíně, ekonomii, psychologii a sociologii pro měření variability různých populací nebo skupin. [WLsu](https://en.wikipedia.org/wiki/Coefficient_of_variation)
 
-#### oPEt
-
-
-> (NumericVector).<mark>**varc**(*is sample*)
+#### Způsob volání metody
 
 
-#### VVSN
+> (NumericVector).<mark>**varc**(*výběrový soubor*)
 
-GDkm
+
+#### Automatický filtr hodnot
+
+Pouze číselné hodnoty (včetně nul).
 
 #### FRpk
 
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **s** | is sample | 🟣 binary | Checks if the value is binary in nature. Otherwise, it automatically converts the value to the boolean type and therefore never returns an error. | - |  |
+| **s** | výběrový soubor | 🟣 binární | Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu. | - |  |
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | - |
-| OkoC | - |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- ** `🔴 number`
+- *číslo* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var population = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc();  /* = 0.227 */
@@ -1018,44 +1018,44 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc(true); /* = 0
 
 ---
 
-### [CONFIDENCE INTERVAL OF THE MEAN](#mci): mci
+### [INTERVAL SPOLEHLIVOSTI PRŮMĚRU](#mci): mci
 
-Returns the statistical log of the confidence interval estimate of the sample mean at a specified significance level. If the number of cases is less than 30, the Student's T-distribution is used, otherwise the standardized normal distribution is used. [WLsu](https://en.wikipedia.org/wiki/Confidence_interval)
+Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrového souboru při určité hladině významnosti. Pokud je počet případů menší než 30, je použito Studentovo T-rozdělení, jinak je použito standardizované normální rozdělení. [WLsu](https://en.wikipedia.org/wiki/Confidence_interval)
 
-#### oPEt
-
-
-> (NumericVector).<mark>**mci**(*level of importance*)
+#### Způsob volání metody
 
 
-#### VVSN
+> (NumericVector).<mark>**mci**(*hladina významnosti*)
 
-GDkm
+
+#### Automatický filtr hodnot
+
+Pouze číselné hodnoty (včetně nul).
 
 #### FRpk
 
 | QUJS | jBGO | dmmV | tGqA | VPYX | pDgb |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **confidenceLevel** | level of importance | 🔴 number | Checks if the value is a number between 0 and 1 (including boundary values). Otherwise, it will throw an error. | - | 0.95 |
+| **confidenceLevel** | hladina významnosti | 🔴 číslo | Ověří, zdali je hodnota číslo mezi 0 a 1 (včetně hraničních hodnot). V opačném případě vyvolá chybu. | - | 0.95 |
 
-#### NizL
+#### Integrace dle třídy
 
-| AfXp | picU |
+| typ vektoru | dostupnost |
 | --- |  :---: | 
-| LOYN | ✔️ |
-| zoiB | - |
-| OkoC | - |
+| numerický | ✔️ |
+| nominální | - |
+| binární | - |
 
-#### KxQM
+#### Struktura vrácené hodnoty
 
-- *confidence interval of the mean* `🟦 kLhB`
-  - **m**: *arithmetic mean* `🔴 number`
-  - **sig**: *level of significance* `🔴 number`
-  - **delta**: *confidence interval (+-)* `🔴 number`
-  - **lb**: *lower limit of the interval* `🔴 number`
-  - **ub**: *upper limit of the interval* `🔴 number`
+- *interval spolehlivosti průměru* `🟦 kLhB`
+  - **m**: *aritmetický průměr* `🔴 číslo`
+  - **sig**: *hladina významnosti* `🔴 číslo`
+  - **delta**: *interval spolehlivosti (+-)* `🔴 číslo`
+  - **lb**: *spodní hranice intervalu* `🔴 číslo`
+  - **ub**: *horní hranice intervalu* `🔴 číslo`
 
-#### nzmJ
+#### Příklad
 
 ```js
 var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).mci(0.95);

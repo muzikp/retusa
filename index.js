@@ -43,8 +43,12 @@ module.exports = {
          * @param {module} fs FileStream module is required.
          */
         publish: function(fs){
+            Locale.setDefault("en-GB");
             fs.writeFileSync("./docs/en/vector.md", Vector.VectorOverview());
             fs.writeFileSync("./docs/en/matrix.md", Matrix.MatrixOverview());
+            Locale.setDefault("cs-CZ");
+            fs.writeFileSync("./docs/cs/vector.md", Vector.VectorOverview());
+            fs.writeFileSync("./docs/cs/matrix.md", Matrix.MatrixOverview());
         }
     }
 }
