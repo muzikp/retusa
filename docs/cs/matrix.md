@@ -17,7 +17,6 @@ Bablablablabla.
 | [mwu](#mwu) | Mann-Whitneyho test |
 | [genreg](#genreg) | lineární regrese |
 | [contingency](#contingency) | gRix |
-| [kwanova](#kwanova) | ANOVA (jednofaktorová) |
 
 ---
 
@@ -338,16 +337,16 @@ Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom v
 
 - *ANOVA (jednofaktorová)* `🟦 objekt`
   - **F**: *F test* `🔴 číslo`
-  - **P2**: *HksP* `🔴 číslo`
-  - **p**: *MpjZ* `🔴 číslo`
+  - **P2**: *P2 (koeficient závislosti)* `🔴 číslo`
+  - **p**: *významnost* `🔴 číslo`
   - **n**: *počet případů* `🔴 celé číslo`
-  - **ANOVA**: *qCgT* `🟦 objekt`
-    - **totalOfGroups**: *cXCr* `🔴 celé číslo`
-    - **betweenGroups**: *thNv* `🟦 objekt`
-      - **sumOfSquares**: *SqTd* `🔴 číslo`
+  - **ANOVA**: *statistiky ANOVA* `🟦 objekt`
+    - **totalOfGroups**: *celkem skupin* `🔴 celé číslo`
+    - **betweenGroups**: *meziskupinové efekty* `🟦 objekt`
+      - **sumOfSquares**: *suma čtverců* `🔴 číslo`
       - **df**: *stupně volnosti* `🔴 celé číslo`
-    - **withinGroups**: *GiRP* `🟦 objekt`
-      - **sumOfsquares**: *SqTd* `🔴 číslo`
+    - **withinGroups**: *vnitroskupinové efekty* `🟦 objekt`
+      - **sumOfsquares**: *suma čtverců* `🔴 číslo`
       - **df**: *stupně volnosti* `🔴 celé číslo`
     - **total**: *Total* `🟦 objekt`
       - **sumOfSquares**: *Sumofsquares* `🔴 číslo`
@@ -510,55 +509,4 @@ var c2 = m.continency(a,b,n);
 
 }
 */
-```
-
----
-
-### [ANOVA (JEDNOFAKTOROVÁ)](#kwanova): kwanova
-
-Vrátí statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Metoda má dva argumenty. První tvoří řada numerických vektorů, kde minimálně jeden vektor je povinný. Druhý argument je nepovinný a představuje shlukovací faktor, tedy textovou proměnnou, která v řádcích určuje příslučnost numerického faktoru ke skupině. Pokud je zadán druhý parametr, z první skupiny vektorů je zohledňován pouze první.
-
-#### Způsob volání metody
-
-> [Matrix instance].**kwanova**(***vektor/y***, *skupinový faktor*)
-
-
-#### Automatický filtr hodnot
-
-Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom vektoru ovlivnilo jiný vektor.
-
-#### Argumenty
-
-| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
-| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | vektor/y | 🔢 matice | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
-| **factor** | skupinový faktor | 🔢 matice | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
-
-#### Struktura vrácené hodnoty
-
-- *ANOVA (jednofaktorová)* `🟦 objekt`
-  - **F**: *F test* `🔴 číslo`
-  - **P2**: *HksP* `🔴 číslo`
-  - **p**: *MpjZ* `🔴 číslo`
-  - **n**: *počet případů* `🔴 celé číslo`
-  - **ANOVA**: *qCgT* `🟦 objekt`
-    - **totalOfGroups**: *cXCr* `🔴 celé číslo`
-    - **betweenGroups**: *thNv* `🟦 objekt`
-      - **sumOfSquares**: *SqTd* `🔴 číslo`
-      - **df**: *stupně volnosti* `🔴 celé číslo`
-    - **withinGroups**: *GiRP* `🟦 objekt`
-      - **sumOfsquares**: *SqTd* `🔴 číslo`
-      - **df**: *stupně volnosti* `🔴 celé číslo`
-    - **total**: *Total* `🟦 objekt`
-      - **sumOfSquares**: *Sumofsquares* `🔴 číslo`
-      - **df**: *Df* `🔴 celé číslo`
-
-#### Příklad
-
-```js
-var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow(0,1,2);
-/* OR */
-var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow();
-/* OR */
-var M = new Matrix([2,3,2,4,5,9,8,7,9,10,1,7,19,32,90],[1,1,1,1,1,2,2,2,2,2,3,3,3,3,3]).pivot(0,1).kwanova();
 ```

@@ -1405,43 +1405,6 @@ const MatrixMethodsModels = [
                 class: 1
             }               
         ]
-    },
-    {   name: "kwanova",
-        fn: matrixMethods.kwanova,
-        argsToMatrix: true,
-        filter: filters.anovaLikeMatrix,
-        returns: matrixResultSchemas.anovaow,
-        example: function(){
-            var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow(0,1,2);
-            /* OR */
-            var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow();
-            /* OR */
-            var M = new Matrix([2,3,2,4,5,9,8,7,9,10,1,7,19,32,90],[1,1,1,1,1,2,2,2,2,2,3,3,3,3,3]).pivot(0,1).kwanova();
-        },
-        wiki: {
-            title: "baJo",
-            description: "qqQo"
-        },
-        args: [
-                {
-                    name: "vectors",
-                    wiki: {title: "iJaa"},
-                    min: 1,
-                    type: [1],
-                    required: true,
-                    validator: validators.isNumericMatrix,
-                    schema: argumentSchemas.numericMatrix,
-                    class: 2
-                },{
-                    name: "factor",
-                    wiki: {title: "iJEe"},
-                    type: [1,2,3],
-                    required: false,
-                    validator: validators.isVector,
-                    schema: argumentSchemas.numericMatrix,
-                    class: 1
-                }
-        ]
     }
 ];
 

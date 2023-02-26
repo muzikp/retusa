@@ -201,5 +201,11 @@ module.exports = {
 	"VqBH": "R2 (koeficient determinace)",
 	"Jdfb": "F test",
 	"TDpu": "beta0 (konstanta)",
-	"eFcW": "beta1 (koeficient)"
+	"eFcW": "beta1 (koeficient)",
+	"HksP": "P2 (koeficient závislosti)",
+	"qCgT": "statistiky ANOVA",
+	"cXCr": "celkem skupin",
+	"thNv": "meziskupinové efekty",
+	"SqTd": "suma čtverců",
+	"GiRP": "vnitroskupinové efekty"
 }

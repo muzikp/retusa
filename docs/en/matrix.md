@@ -17,7 +17,6 @@ Bablablablabla.
 | [mwu](#mwu) | Mann-Whitney test |
 | [genreg](#genreg) | linear regression |
 | [contingency](#contingency) | gRix |
-| [kwanova](#kwanova) | ANOVA (one-way) |
 
 ---
 
@@ -338,16 +337,16 @@ Removes empty values from vectors without deleting a row in one vector affecting
 
 - *ANOVA (one-way)* `🟦 object`
   - **F**: *F test* `🔴 number`
-  - **P2**: *HksP* `🔴 number`
-  - **p**: *MpjZ* `🔴 number`
+  - **P2**: *P2 (dependence coefficient)* `🔴 number`
+  - **p**: *significance* `🔴 number`
   - **n**: *total of cases* `🔴 whole number (integer)`
-  - **ANOVA**: *qCgT* `🟦 object`
-    - **totalOfGroups**: *cXCr* `🔴 whole number (integer)`
-    - **betweenGroups**: *thNv* `🟦 object`
-      - **sumOfSquares**: *SqTd* `🔴 number`
+  - **ANOVA**: *ANOVA statistics* `🟦 object`
+    - **totalOfGroups**: *total of groups* `🔴 whole number (integer)`
+    - **betweenGroups**: *intergroup effects* `🟦 object`
+      - **sumOfSquares**: *sum of squares* `🔴 number`
       - **df**: *degrees of freedom* `🔴 whole number (integer)`
-    - **withinGroups**: *GiRP* `🟦 object`
-      - **sumOfsquares**: *SqTd* `🔴 number`
+    - **withinGroups**: *intragroup effects* `🟦 object`
+      - **sumOfsquares**: *sum of squares* `🔴 number`
       - **df**: *degrees of freedom* `🔴 whole number (integer)`
     - **total**: *Total* `🟦 object`
       - **sumOfSquares**: *Sumofsquares* `🔴 number`
@@ -510,55 +509,4 @@ var c2 = m.continency(a,b,n);
 
 }
 */
-```
-
----
-
-### [ANOVA (ONE-WAY)](#kwanova): kwanova
-
-Returns the One-way ANOVA statistical log. The method has two arguments. The first consists of a series of numerical vectors, where at least one vector is mandatory. The second argument is optional and represents the grouping factor, i.e. a text variable that determines whether the numerical factor belongs to the group in the rows. If the second parameter is specified, only the first of the first group of vectors is taken into account.
-
-#### Method calling syntax
-
-> [Matrix instance].**kwanova**(***vector(s)***, *grouping factor*)
-
-
-#### In-built default value filter
-
-Removes empty values from vectors without deleting a row in one vector affecting another vector.
-
-#### Arguments
-
-| id | description | value type | validator | required | default value |
-| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | vector(s) | 🔢 matrix | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
-| **factor** | grouping factor | 🔢 matrix | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
-
-#### Output structure
-
-- *ANOVA (one-way)* `🟦 object`
-  - **F**: *F test* `🔴 number`
-  - **P2**: *HksP* `🔴 number`
-  - **p**: *MpjZ* `🔴 number`
-  - **n**: *total of cases* `🔴 whole number (integer)`
-  - **ANOVA**: *qCgT* `🟦 object`
-    - **totalOfGroups**: *cXCr* `🔴 whole number (integer)`
-    - **betweenGroups**: *thNv* `🟦 object`
-      - **sumOfSquares**: *SqTd* `🔴 number`
-      - **df**: *degrees of freedom* `🔴 whole number (integer)`
-    - **withinGroups**: *GiRP* `🟦 object`
-      - **sumOfsquares**: *SqTd* `🔴 number`
-      - **df**: *degrees of freedom* `🔴 whole number (integer)`
-    - **total**: *Total* `🟦 object`
-      - **sumOfSquares**: *Sumofsquares* `🔴 number`
-      - **df**: *Df* `🔴 whole number (integer)`
-
-#### Example
-
-```js
-var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow(0,1,2);
-/* OR */
-var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow();
-/* OR */
-var M = new Matrix([2,3,2,4,5,9,8,7,9,10,1,7,19,32,90],[1,1,1,1,1,2,2,2,2,2,3,3,3,3,3]).pivot(0,1).kwanova();
 ```

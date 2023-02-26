@@ -557,12 +557,7 @@ const matrixResultSchemas = {
                 "type": "number",
                 "default": 0.0
             },
-            "p": {
-                "$id": "#root/p", 
-                "title": "MpjZ", 
-                "type": "number",
-                "default": 0.0
-            },
+            "p": snippets.sig,
             "n": {
                 "$id": "#root/N", 
                 "title": "bLoI", 
