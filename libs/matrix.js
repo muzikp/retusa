@@ -1073,7 +1073,7 @@ const MatrixMethodsModels = [
             },
             {
                 name: "z",
-                wiki: {title: "gxOb"},
+                wiki: {title: "tpUR"},
                 type: [1],
                 required: true,
                 validator: validators.isNumericVector,

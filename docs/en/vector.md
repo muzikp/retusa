@@ -553,9 +553,12 @@ Returns a frequency table object with the breakdown of elements and their freque
 
 #### Arguments
 
-| id | description | value type | validator | required | default value |
-| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **order** | table order mode | 🔴 whole number (integer) | aaVG | - | 1 |
+| id | description | value type | validator | required | default value | iY0c |
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: |  :---: | 
+| **order** | table order mode | 🔴 whole number (integer) | aaVG | - | 1 | - 1: by frequency descending
+- 2: by frequency ascending
+- 3: by value ascending
+- 4: by value descending |
 
 #### Integration by Vector type
 

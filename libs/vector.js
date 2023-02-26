@@ -1146,7 +1146,12 @@ class VectorMethod {
                                 schema: vectorResultSchemas[args[k].schema],
                                 required: !!args[k]?.required,
                                 default: args[k].default || null,
-                                
+                                enums: (function(a) {
+                                    if(a.type == "enum") {
+                                        return a.enums.values.map(function(p) {p.title = $(p.title); return p});
+
+                                    } else return null;
+                                })(args[k])
                             })
                         }
                     }

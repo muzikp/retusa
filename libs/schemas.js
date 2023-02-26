@@ -122,14 +122,17 @@ class Schema {
   }
 
 class ArgumentSchema extends Schema {
-constructor() {
-    super(...arguments);
-    this.lsign = "";
-    this.lstart = "";
-    this.typeHighlight = "";
-}
-createPropTitle(e, indent = 1) {
-    this.to +=this.createMDTypeBadge(e.type);
+    constructor() {
+        super(...arguments);
+        this.lsign = "";
+        this.lstart = "";
+        this.typeHighlight = "";
+    }
+    createPropTitle(e, indent = 1) {
+        this.to +=this.createMDTypeBadge(e.type);
+    }
+    enumMarkdown(values) {
+        return values.map(v=> `- ${v.key}: ${$(v.title)}`).join("\n");
     }
 }
 

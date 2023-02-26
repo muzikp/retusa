@@ -162,7 +162,7 @@ Partial correlation is a statistical method that allows you to find out what the
 
 #### Method calling syntax
 
-> [Matrix instance].**correlPartial**(***first variable***, ***second variable***, ***gxOb***)
+> [Matrix instance].**correlPartial**(***first variable***, ***second variable***, ***third (control) variable***)
 
 
 #### In-built default value filter
@@ -175,7 +175,7 @@ rAyq
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | first variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 | **y** | second variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **z** | gxOb | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **z** | third (control) variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 
 #### Output structure
 

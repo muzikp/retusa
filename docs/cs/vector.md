@@ -553,9 +553,12 @@ Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností. [Zjis
 
 #### Argumenty
 
-| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
-| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **order** | způsob řazení dat tabulky | 🔴 celé číslo | aaVG | - | 1 |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota | iY0c |
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: |  :---: | 
+| **order** | způsob řazení dat tabulky | 🔴 celé číslo | aaVG | - | 1 | - 1: by frequency descending
+- 2: by frequency ascending
+- 3: by value ascending
+- 4: by value descending |
 
 #### Integrace dle třídy
 

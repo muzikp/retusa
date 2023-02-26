@@ -162,7 +162,7 @@ Parciální korelace je statistická metoda, která vám umožňuje zjistit, jak
 
 #### Způsob volání metody
 
-> [Matrix instance].**correlPartial**(***první proměnná***, ***druhá proměnná***, ***gxOb***)
+> [Matrix instance].**correlPartial**(***první proměnná***, ***druhá proměnná***, ***třetí (kontrolní) proměnná***)
 
 
 #### Automatický filtr hodnot
@@ -175,7 +175,7 @@ rAyq
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | první proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 | **y** | druhá proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **z** | gxOb | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **z** | třetí (kontrolní) proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
 #### Struktura vrácené hodnoty
 
