@@ -134,8 +134,8 @@ Selects all data from the original matrix (ie no filtering).
 #### Output structure
 
 - *method output log* `🟦 object`
-  - **taub**: *NgVa* `🔴 number`
-  - **taua**: *mgBA* `🔴 number`
+  - **taub**: *Tau-b* `🔴 number`
+  - **taua**: *Tau-a* `🔴 number`
   - **df**: *degrees of freedom* `🔴 whole number (integer)`
   - **p**: *significance* `🔴 number`
 
@@ -218,7 +218,7 @@ Selects all data from the original matrix (ie no filtering).
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | first variable | [🟣] boQk | OCKc | ✔️ |  |
+| **x** | first variable | [🟣] binary (boolean) vector | Checks if the value is of type binary (boolean) vector. Otherwise, it will throw an error. | ✔️ |  |
 | **y** | second variable | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 
 #### Output structure
@@ -246,7 +246,7 @@ Returns the statistical log of the Student's t-test for two independent samples 
 
 #### In-built default value filter
 
-CPwN
+Removes empty values from vectors without deleting a row in one vector affecting another vector.
 
 #### Arguments
 
@@ -325,7 +325,7 @@ qqQo
 
 #### In-built default value filter
 
-CPwN
+Removes empty values from vectors without deleting a row in one vector affecting another vector.
 
 #### Arguments
 
@@ -399,7 +399,7 @@ vzHj
 
 #### In-built default value filter
 
-CPwN
+Removes empty values from vectors without deleting a row in one vector affecting another vector.
 
 #### Arguments
 
@@ -523,7 +523,7 @@ qqQo
 
 #### In-built default value filter
 
-CPwN
+Removes empty values from vectors without deleting a row in one vector affecting another vector.
 
 #### Arguments
 

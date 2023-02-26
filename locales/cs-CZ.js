@@ -173,5 +173,10 @@ module.exports = {
 	"dFiw": "Ověří, zdali se jedná o celé kladné číslo. V opačném případě vyvolá chybu.",
 	"iY0c": "Enumerátory",
 	"9oHx": "hodnota",
-	"bB5f": "popis"
+	"bB5f": "popis",
+	"NgVa": "Tau-b",
+	"mgBA": "Tau-a",
+	"boQk": "binární vektor",
+	"OCKc": "Ověří, zdali je hodnota typu binárního vektoru. V opačném případě vyvolá chybu.",
+	"CPwN": "Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom vektoru ovlivnilo jiný vektor."
 }

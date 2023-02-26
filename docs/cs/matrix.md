@@ -134,8 +134,8 @@ Vybere všechna data z původní matice (tj. žádná filtrace).
 #### Struktura vrácené hodnoty
 
 - *protokol výstupu metody* `🟦 objekt`
-  - **taub**: *NgVa* `🔴 číslo`
-  - **taua**: *mgBA* `🔴 číslo`
+  - **taub**: *Tau-b* `🔴 číslo`
+  - **taua**: *Tau-a* `🔴 číslo`
   - **df**: *stupně volnosti* `🔴 celé číslo`
   - **p**: *významnost* `🔴 číslo`
 
@@ -218,7 +218,7 @@ Vybere všechna data z původní matice (tj. žádná filtrace).
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | první proměnná | [🟣] boQk | OCKc | ✔️ |  |
+| **x** | první proměnná | [🟣] binární vektor | Ověří, zdali je hodnota typu binárního vektoru. V opačném případě vyvolá chybu. | ✔️ |  |
 | **y** | druhá proměnná | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
 #### Struktura vrácené hodnoty
@@ -246,7 +246,7 @@ Vrátí statistický protokol Studentova t-testu pro dva nezávislé výběry, k
 
 #### Automatický filtr hodnot
 
-CPwN
+Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom vektoru ovlivnilo jiný vektor.
 
 #### Argumenty
 
@@ -325,7 +325,7 @@ qqQo
 
 #### Automatický filtr hodnot
 
-CPwN
+Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom vektoru ovlivnilo jiný vektor.
 
 #### Argumenty
 
@@ -399,7 +399,7 @@ vzHj
 
 #### Automatický filtr hodnot
 
-CPwN
+Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom vektoru ovlivnilo jiný vektor.
 
 #### Argumenty
 
@@ -523,7 +523,7 @@ qqQo
 
 #### Automatický filtr hodnot
 
-CPwN
+Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom vektoru ovlivnilo jiný vektor.
 
 #### Argumenty
 

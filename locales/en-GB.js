@@ -173,5 +173,10 @@ module.exports = {
 	"dFiw": "Checks if it is a positive integer. Otherwise, it will throw an error.",
 	"iY0c": "Enumerators",
 	"9oHx": "value",
-	"bB5f": "description"
+	"bB5f": "description",
+	"NgVa": "Tau-b",
+	"mgBA": "Tau-a",
+	"boQk": "binary (boolean) vector",
+	"OCKc": "Checks if the value is of type binary (boolean) vector. Otherwise, it will throw an error.",
+	"CPwN": "Removes empty values from vectors without deleting a row in one vector affecting another vector."
 }
