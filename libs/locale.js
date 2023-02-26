@@ -1,7 +1,7 @@
 "use strict";
 
 var factory = {
-    "cs": require("../locales/cs"),
+    //"cs": require("../locales/cs"),
     "cs-CZ": require("../locales/cs-CZ"),
     "en-GB": require("../locales/en-GB")
 };
