@@ -43,8 +43,8 @@ module.exports = {
          * @param {module} fs FileStream module is required.
          */
         publish: function(fs){
-            fs.writeFileSync("./docs/cs/vector.md", Vector.VectorOverview());
-            fs.writeFileSync("./docs/cs/matrix.md", Matrix.MatrixOverview());
+            fs.writeFileSync("./docs/en/vector.md", Vector.VectorOverview());
+            fs.writeFileSync("./docs/en/matrix.md", Matrix.MatrixOverview());
         }
     }
 }

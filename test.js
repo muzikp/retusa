@@ -2,10 +2,12 @@ const { vectorModels, NumericVector } = require("./index");
 var framework = require("./index");
 const { StringVector } = require("./libs/vector");
 
-framework.docs.publish(require("fs"));
+//framework.docs.publish(require("fs"));
 
 with (framework) {
     locale.setDefault("en-GB");
+    framework.docs.publish(require("fs"));
+    return;
     //var arr = [...Array(40).keys()].map((e,i,a) => i * 0.1).map(e => utils.distribution.normdist(e,10,5)).toCSV(",");
     //console.log(arr);
     //debugger;
