@@ -63,7 +63,7 @@ function MatrixMarkdown(method, level = 1) {
 
 function VectorOverview(Models) {
     var models = Object.entries(Models).map(x => x[1]);
-    var _ = "# Vektor\n\nVektor (řada) je základní entitou statistické analýzy. Třída Vector se v aplikaci využívá výhradně skrze zděděné třídy (NumericVector atd.), které zajišťují validaci jednotlivých hodnot řady (např. do NumericVector instance nelze přidat hodnotu 'nazdar').";
+    var _ = `# ${$("P94q")}\n\n${$("rL7a")}`;
     _ += "\n\n## Statistické metody\n\n";
     _ += objArrayToTable([$("wRbe"),$("rlTY"),$("LOYN"),$("zoiB"),$("OkoC")],models.map(function(m) { 
         var row = [

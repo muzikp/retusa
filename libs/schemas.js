@@ -103,7 +103,7 @@ class Schema {
         {t: "string", c: "🟡", l: "RFGF"},
         {t: "number", c: "🔴", l: "pelN"},
         {t: "percent", c: "🔴", l: "pelN"},
-        {t: "integer", c: "c", l: "llQx"},
+        {t: "integer", c: "🔴", l: "llQx"},
         {t: "boolean", c: "🟣", l: "XPGc"},
         {t: "object", c: "🟦", l: "kLhB"},
         {t: "array", c: "🟩", l: "qdkt"},

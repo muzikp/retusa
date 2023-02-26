@@ -144,5 +144,8 @@ module.exports = {
 	"WLsu": "Read more",
 	"llQx": "whole number (integer)",
 	"oMas": "any type",
-	"schema type object": "object"
+	"kLhB": "object",
+	"qdkt": "array",
+	"P94q": "Vector statistical analysis methods",
+	"rL7a": "The basic class of the application is Vector, i.e. an array of elements. Vector is a class that inherits from Array and thus inherits with it all of its original methods, while extending it with dozens more - these extension methods are described below. In addition, the Vector class has many other methods of its own, such as content generation functions, sort/order methods, methods to write and read metadata etc. This part of the documentation will be processed gradually. The Vector class is accessible to the user through three inherited classes that validate the type of values that can become their members (NumericVector, StringVector and BooleanVector), while the availability of methods for each type of class is different (e.g. for a StringVector instance I cannot use the method diameter)."
 }

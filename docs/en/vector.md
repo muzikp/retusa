@@ -1,6 +1,6 @@
-# Vektor
+# Vector statistical analysis methods
 
-Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v aplikaci využívá výhradně skrze zděděné třídy (NumericVector atd.), které zajišťují validaci jednotlivých hodnot řady (např. do NumericVector instance nelze přidat hodnotu 'nazdar').
+The basic class of the application is Vector, i.e. an array of elements. Vector is a class that inherits from Array and thus inherits with it all of its original methods, while extending it with dozens more - these extension methods are described below. In addition, the Vector class has many other methods of its own, such as content generation functions, sort/order methods, methods to write and read metadata etc. This part of the documentation will be processed gradually. The Vector class is accessible to the user through three inherited classes that validate the type of values that can become their members (NumericVector, StringVector and BooleanVector), while the availability of methods for each type of class is different (e.g. for a StringVector instance I cannot use the method diameter).
 
 ## Statistické metody
 
@@ -57,9 +57,9 @@ Only numeric values including zeros.
 
 #### Output structure
 
-- *Kolmogorov-Smirnov test* `🟦 kLhB`
+- *Kolmogorov-Smirnov test* `🟦 object`
   - **T**: *Kolmogorov-Smirnov test value* `🔴 number`
-  - **df**: *degrees of freedom* `c whole number (integer)`
+  - **df**: *degrees of freedom* `🔴 whole number (integer)`
   - **p**: *significance* `🔴 number`
 
 #### Example
@@ -188,11 +188,11 @@ Only numeric values including zeros.
 
 #### Output structure
 
-- *histogram* `🟩 qdkt`
+- *histogram* `🟩 array`
   - **from**: *the lower limit of the interval* `🔴 number`
   - **to**: *the upper limit of the interval* `🔴 number`
-  - **n**: *frequency (abs.)* `c whole number (integer)`
-  - **nc**: *cumulative frequency (abs.)* `c whole number (integer)`
+  - **n**: *frequency (abs.)* `🔴 whole number (integer)`
+  - **nc**: *cumulative frequency (abs.)* `🔴 whole number (integer)`
   - **p**: *frequency (%)* `🔴 number`
   - **pc**: *cumulative frequency (%)* `🔴 number`
 
@@ -380,10 +380,10 @@ Only numeric values including zeros.
 
 #### Output structure
 
-- *one-sample t-test* `🟦 kLhB`
+- *one-sample t-test* `🟦 object`
   - **t**: *T-value* `🔴 number`
   - **p**: *significance* `🔴 number`
-  - **n**: *total of cases* `c whole number (integer)`
+  - **n**: *total of cases* `🔴 whole number (integer)`
 
 #### Example
 
@@ -435,7 +435,7 @@ any value type
 
 #### Output structure
 
-- *confidence interval of the proportion* `🟦 kLhB`
+- *confidence interval of the proportion* `🟦 object`
   - **p**: *value share in %* `🔴 number`
   - **sig**: *level of significance* `🔴 number`
   - **delta**: *confidence interval (+-)* `🔴 number`
@@ -483,9 +483,9 @@ Only numeric values including zeros.
 
 #### Output structure
 
-- *Shapiro-Wilk W test* `🟦 kLhB`
+- *Shapiro-Wilk W test* `🟦 object`
   - **W**: *W-test value* `🔴 number`
-  - **df**: *degrees of freedom* `c whole number (integer)`
+  - **df**: *degrees of freedom* `🔴 whole number (integer)`
   - **p**: *significance* `🔴 number`
 
 #### Example
@@ -555,7 +555,7 @@ Returns a frequency table object with the breakdown of elements and their freque
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **order** | table order mode | c whole number (integer) | aaVG | - | 1 |
+| **order** | table order mode | 🔴 whole number (integer) | aaVG | - | 1 |
 
 #### Integration by Vector type
 
@@ -567,9 +567,9 @@ Returns a frequency table object with the breakdown of elements and their freque
 
 #### Output structure
 
-- *frequency table* `🟩 qdkt`
+- *frequency table* `🟩 array`
   - **value**: *value* `🟤 any type`
-  - **frequency**: *frequency table* `c whole number (integer)`
+  - **frequency**: *frequency table* `🔴 whole number (integer)`
 
 #### Example
 
@@ -965,7 +965,7 @@ Returns the count of all members of a vector, including empty values.
 
 #### Output structure
 
-- *whole positive nunber (inc. zero)* `c whole number (integer)`
+- *whole positive nunber (inc. zero)* `🔴 whole number (integer)`
 
 #### Example
 
@@ -1048,7 +1048,7 @@ Only numeric values including zeros.
 
 #### Output structure
 
-- *confidence interval of the mean* `🟦 kLhB`
+- *confidence interval of the mean* `🟦 object`
   - **m**: *arithmetic mean* `🔴 number`
   - **sig**: *level of significance* `🔴 number`
   - **delta**: *confidence interval (+-)* `🔴 number`

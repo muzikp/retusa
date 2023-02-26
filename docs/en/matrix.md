@@ -44,7 +44,7 @@ rAyq
 
 #### Output structure
 
-- *IIlO* `🟦 kLhB`
+- *IIlO* `🟦 object`
   - **r**: *pTvR* `🔴 number`
   - **p**: *significance* `🔴 number`
 
@@ -87,9 +87,9 @@ rAyq
 
 #### Output structure
 
-- *IIlO* `🟦 kLhB`
+- *IIlO* `🟦 object`
   - **r**: *eJTT* `🔴 number`
-  - **df**: *degrees of freedom* `c whole number (integer)`
+  - **df**: *degrees of freedom* `🔴 whole number (integer)`
   - **p**: *significance* `🔴 number`
 
 #### Example
@@ -131,10 +131,10 @@ rAyq
 
 #### Output structure
 
-- *IIlO* `🟦 kLhB`
+- *IIlO* `🟦 object`
   - **taub**: *NgVa* `🔴 number`
   - **taua**: *mgBA* `🔴 number`
-  - **df**: *degrees of freedom* `c whole number (integer)`
+  - **df**: *degrees of freedom* `🔴 whole number (integer)`
   - **p**: *significance* `🔴 number`
 
 #### Example
@@ -177,7 +177,7 @@ rAyq
 
 #### Output structure
 
-- *IIlO* `🟦 kLhB`
+- *IIlO* `🟦 object`
   - **r**: *pTvR* `🔴 number`
   - **p**: *significance* `🔴 number`
 
@@ -221,7 +221,7 @@ rAyq
 
 #### Output structure
 
-- *IIlO* `🟦 kLhB`
+- *IIlO* `🟦 object`
   - **r**: *pTvR* `🔴 number`
   - **p**: *significance* `🔴 number`
 
@@ -277,10 +277,10 @@ CPwN
 
 #### Output structure
 
-- *Root* `🟦 kLhB`
+- *Root* `🟦 object`
   - **t**: *T-value* `🔴 number`
   - **p**: *significance* `🔴 number`
-  - **df**: *degrees of freedom* `c whole number (integer)`
+  - **df**: *degrees of freedom* `🔴 whole number (integer)`
 
 #### Example
 
@@ -312,10 +312,10 @@ rAyq
 
 #### Output structure
 
-- *Root* `🟦 kLhB`
+- *Root* `🟦 object`
   - **t**: *T-value* `🔴 number`
   - **p**: *significance* `🔴 number`
-  - **df**: *degrees of freedom* `c whole number (integer)`
+  - **df**: *degrees of freedom* `🔴 whole number (integer)`
 
 #### Example
 
@@ -356,22 +356,22 @@ CPwN
 
 #### Output structure
 
-- *baJo* `🟦 kLhB`
+- *baJo* `🟦 object`
   - **F**: *Jdfb* `🔴 number`
   - **P2**: *HksP* `🔴 number`
   - **p**: *MpjZ* `🔴 number`
-  - **n**: *total of cases* `c whole number (integer)`
-  - **ANOVA**: *qCgT* `🟦 kLhB`
-    - **totalOfGroups**: *cXCr* `c whole number (integer)`
-    - **betweenGroups**: *thNv* `🟦 kLhB`
+  - **n**: *total of cases* `🔴 whole number (integer)`
+  - **ANOVA**: *qCgT* `🟦 object`
+    - **totalOfGroups**: *cXCr* `🔴 whole number (integer)`
+    - **betweenGroups**: *thNv* `🟦 object`
       - **sumOfSquares**: *SqTd* `🔴 number`
-      - **df**: *degrees of freedom* `c whole number (integer)`
-    - **withinGroups**: *GiRP* `🟦 kLhB`
+      - **df**: *degrees of freedom* `🔴 whole number (integer)`
+    - **withinGroups**: *GiRP* `🟦 object`
       - **sumOfsquares**: *SqTd* `🔴 number`
-      - **df**: *degrees of freedom* `c whole number (integer)`
-    - **total**: *Total* `🟦 kLhB`
+      - **df**: *degrees of freedom* `🔴 whole number (integer)`
+    - **total**: *Total* `🟦 object`
       - **sumOfSquares**: *Sumofsquares* `🔴 number`
-      - **df**: *Df* `c whole number (integer)`
+      - **df**: *Df* `🔴 whole number (integer)`
 
 #### Example
 
@@ -430,7 +430,7 @@ CPwN
 
 #### Output structure
 
-- *Root* `🟦 kLhB`
+- *Root* `🟦 object`
   - **U**: *TkNf* `🔴 number`
   - **Z**: *Shpv* `🔴 number`
   - **p**: *significance* `🔴 number`
@@ -466,7 +466,7 @@ rAyq
 
 #### Output structure
 
-- *Root* `🟦 kLhB`
+- *Root* `🟦 object`
   - **model**: *OBml* `🟡 string`
   - **r2**: *VqBH* `🔴 number`
   - **r**: *pTvR* `🔴 number`
@@ -502,10 +502,10 @@ fqwd
 
 #### Output structure
 
-- *gRix* `🟦 kLhB`
+- *gRix* `🟦 object`
   - **phi**: *GfeP* `🔴 number`
   - **p**: *significance* `🔴 number`
-  - **df**: *degrees of freedom* `c whole number (integer)`
+  - **df**: *degrees of freedom* `🔴 whole number (integer)`
   - **C**: *BUaN* `🔴 number`
   - **V**: *VYQH* `🔴 number`
 
@@ -554,22 +554,22 @@ CPwN
 
 #### Output structure
 
-- *baJo* `🟦 kLhB`
+- *baJo* `🟦 object`
   - **F**: *Jdfb* `🔴 number`
   - **P2**: *HksP* `🔴 number`
   - **p**: *MpjZ* `🔴 number`
-  - **n**: *total of cases* `c whole number (integer)`
-  - **ANOVA**: *qCgT* `🟦 kLhB`
-    - **totalOfGroups**: *cXCr* `c whole number (integer)`
-    - **betweenGroups**: *thNv* `🟦 kLhB`
+  - **n**: *total of cases* `🔴 whole number (integer)`
+  - **ANOVA**: *qCgT* `🟦 object`
+    - **totalOfGroups**: *cXCr* `🔴 whole number (integer)`
+    - **betweenGroups**: *thNv* `🟦 object`
       - **sumOfSquares**: *SqTd* `🔴 number`
-      - **df**: *degrees of freedom* `c whole number (integer)`
-    - **withinGroups**: *GiRP* `🟦 kLhB`
+      - **df**: *degrees of freedom* `🔴 whole number (integer)`
+    - **withinGroups**: *GiRP* `🟦 object`
       - **sumOfsquares**: *SqTd* `🔴 number`
-      - **df**: *degrees of freedom* `c whole number (integer)`
-    - **total**: *Total* `🟦 kLhB`
+      - **df**: *degrees of freedom* `🔴 whole number (integer)`
+    - **total**: *Total* `🟦 object`
       - **sumOfSquares**: *Sumofsquares* `🔴 number`
-      - **df**: *Df* `c whole number (integer)`
+      - **df**: *Df* `🔴 whole number (integer)`
 
 #### Example
 

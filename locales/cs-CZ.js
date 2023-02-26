@@ -144,5 +144,8 @@ module.exports = {
 	"WLsu": "Zjistit více",
 	"llQx": "celé číslo",
 	"oMas": "cokoliv",
-	"schema type object": "objekt"
+	"kLhB": "objekt",
+	"qdkt": "řada",
+	"P94q": "Dokumentace statistických metod vektoru",
+	"rL7a": "Základní třídou aplikace je Vector, tedy řada (array) prvků. Vector je dědičnou třídou třídy Array a dědí s ní tak všechny její původní metody, přičemž o desítky dalších ji rozšiřuje - tyto rozšiřující metody jsou popsány níže. Kromě toho má třída Vector mnoho dalších vlastních metod, jako jsou funkce generování obsahu, třídící/řadící metody, metody k zápisu a čtení metadat. Tato část dokumentace bude zpracovávána postupně. Třída Vector je uživatlei přístupná skrze tři dědičné třídy, které validují typ hodnot, kterou se mohou stát jejich členy (NumericVector, StringVector a BooleanVector), přičemž dostupnost metod u každého typu třídy se liší (např. u StringVector instance nemůžem z logického důvodu použít metodu průměru). "
 }

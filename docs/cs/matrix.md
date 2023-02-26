@@ -44,7 +44,7 @@ rAyq
 
 #### Struktura vrácené hodnoty
 
-- *IIlO* `🟦 kLhB`
+- *IIlO* `🟦 objekt`
   - **r**: *pTvR* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
 
@@ -87,9 +87,9 @@ rAyq
 
 #### Struktura vrácené hodnoty
 
-- *IIlO* `🟦 kLhB`
+- *IIlO* `🟦 objekt`
   - **r**: *eJTT* `🔴 číslo`
-  - **df**: *stupně volnostsi* `c celé číslo`
+  - **df**: *stupně volnostsi* `🔴 celé číslo`
   - **p**: *významnost* `🔴 číslo`
 
 #### Příklad
@@ -131,10 +131,10 @@ rAyq
 
 #### Struktura vrácené hodnoty
 
-- *IIlO* `🟦 kLhB`
+- *IIlO* `🟦 objekt`
   - **taub**: *NgVa* `🔴 číslo`
   - **taua**: *mgBA* `🔴 číslo`
-  - **df**: *stupně volnostsi* `c celé číslo`
+  - **df**: *stupně volnostsi* `🔴 celé číslo`
   - **p**: *významnost* `🔴 číslo`
 
 #### Příklad
@@ -177,7 +177,7 @@ rAyq
 
 #### Struktura vrácené hodnoty
 
-- *IIlO* `🟦 kLhB`
+- *IIlO* `🟦 objekt`
   - **r**: *pTvR* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
 
@@ -221,7 +221,7 @@ rAyq
 
 #### Struktura vrácené hodnoty
 
-- *IIlO* `🟦 kLhB`
+- *IIlO* `🟦 objekt`
   - **r**: *pTvR* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
 
@@ -277,10 +277,10 @@ CPwN
 
 #### Struktura vrácené hodnoty
 
-- *Root* `🟦 kLhB`
+- *Root* `🟦 objekt`
   - **t**: *hodnota testu T* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
-  - **df**: *stupně volnostsi* `c celé číslo`
+  - **df**: *stupně volnostsi* `🔴 celé číslo`
 
 #### Příklad
 
@@ -312,10 +312,10 @@ rAyq
 
 #### Struktura vrácené hodnoty
 
-- *Root* `🟦 kLhB`
+- *Root* `🟦 objekt`
   - **t**: *hodnota testu T* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
-  - **df**: *stupně volnostsi* `c celé číslo`
+  - **df**: *stupně volnostsi* `🔴 celé číslo`
 
 #### Příklad
 
@@ -356,22 +356,22 @@ CPwN
 
 #### Struktura vrácené hodnoty
 
-- *baJo* `🟦 kLhB`
+- *baJo* `🟦 objekt`
   - **F**: *Jdfb* `🔴 číslo`
   - **P2**: *HksP* `🔴 číslo`
   - **p**: *MpjZ* `🔴 číslo`
-  - **n**: *počet případů* `c celé číslo`
-  - **ANOVA**: *qCgT* `🟦 kLhB`
-    - **totalOfGroups**: *cXCr* `c celé číslo`
-    - **betweenGroups**: *thNv* `🟦 kLhB`
+  - **n**: *počet případů* `🔴 celé číslo`
+  - **ANOVA**: *qCgT* `🟦 objekt`
+    - **totalOfGroups**: *cXCr* `🔴 celé číslo`
+    - **betweenGroups**: *thNv* `🟦 objekt`
       - **sumOfSquares**: *SqTd* `🔴 číslo`
-      - **df**: *stupně volnostsi* `c celé číslo`
-    - **withinGroups**: *GiRP* `🟦 kLhB`
+      - **df**: *stupně volnostsi* `🔴 celé číslo`
+    - **withinGroups**: *GiRP* `🟦 objekt`
       - **sumOfsquares**: *SqTd* `🔴 číslo`
-      - **df**: *stupně volnostsi* `c celé číslo`
-    - **total**: *Total* `🟦 kLhB`
+      - **df**: *stupně volnostsi* `🔴 celé číslo`
+    - **total**: *Total* `🟦 objekt`
       - **sumOfSquares**: *Sumofsquares* `🔴 číslo`
-      - **df**: *Df* `c celé číslo`
+      - **df**: *Df* `🔴 celé číslo`
 
 #### Příklad
 
@@ -430,7 +430,7 @@ CPwN
 
 #### Struktura vrácené hodnoty
 
-- *Root* `🟦 kLhB`
+- *Root* `🟦 objekt`
   - **U**: *TkNf* `🔴 číslo`
   - **Z**: *Shpv* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
@@ -466,7 +466,7 @@ rAyq
 
 #### Struktura vrácené hodnoty
 
-- *Root* `🟦 kLhB`
+- *Root* `🟦 objekt`
   - **model**: *OBml* `🟡 text`
   - **r2**: *VqBH* `🔴 číslo`
   - **r**: *pTvR* `🔴 číslo`
@@ -502,10 +502,10 @@ fqwd
 
 #### Struktura vrácené hodnoty
 
-- *gRix* `🟦 kLhB`
+- *gRix* `🟦 objekt`
   - **phi**: *GfeP* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
-  - **df**: *stupně volnostsi* `c celé číslo`
+  - **df**: *stupně volnostsi* `🔴 celé číslo`
   - **C**: *BUaN* `🔴 číslo`
   - **V**: *VYQH* `🔴 číslo`
 
@@ -554,22 +554,22 @@ CPwN
 
 #### Struktura vrácené hodnoty
 
-- *baJo* `🟦 kLhB`
+- *baJo* `🟦 objekt`
   - **F**: *Jdfb* `🔴 číslo`
   - **P2**: *HksP* `🔴 číslo`
   - **p**: *MpjZ* `🔴 číslo`
-  - **n**: *počet případů* `c celé číslo`
-  - **ANOVA**: *qCgT* `🟦 kLhB`
-    - **totalOfGroups**: *cXCr* `c celé číslo`
-    - **betweenGroups**: *thNv* `🟦 kLhB`
+  - **n**: *počet případů* `🔴 celé číslo`
+  - **ANOVA**: *qCgT* `🟦 objekt`
+    - **totalOfGroups**: *cXCr* `🔴 celé číslo`
+    - **betweenGroups**: *thNv* `🟦 objekt`
       - **sumOfSquares**: *SqTd* `🔴 číslo`
-      - **df**: *stupně volnostsi* `c celé číslo`
-    - **withinGroups**: *GiRP* `🟦 kLhB`
+      - **df**: *stupně volnostsi* `🔴 celé číslo`
+    - **withinGroups**: *GiRP* `🟦 objekt`
       - **sumOfsquares**: *SqTd* `🔴 číslo`
-      - **df**: *stupně volnostsi* `c celé číslo`
-    - **total**: *Total* `🟦 kLhB`
+      - **df**: *stupně volnostsi* `🔴 celé číslo`
+    - **total**: *Total* `🟦 objekt`
       - **sumOfSquares**: *Sumofsquares* `🔴 číslo`
-      - **df**: *Df* `c celé číslo`
+      - **df**: *Df* `🔴 celé číslo`
 
 #### Příklad
 

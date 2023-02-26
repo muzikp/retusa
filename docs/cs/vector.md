@@ -1,6 +1,6 @@
-# Vektor
+# Dokumentace statistických metod vektoru
 
-Vektor (řada) je základní entitou statistické analýzy. Třída Vector se v aplikaci využívá výhradně skrze zděděné třídy (NumericVector atd.), které zajišťují validaci jednotlivých hodnot řady (např. do NumericVector instance nelze přidat hodnotu 'nazdar').
+Základní třídou aplikace je Vector, tedy řada (array) prvků. Vector je dědičnou třídou třídy Array a dědí s ní tak všechny její původní metody, přičemž o desítky dalších ji rozšiřuje - tyto rozšiřující metody jsou popsány níže. Kromě toho má třída Vector mnoho dalších vlastních metod, jako jsou funkce generování obsahu, třídící/řadící metody, metody k zápisu a čtení metadat. Tato část dokumentace bude zpracovávána postupně. Třída Vector je uživatlei přístupná skrze tři dědičné třídy, které validují typ hodnot, kterou se mohou stát jejich členy (NumericVector, StringVector a BooleanVector), přičemž dostupnost metod u každého typu třídy se liší (např. u StringVector instance nemůžem z logického důvodu použít metodu průměru). 
 
 ## Statistické metody
 
@@ -57,9 +57,9 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Struktura vrácené hodnoty
 
-- *Kolmogorov-Smirnovův test* `🟦 kLhB`
+- *Kolmogorov-Smirnovův test* `🟦 objekt`
   - **T**: *hodnota Kolmogorov-Smirnovova testu* `🔴 číslo`
-  - **df**: *stupně volnostsi* `c celé číslo`
+  - **df**: *stupně volnostsi* `🔴 celé číslo`
   - **p**: *významnost* `🔴 číslo`
 
 #### Příklad
@@ -188,11 +188,11 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Struktura vrácené hodnoty
 
-- *histogram* `🟩 qdkt`
+- *histogram* `🟩 řada`
   - **from**: *spodní mez intervalu* `🔴 číslo`
   - **to**: *horní mez intervalu* `🔴 číslo`
-  - **n**: *četnost (abs.)* `c celé číslo`
-  - **nc**: *kumulativní četnost (abs.)* `c celé číslo`
+  - **n**: *četnost (abs.)* `🔴 celé číslo`
+  - **nc**: *kumulativní četnost (abs.)* `🔴 celé číslo`
   - **p**: *četnost (%)* `🔴 číslo`
   - **pc**: *kumulativní četnost (%)* `🔴 číslo`
 
@@ -380,10 +380,10 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Struktura vrácené hodnoty
 
-- *jednovýběrový t-test* `🟦 kLhB`
+- *jednovýběrový t-test* `🟦 objekt`
   - **t**: *hodnota testu T* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
-  - **n**: *počet případů* `c celé číslo`
+  - **n**: *počet případů* `🔴 celé číslo`
 
 #### Příklad
 
@@ -435,7 +435,7 @@ jakýkoliv typ hodnoty
 
 #### Struktura vrácené hodnoty
 
-- *interval spolehlivosti podílu* `🟦 kLhB`
+- *interval spolehlivosti podílu* `🟦 objekt`
   - **p**: *podíl hodnoty v %* `🔴 číslo`
   - **sig**: *hladina významnosti* `🔴 číslo`
   - **delta**: *interval spolehlivosti (+-)* `🔴 číslo`
@@ -483,9 +483,9 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Struktura vrácené hodnoty
 
-- *Shapirův-Wilkův W test* `🟦 kLhB`
+- *Shapirův-Wilkův W test* `🟦 objekt`
   - **W**: *hodnota W-testu* `🔴 číslo`
-  - **df**: *stupně volnostsi* `c celé číslo`
+  - **df**: *stupně volnostsi* `🔴 celé číslo`
   - **p**: *významnost* `🔴 číslo`
 
 #### Příklad
@@ -555,7 +555,7 @@ Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností. [Zjis
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **order** | způsob řazení dat tabulky | c celé číslo | aaVG | - | 1 |
+| **order** | způsob řazení dat tabulky | 🔴 celé číslo | aaVG | - | 1 |
 
 #### Integrace dle třídy
 
@@ -567,9 +567,9 @@ Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností. [Zjis
 
 #### Struktura vrácené hodnoty
 
-- *frekvenční tabulka* `🟩 qdkt`
+- *frekvenční tabulka* `🟩 řada`
   - **value**: *hodnota* `🟤 cokoliv`
-  - **frequency**: *četnost* `c celé číslo`
+  - **frequency**: *četnost* `🔴 celé číslo`
 
 #### Příklad
 
@@ -965,7 +965,7 @@ Vrátí počet všech členů vektoru, včetně prázdných hodnot.
 
 #### Struktura vrácené hodnoty
 
-- *celé číslo větší nebo rovné nule* `c celé číslo`
+- *celé číslo větší nebo rovné nule* `🔴 celé číslo`
 
 #### Příklad
 
@@ -1048,7 +1048,7 @@ Pouze číselné hodnoty (včetně nul).
 
 #### Struktura vrácené hodnoty
 
-- *interval spolehlivosti průměru* `🟦 kLhB`
+- *interval spolehlivosti průměru* `🟦 objekt`
   - **m**: *aritmetický průměr* `🔴 číslo`
   - **sig**: *hladina významnosti* `🔴 číslo`
   - **delta**: *interval spolehlivosti (+-)* `🔴 číslo`
