@@ -4,7 +4,6 @@ var Matrix = require("./libs/matrix");
 var parsers = require("./libs/parsers");
 var dist = require("./libs/distribution");
 var Schema = require("./libs/schemas");
-const { VectorOverview } = require("./libs/markdown");
 
 module.exports = {
     Matrix: Matrix.Matrix,
@@ -16,10 +15,7 @@ module.exports = {
     vectorModels: Vector.Models,
     matrixModels: Matrix.Models,
     matrixMethods: Matrix.methods,
-    locale: function(locale) {
-        Locale.config(locale);
-        return module.exports;
-    },
+    locale: Locale,
     Schema: {
         Vector: {
             result: Schema.vectorResultSchemas

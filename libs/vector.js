@@ -1,12 +1,11 @@
 "use strict";
-var $ = require("./locale").call;
+let $ = require("./locale").call;
 var {filters, validators, enumerators} = require("./parsers");
 var {vectorResultSchemas, OutputSchema, FormVectorSchema} = require("./schemas");
 const {Array, Math, String, Function} = require("./extensions");
 const {VectorMarkdown, VectorOverview} = require("./markdown");
 var {VectorValueError, ArgumentError, Empty} = require("./errors");
 const rndWordList= ["silver","twig","train","reading","clouds","bean","frogs","power","canvas","stop","van","drain","doctor","lamp","mind","existence","seat","sky","cloud","burn","crayon","brush","hat","snails","snail","move","seashore","honey","powder","cork","toothpaste","cub","kitty","skin","self","rice","chin","cushion","death","steel","toes","cabbage","stamp","bone","cemetery","appliance","fairies","unit","committee","fall","debt","cherry","baby","rings","legs","knee","bike","cook","carpenter","expansion","toothbrush","rain","fork","statement","house","things","cars","root","books","marble","swim","babies","jellyfish","question","trains","apparatus","wish","sand","lettuce","sense","balls","baby","ghost","power","sofa","learning","bushes","church","smile","distribution","reason","whip","giants","beginner","crow","invention","letters","horses","game","scissors","bat","cover","journey","whistle","society","competition","flowers","sweater","shoe","punishment","creator","brain","ray","island","mailbox","pump","rub","hands","burn","spoon","beetle","step","plot","activity","airplane","sea","grip","blow","pump","jeans","slave","boys","appliance","ball","trees","cherries","ladybug","appliance","brick","doctor","branch","crib","elbow","root","sheep","toothpaste","behavior","sail","voice","hydrant","sky","hands","veil","crib","tray","wind","beggar","authority","wax","flesh","afterthought","existence","feet","creator","plough","hook","cub","bottle","sidewalk","weather","light","fight","wheel","fog","island","knife","pancake","bikes","farmer","experience","lizards","cracker","scale","rabbits","camera","coach","airplane","wrench","pencil","minute","paper","pancake","push","treatment","shop","lock","string","hand","dinner","goat","wine","expert","creator","woman","trick","pet","news","bells","wire","song","bushes","distribution","tank","pan","feast","quince","nerve","hair","wrench","cats","neck","work","sugar","tramp","ants","house","sidewalk","afterthought","orange","finger","earth","decision","edge","chin","shoe","balloon","desk","chicken","toad","building","yarn","seashore","star","snow","book","song","boys","rainstorm","spring","secretary","cork","coach","range","dinosaurs","produce","bean","downtown","sleet","egg","arm","home","angle","whip","crayon","iron","parcel","river","potato","shop","leaf","territory","ear","behavior","cat","monkey","hair","trains","horses","volcano","waste","dog","juice","peace","end","route","whip","blade","giraffe","grandfather","celery","grandmother","spoon","person","yam","screw","top","watch","steam","impulse","map","history","pot","frog","bells","quilt","argument","apparel","wind","cub","wish","sugar","servant","language","sun","cherries","need","order","flower","seat","wheel","army","screw","icicle","coal","hook","act","action","cause","pet","school","rest","cows","relation","road","talk","burn","brake","crook","sand","journey","crack","spade","song","clouds","quarter","spade","fifth","flower","structure","finger","pain","corn","cakes","jeans","wing","shame","field","comb","pump","box","stone","industry","swim","sticks","whip","burn","stove","trouble","scene","library","crown","fork","birth","cast","amusement","mice","cub","houses","loaf","card","rhythm","downtown","animal","chairs","respect","cactus","opinion","thread","aunt","treatment","shame","tank","spiders","marble","arm","cemetery","locket","fact","division","holiday","current","humor","thunder","crack","receipt","sense","moon","kittens","K","vegetable","smile","cushion","representative","toy","look","crowd","hands","idea","drug","lace","jeans","net","moon","scarecrow","learning","dog","debt","knife","hill","sail","pear","organization","meal","knee","disgust","pet","bag","road","garden","smash","money","wealth","crate","end","insect","muscle","exchange","town","stage","pump","size","cat","tray","fog","wall","stage","beetle","start","self","side","group","porter","theory","bait","afternoon","leg","wing","earth","breakfast","account","snails","back","dime","bee","cast","town","cent","chicken","stem","garden","slave","meeting","umbrella","argument","clouds","partner","ray","stranger","body","trouble","son","produce","scene","mouth","observation","monkey","friction","desk","hose","powder","pull","sisters","cobweb","smell","anger","haircut","wood","lace","garden","slip","liquid","boat","fly","roof","reason","drawer","tank","farmer","sink","loaf","nail","head","payment","friction","cause","point","shock","breakfast","spot","rain","aftermath","discovery","hen","boys","finger","baseball","body","airplane","wax","rain","hand","behavior","cannon","brick","guitar","store","trade","invention","bread","shame","guitar","wood","time","room","base","arithmetic","sand","design","rainstorm","railway","boot","coal","flesh","airport","string","wing","jail","brother","match","quarter","guide","knowledge","lead","love","popcorn","answer","amount","representative","list","smash","sun","weight","disease","gold","flag","porter","reading","way","stretch","lettuce","can","fifth","sweater","chair","face","pain","toothbrush","land","sort","beggar","morning","tramp","steel","sack","boot","wool","meeting","summer","skirt","attraction","chalk","polish","town","meeting","partner","man","cork","lead","girls","request","wind","cracker","poison","north","railway","honey","request","riddle","children","rice","limit","sugar","cover","government","car","cows","beast","ray","thing","note","writer","breakfast","songs","income","crowd","fork","scarf","apples","dinosaurs","wire","string","zinc","water","needle","number","behavior","friend","bear","umbrella","fold","wave","sofa","haircut","tank","window","tongue","apple","muscle","summer","cakes","trail","laugh","meal","fish","map","egg","watch","story","crayon","nest","dogs","spark","dog","team","rose","clam","beetle","skin","flame","design","voyage","oatmeal","lunchroom","school","engine","room","salt","decision","church","snakes","cable","queen","substance","comb","babies","lead","card","pleasure","creator","wrench","vessel","unit","cabbage","afternoon","linen","songs","ground","monkey","self","beef","crime","thumb","wilderness","bread","meeting","lake","faucet","coast","verse","shelf","cart","men","punishment","debt","arch","lead","cats","servant","burn","scarecrow","side","butter","comfort","rate","night","offer","fly","battle","wish","respect","trade","sticks","arithmetic","anger","relation","van","writer","leg","slip","house","appliance","ray","day","lawyer","camp","hat","station","airplane","color","argument","family","thunder","coast","fairies","street","verse","ants","jeans","jar","bead","development","pancake","clock","honey","hammer","snakes","run","title","sweater","snail","hose","throat","cushion","list","act","wine","pencil","size","wine","shoe","writing","trains","boot","reaction","father","time","office","skate","van","maid","bun","queen","distance","fire","pot","smell","interest","summer","morning","kiss","scarf","point","birthday","idea","babies","copy","blow","space","need","produce","pull","bit","control","spy","jewel","statement","horse","change","ice","rail","things","force","zinc","yard","title","cook","apparel","lock","representative","copper","stomach","woman","uncle","test","crowd","opinion","turn","maid","banana","action","beast","mouth","bucket","lizards","circle","ear","arithmetic","frog","foot","growth","legs","belief","mist","pollution","lock","earth","hair","fruit","rock","rule","quartz","country","lawyer","division","believe","queen","protest","smell","memory","girl","belief","finger","stranger","trucks","kick","goat","measure","coach","comb","smell","science","word","icicle","beetle","territory","need","nerve","brain","car","chalk","bike","territory","ink","flavor","sense","adjustment","number","brother","cloud","wave","class","drop","boys","zipper","whistle","sweater","hole","party","vest","parcel","punishment","thought","use","finger","cake","slope","ink","K","school","bears","trail","flower","bait","lead","girls","shake","sneeze","quartz","cream","iron","test","territory","substance","boundary","seashore","jail","run","way","engine","goat","company","wing","toothbrush","whip","cent","rod","lawyer","stomach","expert","waste","smoke","soup","shame","band","mailbox","touch","pollution","twig","blade","brass","governor","uncle","steam","art","sign","door","camp","foot","view","list","pan","territory","morning","love","wax","mother","cat","circle","chin","hour"];
-
 const registry = new WeakMap();
 const enums = {_numeric: 1, _string: 2, _boolean: 3, _multiple: 4, _date: 5}
 
@@ -379,7 +378,7 @@ let VectorMethodsModels = [
         fn: Array.prototype.avg,
         filter: filters.number,
         wiki: {
-            title: "eFdj",
+            title: "rR94",
             description: "UYJN"
         },
         type: [1],
@@ -497,7 +496,7 @@ let VectorMethodsModels = [
             maxIntervals: {
                 wiki: {
                     title: "WnZK",
-                    description: "FfpU"
+                    description: "mcOp"
                 },
                 required: false,
                 default: null,
@@ -561,7 +560,6 @@ let VectorMethodsModels = [
         },
         url: "https://en.wikipedia.org/wiki/Range_(statistics)"
     },
-    /* coefficient of variation */
     {   name: "varc",
         fn: Array.prototype.varc,
         filter: filters.number,
@@ -668,7 +666,8 @@ let VectorMethodsModels = [
         args: {
             order: {
                 wiki: {
-                    title: "gZCx"
+                    title: "gZCx",
+                    description: "MgID"
                 },
                 required: false,
                 schema: "integer",
@@ -684,7 +683,7 @@ let VectorMethodsModels = [
         fn: Array.prototype.geomean,
         filter: filters.number,
         wiki: {
-            title: "louK",
+            title: "eFdj",
             description: "PDzr"
         },
         type: [1],
@@ -698,7 +697,7 @@ let VectorMethodsModels = [
         fn: Array.prototype.harmean,
         filter: filters.number,
         wiki: {
-            title: "vpdN",
+            title: "iuTi",
             description: "nhJv"
         },
         type: [1],
@@ -712,7 +711,7 @@ let VectorMethodsModels = [
         fn: Array.prototype.median,
         filter: filters.number,
         wiki: {
-            title: "TzfX",
+            title: "Qyba",
             description: "YIir"
         },
         type: [1],

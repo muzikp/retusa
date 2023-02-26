@@ -26,6 +26,16 @@ const snippets = {
             6
         ],
         "default": 0
+    },
+    siglevel: {
+        "$id": "#root/df", 
+        "title": "mjPq", 
+        "description": null,
+        "type": "number",
+        "examples": [
+            0.05
+        ],
+        "default": 0.05
     }
 }
 
@@ -189,21 +199,14 @@ class FormVectorSchema {
 
 const vectorResultSchemas = {
     number: {
-        "definitions": {},
-        "$schema": "http://json-schema.org/draft-07/schema#", 
-        "$id": "https://example.com/object1671554312.json", 
         "title": "pelN", 
         "type": "number",
         "examples": [
             1.5
         ],
-        "default": 0.0,
-        "numeral": "0.00"
+        "default": 0.0
     },
     any: {
-        "definitions": {},
-        "$schema": "http://json-schema.org/draft-07/schema#", 
-        "$id": "https://example.com/object1671554312.json", 
         "title": "FxzE", 
         "type": "any",
         "examples": [
@@ -364,7 +367,7 @@ const vectorResultSchemas = {
         "definitions": {},
         "$schema": "http://json-schema.org/draft-07/schema#", 
         "$id": "https://example.com/object1671561683.json", 
-        "title": "sOyV", 
+        "title": "VEAt", 
         "type": "object",
         "required": [
             "t",
@@ -372,24 +375,8 @@ const vectorResultSchemas = {
             "n"
         ],
         "properties": {
-            "t": {
-                "$id": "#root/t", 
-                "title": "GmAh", 
-                "type": "number",
-                "examples": [
-                    -8.403733075366224
-                ],
-                "default": 0.0
-            },
-            "p": {
-                "$id": "#root/p", 
-                "title": "MpjZ", 
-                "type": "number",
-                "examples": [
-                    1
-                ],
-                "default": 0
-            },
+            "t": snippets.ttest,
+            "p": snippets.sig,
             "n": {
                 "$id": "#root/n", 
                 "title": "bLoI", 
@@ -410,22 +397,14 @@ const vectorResultSchemas = {
         "properties": {
             "m": {
                 "$id": "#root/m", 
-                "title": "eFdj", 
+                "title": "rR94", 
                 "type": "number",
                 "examples": [
                     6
                 ],
                 "default": 0
             },
-            "sig": {
-                "$id": "#root/sig", 
-                "title": "mjPq", 
-                "type": "number",
-                "examples": [
-                    0.050000000000000044
-                ],
-                "default": 0.0
-            },
+            "sig": snippets.siglevel,
             "delta": {
                 "$id": "#root/delta", 
                 "title": "NzBg", 
@@ -478,15 +457,7 @@ const vectorResultSchemas = {
                 ],
                 "default": 0.0
             },
-            "sig": {
-                "$id": "#root/sig", 
-                "title": "mjPq", 
-                "type": "number",
-                "examples": [
-                    0.050000000000000044
-                ],
-                "default": 0.0
-            },
+            "sig": snippets.siglevel,
             "delta": {
                 "$id": "#root/delta", 
                 "title": "NzBg", 
@@ -517,9 +488,6 @@ const vectorResultSchemas = {
         }
     },    
     shapirowilk: {
-        "definitions": {},
-        "$schema": "http://json-schema.org/draft-07/schema#", 
-        "$id": "https://example.com/object1672094205.json", 
         "title": "byTa", 
         "type": "object",
         "required": [
@@ -537,24 +505,8 @@ const vectorResultSchemas = {
                 ],
                 "default": 0.0
             },
-            "df": {
-                "$id": "#root/df", 
-                "title": "OYQu", 
-                "type": "integer",
-                "examples": [
-                    23
-                ],
-                "default": 0
-            },
-            "p": {
-                "$id": "#root/p", 
-                "title": "MpjZ", 
-                "type": "number",
-                "examples": [
-                    0.6036566524076283
-                ],
-                "default": 0.0
-            }
+            "df": snippets.df,
+            "p": snippets.sig
         }
     },
     kstest: {
@@ -578,24 +530,8 @@ const vectorResultSchemas = {
                 ],
                 "default": 0.0
             },
-            "df": {
-                "$id": "#root/df", 
-                "title": "OYQu", 
-                "type": "integer",
-                "examples": [
-                    23
-                ],
-                "default": 0
-            },
-            "p": {
-                "$id": "#root/p", 
-                "title": "MpjZ", 
-                "type": "number",
-                "examples": [
-                    0.6
-                ],
-                "default": 0.0
-            }
+            "df": snippets.df,
+            "p": snippets.sig
         }
     }
 }

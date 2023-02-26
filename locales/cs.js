@@ -356,7 +356,7 @@ module.exports = {
 	/* argument schema (title) */
 	"dmmV": "typ hodnoty",
 	/* Vektor fce skewness (description)*/
-	"nJbe": "Vrátí zešikmení rozdělní: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru. ",
+	"nJbe": "Vrátí zešikmení rozdělení: charakteristika a asymetrie rozdělení kolem střední hodnoty vektoru.",
 	/* MD url "read more" */
 	"WLsu": "Zjistit více.",
 	/* vector fce Confidence intervals for the mean (title) */
