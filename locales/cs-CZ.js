@@ -185,7 +185,7 @@ module.exports = {
 	"iJaa": "vektor/y",
 	"iJEe": "skupinový faktor",
 	"rPQr": "Mann-Whitneyho test",
-	"vzHj": "Vrátí statistický protokol Mann-Whitneyho U testu. Ve statistice je tento tent (také nazývaný Mann–Whitney–Wilcoxon (MWW/MWU), Wilcoxonův rank-sum test nebo Wilcoxon–Mann–Whitney test) neparametrický test nulové hypotézy, která náhodně vybrané hodnoty X a Y ze dvou populací, přičemž pravděpodobnost, že X bude větší než Y, se rovná pravděpodobnosti, že Y bude větší než X. Zdroj: https://en.wikipedia.org/wiki/Mann-Whitney_U_test",
+	"vzHj": "Vrátí statistický protokol Mann-Whitneyho U testu. Jedná se o neparametrický test nulové hypotézy, která srsovnává náhodně vybrané hodnoty X a Y ze dvou populací, přičemž pravděpodobnost, že X bude větší než Y, se rovná pravděpodobnosti, že Y bude větší než X.",
 	"vlCA": "lineární regrese",
 	"dzFE": "Lineární regrese je statistická metoda používaná k nalezení vztahu mezi dvěma spojitými proměnnými. Tyto proměnné jsou obvykle označeny jako závislá proměnná a nezávislá proměnná. Cílem lineární regrese je najít nejlepší lineární aproximaci závislé proměnné v závislosti na nezávislé proměnné. Lineární regrese se používá k predikci hodnoty závislé proměnné pro danou hodnotu nezávislé proměnné, když mezi nimi existuje lineární vztah. Tento vztah je reprezentován pomocí rovnice lineární regrese, která popisuje, jak se hodnoty závislé proměnné mění v závislosti na hodnotách nezávislé proměnné. Lineární regrese je často používána v různých oblastech, jako je ekonomie, sociologie, biologie, psychologie, inženýrství a dalších.\n\nMetoda umožňuje upřesnit, pro jakou transformaci modelu (např. lineární, logaritmovanou) hledáme koeficient determinace.",
 	"jDlm": "nezávislá proměnná (x)",
@@ -207,5 +207,14 @@ module.exports = {
 	"cXCr": "celkem skupin",
 	"thNv": "meziskupinové efekty",
 	"SqTd": "suma čtverců",
-	"GiRP": "vnitroskupinové efekty"
+	"GiRP": "vnitroskupinové efekty",
+	"P67p": "celkem",
+	"gRix": "kontingence",
+	"fqwd": "Vrátí statistický protokol kontingence. Parametry metody jsou a) řádková proměnná, b) sloupcová proměnná a volitelně c) četnost skupiny a/b (pokud je prázdná, bere se, že četnost průniku je 1). Výstupem metody jsou jak statistiky kontingence (chí^2), Cramérovo V, Pearsonovo C, ad).",
+	"gLRN": "řádková proměnná",
+	"bpjC": "sloupcová proměnná",
+	"fqUi": "proměnná četnosti",
+	"GfeP": "chí^2 test",
+	"VYQH": "Cramérovo V",
+	"BUaN": "Pearsonovo C"
 }

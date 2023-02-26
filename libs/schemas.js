@@ -617,18 +617,18 @@ const matrixResultSchemas = {
     ,
                     "total": {
                         "$id": "#root/ANOVA/total", 
-                        "title": "Total", 
+                        "title": "P67p", 
                         "type": "object",
                         "properties": {
                             "sumOfSquares": {
                                 "$id": "#root/ANOVA/total/sumOfSquares", 
-                                "title": "Sumofsquares", 
+                                "title": "SqTd", 
                                 "type": "number",
                                 "default": 0.0
                             },
                             "df": {
                                 "$id": "#root/ANOVA/total/df", 
-                                "title": "Df", 
+                                "title": "OYQu", 
                                 "type": "integer",
                                 "default": 0
                             }

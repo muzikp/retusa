@@ -16,7 +16,7 @@ Bablablablabla.
 | [anovaow](#anovaow) | ANOVA (one-way) |
 | [mwu](#mwu) | Mann-Whitney test |
 | [genreg](#genreg) | linear regression |
-| [contingency](#contingency) | gRix |
+| [contingency](#contingency) | contingency |
 
 ---
 
@@ -348,9 +348,9 @@ Removes empty values from vectors without deleting a row in one vector affecting
     - **withinGroups**: *intragroup effects* `🟦 object`
       - **sumOfsquares**: *sum of squares* `🔴 number`
       - **df**: *degrees of freedom* `🔴 whole number (integer)`
-    - **total**: *Total* `🟦 object`
-      - **sumOfSquares**: *Sumofsquares* `🔴 number`
-      - **df**: *Df* `🔴 whole number (integer)`
+    - **total**: *total* `🟦 object`
+      - **sumOfSquares**: *sum of squares* `🔴 number`
+      - **df**: *degrees of freedom* `🔴 whole number (integer)`
 
 #### Example
 
@@ -389,7 +389,7 @@ var M = new Matrix([2,3,2,4,5,9,8,7,9,10,1,7,19,32,90],[1,1,1,1,1,2,2,2,2,2,3,3,
 
 ### [MANN-WHITNEY TEST](#mwu): mwu
 
-Returns the statistical log of the Mann-Whitney U test. In statistics, this test (also called Mann–Whitney–Wilcoxon (MWW/MWU), Wilcoxon rank-sum test, or Wilcoxon–Mann–Whitney test) is a nonparametric test of the null hypothesis that randomly selected values of X and Y from two populations, with the probability , that X will be greater than Y is equal to the probability that Y will be greater than X. Source: https://en.wikipedia.org/wiki/Mann-Whitney_U_test
+Returns the statistical log of the Mann-Whitney U test. It is a non-parametric null hypothesis test that compares randomly selected values of X and Y from two populations, with the probability that X is greater than Y equal to the probability that Y is greater than X.
 
 #### Method calling syntax
 
@@ -464,31 +464,31 @@ Selects all data from the original matrix (ie no filtering).
 
 ---
 
-### [GRIX](#contingency): contingency
+### [CONTINGENCY](#contingency): contingency
 
-fqwd
+Returns the contingency statistics log. The parameters of the method are a) row variable, b) column variable, and optionally c) frequency of group a/b (if empty, intersection frequency is taken to be 1). The output of the method is both contingency statistics (chi^2), Cramer's V, Pearson's C, etc.
 
 #### Method calling syntax
 
-> [Matrix instance].**contingency**(***gLRN***, ***bpjC***, *fqUi*)
+> [Matrix instance].**contingency**(***row variable***, ***column variable***, *frequency variable*)
 
 
 #### Arguments
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | gLRN | 🟤 any type | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **y** | bpjC | 🟤 any type | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **n** | fqUi | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
+| **x** | row variable | 🟤 any type | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **y** | column variable | 🟤 any type | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **n** | frequency variable | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
 
 #### Output structure
 
-- *gRix* `🟦 object`
-  - **phi**: *GfeP* `🔴 number`
+- *contingency* `🟦 object`
+  - **phi**: *phi^2 test* `🔴 number`
   - **p**: *significance* `🔴 number`
   - **df**: *degrees of freedom* `🔴 whole number (integer)`
-  - **C**: *BUaN* `🔴 number`
-  - **V**: *VYQH* `🔴 number`
+  - **C**: *Pearson C* `🔴 number`
+  - **V**: *Cramér V* `🔴 number`
 
 #### Example
 

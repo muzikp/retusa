@@ -185,7 +185,7 @@ module.exports = {
 	"iJaa": "vector(s)",
 	"iJEe": "grouping factor",
 	"rPQr": "Mann-Whitney test",
-	"vzHj": "Returns the statistical log of the Mann-Whitney U test. In statistics, this test (also called Mann–Whitney–Wilcoxon (MWW/MWU), Wilcoxon rank-sum test, or Wilcoxon–Mann–Whitney test) is a nonparametric test of the null hypothesis that randomly selected values of X and Y from two populations, with the probability , that X will be greater than Y is equal to the probability that Y will be greater than X. Source: https://en.wikipedia.org/wiki/Mann-Whitney_U_test",
+	"vzHj": "Returns the statistical log of the Mann-Whitney U test. It is a non-parametric null hypothesis test that compares randomly selected values of X and Y from two populations, with the probability that X is greater than Y equal to the probability that Y is greater than X.",
 	"vlCA": "linear regression",
 	"dzFE": "Linear regression is a statistical method used to find the relationship between two continuous variables. These variables are usually labeled as the dependent variable and the independent variable. The goal of linear regression is to find the best linear approximation of the dependent variable as a function of the independent variable. Linear regression is used to predict the value of the dependent variable for a given value of the independent variable when there is a linear relationship between them. This relationship is represented using a linear regression equation that describes how the values of the dependent variable change depending on the values of the independent variable. Linear regression is often used in various fields such as economics, sociology, biology, psychology, engineering and others.\n\nThe method allows us to specify for which transformation of the model (eg linear, logarithmic) we are looking for the coefficient of determination.",
 	"jDlm": "independent variable (x)",
@@ -207,5 +207,14 @@ module.exports = {
 	"cXCr": "total of groups",
 	"thNv": "intergroup effects",
 	"SqTd": "sum of squares",
-	"GiRP": "intragroup effects"
+	"GiRP": "intragroup effects",
+	"P67p": "total",
+	"gRix": "contingency",
+	"fqwd": "Returns the contingency statistics log. The parameters of the method are a) row variable, b) column variable, and optionally c) frequency of group a/b (if empty, intersection frequency is taken to be 1). The output of the method is both contingency statistics (chi^2), Cramer's V, Pearson's C, etc.",
+	"gLRN": "row variable",
+	"bpjC": "column variable",
+	"fqUi": "frequency variable",
+	"GfeP": "phi^2 test",
+	"VYQH": "Cramér V",
+	"BUaN": "Pearson C"
 }

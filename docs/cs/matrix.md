@@ -16,7 +16,7 @@ Bablablablabla.
 | [anovaow](#anovaow) | ANOVA (jednofaktorová) |
 | [mwu](#mwu) | Mann-Whitneyho test |
 | [genreg](#genreg) | lineární regrese |
-| [contingency](#contingency) | gRix |
+| [contingency](#contingency) | kontingence |
 
 ---
 
@@ -348,9 +348,9 @@ Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom v
     - **withinGroups**: *vnitroskupinové efekty* `🟦 objekt`
       - **sumOfsquares**: *suma čtverců* `🔴 číslo`
       - **df**: *stupně volnosti* `🔴 celé číslo`
-    - **total**: *Total* `🟦 objekt`
-      - **sumOfSquares**: *Sumofsquares* `🔴 číslo`
-      - **df**: *Df* `🔴 celé číslo`
+    - **total**: *celkem* `🟦 objekt`
+      - **sumOfSquares**: *suma čtverců* `🔴 číslo`
+      - **df**: *stupně volnosti* `🔴 celé číslo`
 
 #### Příklad
 
@@ -389,7 +389,7 @@ var M = new Matrix([2,3,2,4,5,9,8,7,9,10,1,7,19,32,90],[1,1,1,1,1,2,2,2,2,2,3,3,
 
 ### [MANN-WHITNEYHO TEST](#mwu): mwu
 
-Vrátí statistický protokol Mann-Whitneyho U testu. Ve statistice je tento tent (také nazývaný Mann–Whitney–Wilcoxon (MWW/MWU), Wilcoxonův rank-sum test nebo Wilcoxon–Mann–Whitney test) neparametrický test nulové hypotézy, která náhodně vybrané hodnoty X a Y ze dvou populací, přičemž pravděpodobnost, že X bude větší než Y, se rovná pravděpodobnosti, že Y bude větší než X. Zdroj: https://en.wikipedia.org/wiki/Mann-Whitney_U_test
+Vrátí statistický protokol Mann-Whitneyho U testu. Jedná se o neparametrický test nulové hypotézy, která srsovnává náhodně vybrané hodnoty X a Y ze dvou populací, přičemž pravděpodobnost, že X bude větší než Y, se rovná pravděpodobnosti, že Y bude větší než X.
 
 #### Způsob volání metody
 
@@ -464,31 +464,31 @@ Vybere všechna data z původní matice (tj. žádná filtrace).
 
 ---
 
-### [GRIX](#contingency): contingency
+### [KONTINGENCE](#contingency): contingency
 
-fqwd
+Vrátí statistický protokol kontingence. Parametry metody jsou a) řádková proměnná, b) sloupcová proměnná a volitelně c) četnost skupiny a/b (pokud je prázdná, bere se, že četnost průniku je 1). Výstupem metody jsou jak statistiky kontingence (chí^2), Cramérovo V, Pearsonovo C, ad).
 
 #### Způsob volání metody
 
-> [Matrix instance].**contingency**(***gLRN***, ***bpjC***, *fqUi*)
+> [Matrix instance].**contingency**(***řádková proměnná***, ***sloupcová proměnná***, *proměnná četnosti*)
 
 
 #### Argumenty
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | gLRN | 🟤 cokoliv | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **y** | bpjC | 🟤 cokoliv | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **n** | fqUi | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
+| **x** | řádková proměnná | 🟤 cokoliv | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | sloupcová proměnná | 🟤 cokoliv | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **n** | proměnná četnosti | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
 
 #### Struktura vrácené hodnoty
 
-- *gRix* `🟦 objekt`
-  - **phi**: *GfeP* `🔴 číslo`
+- *kontingence* `🟦 objekt`
+  - **phi**: *chí^2 test* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
   - **df**: *stupně volnosti* `🔴 celé číslo`
-  - **C**: *BUaN* `🔴 číslo`
-  - **V**: *VYQH* `🔴 číslo`
+  - **C**: *Pearsonovo C* `🔴 číslo`
+  - **V**: *Cramérovo V* `🔴 číslo`
 
 #### Příklad
 
