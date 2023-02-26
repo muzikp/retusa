@@ -4,7 +4,7 @@ Bablablablabla.
 
 ## Statistické metody
 
-| wRbe | rlTY |
+| function | method |
 | :---: |  :---: | 
 | [correlPearson](#correlPearson) | pTvR |
 | [correlSpearman](#correlSpearman) | eJTT |
@@ -26,12 +26,12 @@ Bablablablabla.
 
 wPyG
 
-#### oPEt
+#### Method calling syntax
 
 > [Matrix instance].**correlPearson**(***qFEM***, ***tpUu***)
 
 
-#### VVSN
+#### In-built default value filter
 
 rAyq
 
@@ -42,13 +42,13 @@ rAyq
 | **x** | qFEM | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 | **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 
-#### KxQM
+#### Output structure
 
 - *IIlO* `🟦 kLhB`
   - **r**: *pTvR* `🔴 number`
   - **p**: *significance* `🔴 number`
 
-#### nzmJ
+#### Example
 
 ```js
 var a = new NumericVector([3, 7, 5, 10, 9, 8, 4, 1, 6, 2]);
@@ -69,12 +69,12 @@ var correl = new Matrix(a,b).correlPearson(a,b);
 
 jAGi
 
-#### oPEt
+#### Method calling syntax
 
 > [Matrix instance].**correlSpearman**(***qFEM***, ***tpUu***)
 
 
-#### VVSN
+#### In-built default value filter
 
 rAyq
 
@@ -85,14 +85,14 @@ rAyq
 | **x** | qFEM | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 | **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 
-#### KxQM
+#### Output structure
 
 - *IIlO* `🟦 kLhB`
   - **r**: *eJTT* `🔴 number`
   - **df**: *degrees of freedom* `c llQx`
   - **p**: *significance* `🔴 number`
 
-#### nzmJ
+#### Example
 
 ```js
 var a = new NumericVector([3, 7, 5, 10, 9, 8, 4, 1, 6, 1]);
@@ -113,12 +113,12 @@ var M = new Matrix(a,b).correlSpearman(a,b);
 
 VOmC
 
-#### oPEt
+#### Method calling syntax
 
 > [Matrix instance].**correlKendall**(***qFEM***, ***tpUu***)
 
 
-#### VVSN
+#### In-built default value filter
 
 rAyq
 
@@ -129,7 +129,7 @@ rAyq
 | **x** | qFEM | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 | **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 
-#### KxQM
+#### Output structure
 
 - *IIlO* `🟦 kLhB`
   - **taub**: *NgVa* `🔴 number`
@@ -137,7 +137,7 @@ rAyq
   - **df**: *degrees of freedom* `c llQx`
   - **p**: *significance* `🔴 number`
 
-#### nzmJ
+#### Example
 
 ```js
 var a = new NumericVector([3, 7, 5, 10, 9, 8, 4, 1, 6, 1]);
@@ -158,12 +158,12 @@ var M = new Matrix(a,b).correlKendall(a,b);
 
 UcfZ
 
-#### oPEt
+#### Method calling syntax
 
 > [Matrix instance].**correlPartial**(***qFEM***, ***tpUu***, ***gxOb***)
 
 
-#### VVSN
+#### In-built default value filter
 
 rAyq
 
@@ -175,13 +175,13 @@ rAyq
 | **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 | **z** | gxOb | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 
-#### KxQM
+#### Output structure
 
 - *IIlO* `🟦 kLhB`
   - **r**: *pTvR* `🔴 number`
   - **p**: *significance* `🔴 number`
 
-#### nzmJ
+#### Example
 
 ```js
 var x = new NumericVector(2,3,4,5,6,7,8,9,10,11);
@@ -203,12 +203,12 @@ var partial = new Matrix(x,y,z).correlPartial(0,1,2);
 
 OMiA
 
-#### oPEt
+#### Method calling syntax
 
 > [Matrix instance].**correlBiserial**(***qFEM***, ***tpUu***)
 
 
-#### VVSN
+#### In-built default value filter
 
 rAyq
 
@@ -219,13 +219,13 @@ rAyq
 | **x** | qFEM | [🟣] boQk | OCKc | ✔️ |  |
 | **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 
-#### KxQM
+#### Output structure
 
 - *IIlO* `🟦 kLhB`
   - **r**: *pTvR* `🔴 number`
   - **p**: *significance* `🔴 number`
 
-#### nzmJ
+#### Example
 
 ```js
 
@@ -237,12 +237,12 @@ rAyq
 
 jAGi
 
-#### oPEt
+#### Method calling syntax
 
 > [Matrix instance].**correlPhi**(***qFEM***, ***tpUu***)
 
 
-#### VVSN
+#### In-built default value filter
 
 rAyq
 
@@ -259,12 +259,12 @@ rAyq
 
 gILL
 
-#### oPEt
+#### Method calling syntax
 
 > [Matrix instance].**ttestind**(***qFEM***, *tpUu*)
 
 
-#### VVSN
+#### In-built default value filter
 
 CPwN
 
@@ -275,14 +275,14 @@ CPwN
 | **vectors** | qFEM | 🔢 DfLu | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
 | **factor** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
 
-#### KxQM
+#### Output structure
 
 - *Root* `🟦 kLhB`
   - **t**: *T-value* `🔴 number`
   - **p**: *significance* `🔴 number`
   - **df**: *degrees of freedom* `c llQx`
 
-#### nzmJ
+#### Example
 
 ```js
 var M = new Matrix([],[]).ttestind(0,1);
@@ -294,12 +294,12 @@ var M = new Matrix([],[]).ttestind(0,1);
 
 kPqo
 
-#### oPEt
+#### Method calling syntax
 
 > [Matrix instance].**ttestpair**(***qFEM***, ***tpUu***)
 
 
-#### VVSN
+#### In-built default value filter
 
 rAyq
 
@@ -310,14 +310,14 @@ rAyq
 | **x** | qFEM | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 | **y** | tpUu | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 
-#### KxQM
+#### Output structure
 
 - *Root* `🟦 kLhB`
   - **t**: *T-value* `🔴 number`
   - **p**: *significance* `🔴 number`
   - **df**: *degrees of freedom* `c llQx`
 
-#### nzmJ
+#### Example
 
 ```js
 var test = new Matrix([2,3,2,4,5], [9,8,7,9,10]).ttestpair(0,1);
@@ -338,12 +338,12 @@ var test = new Matrix([2,3,2,4,5], [9,8,7,9,10]).ttestpair(0,1);
 
 qqQo
 
-#### oPEt
+#### Method calling syntax
 
 > [Matrix instance].**anovaow**(***iJaa***, *iJEe*)
 
 
-#### VVSN
+#### In-built default value filter
 
 CPwN
 
@@ -354,7 +354,7 @@ CPwN
 | **vectors** | iJaa | 🔢 DfLu | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
 | **factor** | iJEe | 🔢 DfLu | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
 
-#### KxQM
+#### Output structure
 
 - *baJo* `🟦 kLhB`
   - **F**: *Jdfb* `🔴 number`
@@ -373,7 +373,7 @@ CPwN
       - **sumOfSquares**: *Sumofsquares* `🔴 number`
       - **df**: *Df* `c llQx`
 
-#### nzmJ
+#### Example
 
 ```js
 var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow(0,1,2);
@@ -412,12 +412,12 @@ var M = new Matrix([2,3,2,4,5,9,8,7,9,10,1,7,19,32,90],[1,1,1,1,1,2,2,2,2,2,3,3,
 
 vzHj
 
-#### oPEt
+#### Method calling syntax
 
 > [Matrix instance].**mwu**(***qFEM***, *tpUu*)
 
 
-#### VVSN
+#### In-built default value filter
 
 CPwN
 
@@ -428,14 +428,14 @@ CPwN
 | **vectors** | qFEM | 🔢 DfLu | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
 | **factor** | tpUu | 🟤 oMas | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
 
-#### KxQM
+#### Output structure
 
 - *Root* `🟦 kLhB`
   - **U**: *TkNf* `🔴 number`
   - **Z**: *Shpv* `🔴 number`
   - **p**: *significance* `🔴 number`
 
-#### nzmJ
+#### Example
 
 ```js
 var M = new Matrix([1,2,3,4,5,6,7,8,9,10],[1,3,5,7,9,11,13,15,17,19]).mwu();
@@ -447,12 +447,12 @@ var M = new Matrix([1,2,3,4,5,6,7,8,9,10],[1,3,5,7,9,11,13,15,17,19]).mwu();
 
 dzFE
 
-#### oPEt
+#### Method calling syntax
 
 > [Matrix instance].**genreg**(***jDlm***, ***jFVv***, ***OBml***)
 
 
-#### VVSN
+#### In-built default value filter
 
 rAyq
 
@@ -464,7 +464,7 @@ rAyq
 | **dependent** | jFVv | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 | **model** | OBml | 🟤 oMas | aaVG | ✔️ | 1 |
 
-#### KxQM
+#### Output structure
 
 - *Root* `🟦 kLhB`
   - **model**: *OBml* `🟡 string`
@@ -475,7 +475,7 @@ rAyq
   - **beta0**: *TDpu* `🔴 number`
   - **beta1**: *eFcW* `🔴 number`
 
-#### nzmJ
+#### Example
 
 ```js
 
@@ -487,7 +487,7 @@ rAyq
 
 fqwd
 
-#### oPEt
+#### Method calling syntax
 
 > [Matrix instance].**contingency**(***gLRN***, ***bpjC***, *fqUi*)
 
@@ -500,7 +500,7 @@ fqwd
 | **y** | bpjC | 🟤 oMas | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 | **n** | fqUi | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
 
-#### KxQM
+#### Output structure
 
 - *gRix* `🟦 kLhB`
   - **phi**: *GfeP* `🔴 number`
@@ -509,7 +509,7 @@ fqwd
   - **C**: *BUaN* `🔴 number`
   - **V**: *VYQH* `🔴 number`
 
-#### nzmJ
+#### Example
 
 ```js
 var a = new StringVector("A","A","A","B","B","B","C","C","C","C");
@@ -536,12 +536,12 @@ var c2 = m.continency(a,b,n);
 
 qqQo
 
-#### oPEt
+#### Method calling syntax
 
 > [Matrix instance].**kwanova**(***iJaa***, *iJEe*)
 
 
-#### VVSN
+#### In-built default value filter
 
 CPwN
 
@@ -552,7 +552,7 @@ CPwN
 | **vectors** | iJaa | 🔢 DfLu | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
 | **factor** | iJEe | 🔢 DfLu | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
 
-#### KxQM
+#### Output structure
 
 - *baJo* `🟦 kLhB`
   - **F**: *Jdfb* `🔴 number`
@@ -571,7 +571,7 @@ CPwN
       - **sumOfSquares**: *Sumofsquares* `🔴 number`
       - **df**: *Df* `c llQx`
 
-#### nzmJ
+#### Example
 
 ```js
 var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow(0,1,2);

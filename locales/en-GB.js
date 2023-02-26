@@ -120,5 +120,18 @@ module.exports = {
 	"nQvK": "A vector of type ${type} cannot be used in the given set of vectors.",
 	"eJTP": "The value of the ${title} (${name}) parameter can only be a set of vectors or their identifiers (even if only a single element in the set is required).",
 	"kdjd": "The minimum number of vectors in the set for parameter '${title}' (${name}) is ${value}, specified by ${param}.",
-	"qkPg": "The maximum number of vectors in the set for parameter '${title}' (${name}) is ${value}, specified by ${param}."
+	"qkPg": "The maximum number of vectors in the set for parameter '${title}' (${name}) is ${value}, specified by ${param}.",
+	"wRbe": "function",
+	"rlTY": "method",
+	"LOYN": "numeric",
+	"zoiB": "string",
+	"OkoC": "boolean",
+	"oPEt": "Method calling syntax",
+	"VVSN": "In-built default value filter",
+	"GDkm": "Only numeric values including zeros.",
+	"NizL": "Integration by Vector type",
+	"AfXp": "vector type",
+	"picU": "availability",
+	"KxQM": "Output structure",
+	"nzmJ": "Example"
 }

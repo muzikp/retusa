@@ -120,5 +120,18 @@ module.exports = {
 	"nQvK": "Vektor typu ${type} nelze v dané sadě vektorů použít.",
 	"eJTP": "Hodnotou parametru ${title} (${name}) může být pouze sada vektorů nebo jejich identifikátorů (i v případě, že by se mělo pouze o jediný prvek v sadě).",
 	"kdjd": "Minimální počet vektorů v sadě pro parametr '${title}' (${name}) je ${value}, zadáno ${param}.",
-	"qkPg": "Maximální počet vektorů v sadě pro parametr '${title}' (${name}) je ${value}, zadáno ${param}."
+	"qkPg": "Maximální počet vektorů v sadě pro parametr '${title}' (${name}) je ${value}, zadáno ${param}.",
+	"wRbe": "funkce",
+	"rlTY": "metoda",
+	"LOYN": "numerický",
+	"zoiB": "nominální",
+	"OkoC": "binární",
+	"oPEt": "Způsob volání metody",
+	"VVSN": "Automatický filtr hodnot",
+	"GDkm": "Pouze číselné hodnoty (včetně nul).",
+	"NizL": "Integrace dle třídy",
+	"AfXp": "typ vektoru",
+	"picU": "dostupnost",
+	"KxQM": "Struktura vrácené hodnoty",
+	"nzmJ": "Příklad"
 }
