@@ -15,9 +15,8 @@ function VectorMarkdown(method, level = 1) {
     constructor = createVectorMethodConstructor(wiki);
     if(wiki.arguments?.length > 0) {
         var headers = [$("QUJS"), $("jBGO"), $("dmmV"), $("tGqA"), $("VPYX"), $("pDgb")];
-        if(wiki.arguments.find(a => a.enums)) headers.push($("iY0c"));
         var values = wiki.arguments.map(function(a){
-            var set = [
+            return [
                 `**${a.name}**`,
                 a.title,
                 new ArgumentSchema(a.schema).markdown(),
@@ -25,15 +24,14 @@ function VectorMarkdown(method, level = 1) {
                 a.required ? e_yes : e_no,
                 a.default || a.default === 0 || a.default === false ? a.default : "",
             ];
-            if(a.enums) 
-            {   
-                set.push(new ArgumentSchema().enumMarkdown(a.enums));
-            }
-            return set;
         });
-        var allignition = [1,1,0,1,1,1];
-        if(wiki.arguments.find(a => a.enums)) allignition.push(1);
-        _ += `\n\n${hash(level+1)} ${$("FRpk")}\n\n${objArrayToTable(headers, values, allignition)}`;
+        _ += `\n\n${hash(level+1)} ${$("FRpk")}\n\n${objArrayToTable(headers, values, [1,1,0,1,1,1])}`;
+    }
+    if(wiki.arguments.find(a => a.enums)) {
+        _ += `\n\n${hash(level+1)} ${$("iY0c")}`;
+        for(let a of wiki.arguments.filter(a => a.enums)) {
+            _ += `\n\n${hash(level+2)} ${a.title}\n\n${objArrayToTable([$("9oHx"),$("bB5f")], a.enums.map(function(r){return [r.key, $(r.value)]}),[1,0])}`;
+        }
     }
     if(wiki.applies?.length > 0) {
         _ += `\n\n${hash(level+1)} ${$("NizL")}\n\n${objArrayToTable([$("AfXp"), $("picU")], wiki.applies.map(v => [v.title, v.apply ? e_yes : e_no]), [0,1])}`;

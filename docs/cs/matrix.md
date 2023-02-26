@@ -35,18 +35,18 @@ Pearsonova korelace se používá především k porovnávání dvou kvantitativ
 
 #### Automatický filtr hodnot
 
-rAyq
+Vybere všechna data z původní matice (tj. žádná filtrace).
 
 #### Argumenty
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | první proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **y** | druhá proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **x** | první proměnná | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
 #### Struktura vrácené hodnoty
 
-- *IIlO* `🟦 objekt`
+- *protokol výstupu metody* `🟦 objekt`
   - **r**: *Pearsonův korelační koeficient* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
 
@@ -78,20 +78,20 @@ jAGi
 
 #### Automatický filtr hodnot
 
-rAyq
+Vybere všechna data z původní matice (tj. žádná filtrace).
 
 #### Argumenty
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | první proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **y** | druhá proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **x** | první proměnná | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
 #### Struktura vrácené hodnoty
 
-- *IIlO* `🟦 objekt`
+- *protokol výstupu metody* `🟦 objekt`
   - **r**: *Spearmanův korelační koeficient* `🔴 číslo`
-  - **df**: *stupně volnostsi* `🔴 celé číslo`
+  - **df**: *stupně volnosti* `🔴 celé číslo`
   - **p**: *významnost* `🔴 číslo`
 
 #### Příklad
@@ -122,21 +122,21 @@ Vrátí statistický protokol Kendallova korelačního koeficientu Tau-B. Pokud 
 
 #### Automatický filtr hodnot
 
-rAyq
+Vybere všechna data z původní matice (tj. žádná filtrace).
 
 #### Argumenty
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | první proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **y** | druhá proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **x** | první proměnná | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
 #### Struktura vrácené hodnoty
 
-- *IIlO* `🟦 objekt`
+- *protokol výstupu metody* `🟦 objekt`
   - **taub**: *NgVa* `🔴 číslo`
   - **taua**: *mgBA* `🔴 číslo`
-  - **df**: *stupně volnostsi* `🔴 celé číslo`
+  - **df**: *stupně volnosti* `🔴 celé číslo`
   - **p**: *významnost* `🔴 číslo`
 
 #### Příklad
@@ -167,19 +167,19 @@ Parciální korelace je statistická metoda, která vám umožňuje zjistit, jak
 
 #### Automatický filtr hodnot
 
-rAyq
+Vybere všechna data z původní matice (tj. žádná filtrace).
 
 #### Argumenty
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | první proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **y** | druhá proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **z** | třetí (kontrolní) proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **x** | první proměnná | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **z** | třetí (kontrolní) proměnná | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
 #### Struktura vrácené hodnoty
 
-- *IIlO* `🟦 objekt`
+- *protokol výstupu metody* `🟦 objekt`
   - **r**: *Pearsonův korelační koeficient* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
 
@@ -212,18 +212,18 @@ Biseriální korelace je statistická metoda, která se používá k vyhodnocen�
 
 #### Automatický filtr hodnot
 
-rAyq
+Vybere všechna data z původní matice (tj. žádná filtrace).
 
 #### Argumenty
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | první proměnná | [🟣] boQk | OCKc | ✔️ |  |
-| **y** | druhá proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
 #### Struktura vrácené hodnoty
 
-- *IIlO* `🟦 objekt`
+- *protokol výstupu metody* `🟦 objekt`
   - **r**: *Pearsonův korelační koeficient* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
 
@@ -252,15 +252,15 @@ CPwN
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | první proměnná | 🔢 DfLu | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
-| **factor** | druhá proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
+| **vectors** | první proměnná | 🔢 matice | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
+| **factor** | druhá proměnná | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
 
 #### Struktura vrácené hodnoty
 
 - *Root* `🟦 objekt`
   - **t**: *hodnota testu T* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
-  - **df**: *stupně volnostsi* `🔴 celé číslo`
+  - **df**: *stupně volnosti* `🔴 celé číslo`
 
 #### Příklad
 
@@ -281,21 +281,21 @@ Vrátí statistický protokol párového t-testu pro dva závislé výběry. Pr�
 
 #### Automatický filtr hodnot
 
-rAyq
+Vybere všechna data z původní matice (tj. žádná filtrace).
 
 #### Argumenty
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | první proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **y** | druhá proměnná | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **x** | první proměnná | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **y** | druhá proměnná | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 
 #### Struktura vrácené hodnoty
 
 - *Root* `🟦 objekt`
   - **t**: *hodnota testu T* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
-  - **df**: *stupně volnostsi* `🔴 celé číslo`
+  - **df**: *stupně volnosti* `🔴 celé číslo`
 
 #### Příklad
 
@@ -331,8 +331,8 @@ CPwN
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | iJaa | 🔢 DfLu | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
-| **factor** | iJEe | 🔢 DfLu | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
+| **vectors** | iJaa | 🔢 matice | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
+| **factor** | iJEe | 🔢 matice | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
 
 #### Struktura vrácené hodnoty
 
@@ -345,10 +345,10 @@ CPwN
     - **totalOfGroups**: *cXCr* `🔴 celé číslo`
     - **betweenGroups**: *thNv* `🟦 objekt`
       - **sumOfSquares**: *SqTd* `🔴 číslo`
-      - **df**: *stupně volnostsi* `🔴 celé číslo`
+      - **df**: *stupně volnosti* `🔴 celé číslo`
     - **withinGroups**: *GiRP* `🟦 objekt`
       - **sumOfsquares**: *SqTd* `🔴 číslo`
-      - **df**: *stupně volnostsi* `🔴 celé číslo`
+      - **df**: *stupně volnosti* `🔴 celé číslo`
     - **total**: *Total* `🟦 objekt`
       - **sumOfSquares**: *Sumofsquares* `🔴 číslo`
       - **df**: *Df* `🔴 celé číslo`
@@ -405,7 +405,7 @@ CPwN
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | první proměnná | 🔢 DfLu | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
+| **vectors** | první proměnná | 🔢 matice | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
 | **factor** | druhá proměnná | 🟤 cokoliv | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
 
 #### Struktura vrácené hodnoty
@@ -434,15 +434,15 @@ dzFE
 
 #### Automatický filtr hodnot
 
-rAyq
+Vybere všechna data z původní matice (tj. žádná filtrace).
 
 #### Argumenty
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **independent** | jDlm | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **dependent** | jFVv | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **model** | OBml | 🟤 cokoliv | aaVG | ✔️ | 1 |
+| **independent** | jDlm | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **dependent** | jFVv | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
+| **model** | OBml | 🟤 cokoliv | Ověří, zdali je hodnota platným členem enumerace. V opačném případě vyvolá chybu. | ✔️ | 1 |
 
 #### Struktura vrácené hodnoty
 
@@ -478,14 +478,14 @@ fqwd
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | gLRN | 🟤 cokoliv | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
 | **y** | bpjC | 🟤 cokoliv | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | ✔️ |  |
-| **n** | fqUi | [🔴] yWUM | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
+| **n** | fqUi | [🔴] numerický vektor | Ověří, zdali je hodnota typu NumericVector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
 
 #### Struktura vrácené hodnoty
 
 - *gRix* `🟦 objekt`
   - **phi**: *GfeP* `🔴 číslo`
   - **p**: *významnost* `🔴 číslo`
-  - **df**: *stupně volnostsi* `🔴 celé číslo`
+  - **df**: *stupně volnosti* `🔴 celé číslo`
   - **C**: *BUaN* `🔴 číslo`
   - **V**: *VYQH* `🔴 číslo`
 
@@ -529,8 +529,8 @@ CPwN
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | iJaa | 🔢 DfLu | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
-| **factor** | iJEe | 🔢 DfLu | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
+| **vectors** | iJaa | 🔢 matice | Ověří, zdali je hodnota typu numerické matice (tedy matice obsahující pouze numerické vektory). V opačném případě vyvolá chybu. | ✔️ |  |
+| **factor** | iJEe | 🔢 matice | Ověří, zdali je hodnota typu Vector. V opačném případě se někdy pokusí hodnotu převést na danou instanci, záleží na volající metodě. | - |  |
 
 #### Struktura vrácené hodnoty
 
@@ -543,10 +543,10 @@ CPwN
     - **totalOfGroups**: *cXCr* `🔴 celé číslo`
     - **betweenGroups**: *thNv* `🟦 objekt`
       - **sumOfSquares**: *SqTd* `🔴 číslo`
-      - **df**: *stupně volnostsi* `🔴 celé číslo`
+      - **df**: *stupně volnosti* `🔴 celé číslo`
     - **withinGroups**: *GiRP* `🟦 objekt`
       - **sumOfsquares**: *SqTd* `🔴 číslo`
-      - **df**: *stupně volnostsi* `🔴 celé číslo`
+      - **df**: *stupně volnosti* `🔴 celé číslo`
     - **total**: *Total* `🟦 objekt`
       - **sumOfSquares**: *Sumofsquares* `🔴 číslo`
       - **df**: *Df* `🔴 celé číslo`

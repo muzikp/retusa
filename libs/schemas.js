@@ -131,9 +131,6 @@ class ArgumentSchema extends Schema {
     createPropTitle(e, indent = 1) {
         this.to +=this.createMDTypeBadge(e.type);
     }
-    enumMarkdown(values) {
-        return values.map(v=> `- ${v.key}: ${$(v.title)}`).join("\n");
-    }
 }
 
 class OutputSchema {

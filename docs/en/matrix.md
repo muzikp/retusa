@@ -35,18 +35,18 @@ Pearson's correlation is mainly used to compare two quantitative quantities, i.e
 
 #### In-built default value filter
 
-rAyq
+Selects all data from the original matrix (ie no filtering).
 
 #### Arguments
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | first variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **y** | second variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **x** | first variable | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **y** | second variable | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 
 #### Output structure
 
-- *IIlO* `🟦 object`
+- *method output log* `🟦 object`
   - **r**: *Pearson correlation coefficient* `🔴 number`
   - **p**: *significance* `🔴 number`
 
@@ -78,18 +78,18 @@ jAGi
 
 #### In-built default value filter
 
-rAyq
+Selects all data from the original matrix (ie no filtering).
 
 #### Arguments
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | first variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **y** | second variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **x** | first variable | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **y** | second variable | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 
 #### Output structure
 
-- *IIlO* `🟦 object`
+- *method output log* `🟦 object`
   - **r**: *Spearman's correlation coefficient* `🔴 number`
   - **df**: *degrees of freedom* `🔴 whole number (integer)`
   - **p**: *significance* `🔴 number`
@@ -122,18 +122,18 @@ Returns the statistical log of Kendall's Tau-B correlation coefficient. If you w
 
 #### In-built default value filter
 
-rAyq
+Selects all data from the original matrix (ie no filtering).
 
 #### Arguments
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | first variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **y** | second variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **x** | first variable | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **y** | second variable | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 
 #### Output structure
 
-- *IIlO* `🟦 object`
+- *method output log* `🟦 object`
   - **taub**: *NgVa* `🔴 number`
   - **taua**: *mgBA* `🔴 number`
   - **df**: *degrees of freedom* `🔴 whole number (integer)`
@@ -167,19 +167,19 @@ Partial correlation is a statistical method that allows you to find out what the
 
 #### In-built default value filter
 
-rAyq
+Selects all data from the original matrix (ie no filtering).
 
 #### Arguments
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | first variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **y** | second variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **z** | third (control) variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **x** | first variable | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **y** | second variable | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **z** | third (control) variable | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 
 #### Output structure
 
-- *IIlO* `🟦 object`
+- *method output log* `🟦 object`
   - **r**: *Pearson correlation coefficient* `🔴 number`
   - **p**: *significance* `🔴 number`
 
@@ -212,18 +212,18 @@ Biserial correlation is a statistical method that is used to evaluate the relati
 
 #### In-built default value filter
 
-rAyq
+Selects all data from the original matrix (ie no filtering).
 
 #### Arguments
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | first variable | [🟣] boQk | OCKc | ✔️ |  |
-| **y** | second variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **y** | second variable | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 
 #### Output structure
 
-- *IIlO* `🟦 object`
+- *method output log* `🟦 object`
   - **r**: *Pearson correlation coefficient* `🔴 number`
   - **p**: *significance* `🔴 number`
 
@@ -252,8 +252,8 @@ CPwN
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | first variable | 🔢 DfLu | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
-| **factor** | second variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
+| **vectors** | first variable | 🔢 matrix | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
+| **factor** | second variable | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
 
 #### Output structure
 
@@ -281,14 +281,14 @@ Returns the statistical log of a paired t-test for two dependent samples. Empty 
 
 #### In-built default value filter
 
-rAyq
+Selects all data from the original matrix (ie no filtering).
 
 #### Arguments
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **x** | first variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **y** | second variable | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **x** | first variable | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **y** | second variable | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 
 #### Output structure
 
@@ -331,8 +331,8 @@ CPwN
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | iJaa | 🔢 DfLu | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
-| **factor** | iJEe | 🔢 DfLu | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
+| **vectors** | iJaa | 🔢 matrix | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
+| **factor** | iJEe | 🔢 matrix | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
 
 #### Output structure
 
@@ -405,7 +405,7 @@ CPwN
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | first variable | 🔢 DfLu | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
+| **vectors** | first variable | 🔢 matrix | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
 | **factor** | second variable | 🟤 any type | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
 
 #### Output structure
@@ -434,15 +434,15 @@ dzFE
 
 #### In-built default value filter
 
-rAyq
+Selects all data from the original matrix (ie no filtering).
 
 #### Arguments
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **independent** | jDlm | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **dependent** | jFVv | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **model** | OBml | 🟤 any type | aaVG | ✔️ | 1 |
+| **independent** | jDlm | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **dependent** | jFVv | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
+| **model** | OBml | 🟤 any type | Checks if the value is a valid enumeration member. Otherwise, it will throw an error. | ✔️ | 1 |
 
 #### Output structure
 
@@ -478,7 +478,7 @@ fqwd
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **x** | gLRN | 🟤 any type | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
 | **y** | bpjC | 🟤 any type | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | ✔️ |  |
-| **n** | fqUi | [🔴] yWUM | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
+| **n** | fqUi | [🔴] numeric vector | Checks if the value is of type NumericVector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
 
 #### Output structure
 
@@ -529,8 +529,8 @@ CPwN
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **vectors** | iJaa | 🔢 DfLu | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
-| **factor** | iJEe | 🔢 DfLu | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
+| **vectors** | iJaa | 🔢 matrix | Checks if the value is of NumericMatrix type (that is, a matrix containing only numeric vectors). Otherwise, an error is thrown. | ✔️ |  |
+| **factor** | iJEe | 🔢 matrix | Checks if the value is of type Vector. Otherwise, it sometimes tries to cast the value to the given instance, depending on the calling method. | - |  |
 
 #### Output structure
 

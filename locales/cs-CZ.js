@@ -74,7 +74,7 @@ module.exports = {
 	"yQZd": "Vrátí statistický protokol Komogorov-Smirnovova testu normality rozdělení hodnot vektoru. Aktuálně nepočítá hladinu významnosti testu. Kolmogorov-Smirnov test (často také zkracovaný jako K-S test) je statistický test, který se používá k testování hypotézy, že data pocházejí z určitého rozdělení. Tento test porovnává rozdělení dat s teoretickým rozdělením, které se předpokládá, že data vycházejí, a vyhodnocuje, zda jsou datové hodnoty s teoretickým rozdělením dostatečně blízko, aby se mohla hypotéza o tom, že data pocházejí z daného rozdělení, považovat za pravdivou.Test Kolmogorov-Smirnov se často používá k ověření normality dat, ale může být také použit k ověření, zda data pocházejí z jiného teoretického rozdělení, jako je například exponenciální nebo binomické rozdělení. Test Kolmogorov-Smirnov je obecně považován za jeden z nejpřesnějších testů normality, ale má omezenou citlivost pro malé vzorky, tj. pro malé vzorky může být méně spolehlivý při detekci ne-normality. Pro malé vzorky se proto často používají jiné testy normality, jako například test Shapiro-Wilk nebo test Anderson-Darling.",
 	"sDgR": "významnost",
 	"cBNP": "hodnota testu T",
-	"OYQu": "stupně volnostsi",
+	"OYQu": "stupně volnosti",
 	"pelN": "číslo",
 	"FxzE": "jakýkoliv typ hodnoty",
 	"DQnl": "celé číslo",
@@ -164,5 +164,14 @@ module.exports = {
 	"YqRh": "T-test (nezávislý)",
 	"gILL": "Vrátí statistický protokol Studentova t-testu pro dva nezávislé výběry, které jsou definovány vlastní proměnnou (tedy dvěma numerickými vektory). Argumenty tvoří buď dva numerické vektory, nebo jeden numerický a jen faktorový vektor (obvykle text, ale může být i numerický či binární). Pokud je použit jako faktor vektor, který má více než dvě unikátní hodnoty, jsou pro test uvažovány pouze první dvě unikátní nalezené hodnoty (ostatní se ignorují) - v takovém případě je informace o velikosti čistého vzorku nepodstatná, nicméně hladina významnosti, do které velikost vzorku vstupuje, je již založena na čistých případech.",
 	"mmXD": "T-test (párový)",
-	"kPqo": "Vrátí statistický protokol párového t-testu pro dva závislé výběry. Prázdné hodnoty jsou vyřezeny v průřezu řádků, tzn. že pokud v jednom řádku chybí alespoň jedna hodnota, je z analýzy vyřezen celý řádek."
+	"kPqo": "Vrátí statistický protokol párového t-testu pro dva závislé výběry. Prázdné hodnoty jsou vyřezeny v průřezu řádků, tzn. že pokud v jednom řádku chybí alespoň jedna hodnota, je z analýzy vyřezen celý řádek.",
+	"yWUM": "numerický vektor",
+	"rAyq": "Vybere všechna data z původní matice (tj. žádná filtrace).",
+	"IIlO": "protokol výstupu metody",
+	"DfLu": "matice",
+	"aaVG": "Ověří, zdali je hodnota platným členem enumerace. V opačném případě vyvolá chybu.",
+	"dFiw": "Ověří, zdali se jedná o celé kladné číslo. V opačném případě vyvolá chybu.",
+	"iY0c": "Enumerátory",
+	"9oHx": "hodnota",
+	"bB5f": "popis"
 }

@@ -164,5 +164,14 @@ module.exports = {
 	"YqRh": "T-test (independent)",
 	"gILL": "Returns the statistical log of the Student's t-test for two independent samples that are defined by an eigenvariable (that is, two numeric vectors). Arguments are either two numeric vectors, or one numeric and only a factor vector (usually text, but can also be numeric or binary). If a vector that has more than two unique values is used as a factor, only the first two unique values found are considered for the test (the others are ignored) - in this case, the information about the size of the pure sample is irrelevant, however, the level of significance to which the sample size enters, it is already based on pure cases.",
 	"mmXD": "T-test (paired)",
-	"kPqo": "Returns the statistical log of a paired t-test for two dependent samples. Empty values are cut out in the row cross-section, i.e. that if at least one value is missing in one row, the entire row is cut from the analysis."
+	"kPqo": "Returns the statistical log of a paired t-test for two dependent samples. Empty values are cut out in the row cross-section, i.e. that if at least one value is missing in one row, the entire row is cut from the analysis.",
+	"yWUM": "numeric vector",
+	"rAyq": "Selects all data from the original matrix (ie no filtering).",
+	"IIlO": "method output log",
+	"DfLu": "matrix",
+	"aaVG": "Checks if the value is a valid enumeration member. Otherwise, it will throw an error.",
+	"dFiw": "Checks if it is a positive integer. Otherwise, it will throw an error.",
+	"iY0c": "Enumerators",
+	"9oHx": "value",
+	"bB5f": "description"
 }

@@ -175,7 +175,7 @@ Only numeric values including zeros.
 
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **maxIntervals** | maximum intervals | 🔴 number | dFiw | - |  |
+| **maxIntervals** | maximum intervals | 🔴 number | Checks if it is a positive integer. Otherwise, it will throw an error. | - |  |
 | **fixedInterval** | fixed interval | 🔴 number | bpCq | - |  |
 
 #### Integration by Vector type
@@ -553,9 +553,20 @@ Returns a frequency table object with the breakdown of elements and their freque
 
 #### Arguments
 
-| id | description | value type | validator | required | default value | iY0c |
-| :---: |  :---: |  --- |  :---: |  :---: |  :---: |  :---: | 
-| **order** | table order mode | 🔴 whole number (integer) | aaVG | - | 1 | - 1: by frequency descending - 2: by frequency ascending - 3: by value ascending - 4: by value descending |
+| id | description | value type | validator | required | default value |
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
+| **order** | table order mode | 🔴 whole number (integer) | Checks if the value is a valid enumeration member. Otherwise, it will throw an error. | - | 1 |
+
+#### Enumerators
+
+##### table order mode
+
+| value | description |
+| :---: |  --- | 
+| 1 |  |
+| 2 |  |
+| 3 |  |
+| 4 |  |
 
 #### Integration by Vector type
 

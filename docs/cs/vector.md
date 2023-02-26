@@ -59,7 +59,7 @@ Pouze číselné hodnoty (včetně nul).
 
 - *Kolmogorov-Smirnovův test* `🟦 objekt`
   - **T**: *hodnota Kolmogorov-Smirnovova testu* `🔴 číslo`
-  - **df**: *stupně volnostsi* `🔴 celé číslo`
+  - **df**: *stupně volnosti* `🔴 celé číslo`
   - **p**: *významnost* `🔴 číslo`
 
 #### Příklad
@@ -175,7 +175,7 @@ Pouze číselné hodnoty (včetně nul).
 
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
-| **maxIntervals** | maximální počet intervalů | 🔴 číslo | dFiw | - |  |
+| **maxIntervals** | maximální počet intervalů | 🔴 číslo | Ověří, zdali se jedná o celé kladné číslo. V opačném případě vyvolá chybu. | - |  |
 | **fixedInterval** | pevná velikost intervalu | 🔴 číslo | bpCq | - |  |
 
 #### Integrace dle třídy
@@ -485,7 +485,7 @@ Pouze číselné hodnoty (včetně nul).
 
 - *Shapirův-Wilkův W test* `🟦 objekt`
   - **W**: *hodnota W-testu* `🔴 číslo`
-  - **df**: *stupně volnostsi* `🔴 celé číslo`
+  - **df**: *stupně volnosti* `🔴 celé číslo`
   - **p**: *významnost* `🔴 číslo`
 
 #### Příklad
@@ -553,12 +553,20 @@ Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností. [Zjis
 
 #### Argumenty
 
-| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota | iY0c |
-| :---: |  :---: |  --- |  :---: |  :---: |  :---: |  :---: | 
-| **order** | způsob řazení dat tabulky | 🔴 celé číslo | aaVG | - | 1 | - 1: by frequency descending
-- 2: by frequency ascending
-- 3: by value ascending
-- 4: by value descending |
+| id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
+| :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
+| **order** | způsob řazení dat tabulky | 🔴 celé číslo | Ověří, zdali je hodnota platným členem enumerace. V opačném případě vyvolá chybu. | - | 1 |
+
+#### Enumerátory
+
+##### způsob řazení dat tabulky
+
+| hodnota | popis |
+| :---: |  --- | 
+| 1 |  |
+| 2 |  |
+| 3 |  |
+| 4 |  |
 
 #### Integrace dle třídy
 
