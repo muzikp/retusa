@@ -563,10 +563,10 @@ Returns a frequency table object with the breakdown of elements and their freque
 
 | value | description |
 | :---: |  --- | 
-| 1 |  |
-| 2 |  |
-| 3 |  |
-| 4 |  |
+| 1 | by frequency descending |
+| 2 | by frequency ascending |
+| 3 | by value ascending |
+| 4 | by value descending |
 
 #### Integration by Vector type
 

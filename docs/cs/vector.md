@@ -563,10 +563,10 @@ Vrátí object frekvenční tabulky s rozpadem prvků a jejich četností. [Zjis
 
 | hodnota | popis |
 | :---: |  --- | 
-| 1 |  |
-| 2 |  |
-| 3 |  |
-| 4 |  |
+| 1 | by frequency descending |
+| 2 | by frequency ascending |
+| 3 | by value ascending |
+| 4 | by value descending |
 
 #### Integrace dle třídy
 

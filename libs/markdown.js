@@ -30,7 +30,7 @@ function VectorMarkdown(method, level = 1) {
     if(wiki.arguments.find(a => a.enums)) {
         _ += `\n\n${hash(level+1)} ${$("iY0c")}`;
         for(let a of wiki.arguments.filter(a => a.enums)) {
-            _ += `\n\n${hash(level+2)} ${a.title}\n\n${objArrayToTable([$("9oHx"),$("bB5f")], a.enums.map(function(r){return [r.key, $(r.value)]}),[1,0])}`;
+            _ += `\n\n${hash(level+2)} ${a.title}\n\n${objArrayToTable([$("9oHx"),$("bB5f")], a.enums.map(function(r){return [r.key, $(r.title)]}),[1,0])}`;
         }
     }
     if(wiki.applies?.length > 0) {
@@ -61,6 +61,12 @@ function MatrixMarkdown(method, level = 1) {
             ]
         });
         _ += `\n\n${hash(level+1)} ${$("FRpk")}\n\n${objArrayToTable(headers, values, [1,1,0,1,1,1])}`;
+    }
+    if(method.wiki.arguments.find(a => a.enums)) {
+        _ += `\n\n${hash(level+1)} ${$("iY0c")}`;
+        for(let a of method.wiki.arguments.filter(a => a.enums)) {
+            _ += `\n\n${hash(level+2)} ${a.title}\n\n${objArrayToTable([$("9oHx"),$("bB5f")], a.enums.map(function(r){return [r.key, $(r.title)]}),[1,0])}`;
+        }
     }
     if(method.model.returns) _ += `\n\n${hash(level+1)} ${$("KxQM")}\n` + new Schema(method.model.returns).markdown();
     if(method.model.example) _ += `\n\n${hash(level+1)} ${$("nzmJ")}\n\n\`\`\`js\n${method.wiki.example}\n\`\`\``;
