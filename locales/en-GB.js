@@ -1,4 +1,5 @@
 module.exports = {
+	"0000": "empty text",
 	"0001": "unknown locale key: ${value}",
 	"gvdg": "sum",
 	"iMbD": "Returns the sum of all non-empty numeric values of a vector.",

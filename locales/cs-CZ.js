@@ -1,4 +1,5 @@
 module.exports = {
+	"0000": "prázdný text",
 	"0001": "neznámá hodnota lokálního kódu: ${value}",
 	"gvdg": "součet",
 	"iMbD": "Vrátí součet všech neprázdných číselných hodnot vektoru.",
