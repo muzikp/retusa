@@ -68,7 +68,7 @@ var correl = new Matrix(a,b).correlPearson(a,b);
 
 ### [SPEARMAN'S CORRELATION COEFFICIENT](#correlSpearman): correlSpearman
 
-jAGi
+Returns the statistical log of the Spearman rank correlation coefficient. Unlike the Pearson correlation, the Spearman method is based on a comparison of the order of magnitude of the values of the input variables.
 
 #### Method calling syntax
 

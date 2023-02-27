@@ -68,7 +68,7 @@ var correl = new Matrix(a,b).correlPearson(a,b);
 
 ### [SPEARMANŮV KORELAČNÍ KOEFICIENT](#correlSpearman): correlSpearman
 
-jAGi
+Vrátí statistický protokol Spearmanova koeficientu pořadové korelace. Narozdíl od Pearsonovy korelace, Spearmanova metoda vychází z porovnání pořadí velikosti hodnot vstupních proměnných.
 
 #### Způsob volání metody
 

@@ -2,12 +2,14 @@ const { vectorModels, NumericVector } = require("./index");
 var framework = require("./index");
 const { StringVector } = require("./libs/vector");
 
-//framework.docs.publish(require("fs"));
+framework.docs.publish(require("fs"));
 
 with (framework) {
+    /*
     locale.setDefault("en-GB");
     framework.docs.publish(require("fs"));
     return;
+    */
     //var arr = [...Array(40).keys()].map((e,i,a) => i * 0.1).map(e => utils.distribution.normdist(e,10,5)).toCSV(",");
     //console.log(arr);
     //debugger;
@@ -17,9 +19,8 @@ with (framework) {
         new NumericVector(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20).name("proměnná z"),
         new BooleanVector(0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1).name("proměnná b")
     );
-    var Mf = M.filter("proměnná x", function(v,i,a) {return v > 10});
-    //var correl = M.analyze("correlPearson").run(0,1).wiki;
-    var avg = M[0].analyze("stdev").run(true).wiki;
+    //var Mf = M.filter("proměnná x", function(v,i,a) {return v > 10});
+    var correl = new MatrixAnalysis("genreg")//.run(0,1,1).wiki;
     debugger;
     return;    
 

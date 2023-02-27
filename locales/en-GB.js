@@ -154,7 +154,7 @@ module.exports = {
 	"tpUu": "second variable",
 	"tpUR": "third (control) variable",
 	"eJTT": "Spearman's correlation coefficient",
-	"AGi": "Returns the statistical log of the Spearman rank correlation coefficient. Unlike the Pearson correlation, the Spearman method is based on a comparison of the order of magnitude of the values of the input variables.",
+	"jAGi": "Returns the statistical log of the Spearman rank correlation coefficient. Unlike the Pearson correlation, the Spearman method is based on a comparison of the order of magnitude of the values of the input variables.",
 	"mgBC": "Kendall Tau-b",
 	"VOmC": "Returns the statistical log of Kendall's Tau-B correlation coefficient. If you were to calculate the same operation in SPSS, you would probably get a slightly different result. Apparently, this is due to the different sensitivity to decimal places in the two systems. However, it should not have a major influence on the interpretation of the result.",
 	"xfSf": "partial correlation",

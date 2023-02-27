@@ -154,7 +154,7 @@ module.exports = {
 	"tpUu": "druhá proměnná",
 	"tpUR": "třetí (kontrolní) proměnná",
 	"eJTT": "Spearmanův korelační koeficient",
-	"AGi": "Vrátí statistický protokol Spearmanova koeficientu pořadové korelace. Narozdíl od Pearsonovy korelace, Spearmanova metoda vychází z porovnání pořadí velikosti hodnot vstupních proměnných.",
+	"jAGi": "Vrátí statistický protokol Spearmanova koeficientu pořadové korelace. Narozdíl od Pearsonovy korelace, Spearmanova metoda vychází z porovnání pořadí velikosti hodnot vstupních proměnných.",
 	"mgBC": "Kendallovo Tau-b",
 	"VOmC": "Vrátí statistický protokol Kendallova korelačního koeficientu Tau-B. Pokud byste tutéž operaci počítali v SPSS, patrně dostanete mírně odlišný výsledek. Podle všeho je to vlivem odlišné citlivosti na desetinná místa u obou systémů. Na interpretaci výsledku by to nicméně zásadní vliv mít nemělo.",
 	"xfSf": "parciální korelace",
