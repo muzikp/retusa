@@ -60,7 +60,7 @@ Pouze číselné hodnoty (včetně nul).
 - *Kolmogorov-Smirnovův test* `🟦 objekt`
   - **T**: *hodnota Kolmogorov-Smirnovova testu* `🔴 číslo`
   - **df**: *stupně volnosti* `🔴 celé číslo`
-  - **p**: *významnost* `🔴 číslo`
+  - **p**: *p* `🔴 číslo`
 
 #### Příklad
 
@@ -176,7 +176,7 @@ Pouze číselné hodnoty (včetně nul).
 | id | popis | typ hodnoty | validátor | povinný | defaultní hodnota |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **maxIntervals** | maximální počet intervalů | 🔴 číslo | Ověří, zdali se jedná o celé kladné číslo. V opačném případě vyvolá chybu. | - |  |
-| **fixedInterval** | pevná velikost intervalu | 🔴 číslo | bpCq | - |  |
+| **fixedInterval** | pevná velikost intervalu | 🔴 číslo | Ověří, zdali se jedná o číselnou hodnotu větší než nula. V opačném případě vyvolá chybu. | - |  |
 
 #### Integrace dle třídy
 
@@ -382,7 +382,7 @@ Pouze číselné hodnoty (včetně nul).
 
 - *jednovýběrový t-test* `🟦 objekt`
   - **t**: *hodnota testu T* `🔴 číslo`
-  - **p**: *významnost* `🔴 číslo`
+  - **p**: *p* `🔴 číslo`
   - **n**: *počet případů* `🔴 celé číslo`
 
 #### Příklad
@@ -486,7 +486,7 @@ Pouze číselné hodnoty (včetně nul).
 - *Shapirův-Wilkův W test* `🟦 objekt`
   - **W**: *hodnota W-testu* `🔴 číslo`
   - **df**: *stupně volnosti* `🔴 celé číslo`
-  - **p**: *významnost* `🔴 číslo`
+  - **p**: *p* `🔴 číslo`
 
 #### Příklad
 

@@ -47,7 +47,7 @@ Vybere všechna data z původní matice (tj. žádná filtrace).
 
 - *protokol výstupu metody* `🟦 objekt`
   - **r**: *Pearsonův korelační koeficient* `🔴 číslo`
-  - **p**: *významnost* `🔴 číslo`
+  - **p**: *p* `🔴 číslo`
 
 #### Příklad
 
@@ -91,7 +91,7 @@ Vybere všechna data z původní matice (tj. žádná filtrace).
 - *protokol výstupu metody* `🟦 objekt`
   - **r**: *Spearmanův korelační koeficient* `🔴 číslo`
   - **df**: *stupně volnosti* `🔴 celé číslo`
-  - **p**: *významnost* `🔴 číslo`
+  - **p**: *p* `🔴 číslo`
 
 #### Příklad
 
@@ -136,7 +136,7 @@ Vybere všechna data z původní matice (tj. žádná filtrace).
   - **taub**: *Tau-b* `🔴 číslo`
   - **taua**: *Tau-a* `🔴 číslo`
   - **df**: *stupně volnosti* `🔴 celé číslo`
-  - **p**: *významnost* `🔴 číslo`
+  - **p**: *p* `🔴 číslo`
 
 #### Příklad
 
@@ -180,7 +180,7 @@ Vybere všechna data z původní matice (tj. žádná filtrace).
 
 - *protokol výstupu metody* `🟦 objekt`
   - **r**: *Pearsonův korelační koeficient* `🔴 číslo`
-  - **p**: *významnost* `🔴 číslo`
+  - **p**: *p* `🔴 číslo`
 
 #### Příklad
 
@@ -224,7 +224,7 @@ Vybere všechna data z původní matice (tj. žádná filtrace).
 
 - *protokol výstupu metody* `🟦 objekt`
   - **r**: *Pearsonův korelační koeficient* `🔴 číslo`
-  - **p**: *významnost* `🔴 číslo`
+  - **p**: *p* `🔴 číslo`
 
 #### Příklad
 
@@ -258,7 +258,7 @@ Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom v
 
 - *Root* `🟦 objekt`
   - **t**: *hodnota testu T* `🔴 číslo`
-  - **p**: *významnost* `🔴 číslo`
+  - **p**: *p* `🔴 číslo`
   - **df**: *stupně volnosti* `🔴 celé číslo`
 
 #### Příklad
@@ -293,7 +293,7 @@ Vybere všechna data z původní matice (tj. žádná filtrace).
 
 - *Root* `🟦 objekt`
   - **t**: *hodnota testu T* `🔴 číslo`
-  - **p**: *významnost* `🔴 číslo`
+  - **p**: *p* `🔴 číslo`
   - **df**: *stupně volnosti* `🔴 celé číslo`
 
 #### Příklad
@@ -338,7 +338,7 @@ Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom v
 - *ANOVA (jednofaktorová)* `🟦 objekt`
   - **F**: *F test* `🔴 číslo`
   - **P2**: *P2 (koeficient závislosti)* `🔴 číslo`
-  - **p**: *významnost* `🔴 číslo`
+  - **p**: *p* `🔴 číslo`
   - **n**: *počet případů* `🔴 celé číslo`
   - **ANOVA**: *statistiky ANOVA* `🟦 objekt`
     - **totalOfGroups**: *celkem skupin* `🔴 celé číslo`
@@ -412,7 +412,7 @@ Odstraní z vektorů prázdné hodnoty, aniž by odstranění řádku v jednom v
 - *Root* `🟦 objekt`
   - **U**: *U test* `🔴 číslo`
   - **Z**: *Z test* `🔴 číslo`
-  - **p**: *významnost* `🔴 číslo`
+  - **p**: *p* `🔴 číslo`
 
 #### Příklad
 
@@ -452,7 +452,7 @@ Vybere všechna data z původní matice (tj. žádná filtrace).
   - **r2**: *R2 (koeficient determinace)* `🔴 číslo`
   - **r**: *Pearsonův korelační koeficient* `🔴 číslo`
   - **F**: *F test* `🔴 číslo`
-  - **p**: *významnost* `🔴 číslo`
+  - **p**: *p* `🔴 číslo`
   - **beta0**: *beta0 (konstanta)* `🔴 číslo`
   - **beta1**: *beta1 (koeficient)* `🔴 číslo`
 
@@ -485,7 +485,7 @@ Vrátí statistický protokol kontingence. Parametry metody jsou a) řádková p
 
 - *kontingence* `🟦 objekt`
   - **phi**: *chí^2 test* `🔴 číslo`
-  - **p**: *významnost* `🔴 číslo`
+  - **p**: *p* `🔴 číslo`
   - **df**: *stupně volnosti* `🔴 celé číslo`
   - **C**: *Pearsonovo C* `🔴 číslo`
   - **V**: *Cramérovo V* `🔴 číslo`

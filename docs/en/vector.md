@@ -60,7 +60,7 @@ Only numeric values including zeros.
 - *Kolmogorov-Smirnov test* `🟦 object`
   - **T**: *Kolmogorov-Smirnov test value* `🔴 number`
   - **df**: *degrees of freedom* `🔴 whole number (integer)`
-  - **p**: *significance* `🔴 number`
+  - **p**: *sig.* `🔴 number`
 
 #### Example
 
@@ -176,7 +176,7 @@ Only numeric values including zeros.
 | id | description | value type | validator | required | default value |
 | :---: |  :---: |  --- |  :---: |  :---: |  :---: | 
 | **maxIntervals** | maximum intervals | 🔴 number | Checks if it is a positive integer. Otherwise, it will throw an error. | - |  |
-| **fixedInterval** | fixed interval | 🔴 number | bpCq | - |  |
+| **fixedInterval** | fixed interval | 🔴 number | Checks if it is a numeric value greater than zero. Otherwise, it will throw an error. | - |  |
 
 #### Integration by Vector type
 
@@ -382,7 +382,7 @@ Only numeric values including zeros.
 
 - *one-sample t-test* `🟦 object`
   - **t**: *T-value* `🔴 number`
-  - **p**: *significance* `🔴 number`
+  - **p**: *sig.* `🔴 number`
   - **n**: *total of cases* `🔴 whole number (integer)`
 
 #### Example
@@ -486,7 +486,7 @@ Only numeric values including zeros.
 - *Shapiro-Wilk W test* `🟦 object`
   - **W**: *W-test value* `🔴 number`
   - **df**: *degrees of freedom* `🔴 whole number (integer)`
-  - **p**: *significance* `🔴 number`
+  - **p**: *sig.* `🔴 number`
 
 #### Example
 

@@ -47,7 +47,7 @@ Selects all data from the original matrix (ie no filtering).
 
 - *method output log* `🟦 object`
   - **r**: *Pearson correlation coefficient* `🔴 number`
-  - **p**: *significance* `🔴 number`
+  - **p**: *sig.* `🔴 number`
 
 #### Example
 
@@ -91,7 +91,7 @@ Selects all data from the original matrix (ie no filtering).
 - *method output log* `🟦 object`
   - **r**: *Spearman's correlation coefficient* `🔴 number`
   - **df**: *degrees of freedom* `🔴 whole number (integer)`
-  - **p**: *significance* `🔴 number`
+  - **p**: *sig.* `🔴 number`
 
 #### Example
 
@@ -136,7 +136,7 @@ Selects all data from the original matrix (ie no filtering).
   - **taub**: *Tau-b* `🔴 number`
   - **taua**: *Tau-a* `🔴 number`
   - **df**: *degrees of freedom* `🔴 whole number (integer)`
-  - **p**: *significance* `🔴 number`
+  - **p**: *sig.* `🔴 number`
 
 #### Example
 
@@ -180,7 +180,7 @@ Selects all data from the original matrix (ie no filtering).
 
 - *method output log* `🟦 object`
   - **r**: *Pearson correlation coefficient* `🔴 number`
-  - **p**: *significance* `🔴 number`
+  - **p**: *sig.* `🔴 number`
 
 #### Example
 
@@ -224,7 +224,7 @@ Selects all data from the original matrix (ie no filtering).
 
 - *method output log* `🟦 object`
   - **r**: *Pearson correlation coefficient* `🔴 number`
-  - **p**: *significance* `🔴 number`
+  - **p**: *sig.* `🔴 number`
 
 #### Example
 
@@ -258,7 +258,7 @@ Removes empty values from vectors without deleting a row in one vector affecting
 
 - *Root* `🟦 object`
   - **t**: *T-value* `🔴 number`
-  - **p**: *significance* `🔴 number`
+  - **p**: *sig.* `🔴 number`
   - **df**: *degrees of freedom* `🔴 whole number (integer)`
 
 #### Example
@@ -293,7 +293,7 @@ Selects all data from the original matrix (ie no filtering).
 
 - *Root* `🟦 object`
   - **t**: *T-value* `🔴 number`
-  - **p**: *significance* `🔴 number`
+  - **p**: *sig.* `🔴 number`
   - **df**: *degrees of freedom* `🔴 whole number (integer)`
 
 #### Example
@@ -338,7 +338,7 @@ Removes empty values from vectors without deleting a row in one vector affecting
 - *ANOVA (one-way)* `🟦 object`
   - **F**: *F test* `🔴 number`
   - **P2**: *P2 (dependence coefficient)* `🔴 number`
-  - **p**: *significance* `🔴 number`
+  - **p**: *sig.* `🔴 number`
   - **n**: *total of cases* `🔴 whole number (integer)`
   - **ANOVA**: *ANOVA statistics* `🟦 object`
     - **totalOfGroups**: *total of groups* `🔴 whole number (integer)`
@@ -412,7 +412,7 @@ Removes empty values from vectors without deleting a row in one vector affecting
 - *Root* `🟦 object`
   - **U**: *U test* `🔴 number`
   - **Z**: *Z test* `🔴 number`
-  - **p**: *significance* `🔴 number`
+  - **p**: *sig.* `🔴 number`
 
 #### Example
 
@@ -452,7 +452,7 @@ Selects all data from the original matrix (ie no filtering).
   - **r2**: *R2 ( coefficient of determination)* `🔴 number`
   - **r**: *Pearson correlation coefficient* `🔴 number`
   - **F**: *F test* `🔴 number`
-  - **p**: *significance* `🔴 number`
+  - **p**: *sig.* `🔴 number`
   - **beta0**: *beta0 (constant)* `🔴 number`
   - **beta1**: *beta1 (coefficient)* `🔴 number`
 
@@ -485,7 +485,7 @@ Returns the contingency statistics log. The parameters of the method are a) row 
 
 - *contingency* `🟦 object`
   - **phi**: *phi^2 test* `🔴 number`
-  - **p**: *significance* `🔴 number`
+  - **p**: *sig.* `🔴 number`
   - **df**: *degrees of freedom* `🔴 whole number (integer)`
   - **C**: *Pearson C* `🔴 number`
   - **V**: *Cramér V* `🔴 number`
