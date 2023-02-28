@@ -217,5 +217,6 @@ module.exports = {
 	"fqUi": "frequency variable",
 	"GfeP": "phi^2 test",
 	"VYQH": "Cramér V",
-	"BUaN": "Pearson C"
+	"BUaN": "Pearson C",
+	"boCq": "Checks if it is a numeric value greater than zero. Otherwise, it will throw an error."
 }

@@ -137,6 +137,7 @@ class OutputSchema {
     constructor(schema) {
         if(!schema) throw new Error("Schema argument cannot be empty")
         this.type = schema.type;
+        this._title = schema.title;
         this.title = $(schema.title);
         /**
         * Returns true if the element is not a kind of object (object, array, function etc.).

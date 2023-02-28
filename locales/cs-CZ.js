@@ -217,5 +217,6 @@ module.exports = {
 	"fqUi": "proměnná četnosti",
 	"GfeP": "chí^2 test",
 	"VYQH": "Cramérovo V",
-	"BUaN": "Pearsonovo C"
+	"BUaN": "Pearsonovo C",
+	"boCq": "Ověří, zdali se jedná o číselnou hodnotu větší než nula. V opačném případě vyvolá chybu."
 }
