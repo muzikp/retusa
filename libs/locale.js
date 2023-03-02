@@ -1,5 +1,6 @@
 "use strict";
 
+const __default = "cs-CZ";
 var factory = {
     //"cs": require("../locales/cs"),
     "cs-CZ": require("../locales/cs-CZ"),
@@ -7,7 +8,7 @@ var factory = {
 };
 
 var _default = Intl.DateTimeFormat().resolvedOptions().locale;
-if(factory[_default]) _default = "en-GB";
+if(!factory[_default]) _default = __default;
 
 module.exports = {
     /**
@@ -33,7 +34,11 @@ module.exports = {
      */
     setDefault: function(value) {
         if(!value) _default = Intl.DateTimeFormat().resolvedOptions().locale;
-        else if(!factory[value]) throw new Error(`Language ${value} nbot registered.`);
+        else if(!factory[value]) 
+        {
+            console.warn(`Language ${value} not registered, switching to default (${__default}).`);
+            _default = __default;
+        }
         else _default = value;
         return module.exports;
     },

@@ -9,5 +9,6 @@ module.exports = {
     libraryTarget: "umd" || 'commonjs',
     globalObject: "this"
   },
+  devtool: "source-map",
   mode: "production" || "development"
 };
