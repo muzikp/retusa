@@ -135,6 +135,46 @@ let v_isArray = function(v) {
     else return v;
 }
 
+/**
+ * 
+ * @param {any} v vector(s)
+ * @param {Matrix} parent The parent matrix.
+ * @returns Returns a matrix of NumericVectors of throws an error.
+ */
+let v_isOneOrMoreNumericVectors = function(v, parent) {
+    if(v.isVector) {
+        if(v.type == 1) return new Matrix(v);
+        else throw new Error("oFZO");
+    }
+    /*
+
+    else {
+        m = parseMatrix(v);
+    }
+    else if(!Array.isArray()) throw new Error("oFZO");
+    else if(Array.isArray(v)) {
+    }
+    */
+    if(!Array.isArray(v)) throw new Error($("FepU", {value: v}))
+    else return v;
+}
+
+let parseMatrix = function(arrs) {
+    var M = new Matrix();
+    if(!Array.isArray(arrs)) throw new Error("e0uy");
+    else if(arrs.length == 0) throw new Error("xV0p")
+    else {
+        for(let i of arrs) {
+            if(i?.isVector) M.push(i);
+            else {
+                if(!Array.isArray(i)) throw new Error("e0uy");
+                else M.push(i?.vectorify())
+            }
+        };
+        return M;
+    }
+}
+
 let v_isNumericMatrix = function(v) {
     v = v_isNotEmpty(v);
     if(v.constructor?.name !== "NumericMatrix") {

@@ -139,9 +139,6 @@ class OutputSchema {
         this.type = schema.type;
         this._title = schema.title;
         this.title = $(schema.title);
-        /**
-        * Returns true if the element is not a kind of object (object, array, function etc.).
-        */
         this.isSimple = !(this.type == "object" || this.type == "array");
         this.isObject = this.type == "object";
         this.isArray = this.type == "array";
@@ -823,6 +820,22 @@ const matrixResultSchemas = {
             "Z": {
                 "$id": "#root/p", 
                 "title": "Shpv", 
+                "type": "number",
+                "examples": [
+                    5.4
+                ],
+                "default": 0.0
+            },
+            "p": snippets.sig,
+        }
+    },
+    wcxpaired: {
+        "title": "Root", 
+        "type": "object",
+        "properties": {
+            "Z": {
+                "$id": "#root/p", 
+                "title": "9KFq", 
                 "type": "number",
                 "examples": [
                     5.4

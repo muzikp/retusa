@@ -2,9 +2,29 @@ const { vectorModels, NumericVector } = require("./index");
 var framework = require("./index");
 const { StringVector } = require("./libs/vector");
 
-framework.docs.publish(require("fs"));
+//framework.docs.publish(require("fs"));
 
 with (framework) {
+    /*
+    var M = new Matrix(
+        new NumericVector(50,45,33,22,99,79,4,36,62,51,27,15,26,83,86).name("right"),
+        new NumericVector(47,45,31,24,78,76,13,46,45,44,23,14,34,79,81).name("left")
+    );
+    var M = new Matrix(
+        new NumericVector(180,197,240,210,180,160,179,185,183,150,110,190,170),
+        new NumericVector(75,82,100,80,75,60,75,71,77,63,46,81,70)
+    );
+    */
+    var M = new Matrix(
+        new NumericVector(15,8,11,19,13,4,16,5,9,15,12,11,14,4,11,17,14,5,9,8,9,11,11,12,17,12,5,5,15,0),
+        new NumericVector(17,19,18,19,17,5,13,0,16,21,12,9,10,17,12,24,12,12,8,16,12,7,17,13,20,9,13,11,11,12)
+    );
+    //var t = M.wcxpaired(0,1);
+    var t = M.analyze("mwu2").with({vectors: 2});
+    console.dir(t);
+    debugger;
+
+
     /*
     locale.setDefault("en-GB");
     framework.docs.publish(require("fs"));

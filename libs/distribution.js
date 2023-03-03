@@ -30,8 +30,8 @@ module.exports = {
     wilcoxondist: wilcoxondist
 }
 
-function normsdist(x){
-    return normdist(x,0,1);
+function normsdist(x, cumulative){
+    return normdist(x,0,1,cumulative);
 }
 
 function normdist(x, mean, std, cumulative = false) {

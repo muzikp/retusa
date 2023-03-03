@@ -193,19 +193,20 @@ Array.prototype.getRankIndexes = function(order = 0){
     return this.map((x) => rank.get(x));
 }
 
-Array.prototype.rankAvg = function(value, dir) {
-    var array = new Array(...this).sort((a,b) => a < b ? -1 : a == b ? 0 : 1);
-    var fi = Number(array.indexOf(value));
-    var li = Number(array.lastIndexOf(value));
-    return (fi !== li ? (li+fi)/2 : fi) + 1;
-} 
+Array.prototype.rankAvg = function(value, dir = 1) {
+    dir == 0 ? dir = -1 : dir == 1 ? dir = 1 : dir = 1;
+    var array = new Array(...this).sort((a,b) => a < b ? -dir : a == b ? 0 : dir);
+    var fi = Number(array.indexOf(value)) - 1;
+    var li = Number(array.lastIndexOf(value)) - 1;
+    return (fi !== li ? (li+fi)/2 : fi);
+}
 
 Array.prototype.toAvgRank = function(order = 0) {
     var array = new Array(...this).sort((a, b) => order == 1 ? a-b : b-a);
     var sorted = this.map(function(value){
         var fi = Number(array.indexOf(value));
         var li = Number(array.lastIndexOf(value));
-        return (fi !== li ? (li+fi)/2 : fi) + 1;
+        return (fi !== li ? (li+fi)/2 : fi);
     });
     return sorted;
 } 

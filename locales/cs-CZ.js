@@ -218,5 +218,10 @@ module.exports = {
 	"GfeP": "chí^2 test",
 	"VYQH": "Cramérovo V",
 	"BUaN": "Pearsonovo C",
-	"bpCq": "Ověří, zdali se jedná o číselnou hodnotu větší než nula. V opačném případě vyvolá chybu."
+	"bpCq": "Ověří, zdali se jedná o číselnou hodnotu větší než nula. V opačném případě vyvolá chybu.",
+	"ChzY": "Wilcoxonův znamenkový test pro dva závislé výběry",
+	"pApR": "Wilcoxonův znaménkový test je neparametrický statistický test používaný k určení, zda dva příbuzné nebo spárované vzorky mají stejný medián nebo ne. Používá se, když data nejsou normálně rozdělena nebo je porušen předpoklad stejných rozptylů. Tento test je vhodný pro malé velikosti vzorků.",
+	"9KFq": "Z test",
+	"dSWt": "Parametr ${name} (${title}) pro metodu ${method} je povinný.",
+	"EFfS": "Argument '${name}' nelze pro metodu ${method} použít, neboť není definován v konfiguraci metody."
 }

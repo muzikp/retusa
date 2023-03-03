@@ -218,5 +218,10 @@ module.exports = {
 	"GfeP": "phi^2 test",
 	"VYQH": "Cramér V",
 	"BUaN": "Pearson C",
-	"bpCq": "Checks if it is a numeric value greater than zero. Otherwise, it will throw an error."
+	"bpCq": "Checks if it is a numeric value greater than zero. Otherwise, it will throw an error.",
+	"ChzY": "Wilcoxon Signed-Ranks Test for Paired Samples",
+	"pApR": "The Wilcoxon signed-ranks test is a non-parametric statistical test used to determine whether two related or paired samples have the same median or not. It is used when the data is not normally distributed or the assumption of equal variances is violated. This test is suitable for small sample sizes.",
+	"9KFq": "Z test",
+	"dSWt": "The ${name} (${title}) parameter for the ${method} method is required.",
+	"EFfS": "The argument '${name}' cannot be used for method ${method} because it is not defined in the method configuration."
 }
