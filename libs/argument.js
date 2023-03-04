@@ -54,7 +54,47 @@ var lib = {
             }            
             return m;
         }
-    }
+    },
+    regressionModel: {
+        title: "OBml",
+        validator: "dKFL",
+        mdType: "u5oV",
+        isEnum: true,
+        enums: [
+            {
+                value: 1, //linear
+                key: "Cpsw"
+            },
+            {
+                value: 2, // logistic
+                title: "UtZD"
+            },
+            {
+                value: 3, //hyperbole
+                title: "SCOx"
+            },
+            {
+                value: 4, //exponential
+                title: "QaJi"
+            },
+            {
+                value: 5, //quadratic
+                title: "HUMA"
+            }
+        ],
+        default: 1,
+        tags: {
+            type: "select",
+            multiple: false
+        },
+        validate: function(value, parent, model){
+            if(model.enums.map(e => value).indexOf(Number(value)) < 0) {
+                var keys = model.enums.map(e => `${e.value} = ${e.title}`).join(",")
+                throw new Error($("HhLt", {value: value, keys: keys}))
+            } else return Number(value);
+        }
+    },
+
 }
 
 class Argument {
@@ -77,6 +117,10 @@ class Argument {
         };
         this.default = undefined;
         this.required = model.required;
+        if(model.isEnum) {
+            this.isEnum = true;
+            (model.enums || []).forEach(e => e.title = $(e.key))
+        }
         this.description = {
             key: model.description || null,
             value: $(model.description) || null
@@ -86,10 +130,12 @@ class Argument {
             value: $(model.validator) || null
         };
         this.isVector = model.isVector || false;
+        
         this.validate = function(value) {
-            if(!model.required && (value === undefined || value === null)) return undefined;
+            if(!model.default !==undefined && (value === undefined || value === null)) return model.default;
+            else if(!model.required && (value === undefined || value === null)) return undefined;
             else if(model.required && (value === undefined)) throw new Error("The argument is required");
-            else return model.validate(value, parent);
+            else return model.validate(value, parent, model);
         }
     }
     /**
@@ -102,7 +148,7 @@ class Argument {
 }
 
 function parseVector(v, parent) {
-    if(!v) throw new Error("Value is empty");
+    if(!v && v !== 0) throw new Error("Value is empty");
     if(parent) {
         if(parent.item(v)) return parent.item(v);
     }

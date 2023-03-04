@@ -5,6 +5,22 @@ const { StringVector } = require("./libs/vector");
 //framework.docs.publish(require("fs"));
 
 with (framework) {
+    var M = new Matrix(
+        new NumericVector(180,197,240,210,180,160,179,185,183,150,110,190,170).name("independent x"),
+        new NumericVector(75,82,100,80,75,60,75,71,77,63,46,81,70).name("dependent y")
+    );
+    var lr_a = M.linreg(0,1); // with model argument missing (set to 1 by default)
+    var lr_b = M.linreg(0,1,4); // regression model set to 4 (exponential transformation)
+    var lr_c = M.analyze("linreg").run({x: 0, y: "dependent y", model: undefined}); // same as lr_a
+    var lr_b = M.analyze("linreg").run({x: "independent x", y: 1, model: 4}); // same as lr_b
+    // lr_a = lr_c.result
+    // lb_b = lr_d.result
+
+    var docs = require("./docs");
+    docs();
+    debugger;
+    return;
+
     var docs = require("./docs");
     docs();
     debugger;

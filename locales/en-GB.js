@@ -248,5 +248,8 @@ module.exports = {
 	"vO3D": "Arguments as an array",
 	"D9Ro": "Arguments are ordered in the standard way. It is essential to follow the order of the arguments here, and in addition, the first argument should ideally be in array format, e.g. [vector1, vector2].",
 	"ppR3": "Factor' parameter implementation",
-	"SQSt": "As the second parameter, a factor is specified, i.e. a variable according to which the vector argument is transformed (or the first vector, if several numerical vectors are entered)."
+	"SQSt": "As the second parameter, a factor is specified, i.e. a variable according to which the vector argument is transformed (or the first vector, if several numerical vectors are entered).",
+	"dKFL": "Checks if the specified value is the key of an enumeration (list of possible values). If not, it throws an error.",
+	"u5oV": "enumerator",
+	"Cumi": "Removes from the input vectors (matrix) all rows in which there is at least one empty value."
 }

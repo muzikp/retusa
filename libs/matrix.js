@@ -237,6 +237,20 @@ Matrix.prototype.isMatrix = true;
 
 // #endregion
 
+const {Argument} = (require("./argument"));
+const {Output} = require("./output");
+
+const preprocessors = {
+    removeEmptyXY: function(_){
+        var M = new Matrix(_.args.x, _.args.y)
+        _.sample.raw = M.maxRows();
+        M = M.removeEmpty();
+        _.args.x = M[0];
+        _.args.y = M[1];
+        _.sample.net = M.maxRows();
+    }
+}
+
 class MatrixAnalysis {
     constructor(model, parent = null) {
         if(parent) this.parent = parent?.isMatrix ? parent : null;
@@ -266,6 +280,10 @@ class MatrixAnalysis {
             readonly: true,
             value: {}
         });
+        Object.defineProperty(this, "outputSchema", {
+            readonly: true,
+            value: this.model.output ? new Output(this.model.output) : null
+        });
         for(let w of ["title","description","preprocessor"]) {
             Object.defineProperty(this, w, {
                 readonly: true,
@@ -279,10 +297,6 @@ class MatrixAnalysis {
     }
     /**
      * The 'with' methods allows specifying the MatrixAnalysis arguments, either as a named object with properties or as a set of parameter arguments.
-     * @example var M = new Matrix(new NumericVector(1,5,9,5,3).name("score"),new StringVector("A","B,"A","B","A").name("group"))
-     *          var mwu = M.analyze("mwu2").with("score", "group"); //or
-     *          var mwu = M.analyze("mwu2").with({vectors: "score", factor: "group"}); //or
-     *          var mwu = M.analyze("mwu2").with({vectors: "score", factor: "group"}); //or
      * @returns {self}
      */
     with() {
@@ -290,7 +304,7 @@ class MatrixAnalysis {
         /** named config (object) */
         else if(typeof new Array(...arguments)[0] == "object" && !Array.isArray(arguments[0])) {
             var parameters = arguments[0];
-            for(let key of Object.keys(parameters)) {
+            for(let key of Object.keys(this.model.args)) {
                 var arg = this.model.args[key];
                 if(!arg) throw new ArgumentError($("EFfS", {name: key, method: $(this.model.wiki.title)}));
                 else {
@@ -300,8 +314,8 @@ class MatrixAnalysis {
             }
             return this;
         } else {
-            for(let ai = 0; ai < new Array(...arguments).length; ai++) {
-                if(ai > Object.keys(this.model.args)) break;
+            for(let ai = 0; ai < Object.keys(this.model.args).length; ai++) {
+                //if(ai > Object.keys(this.model.args)) break;
                 var arg = new Argument(this.model.args[Object.keys(this.model.args)[ai]].model, this.parent, this.model.args[Object.keys(this.model.args)[ai]].config || {});
                 this.args[Object.keys(this.model.args)[ai]] = arg.validate(new Array(...arguments)[ai]);
             }
@@ -574,12 +588,11 @@ const matrixMethods = {
             p: p
         }
     },    
-    genreg: function(x,y,t = 1){
-        var T = new Matrix(x,y)//.removeEmpty();
-        var model = $(enumerators.regressionModel.values.find(_ => _.key == t)?.title);
-        x = T[0];
-        y = T[1];
-        switch (t) {
+    linreg: function(){
+        var x = arguments[0];
+        var y = arguments[1];
+        var model = arguments[2]
+        switch (model) {
             case 1:
                 break;
             case 2: 
@@ -1045,78 +1058,45 @@ const MatrixMethodsModels = [
                 }
         ]
     },
-    {   name: "_mwu",
-        fn: matrixMethods.mannwhitney,
-        example: function(){
-            var M = new Matrix([1,2,3,4,5,6,7,8,9,10],[1,3,5,7,9,11,13,15,17,19]).mwu();
-        },
-        filter: filters.anovaLikeMatrix,
-        wiki: {
-            title: "rPQr",
-            description: "vzHj"
-        },
-        url: "https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test",
-        returns: matrixResultSchemas.mwu,
-        args: [{
-                name: "vectors",
-                wiki: {title: "qFEM"},
-                min: 1,
-                type: [1],
-                required: true,
-                validator: validators.isNumericMatrix,
-                schema: argumentSchemas.numericMatrix,
-                class: 2
-            },        
-            {
-                name: "factor",
-                wiki: {title: "tpUu"},
-                type: [1,2,3],
-                required: false,
-                validator: validators.isVector,
-                schema: argumentSchemas.vector,
-                class: 1
-        }]
-    },
-    {   name: "genreg",
-        fn: matrixMethods.genreg,
-        filter: filters.matrixNotEmpty,
+    {   name: "linreg",
+        fn: matrixMethods.linreg,
         returns: matrixResultSchemas.genreg,
-        example: function(x,y,t) {},
         wiki: {
             title: "vlCA",
-            description: "dzFE"
+            description: "dzFE",
+            preprocesor: "Cumi",
+            url: {
+                "cs-CZ": "https://cs.wikipedia.org/wiki/Line%C3%A1rn%C3%AD_regrese",
+                "en-GB": "https://en.wikipedia.org/wiki/Linear_regression"
+            }
         },
-        args: [
-            {
-                name: "independent",
-                wiki: {title: "jDlm"},
-                type: [1],
-                required: true,
-                validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector,
-                class: 1
-            },        
-            {
-                name: "dependent",
-                wiki: {title: "jFVv"},
-                type: [1],
-                required: true,
-                validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector,
-                class: 1
+        output: "linreg",
+        prepare: preprocessors.removeEmptyXY,
+        args: {
+            x: {
+                model: "numericVector",
+                config: {
+                    name: "x",
+                    title: "jDlm",
+                    required: true,
+                }
             },
-            {
-                name: "model",
-                wiki: {title: "OBml"},
-                type: "enum",
-                required: true,
-                schema: "integer",
-                default: 1,
-                validator: validators.enumValidator(enumerators.regressionModel),
-                enums: enumerators.regressionModel,
-                class: 3
+            y: {
+                model: "numericVector",
+                config: {
+                    name: "y",
+                    title: "jFVv",
+                    required: true
+                }
+            },        
+            model: {
+                model: "regressionModel",
+                config: {
+                    name: "model",
+                    title: "OBml",
+                }
             }            
-        ]
+        }
     },
     {   name: "contingency",
         fn: matrixMethods.contingency,
@@ -1212,23 +1192,8 @@ const MatrixMethodsModels = [
             preprocessor: "OH5v",
             url: "https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test",
         },
-        syntax: function(){
-            /* with factor */
-            var x = new NumericVector(9,7,5,3,5,1,3,2,2,4).name("score");
-            var y = new StringVector("A","A","A","A","A","B","B","B","B","B").name("group");
-            var M = new Matrix(x,y);
-            M.mwu(0,1), M.mwu("x",1), M.mwu({vectors: 1, factor: "y"}), M.mwu({vectors: [1], factor: 2}) // direct calling - returns the output
-            M.analyze("mwu").run(0,1), M.analyze("mwu").run("x",1), M.analyze("mwu").run({vectors: 1, factor: "y"}), M.analyze("mwu").run({vectors: [1], factor: 2}) // analysis calling - returns the analytical bundle with metadata
-            /* without factor - the vectors argument must be wrapped in an array! */
-            var x = new NumericVector(9,7,5,3,5).name("x");
-            var y = new NumericVector(1,3,2,2,4).name("y");
-            var M = new Matrix(x,y);
-            M.mwu([0,1]), M.mwu(["x",1]), M.mwu({vectors: [0,1]}), M.mwu({vectors: ["x","y"]}), M.mwu({vectors: [x,y]}) // direct calling - returns the output
-            M.analyze("mwu").run([0,1]), M.analyze("mwu").run(["x",1]), M.analyze("mwu").run({vectors: [0,1]}), M.analyze("mwu").run({vectors: ["x","y"]}), M.analyze("mwu").run({vectors: [x,y]}) // direct calling - returns the output
-        },
         output: "mwu",
         prepare: function(_) {
-            if(!_.parent) throw new Error("Cannot preprocess without a parent.");
             if(_.args.factor) {
                 var _matrix = new Matrix(_.args.vectors[0], _.args.factor).pivot(0,1);
                 _.args.vectors = _matrix.select(0,1);
@@ -1286,5 +1251,3 @@ module.exports = {
     MatrixOverview: function() {
         return MatrixOverview(Models)},
 };
-
-const Argument = (require("./argument")).Argument;

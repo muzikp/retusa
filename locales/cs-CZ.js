@@ -248,5 +248,8 @@ module.exports = {
 	"vO3D": "Argumenty jako řada",
 	"D9Ro": "Argumenty jsou standardndím způsobem řazeny za sebe. Je zde zásadní dodržovat pořadí argumentů a krom toho, první argument by měl být ideálně ve formátu array, např. [vector1, vector2].",
 	"ppR3": "Implementace argumentu 'factor'",
-	"SQSt": "Jako druhý parametr je specifikován faktor, tedy proměnná, dle které se přetransformuje argument vector (případně první vektor, pakliže je zadáno více numerických vektorů)."
+	"SQSt": "Jako druhý parametr je specifikován faktor, tedy proměnná, dle které se přetransformuje argument vector (případně první vektor, pakliže je zadáno více numerických vektorů).",
+	"dKFL": "Ověří, zdali je zadaná hodnota klíčem enumerace (seznamu možných hodnot). Pokud ne, vyhodí chybu.",
+	"u5oV": "enumerace",
+	"Cumi": "Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota."
 }
