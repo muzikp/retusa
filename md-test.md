@@ -52,7 +52,7 @@ linreg --> model[<b>model</b><br>regresní model <br><i>číslo</i>]
 linreg --> r2[<b>r2</b><br>koeficient determinace <br><i>číslo</i>]
 linreg --> r[<b>r</b><br>Pearsonův korelační koeficient <br><i>číslo</i>]
 linreg --> F[<b>F</b><br>F test <br><i>číslo</i>]
-linreg --> p[<b>p</b><br>p <br><i>číslo</i>]
+linreg --> p[<b>p</b><br>významnost <br><i>číslo</i>]
 linreg --> beta0[<b>beta0</b><br>konstanta funkce <br><i>číslo</i>]
 linreg --> beta1[<b>beta1</b><br>koeficient funkce <br><i>číslo</i>]
 
@@ -94,7 +94,7 @@ var anova = M.analyze("anovaow").run({vectors: [0,1,2]});
 graph TD
 anovaow --> F[<b>F</b><br>F test <br><i>číslo</i>]
 anovaow --> P2[<b>P2</b><br>koeficient závislosti <br><i>číslo</i>]
-anovaow --> p[<b>p</b><br>p <br><i>číslo</i>]
+anovaow --> p[<b>p</b><br>významnost <br><i>číslo</i>]
 anovaow --> n[<b>n</b><br>počet případů <br><i>číslo</i>]
 anovaow --> ANOVA((<b>ANOVA</b><br><u>statistiky ANOVA</u>))
 ANOVA --> totalOfGroups[<b>totalOfGroups</b><br>celkem skupin <br><i>číslo</i>]
@@ -183,6 +183,6 @@ var mwu_e = M.analyze("mwu").run([0], 1);
 graph TD
 mwu --> U[<b>U</b><br>U test <br><i>číslo</i>]
 mwu --> Z[<b>Z</b><br>Z test <br><i>číslo</i>]
-mwu --> p[<b>p</b><br>p <br><i>číslo</i>]
+mwu --> p[<b>p</b><br>významnost <br><i>číslo</i>]
 
 ```
