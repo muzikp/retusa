@@ -199,7 +199,7 @@ module.exports = {
 	"HUMA": "kvadratický",
 	"TkNf": "U test",
 	"Shpv": "Z test",
-	"VqBH": "R2 (koeficient determinace)",
+	"VqBH": "koeficient determinace",
 	"Jdfb": "F test",
 	"TDpu": "beta0 (konstanta)",
 	"eFcW": "beta1 (koeficient)",
