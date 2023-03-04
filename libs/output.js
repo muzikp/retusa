@@ -53,7 +53,7 @@ function createArrayItems(items) {
 const snippets = {
     sig: {
         "title": "sDgR", 
-        "type": "number",
+        "type": "zeroToOneInc",
     },
     ttest: {
         "title": "cBNP", 
@@ -61,12 +61,12 @@ const snippets = {
     },
     df: {
         "title": "OYQu", 
-        "type": "integer",
+        "type": "uint",
     },
     siglevel: {
         "title": "mjPq", 
         "description": null,
-        "type": "number",
+        "type": "zeroToOneInc",
     }
 }
 
@@ -136,7 +136,7 @@ const lib = {
             "p": snippets.sig,
             "n": { 
                 "title": "bLoI", 
-                "type": "integer",
+                "type": "uint",
             },
             "ANOVA": {
                 "title": "qCgT", 
