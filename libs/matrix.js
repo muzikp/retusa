@@ -8,7 +8,7 @@ const {Array, Math, String, Function} = require("./extensions");
 const dist = require("./distribution");
 var {VectorValueError, ArgumentError, Empty} = require("./errors");
 const {MatrixMarkdown, MatrixOverview} = require("./markdown");
-var matrixName = null;
+var matrixName = null
 
 // #region MATRIX
 
@@ -42,7 +42,7 @@ class Matrix extends Array {
     }
     push() {
         for(let a of [...arguments].filter(v => v)) {
-            if(a.isVector) {
+            if(a?.isVector) {
                 super.push(a);
             }
             else if(Array.isArray(a)) super.push(a.vectorify());
@@ -235,534 +235,110 @@ class Matrix extends Array {
 
 Matrix.prototype.isMatrix = true;
 
-/**
- * Allows inserting only NumericVector members,.
- */
-class NumericMatrix extends Matrix 
-{
-    push() {
-        for(let a of [...arguments].filter(v => v)) {
-            if(a?.type === 1) super.push(a)
-            else if(Array.isArray(a)) super.push(a.numerify());
-            else {
-                throw new ArgumentError("Argument is not a numeric vector or a numeric array.");
-            }
-        };
-    }
-}
-
 // #endregion
 
 class MatrixAnalysis {
     constructor(model, parent = null) {
+        if(parent) this.parent = parent?.isMatrix ? parent : null;
+        if(typeof model == "string") {            
+            if(!MatrixMethodsModels.find(m => model == m.name)) throw new Error($("BoEs", {name: model}));
+            else model = MatrixMethodsModels.find(m => model == m.name);
+        } 
+        else if(typeof model == "object") model = model;
+        else throw new Error("Unknown MatrixAnalysis model parameter type.");
+        Object.defineProperty(this, "model", {
+            readonly: true,
+            value: model
+        })
         Object.defineProperty(this, "args", {
             readonly: true,
             value: {}
         });
-        if(parent) this.parent = parent?.isMatrix ? parent : null;
-        if(typeof model == "string") {            
-            if(!MatrixMethodsModels.find(m => model == m.name)) throw new Error("Matrix model not found: " + model);
-            else this.model = MatrixMethodsModels.find(m => model == m.name);
-        } 
-        else if(typeof model == "object") this.model = model;
-        else throw new Error("Unknown MatrixAnalysis model parameter type.");
-    }
-    /**
-     * Returns the name of the method.
-     */
-    get name() {return this.model.name};
-    /**
-     * Returns the calculation method.
-     */
-    get fn() {return this.model.fn};
-    /**
-     * Returns default filter function applied before the method is calculated.
-     */
-    get filter() {
-        return this.model.filter ? this.model.filter.fn : () => this.parent;
-    }
-    get wiki() {
-        if(this.model) {
-            return {
-                name: this.model.name,
-                title: $(this.model.wiki.title),
-                description: this.model.wiki?.description ? $(this.model.wiki.description) : null,
-                filter: this.model.filter ? $(this.model.filter.text) : null,
-                example: this.model.example ? this.model.example.stringify() : null,
-                arguments: (function(args){
-                    var _ = [];
-                    if(!args) return [];
-                    else {
-                        for(let k of Object.keys(args)) {
-                            var a = args[k];
-                            _.push({
-                                name: a.name,
-                                title: $(a.wiki?.title) || null,
-                                description: $(a.wiki?.description) || null,
-                                required: a.required,
-                                default: a.default || null,
-                                validator: a.validator ? $(a.validator.text) : null,
-                                schema: a.schema
-                            })
-                        }
-                    }
-                    return _;
-                })(this.model.args)
-            }
-        } else return {};
-    }
-    /**
-     * Returns an inteface for input and output schemas.
-     */
-    get schema() {
-        return {
-            output: new OutputSchema(this.model.returns),
-            form: new FormMatrixSchema(this.model.args)
+        Object.defineProperty(this, "sample", {
+            readonly: true,
+            value: {}
+        });
+        Object.defineProperty(this, "name", {
+            readonly: true,
+            value: this.model.name
+        });
+        Object.defineProperty(this, "time", {
+            readonly: true,
+            value: {}
+        });
+        for(let w of ["title","description","preprocessor"]) {
+            Object.defineProperty(this, w, {
+                readonly: true,
+                value: {
+                    key: this.model.wiki[w] || null,
+                    value: this.model.wiki[w] ? $(this.model.wiki[w]) : null
+                }
+            })
         }
-    }
-    with(config) {
-        if(typeof config != "object" || Array.isArray(config)) throw new Error("Param method 'config' property must be an object and cannot be an array.");
-        for(let key of Object.keys(config)) {
-            var arg = this.model.args[key];
-            if(!arg) throw new ArgumentError($("EFfS", {name: key, method: $(this.model.wiki.title)}));
-            else {
-
-            }
-        }
-        return this;
+        
     }
     /**
-     * Applies the model filter to the parent, stores the result into the "matrix" property and returns self. The matrix is the method's ultimate input.
+     * The 'with' methods allows specifying the MatrixAnalysis arguments, either as a named object with properties or as a set of parameter arguments.
+     * @example var M = new Matrix(new NumericVector(1,5,9,5,3).name("score"),new StringVector("A","B,"A","B","A").name("group"))
+     *          var mwu = M.analyze("mwu2").with("score", "group"); //or
+     *          var mwu = M.analyze("mwu2").with({vectors: "score", factor: "group"}); //or
+     *          var mwu = M.analyze("mwu2").with({vectors: "score", factor: "group"}); //or
+     * @returns {self}
+     */
+    with() {
+        if(new Array(...arguments) == 0) return this;
+        /** named config (object) */
+        else if(typeof new Array(...arguments)[0] == "object" && !Array.isArray(arguments[0])) {
+            var parameters = arguments[0];
+            for(let key of Object.keys(parameters)) {
+                var arg = this.model.args[key];
+                if(!arg) throw new ArgumentError($("EFfS", {name: key, method: $(this.model.wiki.title)}));
+                else {
+                    arg = new Argument(arg.model, this.parent, arg.config || {});
+                    this.args[key] = arg.validate(parameters[key]);
+                }
+            }
+            return this;
+        } else {
+            for(let ai = 0; ai < new Array(...arguments).length; ai++) {
+                if(ai > Object.keys(this.model.args)) break;
+                var arg = new Argument(this.model.args[Object.keys(this.model.args)[ai]].model, this.parent, this.model.args[Object.keys(this.model.args)[ai]].config || {});
+                this.args[Object.keys(this.model.args)[ai]] = arg.validate(new Array(...arguments)[ai]);
+            }
+            return this;
+        }        
+    }
+    /**
+     * Runs the 
      * @param {*} config No imployed yet.
      * @returns {self}
      */
     prepare(){
-        if(!this.parent) throw new Error("The method cannot be called without a parent specified.");
-        if([...arguments].length > 0) this.validate(...arguments);
-        if(this.args.find(a => Array.isArray(a) ? a.hasOnlyVectorChildren() : false)) {
-            var multiples = (this.args.filter(a => Array.isArray(a) ? !a?.isVector ? a.filter(aa => a?.isVector) : false : false)).flat() || [];
-            var selectors = new Array(...multiples, ...this.args.filter(a => a?.isVector));            
-            this.matrix = this.filter(this.parent.select(...selectors), this.args);
-            for(var i = 0; i < this.args.length; i++) {
-                if(this.args[i]?.isVector) {
-                    this.args[i] = this.matrix[i];
-                }
-                else if(!Array.isArray(this.args[i])) {
-                    this.args[i] = this.args[i];
-                }
-                else if(this.args[i].hasOnlyVectorChildren()) {
-                    this.args[i] = new Array(...this.matrix).slice(0, this.args[i].length);
-                    i += this.args[i].length;
-                }
-                else this.args[i] = this.args[i];
-            }
-        } 
-        else {
-            this.matrix = this.filter(this.parent.select(...this.args), this.args);
-        }
+        if(this.model.prepare) this.model.prepare(this);
         return this;
     }
-    /**
-     * Returns the minimum of (required) arguments for this method.
-     */
-    get minArgs() {
-        return this.model.minArgs || Object.entries(this.model.args).filter(a => a.required).length;
-    }
-    /**
-     * Validates the method arguments.
-     * @returns {Array} Returns an array of validated arguments (or nothing if a validation error is thrown before).
-     */
-    validate(...args) {
-        if(!this.parent) return new Empty($("jrQP"));
-        var output = [];
-        let ts = this.model.args;
-        for(var i = 0; i < ts.length; i++) {            
-            let arg = args[i];
-            var validatorFn = (ts[i].validator?.fn) || ((value) => value);
-            if(ts[i].class === 1 || !ts[i].class) {
-                arg = this.parent.item(arg);    //"Pro argument ${name} (${title}) nelze použít vektor typu ${type}."
-                var types = (ts[i].type || [1,2,3]);
-                if(!arg && ts[i].required) throw new Error("Vektor nenalezen");//ArgumentError($("RLob", {value: arg}), this); 
-                else if(!arg && !ts[i].required) output.push(null);
-                else if(types.indexOf(arg?.type()) < 0){
-                    throw new Error(`This type of vector (${arg.type()}) is not allowed. Allowed types: ` + types.toString());
-                    //throw new ArgumentError($("dSWt", {name: ts[i].name, title: $(ts[i]?.wiki.title), type: $(arg?.constructor?.name)}), this);   
-                } 
-                else if(ts[i].required && !arg) throw new Error("The argument is required!");
-                else output.push(arg);                
-            }
-            else if (ts[i].class === 2) {
-                if(!Array.isArray(arg)) throw new ArgumentError($("eJTP", {name: ts[i].name, title: $(this.model.args[i].wiki.title)}));
-                var _varr = [];
-                var types = ts[i].type || [1,2,3];
-                for(var v = 0; v < arg.length; v++) {
-                    var _v;
-                    if(arg[v]?.isVector) _v = arg[v];
-                    else if(!arg[v]?.isVector) _v = this.parent.item(arg[v]);
-                    if(!_v) throw new ArgumentError(`The argument array item of index ${v} is neither a vector nor a valid identifier: ${arg[v]}`);
-                    else arg[v] = _v;
-                }
-                if(Number(ts[i].min) > 0 && arg.length < Number(ts[i].min)) throw new ArgumentError($("kdjd", {name: ts[i].name, title: $(this.model.args[i].wiki.title), value: ts[i].min, param: arg.length}));
-                if(Number(ts[i].max) > 0 && arg.length > Number(ts[i].max)) throw new ArgumentError($("qkPg", {name: ts[i].name, title: $(this.model.args[i].wiki.title), value: ts[i].max, param: arg.length}))
-                for(let v of arg) {
-                    if(types.indexOf(v.type()) < 0) throw new ArgumentError($("nQvK", {type: v?.constructor?.name, allowed: types.toString()}), this);
-                    else _varr.push(v);
-                }
-                output.push(_varr);            
-            }
-            /* all other types expcept vector and matrix */
-            else if (ts[i].class === 3) {
-                if(ts[i].type == "enum") {
-                    output.push(validatorFn(arg));
-                }
-            }
-            else {
-                if(!arg && arg !== false && arg !== 0) throw new ArgumentError($("dSWt", {name: ts[i].name, title: $(ts[i]?.title), method: $(this.model.wiki?.title)}), this); 
-                else output.push(validatorFn(arg))    
-            }
-        }
-        this.args = output;
-        return this;
-    }    
     /**
      * Call the calculation function and returns either the VectorAnalysis instance with the result property storing the result or the result itself (see params). If either input preparation or validation has not been called before, it is automatically called.
      * @param {boolean} returnSelf If true, the VectorAnalysis is returned, with the result property storing the calculation result. Otherwise the result is returned. Default true.
      * @returns {self | any}
      */
     run() {
-        this.runStart = new Date();
+        this.time.from = new Date();
         if(!this.parent) return new Empty($("jrQP"));
-        if([...arguments].length > 0) this.validate(...arguments);
-        if(!this.matrix) this.prepare();
-        this.result = this.model.fn(...(this.args || []));
-        this.runEnd = new Date();
-        return this;
-    }
-    /**
-     * Releases the matrix resources of this method while changing their values from Matrix to its length (maxRows property).
-     * @returns {self}
-     */
-    free() {
-        this.parent = this.parent.maxRows();
-        this.matrix = this.matrix.maxRows();
+        if([...arguments].length > 0) this.with(...arguments);
+        this.prepare();        
+        var args = Object.entries(this.args).map(e => e[1]);
+        this.result = this.model.fn(...args);
+        this.time.to = new Date();
         return this;
     }
     /**
      * Returns duration of the "run" method (whatever it includes inside) in milliseconds.
      */
     duration() {
-        if(this.runStart && this.runEnd) return this.runEnd.getTime() - this.runStart.getTime();
+        if(this.time.from && this.time.to) return this.time.to.getTime() - this.time.from.getTime();
         else return null;
     }
-}
-
-class _MatrixAnalysis {
-    constructor(model, parent = null) {
-        if(parent) this.parent = parent?.isMatrix ? parent : null;
-        if(typeof model == "string") {            
-            if(!MatrixMethodsModels.find(m => model == m.name)) throw new Error("Matrix model not found: " + model);
-            else this.model = MatrixMethodsModels.find(m => model == m.name);
-        } 
-        else if(typeof model == "object") this.model = model;
-        else throw new Error("Unknown MatrixAnalysis model parameter type.");
-    }
-    /**
-     * Returns the name of the method.
-     */
-    get name() {return this.model.name};
-    /**
-     * Returns the calculation method.
-     */
-    get fn() {return this.model.fn};
-    /**
-     * Returns default filter function applied before the method is calculated.
-     */
-    get filter() {
-        return this.model.filter ? this.model.filter.fn : () => this.parent;
-    }
-    get wiki() {
-        if(this.model) {
-            return {
-                name: this.model.name,
-                title: $(this.model.wiki.title),
-                description: this.model.wiki?.description ? $(this.model.wiki.description) : null,
-                filter: this.model.filter ? $(this.model.filter.text) : null,
-                example: this.model.example ? this.model.example.stringify() : null,
-                arguments: (function(args){
-                    var _ = [];
-                    if(!args) return [];
-                    else {
-                        for(let k of Object.keys(args)) {
-                            var a = args[k];
-                            _.push({
-                                name: a.name,
-                                title: $(a.wiki?.title) || null,
-                                description: $(a.wiki?.description) || null,
-                                required: a.required,
-                                default: a.default || null,
-                                validator: a.validator ? $(a.validator.text) : null,
-                                schema: a.schema
-                            })
-                        }
-                    }
-                    return _;
-                })(this.model.args)
-            }
-        } else return {};
-    }
-    /**
-     * Returns an inteface for input and output schemas.
-     */
-    get schema() {
-        return {
-            output: new OutputSchema(this.model.returns),
-            form: new FormMatrixSchema(this.model.args)
-        }
-    }
-    /**
-     * Applies the model filter to the parent, stores the result into the "matrix" property and returns self. The matrix is the method's ultimate input.
-     * @param {*} config No imployed yet.
-     * @returns {self}
-     */
-    prepare(){
-        if(!this.parent) throw new Error("The method cannot be called without a parent specified.");
-        if([...arguments].length > 0) this.validate(...arguments);
-        if(this.args.find(a => Array.isArray(a) ? a.hasOnlyVectorChildren() : false)) {
-            var multiples = (this.args.filter(a => Array.isArray(a) ? !a?.isVector ? a.filter(aa => a?.isVector) : false : false)).flat() || [];
-            var selectors = new Array(...multiples, ...this.args.filter(a => a?.isVector));            
-            this.matrix = this.filter(this.parent.select(...selectors), this.args);
-            for(var i = 0; i < this.args.length; i++) {
-                if(this.args[i]?.isVector) {
-                    this.args[i] = this.matrix[i];
-                }
-                else if(!Array.isArray(this.args[i])) {
-                    this.args[i] = this.args[i];
-                }
-                else if(this.args[i].hasOnlyVectorChildren()) {
-                    this.args[i] = new Array(...this.matrix).slice(0, this.args[i].length);
-                    i += this.args[i].length;
-                }
-                else this.args[i] = this.args[i];
-            }
-        } 
-        else {
-            this.matrix = this.filter(this.parent.select(...this.args), this.args);
-        }
-        return this;
-    }
-    /**
-     * Returns the minimum of (required) arguments for this method.
-     */
-    get minArgs() {
-        return this.model.minArgs || Object.entries(this.model.args).filter(a => a.required).length;
-    }
-    /**
-     * Validates the method arguments.
-     * @returns {Array} Returns an array of validated arguments (or nothing if a validation error is thrown before).
-     */
-    validate(...args) {
-        if(!this.parent) return new Empty($("jrQP"));
-        var output = [];
-        let ts = this.model.args;
-        for(var i = 0; i < ts.length; i++) {            
-            let arg = args[i];
-            var validatorFn = (ts[i].validator?.fn) || ((value) => value);
-            if(ts[i].class === 1 || !ts[i].class) {
-                arg = this.parent.item(arg);    //"Pro argument ${name} (${title}) nelze použít vektor typu ${type}."
-                var types = (ts[i].type || [1,2,3]);
-                if(!arg && ts[i].required) throw new Error("Vektor nenalezen");//ArgumentError($("RLob", {value: arg}), this); 
-                else if(!arg && !ts[i].required) output.push(null);
-                else if(types.indexOf(arg?.type()) < 0){
-                    throw new Error(`This type of vector (${arg.type()}) is not allowed. Allowed types: ` + types.toString());
-                    //throw new ArgumentError($("dSWt", {name: ts[i].name, title: $(ts[i]?.wiki.title), type: $(arg?.constructor?.name)}), this);   
-                } 
-                else if(ts[i].required && !arg) throw new Error("The argument is required!");
-                else output.push(arg);                
-            }
-            else if (ts[i].class === 2) {
-                if(!Array.isArray(arg)) throw new ArgumentError($("eJTP", {name: ts[i].name, title: $(this.model.args[i].wiki.title)}));
-                var _varr = [];
-                var types = ts[i].type || [1,2,3];
-                for(var v = 0; v < arg.length; v++) {
-                    var _v;
-                    if(arg[v]?.isVector) _v = arg[v];
-                    else if(!arg[v]?.isVector) _v = this.parent.item(arg[v]);
-                    if(!_v) throw new ArgumentError(`The argument array item of index ${v} is neither a vector nor a valid identifier: ${arg[v]}`);
-                    else arg[v] = _v;
-                }
-                if(Number(ts[i].min) > 0 && arg.length < Number(ts[i].min)) throw new ArgumentError($("kdjd", {name: ts[i].name, title: $(this.model.args[i].wiki.title), value: ts[i].min, param: arg.length}));
-                if(Number(ts[i].max) > 0 && arg.length > Number(ts[i].max)) throw new ArgumentError($("qkPg", {name: ts[i].name, title: $(this.model.args[i].wiki.title), value: ts[i].max, param: arg.length}))
-                for(let v of arg) {
-                    if(types.indexOf(v.type()) < 0) throw new ArgumentError($("nQvK", {type: v?.constructor?.name, allowed: types.toString()}), this);
-                    else _varr.push(v);
-                }
-                output.push(_varr);            
-            }
-            /* all other types expcept vector and matrix */
-            else if (ts[i].class === 3) {
-                if(ts[i].type == "enum") {
-                    output.push(validatorFn(arg));
-                }
-            }
-            else {
-                if(!arg && arg !== false && arg !== 0) throw new ArgumentError($("dSWt", {name: ts[i].name, title: $(ts[i]?.title), method: $(this.model.wiki?.title)}), this); 
-                else output.push(validatorFn(arg))    
-            }
-        }
-        this.args = output;
-        return this;
-    }    
-    /**
-     * Call the calculation function and returns either the VectorAnalysis instance with the result property storing the result or the result itself (see params). If either input preparation or validation has not been called before, it is automatically called.
-     * @param {boolean} returnSelf If true, the VectorAnalysis is returned, with the result property storing the calculation result. Otherwise the result is returned. Default true.
-     * @returns {self | any}
-     */
-    run() {
-        this.runStart = new Date();
-        if(!this.parent) return new Empty($("jrQP"));
-        if([...arguments].length > 0) this.validate(...arguments);
-        if(!this.matrix) this.prepare();
-        this.result = this.model.fn(...(this.args || []));
-        this.runEnd = new Date();
-        return this;
-    }
-    /**
-     * 
-     * @param {Matrix} parent Specifies the matrix on which the method should be applied.
-     * @returns {MatrixAnalysis} Returns the original MatrixAnalysis instance.
-     */
-    with(parent) {
-        this.parent = parent;
-        return this;
-    }
-    /**
-     * Releases the matrix resources of this method while changing their values from Matrix to its length (maxRows property).
-     * @returns {self}
-     */
-    free() {
-        this.parent = this.parent.maxRows();
-        this.matrix = this.matrix.maxRows();
-        return this;
-    }
-    /**
-     * Returns duration of the "run" method (whatever it includes inside) in milliseconds.
-     */
-    duration() {
-        if(this.runStart && this.runEnd) return this.runEnd.getTime() - this.runStart.getTime();
-        else return null;
-    }
-}
-
-class MatrixMethod {
-    constructor(model, parent = null) {
-        if(parent) this.parent = parent;
-        if(typeof model == "string") {            
-            if(!Models.table[model]) throw new Error("Model not found: " + model);
-            else this.model = MatrixMethodsModels[model];
-            
-        } else if(typeof model == "object") this.model = model;
-        else throw new Error("Unknown TableMethod constructor parameter type.")
-    }
-    /**
-     * Returns the name of the method.
-     */
-    get name() {return this.model.name};
-    /**
-     * Main function.
-     */
-    get fn() {return this.model.fn};
-    /**
-     * Returns default filter function applied before the method is calculated.
-     */
-    get filter() {return this.model.filter ? this.model.filter.fn : function(v) {return true}}
-    /**
-     * Returns an object with method documentation.
-     */
-    get wiki() {
-        if(this.model) {
-            return {
-                name: this.model.name,
-                title: $(this.model.wiki.title),
-                description: this.model.wiki?.description ? $(this.model.wiki.description) : null,
-                filter: this.model.filter ? $(this.model.filter.text) : null,
-                example: this.model.example ? this.model.example.stringify() : null,
-                arguments: (function(args){
-                    var _ = [];
-                    if(!args) return [];
-                    else {
-                        for(let k of Object.keys(args)) {
-                            var a = args[k];
-                            _.push({
-                                name: a.name,
-                                title: $(a.wiki?.title) || null,
-                                description: $(a.wiki?.description) || null,
-                                required: a.required,
-                                default: a.default || null,
-                                validator: a.validator ? $(a.validator.text) : null,
-                                schema: a.schema
-                            })
-                        }
-                    }
-                    return _;
-                })(this.model.args)
-            }
-        } else return {};
-    }
-    /* Generates a markdown documentation for the matrix method */
-    markdown(level = 1) {
-        return MatrixMarkdown(this, level);
-    }
-    
-    /**
-     * 
-     * @returns {any} Returns the result of the main function.
-     */
-    call() {
-        if(!this.parent) return new Empty($("jrQP"));
-        var args = this.validate(...arguments);
-        return this.model.fn(...args)
-    }
-    /**
-     * 
-     * @param {Variable} parent Specifies the matrix on which the method should be applied.
-     * @returns {VectorMethod} Returns the original TableMethod instance.
-     */
-    with(parent) {
-        this.parent = parent;
-        return this;
-    }
-    get minArgs() {
-        return this.model.minArgs || Object.entries(this.model.args).filter(a => a.required).length;
-    }
-    /**
-     * Validates the method arguments.s
-     * @returns {Array} Returns an array of validated arguments (or nothing if a validation error is thrown before).
-     */
-    validate(...args) {
-        if(!this.parent) return new Empty($("jrQP"));
-        if(this.model.argsToMatrix) {
-            var M = (args.length === 0) ? this.parent : this.parent.select(...args);
-            return this.model.args[0].validator.fn(M);
-        }
-        var output = [];
-        let ts = this.model.args;
-        for(var i = 0; i < ts.length; i++) {            
-            let arg = args[i];
-            if(ts[i].class === 1 || !ts[i].class) arg = this.parent.item(arg);
-            else if (ts[i].class === 2) {
-
-            }
-            if(!ts[i].required) {
-                if((arg === null || arg === undefined)) T.push(ts[i].default || null);
-                else output.push(ts[i].validator.fn(arg));
-            }
-            else {
-                if(!arg && arg !== false && arg !== 0) throw new ArgumentError($("dSWt", {name: ts[i].name, title: $(ts[i]?.title), method: $(this.model.wiki?.title)}), this); 
-                else output.push(ts[i].validator.fn(arg))    
-            }
-        }
-        return output;
-    }    
 }
 
 // #region Models
@@ -968,11 +544,9 @@ const matrixMethods = {
             }
         };
     },
-    mannwhitney: function(vectors,factor){
-        debugger;
-        var arrays = factor ? new Array(...new Matrix(factor, vectors[0]).pivot(1,0)).slice(0,2) : new Array(...vectors).slice(0,2);
-        var x = arrays[0];
-        var y = arrays[1];
+    mannwhitney: function(){
+        var x = arguments[0][0];
+        var y = arguments[0][1];
         var all = x.concat(y);
         var ac = all.length;
         var xa = x.map(function(v,i){
@@ -997,9 +571,7 @@ const matrixMethods = {
         return {
             U: U,
             Z: z,
-            p: p,
-            //n1: N1,
-            //n2: N2
+            p: p
         }
     },    
     genreg: function(x,y,t = 1){
@@ -1341,37 +913,6 @@ const MatrixMethodsModels = [
             }
         ]
     },
-    /*
-    {   name: "correlPhi",
-        fn: matrixMethods.correlPhi,
-        example: null,
-        filter: filters.matrixNotEmpty,
-        wiki: {
-            title: "eJTT",
-            description: "jAGi"
-        },
-        args: [
-            {
-                name: "x",
-                wiki: {title: "qFEM"},
-                type: [3],
-                required: true,
-                validator: validators.booleanVariable,
-                schema: argumentSchemas.booleanVector,
-                class: 1
-            },        
-            {
-                name: "y",
-                wiki: {title: "tpUu"},
-                type: [3],
-                required: true,
-                validator: validators.booleanVariable,
-                schema: argumentSchemas.booleanVector,
-                class: 1
-            }            
-        ]
-    },
-    */
     {   name: "ttestind",
         fn: matrixMethods.ttest_independent,
         filter: filters.anovaLikeMatrix,
@@ -1504,7 +1045,7 @@ const MatrixMethodsModels = [
                 }
         ]
     },
-    {   name: "mwu",
+    {   name: "_mwu",
         fn: matrixMethods.mannwhitney,
         example: function(){
             var M = new Matrix([1,2,3,4,5,6,7,8,9,10],[1,3,5,7,9,11,13,15,17,19]).mwu();
@@ -1663,77 +1204,87 @@ const MatrixMethodsModels = [
                 class: 1
         }]
     },
-    {   name: "mwu2",
+    {   name: "mwu",
         fn: matrixMethods.mannwhitney,
-        example: function(){
-            var M = new Matrix([1,2,3,4,5,6,7,8,9,10],[1,3,5,7,9,11,13,15,17,19]).mwu();
-        },
-        filter: {
-            text: "aaaa",
-            fn: function() {
-
-            }
-        },
         wiki: {
             title: "rPQr",
-            description: "vzHj"
+            description: "vzHj",
+            preprocessor: "OH5v",
+            url: "https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test",
         },
-        url: "https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test",
-        returns: matrixResultSchemas.mwu,
+        syntax: function(){
+            /* with factor */
+            var x = new NumericVector(9,7,5,3,5,1,3,2,2,4).name("score");
+            var y = new StringVector("A","A","A","A","A","B","B","B","B","B").name("group");
+            var M = new Matrix(x,y);
+            M.mwu(0,1), M.mwu("x",1), M.mwu({vectors: 1, factor: "y"}), M.mwu({vectors: [1], factor: 2}) // direct calling - returns the output
+            M.analyze("mwu").run(0,1), M.analyze("mwu").run("x",1), M.analyze("mwu").run({vectors: 1, factor: "y"}), M.analyze("mwu").run({vectors: [1], factor: 2}) // analysis calling - returns the analytical bundle with metadata
+            /* without factor - the vectors argument must be wrapped in an array! */
+            var x = new NumericVector(9,7,5,3,5).name("x");
+            var y = new NumericVector(1,3,2,2,4).name("y");
+            var M = new Matrix(x,y);
+            M.mwu([0,1]), M.mwu(["x",1]), M.mwu({vectors: [0,1]}), M.mwu({vectors: ["x","y"]}), M.mwu({vectors: [x,y]}) // direct calling - returns the output
+            M.analyze("mwu").run([0,1]), M.analyze("mwu").run(["x",1]), M.analyze("mwu").run({vectors: [0,1]}), M.analyze("mwu").run({vectors: ["x","y"]}), M.analyze("mwu").run({vectors: [x,y]}) // direct calling - returns the output
+        },
+        output: "mwu",
+        prepare: function(_) {
+            if(!_.parent) throw new Error("Cannot preprocess without a parent.");
+            if(_.args.factor) {
+                var _matrix = new Matrix(_.args.vectors[0], _.args.factor).pivot(0,1);
+                _.args.vectors = _matrix.select(0,1);
+                _.args.factor = null;
+            } else {
+                if(_.args.vectors.length < 2) throw new Error($("HHCW"));
+                else {
+                    _.args.vectors = _.args.vectors.select(0,1);
+                    _.args.factor = null;
+                }
+            }
+            _.sample.raw = _.args.vectors.maxRows();
+            _.args.vectors = _.args.vectors.removeEmpty();
+            _.sample.net = _.args.vectors.maxRows();
+        },
         args: {
             "vectors": {
-                name: "vectors",
-                wiki: {title: "qFEM"},
-                required: true,
-                validator: validators.isNumericMatrix,
-                schema: argumentSchemas.numericMatrix,
+                model: "numericVectors",
+                config: {
+                    name: "vectors",
+                    required: true,
+                }
             },        
             "factor": {
                 name: "factor",
-                wiki: {title: "tpUu"},
-                type: [1,2,3],
-                required: false,
-                validator: validators.isVector,
-                schema: argumentSchemas.vector,
-                class: 1
-        }}
+                model: "anyVector",
+                config: {
+                    name: "factor"
+                }
+            }
+        }
     },
 ];
 
 MatrixMethodsModels.forEach(function(m) {
     Matrix.prototype[m.name] = function() {
-        var M = new MatrixMethod(m, this);
-        return M.call(...arguments);
+        var M = new MatrixAnalysis(m, this);
+        return M.run(...arguments).result;
     };
 });
 
 const Models = {}
 function mapModels() {
-    MatrixMethodsModels.map(function(m){Models[m.name] = new MatrixMethod(m)});
+    MatrixMethodsModels.map(function(m){Models[m.name] = new MatrixAnalysis(m, null)});
 }
 mapModels();
 
 // #endregion
 
-// #region MISC
-
-Array.prototype.toNumericMatrix = function() {
-    return new NumericMatrix(...this);
-}
-
-// #endregion
-
-// #region MISC
-
-
-// #endregion
-
 module.exports = {
     Matrix: Matrix,
-    NumericMatrix: NumericMatrix,
     MatrixAnalysis: MatrixAnalysis,
     //Models: Models,
     methods: matrixMethods,
     MatrixOverview: function() {
         return MatrixOverview(Models)},
 };
+
+const Argument = (require("./argument")).Argument;

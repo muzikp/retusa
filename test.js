@@ -5,6 +5,48 @@ const { StringVector } = require("./libs/vector");
 //framework.docs.publish(require("fs"));
 
 with (framework) {
+    var docs = require("./docs");
+    docs();
+    debugger;
+    return;
+
+
+
+
+
+    /* with factor */
+    var x = new NumericVector(9,7,5,3,5,1,3,2,2,4).name("score");
+    var y = new StringVector("A","A","A","A","A","B","B","B","B","B").name("group");
+    var M = new Matrix(x,y);
+    M.mwu(0,1); // direct - vector and factor specified, arguments as vector indexes
+    M.mwu("score",1) // direct - vector and factor specified, arguments as vector indexes
+    M.mwu({vectors: 0, factor: "group"})
+    M.mwu({vectors: [0], factor: 1}) // direct calling - returns the output
+    M.analyze("mwu").run(0,1)
+    M.analyze("mwu").run("score",1)
+    M.analyze("mwu").run({vectors: 1, factor: "y"})
+    M.analyze("mwu").run({vectors: [1], factor: 2}) // analysis calling - returns the analytical bundle with metadata
+    /* without factor - the vectors argument must be wrapped in an array! */
+    var x = new NumericVector(9,7,5,3,5).name("x");
+    var y = new NumericVector(1,3,2,2,4).name("y");
+    var M = new Matrix(x,y);
+    M.mwu([0,1]), M.mwu(["x",1]), M.mwu({vectors: [0,1]}), M.mwu({vectors: ["x","y"]}), M.mwu({vectors: [x,y]}) // direct calling - returns the output
+    M.analyze("mwu").run([0,1]), M.analyze("mwu").run(["x",1]), M.analyze("mwu").run({vectors: [0,1]}), M.analyze("mwu").run({vectors: ["x","y"]}), M.analyze("mwu").run({vectors: [x,y]}) // direct calling - returns the output
+
+
+
+    const parent = new Matrix(
+        new NumericVector(50,45,33,22,99,79,4,36,62,51,27,15,26,83,86,120).name("right"),
+        new NumericVector(47,45,31,24,78,76,13,46,45,44,23,14,34,79,81,80).name("left"),
+        new StringVector("wife","wife","wife","wife","wife","wife","wife","wife","husband","husband","husband","husband","husband","husband","husband","husband").name("group")
+    );
+    var MWUwiki = parent.analyze("mwu2").run([0,1]);
+    var docs = parent.analyze("mwu2").toMarkdown();
+    var MWU = parent.mwu2(0,2);
+    debugger;
+
+    return;
+
     /*
     var M = new Matrix(
         new NumericVector(50,45,33,22,99,79,4,36,62,51,27,15,26,83,86).name("right"),

@@ -105,3 +105,4 @@ typings/
 .vscode/
 webpack.config.js
 /test.js
+/docs.js
