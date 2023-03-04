@@ -53,8 +53,8 @@ linreg --> r2[koeficient determinace <br><i>číslo</i>]
 linreg --> r[Pearsonův korelační koeficient <br><i>číslo</i>]
 linreg --> F[F test <br><i>číslo</i>]
 linreg --> p[p <br><i>číslo</i>]
-linreg --> beta0[beta0 (konstanta) <br><i>číslo</i>]
-linreg --> beta1[beta1 (koeficient) <br><i>číslo</i>]
+linreg --> beta0[konstanta funkce <br><i>číslo</i>]
+linreg --> beta1[koeficient funkce <br><i>číslo</i>]
 
 ```
 
