@@ -203,7 +203,7 @@ module.exports = {
 	"Jdfb": "F test",
 	"TDpu": "beta0 (constant)",
 	"eFcW": "beta1 (coefficient)",
-	"HksP": "P2 (dependence coefficient)",
+	"HksP": "dependence coefficient",
 	"qCgT": "ANOVA statistics",
 	"cXCr": "total of groups",
 	"thNv": "intergroup effects",

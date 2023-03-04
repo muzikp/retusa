@@ -203,7 +203,7 @@ module.exports = {
 	"Jdfb": "F test",
 	"TDpu": "beta0 (konstanta)",
 	"eFcW": "beta1 (koeficient)",
-	"HksP": "P2 (koeficient závislosti)",
+	"HksP": "koeficient závislosti",
 	"qCgT": "statistiky ANOVA",
 	"cXCr": "celkem skupin",
 	"thNv": "meziskupinové efekty",
