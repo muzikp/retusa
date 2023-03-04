@@ -44,20 +44,20 @@ var anova = M.analyze("anovaow").run({vectors: [0,1,2]});
 
 ```mermaid
 graph TD
-anovaow --> F[F test <br>!</br>]
-anovaow --> P2[koeficient závislosti <br>!</br>]
-anovaow --> p[p <br>!</br>]
-anovaow --> n[počet případů <br>!</br>]
-anovaow --> ANOVA(statistiky ANOVA)
-ANOVA --> totalOfGroups[celkem skupin <br>!</br>]
-ANOVA --> betweenGroups(meziskupinové efekty)
-betweenGroups --> sumOfSquares[suma čtverců <br>!</br>]
-betweenGroups --> df[stupně volnosti <br>!</br>]
-ANOVA --> withinGroups(vnitroskupinové efekty)
-withinGroups --> sumOfsquares[suma čtverců <br>!</br>]
-withinGroups --> df[stupně volnosti <br>!</br>]
-ANOVA --> total(celkem)
-total --> sumOfSquares[suma čtverců <br>!</br>]
-total --> df[stupně volnosti <br>!</br>]
+anovaow --> F[F test <br>number</br>]
+anovaow --> P2[koeficient závislosti <br>number</br>]
+anovaow --> p[p <br>number</br>]
+anovaow --> n[počet případů <br>integer</br>]
+anovaow --> <b>ANOVA</b>: (statistiky ANOVA)
+ANOVA --> totalOfGroups[celkem skupin <br>integer</br>]
+ANOVA --> <b>betweenGroups</b>: (meziskupinové efekty)
+betweenGroups --> sumOfSquares[suma čtverců <br>number</br>]
+betweenGroups --> df[stupně volnosti <br>integer</br>]
+ANOVA --> <b>withinGroups</b>: (vnitroskupinové efekty)
+withinGroups --> sumOfsquares[suma čtverců <br>number</br>]
+withinGroups --> df[stupně volnosti <br>integer</br>]
+ANOVA --> <b>total</b>: (celkem)
+total --> sumOfSquares[suma čtverců <br>number</br>]
+total --> df[stupně volnosti <br>integer</br>]
 
 ```
