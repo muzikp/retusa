@@ -43,6 +43,7 @@ var anova = M.analyze("anovaow").run({vectors: [0,1,2]});
 ### Schéma výstupu
 
 ```mermaid
+graph TD
 anovaow --> F[F test <br>!</br>]
 anovaow --> P2[P2 (koeficient závislosti) <br>!</br>]
 anovaow --> p[p <br>!</br>]
