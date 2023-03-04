@@ -53,7 +53,7 @@ var lr_b = M.analyze("linreg").run({x: "independent x", y: 1, model: 4}); // sam
     A --> ANOVA{Property 3: <br/> objekt}
     ANOVA --> E[Property 3.1: <br/> 789]
     ANOVA --> F[Property 3.1: <br/> 789]
-    ```
+```
 
 ## [Mann-Whitneyho test](#mwu)
 
@@ -125,11 +125,11 @@ var mwu_e = M.analyze("mwu").run([0], 1);
 ### Schéma výstupu
 
 ```mermaid
-    graph TD
-    A[T-tests] 
-    A --> B[Property 1: <br/> 123]
-    A --> C[r: korelační koeficient: <br/> číslo]
-    A --> ANOVA{Property 3: <br/> objekt}
-    ANOVA --> E[Property 3.1: <br/> 789]
-    ANOVA --> F[Property 3.1: <br/> 789]
-    ```
+graph TD
+A[T-tests] 
+A --> B[Property 1: <br/> 123]
+A --> C[r: korelační koeficient: <br/> číslo]
+A --> ANOVA{Property 3: <br/> objekt}
+ANOVA --> E[Property 3.1: <br/> 789]
+ANOVA --> F[Property 3.1: <br/> 789]
+```
