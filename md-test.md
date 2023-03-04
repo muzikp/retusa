@@ -49,7 +49,7 @@ var lr_b = M.analyze("linreg").run({x: "independent x", y: 1, model: 4}); // sam
 ```mermaid
 graph TD
 linreg --> model[regresní model <br><i>číslo</i>]
-linreg --> r2[R2 (koeficient determinace) <br><i>číslo</i>]
+linreg --> r2[koeficient determinace <br><i>číslo</i>]
 linreg --> r[Pearsonův korelační koeficient <br><i>číslo</i>]
 linreg --> F[F test <br><i>číslo</i>]
 linreg --> p[p <br><i>číslo</i>]
