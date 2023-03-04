@@ -48,13 +48,13 @@ var lr_b = M.analyze("linreg").run({x: "independent x", y: 1, model: 4}); // sam
 
 ```mermaid
 graph TD
-linreg --> model[regresní model <br><i>číslo</i>]
-linreg --> r2[koeficient determinace <br><i>číslo</i>]
-linreg --> r[Pearsonův korelační koeficient <br><i>číslo</i>]
-linreg --> F[F test <br><i>číslo</i>]
-linreg --> p[p <br><i>číslo</i>]
-linreg --> beta0[konstanta funkce <br><i>číslo</i>]
-linreg --> beta1[koeficient funkce <br><i>číslo</i>]
+linreg --> model[<b>model</b><br>regresní model <br><i>číslo</i>]
+linreg --> r2[<b>r2</b><br>koeficient determinace <br><i>číslo</i>]
+linreg --> r[<b>r</b><br>Pearsonův korelační koeficient <br><i>číslo</i>]
+linreg --> F[<b>F</b><br>F test <br><i>číslo</i>]
+linreg --> p[<b>p</b><br>p <br><i>číslo</i>]
+linreg --> beta0[<b>beta0</b><br>konstanta funkce <br><i>číslo</i>]
+linreg --> beta1[<b>beta1</b><br>koeficient funkce <br><i>číslo</i>]
 
 ```
 
@@ -92,21 +92,21 @@ var anova = M.analyze("anovaow").run({vectors: [0,1,2]});
 
 ```mermaid
 graph TD
-anovaow --> F[F test <br><i>číslo</i>]
-anovaow --> P2[koeficient závislosti <br><i>číslo</i>]
-anovaow --> p[p <br><i>číslo</i>]
-anovaow --> n[počet případů <br><i>číslo</i>]
+anovaow --> F[<b>F</b><br>F test <br><i>číslo</i>]
+anovaow --> P2[<b>P2</b><br>koeficient závislosti <br><i>číslo</i>]
+anovaow --> p[<b>p</b><br>p <br><i>číslo</i>]
+anovaow --> n[<b>n</b><br>počet případů <br><i>číslo</i>]
 anovaow --> ANOVA((<b>ANOVA</b><br><u>statistiky ANOVA</u>))
-ANOVA --> totalOfGroups[celkem skupin <br><i>číslo</i>]
+ANOVA --> totalOfGroups[<b>totalOfGroups</b><br>celkem skupin <br><i>číslo</i>]
 ANOVA --> betweenGroups((<b>betweenGroups</b><br><u>meziskupinové efekty</u>))
-betweenGroups --> sumOfSquares[suma čtverců <br><i>číslo</i>]
-betweenGroups --> df[stupně volnosti <br><i>číslo</i>]
+betweenGroups --> sumOfSquares[<b>sumOfSquares</b><br>suma čtverců <br><i>číslo</i>]
+betweenGroups --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
 ANOVA --> withinGroups((<b>withinGroups</b><br><u>vnitroskupinové efekty</u>))
-withinGroups --> sumOfsquares[suma čtverců <br><i>číslo</i>]
-withinGroups --> df[stupně volnosti <br><i>číslo</i>]
+withinGroups --> sumOfsquares[<b>sumOfsquares</b><br>suma čtverců <br><i>číslo</i>]
+withinGroups --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
 ANOVA --> total((<b>total</b><br><u>celkem</u>))
-total --> sumOfSquares[suma čtverců <br><i>číslo</i>]
-total --> df[stupně volnosti <br><i>číslo</i>]
+total --> sumOfSquares[<b>sumOfSquares</b><br>suma čtverců <br><i>číslo</i>]
+total --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
 
 ```
 
@@ -181,8 +181,8 @@ var mwu_e = M.analyze("mwu").run([0], 1);
 
 ```mermaid
 graph TD
-mwu --> U[U test <br><i>číslo</i>]
-mwu --> Z[Z test <br><i>číslo</i>]
-mwu --> p[p <br><i>číslo</i>]
+mwu --> U[<b>U</b><br>U test <br><i>číslo</i>]
+mwu --> Z[<b>Z</b><br>Z test <br><i>číslo</i>]
+mwu --> p[<b>p</b><br>p <br><i>číslo</i>]
 
 ```
