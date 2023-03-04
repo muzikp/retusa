@@ -164,6 +164,7 @@ function parseVector(v, parent) {
 }
 
 function parseMatrix(arr, parent) {
+    if(!Matrix) var {Matrix} = require("./matrix");
     if(parent) {
         if(parent.item(arr)) return new Matrix(parent.item(arr));
     }

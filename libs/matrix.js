@@ -521,8 +521,8 @@ const matrixMethods = {
             df: df
         }
     },
-    anova_oneway: function(vectors, factor) {
-        var arrays = (factor ? new Array(...new Matrix(factor, vectors[0]).pivot(1,0)) : new Array(...vectors)).map(v => v.removeEmpty());
+    anova_oneway: function() {
+        var arrays = new Array(...arguments[0]);
         var ns = arrays.map(a => a.length);
         var g_avg = arrays.map(a => a.avg());
         var yi_total = (arrays.map((a, i) => a.sum())).sum();
@@ -999,64 +999,44 @@ const MatrixMethodsModels = [
     },
     {   name: "anovaow",
         fn: matrixMethods.anova_oneway,
-        argsToMatrix: true,
-        filter: filters.anovaLikeMatrix,
-        returns: matrixResultSchemas.anovaow,
-        example: function(){
-            var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow(0,1,2);
-            /* OR */
-            var M = new Matrix([2,3,2,4,5], [9,8,7,9,10], [1,7,19,32,90]).anovaow();
-            /* OR */
-            var M = new Matrix([2,3,2,4,5,9,8,7,9,10,1,7,19,32,90],[1,1,1,1,1,2,2,2,2,2,3,3,3,3,3]).pivot(0,1).anovaow();
-            /*
-            {
-                "F": 2.3227069789300536,
-                "P2": 0.2790807107363349,
-                "p": 0.1403847313472082,
-                "n": 15,
-                "ANOVA": {
-                    "totalOfGroups": 3,
-                    "betweenGroups": {
-                        "sumOfSquares": 1976.9333333333336,
-                        "df": 2
-                    },
-                    "withinGroups": {
-                        "sumOfsquares": 5106.800000000001,
-                        "df": 12
-                    },
-                    "total": {
-                        "sumOfSquares": 7083.7333333333345,
-                        "df": 14
-                    }
-                }
-            }
-            */
-
-        },
         wiki: {
             title: "baJo",
-            description: "qqQo"
-        },
-        args: [
-                {
-                    name: "vectors",
-                    wiki: {title: "iJaa"},
-                    min: 1,
-                    type: [1],
-                    required: true,
-                    validator: validators.isNumericMatrix,
-                    schema: argumentSchemas.numericMatrix,
-                    class: 2
-                },{
-                    name: "factor",
-                    wiki: {title: "iJEe"},
-                    type: [1,2,3],
-                    required: false,
-                    validator: validators.isVector,
-                    schema: argumentSchemas.numericMatrix,
-                    class: 1
+            description: "qqQo",
+            preprocessor: "OH5v"
+        },   
+        output: "anovaow",     
+        prepare: function(_) {
+            if(_.args.factor) {
+                var _matrix = new Matrix(_.args.vectors[0], _.args.factor).pivot(0,1);
+                _.args.vectors = _matrix;
+                _.args.factor = null;
+            } else {
+                if(_.args.vectors.length < 2) throw new Error($("HHCW"));
+                else {
+                    _.args.vectors = _.args.vectors;
+                    _.args.factor = null;
                 }
-        ]
+            }
+            _.sample.raw = _.args.vectors.maxRows();
+            _.args.vectors = _.args.vectors.removeEmpty();
+            _.sample.net = _.args.vectors.maxRows();
+        },
+        args: {
+            "vectors": {
+                model: "numericVectors",
+                config: {
+                    name: "vectors",
+                    required: true,
+                }
+            },        
+            "factor": {
+                name: "factor",
+                model: "anyVector",
+                config: {
+                    name: "factor"
+                }
+            }
+        }
     },
     {   name: "linreg",
         fn: matrixMethods.linreg,
