@@ -6,13 +6,13 @@ const { StringVector } = require("./libs/vector");
 
 with (framework) {
     var M = new Matrix(
-        new NumericVector(180,197,240,210,180,160,179,185,183,150,110,190,170).name("x"),
-        new NumericVector(75,82,100,80,75,60,75,71,77,63,46,81,70).name("y"),
-        new NumericVector(79,81,103,84,72,55,78,76,82,65,49,83,74).name("z")
+        new NumericVector(15,8,11,19,13,4,16,5,9,15,12,11,14,4,11,17,14,5,9,8,9,11,11,12,17,12,5,5,15,0).name("wife"),
+        new NumericVector(17,19,18,19,17,5,13,0,16,21,12,9,10,17,12,24,12,12,8,16,12,7,17,13,20,9,13,11,11,12).name("husband")
     );
-    var rp_a = M.analyze("correlPartial").run(0,2,1);
-    var rp_b = M.correlPartial("x","y","z");
-    // rp_a.result = rp_b
+    var wcx_a = M.analyze("wcxpaired").run("wife", "husband");
+    var wcx_b = M.wcxpaired(0,1);
+    // wcx_a.result = wcx_b
+    
     var docs = require("./docs");
     docs();
     debugger;

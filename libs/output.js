@@ -261,6 +261,17 @@ const lib = {
             "p": snippets.sig,
             "df": snippets.df
         }
+    },
+    "wcxpaired": {
+        "title": "Root", 
+        "type": "object",
+        "properties": {
+            "Z": { 
+                "title": "9KFq", 
+                "type": "number"
+            },
+            "p": snippets.sig,
+        }
     }
 }
 module.exports = {Output: Output};

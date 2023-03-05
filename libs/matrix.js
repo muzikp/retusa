@@ -512,7 +512,9 @@ const matrixMethods = {
             p: p
         }
     },
-    correlBiserial: function(x,y){
+    correlBiserial: function(){
+        var x = arguments[0];
+        var y = arguments[1];
         return matrixMethods.correlPearson(new NumericVector(new Array(...x).map(v => v ? 1 : 0)).name(x.name),y);
     },
     /** https://en.wikipedia.org/wiki/Phi_coefficient */
@@ -746,7 +748,9 @@ const matrixMethods = {
      * @param {NumericVector} x first variable
      * @param {NumericVector} x second variable
      */
-    wcxpaired(x,y){
+    wcxpaired(){
+        var x = arguments[0];
+        var y= arguments[1];
         var d = x.map((_,i) => _ - y[i]);
         var absd = d.map((_,i) => Math.abs(_) == 0 ? null : Math.abs(_));    
         var rabsd = absd.map((_,i, arr) => _ == null ? null : arr.rankAvg(_,1,0));
@@ -1096,33 +1100,31 @@ const MatrixMethodsModels = [
     },
     {   name: "wcxpaired",
         fn: matrixMethods.wcxpaired,
-        example: function(){
-            var M = new Matrix([1,2,3,4,5,6,7,8,9,10],[1,3,5,7,9,11,13,15,17,19]).wcxpaired(0,1);
-        },
-        filter: filters.matrixNotEmpty,
         wiki: {
             title: "ChzY",
-            description: "pApR"
+            description: "pApR",
+            preprocessor: preprocessors.removeEmptyXY.title
         },
-        returns: matrixResultSchemas.wcxpaired,
-        args: [{
-                name: "x",
-                wiki: {title: "qFEM"},
-                type: [1],
-                required: true,
-                validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector,
-                class: 1
-            },        
-            {
-                name: "y",
-                wiki: {title: "tpUu"},
-                type: [1],
-                required: true,
-                validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector,
-                class: 1
-        }]
+        output: "wcxpaired",
+        prepare: preprocessors.removeEmptyXY.fn,
+        args: {
+            x: {
+                model: "numericVector",
+                config: {
+                    name: "x",
+                    title: "qFEM",
+                    required: true,
+                }
+            },
+            y: {
+                model: "numericVector",
+                config: {
+                    name: "y",
+                    title: "tpUu",
+                    required: true
+                }
+            }           
+        }
     },
     {   name: "mwu",
         fn: matrixMethods.mannwhitney,
