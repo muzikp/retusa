@@ -241,13 +241,54 @@ const {Argument} = (require("./argument"));
 const {Output} = require("./output");
 
 const preprocessors = {
-    removeEmptyXY: function(_){
-        var M = new Matrix(_.args.x, _.args.y)
-        _.sample.raw = M.maxRows();
-        M = M.removeEmpty();
-        _.args.x = M[0];
-        _.args.y = M[1];
-        _.sample.net = M.maxRows();
+    removeEmptyXY: {
+        title: "Cumi",
+        fn: function(_){
+            var M = new Matrix(_.args.x, _.args.y)
+            _.sample.raw = M.maxRows();
+            M = M.removeEmpty();
+            _.args.x = M[0];
+            _.args.y = M[1];
+            _.sample.net = M.maxRows();
+        }
+    },
+    groupXYRemoveEmpty: {
+        title: "OH5v",
+        fn: function(_) {
+            if(_.args.factor) {
+                var _matrix = new Matrix(_.args.vectors[0], _.args.factor).pivot(0,1);
+                _.args.vectors = _matrix;
+                _.args.factor = null;
+            } else {
+                if(_.args.vectors.length < 2) throw new Error($("HHCW"));
+                else {
+                    _.args.vectors = _.args.vectors;
+                    _.args.factor = null;
+                }
+            }
+            _.sample.raw = _.args.vectors.maxRows();
+            _.args.vectors = _.args.vectors.removeEmpty();
+            _.sample.net = _.args.vectors.maxRows();
+        }
+    },
+    groupANOVARemoveEmpty: {
+        title: "Jpe0",
+        fn: function(_) {
+            if(_.args.factor) {
+                var _matrix = new Matrix(_.args.vectors[0], _.args.factor).pivot(0,1);
+                _.args.vectors = _matrix;
+                _.args.factor = null;
+            } else {
+                if(_.args.vectors.length < 2) throw new Error($("HHCW"));
+                else {
+                    _.args.vectors = _.args.vectors;
+                    _.args.factor = null;
+                }
+            }
+            _.sample.raw = _.args.vectors.maxRows();
+            _.args.vectors = _.args.vectors.removeEmpty();
+            _.sample.net = _.args.vectors.maxRows();
+        }
     }
 }
 
@@ -487,10 +528,9 @@ const matrixMethods = {
         debugger;
         return {};
     },
-    ttest_independent: function(vectors,factor){
-        var arrays = factor ? new Array(...new Matrix(factor, vectors[0]).pivot(1,0)).slice(0,2) : new Array(...vectors).slice(0,2);
-        var x = arrays[0];
-        var y = arrays[1];
+    ttest_independent: function(){
+        var x = arguments[0][0];
+        var y = arguments[0][1];
         var nx = x.length;
         var ny = y.length;
         var df = nx + ny-2;
@@ -928,35 +968,32 @@ const MatrixMethodsModels = [
     },
     {   name: "ttestind",
         fn: matrixMethods.ttest_independent,
-        filter: filters.anovaLikeMatrix,
         example: function(){
             var M = new Matrix([],[]).ttestind(0,1);
         },
         wiki: {
             title: "YqRh",
-            description: "gILL"
+            description: "gILL",
+            preeprocesor: preprocessors.groupXYRemoveEmpty
         },
-        returns: matrixResultSchemas.ttestpair,
-        args: [{
-                name: "vectors",
-                wiki: {title: "qFEM"},
-                type: [1],
-                min: 1,
-                max: 2,
-                required: true,
-                validator: validators.isNumericMatrix,
-                schema: argumentSchemas.numericMatrix,
-                class: 2
+        output: "ttestind",
+        prepare: preprocessors.groupXYRemoveEmpty.fn,
+        args: {
+            "vectors": {
+                model: "numericVectors",
+                config: {
+                    name: "vectors",
+                    required: true,
+                }
             },        
-            {
+            "factor": {
                 name: "factor",
-                wiki: {title: "tpUu"},
-                type: [1,2,3],
-                required: false,
-                validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector,
-                class: 1
-        }]
+                model: "anyVector",
+                config: {
+                    name: "factor"
+                }
+            }
+        }
     },
     {   name: "ttestpair",
         fn: matrixMethods.ttest_paired,
@@ -1002,25 +1039,10 @@ const MatrixMethodsModels = [
         wiki: {
             title: "baJo",
             description: "qqQo",
-            preprocessor: "OH5v"
+            preprocessor: preprocessors.groupANOVARemoveEmpty.title
         },   
         output: "anovaow",     
-        prepare: function(_) {
-            if(_.args.factor) {
-                var _matrix = new Matrix(_.args.vectors[0], _.args.factor).pivot(0,1);
-                _.args.vectors = _matrix;
-                _.args.factor = null;
-            } else {
-                if(_.args.vectors.length < 2) throw new Error($("HHCW"));
-                else {
-                    _.args.vectors = _.args.vectors;
-                    _.args.factor = null;
-                }
-            }
-            _.sample.raw = _.args.vectors.maxRows();
-            _.args.vectors = _.args.vectors.removeEmpty();
-            _.sample.net = _.args.vectors.maxRows();
-        },
+        prepare: preprocessors.groupANOVARemoveEmpty.fn,
         args: {
             "vectors": {
                 model: "numericVectors",
@@ -1169,26 +1191,11 @@ const MatrixMethodsModels = [
         wiki: {
             title: "rPQr",
             description: "vzHj",
-            preprocessor: "OH5v",
+            preprocessor: preprocessors.groupXYRemoveEmpty.title,
             url: "https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test",
         },
         output: "mwu",
-        prepare: function(_) {
-            if(_.args.factor) {
-                var _matrix = new Matrix(_.args.vectors[0], _.args.factor).pivot(0,1);
-                _.args.vectors = _matrix.select(0,1);
-                _.args.factor = null;
-            } else {
-                if(_.args.vectors.length < 2) throw new Error($("HHCW"));
-                else {
-                    _.args.vectors = _.args.vectors.select(0,1);
-                    _.args.factor = null;
-                }
-            }
-            _.sample.raw = _.args.vectors.maxRows();
-            _.args.vectors = _.args.vectors.removeEmpty();
-            _.sample.net = _.args.vectors.maxRows();
-        },
+        prepare: preprocessors.groupXYRemoveEmpty.fn,
         args: {
             "vectors": {
                 model: "numericVectors",

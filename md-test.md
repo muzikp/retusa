@@ -9,6 +9,7 @@ A number of methods have a specified so-called preprocessor, which is a function
 | function | method |
 | :--- | :--- |
 | linreg | [linear regression](#linreg) |
+| ttestind | [T-test (independent)](#ttestind) |
 | anovaow | [ANOVA (one-way)](#anovaow) |
 | mwu | [Mann-Whitney test](#mwu) |
 
@@ -58,6 +59,78 @@ linreg --> beta1[<b>beta1</b><br>coefficient <br><i>number</i>]
 
 ```
 
+## [T-test (independent)](#ttestind)
+
+Returns the statistical log of the Student's t-test for two independent samples that are defined by an eigenvariable (that is, two numeric vectors). Arguments are either two numeric vectors, or one numeric and only a factor vector (usually text, but can also be numeric or binary). If a vector that has more than two unique values is used as a factor, only the first two unique values found are considered for the test (the others are ignored) - in this case, the information about the size of the pure sample is irrelevant, however, the level of significance to which the sample size enters, it is already based on pure cases.
+
+### Arguments
+
+| id |description |value type |validator |required |default value |ENUMERACE |
+| :--- |:--- |:--- |:--- |:--- |:--- |:--- |
+| vectors | numeric vector(s) | numeric vector or a matrix (array) of numeric vectors | Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error. | ✔️ |  |
+| factor | numeric vector |  | Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error. |  |  |
+### Syntax examples
+
+#### Arguments as object properties
+
+<span style="font-size: 0.8rem; font-style="italic"">The method has two parameters: vectors (first and mandatory) and factor (second, optional). In the given example, a single object is specified as an argument, which specifies the values of the individual parameters of the function. In this method, it is possible to specify the vectors parameter even as a single vector.</span>
+
+
+
+```js
+var M = new Matrix(
+new NumericVector(4,5,6,7,8,9,10,7,7,6).name("x"),
+new NumericVector(10,11,9,8,7,8,9,4,5,10).name("y")
+);
+var ttestind_a = M.analyze("ttestind").run({vectors: [0,1]});
+var ttestind_b = M.ttestind({vectors: [0,1]});
+// ttestind_a.result === mqu_b
+```
+
+#### Arguments as an array
+
+<span style="font-size: 0.8rem; font-style="italic"">Arguments are ordered in the standard way. It is essential to follow the order of the arguments here, and in addition, the first argument should ideally be in array format, e.g. [vector1, vector2].</span>
+
+
+
+```js
+var M = new Matrix(
+new NumericVector(4,5,6,7,8,9,10,7,7,6).name("x"),
+new NumericVector(10,11,9,8,7,8,9,4,5,10).name("y")
+);
+var ttestind_a = M.analyze("ttestind").run([0,1]);
+var ttestind_b = M.ttestind(["x","y"]);
+// ttestind_a.result === mqu_b
+```
+
+#### Factor' parameter implementation
+
+<span style="font-size: 0.8rem; font-style="italic"">As the second parameter, a factor is specified, i.e. a variable according to which the vector argument is transformed (or the first vector, if several numerical vectors are entered).</span>
+
+
+
+```js
+var M = new Matrix(
+new NumericVector(4,5,6,7,8,9,10,7,7,6,10,11,9,8,7,8,9,4,5,10).name("score"),
+new StringVector("A","A","A","A","A","A","A","A","A","A","B","B","B","B","B","B","B","B","B","B",).name("group")
+);
+var ttestind_a = M.analyze("ttestind").run({vectors: 0, factor: 1});
+var ttestind_b = M.ttestind({vectors: 0, factor: 1});
+var ttestind_c = M.analyze("ttestind").run(0, 1);
+var ttestind_d = M.ttestind(0, 1);
+var ttestind_e = M.analyze("ttestind").run([0], 1);
+```
+
+### Schéma výstupu
+
+```mermaid
+graph TD
+ttestind --> t[<b>t</b><br>T-value <br><i>number</i>]
+ttestind --> p[<b>p</b><br>significance <br><i>number</i>]
+ttestind --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
+
+```
+
 ## [ANOVA (one-way)](#anovaow)
 
 Returns the One-way ANOVA statistical log. The method has two arguments. The first consists of a series of numerical vectors, where at least one vector is mandatory. The second argument is optional and represents the grouping factor, i.e. a text variable that determines whether the numerical factor belongs to the group in the rows. If the second parameter is specified, only the first of the first group of vectors is taken into account.
@@ -71,7 +144,7 @@ Returns the One-way ANOVA statistical log. The method has two arguments. The fir
 
 ### Preprocessor
 
-If the arguments specify a factor variable (the second argument), the first argument (either a numeric vector or the first vector in the matrix, if it is the first argument of the matrix) is decomposed according to the values of the factor into a new matrix. If the arguments are without a factor (i.e. the second argument is empty), it takes the first two vectors from the first argument 'vectors' (matrix) and then deletes the rows with empty values. In case the argument 'factor' and the argument 'vectors' are not specified contains only a single vector or is itself a numeric vector, throws an error (at least two numeric vectors are required in the first argument without a factor).
+Jpe0
 
 ### Syntax examples
 

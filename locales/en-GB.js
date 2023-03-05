@@ -251,5 +251,6 @@ module.exports = {
 	"SQSt": "As the second parameter, a factor is specified, i.e. a variable according to which the vector argument is transformed (or the first vector, if several numerical vectors are entered).",
 	"dKFL": "Checks if the specified value is the key of an enumeration (list of possible values). If not, it throws an error.",
 	"u5oV": "enumerator",
-	"Cumi": "Removes from the input vectors (matrix) all rows in which there is at least one empty value."
+	"Cumi": "Removes from the input vectors (matrix) all rows in which there is at least one empty value.",
+	"Jpe0": "If the arguments specify a factor variable (the second argument), the first argument (either a numeric vector or the first vector in the matrix, if the first argument is a matrix) is decomposed according to the factor values into a new matrix. If the arguments are without a factor (ie the second argument is empty), it takes all the numeric vectors from the first argument 'vectors' (matrix) and then removes the rows with empty values. If the 'factor' argument is not specified and the 'vectors' argument contains only a single vector or is itself a numeric vector, an error will be thrown (without the factor, at least two numeric vectors are required in the first argument)."
 }

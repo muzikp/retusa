@@ -65,7 +65,6 @@ const snippets = {
     },
     siglevel: {
         "title": "mjPq", 
-        "description": null,
         "type": "zeroToOneInc",
     }
 }
@@ -193,6 +192,15 @@ const lib = {
                 }
             }
     
+        }
+    },
+    "ttestind": {
+        "title": "Root", 
+        "type": "object",
+        "properties": {
+            "t": snippets.ttest,
+            "p": snippets.sig,
+            "df": snippets.df
         }
     }
 }
