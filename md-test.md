@@ -12,6 +12,8 @@ Každá metoda má specifikované argumenty a jejich validátory. Validátory me
 | correlPearson | [Pearsonův korelační koeficient](#correlPearson) |
 | correlSpearman | [Spearmanův korelační koeficient](#correlSpearman) |
 | correlKendall | [Kendallovo Tau-b](#correlKendall) |
+| correlPartial | [parciální korelace](#correlPartial) |
+| correlBiserial | [biseriální korelace](#correlBiserial) |
 | anovaow | [ANOVA (jednofaktorová)](#anovaow) |
 | ttestind | [T-test (nezávislý)](#ttestind) |
 | ttestpair | [T-test (párový)](#ttestpair) |
@@ -186,6 +188,72 @@ correlKendall --> taub[<b>taub</b><br>Tau-b <br><i>číslo</i>]
 correlKendall --> taua[<b>taua</b><br>Tau-a <br><i>číslo</i>]
 correlKendall --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
 correlKendall --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+
+```
+
+## [parciální korelace](#correlPartial)
+
+Parciální korelace je statistická metoda, která vám umožňuje zjistit, jaký je vztah mezi dvěma proměnnými, přičemž se zohlední vliv třetí proměnné. To je užitečné, pokud chcete zjistit, zda existuje přímý vztah mezi dvěma proměnnými, aniž byste byli ovlivněni vlivem jiných proměnných. Například, pokud chcete zjistit, zda existuje vztah mezi úrovní školení a úspěšností v práci, může být užitečné zohlednit také vliv věku nebo pohlaví. V takovém případě byste mohli použít parciální korelaci k zjištění vztahu mezi úrovní školení a úspěšností v práci při zohlednění vlivu věku a pohlaví. Parciální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že parciální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost. Zdroj: https://chat.openai.com/chat.
+
+### Argumenty
+
+| id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>x</b> | první proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+| <b>y</b> | druhá proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+| <b>z</b> | třetí (kontrolní) proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+
+### Preprocessor
+
+Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
+
+### Příklady syntaxe
+
+#### 
+
+
+
+```js
+var M = new Matrix(
+new NumericVector(180,197,240,210,180,160,179,185,183,150,110,190,170).name("x"),
+new NumericVector(75,82,100,80,75,60,75,71,77,63,46,81,70).name("y"),
+new NumericVector(79,81,103,84,72,55,78,76,82,65,49,83,74).name("z")
+);
+var rp_a = M.analyze("correlPartial").run(0,1,2);
+var rp_b = M.correlPartial("x","y","z");
+// rp_a.result = rp_b
+```
+
+### Schéma výstupu
+
+```mermaid
+graph TD
+correlPartial --> r[<b>r</b><br>Pearsonův korelační koeficient <br><i>číslo</i>]
+correlPartial --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+
+```
+
+## [biseriální korelace](#correlBiserial)
+
+Biseriální korelace je statistická metoda, která se používá k vyhodnocení vztahu mezi dvěma binárními proměnnými (tj. proměnnými, které mohou mít pouze dvě možné hodnoty, například 'ano' nebo 'ne'). Binární proměnné se často používají v sociálních vědách, například při zkoumání vztahu mezi vzděláním a zaměstnáním nebo mezi kouřením a zdravím. Biseriální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že biseriální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost.
+
+### Argumenty
+
+| id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>x</b> | první proměnná | numerický vektor | <sub>JwDb<sub> | ✔️ |  |
+| <b>y</b> | druhá proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+
+### Preprocessor
+
+Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
+
+### Schéma výstupu
+
+```mermaid
+graph TD
+correlPearson --> r[<b>r</b><br>Pearsonův korelační koeficient <br><i>číslo</i>]
+correlPearson --> p[<b>p</b><br>významnost <br><i>číslo</i>]
 
 ```
 

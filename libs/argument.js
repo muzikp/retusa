@@ -37,6 +37,23 @@ var lib = {
             else return v;
         }
     },
+    booleanVector: {
+        title: "boQk",
+        validator: "JwDb",
+        mdType: "wggy",
+        isVector: true,
+        isMultiple: false,
+        tag: {
+            type: "select",
+            multiple: false,
+            vectorTypes: [3]
+        },
+        validate: function(value, parent){
+            var v = parseVector(value, parent);
+            if(v.type() !== 3) throw new Error($("KvHv"))
+            else return v;
+        }
+    },
     numericVectors: {
         title: "AQoT",
         validator: "nohy",

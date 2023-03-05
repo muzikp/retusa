@@ -889,35 +889,31 @@ const MatrixMethodsModels = [
     },
     {   name: "correlBiserial",
         fn: matrixMethods.correlBiserial,
-        example: function() {
-
-        },
-        filter: filters.matrixNotEmpty,
-        returns: matrixResultSchemas.correlPearson,
         wiki: {
             title: "AagR",
-            description: "OMiA"
+            description: "OMiA",
+            preprocessor: preprocessors.removeEmptyXY.title
         },
-        args: [
-            {
-                name: "x",
-                wiki: {title: "qFEM"},
-                type: [3],
-                required: true,
-                validator: validators.isBooleanVector,
-                schema: argumentSchemas.booleanVector,
-                class: 1
-            },        
-            {
-                name: "y",
-                wiki: {title: "tpUu"},
-                type: [1],
-                required: true,
-                validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector,
-                class: 1
+        output: "correlPearson",
+        prepare: preprocessors.removeEmptyXY.fn,
+        args: {
+            x: {
+                model: "booleanVector",
+                config: {
+                    name: "x",
+                    title: "qFEM",
+                    required: true
+                }
+            },
+            y: {
+                model: "numericVector",
+                config: {
+                    name: "y",
+                    title: "tpUu",
+                    required: true
+                }
             }
-        ]
+        }
     },
     {   name: "ttestind",
         fn: matrixMethods.ttest_independent,
