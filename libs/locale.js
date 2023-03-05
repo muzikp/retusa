@@ -27,6 +27,7 @@ module.exports = {
         });
         return module.exports;
     },
+    getDefault: function() {return _default},
     /**
      * Set the default language. If empty, the default value is reset to the local language default.
      * @param {string} value Language i18n or another code.
