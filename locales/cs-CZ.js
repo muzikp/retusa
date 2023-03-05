@@ -110,7 +110,7 @@ module.exports = {
 	"jrQP": "Pokud není určena konkrétní instance matice coby vlastnosti instance třídy MatrixMethod (vlastnost 'parent'), je při volání výpočetní nebo validační metody vrácen prázdný výsledek.",
 	"RLob": "Argument musí být typu vektor, místo toho přijata hodnota ${value}",
 	"Kvpv": "Argument musí být numerický vektor.",
-	"KvHv": "Argument musí být binární vektor.",
+	"KvHv": "Argument musí být binární vektor, platný identifikátor binárního vektoru nebo řada (Array) převoditelná na binární vektor.",
 	"NfvF": "Ověří, zdali je hodnota číslo. V opačném případě vyvolá chybu.",
 	"GweD": "Ověří, zdali je hodnota číslo mezi 0 a 1 (včetně hraničních hodnot). V opačném případě vyvolá chybu.",
 	"GHFj": "Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu.",
@@ -231,7 +231,7 @@ module.exports = {
 	"BoEs": "Maticový model metody '${name}' nebyl nalezen",
 	"OH5v": "Pokud argumenty specifikují faktorovou proměnnou (druhý argument), rozloží se první argument (buďto numerický vektor nebo první vektor v matici, pokud je prvním argumentem matice) dle hodnot faktoru do nové matice. Pokud jsou argumenty bez faktoru (tedy druhý argument je prázdný), vezme první dva vektory z prvního argumentu 'vectors' (matice) a následně odstraní řádky s prázdnými hodnotami.V případě, že není zadán argument 'factor' a argument 'vectors' zároveň obsahuje pouze jediný vektor nebo je sám numerickým vektorem, vyhodí chybu (bez faktoru jsou třeba alespoň dva numerické vektory v prvním argumentu).",
 	"HHCW": "Minimální počet vektorů pro argument 'vectors' jsou 2 (pokud není specifikovan argument ''factor' - pak stačí pouze jeden).",
-	"WGo9": "libovolný typ vektor",
+	"WGo9": "jakýkoliv vektor",
 	"mPC4": "Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.",
 	"suji": "Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.",
 	"AQoT": "numerický vektor(y)",
@@ -252,5 +252,6 @@ module.exports = {
 	"dKFL": "Ověří, zdali je zadaná hodnota klíčem enumerace (seznamu možných hodnot). Pokud ne, vyhodí chybu.",
 	"u5oV": "enumerace",
 	"Cumi": "Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.",
-	"Jpe0": "Pokud argumenty specifikují faktorovou proměnnou (druhý argument), rozloží se první argument (buďto numerický vektor nebo první vektor v matici, pokud je prvním argumentem matice) dle hodnot faktoru do nové matice. Pokud jsou argumenty bez faktoru (tedy druhý argument je prázdný), vezme všechny numerické vektory z prvního argumentu 'vectors' (matice) a následně odstraní řádky s prázdnými hodnotami. V případě, že není zadán argument 'factor' a argument 'vectors' zároveň obsahuje pouze jediný vektor nebo je sám numerickým vektorem, vyhodí chybu (bez faktoru jsou třeba alespoň dva numerické vektory v prvním argumentu)."
+	"Jpe0": "Pokud argumenty specifikují faktorovou proměnnou (druhý argument), rozloží se první argument (buďto numerický vektor nebo první vektor v matici, pokud je prvním argumentem matice) dle hodnot faktoru do nové matice. Pokud jsou argumenty bez faktoru (tedy druhý argument je prázdný), vezme všechny numerické vektory z prvního argumentu 'vectors' (matice) a následně odstraní řádky s prázdnými hodnotami. V případě, že není zadán argument 'factor' a argument 'vectors' zároveň obsahuje pouze jediný vektor nebo je sám numerickým vektorem, vyhodí chybu (bez faktoru jsou třeba alespoň dva numerické vektory v prvním argumentu).",
+	"JwDb": "Ověří, zdali je argument buďto binární (boolean) vektor, jeho identifikátor nebo řada převoditelná na binární vektor. V opačném případě vyhodí chybu,"
 }

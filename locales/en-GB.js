@@ -110,7 +110,7 @@ module.exports = {
 	"jrQP": "If a specific matrix instance is not specified as an instance property of the MatrixMethod class (the 'parent' property), an empty result is returned when the calculation or validation method is called.",
 	"RLob": "Argument must be a vector; recieved ${value}",
 	"Kvpv": "Argument must be a numeric vector",
-	"KvHv": "Argument must be a binary (boolean) vector.",
+	"KvHv": "The argument must be a binary vector, a valid binary vector identifier, or an Array convertible to a binary vector.",
 	"NfvF": "Checks if the value is a number. Otherwise, it will throw an error.",
 	"GweD": "Checks if the value is a number between 0 and 1 (including boundary values). Otherwise, it will throw an error.",
 	"GHFj": "Checks if the value is binary in nature. Otherwise, it automatically converts the value to the boolean type and therefore never returns an error.",
@@ -231,7 +231,7 @@ module.exports = {
 	"BoEs": "Matrix method model '${name}' was not found.",
 	"OH5v": "If the arguments specify a factor variable (the second argument), the first argument (either a numeric vector or the first vector in the matrix, if it is the first argument of the matrix) is decomposed according to the values of the factor into a new matrix. If the arguments are without a factor (i.e. the second argument is empty), it takes the first two vectors from the first argument 'vectors' (matrix) and then deletes the rows with empty values. In case the argument 'factor' and the argument 'vectors' are not specified contains only a single vector or is itself a numeric vector, throws an error (at least two numeric vectors are required in the first argument without a factor).",
 	"HHCW": "The minimum number of vectors for the 'vectors' argument is 2 (if the 'factor' argument is not specified - then only one is sufficient).",
-	"WGo9": "any type of vector",
+	"WGo9": "any vector",
 	"mPC4": "Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.",
 	"suji": "It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.",
 	"AQoT": "numeric vector(s)",
@@ -252,5 +252,6 @@ module.exports = {
 	"dKFL": "Checks if the specified value is the key of an enumeration (list of possible values). If not, it throws an error.",
 	"u5oV": "enumerator",
 	"Cumi": "Removes from the input vectors (matrix) all rows in which there is at least one empty value.",
-	"Jpe0": "If the arguments specify a factor variable (the second argument), the first argument (either a numeric vector or the first vector in the matrix, if the first argument is a matrix) is decomposed according to the factor values into a new matrix. If the arguments are without a factor (ie the second argument is empty), it takes all the numeric vectors from the first argument 'vectors' (matrix) and then removes the rows with empty values. If the 'factor' argument is not specified and the 'vectors' argument contains only a single vector or is itself a numeric vector, an error will be thrown (without the factor, at least two numeric vectors are required in the first argument)."
+	"Jpe0": "If the arguments specify a factor variable (the second argument), the first argument (either a numeric vector or the first vector in the matrix, if the first argument is a matrix) is decomposed according to the factor values into a new matrix. If the arguments are without a factor (ie the second argument is empty), it takes all the numeric vectors from the first argument 'vectors' (matrix) and then removes the rows with empty values. If the 'factor' argument is not specified and the 'vectors' argument contains only a single vector or is itself a numeric vector, an error will be thrown (without the factor, at least two numeric vectors are required in the first argument).",
+	"JwDb": "Checks if the argument is either a binary (boolean) vector, its identifier, or an array convertible to a binary vector. Otherwise, it throws an error,"
 }
