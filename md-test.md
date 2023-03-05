@@ -18,6 +18,7 @@ Každá metoda má specifikované argumenty a jejich validátory. Validátory me
 | ttestind | [T-test (nezávislý)](#ttestind) |
 | ttestpair | [T-test (párový)](#ttestpair) |
 | mwu | [Mann-Whitneyho test](#mwu) |
+| wcxpaired | [Wilcoxonův znamenkový test pro dva závislé výběry](#wcxpaired) |
 
 ## [lineární regrese](#linreg)
 
@@ -496,5 +497,45 @@ graph TD
 mwu --> U[<b>U</b><br>U test <br><i>číslo</i>]
 mwu --> Z[<b>Z</b><br>Z test <br><i>číslo</i>]
 mwu --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+
+```
+
+## [Wilcoxonův znamenkový test pro dva závislé výběry](#wcxpaired)
+
+Wilcoxonův znaménkový test je neparametrický statistický test používaný k určení, zda dva příbuzné nebo spárované vzorky mají stejný medián nebo ne. Používá se, když data nejsou normálně rozdělena nebo je porušen předpoklad stejných rozptylů. Tento test je vhodný pro malé velikosti vzorků.
+
+### Argumenty
+
+| id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>x</b> | první proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+| <b>y</b> | druhá proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+
+### Preprocessor
+
+Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
+
+### Příklady syntaxe
+
+#### 
+
+
+
+```js
+var M = new Matrix(
+new NumericVector(15,8,11,19,13,4,16,5,9,15,12,11,14,4,11,17,14,5,9,8,9,11,11,12,17,12,5,5,15,0).name("wife"),
+new NumericVector(17,19,18,19,17,5,13,0,16,21,12,9,10,17,12,24,12,12,8,16,12,7,17,13,20,9,13,11,11,12).name("husband")
+);
+var wcx_a = M.analyze("wcxpaired").run("wife", "husband");
+var wcx_b = M.wcxpaired(0,1);
+// wcx_a.result = wcx_b
+```
+
+### Schéma výstupu
+
+```mermaid
+graph TD
+wcxpaired --> Z[<b>Z</b><br>Z test <br><i>číslo</i>]
+wcxpaired --> p[<b>p</b><br>významnost <br><i>číslo</i>]
 
 ```
