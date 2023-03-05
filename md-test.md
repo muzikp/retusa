@@ -170,7 +170,7 @@ Vrátí statistický protokol Studentova t-testu pro dva nezávislé výběry, k
 
 #### Argumenty jako vlastnosti objektu
 
-<span style="font-size: 0.8rem; font-style="italic"">Metoda má dva parametry: vectors (první a povinný) a factor (druhý, nepovinný). V uvedeném příkladu je jako argument specifikován jediný objekt, který specifikuje hodnoty jednotlivých parametrů funkce. V této metodě je možné uvést parametr vectors i jako jediný vektor.</span>
+<sub>Metoda má dva parametry: vectors (první a povinný) a factor (druhý, nepovinný). V uvedeném příkladu je jako argument specifikován jediný objekt, který specifikuje hodnoty jednotlivých parametrů funkce. V této metodě je možné uvést parametr vectors i jako jediný vektor.</sub>
 
 
 
@@ -186,7 +186,7 @@ var ttestind_b = M.ttestind({vectors: [0,1]});
 
 #### Argumenty jako řada
 
-<span style="font-size: 0.8rem; font-style="italic"">Argumenty jsou standardndím způsobem řazeny za sebe. Je zde zásadní dodržovat pořadí argumentů a krom toho, první argument by měl být ideálně ve formátu array, např. [vector1, vector2].</span>
+<sub>Argumenty jsou standardndím způsobem řazeny za sebe. Je zde zásadní dodržovat pořadí argumentů a krom toho, první argument by měl být ideálně ve formátu array, např. [vector1, vector2].</sub>
 
 
 
@@ -202,7 +202,7 @@ var ttestind_b = M.ttestind(["x","y"]);
 
 #### Implementace argumentu 'factor'
 
-<span style="font-size: 0.8rem; font-style="italic"">Jako druhý parametr je specifikován faktor, tedy proměnná, dle které se přetransformuje argument vector (případně první vektor, pakliže je zadáno více numerických vektorů).</span>
+<sub>Jako druhý parametr je specifikován faktor, tedy proměnná, dle které se přetransformuje argument vector (případně první vektor, pakliže je zadáno více numerických vektorů).</sub>
 
 
 
@@ -288,7 +288,7 @@ Pokud argumenty specifikují faktorovou proměnnou (druhý argument), rozloží 
 
 #### Argumenty jako vlastnosti objektu
 
-<span style="font-size: 0.8rem; font-style="italic"">Metoda má dva parametry: vectors (první a povinný) a factor (druhý, nepovinný). V uvedeném příkladu je jako argument specifikován jediný objekt, který specifikuje hodnoty jednotlivých parametrů funkce. V této metodě je možné uvést parametr vectors i jako jediný vektor.</span>
+<sub>Metoda má dva parametry: vectors (první a povinný) a factor (druhý, nepovinný). V uvedeném příkladu je jako argument specifikován jediný objekt, který specifikuje hodnoty jednotlivých parametrů funkce. V této metodě je možné uvést parametr vectors i jako jediný vektor.</sub>
 
 
 
@@ -304,7 +304,7 @@ var mwu_b = M.mwu({vectors: [0,1]});
 
 #### Argumenty jako řada
 
-<span style="font-size: 0.8rem; font-style="italic"">Argumenty jsou standardndím způsobem řazeny za sebe. Je zde zásadní dodržovat pořadí argumentů a krom toho, první argument by měl být ideálně ve formátu array, např. [vector1, vector2].</span>
+<sub>Argumenty jsou standardndím způsobem řazeny za sebe. Je zde zásadní dodržovat pořadí argumentů a krom toho, první argument by měl být ideálně ve formátu array, např. [vector1, vector2].</sub>
 
 
 
@@ -320,7 +320,7 @@ var mwu_b = M.mwu(["x","y"]);
 
 #### Implementace argumentu 'factor'
 
-<span style="font-size: 0.8rem; font-style="italic"">Jako druhý parametr je specifikován faktor, tedy proměnná, dle které se přetransformuje argument vector (případně první vektor, pakliže je zadáno více numerických vektorů).</span>
+<sub>Jako druhý parametr je specifikován faktor, tedy proměnná, dle které se přetransformuje argument vector (případně první vektor, pakliže je zadáno více numerických vektorů).</sub>
 
 
 
