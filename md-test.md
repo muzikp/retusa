@@ -242,7 +242,7 @@ Biseriální korelace je statistická metoda, která se používá k vyhodnocen�
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
-| <b>x</b> | první proměnná | numerický vektor | <sub>Ověří, zdali je argument buďto binární (boolean) vektor, jeho identifikátor nebo řada převoditelná na binární vektor. V opačném případě vyhodí chybu,<sub> | ✔️ |  |
+| <b>x</b> | první proměnná | binární vektor | <sub>Ověří, zdali je argument buďto binární (boolean) vektor, jeho identifikátor nebo řada převoditelná na binární vektor. V opačném případě vyhodí chybu,<sub> | ✔️ |  |
 | <b>y</b> | druhá proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 
 ### Preprocessor

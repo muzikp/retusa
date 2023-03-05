@@ -743,11 +743,6 @@ const matrixMethods = {
         };
     },
     /* Wilcoxon's signed rank test for dependent samples */
-    /**
-     * https://real-statistics.com/non-parametric-tests/wilcoxon-signed-ranks-test/
-     * @param {NumericVector} x first variable
-     * @param {NumericVector} x second variable
-     */
     wcxpaired(){
         var x = arguments[0];
         var y= arguments[1];

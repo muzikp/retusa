@@ -40,7 +40,7 @@ var lib = {
     booleanVector: {
         title: "boQk",
         validator: "JwDb",
-        mdType: "wggy",
+        mdType: "boQk",
         isVector: true,
         isMultiple: false,
         tag: {
