@@ -70,6 +70,56 @@ const snippets = {
 }
 
 const lib = {
+    "correlPearson": {
+        "title": "IIlO", 
+        "type": "object",
+        "properties": {
+            "r": {
+                "title": "pTvR", 
+                "type": "number"
+            },
+            "p": snippets.sig
+        }
+    },
+    "correlSpearman": { 
+        "title": "IIlO", 
+        "type": "object",
+        "properties": {
+            "r": {
+                "title": "eJTT", 
+                "type": "number",
+            },
+            "df": snippets.df,
+            "p": snippets.sig
+        }
+    },
+    "correlKendall": {
+        "title": "IIlO", 
+        "type": "object",
+        "properties": {
+            "taub": {
+                "title": "NgVa", 
+                "type": "number",
+            },
+            "taua": {
+                "title": "mgBA", 
+                "type": "number",
+            },
+            "df": snippets.df,
+            "p": snippets.sig
+        }
+    },
+    "correlPartial": {
+        "title": "IIlO", 
+        "type": "object",
+        "properties": {
+            "r": {
+                "title": "pTvR", 
+                "type": "number",
+            },
+            "p": snippets.sig
+        }
+    },
     "linreg": {
         "type": "object",
         "properties": {

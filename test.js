@@ -5,15 +5,13 @@ const { StringVector } = require("./libs/vector");
 //framework.docs.publish(require("fs"));
 
 with (framework) {
-    var docs = require("./docs");
-    docs();
-    debugger;
-    return;
+
 
     var docs = require("./docs");
     docs();
     debugger;
     return;
+
 
 
 

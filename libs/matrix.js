@@ -399,12 +399,11 @@ class MatrixAnalysis {
 // #region Models
 // core functions
 const matrixMethods = {
-    correlPearson: function(x,y) {
-       var T = new Matrix(x,y).removeEmpty();
-       x = T[0];
-       y = T[1];
+    correlPearson: function() {
+       var x = arguments[0];
+       var y = arguments[1];
        var arr = x.map(function(_,i){ return [_,y[i]]});
-       var n = T.maxRows();
+       var n = [x.length, y.length].max();
        var nSxy = n * arr.map(v => v[0] * v[1]).sum();
        var SxSy =  x.sum() * y.sum();
        var nSx2_Sx2 = n * (x.map(v => Math.pow(v, 2))).sum() - Math.pow(x.sum(), 2);
@@ -548,7 +547,9 @@ const matrixMethods = {
             df: df
         }
     },
-    ttest_paired: function(x,y){
+    ttest_paired: function(){
+        var x = arguments[0];
+        var y = arguments[1];
         var xy = x.map((_,i) => [_,y[i]]);
         var n = xy.length;
         var df = n * 2 - 2;
@@ -762,44 +763,31 @@ const matrixMethods = {
 const MatrixMethodsModels = [
     {   name: "correlPearson",
         fn: matrixMethods.correlPearson,
-        filter: filters.matrixNotEmpty,
-        example: function(x,y) {
-            var a = new NumericVector([3, 7, 5, 10, 9, 8, 4, 1, 6, 2]);
-            var b = new NumericVector([4, 9, 2, 10, 8, 7, 6, 3, 5, 1]);
-            var correl = new Matrix(a,b).correlPearson(a,b);
-            /*
-            {
-                "r": 0.8424242424242424,
-                "n": 10,
-                "p": 0.0022200000000001108
-            }
-            */
-        },
         wiki: {
             title: "pTvR",
-            description: "wPyG"
+            description: "wPyG",
+            preprocessor: preprocessors.removeEmptyXY.title
         },
-        returns: matrixResultSchemas.correlPearson,
-        args: [
-            {
-                name: "x",
-                wiki: {title: "qFEM"},
-                type: [1],
-                required: true,
-                validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector,
-                class: 1
-            },        
-            {
-                name: "y",
-                wiki: {title: "tpUu"},
-                type: [1],
-                required: true,
-                validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector,
-                class: 1
-            }            
-        ]
+        output: "correlPearson",
+        prepare: preprocessors.removeEmptyXY.fn,
+        args: {
+            x: {
+                model: "numericVector",
+                config: {
+                    name: "x",
+                    title: "qFEM",
+                    required: true
+                }
+            },
+            y: {
+                model: "numericVector",
+                config: {
+                    name: "y",
+                    title: "tpUu",
+                    required: true
+                }
+            }
+        }
     },
     {   name: "correlSpearman",
         fn: matrixMethods.correlSpearman,

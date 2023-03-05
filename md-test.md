@@ -9,6 +9,7 @@ Každá metoda má specifikované argumenty a jejich validátory. Validátory me
 | funkce | metoda |
 | :--- | :--- |
 | linreg | [lineární regrese](#linreg) |
+| correlPearson | [Pearsonův korelační koeficient](#correlPearson) |
 | anovaow | [ANOVA (jednofaktorová)](#anovaow) |
 | ttestind | [T-test (nezávislý)](#ttestind) |
 | ttestpair | [T-test (párový)](#ttestpair) |
@@ -57,6 +58,49 @@ linreg --> F[<b>F</b><br>F test <br><i>číslo</i>]
 linreg --> p[<b>p</b><br>významnost <br><i>číslo</i>]
 linreg --> beta0[<b>beta0</b><br>konstanta funkce <br><i>číslo</i>]
 linreg --> beta1[<b>beta1</b><br>koeficient funkce <br><i>číslo</i>]
+
+```
+
+## [Pearsonův korelační koeficient](#correlPearson)
+
+Vrátí statistický protokol Pearsonova korelačního koeficientu.
+Pearsonova korelace je statistická metoda, která se používá k měření vztahu mezi dvěma veličinami. Jejím cílem je zjistit, zda existuje lineární vztah mezi těmito veličinami a jaký je jeho intenzita.
+Pearsonova korelace se vypočítá pomocí vzorce, který se nazývá Pearsonův koeficient korelace. Tento koeficient se pohybuje v rozmezí od -1 do 1 a udává, jak silně je mezi veličinami vztah. Pokud je koeficient blízký -1, znamená to, že mezi veličinami je silný negativní vztah, což znamená, že když se hodnota jedné veličiny zvyšuje, hodnota druhé veličiny klesá. Naopak pokud je koeficient blízký 1, znamená to, že mezi veličinami je silný pozitivní vztah, což znamená, že když se hodnota jedné veličiny zvyšuje, hodnota druhé veličiny také roste. Pokud je koeficient blízký 0, znamená to, že mezi veličinami není žádný vztah nebo je vztah velmi slabý.
+Pearsonova korelace se používá především k porovnávání dvou kvantitativních veličin, tj. veličin, které jsou měřitelné na škále s přesnými hodnotami (například věk, výška nebo hmotnost). Může se použít k určení, zda existuje vztah mezi těmito veličinami a jaký je jeho charakter. Například může být Pearsonova korelace použita k porovnání věku a hmotnosti a zjistit, zda existuje vztah mezi těmito veličinami a jaký je jeho charakter. Může se také použít k porovnání výsledků dvou různých testů a zjistit, zda existuje vztah mezi výsledky těchto testů. Zdroj: https://chat.openai.com/chat
+
+### Argumenty
+
+| id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>x</b> | první proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+| <b>y</b> | druhá proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+
+### Preprocessor
+
+Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
+
+### Příklady syntaxe
+
+#### 
+
+
+
+```js
+var M = new Matrix(
+new NumericVector(180,197,240,210,180,160,179,185,183,150,110,190,170).name("height"),
+new NumericVector(75,82,100,80,75,60,75,71,77,63,46,81,70).name("weight")
+);
+var rxy_a = M.analyze("correlPearson").run(0,1);
+var rxy_b = M.correlPearson("height","weight");
+// rxy_a.result = rxy_b
+```
+
+### Schéma výstupu
+
+```mermaid
+graph TD
+correlPearson --> r[<b>r</b><br>Pearsonův korelační koeficient <br><i>číslo</i>]
+correlPearson --> p[<b>p</b><br>významnost <br><i>číslo</i>]
 
 ```
 
@@ -198,6 +242,22 @@ Vrátí statistický protokol párového t-testu pro dva závislé výběry. Pr�
 ### Preprocessor
 
 Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
+
+### Příklady syntaxe
+
+#### 
+
+
+
+```js
+var M = new Matrix(
+new NumericVector(4,5,6,7,8,9,10,7,7,6).name("pre-score"),
+new NumericVector(10,11,12,13,14,8,9,10,11,10).name("post-score")
+);
+var ttest_a = M.analyze("ttestpair").run(0,1);
+var ttest_b = M.ttestpair("pre-score","post-score");
+// ttest_a.result = ttest_b
+```
 
 ### Schéma výstupu
 
