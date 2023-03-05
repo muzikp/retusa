@@ -8,19 +8,19 @@ Každá metoda má specifikované argumenty a jejich validátory. Validátory me
 
 | funkce | metoda |
 | :--- | :--- |
-| linreg | [lineární regrese](#linreg) |
+| linreg | [Lineární regrese](#linreg) |
 | correlPearson | [Pearsonův korelační koeficient](#correlPearson) |
 | correlSpearman | [Spearmanův korelační koeficient](#correlSpearman) |
 | correlKendall | [Kendallovo Tau-b](#correlKendall) |
-| correlPartial | [parciální korelace](#correlPartial) |
-| correlBiserial | [biseriální korelace](#correlBiserial) |
+| correlPartial | [Parciální korelace](#correlPartial) |
+| correlBiserial | [Biseriální korelace](#correlBiserial) |
 | anovaow | [ANOVA (jednofaktorová)](#anovaow) |
 | ttestind | [T-test (nezávislý)](#ttestind) |
 | ttestpair | [T-test (párový)](#ttestpair) |
 | mwu | [Mann-Whitneyho test](#mwu) |
 | wcxpaired | [Wilcoxonův znamenkový test pro dva závislé výběry](#wcxpaired) |
 
-## [lineární regrese](#linreg)
+## [Lineární regrese](#linreg)
 
 Lineární regrese je statistická metoda používaná k nalezení vztahu mezi dvěma spojitými proměnnými. Tyto proměnné jsou obvykle označeny jako závislá proměnná a nezávislá proměnná. Cílem lineární regrese je najít nejlepší lineární aproximaci závislé proměnné v závislosti na nezávislé proměnné. Lineární regrese se používá k predikci hodnoty závislé proměnné pro danou hodnotu nezávislé proměnné, když mezi nimi existuje lineární vztah. Tento vztah je reprezentován pomocí rovnice lineární regrese, která popisuje, jak se hodnoty závislé proměnné mění v závislosti na hodnotách nezávislé proměnné. Lineární regrese je často používána v různých oblastech, jako je ekonomie, sociologie, biologie, psychologie, inženýrství a dalších.
 
@@ -192,7 +192,7 @@ correlKendall --> p[<b>p</b><br>významnost <br><i>číslo</i>]
 
 ```
 
-## [parciální korelace](#correlPartial)
+## [Parciální korelace](#correlPartial)
 
 Parciální korelace je statistická metoda, která vám umožňuje zjistit, jaký je vztah mezi dvěma proměnnými, přičemž se zohlední vliv třetí proměnné. To je užitečné, pokud chcete zjistit, zda existuje přímý vztah mezi dvěma proměnnými, aniž byste byli ovlivněni vlivem jiných proměnných. Například, pokud chcete zjistit, zda existuje vztah mezi úrovní školení a úspěšností v práci, může být užitečné zohlednit také vliv věku nebo pohlaví. V takovém případě byste mohli použít parciální korelaci k zjištění vztahu mezi úrovní školení a úspěšností v práci při zohlednění vlivu věku a pohlaví. Parciální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že parciální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost. Zdroj: https://chat.openai.com/chat.
 
@@ -234,7 +234,7 @@ correlPartial --> p[<b>p</b><br>významnost <br><i>číslo</i>]
 
 ```
 
-## [biseriální korelace](#correlBiserial)
+## [Biseriální korelace](#correlBiserial)
 
 Biseriální korelace je statistická metoda, která se používá k vyhodnocení vztahu mezi dvěma binárními proměnnými (tj. proměnnými, které mohou mít pouze dvě možné hodnoty, například 'ano' nebo 'ne'). Binární proměnné se často používají v sociálních vědách, například při zkoumání vztahu mezi vzděláním a zaměstnáním nebo mezi kouřením a zdravím. Biseriální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že biseriální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost.
 
