@@ -67,19 +67,19 @@ var lib = {
             },
             {
                 value: 2, // logistic
-                title: "UtZD"
+                key: "UtZD"
             },
             {
                 value: 3, //hyperbole
-                title: "SCOx"
+                key: "SCOx"
             },
             {
                 value: 4, //exponential
-                title: "QaJi"
+                key: "QaJi"
             },
             {
                 value: 5, //quadratic
-                title: "HUMA"
+                key: "HUMA"
             }
         ],
         default: 1,
@@ -115,11 +115,14 @@ class Argument {
             key: model.title || null,
             value: $(model.title)
         };
-        this.default = undefined;
+        this.default = model.default;
         this.required = model.required;
         if(model.isEnum) {
             this.isEnum = true;
-            (model.enums || []).forEach(e => e.title = $(e.key))
+            this.enums = model.enums.map(function(e){
+                e.title = $(e.key);
+                return e;
+            });
         }
         this.description = {
             key: model.description || null,
@@ -138,13 +141,6 @@ class Argument {
             else return model.validate(value, parent, model);
         }
     }
-    /**
-     * 
-     * @returns {String} Returns this argument's documentation as a markdown table row.
-     */
-    toMarkdown() {
-        return `| ${this.name || ""} | ${this.title.value} | ${this.mdType.value} | ${this.validator.value} | ${this.required ? "✔️" : ""} | ${this.default !== undefined ? this.default : ""} |`;   
-    };
 }
 
 function parseVector(v, parent) {
