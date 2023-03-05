@@ -5,14 +5,6 @@ const { StringVector } = require("./libs/vector");
 //framework.docs.publish(require("fs"));
 
 with (framework) {
-    var M = new Matrix(
-        new NumericVector(15,8,11,19,13,4,16,5,9,15,12,11,14,4,11,17,14,5,9,8,9,11,11,12,17,12,5,5,15,0).name("wife"),
-        new NumericVector(17,19,18,19,17,5,13,0,16,21,12,9,10,17,12,24,12,12,8,16,12,7,17,13,20,9,13,11,11,12).name("husband")
-    );
-    var wcx_a = M.analyze("wcxpaired").run("wife", "husband");
-    var wcx_b = M.wcxpaired(0,1);
-    // wcx_a.result = wcx_b
-    
     var docs = require("./docs");
     docs();
     debugger;

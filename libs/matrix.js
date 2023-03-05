@@ -241,6 +241,16 @@ const {Argument} = (require("./argument"));
 const {Output} = require("./output");
 
 const preprocessors = {
+    removeEmpty: {
+        title: "Cumi",
+        fn: function(_){
+            var M = new Matrix(..._.args.vectors);
+            _.sample.raw = M.maxRows();
+            M = M.removeEmpty();
+            _.args.vectors = M;
+            _.sample.net = M.maxRows();
+        }
+    },
     removeEmptyXY: {
         title: "Cumi",
         fn: function(_){
@@ -743,7 +753,7 @@ const matrixMethods = {
         };
     },
     /* Wilcoxon's signed rank test for dependent samples */
-    wcxpaired(){
+    wcxpaired: function(){
         var x = arguments[0];
         var y= arguments[1];
         var d = x.map((_,i) => _ - y[i]);
@@ -760,6 +770,24 @@ const matrixMethods = {
         var p = 2*(1-dist.normsdist(z,true));
         return {
             Z:z,
+            p: p
+        }
+    },
+    friedman: function() {
+        var vectors = new Array(...arguments[0]);
+        var n = vectors[0].length;
+        var k = vectors.length;
+        var rows = [];
+        for(var r = 0; r < n; r++) {
+            rows.push(vectors.map((v,i) => v[r]).toAvgRank(1,1));
+        };
+        var R2 =  Array.from(Array(k).keys()).map((x,i) => Math.pow(rows.map(r => r[i]).sum(),2)).sum();
+        var Q = 12/(n*k*(k+1)) * R2 - 3*n*(k+1);
+        var df = k-1;
+        var p = dist.chisqdist(Q,df)*2;
+        return {
+            Q: Q,
+            df: df,
             p: p
         }
     }
@@ -1144,6 +1172,25 @@ const MatrixMethodsModels = [
                 model: "anyVector",
                 config: {
                     name: "factor"
+                }
+            }
+        }
+    },
+    {   name: "friedman",
+        fn: matrixMethods.friedman,
+        wiki: {
+            title: "7m48",
+            description: "sUw5",
+            preprocessor: preprocessors.removeEmpty.title
+        },   
+        output: "friedman",     
+        prepare: preprocessors.removeEmpty.fn,
+        args: {
+            "vectors": {
+                model: "numericVectors",
+                config: {
+                    name: "vectors",
+                    required: true,
                 }
             }
         }

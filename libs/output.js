@@ -272,6 +272,18 @@ const lib = {
             },
             "p": snippets.sig,
         }
+    },
+    "friedman": {
+        "title": "Root", 
+        "type": "object",
+        "properties": {
+            "Q": { 
+                "title": "t1BN", 
+                "type": "number"
+            },
+            df: snippets.df,
+            "p": snippets.sig,
+        }
     }
 }
 module.exports = {Output: Output};

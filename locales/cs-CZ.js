@@ -219,7 +219,7 @@ module.exports = {
 	"VYQH": "Cramérovo V",
 	"BUaN": "Pearsonovo C",
 	"bpCq": "Ověří, zdali se jedná o číselnou hodnotu větší než nula. V opačném případě vyvolá chybu.",
-	"ChzY": "Wilcoxonův znamenkový test pro dva závislé výběry",
+	"ChzY": "Wilcoxonův znaménkový test pro dva závislé výběry",
 	"pApR": "Wilcoxonův znaménkový test je neparametrický statistický test používaný k určení, zda dva příbuzné nebo spárované vzorky mají stejný medián nebo ne. Používá se, když data nejsou normálně rozdělena nebo je porušen předpoklad stejných rozptylů. Tento test je vhodný pro malé velikosti vzorků.",
 	"9KFq": "Z test",
 	"dSWt": "Parametr ${name} (${title}) pro metodu ${method} je povinný.",
@@ -253,5 +253,8 @@ module.exports = {
 	"u5oV": "enumerace",
 	"Cumi": "Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.",
 	"Jpe0": "Pokud argumenty specifikují faktorovou proměnnou (druhý argument), rozloží se první argument (buďto numerický vektor nebo první vektor v matici, pokud je prvním argumentem matice) dle hodnot faktoru do nové matice. Pokud jsou argumenty bez faktoru (tedy druhý argument je prázdný), vezme všechny numerické vektory z prvního argumentu 'vectors' (matice) a následně odstraní řádky s prázdnými hodnotami. V případě, že není zadán argument 'factor' a argument 'vectors' zároveň obsahuje pouze jediný vektor nebo je sám numerickým vektorem, vyhodí chybu (bez faktoru jsou třeba alespoň dva numerické vektory v prvním argumentu).",
-	"JwDb": "Ověří, zdali je argument buďto binární (boolean) vektor, jeho identifikátor nebo řada převoditelná na binární vektor. V opačném případě vyhodí chybu,"
+	"JwDb": "Ověří, zdali je argument buďto binární (boolean) vektor, jeho identifikátor nebo řada převoditelná na binární vektor. V opačném případě vyhodí chybu,",
+	"7m48": "Friedmanova ANOVA",
+	"sUw5": "Friedmanova analýza rozptylu je neparametrický statistický test vyvinutý Miltonem Friedmanem. Podobně jako u parametrických opakovaných opatření ANOVA se používá k detekci rozdílů v léčbě během více pokusů o testování. Postup zahrnuje hodnocení každého řádu (nebo bloku) dohromady, poté zváží hodnoty řad podle sloupců. Použitelné pro kompletní návrhy bloků je tedy zvláštním případem testu Durbin.",
+	"t1BN": "Friedmanův Q test"
 }

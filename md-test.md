@@ -18,7 +18,8 @@ Každá metoda má specifikované argumenty a jejich validátory. Validátory me
 | ttestind | [T-test (nezávislý)](#ttestind) |
 | ttestpair | [T-test (párový)](#ttestpair) |
 | mwu | [Mann-Whitneyho test](#mwu) |
-| wcxpaired | [Wilcoxonův znamenkový test pro dva závislé výběry](#wcxpaired) |
+| wcxpaired | [Wilcoxonův znaménkový test pro dva závislé výběry](#wcxpaired) |
+| friedman | [Friedmanova ANOVA](#friedman) |
 
 ## [Lineární regrese](#linreg)
 
@@ -500,7 +501,7 @@ mwu --> p[<b>p</b><br>významnost <br><i>číslo</i>]
 
 ```
 
-## [Wilcoxonův znamenkový test pro dva závislé výběry](#wcxpaired)
+## [Wilcoxonův znaménkový test pro dva závislé výběry](#wcxpaired)
 
 Wilcoxonův znaménkový test je neparametrický statistický test používaný k určení, zda dva příbuzné nebo spárované vzorky mají stejný medián nebo ne. Používá se, když data nejsou normálně rozdělena nebo je porušen předpoklad stejných rozptylů. Tento test je vhodný pro malé velikosti vzorků.
 
@@ -537,5 +538,46 @@ var wcx_b = M.wcxpaired(0,1);
 graph TD
 wcxpaired --> Z[<b>Z</b><br>Z test <br><i>číslo</i>]
 wcxpaired --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+
+```
+
+## [Friedmanova ANOVA](#friedman)
+
+Friedmanova analýza rozptylu je neparametrický statistický test vyvinutý Miltonem Friedmanem. Podobně jako u parametrických opakovaných opatření ANOVA se používá k detekci rozdílů v léčbě během více pokusů o testování. Postup zahrnuje hodnocení každého řádu (nebo bloku) dohromady, poté zváží hodnoty řad podle sloupců. Použitelné pro kompletní návrhy bloků je tedy zvláštním případem testu Durbin.
+
+### Argumenty
+
+| id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>vectors</b> | numerický vektor(y) | numerický vektor nebo matice numerických vektorů | <sub>Ověří, zdali je argument buďto numerický vektor, jeho identifikátor nebo řada převoditelná na numerický vektor, anebo zdali se jedná o řadu numerických vektorů (resp. hodnot, které jsou buďto vektory, identifikátry nebo hodnoty převoditelné na numerické vektory - v libovolné kombinace). Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+
+### Preprocessor
+
+Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
+
+### Příklady syntaxe
+
+#### 
+
+
+
+```js
+var M = new Matrix(
+new NumericVector(10,8,7,9,7,4,5,6,5,10,4,7).name("white"),
+new NumericVector(7,5,8,6,5,7,9,6,4,6,7,3).name("red"),
+new NumericVector(8,5,6,4,7,5,3,7,6,4,4,3).name("rose")
+);
+var friedman_a = M.analyze("friedman").run([0,1,2]);
+var friedman_b = M.friedman(["white","red","rose"]);
+// friedman_a.result = friedman_b
+```
+
+### Schéma výstupu
+
+```mermaid
+graph TD
+friedman --> Q[<b>Q</b><br>Friedmanův Q test <br><i>číslo</i>]
+friedman --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
+friedman --> p[<b>p</b><br>významnost <br><i>číslo</i>]
 
 ```
