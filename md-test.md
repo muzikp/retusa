@@ -29,7 +29,7 @@ Metoda umožňuje upřesnit, pro jakou transformaci modelu (např. lineární, l
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>x</b> | nezávislá proměnná (x) | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 | <b>y</b> | závislá proměnná (y) | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
-| <b>model</b> | regresní model | enumerace | <sub>Ověří, zdali je zadaná hodnota klíčem enumerace (seznamu možných hodnot). Pokud ne, vyhodí chybu.<br><br><b>1</b> = lineární<br><b>2</b> = logarytmovaný<br><b>3</b> = hyperbolický<br><b>4</b> = exponenciální<br><b>5</b> = kvadratický<br><sub> |  | 1 |
+| <b>model</b> | regresní model | enumerace | <sub>Ověří, zdali je zadaná hodnota klíčem enumerace (seznamu možných hodnot). Pokud ne, vyhodí chybu.<br><br><b>1</b> = lineární<br><b>2</b> = logaritmovaný<br><b>3</b> = hyperbolický<br><b>4</b> = exponenciální<br><b>5</b> = kvadratický<br><sub> |  | 1 |
 ### Příklady syntaxe
 
 #### 
@@ -132,9 +132,9 @@ var M = new Matrix(
 new NumericVector(3,7,5,10,9,8,4,1,6,2).name("design rating"),
 new NumericVector(4,9,2,10,8,7,6,3,5,1).name("utility rating")
 );
-var rk_a = M.analyze("correlKendall").run(0,1);
-var rk_b = M.correlKendall("design rating","utility rating");
-// rk_a.result = rk_b
+var rs_a = M.analyze("correlSpearman").run(0,1);
+var rs_b = M.correlSpearman("design rating","utility rating");
+// rs_a.result = rs_b
 ```
 
 ### Schéma výstupu
@@ -162,6 +162,22 @@ Vrátí statistický protokol Kendallova korelačního koeficientu Tau-B. Pokud 
 
 Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
 
+### Příklady syntaxe
+
+#### 
+
+
+
+```js
+var M = new Matrix(
+new NumericVector(3,7,5,10,9,8,4,1,6,2).name("design rating"),
+new NumericVector(4,9,2,10,8,7,6,3,5,1).name("utility rating")
+);
+var rk_a = M.analyze("correlKendall").run(0,1);
+var rk_b = M.correlKendall("design rating","utility rating");
+// rk_a.result = rk_b
+```
+
 ### Schéma výstupu
 
 ```mermaid
@@ -182,7 +198,7 @@ Vrátí statistický protokol analýzy rozptylu jednoduchého třídění (One-w
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | numerický vektor(y) | numerický vektor nebo matice numerických vektorů | <sub>Ověří, zdali je argument buďto numerický vektor, jeho identifikátor nebo řada převoditelná na numerický vektor, anebo zdali se jedná o řadu numerických vektorů (resp. hodnot, které jsou buďto vektory, identifikátry nebo hodnoty převoditelné na numerické vektory - v libovolné kombinace). Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
-| <b>factor</b> | numerický vektor |  | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> |  |  |
+| <b>factor</b> | numerický vektor | libovolný typ vektor | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> |  |  |
 
 ### Preprocessor
 
@@ -234,7 +250,7 @@ Vrátí statistický protokol Studentova t-testu pro dva nezávislé výběry, k
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | numerický vektor(y) | numerický vektor nebo matice numerických vektorů | <sub>Ověří, zdali je argument buďto numerický vektor, jeho identifikátor nebo řada převoditelná na numerický vektor, anebo zdali se jedná o řadu numerických vektorů (resp. hodnot, které jsou buďto vektory, identifikátry nebo hodnoty převoditelné na numerické vektory - v libovolné kombinace). Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
-| <b>factor</b> | numerický vektor |  | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> |  |  |
+| <b>factor</b> | numerický vektor | libovolný typ vektor | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> |  |  |
 ### Příklady syntaxe
 
 #### Argumenty jako vlastnosti objektu
@@ -347,11 +363,11 @@ Vrátí statistický protokol Mann-Whitneyho U testu. Jedná se o neparametrick�
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | numerický vektor(y) | numerický vektor nebo matice numerických vektorů | <sub>Ověří, zdali je argument buďto numerický vektor, jeho identifikátor nebo řada převoditelná na numerický vektor, anebo zdali se jedná o řadu numerických vektorů (resp. hodnot, které jsou buďto vektory, identifikátry nebo hodnoty převoditelné na numerické vektory - v libovolné kombinace). Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
-| <b>factor</b> | numerický vektor |  | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> |  |  |
+| <b>factor</b> | numerický vektor | libovolný typ vektor | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> |  |  |
 
 ### Preprocessor
 
-Pokud argumenty specifikují faktorovou proměnnou (druhý argument), rozloží se první argument (buďto numerický vektor nebo první vektor v matici, poku je prvním argumentem matice) dle hodnot faktoru do nové matice. Pokud jsou argumenty bez faktoru (tedy druhý argument je prázdný), vezme první dva vektory z prvního argumentu 'vectors' (matice) a následně odstraní řádky s prázdnými hodnotami.V případě, že není zadán argument 'factor' a argument 'vectors' zároveň obsahuje pouze jediný vektor nebo je sám numerickým vektorem, vyhodí chybu (bez faktoru jsou třeba alespoň dva numerický vektory v prvním argumentu).
+Pokud argumenty specifikují faktorovou proměnnou (druhý argument), rozloží se první argument (buďto numerický vektor nebo první vektor v matici, pokud je prvním argumentem matice) dle hodnot faktoru do nové matice. Pokud jsou argumenty bez faktoru (tedy druhý argument je prázdný), vezme první dva vektory z prvního argumentu 'vectors' (matice) a následně odstraní řádky s prázdnými hodnotami.V případě, že není zadán argument 'factor' a argument 'vectors' zároveň obsahuje pouze jediný vektor nebo je sám numerickým vektorem, vyhodí chybu (bez faktoru jsou třeba alespoň dva numerické vektory v prvním argumentu).
 
 ### Příklady syntaxe
 

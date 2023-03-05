@@ -6,12 +6,13 @@ const { StringVector } = require("./libs/vector");
 
 with (framework) {
     var M = new Matrix(
-        new NumericVector(3,7,5,10,9,8,4,1,6,2).name("design rating"),
-        new NumericVector(4,9,2,10,8,7,6,3,5,1).name("utility rating")
+        new NumericVector(180,197,240,210,180,160,179,185,183,150,110,190,170).name("x"),
+        new NumericVector(75,82,100,80,75,60,75,71,77,63,46,81,70).name("y"),
+        new NumericVector(79,81,103,84,72,55,78,76,82,65,49,83,74).name("z")
     );
-    var rk_a = M.analyze("correlKendall").run(0,1);
-    var rk_b = M.correlKendall("design rating","utility rating");
-    // rk_a.result = rk_b
+    var rp_a = M.analyze("correlPartial").run(0,2,1);
+    var rp_b = M.correlPartial("x","y","z");
+    // rp_a.result = rp_b
     var docs = require("./docs");
     docs();
     debugger;

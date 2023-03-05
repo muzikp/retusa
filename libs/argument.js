@@ -7,6 +7,7 @@ var lib = {
         title: "yWUM",
         description: null,
         validator: "mPC4",
+        mdType: "WGo9",
         isVector: true,
         isMultiple: false,
         tag: {

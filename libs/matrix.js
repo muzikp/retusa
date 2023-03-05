@@ -495,7 +495,10 @@ const matrixMethods = {
             p: p
         }
     },
-    correlPartial: function(x,y,z){
+    correlPartial: function(){
+        var x = arguments[0];
+        var y = arguments[1];
+        var z = arguments[2];
         var T = new Matrix(x,y,z);
         var n = T.maxRows();
         var r12 = T.correlPearson(0,1).r;
@@ -506,7 +509,6 @@ const matrixMethods = {
         var p = dist.tdist(t, n-3);
         return {
             r: rp,
-            //n: n,
             p: p
         }
     },
@@ -851,54 +853,39 @@ const MatrixMethodsModels = [
     },
     {   name: "correlPartial",
         fn: matrixMethods.correlPartial,
-        returns: matrixResultSchemas.correlPartial,
-        example: function() {
-            var x = new NumericVector(2,3,4,5,6,7,8,9,10,11);
-            var y = new NumericVector(3,5,4,6,5,7,8,9,1,11);
-            var z = new NumericVector(-5,-4,1,2,3,-2,6,8,10,12);
-            var partial = new Matrix(x,y,z).correlPartial(0,1,2);
-            /*
-            {
-                "r": 0.3222896122166014,
-                "n": 10,
-                "p": 0.39764
-            }
-            */
-        },
-        filter: filters.matrixNotEmpty,
         wiki: {
             title: "xfSf",
-            description: "UcfZ"
+            description: "UcfZ",
+            preprocessor: preprocessors.removeEmptyXY.title
         },
-        args: [ 
-            {
-                name: "x",
-                wiki: {title: "qFEM"},
-                type: [1],
-                required: true,
-                validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector,
-                class: 1
-            },        
-            {
-                name: "y",
-                wiki: {title: "tpUu"},
-                type: [1],
-                required: true,
-                validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector,
-                class: 1
+        output: "correlPartial",
+        prepare: preprocessors.removeEmptyXY.fn,
+        args: {
+            x: {
+                model: "numericVector",
+                config: {
+                    name: "x",
+                    title: "qFEM",
+                    required: true
+                }
             },
-            {
-                name: "z",
-                wiki: {title: "tpUR"},
-                type: [1],
-                required: true,
-                validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector,
-                class: 1
-            }            
-        ]
+            y: {
+                model: "numericVector",
+                config: {
+                    name: "y",
+                    title: "tpUu",
+                    required: true
+                }
+            },
+            z: {
+                model: "numericVector",
+                config: {
+                    name: "z",
+                    title: "tpUR",
+                    required: true
+                }
+            }
+        }
     },
     {   name: "correlBiserial",
         fn: matrixMethods.correlBiserial,
