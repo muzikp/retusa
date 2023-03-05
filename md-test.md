@@ -11,6 +11,7 @@ Každá metoda má specifikované argumenty a jejich validátory. Validátory me
 | linreg | [lineární regrese](#linreg) |
 | correlPearson | [Pearsonův korelační koeficient](#correlPearson) |
 | correlSpearman | [Spearmanův korelační koeficient](#correlSpearman) |
+| correlKendall | [Kendallovo Tau-b](#correlKendall) |
 | anovaow | [ANOVA (jednofaktorová)](#anovaow) |
 | ttestind | [T-test (nezávislý)](#ttestind) |
 | ttestpair | [T-test (párový)](#ttestpair) |
@@ -131,9 +132,9 @@ var M = new Matrix(
 new NumericVector(3,7,5,10,9,8,4,1,6,2).name("design rating"),
 new NumericVector(4,9,2,10,8,7,6,3,5,1).name("utility rating")
 );
-var rs_a = M.analyze("correlSpearman").run(0,1);
-var rs_b = M.correlSpearman("design rating","utility rating");
-// rs_a.result = rs_b
+var rk_a = M.analyze("correlKendall").run(0,1);
+var rk_b = M.correlKendall("design rating","utility rating");
+// rk_a.result = rk_b
 ```
 
 ### Schéma výstupu
@@ -143,6 +144,32 @@ graph TD
 correlSpearman --> r[<b>r</b><br>Spearmanův korelační koeficient <br><i>číslo</i>]
 correlSpearman --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
 correlSpearman --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+
+```
+
+## [Kendallovo Tau-b](#correlKendall)
+
+Vrátí statistický protokol Kendallova korelačního koeficientu Tau-B. Pokud byste tutéž operaci počítali v SPSS, patrně dostanete mírně odlišný výsledek. Podle všeho je to vlivem odlišné citlivosti na desetinná místa u obou systémů. Na interpretaci výsledku by to nicméně zásadní vliv mít nemělo.
+
+### Argumenty
+
+| id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>x</b> | první proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+| <b>y</b> | druhá proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+
+### Preprocessor
+
+Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
+
+### Schéma výstupu
+
+```mermaid
+graph TD
+correlKendall --> taub[<b>taub</b><br>Tau-b <br><i>číslo</i>]
+correlKendall --> taua[<b>taua</b><br>Tau-a <br><i>číslo</i>]
+correlKendall --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
+correlKendall --> p[<b>p</b><br>významnost <br><i>číslo</i>]
 
 ```
 

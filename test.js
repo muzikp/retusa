@@ -5,6 +5,13 @@ const { StringVector } = require("./libs/vector");
 //framework.docs.publish(require("fs"));
 
 with (framework) {
+    var M = new Matrix(
+        new NumericVector(3,7,5,10,9,8,4,1,6,2).name("design rating"),
+        new NumericVector(4,9,2,10,8,7,6,3,5,1).name("utility rating")
+    );
+    var rk_a = M.analyze("correlKendall").run(0,1);
+    var rk_b = M.correlKendall("design rating","utility rating");
+    // rk_a.result = rk_b
     var docs = require("./docs");
     docs();
     debugger;

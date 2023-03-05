@@ -438,7 +438,9 @@ const matrixMethods = {
             p: p
         }
     },
-    correlKendall: function(x,y){
+    correlKendall: function(){
+        var x = arguments[0];
+        var y = arguments[1];
         let n = x.length;
         let numPairs = n * (n - 1) / 2;
         let numConcordant = 0;
@@ -821,44 +823,31 @@ const MatrixMethodsModels = [
     },
     {   name: "correlKendall",
         fn: matrixMethods.correlKendall,
-        filter: filters.matrixNotEmpty,
-        returns: matrixResultSchemas.correlKendall,
-        example: function() {
-            var a = new NumericVector([3, 7, 5, 10, 9, 8, 4, 1, 6, 1]);
-            var b = new NumericVector([4, 9, 2, 10, 8, 7, 6, 3, 5, 1]);
-            var M = new Matrix(a,b).correlKendall(a,b);
-            /*
-            {
-                "r": 0.7111111111111111,
-                "n": 10,
-                "p": 0.004207551285491773
-            }
-            */
-        },
         wiki: {
             title: "mgBC",
-            description: "VOmC"
+            description: "VOmC",
+            preprocessor: preprocessors.removeEmptyXY.title
         },
-        args: [
-            {
-                name: "x",
-                wiki: {title: "qFEM"},
-                type: [1],
-                required: true,
-                validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector,
-                class: 1
-            },        
-            {
-                name: "y",
-                wiki: {title: "tpUu"},
-                type: [1],
-                required: true,
-                validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector,
-                class: 1
-            }            
-        ]
+        output: "correlKendall",
+        prepare: preprocessors.removeEmptyXY.fn,
+        args: {
+            x: {
+                model: "numericVector",
+                config: {
+                    name: "x",
+                    title: "qFEM",
+                    required: true
+                }
+            },
+            y: {
+                model: "numericVector",
+                config: {
+                    name: "y",
+                    title: "tpUu",
+                    required: true
+                }
+            }
+        }
     },
     {   name: "correlPartial",
         fn: matrixMethods.correlPartial,
