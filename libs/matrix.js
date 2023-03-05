@@ -418,7 +418,9 @@ const matrixMethods = {
            p: p
        };
     },
-    correlSpearman: function(x,y) {
+    correlSpearman: function() {
+        var x = arguments[0];
+        var y = arguments[1];
         x = x.toAvgRank();
         y = y.toAvgRank();
         var n = x.length;
@@ -791,44 +793,31 @@ const MatrixMethodsModels = [
     },
     {   name: "correlSpearman",
         fn: matrixMethods.correlSpearman,
-        filter: filters.matrixNotEmpty,
-        returns: matrixResultSchemas.correlSpearman,
-        example: function() {
-            var a = new NumericVector([3, 7, 5, 10, 9, 8, 4, 1, 6, 1]);
-            var b = new NumericVector([4, 9, 2, 10, 8, 7, 6, 3, 5, 1]);
-            var M = new Matrix(a,b).correlSpearman(a,b);
-            /*
-            {
-                "r": 0.8575757575757575,
-                "n": 10,
-                "p": 0.0015199999999999658
-            }
-            */
-        },
         wiki: {
             title: "eJTT",
-            description: "jAGi"
+            description: "jAGi",
+            preprocessor: preprocessors.removeEmptyXY.title
         },
-        args: [
-            {
-                name: "x",
-                wiki: {title: "qFEM"},
-                type: [1],
-                required: true,
-                validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector,
-                class: 1
-            },        
-            {
-                name: "y",
-                wiki: {title: "tpUu"},
-                type: [1],
-                required: true,
-                validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector,
-                class: 1
-        }            
-    ]
+        output: "correlSpearman",
+        prepare: preprocessors.removeEmptyXY.fn,
+        args: {
+            x: {
+                model: "numericVector",
+                config: {
+                    name: "x",
+                    title: "qFEM",
+                    required: true
+                }
+            },
+            y: {
+                model: "numericVector",
+                config: {
+                    name: "y",
+                    title: "tpUu",
+                    required: true
+                }
+            }
+        }
     },
     {   name: "correlKendall",
         fn: matrixMethods.correlKendall,

@@ -10,6 +10,7 @@ Každá metoda má specifikované argumenty a jejich validátory. Validátory me
 | :--- | :--- |
 | linreg | [lineární regrese](#linreg) |
 | correlPearson | [Pearsonův korelační koeficient](#correlPearson) |
+| correlSpearman | [Spearmanův korelační koeficient](#correlSpearman) |
 | anovaow | [ANOVA (jednofaktorová)](#anovaow) |
 | ttestind | [T-test (nezávislý)](#ttestind) |
 | ttestpair | [T-test (párový)](#ttestpair) |
@@ -101,6 +102,47 @@ var rxy_b = M.correlPearson("height","weight");
 graph TD
 correlPearson --> r[<b>r</b><br>Pearsonův korelační koeficient <br><i>číslo</i>]
 correlPearson --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+
+```
+
+## [Spearmanův korelační koeficient](#correlSpearman)
+
+Vrátí statistický protokol Spearmanova koeficientu pořadové korelace. Narozdíl od Pearsonovy korelace, Spearmanova metoda vychází z porovnání pořadí velikosti hodnot vstupních proměnných.
+
+### Argumenty
+
+| id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>x</b> | první proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+| <b>y</b> | druhá proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+
+### Preprocessor
+
+Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
+
+### Příklady syntaxe
+
+#### 
+
+
+
+```js
+var M = new Matrix(
+new NumericVector(3,7,5,10,9,8,4,1,6,2).name("design rating"),
+new NumericVector(4,9,2,10,8,7,6,3,5,1).name("utility rating")
+);
+var rs_a = M.analyze("correlSpearman").run(0,1);
+var rs_b = M.correlSpearman("design rating","utility rating");
+// rs_a.result = rs_b
+```
+
+### Schéma výstupu
+
+```mermaid
+graph TD
+correlSpearman --> r[<b>r</b><br>Spearmanův korelační koeficient <br><i>číslo</i>]
+correlSpearman --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
+correlSpearman --> p[<b>p</b><br>významnost <br><i>číslo</i>]
 
 ```
 
