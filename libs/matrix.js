@@ -997,42 +997,31 @@ const MatrixMethodsModels = [
     },
     {   name: "ttestpair",
         fn: matrixMethods.ttest_paired,
-        filter: filters.matrixNotEmpty,
-        example: function(){
-            var test = new Matrix([2,3,2,4,5], [9,8,7,9,10]).ttestpair(0,1);
-            /*
-            {
-                "t": -13.500000000000025,
-                "p": 0,
-                "n": 5,
-                "mx": 3.2,
-                "my": 8.6
-            } 
-            */
-        },
         wiki: {
             title: "mmXD",
-            description: "kPqo"
+            description: "kPqo",
+            preprocessor: preprocessors.removeEmptyXY.title
         },
-        returns: matrixResultSchemas.ttestpair,
-        args: [{
-                name: "x",
-                wiki: {title: "qFEM"},
-                type: [1],
-                required: true,
-                validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector,
-                class: 1
-            },        
-            {
-                name: "y",
-                wiki: {title: "tpUu"},
-                type: [1],
-                required: true,
-                validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector,
-                class: 1
-        }]
+        output: "ttestpair",
+        prepare: preprocessors.removeEmptyXY.fn,
+        args: {
+            x: {
+                model: "numericVector",
+                config: {
+                    name: "x",
+                    title: "qFEM",
+                    required: true,
+                }
+            },
+            y: {
+                model: "numericVector",
+                config: {
+                    name: "y",
+                    title: "tpUu",
+                    required: true
+                }
+            }           
+        }
     },
     {   name: "anovaow",
         fn: matrixMethods.anova_oneway,

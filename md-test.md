@@ -1,32 +1,33 @@
-# Matrix statistical analysis methods
+# Dokumentace statistických metod matic
 
-Matrix methods represent statistical methods that can be performed on a given matrix. In general, they can be called in two ways: either directly (e.g. {Matrix}.correlPearson(0,1)) or using the generic 'analyze' method, e.g. {Matrix}.analyze('correlPearson').run(0,1) . The difference between the first and the second method is that in the first method we touch the pure result (in the given example an object with properties r and p), in the second case we get back the entire MatrixAnalysis class, containing in addition to the result also metadata (such as sample information, duration calculation, etc.) as well as the input model, specification of arguments, etc. Therefore, if you need to store metadata during the calculation, it is advisable to call the methods via the 'analysis' function, where the parameter is the name of the method.
+Maticové metody představují statistické metody, které je možné provádět nad danou maticí. Obecně je lze volat dvě způsoby: buďto přímo (např. {Matrix}.correlPearson(0,1), nebo pomocí obecné metody 'analyze', např. {Matrix}.analyze('correlPearson').run(0,1). Rozdíl mezi první a druhým způsobem spočívá v tom, že u první metody dotneme čistý výsledek (u daného příkladu objekt s vlastnostmi r a p), v druhém případě dostaneme zpět celou třídy MatrixAnalysis, obsahující kromě výsledku i metadata (jako jsou informacee o vzorku, trvání výpočtu ad.) a také vstupní model, specifikaci argumentů atd. Pokud tedy potřebujete v průběhu výpočtu uchovávat metadata, je vhodné volat metody přes funkci 'analyze', kde parametr tvoří název metody.
 
-Each method has specified arguments and their validators. Method validators verify whether the parameters provided by the user are in accordance with the expected inputs of the calculation functions, and in many cases they are also able to convert compatible types (such as Array x Vector). Validators often work in several steps, ie. if they fail to validate the input value in one way, they have perhaps two other conversion strategies in store. The value of validators lies in the fact that the calculation method receives really such parameters on the basis of which it calculates the resulting statistics correctly.
+Každá metoda má specifikované argumenty a jejich validátory. Validátory metod ověřují, zdali jsou uživatelem poskytnuté parametry v souladu s očekávanými vstupy výpočetních funkcí a v řadě případů jsou i schopné kompatibilní typy (třeba Array x Vector) překonvertovat. Validátory často fungují v několika krocích, tzn. pokud se jim nezdaří validovat vstupní hodnotu jením způsobem, mají v zásobě třeba ještě dvě další strategie konverze. Hodnota validátorů spočívá v tom, že výpočetní metoda dostane skutečně takové parametry, na základě kterých výslednou statistiku spočítá správně. 
 
-A number of methods have a specified so-called preprocessor, which is a function that adjusts the input data of calculation functions to the required format. Most often, it is that it discards rows with empty values from the input vectors. In some methods, however, it makes deeper changes, e.g. matrix transformation according to a certain key (e.g. ANOVA). Preprocessors have one more function, namely that they save statistics of the input (raw) and calculated (net) file in the data.
+Řada metod má specifikovaný tzv. preprocessor, což je funkce, která vstupní data výpočetních funkcí upraví na potřebný formát. Nejčastěji se jedná o to, že ze vstupních vektorů vyřadí řádky s prázdnámi hodnotami. V některých metodách ale provádí hlubší změny, např. transformaci matice dle určitého klíče (např. ANOVA). Preprocessory mají ještě jednu funkci, a to že do dat ukládají statistiky vstupního (raw) a počítaného (net) souboru.
 
-| function | method |
+| funkce | metoda |
 | :--- | :--- |
-| linreg | [linear regression](#linreg) |
-| ttestind | [T-test (independent)](#ttestind) |
-| anovaow | [ANOVA (one-way)](#anovaow) |
-| mwu | [Mann-Whitney test](#mwu) |
+| linreg | [lineární regrese](#linreg) |
+| anovaow | [ANOVA (jednofaktorová)](#anovaow) |
+| ttestind | [T-test (nezávislý)](#ttestind) |
+| ttestpair | [T-test (párový)](#ttestpair) |
+| mwu | [Mann-Whitneyho test](#mwu) |
 
-## [linear regression](#linreg)
+## [lineární regrese](#linreg)
 
-Linear regression is a statistical method used to find the relationship between two continuous variables. These variables are usually labeled as the dependent variable and the independent variable. The goal of linear regression is to find the best linear approximation of the dependent variable as a function of the independent variable. Linear regression is used to predict the value of the dependent variable for a given value of the independent variable when there is a linear relationship between them. This relationship is represented using a linear regression equation that describes how the values of the dependent variable change depending on the values of the independent variable. Linear regression is often used in various fields such as economics, sociology, biology, psychology, engineering and others.
+Lineární regrese je statistická metoda používaná k nalezení vztahu mezi dvěma spojitými proměnnými. Tyto proměnné jsou obvykle označeny jako závislá proměnná a nezávislá proměnná. Cílem lineární regrese je najít nejlepší lineární aproximaci závislé proměnné v závislosti na nezávislé proměnné. Lineární regrese se používá k predikci hodnoty závislé proměnné pro danou hodnotu nezávislé proměnné, když mezi nimi existuje lineární vztah. Tento vztah je reprezentován pomocí rovnice lineární regrese, která popisuje, jak se hodnoty závislé proměnné mění v závislosti na hodnotách nezávislé proměnné. Lineární regrese je často používána v různých oblastech, jako je ekonomie, sociologie, biologie, psychologie, inženýrství a dalších.
 
-The method allows us to specify for which transformation of the model (eg linear, logarithmic) we are looking for the coefficient of determination.
+Metoda umožňuje upřesnit, pro jakou transformaci modelu (např. lineární, logaritmovanou) hledáme koeficient determinace.
 
-### Arguments
+### Argumenty
 
-| id |description |value type |validator |required |default value |ENUMERACE |
+| id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |ENUMERACE |
 | :--- |:--- |:--- |:--- |:--- |:--- |:--- |
-| x | independent variable (x) | numeric vector | It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error. | ✔️ |  |
-| y | dependent variable (y) | numeric vector | It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error. | ✔️ |  |
-| model | regression model | enumerator | Checks if the specified value is the key of an enumeration (list of possible values). If not, it throws an error. |  |  |
-### Syntax examples
+| x | nezávislá proměnná (x) | numerický vektor | Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu. | ✔️ |  |
+| y | závislá proměnná (y) | numerický vektor | Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu. | ✔️ |  |
+| model | regresní model | enumerace | Ověří, zdali je zadaná hodnota klíčem enumerace (seznamu možných hodnot). Pokud ne, vyhodí chybu. |  |  |
+### Příklady syntaxe
 
 #### 
 
@@ -49,31 +50,83 @@ var lr_b = M.analyze("linreg").run({x: "independent x", y: 1, model: 4}); // sam
 
 ```mermaid
 graph TD
-linreg --> model[<b>model</b><br>regression model <br><i>number</i>]
-linreg --> r2[<b>r2</b><br>coefficient of determination <br><i>number</i>]
-linreg --> r[<b>r</b><br>Pearson correlation coefficient <br><i>number</i>]
-linreg --> F[<b>F</b><br>F test <br><i>number</i>]
-linreg --> p[<b>p</b><br>significance <br><i>number</i>]
-linreg --> beta0[<b>beta0</b><br>constant <br><i>number</i>]
-linreg --> beta1[<b>beta1</b><br>coefficient <br><i>number</i>]
+linreg --> model[<b>model</b><br>regresní model <br><i>číslo</i>]
+linreg --> r2[<b>r2</b><br>koeficient determinace <br><i>číslo</i>]
+linreg --> r[<b>r</b><br>Pearsonův korelační koeficient <br><i>číslo</i>]
+linreg --> F[<b>F</b><br>F test <br><i>číslo</i>]
+linreg --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+linreg --> beta0[<b>beta0</b><br>konstanta funkce <br><i>číslo</i>]
+linreg --> beta1[<b>beta1</b><br>koeficient funkce <br><i>číslo</i>]
 
 ```
 
-## [T-test (independent)](#ttestind)
+## [ANOVA (jednofaktorová)](#anovaow)
 
-Returns the statistical log of the Student's t-test for two independent samples that are defined by an eigenvariable (that is, two numeric vectors). Arguments are either two numeric vectors, or one numeric and only a factor vector (usually text, but can also be numeric or binary). If a vector that has more than two unique values is used as a factor, only the first two unique values found are considered for the test (the others are ignored) - in this case, the information about the size of the pure sample is irrelevant, however, the level of significance to which the sample size enters, it is already based on pure cases.
+Vrátí statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Metoda má dva argumenty. První tvoří řada numerických vektorů, kde minimálně jeden vektor je povinný. Druhý argument je nepovinný a představuje shlukovací faktor, tedy textovou proměnnou, která v řádcích určuje příslučnost numerického faktoru ke skupině. Pokud je zadán druhý parametr, z první skupiny vektorů je zohledňován pouze první.
 
-### Arguments
+### Argumenty
 
-| id |description |value type |validator |required |default value |ENUMERACE |
+| id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |ENUMERACE |
 | :--- |:--- |:--- |:--- |:--- |:--- |:--- |
-| vectors | numeric vector(s) | numeric vector or a matrix (array) of numeric vectors | Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error. | ✔️ |  |
-| factor | numeric vector |  | Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error. |  |  |
-### Syntax examples
+| vectors | numerický vektor(y) | numerický vektor nebo matice numerických vektorů | Ověří, zdali je argument buďto numerický vektor, jeho identifikátor nebo řada převoditelná na numerický vektor, anebo zdali se jedná o řadu numerických vektorů (resp. hodnot, které jsou buďto vektory, identifikátry nebo hodnoty převoditelné na numerické vektory - v libovolné kombinace). Pokud se ani jedna z variant nezdaří, vyhodí chybu. | ✔️ |  |
+| factor | numerický vektor |  | Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu. |  |  |
 
-#### Arguments as object properties
+### Preprocessor
 
-<span style="font-size: 0.8rem; font-style="italic"">The method has two parameters: vectors (first and mandatory) and factor (second, optional). In the given example, a single object is specified as an argument, which specifies the values of the individual parameters of the function. In this method, it is possible to specify the vectors parameter even as a single vector.</span>
+Pokud argumenty specifikují faktorovou proměnnou (druhý argument), rozloží se první argument (buďto numerický vektor nebo první vektor v matici, pokud je prvním argumentem matice) dle hodnot faktoru do nové matice. Pokud jsou argumenty bez faktoru (tedy druhý argument je prázdný), vezme všechny numerické vektory z prvního argumentu 'vectors' (matice) a následně odstraní řádky s prázdnými hodnotami. V případě, že není zadán argument 'factor' a argument 'vectors' zároveň obsahuje pouze jediný vektor nebo je sám numerickým vektorem, vyhodí chybu (bez faktoru jsou třeba alespoň dva numerické vektory v prvním argumentu).
+
+### Příklady syntaxe
+
+#### 
+
+
+
+```js
+var M = new Matrix(
+new NumericVector(180,197,240,210,180,160,179,185,183,150,110,190,170).name("x"),
+new NumericVector(75,82,100,80,75,60,75,71,77,63,46,81,70).name("y"),
+new NumericVector(275,282,300,280,275,260,275,271,277,263,246,281,270).name("z")
+);
+var anova = M.analyze("anovaow").run({vectors: [0,1,2]});
+```
+
+### Schéma výstupu
+
+```mermaid
+graph TD
+anovaow --> F[<b>F</b><br>F test <br><i>číslo</i>]
+anovaow --> P2[<b>P2</b><br>koeficient závislosti <br><i>číslo</i>]
+anovaow --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+anovaow --> n[<b>n</b><br>počet případů <br><i>číslo</i>]
+anovaow --> ANOVA((<b>ANOVA</b><br><u>statistiky ANOVA</u>))
+ANOVA --> totalOfGroups[<b>totalOfGroups</b><br>celkem skupin <br><i>číslo</i>]
+ANOVA --> betweenGroups((<b>betweenGroups</b><br><u>meziskupinové efekty</u>))
+betweenGroups --> sumOfSquares[<b>sumOfSquares</b><br>suma čtverců <br><i>číslo</i>]
+betweenGroups --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
+ANOVA --> withinGroups((<b>withinGroups</b><br><u>vnitroskupinové efekty</u>))
+withinGroups --> sumOfsquares[<b>sumOfsquares</b><br>suma čtverců <br><i>číslo</i>]
+withinGroups --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
+ANOVA --> total((<b>total</b><br><u>celkem</u>))
+total --> sumOfSquares[<b>sumOfSquares</b><br>suma čtverců <br><i>číslo</i>]
+total --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
+
+```
+
+## [T-test (nezávislý)](#ttestind)
+
+Vrátí statistický protokol Studentova t-testu pro dva nezávislé výběry, které jsou definovány vlastní proměnnou (tedy dvěma numerickými vektory). Argumenty tvoří buď dva numerické vektory, nebo jeden numerický a jen faktorový vektor (obvykle text, ale může být i numerický či binární). Pokud je použit jako faktor vektor, který má více než dvě unikátní hodnoty, jsou pro test uvažovány pouze první dvě unikátní nalezené hodnoty (ostatní se ignorují) - v takovém případě je informace o velikosti čistého vzorku nepodstatná, nicméně hladina významnosti, do které velikost vzorku vstupuje, je již založena na čistých případech.
+
+### Argumenty
+
+| id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |ENUMERACE |
+| :--- |:--- |:--- |:--- |:--- |:--- |:--- |
+| vectors | numerický vektor(y) | numerický vektor nebo matice numerických vektorů | Ověří, zdali je argument buďto numerický vektor, jeho identifikátor nebo řada převoditelná na numerický vektor, anebo zdali se jedná o řadu numerických vektorů (resp. hodnot, které jsou buďto vektory, identifikátry nebo hodnoty převoditelné na numerické vektory - v libovolné kombinace). Pokud se ani jedna z variant nezdaří, vyhodí chybu. | ✔️ |  |
+| factor | numerický vektor |  | Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu. |  |  |
+### Příklady syntaxe
+
+#### Argumenty jako vlastnosti objektu
+
+<span style="font-size: 0.8rem; font-style="italic"">Metoda má dva parametry: vectors (první a povinný) a factor (druhý, nepovinný). V uvedeném příkladu je jako argument specifikován jediný objekt, který specifikuje hodnoty jednotlivých parametrů funkce. V této metodě je možné uvést parametr vectors i jako jediný vektor.</span>
 
 
 
@@ -87,9 +140,9 @@ var ttestind_b = M.ttestind({vectors: [0,1]});
 // ttestind_a.result === mqu_b
 ```
 
-#### Arguments as an array
+#### Argumenty jako řada
 
-<span style="font-size: 0.8rem; font-style="italic"">Arguments are ordered in the standard way. It is essential to follow the order of the arguments here, and in addition, the first argument should ideally be in array format, e.g. [vector1, vector2].</span>
+<span style="font-size: 0.8rem; font-style="italic"">Argumenty jsou standardndím způsobem řazeny za sebe. Je zde zásadní dodržovat pořadí argumentů a krom toho, první argument by měl být ideálně ve formátu array, např. [vector1, vector2].</span>
 
 
 
@@ -103,9 +156,9 @@ var ttestind_b = M.ttestind(["x","y"]);
 // ttestind_a.result === mqu_b
 ```
 
-#### Factor' parameter implementation
+#### Implementace argumentu 'factor'
 
-<span style="font-size: 0.8rem; font-style="italic"">As the second parameter, a factor is specified, i.e. a variable according to which the vector argument is transformed (or the first vector, if several numerical vectors are entered).</span>
+<span style="font-size: 0.8rem; font-style="italic"">Jako druhý parametr je specifikován faktor, tedy proměnná, dle které se přetransformuje argument vector (případně první vektor, pakliže je zadáno více numerických vektorů).</span>
 
 
 
@@ -125,84 +178,57 @@ var ttestind_e = M.analyze("ttestind").run([0], 1);
 
 ```mermaid
 graph TD
-ttestind --> t[<b>t</b><br>T-value <br><i>number</i>]
-ttestind --> p[<b>p</b><br>significance <br><i>number</i>]
-ttestind --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
+ttestind --> t[<b>t</b><br>hodnota testu T <br><i>číslo</i>]
+ttestind --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+ttestind --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
 
 ```
 
-## [ANOVA (one-way)](#anovaow)
+## [T-test (párový)](#ttestpair)
 
-Returns the One-way ANOVA statistical log. The method has two arguments. The first consists of a series of numerical vectors, where at least one vector is mandatory. The second argument is optional and represents the grouping factor, i.e. a text variable that determines whether the numerical factor belongs to the group in the rows. If the second parameter is specified, only the first of the first group of vectors is taken into account.
+Vrátí statistický protokol párového t-testu pro dva závislé výběry. Prázdné hodnoty jsou vyřezeny v průřezu řádků, tzn. že pokud v jednom řádku chybí alespoň jedna hodnota, je z analýzy vyřezen celý řádek.
 
-### Arguments
+### Argumenty
 
-| id |description |value type |validator |required |default value |ENUMERACE |
+| id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |ENUMERACE |
 | :--- |:--- |:--- |:--- |:--- |:--- |:--- |
-| vectors | numeric vector(s) | numeric vector or a matrix (array) of numeric vectors | Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error. | ✔️ |  |
-| factor | numeric vector |  | Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error. |  |  |
+| x | první proměnná | numerický vektor | Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu. | ✔️ |  |
+| y | druhá proměnná | numerický vektor | Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu. | ✔️ |  |
 
 ### Preprocessor
 
-Jpe0
-
-### Syntax examples
-
-#### 
-
-
-
-```js
-var M = new Matrix(
-new NumericVector(180,197,240,210,180,160,179,185,183,150,110,190,170).name("x"),
-new NumericVector(75,82,100,80,75,60,75,71,77,63,46,81,70).name("y"),
-new NumericVector(275,282,300,280,275,260,275,271,277,263,246,281,270).name("z")
-);
-var anova = M.analyze("anovaow").run({vectors: [0,1,2]});
-```
+Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
 
 ### Schéma výstupu
 
 ```mermaid
 graph TD
-anovaow --> F[<b>F</b><br>F test <br><i>number</i>]
-anovaow --> P2[<b>P2</b><br>dependence coefficient <br><i>number</i>]
-anovaow --> p[<b>p</b><br>significance <br><i>number</i>]
-anovaow --> n[<b>n</b><br>total of cases <br><i>number</i>]
-anovaow --> ANOVA((<b>ANOVA</b><br><u>ANOVA statistics</u>))
-ANOVA --> totalOfGroups[<b>totalOfGroups</b><br>total of groups <br><i>number</i>]
-ANOVA --> betweenGroups((<b>betweenGroups</b><br><u>intergroup effects</u>))
-betweenGroups --> sumOfSquares[<b>sumOfSquares</b><br>sum of squares <br><i>number</i>]
-betweenGroups --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
-ANOVA --> withinGroups((<b>withinGroups</b><br><u>intragroup effects</u>))
-withinGroups --> sumOfsquares[<b>sumOfsquares</b><br>sum of squares <br><i>number</i>]
-withinGroups --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
-ANOVA --> total((<b>total</b><br><u>total</u>))
-total --> sumOfSquares[<b>sumOfSquares</b><br>sum of squares <br><i>number</i>]
-total --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
+ttestpair --> t[<b>t</b><br>hodnota testu T <br><i>číslo</i>]
+ttestpair --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+ttestpair --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
 
 ```
 
-## [Mann-Whitney test](#mwu)
+## [Mann-Whitneyho test](#mwu)
 
-Returns the statistical log of the Mann-Whitney U test. It is a non-parametric null hypothesis test that compares randomly selected values of X and Y from two populations, with the probability that X is greater than Y equal to the probability that Y is greater than X.
+Vrátí statistický protokol Mann-Whitneyho U testu. Jedná se o neparametrický test nulové hypotézy, která srsovnává náhodně vybrané hodnoty X a Y ze dvou populací, přičemž pravděpodobnost, že X bude větší než Y, se rovná pravděpodobnosti, že Y bude větší než X.
 
-### Arguments
+### Argumenty
 
-| id |description |value type |validator |required |default value |ENUMERACE |
+| id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |ENUMERACE |
 | :--- |:--- |:--- |:--- |:--- |:--- |:--- |
-| vectors | numeric vector(s) | numeric vector or a matrix (array) of numeric vectors | Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error. | ✔️ |  |
-| factor | numeric vector |  | Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error. |  |  |
+| vectors | numerický vektor(y) | numerický vektor nebo matice numerických vektorů | Ověří, zdali je argument buďto numerický vektor, jeho identifikátor nebo řada převoditelná na numerický vektor, anebo zdali se jedná o řadu numerických vektorů (resp. hodnot, které jsou buďto vektory, identifikátry nebo hodnoty převoditelné na numerické vektory - v libovolné kombinace). Pokud se ani jedna z variant nezdaří, vyhodí chybu. | ✔️ |  |
+| factor | numerický vektor |  | Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu. |  |  |
 
 ### Preprocessor
 
-If the arguments specify a factor variable (the second argument), the first argument (either a numeric vector or the first vector in the matrix, if it is the first argument of the matrix) is decomposed according to the values of the factor into a new matrix. If the arguments are without a factor (i.e. the second argument is empty), it takes the first two vectors from the first argument 'vectors' (matrix) and then deletes the rows with empty values. In case the argument 'factor' and the argument 'vectors' are not specified contains only a single vector or is itself a numeric vector, throws an error (at least two numeric vectors are required in the first argument without a factor).
+Pokud argumenty specifikují faktorovou proměnnou (druhý argument), rozloží se první argument (buďto numerický vektor nebo první vektor v matici, poku je prvním argumentem matice) dle hodnot faktoru do nové matice. Pokud jsou argumenty bez faktoru (tedy druhý argument je prázdný), vezme první dva vektory z prvního argumentu 'vectors' (matice) a následně odstraní řádky s prázdnými hodnotami.V případě, že není zadán argument 'factor' a argument 'vectors' zároveň obsahuje pouze jediný vektor nebo je sám numerickým vektorem, vyhodí chybu (bez faktoru jsou třeba alespoň dva numerický vektory v prvním argumentu).
 
-### Syntax examples
+### Příklady syntaxe
 
-#### Arguments as object properties
+#### Argumenty jako vlastnosti objektu
 
-<span style="font-size: 0.8rem; font-style="italic"">The method has two parameters: vectors (first and mandatory) and factor (second, optional). In the given example, a single object is specified as an argument, which specifies the values of the individual parameters of the function. In this method, it is possible to specify the vectors parameter even as a single vector.</span>
+<span style="font-size: 0.8rem; font-style="italic"">Metoda má dva parametry: vectors (první a povinný) a factor (druhý, nepovinný). V uvedeném příkladu je jako argument specifikován jediný objekt, který specifikuje hodnoty jednotlivých parametrů funkce. V této metodě je možné uvést parametr vectors i jako jediný vektor.</span>
 
 
 
@@ -216,9 +242,9 @@ var mwu_b = M.mwu({vectors: [0,1]});
 // mwu_a.result === mqu_b
 ```
 
-#### Arguments as an array
+#### Argumenty jako řada
 
-<span style="font-size: 0.8rem; font-style="italic"">Arguments are ordered in the standard way. It is essential to follow the order of the arguments here, and in addition, the first argument should ideally be in array format, e.g. [vector1, vector2].</span>
+<span style="font-size: 0.8rem; font-style="italic"">Argumenty jsou standardndím způsobem řazeny za sebe. Je zde zásadní dodržovat pořadí argumentů a krom toho, první argument by měl být ideálně ve formátu array, např. [vector1, vector2].</span>
 
 
 
@@ -232,9 +258,9 @@ var mwu_b = M.mwu(["x","y"]);
 // mwu_a.result === mqu_b
 ```
 
-#### Factor' parameter implementation
+#### Implementace argumentu 'factor'
 
-<span style="font-size: 0.8rem; font-style="italic"">As the second parameter, a factor is specified, i.e. a variable according to which the vector argument is transformed (or the first vector, if several numerical vectors are entered).</span>
+<span style="font-size: 0.8rem; font-style="italic"">Jako druhý parametr je specifikován faktor, tedy proměnná, dle které se přetransformuje argument vector (případně první vektor, pakliže je zadáno více numerických vektorů).</span>
 
 
 
@@ -254,8 +280,8 @@ var mwu_e = M.analyze("mwu").run([0], 1);
 
 ```mermaid
 graph TD
-mwu --> U[<b>U</b><br>U test <br><i>number</i>]
-mwu --> Z[<b>Z</b><br>Z test <br><i>number</i>]
-mwu --> p[<b>p</b><br>significance <br><i>number</i>]
+mwu --> U[<b>U</b><br>U test <br><i>číslo</i>]
+mwu --> Z[<b>Z</b><br>Z test <br><i>číslo</i>]
+mwu --> p[<b>p</b><br>významnost <br><i>číslo</i>]
 
 ```

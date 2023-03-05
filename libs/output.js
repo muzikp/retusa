@@ -202,6 +202,15 @@ const lib = {
             "p": snippets.sig,
             "df": snippets.df
         }
+    },
+    "ttestpair": {
+        "title": "Root", 
+        "type": "object",
+        "properties": {
+            "t": snippets.ttest,
+            "p": snippets.sig,
+            "df": snippets.df
+        }
     }
 }
 module.exports = {Output: Output};
