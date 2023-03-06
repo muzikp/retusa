@@ -5,8 +5,32 @@ var {Output} = require("./libs/output");
 var locale = require("./libs/locale");
 //locale.setDefault("en-GB");
 var $ = locale.call
-var vectorMethods = ["sum"];
-
+var vectorMethods = [
+    "sum",
+    "count",
+    "mode",
+    "avg",
+    "min",
+    "max",
+    "range",
+    "geomean",
+    "harmean",
+    "median",
+    "percentile",
+    "stdev",
+    "variance",
+    "varc",
+    "histogram",
+    "frequency",
+    "sem",
+    "skewness",
+    "kurtosis",
+    "mci",
+    "pci",
+    "ttest",
+    "swtest",
+    "kstest"    
+]
 var matrixMethods = [
     "linreg",
     "correlPearson",
@@ -156,7 +180,7 @@ MatrixAnalysis.prototype.toMarkdown = function(){
 }
 
 VectorAnalysis.prototype.toMarkdown = function(){
-    var m = `## [${this.title.value.firstUp()}](#${this.name})\n\n${this.description.value ? this.description.value + "\n\n": ""}`;    
+    var m = `## [${this.title.value.firstUp()}]{#${this.name}}\n\n${this.description.value ? this.description.value + "\n\n": ""}`;    
     if(this.model.args) {
         /* arguments */
         var headers = ["QUJS","jBGO","dmmV","tGqA","VPYX","pDgb"];
@@ -610,6 +634,7 @@ module.exports = function() {
     const _origin = locale.getDefault();
     const write = require("fs").writeFileSync
     for(var l of locale.listLanguages()) {
+        
         locale.setDefault(l);
         var vector = Vector.toMarkdown();
         var matrix = Matrix.toMarkdown();
@@ -617,6 +642,5 @@ module.exports = function() {
         write(`./docs/${l}/vector.md`, vector);
         write(`./docs/${l}.md`, vector + "\n\n" + matrix);
     }
-
     locale.setDefault(_origin);
 }
