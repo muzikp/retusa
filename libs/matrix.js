@@ -1121,7 +1121,7 @@ const MatrixMethodsModels = [
                 }
             },        
             n: {
-                model: "anyVector",
+                model: "numericVector",
                 config: {
                     name: "n",
                     title: "fqUi",
