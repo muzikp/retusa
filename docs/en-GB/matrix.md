@@ -11,7 +11,7 @@ A number of methods have a specified so-called preprocessor, which is a function
 | linreg | [Linear regression](#linreg) |
 | correlPearson | [Pearson correlation coefficient](#correlPearson) |
 | correlSpearman | [Spearman's correlation coefficient](#correlSpearman) |
-| correlKendall | [Kendall Tau-b](#correlKendall) |
+| correlKendall | [Kendall's correlation](#correlKendall) |
 | correlPartial | [Partial correlation](#correlPartial) |
 | correlBiserial | [Biserial correlation](#correlBiserial) |
 | anovaow | [ANOVA (one-way)](#anovaow) |
@@ -20,6 +20,7 @@ A number of methods have a specified so-called preprocessor, which is a function
 | mwu | [Mann-Whitney test](#mwu) |
 | wcxpaired | [Wilcoxon Signed-Ranks Test for Paired Samples](#wcxpaired) |
 | friedman | [Friedman's ANOVA](#friedman) |
+| contingency | [Contingency](#contingency) |
 
 ## [Linear regression](#linreg)
 
@@ -36,10 +37,6 @@ The method allows us to specify for which transformation of the model (eg linear
 | <b>model</b> | regression model | enumerator | <sub>Checks if the specified value is the key of an enumeration (list of possible values). If not, it throws an error.<br><br><b>1</b> = linear<br><b>2</b> = log<br><b>3</b> = hyperbole<br><b>4</b> = exponential<br><b>5</b> = quadratic<br><sub> |  | 1 |
 ### Syntax examples
 
-#### 
-
-
-
 ```js
 var M = new Matrix(
 new NumericVector(180,197,240,210,180,160,179,185,183,150,110,190,170).name("independent x"),
@@ -53,17 +50,34 @@ var lr_b = M.analyze("linreg").run({x: "independent x", y: 1, model: 4}); // sam
 // lb_b = lr_d.result
 ```
 
-### Schéma výstupu
+### Output schema
 
 ```mermaid
 graph TD
+linreg((<i>object</i>))
+style linreg fill:#E1C6B3;
+style linreg stroke:#C36422;
 linreg --> model[<b>model</b><br>regression model <br><i>number</i>]
+style model fill:#FFFFFF;
+style model stroke:#BB9B14;
 linreg --> r2[<b>r2</b><br>coefficient of determination <br><i>number</i>]
+style r2 fill:#FFFFFF;
+style r2 stroke:#4967A4;
 linreg --> r[<b>r</b><br>Pearson correlation coefficient <br><i>number</i>]
+style r fill:#FFFFFF;
+style r stroke:#4967A4;
 linreg --> F[<b>F</b><br>F test <br><i>number</i>]
+style F fill:#FFFFFF;
+style F stroke:#4967A4;
 linreg --> p[<b>p</b><br>significance <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 linreg --> beta0[<b>beta0</b><br>constant <br><i>number</i>]
+style beta0 fill:#FFFFFF;
+style beta0 stroke:#4967A4;
 linreg --> beta1[<b>beta1</b><br>coefficient <br><i>number</i>]
+style beta1 fill:#FFFFFF;
+style beta1 stroke:#4967A4;
 
 ```
 
@@ -81,15 +95,11 @@ Pearson's correlation is mainly used to compare two quantitative quantities, i.e
 | <b>x</b> | first variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 | <b>y</b> | second variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes from the input vectors (matrix) all rows in which there is at least one empty value.
 
 ### Syntax examples
-
-#### 
-
-
 
 ```js
 var M = new Matrix(
@@ -101,12 +111,19 @@ var rxy_b = M.correlPearson("height","weight");
 // rxy_a.result = rxy_b
 ```
 
-### Schéma výstupu
+### Output schema
 
 ```mermaid
 graph TD
+correlPearson((<i>object</i>))
+style correlPearson fill:#E1C6B3;
+style correlPearson stroke:#C36422;
 correlPearson --> r[<b>r</b><br>Pearson correlation coefficient <br><i>number</i>]
+style r fill:#FFFFFF;
+style r stroke:#4967A4;
 correlPearson --> p[<b>p</b><br>significance <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 
 ```
 
@@ -121,15 +138,11 @@ Returns the statistical log of the Spearman rank correlation coefficient. Unlike
 | <b>x</b> | first variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 | <b>y</b> | second variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes from the input vectors (matrix) all rows in which there is at least one empty value.
 
 ### Syntax examples
-
-#### 
-
-
 
 ```js
 var M = new Matrix(
@@ -141,17 +154,26 @@ var rs_b = M.correlSpearman("design rating","utility rating");
 // rs_a.result = rs_b
 ```
 
-### Schéma výstupu
+### Output schema
 
 ```mermaid
 graph TD
+correlSpearman((<i>object</i>))
+style correlSpearman fill:#E1C6B3;
+style correlSpearman stroke:#C36422;
 correlSpearman --> r[<b>r</b><br>Spearman's correlation coefficient <br><i>number</i>]
+style r fill:#FFFFFF;
+style r stroke:#4967A4;
 correlSpearman --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
 correlSpearman --> p[<b>p</b><br>significance <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 
 ```
 
-## [Kendall Tau-b](#correlKendall)
+## [Kendall's correlation](#correlKendall)
 
 Returns the statistical log of Kendall's Tau-B correlation coefficient. If you were to calculate the same operation in SPSS, you would probably get a slightly different result. Apparently, this is due to the different sensitivity to decimal places in the two systems. However, it should not have a major influence on the interpretation of the result.
 
@@ -162,15 +184,11 @@ Returns the statistical log of Kendall's Tau-B correlation coefficient. If you w
 | <b>x</b> | first variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 | <b>y</b> | second variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes from the input vectors (matrix) all rows in which there is at least one empty value.
 
 ### Syntax examples
-
-#### 
-
-
 
 ```js
 var M = new Matrix(
@@ -182,14 +200,25 @@ var rk_b = M.correlKendall("design rating","utility rating");
 // rk_a.result = rk_b
 ```
 
-### Schéma výstupu
+### Output schema
 
 ```mermaid
 graph TD
+correlKendall((<i>object</i>))
+style correlKendall fill:#E1C6B3;
+style correlKendall stroke:#C36422;
 correlKendall --> taub[<b>taub</b><br>Tau-b <br><i>number</i>]
+style taub fill:#FFFFFF;
+style taub stroke:#4967A4;
 correlKendall --> taua[<b>taua</b><br>Tau-a <br><i>number</i>]
+style taua fill:#FFFFFF;
+style taua stroke:#4967A4;
 correlKendall --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
 correlKendall --> p[<b>p</b><br>significance <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 
 ```
 
@@ -205,15 +234,11 @@ Partial correlation is a statistical method that allows you to find out what the
 | <b>y</b> | second variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 | <b>z</b> | third (control) variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes from the input vectors (matrix) all rows in which there is at least one empty value.
 
 ### Syntax examples
-
-#### 
-
-
 
 ```js
 var M = new Matrix(
@@ -226,12 +251,19 @@ var rp_b = M.correlPartial("x","y","z");
 // rp_a.result = rp_b
 ```
 
-### Schéma výstupu
+### Output schema
 
 ```mermaid
 graph TD
+correlPartial((<i>object</i>))
+style correlPartial fill:#E1C6B3;
+style correlPartial stroke:#C36422;
 correlPartial --> r[<b>r</b><br>Pearson correlation coefficient <br><i>number</i>]
+style r fill:#FFFFFF;
+style r stroke:#4967A4;
 correlPartial --> p[<b>p</b><br>significance <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 
 ```
 
@@ -246,16 +278,23 @@ Biserial correlation is a statistical method that is used to evaluate the relati
 | <b>x</b> | first variable | binary (boolean) vector | <sub>Checks if the argument is either a binary (boolean) vector, its identifier, or an array convertible to a binary vector. Otherwise, it throws an error,<sub> | ✔️ |  |
 | <b>y</b> | second variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes from the input vectors (matrix) all rows in which there is at least one empty value.
 
-### Schéma výstupu
+### Output schema
 
 ```mermaid
 graph TD
+correlPearson((<i>object</i>))
+style correlPearson fill:#E1C6B3;
+style correlPearson stroke:#C36422;
 correlPearson --> r[<b>r</b><br>Pearson correlation coefficient <br><i>number</i>]
+style r fill:#FFFFFF;
+style r stroke:#4967A4;
 correlPearson --> p[<b>p</b><br>significance <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 
 ```
 
@@ -267,18 +306,14 @@ Returns the One-way ANOVA statistical log. The method has two arguments. The fir
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
-| <b>vectors</b> | numeric vector(s) | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
-| <b>factor</b> | numeric vector | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> |  |  |
+| <b>vectors</b> | input vector/s | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
+| <b>factor</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> |  |  |
 
-### Preprocessor
+### Pre-calculation data modification
 
 If the arguments specify a factor variable (the second argument), the first argument (either a numeric vector or the first vector in the matrix, if the first argument is a matrix) is decomposed according to the factor values into a new matrix. If the arguments are without a factor (ie the second argument is empty), it takes all the numeric vectors from the first argument 'vectors' (matrix) and then removes the rows with empty values. If the 'factor' argument is not specified and the 'vectors' argument contains only a single vector or is itself a numeric vector, an error will be thrown (without the factor, at least two numeric vectors are required in the first argument).
 
 ### Syntax examples
-
-#### 
-
-
 
 ```js
 var M = new Matrix(
@@ -289,25 +324,62 @@ new NumericVector(275,282,300,280,275,260,275,271,277,263,246,281,270).name("z")
 var anova = M.analyze("anovaow").run({vectors: [0,1,2]});
 ```
 
-### Schéma výstupu
+### Output schema
 
 ```mermaid
 graph TD
+anovaow((<i>object</i>))
+style anovaow fill:#E1C6B3;
+style anovaow stroke:#C36422;
 anovaow --> F[<b>F</b><br>F test <br><i>number</i>]
+style F fill:#FFFFFF;
+style F stroke:#4967A4;
 anovaow --> P2[<b>P2</b><br>dependence coefficient <br><i>number</i>]
+style P2 fill:#FFFFFF;
+style P2 stroke:#4967A4;
 anovaow --> p[<b>p</b><br>significance <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 anovaow --> n[<b>n</b><br>total of cases <br><i>number</i>]
+style n fill:#FFFFFF;
+style n stroke:#75716F;
 anovaow --> ANOVA((<b>ANOVA</b><br><u>ANOVA statistics</u>))
+ANOVA((<b>ANOVA</b><br><u>ANOVA statistics</u><br><i>object</i>))
+style ANOVA fill:#E1C6B3;
+style ANOVA stroke:#C36422;
 ANOVA --> totalOfGroups[<b>totalOfGroups</b><br>total of groups <br><i>number</i>]
+style totalOfGroups fill:#FFFFFF;
+style totalOfGroups stroke:#75716F;
 ANOVA --> betweenGroups((<b>betweenGroups</b><br><u>intergroup effects</u>))
+betweenGroups((<b>betweenGroups</b><br><u>intergroup effects</u><br><i>object</i>))
+style betweenGroups fill:#E1C6B3;
+style betweenGroups stroke:#C36422;
 betweenGroups --> sumOfSquares[<b>sumOfSquares</b><br>sum of squares <br><i>number</i>]
+style sumOfSquares fill:#FFFFFF;
+style sumOfSquares stroke:#4967A4;
 betweenGroups --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
 ANOVA --> withinGroups((<b>withinGroups</b><br><u>intragroup effects</u>))
-withinGroups --> sumOfsquares[<b>sumOfsquares</b><br>sum of squares <br><i>number</i>]
+withinGroups((<b>withinGroups</b><br><u>intragroup effects</u><br><i>object</i>))
+style withinGroups fill:#E1C6B3;
+style withinGroups stroke:#C36422;
+withinGroups --> sumOfSquares[<b>sumOfSquares</b><br>sum of squares <br><i>number</i>]
+style sumOfSquares fill:#FFFFFF;
+style sumOfSquares stroke:#4967A4;
 withinGroups --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
 ANOVA --> total((<b>total</b><br><u>total</u>))
+total((<b>total</b><br><u>total</u><br><i>object</i>))
+style total fill:#E1C6B3;
+style total stroke:#C36422;
 total --> sumOfSquares[<b>sumOfSquares</b><br>sum of squares <br><i>number</i>]
+style sumOfSquares fill:#FFFFFF;
+style sumOfSquares stroke:#4967A4;
 total --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
 
 ```
 
@@ -319,15 +391,13 @@ Returns the statistical log of the Student's t-test for two independent samples 
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
-| <b>vectors</b> | numeric vector(s) | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
-| <b>factor</b> | numeric vector | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> |  |  |
+| <b>vectors</b> | input vector/s | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
+| <b>factor</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> |  |  |
 ### Syntax examples
 
 #### Arguments as object properties
 
 <sub>The method has two parameters: vectors (first and mandatory) and factor (second, optional). In the given example, a single object is specified as an argument, which specifies the values of the individual parameters of the function. In this method, it is possible to specify the vectors parameter even as a single vector.</sub>
-
-
 
 ```js
 var M = new Matrix(
@@ -343,8 +413,6 @@ var ttestind_b = M.ttestind({vectors: [0,1]});
 
 <sub>Arguments are ordered in the standard way. It is essential to follow the order of the arguments here, and in addition, the first argument should ideally be in array format, e.g. [vector1, vector2].</sub>
 
-
-
 ```js
 var M = new Matrix(
 new NumericVector(4,5,6,7,8,9,10,7,7,6).name("x"),
@@ -359,8 +427,6 @@ var ttestind_b = M.ttestind(["x","y"]);
 
 <sub>As the second parameter, a factor is specified, i.e. a variable according to which the vector argument is transformed (or the first vector, if several numerical vectors are entered).</sub>
 
-
-
 ```js
 var M = new Matrix(
 new NumericVector(4,5,6,7,8,9,10,7,7,6,10,11,9,8,7,8,9,4,5,10).name("score"),
@@ -373,13 +439,22 @@ var ttestind_d = M.ttestind(0, 1);
 var ttestind_e = M.analyze("ttestind").run([0], 1);
 ```
 
-### Schéma výstupu
+### Output schema
 
 ```mermaid
 graph TD
+ttestind((<i>object</i>))
+style ttestind fill:#E1C6B3;
+style ttestind stroke:#C36422;
 ttestind --> t[<b>t</b><br>T-value <br><i>number</i>]
+style t fill:#FFFFFF;
+style t stroke:#4967A4;
 ttestind --> p[<b>p</b><br>significance <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 ttestind --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
 
 ```
 
@@ -394,15 +469,11 @@ Returns the statistical log of a paired t-test for two dependent samples. Empty 
 | <b>x</b> | first variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 | <b>y</b> | second variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes from the input vectors (matrix) all rows in which there is at least one empty value.
 
 ### Syntax examples
-
-#### 
-
-
 
 ```js
 var M = new Matrix(
@@ -414,13 +485,22 @@ var ttest_b = M.ttestpair("pre-score","post-score");
 // ttest_a.result = ttest_b
 ```
 
-### Schéma výstupu
+### Output schema
 
 ```mermaid
 graph TD
+ttestpair((<i>object</i>))
+style ttestpair fill:#E1C6B3;
+style ttestpair stroke:#C36422;
 ttestpair --> t[<b>t</b><br>T-value <br><i>number</i>]
+style t fill:#FFFFFF;
+style t stroke:#4967A4;
 ttestpair --> p[<b>p</b><br>significance <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 ttestpair --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
 
 ```
 
@@ -432,10 +512,10 @@ Returns the statistical log of the Mann-Whitney U test. It is a non-parametric n
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
-| <b>vectors</b> | numeric vector(s) | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
-| <b>factor</b> | numeric vector | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> |  |  |
+| <b>vectors</b> | input vector/s | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
+| <b>factor</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> |  |  |
 
-### Preprocessor
+### Pre-calculation data modification
 
 If the arguments specify a factor variable (the second argument), the first argument (either a numeric vector or the first vector in the matrix, if it is the first argument of the matrix) is decomposed according to the values of the factor into a new matrix. If the arguments are without a factor (i.e. the second argument is empty), it takes the first two vectors from the first argument 'vectors' (matrix) and then deletes the rows with empty values. In case the argument 'factor' and the argument 'vectors' are not specified contains only a single vector or is itself a numeric vector, throws an error (at least two numeric vectors are required in the first argument without a factor).
 
@@ -444,8 +524,6 @@ If the arguments specify a factor variable (the second argument), the first argu
 #### Arguments as object properties
 
 <sub>The method has two parameters: vectors (first and mandatory) and factor (second, optional). In the given example, a single object is specified as an argument, which specifies the values of the individual parameters of the function. In this method, it is possible to specify the vectors parameter even as a single vector.</sub>
-
-
 
 ```js
 var M = new Matrix(
@@ -461,8 +539,6 @@ var mwu_b = M.mwu({vectors: [0,1]});
 
 <sub>Arguments are ordered in the standard way. It is essential to follow the order of the arguments here, and in addition, the first argument should ideally be in array format, e.g. [vector1, vector2].</sub>
 
-
-
 ```js
 var M = new Matrix(
 new NumericVector(4,5,6,7,8,9,10,7,7,6).name("x"),
@@ -477,8 +553,6 @@ var mwu_b = M.mwu(["x","y"]);
 
 <sub>As the second parameter, a factor is specified, i.e. a variable according to which the vector argument is transformed (or the first vector, if several numerical vectors are entered).</sub>
 
-
-
 ```js
 var M = new Matrix(
 new NumericVector(4,5,6,7,8,9,10,7,7,6,10,11,9,8,7,8,9,4,5,10).name("score"),
@@ -491,13 +565,22 @@ var mwu_d = M.mwu(0, 1);
 var mwu_e = M.analyze("mwu").run([0], 1);
 ```
 
-### Schéma výstupu
+### Output schema
 
 ```mermaid
 graph TD
+mwu((<i>object</i>))
+style mwu fill:#E1C6B3;
+style mwu stroke:#C36422;
 mwu --> U[<b>U</b><br>U test <br><i>number</i>]
+style U fill:#FFFFFF;
+style U stroke:#4967A4;
 mwu --> Z[<b>Z</b><br>Z test <br><i>number</i>]
+style Z fill:#FFFFFF;
+style Z stroke:#4967A4;
 mwu --> p[<b>p</b><br>significance <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 
 ```
 
@@ -512,15 +595,11 @@ The Wilcoxon signed-ranks test is a non-parametric statistical test used to dete
 | <b>x</b> | first variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 | <b>y</b> | second variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes from the input vectors (matrix) all rows in which there is at least one empty value.
 
 ### Syntax examples
-
-#### 
-
-
 
 ```js
 var M = new Matrix(
@@ -532,12 +611,19 @@ var wcx_b = M.wcxpaired(0,1);
 // wcx_a.result = wcx_b
 ```
 
-### Schéma výstupu
+### Output schema
 
 ```mermaid
 graph TD
+wcxpaired((<i>object</i>))
+style wcxpaired fill:#E1C6B3;
+style wcxpaired stroke:#C36422;
 wcxpaired --> Z[<b>Z</b><br>Z test <br><i>number</i>]
+style Z fill:#FFFFFF;
+style Z stroke:#4967A4;
 wcxpaired --> p[<b>p</b><br>significance <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 
 ```
 
@@ -549,17 +635,13 @@ The Friedman test is a non-parametric statistical test developed by Milton Fried
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
-| <b>vectors</b> | numeric vector(s) | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
+| <b>vectors</b> | input vector/s | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes from the input vectors (matrix) all rows in which there is at least one empty value.
 
 ### Syntax examples
-
-#### 
-
-
 
 ```js
 var M = new Matrix(
@@ -572,12 +654,96 @@ var friedman_b = M.friedman(["white","red","rose"]);
 // friedman_a.result = friedman_b
 ```
 
-### Schéma výstupu
+### Output schema
 
 ```mermaid
 graph TD
+friedman((<i>object</i>))
+style friedman fill:#E1C6B3;
+style friedman stroke:#C36422;
 friedman --> Q[<b>Q</b><br>Friedman's Q test <br><i>number</i>]
+style Q fill:#FFFFFF;
+style Q stroke:#4967A4;
 friedman --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
 friedman --> p[<b>p</b><br>significance <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
+
+```
+
+## [Contingency](#contingency)
+
+Returns the contingency statistics log. The parameters of the method are a) row variable, b) column variable, and optionally c) frequency of group a/b (if empty, intersection frequency is taken to be 1). The output of the method is both contingency statistics (chi^2), Cramer's V, Pearson's C, etc.
+
+### Arguments
+
+| id |description |value type |validator |required |default value |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>rows</b> | row variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+| <b>columns</b> | column variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+| <b>n</b> | frequency variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> |  |  |
+
+### Pre-calculation data modification
+
+Removes from the input vectors (matrix) all rows in which there is at least one empty value.
+
+### Syntax examples
+
+#### aEqW
+
+<sub>YVF4</sub>
+
+```js
+var M = new Matrix(
+new StringVector("A","A","A","A","A","A","B","B","B","B","B","B").name("R"),
+new StringVector("A","A","A","B","B","B","C","C","C","C","C","C").name("C")
+);
+var c_a = M.contingency(0,1);
+var c_b = M.analyze("contingency").run(0,1);
+var c_c = M.analyze("contingency").run({rows: 0, columns: 1});
+// c_a = c_b.result = c_c.result
+```
+
+#### h6D3
+
+<sub>l3pM</sub>
+
+```js
+var M = new Matrix(
+new StringVector("elementary","elementary","elementary","elementary","high school","high school","high school","high school","college","college","college","college").name("grade"),
+new StringVector("A","B","C","D","A","B","C","D","A","B","C","D").name("group"),
+new NumericVector(39,25,25,27,17,30,40,29,12,41,62,53).name("frequencies")
+);
+var c_a = M.contingency(0,1,2);
+var c_b = M.analyze("contingency").run(0,1,2);
+var c_c = M.analyze("contingency").run("grade","group","frequencies");
+var c_d = M.analyze("contingency").run({rows: 0, columns: 1, n: 2});
+// c_a = c_b.result = c_c.result = c_d.result
+```
+
+### Output schema
+
+```mermaid
+graph TD
+contingency((<i>object</i>))
+style contingency fill:#E1C6B3;
+style contingency stroke:#C36422;
+contingency --> phi[<b>phi</b><br>phi^2 test <br><i>number</i>]
+style phi fill:#FFFFFF;
+style phi stroke:#4967A4;
+contingency --> p[<b>p</b><br>significance <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
+contingency --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
+contingency --> C[<b>C</b><br>Pearson C <br><i>number</i>]
+style C fill:#FFFFFF;
+style C stroke:#4967A4;
+contingency --> V[<b>V</b><br>Cramér V <br><i>number</i>]
+style V fill:#FFFFFF;
+style V stroke:#4967A4;
 
 ```

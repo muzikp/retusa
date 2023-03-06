@@ -30,7 +30,7 @@
 Vrátí součet všech neprázdných číselných hodnot vektoru.
 
 
-### Preprocessor
+### Před-výpočetní úprava dat
 
 Odstraní z vektoru všechny prázdné hodnoty (buňky).
 
@@ -44,7 +44,10 @@ var cashflow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 
 
 ```mermaid
 graph TD
-A[<b>součet<br></b>číslo]
+sum[<b>součet<br></b>číslo]
+style sum fill:#FFFFFF;
+style sum stroke:#4967A4;
+
 ```
 
 ## [Počet](#count)
@@ -63,7 +66,10 @@ var total_boolean = new BooleanVector(true, true, false, null, false, true).coun
 
 ```mermaid
 graph TD
-A[<b>počet<br></b>celé číslo větší nebo rovné nule]
+count[<b>počet<br></b>celé číslo větší nebo rovné nule]
+style count fill:#FFFFFF;
+style count stroke:#4967A4;
+
 ```
 
 ## [Modus](#mode)
@@ -82,7 +88,10 @@ var z = new BooleanVector(true, false, true).mode(); /* = true */
 
 ```mermaid
 graph TD
-A[<b>modus<br></b>cokoliv]
+mode[<b>modus<br></b>cokoliv]
+style mode fill:#FFFFFF;
+style mode stroke:#75716F;
+
 ```
 
 ## [Aritmetický průměr](#avg)
@@ -90,7 +99,7 @@ A[<b>modus<br></b>cokoliv]
 Vrátí aritmetický průměr (tedy podíl součtu a počtu hodnot vektoru) ze všech neprázdných hodnot (tedy včetně nul).
 
 
-### Preprocessor
+### Před-výpočetní úprava dat
 
 Odstraní z vektoru všechny prázdné hodnoty (buňky).
 
@@ -104,7 +113,10 @@ var avgCashFlow = new NumericVector(200,250,150,320,240,-250,10,-320).avg();  /*
 
 ```mermaid
 graph TD
-A[<b>aritmetický průměr<br></b>číslo]
+avg[<b>aritmetický průměr<br></b>číslo]
+style avg fill:#FFFFFF;
+style avg stroke:#4967A4;
+
 ```
 
 ## [Minimum](#min)
@@ -112,7 +124,7 @@ A[<b>aritmetický průměr<br></b>číslo]
 Vrátí nejnižší hodnotu z neprázdných hodnot. V případě textu vrátí první hodnotu z abecedního řazení.
 
 
-### Preprocessor
+### Před-výpočetní úprava dat
 
 Odstraní z vektoru všechny prázdné hodnoty (buňky).
 
@@ -130,7 +142,7 @@ var string_min = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 Vrátí nejvyšší hodnotu z neprázdných hodnot. V případě textu vrátí poslední hodnotu z abecedního řazení.
 
 
-### Preprocessor
+### Před-výpočetní úprava dat
 
 Odstraní z vektoru všechny prázdné hodnoty (buňky).
 
@@ -145,7 +157,10 @@ var string_max = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 ```mermaid
 graph TD
-A[<b>maximum<br></b>cokoliv]
+max[<b>maximum<br></b>cokoliv]
+style max fill:#FFFFFF;
+style max stroke:#75716F;
+
 ```
 
 ## [Variační rozpětí](#range)
@@ -153,7 +168,7 @@ A[<b>maximum<br></b>cokoliv]
 Vrátí rozdíl největší a nejmenší neprázdné hodnoty.
 
 
-### Preprocessor
+### Před-výpočetní úprava dat
 
 Odstraní z vektoru všechny prázdné hodnoty (buňky).
 
@@ -167,7 +182,10 @@ var range = new NumericVector(5,2,-15,-16.3,12,null, null, 12,13,7).range(); /* 
 
 ```mermaid
 graph TD
-A[<b>variační rozpětí<br></b>číslo]
+range[<b>variační rozpětí<br></b>číslo]
+style range fill:#FFFFFF;
+style range stroke:#4967A4;
+
 ```
 
 ## [Geometrický průměr](#geomean)
@@ -175,7 +193,7 @@ A[<b>variační rozpětí<br></b>číslo]
 Geometrický průměr je statistický ukazatel, který se používá k výpočtu průměrné hodnoty nějakého množství čísel nebo veličin. Na rozdíl od aritmetického průměru, který se počítá jako součet všech hodnot v sadě dělený počtem těchto hodnot, se geometrický průměr počítá jako n-tá odmocnina součinu n čísel v sadě. Geometrický průměr se často používá pro výpočet růstu nebo kumulativního výnosu v investicích, protože zohledňuje změny v procentuálním růstu hodnot v průběhu času. Dále se používá v geometrii pro výpočet průměrné délky strany n-úhelníku a v biologii pro výpočet průměrné velikosti buněk nebo organismů v populaci.
 
 
-### Preprocessor
+### Před-výpočetní úprava dat
 
 Odstraní z vektoru všechny prázdné hodnoty (buňky).
 
@@ -189,7 +207,10 @@ var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29
 
 ```mermaid
 graph TD
-A[<b>geometrický průměr<br></b>číslo]
+geomean[<b>geometrický průměr<br></b>číslo]
+style geomean fill:#FFFFFF;
+style geomean stroke:#4967A4;
+
 ```
 
 ## [Harmonický průměr](#harmean)
@@ -197,7 +218,7 @@ A[<b>geometrický průměr<br></b>číslo]
 Harmonický průměr je statistický ukazatel, který se používá k výpočtu průměrné hodnoty nějakého množství čísel nebo veličin. Na rozdíl od aritmetického průměru a geometrického průměru, které jsou založeny na sčítání nebo násobení hodnot, se harmonický průměr počítá jako podíl počtu čísel v sadě a součtu jejich převrácených hodnot. Harmonický průměr se používá v situacích, kdy je důležité zohlednit, jak se rychlost nebo výkon mění v průběhu času nebo v různých situacích. Například se používá k výpočtu průměrné rychlosti, průměrného výkonu nebo průměrného odporu v elektronických obvodech. Také se používá v oblasti finance pro výpočet průměrného výnosu z investic v různých časových obdobích.
 
 
-### Preprocessor
+### Před-výpočetní úprava dat
 
 Odstraní z vektoru všechny prázdné hodnoty (buňky).
 
@@ -211,7 +232,10 @@ var x = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,
 
 ```mermaid
 graph TD
-A[<b>harmonický průměr<br></b>číslo]
+harmean[<b>harmonický průměr<br></b>číslo]
+style harmean fill:#FFFFFF;
+style harmean stroke:#4967A4;
+
 ```
 
 ## [Medián](#median)
@@ -219,7 +243,7 @@ A[<b>harmonický průměr<br></b>číslo]
 Vrátí medián neboli střední hodnotu z neprázdných hodnot vektoru. Jedná se o 50% percentil.
 
 
-### Preprocessor
+### Před-výpočetní úprava dat
 
 Odstraní z vektoru všechny prázdné hodnoty (buňky).
 
@@ -233,7 +257,10 @@ var median = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,2
 
 ```mermaid
 graph TD
-A[<b>medián<br></b>číslo]
+median[<b>medián<br></b>číslo]
+style median fill:#FFFFFF;
+style median stroke:#4967A4;
+
 ```
 
 ## [Percentil](#percentile)
@@ -246,7 +273,7 @@ Pomocí percentilu můžeme zkoumat rozdělení numerické řady, a to tak, že 
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>k</b> | hodnota percentilu | desetinné číslo mezi 1 a 0 (včetně) | <sub>Ověří, zdali se jedná o celé kladné číslo větší než nula. V opačném případě vyvolá chybu.<sub> | ✔️ |  |
 
-### Preprocessor
+### Před-výpočetní úprava dat
 
 Odstraní z vektoru všechny prázdné hodnoty (buňky).
 
@@ -263,7 +290,10 @@ var max = score.percentile(1); /* = 25 */
 
 ```mermaid
 graph TD
-A[<b>percentil<br></b>číslo]
+percentile[<b>percentil<br></b>číslo]
+style percentile fill:#FFFFFF;
+style percentile stroke:#4967A4;
+
 ```
 
 ## [Směrodatná odchylka](#stdev)
@@ -276,7 +306,7 @@ Vrátí směrodatnou odchylku neprázdných hodnot. Směrodatná odchylka je sta
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>isSample</b> | výběrový soubor | binární hodnota | <sub>Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu.<sub> |  | false |
 
-### Preprocessor
+### Před-výpočetní úprava dat
 
 Odstraní z vektoru všechny prázdné hodnoty (buňky).
 
@@ -291,7 +321,10 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).stdev(true); /* = 
 
 ```mermaid
 graph TD
-A[<b>směrodatná odchylka<br></b>číslo]
+stdev[<b>směrodatná odchylka<br></b>číslo]
+style stdev fill:#FFFFFF;
+style stdev stroke:#4967A4;
+
 ```
 
 ## [Rozptyl](#variance)
@@ -304,7 +337,7 @@ Vrátí hodnotu rozptylu tohoto vektoru. Hodnota rozptylu je rovná druhé mocni
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>isSample</b> | výběrový soubor | binární hodnota | <sub>Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu.<sub> |  | false |
 
-### Preprocessor
+### Před-výpočetní úprava dat
 
 Odstraní z vektoru všechny prázdné hodnoty (buňky).
 
@@ -319,7 +352,10 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).variance(true); /*
 
 ```mermaid
 graph TD
-A[<b>rozptyl<br></b>číslo]
+variance[<b>rozptyl<br></b>číslo]
+style variance fill:#FFFFFF;
+style variance stroke:#4967A4;
+
 ```
 
 ## [Variační koeficient](#varc)
@@ -342,7 +378,10 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc(true); /* = 0
 
 ```mermaid
 graph TD
-A[<b>variační koeficient<br></b>číslo]
+varc[<b>variační koeficient<br></b>číslo]
+style varc fill:#FFFFFF;
+style varc stroke:#4967A4;
+
 ```
 
 ## [Histogram](#histogram)
@@ -356,7 +395,7 @@ Vrátí matici histogramu daného vektoru. Metodu lze volit s upřesněním para
 | <b>max</b> | maximální počet intervalů | číslo | <sub>Ověří, zdali se jedná o celé kladné číslo větší než nula. V opačném případě vyvolá chybu.<sub> |  |  |
 | <b>fix</b> | pevná velikost intervalu | kladné číslo | <sub>Ověří, zdali se jedná o celé kladné číslo větší než nula. V opačném případě vyvolá chybu.<sub> |  |  |
 
-### Preprocessor
+### Před-výpočetní úprava dat
 
 Odstraní z vektoru všechny prázdné hodnoty (buňky).
 
@@ -403,12 +442,27 @@ var h4 = score.analyze("histogram").run({fix: 3});
 
 ```mermaid
 graph TD
+histogram{<i>řada</i>}
+style histogram fill:#85B3BE;
+style histogram stroke:#2E7C8F;
 histogram --> from[<b>from</b><br>spodní mez intervalu <br><i>číslo</i>]
+style from fill:#FFFFFF;
+style from stroke:#4967A4;
 histogram --> to[<b>to</b><br>horní mez intervalu <br><i>číslo</i>]
+style to fill:#FFFFFF;
+style to stroke:#4967A4;
 histogram --> n[<b>n</b><br>četnost abs. <br><i>číslo</i>]
+style n fill:#FFFFFF;
+style n stroke:#75716F;
 histogram --> nc[<b>nc</b><br>kumulativní četnost abs. <br><i>číslo</i>]
+style nc fill:#FFFFFF;
+style nc stroke:#75716F;
 histogram --> p[<b>p</b><br>četnost % <br><i>číslo</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 histogram --> pc[<b>pc</b><br>kumulativní četnost % <br><i>číslo</i>]
+style pc fill:#FFFFFF;
+style pc stroke:#75716F;
 
 ```
 
@@ -439,8 +493,15 @@ var boolean_vector_desc_frequency = new BooleanVector(true, false, null, true, n
 
 ```mermaid
 graph TD
+frequency{<i>řada</i>}
+style frequency fill:#85B3BE;
+style frequency stroke:#2E7C8F;
 frequency --> v[<b>v</b><br>hodnota <br><i>číslo</i>]
+style v fill:#FFFFFF;
+style v stroke:#75716F;
 frequency --> n[<b>n</b><br>četnost <br><i>číslo</i>]
+style n fill:#FFFFFF;
+style n stroke:#75716F;
 
 ```
 
@@ -449,7 +510,7 @@ frequency --> n[<b>n</b><br>četnost <br><i>číslo</i>]
 Vrátí hodnotu směrodatné chyby odhadu průměru. Střední chyba průměru (anglicky 'standard error of the mean', odtud zkratka SEM) je statistická míra variability výběrového průměru odhadovaného parametru v celé populaci. Jedná se o odhad standardní odchylky průměru výběrového souboru. Střední chyba průměru se vypočítá jako poměr odhadované standardní odchylky výběrového průměru k odmocnině z velikosti výběru. Čím větší je velikost výběru, tím menší je střední chyba průměru, což znamená, že odhad výběrového průměru je přesnější a blíže se shoduje s průměrem celé populace. Střední chyba průměru je užitečná pro odhadování intervalů spolehlivosti výběrového průměru, což umožňuje určit, jak přesně odhaduje průměr populace.
 
 
-### Preprocessor
+### Před-výpočetní úprava dat
 
 Odstraní z vektoru všechny prázdné hodnoty (buňky).
 
@@ -463,7 +524,10 @@ var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,2
 
 ```mermaid
 graph TD
-A[<b>střední chyba průměru<br></b>číslo]
+sem[<b>střední chyba průměru<br></b>číslo]
+style sem fill:#FFFFFF;
+style sem stroke:#4967A4;
+
 ```
 
 ## [Šikmost](#skewness)
@@ -476,7 +540,7 @@ Vrátí zešikmení rozdělení, tedy asymetrii rozdělení kolem střední hodn
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>isSample</b> | výběrový soubor | binární hodnota | <sub>Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu.<sub> |  | false |
 
-### Preprocessor
+### Před-výpočetní úprava dat
 
 Odstraní z vektoru všechny prázdné hodnoty (buňky).
 
@@ -491,7 +555,10 @@ var skewness_sample = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,2
 
 ```mermaid
 graph TD
-A[<b>šikmost<br></b>číslo]
+skewness[<b>šikmost<br></b>číslo]
+style skewness fill:#FFFFFF;
+style skewness stroke:#4967A4;
+
 ```
 
 ## [Špičatost](#kurtosis)
@@ -501,7 +568,7 @@ Existují dva základní typy špičatosti: platykurtóza a leptokurtóza. Platy
 Špičatost se používá k určení, zda je rozložení hodnot v sbírce dat víceméně rovnoměrné, nebo zda existují nějaké výrazné odchylky od průměrné hodnoty. Špičatost se často používá spolu s dalšími metrikami, jako je medián, šikmost a kvantily, které vám pomohou lépe porozumět rozložení dat a určit, zda existují nějaké výrazné odchylky od průměrné hodnoty.
 
 
-### Preprocessor
+### Před-výpočetní úprava dat
 
 Odstraní z vektoru všechny prázdné hodnoty (buňky).
 
@@ -515,7 +582,10 @@ var kurtosis = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24
 
 ```mermaid
 graph TD
-A[<b>špičatost<br></b>číslo]
+kurtosis[<b>špičatost<br></b>číslo]
+style kurtosis fill:#FFFFFF;
+style kurtosis stroke:#4967A4;
+
 ```
 
 ## [Interval spolehlivosti průměru](#mci)
@@ -528,7 +598,7 @@ Vrátí statistický protokol odhadu intervalu spolehlivosti průměru výběrov
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>alpha</b> | hladina významnosti | desetinné číslo mezi 1 a 0 (včetně) | <sub>Ověří, zdali se jedná o celé kladné číslo větší než nula. V opačném případě vyvolá chybu.<sub> |  | 0.95 |
 
-### Preprocessor
+### Před-výpočetní úprava dat
 
 Odstraní z vektoru všechny prázdné hodnoty (buňky).
 
@@ -542,11 +612,24 @@ var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).mc
 
 ```mermaid
 graph TD
+mci((<i>objekt</i>))
+style mci fill:#E1C6B3;
+style mci stroke:#C36422;
 mci --> m[<b>m</b><br>aritmetický průměr <br><i>číslo</i>]
+style m fill:#FFFFFF;
+style m stroke:#4967A4;
 mci --> sig[<b>sig</b><br>hladina významnosti <br><i>číslo</i>]
+style sig fill:#FFFFFF;
+style sig stroke:#75716F;
 mci --> delta[<b>delta</b><br>interval spolehlivosti +- <br><i>číslo</i>]
+style delta fill:#FFFFFF;
+style delta stroke:#4967A4;
 mci --> lb[<b>lb</b><br>spodní hranice intervalu <br><i>číslo</i>]
+style lb fill:#FFFFFF;
+style lb stroke:#4967A4;
 mci --> ub[<b>ub</b><br>horní hranice intervalu <br><i>číslo</i>]
+style ub fill:#FFFFFF;
+style ub stroke:#4967A4;
 
 ```
 
@@ -561,7 +644,7 @@ Vrátí statistický protokol odhadu intervalu spolehlivosti podílu výběrové
 | <b>value</b> | hledaná hodnota | cokoliv | <sub>-<sub> | ✔️ |  |
 | <b>alpha</b> | hladina významnosti | desetinné číslo mezi 1 a 0 (včetně) | <sub>Ověří, zdali se jedná o celé kladné číslo větší než nula. V opačném případě vyvolá chybu.<sub> |  | 0.95 |
 
-### Preprocessor
+### Před-výpočetní úprava dat
 
 Odstraní z vektoru všechny prázdné hodnoty (buňky).
 
@@ -575,11 +658,24 @@ var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).pc
 
 ```mermaid
 graph TD
+pci((<i>objekt</i>))
+style pci fill:#E1C6B3;
+style pci stroke:#C36422;
 pci --> p[<b>p</b><br>podíl hodnoty v % <br><i>číslo</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 pci --> sig[<b>sig</b><br>hladina významnosti <br><i>číslo</i>]
+style sig fill:#FFFFFF;
+style sig stroke:#75716F;
 pci --> delta[<b>delta</b><br>interval spolehlivosti +- <br><i>číslo</i>]
+style delta fill:#FFFFFF;
+style delta stroke:#75716F;
 pci --> lb[<b>lb</b><br>spodní hranice intervalu <br><i>číslo</i>]
+style lb fill:#FFFFFF;
+style lb stroke:#75716F;
 pci --> ub[<b>ub</b><br>horní hranice intervalu <br><i>číslo</i>]
+style ub fill:#FFFFFF;
+style ub stroke:#75716F;
 
 ```
 
@@ -593,7 +689,7 @@ Vrátí statistický protokol pro jednovýběrový t-test při zadání populač
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>populationMean</b> | populační průměr | číslo | <sub>Ověří, zdali je hodnota číslo. V opačném případě vyvolá chybu.<sub> | ✔️ |  |
 
-### Preprocessor
+### Před-výpočetní úprava dat
 
 Odstraní z vektoru všechny prázdné hodnoty (buňky).
 
@@ -607,9 +703,18 @@ var T = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1)
 
 ```mermaid
 graph TD
+ttest((<i>objekt</i>))
+style ttest fill:#E1C6B3;
+style ttest stroke:#C36422;
 ttest --> t[<b>t</b><br>hodnota testu T <br><i>číslo</i>]
+style t fill:#FFFFFF;
+style t stroke:#4967A4;
 ttest --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 ttest --> n[<b>n</b><br>počet případů <br><i>číslo</i>]
+style n fill:#FFFFFF;
+style n stroke:#75716F;
 
 ```
 
@@ -618,7 +723,7 @@ ttest --> n[<b>n</b><br>počet případů <br><i>číslo</i>]
 Vrátí statistický protokol Shapiro-Wilkova W testu normality rozdělení hodnot vektoru. Shapiro-Wilk test je statistický test, který se používá k testování hypotézy, že data pocházejí z normálního rozdělení. Tento test je často používán k ověření normality dat v rámci statistické analýzy. Test Shapiro-Wilk se zakládá na porovnání hodnoty kvartilů dat s hodnotami kvartilů normálního rozdělení. Když jsou hodnoty kvartilů dat podobné hodnotám kvartilů normálního rozdělení, je pravděpodobné, že data pocházejí z normálního rozdělení. V opačném případě je pravděpodobné, že data nejsou normální. Při použití testu Shapiro-Wilk je třeba si uvědomit, že tento test má nízkou citlivost pro velké vzorky, tj. pro velké vzorky může být test méně spolehlivý při detekci ne-normality. Proto se pro velké vzorky často používají jiné testy normality, jako například test Anderson-Darling nebo test Kolmogorov-Smirnov.
 
 
-### Preprocessor
+### Před-výpočetní úprava dat
 
 Odstraní z vektoru všechny prázdné hodnoty (buňky).
 
@@ -632,9 +737,18 @@ var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).swt
 
 ```mermaid
 graph TD
+shapirowilk((<i>objekt</i>))
+style shapirowilk fill:#E1C6B3;
+style shapirowilk stroke:#C36422;
 shapirowilk --> W[<b>W</b><br>hodnota W-testu <br><i>číslo</i>]
+style W fill:#FFFFFF;
+style W stroke:#4967A4;
 shapirowilk --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
 shapirowilk --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 
 ```
 
@@ -643,7 +757,7 @@ shapirowilk --> p[<b>p</b><br>významnost <br><i>číslo</i>]
 Vrátí statistický protokol Komogorov-Smirnovova testu normality rozdělení hodnot vektoru. Aktuálně nepočítá hladinu významnosti testu. Kolmogorov-Smirnov test (často také zkracovaný jako K-S test) je statistický test, který se používá k testování hypotézy, že data pocházejí z určitého rozdělení. Tento test porovnává rozdělení dat s teoretickým rozdělením, které se předpokládá, že data vycházejí, a vyhodnocuje, zda jsou datové hodnoty s teoretickým rozdělením dostatečně blízko, aby se mohla hypotéza o tom, že data pocházejí z daného rozdělení, považovat za pravdivou.Test Kolmogorov-Smirnov se často používá k ověření normality dat, ale může být také použit k ověření, zda data pocházejí z jiného teoretického rozdělení, jako je například exponenciální nebo binomické rozdělení. Test Kolmogorov-Smirnov je obecně považován za jeden z nejpřesnějších testů normality, ale má omezenou citlivost pro malé vzorky, tj. pro malé vzorky může být méně spolehlivý při detekci ne-normality. Pro malé vzorky se proto často používají jiné testy normality, jako například test Shapiro-Wilk nebo test Anderson-Darling.
 
 
-### Preprocessor
+### Před-výpočetní úprava dat
 
 Odstraní z vektoru všechny prázdné hodnoty (buňky).
 
@@ -657,8 +771,17 @@ var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).kst
 
 ```mermaid
 graph TD
+kstest((<i>objekt</i>))
+style kstest fill:#E1C6B3;
+style kstest stroke:#C36422;
 kstest --> T[<b>T</b><br>hodnota Kolmogorov-Smirnovova testu <br><i>číslo</i>]
+style T fill:#FFFFFF;
+style T stroke:#4967A4;
 kstest --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
 kstest --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 
 ```

@@ -1,5 +1,4 @@
 const dist = require("./distribution");
-const {Empty} = require("./errors");
 const $ = require("./locale").call;
 
 Array.prototype.toCSV = function(delimiter) {
@@ -164,7 +163,7 @@ Array.prototype.kurtosis = function(){
     const b = this.map(x => Math.pow((x-xm),4)).sum() / Math.pow(s,4);
     const c = (3 * Math.pow((n-1),2)) / ((n-2)*(n-3));
     var k = a * b - c;
-    return k || new Empty();
+    return k;
 }
 
 Array.prototype.ttest = function(mean){
@@ -229,8 +228,7 @@ Array.prototype.shapirowilk = function() {
 		return a - b;
 	});
 	var n = x.length;
-	if (n < 3)
-		return new Empty($("AgIP"));
+	if (n < 3) throw new Error($("AgIP"));
 	var nn2 = Math.floor(n / 2);
 	var a = new Array(Math.floor(nn2) + 1);
 	var small = 1e-19;
@@ -276,7 +274,7 @@ Array.prototype.shapirowilk = function() {
 	}
 	range = x[n - 1] - x[0];
 	if (range < small) {
-		return new Empty($("zxmM", {
+		throw new Error($("zxmM", {
 			range: range
 		}));
 	}
@@ -286,7 +284,7 @@ Array.prototype.shapirowilk = function() {
 	for (i = 1, j = n - 1; i < n; j--) {
 		xi = x[i] / range;
 		if (xx - xi > small) {
-			return new Empty($("TSCM", {
+			throw new Error($("TSCM", {
 				range: xx - xi
 			}));
 		}
@@ -297,7 +295,7 @@ Array.prototype.shapirowilk = function() {
 		xx = xi;
 	}
 	if (n > 5000) {
-		return new Empty($("yhzq"));
+		throw new Error($("yhzq"));
 	}
 	sa /= n;
 	sx /= n;

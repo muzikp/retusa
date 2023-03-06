@@ -43,7 +43,9 @@ var matrixMethods = [
     "ttestpair",
     "mwu",
     "wcxpaired",
-    "friedman"]
+    "friedman",
+    "contingency"
+]
 
 String.prototype.firstUp = function() {
     return this[0].toLocaleUpperCase() + this.slice(1);
@@ -83,18 +85,34 @@ Matrix.toMarkdown = function(){
 Output.prototype.toMarkdown =function(analysis){
     var m = "```mermaid\ngraph TD\n";
     if(this.type == "object") {
-        m += createObjectPropertyMarkdown(this);
+        m += createObjectPropertyMarkdown(this, true);
     } else if(this.type == "array") {
-       m += createObjectPropertyMarkdown(this);
+       m += createObjectPropertyMarkdown(this, true);
     } else {
-        m += `A[<b>${analysis ? mmb(analysis.title.value) : ""}<br></b>${mmb(this.title.value)}]`
+        m += `${analysis.name}[<b>${analysis ? mmb(analysis.title.value) : ""}<br></b>${mmb(this.title.value)}]\n`;
+        m += `style ${analysis.name} fill:#FFFFFF;\n`
+        if(this.type == "number") m += `style ${analysis.name} stroke:#4967A4;\n`;
+        else if(this.type == "string") m += `style ${analysis.name} stroke:#BB9B14;\n`;
+        else if(this.type == "boolean") m += `style ${analysis.name} stroke:#B53447;\n`;
+        else m += `style ${analysis.name} stroke:#75716F;\n`
     } 
     m += "\n```";
     return m;
 }
 
-function createObjectPropertyMarkdown(parent) {
+function createObjectPropertyMarkdown(parent, skipParentHeaders) {
     var m = "";
+    if(parent.type == "object") {
+        if(!skipParentHeaders) m += `${parent.name}((<b>${parent.name}</b><br><u>${mmb(parent.title?.value)}</u><br><i>${$("kLhB")}</i>))\n`;
+        else m += `${parent.name}((<i>${$("kLhB")}</i>))\n`;
+        m += `style ${parent.name} fill:#E1C6B3;\n`
+        m += `style ${parent.name} stroke:#C36422;\n`
+    } else if (parent.type == "array") {
+        if(!skipParentHeaders) m += `${parent.name}{<b>${parent.name}</b><br><u>${mmb(parent.title?.value)}</u><br><i>${$("qdkt")}</i>}\n`;
+        else m += `${parent.name}{<i>${$("qdkt")}</i>}\n`;
+        m += `style ${parent.name} fill:#85B3BE;\n`
+        m += `style ${parent.name} stroke:#2E7C8F;\n`
+    }
     for(let p of Object.entries(parent.properties || parent.items.properties).map(e => e[1])) {
         if(p.type == "object") {
             m += `${parent.name} --> ${p.name}((<b>${p.name}</b><br><u>${mmb(p.title.value)}</u>))\n`;
@@ -106,13 +124,18 @@ function createObjectPropertyMarkdown(parent) {
         }
         else {
             m += `${parent.name} --> ${p.name}[<b>${p.name}</b><br>${mmb(p.title.value)} <br><i>${mmb(formatMdPrimitiveType(p.type))}</i>]\n`;
+            m += `style ${p.name} fill:#FFFFFF;\n`
+            if(p.type == "number") m += `style ${p.name} stroke:#4967A4;\n`;
+            else if(p.type == "string") m += `style ${p.name} stroke:#BB9B14;\n`;
+            else if(p.type == "boolean") m += `style ${p.name} stroke:#B53447;\n`;
+            else m += `style ${p.name} stroke:#75716F;\n`
         }
     }
     return m;
 }
 
 /** Replaces mermaid sensitive characters (brackets etc.) */
-function mmb(str) {
+function mmb(str = "") {
     return str.replace(/[\[\](){}<>]/g, "");
 }
 
@@ -137,21 +160,21 @@ MatrixAnalysis.prototype.toMarkdown = function(){
     for(let a of Object.keys(this.model.args)) {
         m += new Argument(this.model.args[a].model, null, this.model.args[a].config).toMarkdown();
     }
-    if(this.preprocessor.value) m += `\n### ${"Preprocessor"}\n\n${this.preprocessor.value}\n\n`;
+    if(this.preprocessor.value) m += `\n### ${$("jrdS")}\n\n${this.preprocessor.value}\n\n`;
     if(examples[this.name]) {
-        m += `### ${$("nzmJ")}\n\n`;
+        m += `### ${$("nzmJ")}\n\n`; // syntax example header
         if(typeof examples[this.name] == "function") {
-            m += "```js\n" + e.stringify() + "\n```\n\n"
+            m += "```js\n" + examples[this.name].stringify() + "\n```\n\n"
         }
         else {
             for(var e of examples[this.name]) {
-                m += `#### ${$(e.title ? e.title + "\n\n" : "")}${e.description ? '<sub>' + $(e.description) + "</sub>\n\n" : ""}` + "```js\n" + e.code.stringify() + "\n```\n\n"
+                m += `${$(e.title ? "#### " + $(e.title) + "\n\n" : "")}${e.description ? '<sub>' + $(e.description) + "</sub>\n\n" : ""}` + "```js\n" + e.code.stringify() + "\n```\n\n"
             }
         }
         
     }
     if(this.model.output) {
-        m += "### Schéma výstupu\n\n" + new Output(this.model.output).toMarkdown();
+        m += `### ${$("l43h")}\n\n` + new Output(this.model.output).toMarkdown(this);
     }
     return m;
 }
@@ -168,7 +191,7 @@ VectorAnalysis.prototype.toMarkdown = function(){
             m += new Argument(this.model.args[a].model, null, this.model.args[a].config).toMarkdown();
         }
     }
-    if(this.preprocessor.value) m += `\n### ${"Preprocessor"}\n\n${this.preprocessor.value}\n\n`;
+    if(this.preprocessor.value) m += `\n### ${$("jrdS")}\n\n${this.preprocessor.value}\n\n`;
     if(examples[this.name]) {
         m += `### ${$("nzmJ")}\n\n`; // syntax example header
         if(typeof examples[this.name] == "function") {
@@ -570,6 +593,40 @@ const examples = {
                 // friedman_a.result = friedman_b
             }
         }
+    ],
+    contingency: [
+        {
+            name: "example1",
+            title: "aEqW",
+            description: "YVF4",
+            code: function(){
+                var M = new Matrix(
+                    new StringVector("A","A","A","A","A","A","B","B","B","B","B","B").name("R"),
+                    new StringVector("A","A","A","B","B","B","C","C","C","C","C","C").name("C")
+                );
+                var c_a = M.contingency(0,1);
+                var c_b = M.analyze("contingency").run(0,1);
+                var c_c = M.analyze("contingency").run({rows: 0, columns: 1});
+                // c_a = c_b.result = c_c.result
+            }
+        },
+        {
+            name: "example2",
+            title: "h6D3",
+            description: "l3pM",
+            code: function(){
+                var M = new Matrix(
+                    new StringVector("elementary","elementary","elementary","elementary","high school","high school","high school","high school","college","college","college","college").name("grade"),
+                    new StringVector("A","B","C","D","A","B","C","D","A","B","C","D").name("group"),
+                    new NumericVector(39,25,25,27,17,30,40,29,12,41,62,53).name("frequencies")
+                );
+                var c_a = M.contingency(0,1,2);
+                var c_b = M.analyze("contingency").run(0,1,2);
+                var c_c = M.analyze("contingency").run("grade","group","frequencies");
+                var c_d = M.analyze("contingency").run({rows: 0, columns: 1, n: 2});
+                // c_a = c_b.result = c_c.result = c_d.result
+            }
+        }
     ]
 }
 
@@ -577,8 +634,8 @@ module.exports = function() {
     var _origin = locale.getDefault();
     for(var l of locale.listLanguages()) {
         locale.setDefault(l);
-        //var matrix = Matrix.toMarkdown();
-        //require("fs").writeFileSync(`./docs/${l}/matrix.md`, matrix);
+        var matrix = Matrix.toMarkdown();
+        require("fs").writeFileSync(`./docs/${l}/matrix.md`, matrix);
         var vector = Vector.toMarkdown();
         require("fs").writeFileSync(`./docs/${l}/vector.md`, vector);
     }

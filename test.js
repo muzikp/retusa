@@ -5,13 +5,17 @@ const { StringVector } = require("./libs/vector");
 //framework.docs.publish(require("fs"));
 
 with (framework) {
-    var score = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1);
-    var h1 = score.histogram(null, 3);
-    var h2 = score.analyze("histogram").run(null, 3);
-    var h3 = score.histogram({fix: 3});
-    var h4 = score.analyze("histogram").run({fix: 3});
-    // h1 = h3 = h2.result = h4.result
-
+    var M = new Matrix(
+        new StringVector("elementary","elementary","elementary","elementary","high school","high school","high school","high school","college","college","college","college").name("grade"),
+        new StringVector("A","B","C","D","A","B","C","D","A","B","C","D").name("group"),
+        new NumericVector(39,25,25,27,17,30,40,29,12,41,62,53).name("frequencies")
+    );
+    var c_a = M.contingency(0,1,2);
+    var c_b = M.analyze("contingency").run(0,1,2);
+    var c_c = M.analyze("contingency").run("grade","group","frequencies");
+    var c_d = M.analyze("contingency").run({rows: 0, columns: 1, n: 2});
+    // c_a = c_b.result = c_c.result = c_d.result
+    debugger;
     var docs = require("./docs");
     docs();
     //debugger;

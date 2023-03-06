@@ -8,6 +8,12 @@ class Output {
         if(!model) throw new Error("Unknown output model name: " + name);
         this.name = name;
         this.type = model.type;
+        if(model.title) {
+            this.title = {
+                key: model.title,
+                value: $(model.title)
+            }
+        }
         if(model.type == "object") {
             this.properties = createObjectProperties(model.properties);
         }
@@ -224,7 +230,7 @@ const lib = {
         }
     },
     "correlPearson": {
-        "title": "IIlO", 
+        "title": "pTvR", 
         "type": "object",
         "properties": {
             "r": {
@@ -235,7 +241,7 @@ const lib = {
         }
     },
     "correlSpearman": { 
-        "title": "IIlO", 
+        "title": "eJTT", 
         "type": "object",
         "properties": {
             "r": {
@@ -247,7 +253,7 @@ const lib = {
         }
     },
     "correlKendall": {
-        "title": "IIlO", 
+        "title": "mgBC", 
         "type": "object",
         "properties": {
             "taub": {
@@ -263,7 +269,7 @@ const lib = {
         }
     },
     "correlPartial": {
-        "title": "IIlO", 
+        "title": "xfSf", 
         "type": "object",
         "properties": {
             "r": {
@@ -274,6 +280,7 @@ const lib = {
         }
     },
     "linreg": {
+        "title": "vlCA",
         "type": "object",
         "properties": {
             "model": {
@@ -310,6 +317,7 @@ const lib = {
         }
     },
     "mwu": {
+        "title": "rPQr",
         "type": "object",
         "properties": {
             "U": {
@@ -367,7 +375,7 @@ const lib = {
                         "title": "GiRP", 
                         "type": "object",
                         "properties": {
-                            "sumOfsquares": {
+                            "sumOfSquares": {
                                 "title": "SqTd", 
                                 "type": "number",
                             },
@@ -398,7 +406,7 @@ const lib = {
         }
     },
     "ttestind": {
-        "title": "Root", 
+        "title": "YqRh", 
         "type": "object",
         "properties": {
             "t": snippets.ttest,
@@ -407,7 +415,7 @@ const lib = {
         }
     },
     "ttestpair": {
-        "title": "Root", 
+        "title": "mmXD", 
         "type": "object",
         "properties": {
             "t": snippets.ttest,
@@ -416,7 +424,7 @@ const lib = {
         }
     },
     "wcxpaired": {
-        "title": "Root", 
+        "title": "ChzY", 
         "type": "object",
         "properties": {
             "Z": { 
@@ -427,7 +435,7 @@ const lib = {
         }
     },
     "friedman": {
-        "title": "Root", 
+        "title": "7m48", 
         "type": "object",
         "properties": {
             "Q": { 
@@ -437,6 +445,26 @@ const lib = {
             df: snippets.df,
             "p": snippets.sig,
         }
-    }
+    },
+    "contingency": {
+        "title": "gRix", 
+        "type": "object",
+        "properties": {
+            "phi": {
+                "title": "GfeP", 
+                "type": "number",
+            },
+            "p": snippets.sig,
+            "df": snippets.df,
+            "C": {
+                "title": "BUaN", 
+                "type": "number",
+            },
+            "V": {
+                "title": "VYQH", 
+                "type": "number",
+            }
+        }
+    },
 }
 module.exports = {Output: Output};

@@ -156,7 +156,7 @@ module.exports = {
 	"tpUR": "third (control) variable",
 	"eJTT": "Spearman's correlation coefficient",
 	"jAGi": "Returns the statistical log of the Spearman rank correlation coefficient. Unlike the Pearson correlation, the Spearman method is based on a comparison of the order of magnitude of the values of the input variables.",
-	"mgBC": "Kendall Tau-b",
+	"mgBC": "Kendall's correlation",
 	"VOmC": "Returns the statistical log of Kendall's Tau-B correlation coefficient. If you were to calculate the same operation in SPSS, you would probably get a slightly different result. Apparently, this is due to the different sensitivity to decimal places in the two systems. However, it should not have a major influence on the interpretation of the result.",
 	"xfSf": "partial correlation",
 	"UcfZ": "Partial correlation is a statistical method that allows you to find out what the relationship is between two variables while taking into account the influence of a third variable. This is useful if you want to see if there is a direct relationship between two variables without being affected by the influence of other variables. For example, if you want to find out if there is a relationship between level of training and success at work, it may be useful to consider the effect of age or gender as well. In that case, you could use partial correlation to find the relationship between level of training and success at work while controlling for the effects of age and gender. The partial correlation is calculated using a formula that is derived from the Pearson correlation coefficient. It is important to note that partial correlation does not imply causation, i.e. that one variable does not cause the other, but only shows that there is some association between them. Source: https://chat.openai.com/chat.",
@@ -272,5 +272,12 @@ module.exports = {
 	"mHb0": "The 'max' argument specifies how many categories (intervals) the histogram should be divided into. The 'max' argument can be specified either as the first parameter or - if the argument is an object - as the 'max' property.",
 	"3Pll": "Interval size specified",
 	"AZXR": "The 'fix' argument sets a fixed interval size. The argument can be specified either as a second parameter (in which case the first argument must be null), or - if the argument is an object - as a 'fix' attribute. The 'max' argument takes precedence over the 'fix' argument.",
-	"l43h": "Output schema"
+	"l43h": "Output schema",
+	"jrdS": "Pre-calculation data modification",
+	"Rd9K": "input vector/s",
+	"dTDt": "grouping variable",
+	"aEqW": "Without specifying frequencies",
+	"YVF4": "The method replaces the missing argument with an automatically generated n (frequency) vector, each value of which is equal to 1. Briefly, the input table takes the form of raw, unaggregated data.",
+	"h6D3": "With specifying frequencies",
+	"l3pM": "The last argument consists of aggregated frequencies, i.e. that the input table is already aggregated."
 }

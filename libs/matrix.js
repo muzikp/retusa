@@ -2,12 +2,8 @@
 
 var {NumericVector, StringVector, BooleanVector, Vector} = require("./vector");
 var $ = require("./locale").call;
-var {filters, validators, enumerators} = require("./parsers");
-var {matrixResultSchemas, argumentSchemas, OutputSchema, FormMatrixSchema} = require("./schemas");
 const {Array, Math, String, Function} = require("./extensions");
 const dist = require("./distribution");
-var {VectorValueError, ArgumentError, Empty} = require("./errors");
-const {MatrixMarkdown, MatrixOverview} = require("./markdown");
 var matrixName = null
 
 // #region MATRIX
@@ -47,7 +43,7 @@ class Matrix extends Array {
             }
             else if(Array.isArray(a)) super.push(a.vectorify());
             else {
-                throw new ArgumentError("Argument is not a vector or array.");
+                throw new Error("Argument is not a vector or array.");
             }
         };
     }
@@ -200,7 +196,6 @@ class Matrix extends Array {
      * @param {number} size If the argument is less than 1, it is considered the percentage of cases to be selected from among the values. If greater than or equal to 1, the argument is treated as the absolute number of cases to be selected.
      */
     sample(size) {
-        size = validators.positiveDecimal.fn(size);
         var indexes = (size < 1 ? Math.getRandomIndexes(this.maxRows(), Math.round(size * this.maxRows())) : Math.getRandomIndexes(this.maxRows(), size > this.maxRows() ? this.maxRows() : Math.round(size))).sort();
         return this.filter(indexes);
     }
@@ -231,14 +226,17 @@ class Matrix extends Array {
         data.vectors.forEach(v => M.push(Vector.deserialize(v)));
         return M;
     }
+    static listMethods() {
+        return MatrixMethodsModels.map(m => m.name);
+    }
 }
 
 Matrix.prototype.isMatrix = true;
 
 // #endregion
 
-const {Argument} = (require("./argument"));
-const {Output} = require("./output");
+let {Argument} = (require("./argument"));
+let {Output} = require("./output");
 
 const preprocessors = {
     removeEmpty: {
@@ -357,13 +355,14 @@ class MatrixAnalysis {
      * @returns {self}
      */
     with() {
+        if(!Argument) Argument = require("./argument").Argument;
         if(new Array(...arguments).length == 0) return this;
         /** named config (object) */
         else if(typeof arguments[0] == "object" && !Array.isArray(arguments[0]) ? arguments[0] ? Object.keys(arguments[0]).length > 0 : false : false) {
             var parameters = arguments[0];
             for(let key of Object.keys(this.model.args)) {
                 var arg = this.model.args[key];
-                if(!arg) throw new ArgumentError($("EFfS", {name: key, method: $(this.model.wiki.title)}));
+                if(!arg) throw new Error($("EFfS", {name: key, method: $(this.model.wiki.title)}));
                 else {
                     arg = new Argument(arg.model, this.parent, arg.config || {});
                     this.args[key] = arg.validate(parameters[key]);
@@ -978,14 +977,16 @@ const MatrixMethodsModels = [
                 model: "numericVectors",
                 config: {
                     name: "vectors",
+                    title: "Rd9K",
                     required: true,
                 }
             },        
             "factor": {
-                name: "factor",
                 model: "anyVector",
                 config: {
-                    name: "factor"
+                    name: "factor",
+                    title: "dTDt"
+
                 }
             }
         }
@@ -1032,32 +1033,32 @@ const MatrixMethodsModels = [
                 model: "numericVectors",
                 config: {
                     name: "vectors",
+                    title: "Rd9K",
                     required: true,
                 }
             },        
             "factor": {
-                name: "factor",
                 model: "anyVector",
                 config: {
-                    name: "factor"
+                    name: "factor",
+                    title: "dTDt"
                 }
             }
         }
     },
     {   name: "linreg",
         fn: matrixMethods.linreg,
-        returns: matrixResultSchemas.genreg,
         wiki: {
             title: "vlCA",
             description: "dzFE",
-            preprocesor: "Cumi",
+            preprocesor: preprocessors.removeEmptyXY.title,
             url: {
                 "cs-CZ": "https://cs.wikipedia.org/wiki/Line%C3%A1rn%C3%AD_regrese",
                 "en-GB": "https://en.wikipedia.org/wiki/Linear_regression"
             }
         },
         output: "linreg",
-        prepare: preprocessors.removeEmptyXY,
+        prepare: preprocessors.removeEmptyXY.fn,
         args: {
             x: {
                 model: "numericVector",
@@ -1086,59 +1087,48 @@ const MatrixMethodsModels = [
     },
     {   name: "contingency",
         fn: matrixMethods.contingency,
-        filter: null,
-        example: function(x,y,n) {
-            var a = new StringVector("A","A","A","B","B","B","C","C","C","C");
-            var b = new StringVector("X","Y","X","Y","X","Y","X","Y","X","Y");
-            var n = new NumericVector(5,6,4,5,7,3,9,3,4,6);
-            var m = new Matrix(a,b,n);
-            var c1 = m.contingency(a,b);
-            /*
-            {
-
-            }
-            */
-           var c2 = m.continency(a,b,n);
-           /*
-            {
-
-            }
-            */
-        },
         wiki: {
             title: "gRix",
-            description: "fqwd"
+            description: "fqwd",
+            preprocessor: preprocessors.removeEmpty.title,
+            url: "https://en.wikipedia.org/wiki/Contingency_table"
         },
-        returns: matrixResultSchemas.contingency,
-        args: [
-            {
-                name: "x",
-                wiki: {title: "gLRN"},
-                type: [1,2,3],
-                required: true,
-                validator: validators.isVector,
-                schema: argumentSchemas.vector,
-                class: 1
+        prepare: function(_) {
+            _.sample.raw = _.parent.maxRows();
+            var vectors = Object.entries(_.args).map(a => a[1]).filter(a => a?.isVector);
+            var M = new Matrix(...vectors).removeEmpty();
+            _.sample.net = M.maxRows();
+            _.args.rows = M[0];
+            _.args.columns = M[1];
+            if(_.args.n) _.args.n = M[2];
+        },
+        output: "contingency",
+        args: {
+            rows: {
+                model: "anyVector",
+                config: {
+                    name: "rows",
+                    title: "gLRN",
+                    required: true
+                }
             },        
-            {
-                name: "y",
-                wiki: {title: "bpjC"},
-                type: [1,2,3],
-                required: true,
-                validator: validators.isVector,
-                schema: argumentSchemas.vector,
-                class: 1
+            columns: {
+                model: "anyVector",
+                config: {
+                    name: "columns",
+                    title: "bpjC",
+                    required: true
+                }
             },        
-            {
-                name: "n",
-                wiki: {title: "fqUi"},
-                type: [1],
-                required: false,
-                validator: validators.isNumericVector,
-                schema: argumentSchemas.numericVector,
-                class: 1
+            n: {
+                model: "anyVector",
+                config: {
+                    name: "n",
+                    title: "fqUi",
+                    required: false
+                }
             }               
-        ]
+        }
     },
     {   name: "wcxpaired",
         fn: matrixMethods.wcxpaired,
@@ -1183,13 +1173,14 @@ const MatrixMethodsModels = [
                 model: "numericVectors",
                 config: {
                     name: "vectors",
+                    title: "Rd9K",
                     required: true,
                 }
             },        
             "factor": {
-                name: "factor",
                 model: "anyVector",
                 config: {
+                    title: "dTDt",
                     name: "factor"
                 }
             }
@@ -1234,8 +1225,4 @@ mapModels();
 module.exports = {
     Matrix: Matrix,
     MatrixAnalysis: MatrixAnalysis,
-    //Models: Models,
-    methods: matrixMethods,
-    MatrixOverview: function() {
-        return MatrixOverview(Models)},
 };

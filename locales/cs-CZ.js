@@ -156,7 +156,7 @@ module.exports = {
 	"tpUR": "třetí (kontrolní) proměnná",
 	"eJTT": "Spearmanův korelační koeficient",
 	"jAGi": "Vrátí statistický protokol Spearmanova koeficientu pořadové korelace. Narozdíl od Pearsonovy korelace, Spearmanova metoda vychází z porovnání pořadí velikosti hodnot vstupních proměnných.",
-	"mgBC": "Kendallovo Tau-b",
+	"mgBC": "Kendallova korelace",
 	"VOmC": "Vrátí statistický protokol Kendallova korelačního koeficientu Tau-B. Pokud byste tutéž operaci počítali v SPSS, patrně dostanete mírně odlišný výsledek. Podle všeho je to vlivem odlišné citlivosti na desetinná místa u obou systémů. Na interpretaci výsledku by to nicméně zásadní vliv mít nemělo.",
 	"xfSf": "parciální korelace",
 	"UcfZ": "Parciální korelace je statistická metoda, která vám umožňuje zjistit, jaký je vztah mezi dvěma proměnnými, přičemž se zohlední vliv třetí proměnné. To je užitečné, pokud chcete zjistit, zda existuje přímý vztah mezi dvěma proměnnými, aniž byste byli ovlivněni vlivem jiných proměnných. Například, pokud chcete zjistit, zda existuje vztah mezi úrovní školení a úspěšností v práci, může být užitečné zohlednit také vliv věku nebo pohlaví. V takovém případě byste mohli použít parciální korelaci k zjištění vztahu mezi úrovní školení a úspěšností v práci při zohlednění vlivu věku a pohlaví. Parciální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že parciální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost. Zdroj: https://chat.openai.com/chat.",
@@ -272,5 +272,12 @@ module.exports = {
 	"mHb0": "Argument 'max' upřesní, na kolik kategorií (intervalů) má být histogram rozdělen. Argument 'max' je možné upřesnit buďto jako první parametr, nebo - pokud je argumentem objekt - jako vlatnost 'max'.",
 	"3Pll": "Se specifikací velikosti intervalu",
 	"AZXR": "Argument 'fix' nastaví pevnou velikost intervalu. Argument je možné upřesnit buďto jako druhý parametr (v tom případě musí být první argument null), nebo - pokud je argumentem objekt - jako vlatnost 'fix'. Argument 'max' má před argumentem 'fix' prioritu.",
-	"l43h": "Schéma výsledku"
+	"l43h": "Schéma výsledku",
+	"jrdS": "Před-výpočetní úprava dat",
+	"Rd9K": "vstupní vektor/y",
+	"dTDt": "shlukovací proměnná",
+	"aEqW": "Bez specifikace četností",
+	"YVF4": "Metoda nahrazuje chybějící argument n (četnosti) automaticky vygenerovaných vektorem, jehož každá hodnota je rovna 1. Stručně řešeno, vstupní tabulka má podobu hrubých, neagregovaných dat.",
+	"h6D3": "Se specifikací četností",
+	"l3pM": "Poslední argument tvoří agregované četnosti, tzn. že vstupní tabulka je již agregovaná."
 }

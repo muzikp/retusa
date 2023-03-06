@@ -30,7 +30,7 @@
 Returns the sum of all non-empty numeric values of a vector.
 
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes all empty values (blank cells) from th vector.
 
@@ -44,7 +44,10 @@ var cashflow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 
 
 ```mermaid
 graph TD
-A[<b>sum<br></b>number]
+sum[<b>sum<br></b>number]
+style sum fill:#FFFFFF;
+style sum stroke:#4967A4;
+
 ```
 
 ## [Count](#count)
@@ -63,7 +66,10 @@ var total_boolean = new BooleanVector(true, true, false, null, false, true).coun
 
 ```mermaid
 graph TD
-A[<b>count<br></b>whole positive number inc. zero]
+count[<b>count<br></b>whole positive number inc. zero]
+style count fill:#FFFFFF;
+style count stroke:#4967A4;
+
 ```
 
 ## [Mode](#mode)
@@ -82,7 +88,10 @@ var z = new BooleanVector(true, false, true).mode(); /* = true */
 
 ```mermaid
 graph TD
-A[<b>mode<br></b>any type]
+mode[<b>mode<br></b>any type]
+style mode fill:#FFFFFF;
+style mode stroke:#75716F;
+
 ```
 
 ## [Arithmetic mean](#avg)
@@ -90,7 +99,7 @@ A[<b>mode<br></b>any type]
 Returns the arithmetic mean (i.e. the quotient of the sum and the number of vector values) of all non-empty values (i.e. including zeros).
 
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes all empty values (blank cells) from th vector.
 
@@ -104,7 +113,10 @@ var avgCashFlow = new NumericVector(200,250,150,320,240,-250,10,-320).avg();  /*
 
 ```mermaid
 graph TD
-A[<b>arithmetic mean<br></b>number]
+avg[<b>arithmetic mean<br></b>number]
+style avg fill:#FFFFFF;
+style avg stroke:#4967A4;
+
 ```
 
 ## [Minimum](#min)
@@ -112,7 +124,7 @@ A[<b>arithmetic mean<br></b>number]
 Returns the least non-empty value. For text, returns the first value from the alphabetical order.
 
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes all empty values (blank cells) from th vector.
 
@@ -130,7 +142,7 @@ var string_min = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 Returns the highest non-empty value. In the case of text, it returns the last value from the alphabetical order.
 
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes all empty values (blank cells) from th vector.
 
@@ -145,7 +157,10 @@ var string_max = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 ```mermaid
 graph TD
-A[<b>maximum<br></b>any type]
+max[<b>maximum<br></b>any type]
+style max fill:#FFFFFF;
+style max stroke:#75716F;
+
 ```
 
 ## [Range](#range)
@@ -153,7 +168,7 @@ A[<b>maximum<br></b>any type]
 Returns the difference between the largest and smallest non-empty values.
 
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes all empty values (blank cells) from th vector.
 
@@ -167,7 +182,10 @@ var range = new NumericVector(5,2,-15,-16.3,12,null, null, 12,13,7).range(); /* 
 
 ```mermaid
 graph TD
-A[<b>range<br></b>number]
+range[<b>range<br></b>number]
+style range fill:#FFFFFF;
+style range stroke:#4967A4;
+
 ```
 
 ## [Geometric mean](#geomean)
@@ -175,7 +193,7 @@ A[<b>range<br></b>number]
 The geometric mean is a statistical indicator that is used to calculate the average value of some number or quantity. Unlike the arithmetic mean, which is calculated as the sum of all values in a set divided by the number of those values, the geometric mean is calculated as the nth root of the product of n numbers in the set. The geometric mean is often used to calculate growth or cumulative return in investments because it accounts for changes in the percentage growth of values over time. It is also used in geometry to calculate the average side length of an n-gon and in biology to calculate the average size of cells or organisms in a population.
 
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes all empty values (blank cells) from th vector.
 
@@ -189,7 +207,10 @@ var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29
 
 ```mermaid
 graph TD
-A[<b>geometric mean<br></b>number]
+geomean[<b>geometric mean<br></b>number]
+style geomean fill:#FFFFFF;
+style geomean stroke:#4967A4;
+
 ```
 
 ## [Harmonic mean](#harmean)
@@ -197,7 +218,7 @@ A[<b>geometric mean<br></b>number]
 The harmonic mean is a statistical indicator that is used to calculate the average value of some number or quantity. Unlike the arithmetic mean and the geometric mean, which are based on the addition or multiplication of values, the harmonic mean is calculated as the quotient of the number of numbers in the set and the sum of their reciprocals. The harmonic mean is used in situations where it is important to account for how speed or power changes over time or in different situations. For example, it is used to calculate average speed, average power or average resistance in electronic circuits. It is also used in finance to calculate the average return on investments over different time periods.
 
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes all empty values (blank cells) from th vector.
 
@@ -211,7 +232,10 @@ var x = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,
 
 ```mermaid
 graph TD
-A[<b>harmonic mean<br></b>number]
+harmean[<b>harmonic mean<br></b>number]
+style harmean fill:#FFFFFF;
+style harmean stroke:#4967A4;
+
 ```
 
 ## [Median](#median)
@@ -219,7 +243,7 @@ A[<b>harmonic mean<br></b>number]
 Returns the median, or middle value, of the non-empty values of a vector. This is the 50% percentile.
 
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes all empty values (blank cells) from th vector.
 
@@ -233,7 +257,10 @@ var median = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,2
 
 ```mermaid
 graph TD
-A[<b>median<br></b>number]
+median[<b>median<br></b>number]
+style median fill:#FFFFFF;
+style median stroke:#4967A4;
+
 ```
 
 ## [Percentile](#percentile)
@@ -246,7 +273,7 @@ Using the percentile, we can examine the distribution of a numerical series, by 
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>k</b> | percentile value | decimal number between 1 and 0 (including) | <sub>Checks if it is a positive integer greater than zero. Otherwise, it will throw an error.<sub> | ✔️ | 0.95 |
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes all empty values (blank cells) from th vector.
 
@@ -263,7 +290,10 @@ var max = score.percentile(1); /* = 25 */
 
 ```mermaid
 graph TD
-A[<b>percentile<br></b>number]
+percentile[<b>percentile<br></b>number]
+style percentile fill:#FFFFFF;
+style percentile stroke:#4967A4;
+
 ```
 
 ## [Standard deviation](#stdev)
@@ -276,7 +306,7 @@ Returns the standard deviation of non-empty values. The standard deviation is a 
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>isSample</b> | is sample | boolean value | <sub>Checks if the value is binary in nature. Otherwise, it automatically converts the value to the boolean type and therefore never returns an error.<sub> |  | false |
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes all empty values (blank cells) from th vector.
 
@@ -291,7 +321,10 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).stdev(true); /* = 
 
 ```mermaid
 graph TD
-A[<b>standard deviation<br></b>number]
+stdev[<b>standard deviation<br></b>number]
+style stdev fill:#FFFFFF;
+style stdev stroke:#4967A4;
+
 ```
 
 ## [Variance](#variance)
@@ -304,7 +337,7 @@ Returns the variance value of this vector. The variance value is equal to the sq
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>isSample</b> | is sample | boolean value | <sub>Checks if the value is binary in nature. Otherwise, it automatically converts the value to the boolean type and therefore never returns an error.<sub> |  | false |
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes all empty values (blank cells) from th vector.
 
@@ -319,7 +352,10 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).variance(true); /*
 
 ```mermaid
 graph TD
-A[<b>variance<br></b>number]
+variance[<b>variance<br></b>number]
+style variance fill:#FFFFFF;
+style variance stroke:#4967A4;
+
 ```
 
 ## [Coefficient of variation](#varc)
@@ -342,7 +378,10 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc(true); /* = 0
 
 ```mermaid
 graph TD
-A[<b>coefficient of variation<br></b>number]
+varc[<b>coefficient of variation<br></b>number]
+style varc fill:#FFFFFF;
+style varc stroke:#4967A4;
+
 ```
 
 ## [Histogram](#histogram)
@@ -356,7 +395,7 @@ Returns the histogram matrix of the given vector. The method can be chosen with 
 | <b>max</b> | maximum intervals | number | <sub>Checks if it is a positive integer greater than zero. Otherwise, it will throw an error.<sub> |  |  |
 | <b>fix</b> | fixed interval | positive decimal | <sub>Checks if it is a positive integer greater than zero. Otherwise, it will throw an error.<sub> |  |  |
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes all empty values (blank cells) from th vector.
 
@@ -403,12 +442,27 @@ var h4 = score.analyze("histogram").run({fix: 3});
 
 ```mermaid
 graph TD
+histogram{<i>array</i>}
+style histogram fill:#85B3BE;
+style histogram stroke:#2E7C8F;
 histogram --> from[<b>from</b><br>the lower limit of the interval <br><i>number</i>]
+style from fill:#FFFFFF;
+style from stroke:#4967A4;
 histogram --> to[<b>to</b><br>the upper limit of the interval <br><i>number</i>]
+style to fill:#FFFFFF;
+style to stroke:#4967A4;
 histogram --> n[<b>n</b><br>frequency abs. <br><i>number</i>]
+style n fill:#FFFFFF;
+style n stroke:#75716F;
 histogram --> nc[<b>nc</b><br>cumulative frequency abs. <br><i>number</i>]
+style nc fill:#FFFFFF;
+style nc stroke:#75716F;
 histogram --> p[<b>p</b><br>frequency % <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 histogram --> pc[<b>pc</b><br>cumulative frequency % <br><i>number</i>]
+style pc fill:#FFFFFF;
+style pc stroke:#75716F;
 
 ```
 
@@ -439,8 +493,15 @@ var boolean_vector_desc_frequency = new BooleanVector(true, false, null, true, n
 
 ```mermaid
 graph TD
+frequency{<i>array</i>}
+style frequency fill:#85B3BE;
+style frequency stroke:#2E7C8F;
 frequency --> v[<b>v</b><br>value <br><i>number</i>]
+style v fill:#FFFFFF;
+style v stroke:#75716F;
 frequency --> n[<b>n</b><br>frequency table <br><i>number</i>]
+style n fill:#FFFFFF;
+style n stroke:#75716F;
 
 ```
 
@@ -449,7 +510,7 @@ frequency --> n[<b>n</b><br>frequency table <br><i>number</i>]
 Returns the value of the standard error of the estimate of the mean. The standard error of the mean is a statistical measure of the variability of the sample mean of the estimated parameter in the entire population. This is an estimate of the standard deviation of the sample mean. The mean error of the mean is calculated as the ratio of the estimated standard deviation of the sample mean to the square root of the sample size. The larger the sample size, the smaller the mean error of the mean, meaning that the estimate of the sample mean is more accurate and more closely aligned with the entire population mean. The mean error of the mean is useful for estimating confidence intervals of the sample mean, which allows us to determine how accurately it estimates the population mean.
 
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes all empty values (blank cells) from th vector.
 
@@ -463,7 +524,10 @@ var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,2
 
 ```mermaid
 graph TD
-A[<b>standard error of the mean<br></b>number]
+sem[<b>standard error of the mean<br></b>number]
+style sem fill:#FFFFFF;
+style sem stroke:#4967A4;
+
 ```
 
 ## [Skewness](#skewness)
@@ -476,7 +540,7 @@ Returns the skewness of the distribution, i.e. the asymmetry of the distribution
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>isSample</b> | is sample | boolean value | <sub>Checks if the value is binary in nature. Otherwise, it automatically converts the value to the boolean type and therefore never returns an error.<sub> |  | false |
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes all empty values (blank cells) from th vector.
 
@@ -491,7 +555,10 @@ var skewness_sample = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,2
 
 ```mermaid
 graph TD
-A[<b>skewness<br></b>number]
+skewness[<b>skewness<br></b>number]
+style skewness fill:#FFFFFF;
+style skewness stroke:#4967A4;
+
 ```
 
 ## [Kurtosis](#kurtosis)
@@ -501,7 +568,7 @@ There are two basic types of kurtosis: platykurtosis and leptokurtosis. Platykur
 Skewedness is used to determine whether the distribution of values in a collection of data is more or less uniform, or whether there are any significant deviations from the mean value. Skewness is often used along with other metrics such as median, skewness, and quantiles to help you better understand the distribution of data and determine if there are any significant deviations from the mean value.
 
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes all empty values (blank cells) from th vector.
 
@@ -515,7 +582,10 @@ var kurtosis = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24
 
 ```mermaid
 graph TD
-A[<b>kurtosis<br></b>number]
+kurtosis[<b>kurtosis<br></b>number]
+style kurtosis fill:#FFFFFF;
+style kurtosis stroke:#4967A4;
+
 ```
 
 ## [Confidence interval of the mean](#mci)
@@ -528,7 +598,7 @@ Returns the statistical log of the confidence interval estimate of the sample me
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>alpha</b> | level of importance | decimal number between 1 and 0 (including) | <sub>Checks if it is a positive integer greater than zero. Otherwise, it will throw an error.<sub> |  | 0.95 |
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes all empty values (blank cells) from th vector.
 
@@ -542,11 +612,24 @@ var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).mc
 
 ```mermaid
 graph TD
+mci((<i>object</i>))
+style mci fill:#E1C6B3;
+style mci stroke:#C36422;
 mci --> m[<b>m</b><br>arithmetic mean <br><i>number</i>]
+style m fill:#FFFFFF;
+style m stroke:#4967A4;
 mci --> sig[<b>sig</b><br>level of significance <br><i>number</i>]
+style sig fill:#FFFFFF;
+style sig stroke:#75716F;
 mci --> delta[<b>delta</b><br>confidence interval +- <br><i>number</i>]
+style delta fill:#FFFFFF;
+style delta stroke:#4967A4;
 mci --> lb[<b>lb</b><br>lower limit of the interval <br><i>number</i>]
+style lb fill:#FFFFFF;
+style lb stroke:#4967A4;
 mci --> ub[<b>ub</b><br>upper limit of the interval <br><i>number</i>]
+style ub fill:#FFFFFF;
+style ub stroke:#4967A4;
 
 ```
 
@@ -561,7 +644,7 @@ Returns the statistical log of the confidence interval estimate of the sample pr
 | <b>value</b> | the lookup value | any type | <sub>-<sub> | ✔️ |  |
 | <b>alpha</b> | level of importance | decimal number between 1 and 0 (including) | <sub>Checks if it is a positive integer greater than zero. Otherwise, it will throw an error.<sub> |  | 0.95 |
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes all empty values (blank cells) from th vector.
 
@@ -575,11 +658,24 @@ var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).pc
 
 ```mermaid
 graph TD
+pci((<i>object</i>))
+style pci fill:#E1C6B3;
+style pci stroke:#C36422;
 pci --> p[<b>p</b><br>value share in % <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 pci --> sig[<b>sig</b><br>level of significance <br><i>number</i>]
+style sig fill:#FFFFFF;
+style sig stroke:#75716F;
 pci --> delta[<b>delta</b><br>confidence interval +- <br><i>number</i>]
+style delta fill:#FFFFFF;
+style delta stroke:#75716F;
 pci --> lb[<b>lb</b><br>lower limit of the interval <br><i>number</i>]
+style lb fill:#FFFFFF;
+style lb stroke:#75716F;
 pci --> ub[<b>ub</b><br>upper limit of the interval <br><i>number</i>]
+style ub fill:#FFFFFF;
+style ub stroke:#75716F;
 
 ```
 
@@ -593,7 +689,7 @@ Returns the statistical log for a one-sample t-test given the population mean.
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>populationMean</b> | population mean | number | <sub>Checks if the value is a number. Otherwise, it will throw an error.<sub> | ✔️ |  |
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes all empty values (blank cells) from th vector.
 
@@ -607,9 +703,18 @@ var T = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1)
 
 ```mermaid
 graph TD
+ttest((<i>object</i>))
+style ttest fill:#E1C6B3;
+style ttest stroke:#C36422;
 ttest --> t[<b>t</b><br>T-value <br><i>number</i>]
+style t fill:#FFFFFF;
+style t stroke:#4967A4;
 ttest --> p[<b>p</b><br>significance <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 ttest --> n[<b>n</b><br>total of cases <br><i>number</i>]
+style n fill:#FFFFFF;
+style n stroke:#75716F;
 
 ```
 
@@ -618,7 +723,7 @@ ttest --> n[<b>n</b><br>total of cases <br><i>number</i>]
 Returns the statistical log of the Shapiro-Wilk W test of normality of the distribution of vector values. The Shapiro-Wilk test is a statistical test used to test the hypothesis that the data come from a normal distribution. This test is often used to verify the normality of data in statistical analysis. The Shapiro-Wilk test is based on comparing the value of the quartiles of the data with the values of the quartiles of a normal distribution. When the quartile values of the data are similar to the quartile values of the normal distribution, it is likely that the data comes from a normal distribution. Otherwise, it is likely that the data is not normal. When using the Shapiro-Wilk test, it should be noted that this test has low sensitivity for large samples, i.e. for large samples the test may be less reliable in detecting non-normality. Therefore, other tests of normality, such as the Anderson-Darling test or the Kolmogorov-Smirnov test, are often used for large samples.
 
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes all empty values (blank cells) from th vector.
 
@@ -632,9 +737,18 @@ var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).swt
 
 ```mermaid
 graph TD
+shapirowilk((<i>object</i>))
+style shapirowilk fill:#E1C6B3;
+style shapirowilk stroke:#C36422;
 shapirowilk --> W[<b>W</b><br>W-test value <br><i>number</i>]
+style W fill:#FFFFFF;
+style W stroke:#4967A4;
 shapirowilk --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
 shapirowilk --> p[<b>p</b><br>significance <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 
 ```
 
@@ -643,7 +757,7 @@ shapirowilk --> p[<b>p</b><br>significance <br><i>number</i>]
 Returns the statistical log of the Komogorov-Smirnov normality test of the distribution of vector values. It does not currently calculate the significance level of the test. The Kolmogorov-Smirnov test (often abbreviated as the K-S test) is a statistical test used to test the hypothesis that data come from a particular distribution. This test compares the data distribution to the theoretical distribution that the data is assumed to come from and evaluates whether the data values are close enough to the theoretical distribution that the hypothesis that the data come from the given distribution can be considered true.Kolmogorov test -Smirnov is often used to test the normality of data, but it can also be used to test if the data comes from another theoretical distribution, such as the exponential or binomial distribution. The Kolmogorov-Smirnov test is generally considered to be one of the most accurate tests of normality, but it has limited sensitivity for small samples, i.e. it may be less reliable in detecting non-normality for small samples. Therefore, other tests of normality, such as the Shapiro-Wilk test or the Anderson-Darling test, are often used for small samples.
 
 
-### Preprocessor
+### Pre-calculation data modification
 
 Removes all empty values (blank cells) from th vector.
 
@@ -657,8 +771,17 @@ var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).kst
 
 ```mermaid
 graph TD
+kstest((<i>object</i>))
+style kstest fill:#E1C6B3;
+style kstest stroke:#C36422;
 kstest --> T[<b>T</b><br>Kolmogorov-Smirnov test value <br><i>number</i>]
+style T fill:#FFFFFF;
+style T stroke:#4967A4;
 kstest --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
 kstest --> p[<b>p</b><br>significance <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 
 ```
