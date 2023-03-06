@@ -171,7 +171,7 @@ module.exports = {
 	"IIlO": "protokol výstupu metody",
 	"DfLu": "matice",
 	"aaVG": "Ověří, zdali je hodnota platným členem enumerace. V opačném případě vyvolá chybu.",
-	"dFiw": "Ověří, zdali se jedná o celé kladné číslo. V opačném případě vyvolá chybu.",
+	"dFiw": "Ověří, zdali se jedná o celé kladné číslo větší než nula. V opačném případě vyvolá chybu.",
 	"iY0c": "Enumerátory",
 	"9oHx": "hodnota",
 	"bB5f": "popis",
@@ -256,5 +256,12 @@ module.exports = {
 	"JwDb": "Ověří, zdali je argument buďto binární (boolean) vektor, jeho identifikátor nebo řada převoditelná na binární vektor. V opačném případě vyhodí chybu,",
 	"7m48": "Friedmanova ANOVA",
 	"sUw5": "Friedmanova analýza rozptylu je neparametrický statistický test vyvinutý Miltonem Friedmanem. Podobně jako u parametrických opakovaných opatření ANOVA se používá k detekci rozdílů v léčbě během více pokusů o testování. Postup zahrnuje hodnocení každého řádu (nebo bloku) dohromady, poté zváží hodnoty řad podle sloupců. Použitelné pro kompletní návrhy bloků je tedy zvláštním případem testu Durbin.",
-	"t1BN": "Friedmanův Q test"
+	"t1BN": "Friedmanův Q test",
+	"8nQf": "Odstraní z vektoru všechny prázdné hodnoty (buňky).",
+	"kbla": "binární hodnota",
+	"7lbs": "Hodnota musí být číslo.",
+	"BaeM": "Hodnota musí být vyšší nebo rovna jedné.",
+	"VxSV": "Hodnota musí být celé číslo.",
+	"ffka": "kladné číslo",
+	"baSh": "Hodnota musí být vyšší nebo rovna nule."
 }

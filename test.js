@@ -5,6 +5,14 @@ const { StringVector } = require("./libs/vector");
 //framework.docs.publish(require("fs"));
 
 with (framework) {
+    var M = new Matrix(
+        new NumericVector(10,8,7,9,7,4,5,6,5,10,4,7).name("white"),
+        new NumericVector(7,5,8,6,5,7,9,6,4,6,7,3).name("red"),
+        new NumericVector(8,5,6,4,7,5,3,7,6,4,4,3).name("rose")
+    );
+    var friedman_a = M.analyze("friedman").run([0,1,2]);
+    var friedman_b = M.friedman(["white","red","rose"]);
+    // friedman_a.result = friedman_b
     var docs = require("./docs");
     docs();
     debugger;

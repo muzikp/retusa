@@ -3,6 +3,51 @@ var {Matrix} = require("./matrix");
 var {NumericVector,StringVector,BooleanVector} = require("./vector");
 
 var lib = {
+    boolean: {
+        title: "kbla",
+        validator: "GHFj",
+        mdType: "kbla",
+        tag: {
+            type: "boolean"
+        },
+        validate: function(value, parent){
+            if(value) return true;
+            else return false
+        }
+    },
+    positiveInteger: {
+        title: "IrhN",
+        validator: "dFiw",
+        mdType: "pelN",
+        tag: {
+            type: "input",
+            allows: "number",
+            min: 1,
+            step: 1            
+        },
+        validate: function(value, parent){
+            if(isNaN(value)) throw new Error($("7lbs"));
+            else if(Math.round(Number(value)) < 1) throw new Error("BaeM");
+            else if(Number(value) % 1 != 0) throw new Error($("VxSV"));
+            else return Number(value);
+        }
+    },
+    positiveDecimal: {
+        title: "ffka",
+        validator: "dFiw",
+        mdType: "ffka",
+        tag: {
+            type: "input",
+            allows: "number",
+            min: 0.0000000000000001,
+            step: 0.0000000000000001    
+        },
+        validate: function(value, parent){
+            if(isNaN(value)) throw new Error($("7lbs"));
+            else if(Number(value) <= 0) throw new Error("baSh");
+            else return Number(value);
+        }
+    },
     anyVector: {
         title: "yWUM",
         description: null,
@@ -155,7 +200,7 @@ class Argument {
         this.validate = function(value) {
             if(!model.default !==undefined && (value === undefined || value === null)) return model.default;
             else if(!model.required && (value === undefined || value === null)) return undefined;
-            else if(model.required && (value === undefined)) throw new Error("The argument is required");
+            else if(model.required && (value === undefined)) throw new Error($("HOuY"));
             else return model.validate(value, parent, model);
         }
     }

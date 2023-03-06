@@ -277,7 +277,10 @@ const preprocessors = {
                 }
             }
             _.sample.raw = _.args.vectors.maxRows();
-            _.args.vectors = _.args.vectors.removeEmpty();
+            //_.args.vectors = _.args.vectors.removeEmpty();
+            for(let v = 0; v < _.args.vectors.length; v++) {
+                _.args.vectors[v] = _.args.vectors[v].removeEmpty();
+            }
             _.sample.net = _.args.vectors.maxRows();
         }
     },
@@ -296,7 +299,10 @@ const preprocessors = {
                 }
             }
             _.sample.raw = _.args.vectors.maxRows();
-            _.args.vectors = _.args.vectors.removeEmpty();
+            for(let v = 0; v < _.args.vectors.length; v++) {
+                _.args.vectors[v] = _.args.vectors[v].removeEmpty();
+            }
+            //_.args.vectors = _.args.vectors.removeEmpty();
             _.sample.net = _.args.vectors.maxRows();
         }
     }
@@ -781,10 +787,22 @@ const matrixMethods = {
         for(var r = 0; r < n; r++) {
             rows.push(vectors.map((v,i) => v[r]).toAvgRank(1,1));
         };
-        var R2 =  Array.from(Array(k).keys()).map((x,i) => Math.pow(rows.map(r => r[i]).sum(),2)).sum();
-        var Q = 12/(n*k*(k+1)) * R2 - 3*n*(k+1);
+        var hasTies = Array.from(Array(k).keys()).map((v,i) => rows.map(e => e[i])).map(c => c.distinct().length !== c.length).find(e => e);
+        /* without ties*/ 
+        var meanRanks = Array.from(Array(k).keys()).map((x,i) => rows.map(r => r[i]).avg());
+        if(!hasTies || hasTies) {
+            var R2 =  Array.from(Array(k).keys()).map((x,i) => Math.pow(rows.map(r => r[i]).sum(),2)).sum();
+            var Q = 12/(n*k*(k+1)) * R2 - 3*n*(k+1);
+        } 
+        /* with ties */
+        else  {
+            var R2 =  Array.from(Array(k).keys()).map((x,i) => rows.map(r => r[i]).sum()).map(r => Math.pow(r - n*(k-1)/2,2)).sum();
+            var rij = rows.flat().map(e => Math.pow(e,2) - n*k*(k-1)).sum();
+            var Q = Math.abs((4*(k-1)* R2)/rij)
+        }
         var df = k-1;
         var p = dist.chisqdist(Q,df)*2;
+        debugger;
         return {
             Q: Q,
             df: df,

@@ -171,7 +171,7 @@ module.exports = {
 	"IIlO": "method output log",
 	"DfLu": "matrix",
 	"aaVG": "Checks if the value is a valid enumeration member. Otherwise, it will throw an error.",
-	"dFiw": "Checks if it is a positive integer. Otherwise, it will throw an error.",
+	"dFiw": "Checks if it is a positive integer greater than zero. Otherwise, it will throw an error.",
 	"iY0c": "Enumerators",
 	"9oHx": "value",
 	"bB5f": "description",
@@ -256,5 +256,12 @@ module.exports = {
 	"JwDb": "Checks if the argument is either a binary (boolean) vector, its identifier, or an array convertible to a binary vector. Otherwise, it throws an error,",
 	"7m48": "Friedman's ANOVA",
 	"sUw5": "The Friedman test is a non-parametric statistical test developed by Milton Friedman. Similar to the parametric repeated measures ANOVA, it is used to detect differences in treatments across multiple test attempts. The procedure involves ranking each row (or block) together, then considering the values of ranks by columns. Applicable to complete block designs, it is thus a special case of the Durbin test.",
-	"t1BN": "Friedman's Q test"
+	"t1BN": "Friedman's Q test",
+	"8nQf": "Removes all empty values (blank cells) from th vector.",
+	"kbla": "boolean value",
+	"7lbs": "The value must be a number.",
+	"BaeM": "Value must be greater or equal to one.",
+	"VxSV": "Value must be an integer.",
+	"ffka": "positive decimal",
+	"baSh": "Value must be greater or equal to one."
 }

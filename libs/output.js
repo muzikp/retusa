@@ -70,6 +70,18 @@ const snippets = {
 }
 
 const lib = {
+    "any": {
+        type: "any",
+        title: ""
+    },
+    "number": {
+        "title": "pelN", 
+        "type": "number",
+    },
+    "uint": {
+        "title": "IrhN", 
+        "type": "number",
+    },
     "correlPearson": {
         "title": "IIlO", 
         "type": "object",
