@@ -15,7 +15,6 @@ with (framework) {
     var c_c = M.analyze("contingency").run("grade","group","frequencies");
     var c_d = M.analyze("contingency").run({rows: 0, columns: 1, n: 2});
     // c_a = c_b.result = c_c.result = c_d.result
-    debugger;
     var docs = require("./docs");
     docs();
     //debugger;
