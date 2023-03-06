@@ -26,12 +26,7 @@ Array.prototype.avg = function() {
 }
 
 Array.prototype.mci = function(p) {
-    return Math.mci(this.avg(),this.stdev(true),this.length, p)
-    p = 1-(1-p)/2;
-    var m = this.avg();
-    var q = this.length > 30 ? dist.normsinv(p, this.length -1 ) : dist.tinv(p, this.length -1);
-    var delta = q * this.stdev(true)/Math.sqrt(this.length);
-    return {m: m, delta: delta, lb: m-delta, ub: m+delta};
+    return Math.mci(this.avg(),this.stdev(true),this.length, p);
 }
 
 Array.prototype.pci = function(value, alfa) {
@@ -90,11 +85,11 @@ Array.prototype.histogram = function(maxIntervals = null, fixedInterval = null){
     var mn = this.min();
     var mx = this.max();
     var interval = maxIntervals ? (mx-mn)/maxIntervals : fixedInterval > 0 ? fixedInterval : (mx-mn)/Math.pow(l,.5);
-    var fixed = mn < 10 ? 2 : mn < 100 ? 1 : 0;
     var h = [];
     var _i = 0;
     for(var i = mn; i <= mx; i += interval)
     {
+        if(i + interval > mx && maxIntervals) break;
         var n = (this.filter(f => (_i === 0 ? f >=i : f > i) && (f <= (i + interval)))).length;
         var nc = _i > 0 ? n + h[_i-1].nc : n;
         var p = n/l;
@@ -122,7 +117,7 @@ Array.prototype.frequency = function(order){
 }
 
 Array.prototype.mode = function() {
-    return this.frequency(4)[0].value;
+    return this.frequency(1)[0].value;
 }
 
 Array.prototype.percentile = function(q){
@@ -176,7 +171,7 @@ Array.prototype.ttest = function(mean){
     var n = this.length;
     var m = this.avg();
     var t = (m - mean)/this.SEM();
-    var p = (1 - dist.tdist(t, n-1))*2;
+    var p = dist.tdist(t, n-1);
     return {
         t: t,
         p: p,

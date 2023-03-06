@@ -357,9 +357,9 @@ class MatrixAnalysis {
      * @returns {self}
      */
     with() {
-        if(new Array(...arguments) == 0) return this;
+        if(new Array(...arguments).length == 0) return this;
         /** named config (object) */
-        else if(typeof new Array(...arguments)[0] == "object" && !Array.isArray(arguments[0])) {
+        else if(typeof arguments[0] == "object" && !Array.isArray(arguments[0]) ? arguments[0] ? Object.keys(arguments[0]).length > 0 : false : false) {
             var parameters = arguments[0];
             for(let key of Object.keys(this.model.args)) {
                 var arg = this.model.args[key];
@@ -385,6 +385,7 @@ class MatrixAnalysis {
      * @returns {self}
      */
     prepare(){
+        if(!this.parent) throw new Error($("jrQP"));
         if(this.model.prepare) this.model.prepare(this);
         return this;
     }
@@ -395,7 +396,7 @@ class MatrixAnalysis {
      */
     run() {
         this.time.from = new Date();
-        if(!this.parent) return new Empty($("jrQP"));
+        if(!this.parent) throw new Error($("jrQP"));
         if([...arguments].length > 0) this.with(...arguments);
         this.prepare();        
         var args = Object.entries(this.args).map(e => e[1]);

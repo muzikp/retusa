@@ -348,8 +348,10 @@ Array.prototype.vectorify = function() {
 const preprocessors = {
     removeEmpty: {
         title: "8nQf",
-        fn: function(v){
-            return v.removeEmpty()
+        fn: function(_){
+            _.sample.raw = _.parent.length;
+            _.parent = _.parent.removeEmpty();
+            _.sample.net = _.parent.length;
         }
     }
 }
@@ -497,517 +499,373 @@ let VectorMethodsModels = [
     },
     {   name: "range",
         fn: Array.prototype.range,
-        filter: filters.number,
         wiki: {
             title: "mXxJ",
-            description: "dnzB"
+            description: "dnzB",
+            preprocessor: preprocessors.removeEmpty.title,
+            url: "https://en.wikipedia.org/wiki/Range_(statistics)"
         },
+        prepare: preprocessors.removeEmpty.fn,
         type: [1],
-        returns: "number",
-        example: function(){
-            var range = new NumericVector(5,2,-15,-16.3,12,null, null, 12,13,7).range(); /* = 22 */
-        },
-        url: "https://en.wikipedia.org/wiki/Range_(statistics)"
+        output: "number"        
     },
     {   name: "varc",
         fn: Array.prototype.varc,
         filter: filters.number,
         wiki: {
             title: "uwpU",
-            description: "fUpj"
+            description: "fUpj",
+            prepare: preprocessors.removeEmpty.fn,
+            url: "https://en.wikipedia.org/wiki/Coefficient_of_variation"
         },
         type: [1],
-        returns: "number",
-        example: function(){
-            var population = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc();  /* = 0.227 */
-            var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc(true); /* = 0.24 */ 
-        },
+        output: "number",
+        prepare: preprocessors.removeEmpty.fn,
         args: {
-            s: {
-                wiki: {
+            isSample: {
+                model: "boolean",
+                config: {
+                    name: "isSample",
                     title: "eJTq",
-                    description: "FfpU"
-                },
-                required: false,
-                default: false,
-                schema: "boolean",
-                type: "boolean",
-                validator: validators.boolean
+                    description: "FfpU",
+                    required: false,
+                    default: false
+                }
             }
-        },
-        url: "https://en.wikipedia.org/wiki/Coefficient_of_variation"
+        }
     },
     {   name: "percentile",
         fn: Array.prototype.percentile,
-        filter: filters.number,
         wiki: {
             title: "fPra",
-            description: "yNbM"
+            description: "yNbM",
+            preprocessor: preprocessors.removeEmpty.title,
+            url: "https://en.wikipedia.org/wiki/Percentile"
         },
+        prepare: preprocessors.removeEmpty.fn,
         type: [1],
-        returns: "number",
-        example: function(){
-            var score = new NumericVector(10,20,15,25,23,19,18,17,24,23);
-            var median = score.percentile(0.5); /* = 19.5 */
-            var q25 = score.percentile(0.25); /* = 17.25 */
-            var max = score.percentile(1); /* = 25 */
-        },
+        output: "number",
         args: {
             k: {
-                wiki: {
+                model: "zeroToOneInc",
+                config: {
+                    name: "k",
                     title: "dBDt",
-                    description: "GQpQ"
-                },
-                required: true,
-                schema: "number",
-                type: "decimal",
-                validator: validators.zeroToOneInc
+                    description: "GQpQ",
+                    required: true
                 }
+            }
         },
-        url: "https://en.wikipedia.org/wiki/Percentile"
-
     },
     {   name: "frequency",
         fn: Array.prototype.frequency,
-        filter: null,
         wiki: {
             title: "dYJK",
             description: "Tzyp"
         },
         type: [1,2,3],
-        returns: "frequency",
-        example: function(){
-            var numeric_vector_no_order = new NumericVector(5,2,3,2,3,3,1,6,3).frequency();
-            /*
-            ┌─────────┬───────┬───────────┐
-            │ (index) │ value │ frequency │
-            ├─────────┼───────┼───────────┤
-            │    0    │   1   │     1     │
-            │    1    │   2   │     2     │
-            │    2    │   3   │     4     │
-            │    3    │   5   │     1     │
-            │    4    │   6   │     1     │
-            └─────────┴───────┴───────────┘ 
-            */
-            var string_vector_desc_value = new StringVector("E","B","C","B","C","C","A","F","C").frequency(3);
-            /* 
-            ┌─────────┬───────┬───────────┐
-            │ (index) │ value │ frequency │
-            ├─────────┼───────┼───────────┤
-            │    0    │  'F'  │     1     │
-            │    1    │  'A'  │     1     │
-            │    2    │  'C'  │     4     │
-            │    3    │  'B'  │     2     │
-            │    4    │  'E'  │     1     │
-            └─────────┴───────┴───────────┘
-            */
-            var boolean_vector_desc_frequency = new BooleanVector(true, false, null, true, null, null).frequency(4);
-            /* 
-            ┌─────────┬─────────┬───────────┐
-            │ (index) │  value  │ frequency │
-            ├─────────┼─────────┼───────────┤
-            │    0    │  null   │     3     │
-            │    1    │ 'true'  │     2     │
-            │    2    │ 'false' │     1     │
-            └─────────┴─────────┴───────────┘
-            */
-        },
+        output: "frequency",
         args: {
             order: {
-                wiki: {
+                model: "frequencyOrder",
+                config: {
+                    name: "order",
                     title: "gZCx",
-                    description: "MgID"
-                },
-                required: false,
-                schema: "integer",
-                default: 1,
-                type: "enum",
-                validator: validators.enumValidator(enumerators.frequencyOrder),
-                enums: enumerators.frequencyOrder
+                    description: "MgID",
+                    required: false,
+                    default: 1
+                }
             }
         },
         url: "https://en.wikipedia.org/wiki/Frequency_(statistics)"
     },
     {   name: "geomean",
         fn: Array.prototype.geomean,
-        filter: filters.number,
         wiki: {
             title: "eFdj",
-            description: "PDzr"
+            description: "PDzr",
+            preprocessor: preprocessors.removeEmpty.title,
+            url: "https://en.wikipedia.org/wiki/Geometric_mean"
         },
+        prepare: preprocessors.removeEmpty.fn,
         type: [1],
-        returns: "number",
-        example: function(){
-            var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).geomean(); /* = 21.24*/
-        },
-        url: "https://en.wikipedia.org/wiki/Geometric_mean"
+        output: "number",
     },
     {   name: "harmean",
         fn: Array.prototype.harmean,
         filter: filters.number,
         wiki: {
             title: "iuTi",
-            description: "nhJv"
+            description: "nhJv",
+            preprocessor: preprocessors.removeEmpty.title,
+            url: "https://en.wikipedia.org/wiki/Harmonic_mean"
         },
+        prepare: preprocessors.removeEmpty.fn,
         type: [1],
-        returns: "number",
-        example: function(){
-            var x = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).harmean(); /* = 21.03*/
-        },
-        url: "https://en.wikipedia.org/wiki/Harmonic_mean"
+        output: "number",
+        
     },
     {   name: "median",
         fn: Array.prototype.median,
-        filter: filters.number,
         wiki: {
             title: "Qyba",
-            description: "YIir"
+            description: "YIir",
+            preprocessor: preprocessors.removeEmpty.title,
+            url: "https://en.wikipedia.org/wiki/Median"
         },
+        prepare: preprocessors.removeEmpty.fn,
         type: [1],
-        returns: "number",
-        example: function(){
-            var median = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).median(); /* = 21*/
-        },
-        url: "https://en.wikipedia.org/wiki/Median"
+        output: "number",
     },
     {   name: "mode",
         fn: Array.prototype.mode,
         wiki: {
             title: "StQx",
-            description: "IBfx"
+            description: "IBfx",
+            url: "https://en.wikipedia.org/wiki/Mode_(statistics)"
         },
         type: [1,2,3],
-        returns: "any",
-        example: function(){
-            var x = new NumericVector(1,2,3,4,3,4,5,3).mode(); /* = 3 */
-            var y = new StringVector("a",null,null,"b","c","d",null,"b").mode(); /* = null */
-            var z = new BooleanVector(true, false, true).mode(); /* = true */
-        },
-        url: "https://en.wikipedia.org/wiki/Mode_(statistics)"
-
+        output: "any"
     },
     {   name: "sem",
         fn: Array.prototype.SEM,
-        filter: filters.number,
         wiki: {
             title: "dLmV",
-            description: "ZBnI"
+            description: "ZBnI",
+            preprocessor: preprocessors.removeEmpty.title,
+            url: "https://en.wikipedia.org/wiki/Standard_error#Standard_error_of_the_sample_mean"
         },
+        prepare: preprocessors.removeEmpty.fn,
         type: [1],
-        returns: "number",
-        example: function(){
-            var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).SEM(); /* = 0.67*/
-        },
-        url: "https://en.wikipedia.org/wiki/Standard_error#Standard_error_of_the_sample_mean"
+        output: "number",
     },
     {   name: "skewness",
         fn: Array.prototype.skewness,
-        filter: filters.number,
         wiki: {
             title: "KZgI",
             description: "nJbe",
-        },
-        type: [1],
-        returns: "number",
-        example: function(){
-            var skewness_population = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).skewness(false); /* = 0.52*/
-            var skewness_sample = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).skewness(true); /* = 0.027*/
-        },
-        args: {
-            s: {
-                wiki: {
-                    title: "eJTq",
-                    description: "FfpU"
-                },
-                schema: "boolean",
-                required: false,
-                default: false,
-                type: "boolean",
-                validator: validators.boolean
-                }
-            },
+            preprocessor: preprocessors.removeEmpty.title,
             url: "https://en.wikipedia.org/wiki/Skewness"
+        },
+        prepare: preprocessors.removeEmpty.fn,
+        type: [1],
+        output: "number",
+        args: {
+            isSample: {
+                model: "boolean",
+                config: {
+                    name: "isSample",
+                    title: "eJTq",
+                    description: "FfpU",
+                    required: false,
+                    default: false
+                }
+            }
+        }
     },
     {   name: "kurtosis",
         fn: Array.prototype.kurtosis,
-        filter: filters.number,
         wiki: {
             title: "oPPx",
-            description: "UOBG"
+            description: "UOBG",
+            preprocessor: preprocessors.removeEmpty.title,
+            url: "https://en.wikipedia.org/wiki/Kurtosis"
         },
+        prepare: preprocessors.removeEmpty.fn,
         type: [1],
-        returns: "number",
-        example: function(){
-            var kurtosis = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).kurtosis(); /* = 0.425*/
-        },
-        url: "https://en.wikipedia.org/wiki/Kurtosis"
+        output: "number",
     },
     {   name: "ttest",
         fn: Array.prototype.ttest,
-        filter: filters.number,
         wiki: {
             title: "VEAt",
-            description: "rbjM"
+            description: "rbjM",
+            preprocessor: preprocessors.removeEmpty.title,
         },
+        prepare: preprocessors.removeEmpty.fn,
         type: [1],
-        returns: "ttest",
-        example: function(){
-            var T = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1).ttest(10);
-            /*
-            {
-                "t": 2.0519223838763545,
-                "p": 0.05806,
-                "n": 16
-            }
-            */
-        },
+        output: "ttest",
         args: {
             populationMean: {
-                wiki: {
+                model: "number",
+                config: {
+                    name: "populationMean",
                     title: "GRoZ",
-                    description: "xtfz"
-                },
-                schema: "number",
-                required: true,
-                type: "number",
-                validator: validators.isNumber
+                    description: "xtfz",
+                    required: true
                 }
             }
+        }
     },
     {   name: "mci",
         fn: Array.prototype.mci,
-        filter: filters.number,
         wiki: {
             title: "yHjW",
-            description: "DDpa"
+            description: "DDpa",
+            preprocessor: preprocessors.removeEmpty.title,
+            url: "https://en.wikipedia.org/wiki/Confidence_interval"
         },
+        prepare: preprocessors.removeEmpty.fn,
         type: [1],
-        returns: "mci",
-        example: function(){
-            var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).mci(0.95);
-            /*
-            {
-                "m": 6.173913043478261,
-                "sig": 0.050000000000000044,
-                "delta": 1.1189603407528825,
-                "lb": 5.054952702725378,
-                "ub": 7.292873384231143
-            }
-            */
-        },
+        output: "mci",
         args: {
-            confidenceLevel: {
-                wiki: {
+            alpha: {
+                model: "zeroToOneInc",
+                config: {
+                    name: "alpha",
                     title: "lFlm",
-                    description: "SMbe"
-                },
-                schema: "number",
-                required: false,
-                default: 0.95,
-                type: "number",
-                validator: validators.zeroToOneInc
+                    description: "SMbe",
+                    required: false,
+                    default: 0.95
+                }
             }
         },
-        url: "https://en.wikipedia.org/wiki/Confidence_interval"
     },
     {   name: "pci",
         fn: Array.prototype.pci,
-        filter: filters.any,
         wiki: {
             title: "ZhjW",
-            description: "KLpa"
+            description: "KLpa",
+            preprocessor: preprocessors.removeEmpty.title,
+            url: "https://en.wikipedia.org/wiki/Confidence_interval"
         },
         type: [1,2,3],
-        returns: "pci",
-        example: function(){
-            var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).pci(5, 0.95);
-            /*
-            {
-                "p": 0.17391304347826086,
-                "sig": 0.050000000000000044,
-                "delta": 0.1549041787089759,
-                "lb": 0.019008864769284955,
-                "ub": 0.32881722218723675
-            }
-            */
-        },
+        output: "pci",
         args: {
             value: {
-                wiki: {
+                model: "any",
+                config: {
+                    name: "value",
                     title: "obxp",
-                    description: "QOvf"
-                },
-                schema: "any",
-                required: true,
-                default: null,
-                type: "any",
-                validator: validators.any
+                    description: "QOvf",
+                    required: true
+                }
             },
-            confidenceLevel: {
-                wiki: {
+            alpha: {
+                model: "zeroToOneInc",
+                config: {
+                    name: "alpha",
                     title: "lFlm",
-                    description: "SMbe"
-                },
-                schema: "number",
-                required: false,
-                default: 0.95,
-                type: "number",
-                validator: validators.zeroToOneInc
+                    description: "SMbe",
+                    required: false,
+                    default: 0.95
+                }
             }
         },
-        url: "https://en.wikipedia.org/wiki/Confidence_interval"
     },    
     {   name: "swtest",
         fn: Array.prototype.shapirowilk,
         filter: filters.number,
         wiki: {
             title: "byTa",
-            description: "LHkd"
+            description: "LHkd",
+            preprocessor: preprocessors.removeEmpty.title,
+            url: "https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test"
         },
+        prepare: preprocessors.removeEmpty.fn,
         type: [1],
-        returns: "shapirowilk",
-        example: function(){
-            var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).swtest(); 
-            /* 
-            {
-                "W": 0.9664039647188553,
-                "df": 23,
-                "p": 0.6036566524076283
-            }
-            */
-        },
-        url: "https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test"
+        output: "shapirowilk",
     },
     {   name: "kstest",
         fn: Array.prototype.kolmogorovSmirnovTest,
         filter: filters.number,
         wiki: {
             title: "DLoe",
-            description: "yQZd"
+            description: "yQZd",
+            preprocessor: preprocessors.removeEmpty.title,
+            url: "https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test#One-sample_Kolmogorov%E2%80%93Smirnov_statistic"
         },
+        prepare: preprocessors.removeEmpty.fn,
         type: [1],
-        returns: "kstest",
-        example: function(){
-            var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).kstest(); 
-            /* 
-            {
-                "W": 0.9664039647188553,
-                "df": 23,
-                "p": 0.6036566524076283
-            }
-            */
-        },
-        url: "https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test#One-sample_Kolmogorov%E2%80%93Smirnov_statistic"
+        output: "kstest",
+        
     },  
 ]
 
+const {Argument} = (require("./argument"));
+const {Output} = require("./output");
+
 class VectorAnalysis {
-    constructor(model, parent) {
+    constructor(model, parent = null) {
         if(parent) this.parent = parent?.isVector ? parent : null;
         if(typeof model == "string") {            
-            if(!VectorMethodsModels.find(m => m.name == model)) throw new Error("Model not found: " + model);
-            else this.model = VectorMethodsModels.find(m => m.name == model);
-        } else if(typeof model == "object") this.model = model;
-        else throw new Error("Unknown VectorMethod constructor parameter type.");
-    }
-    /**
-     * Returns the name of the method.
-     */
-    get name() {return this.model.name};
-    /**
-     * Returns the calculation method.
-     */
-    get fn() {return this.model.fn};
-    /**
-     * Returns default filter function applied before the method is calculated.
-     */
-    get filter() {return this.model.filter ? this.model.filter.fn : () => true}
-    /**
-     * Applies the model filter to the parent and stores the sample data into the "filterLog" property object.
-     * @param {object} config Not imployed yet.
-     * @return {self}
-     */
-    get wiki() {
-        if(this.model.wiki) {
-            return {
-                title: $(this.model.wiki.title),
-                description: $(this.model.wiki.description),
-                filter: this.model.filter ? $(this.model.filter.text) : null,
-                url: this.model.url || null,
-                applies: [
-                    {type: 1, title: $("LOYN"), apply: this.model.type.indexOf(1) > -1},
-                    {type: 2, title: $("zoiB"), apply: this.model.type.indexOf(2) > -1},
-                    {type: 3, title: $("OkoC"), apply: this.model.type.indexOf(3) > -1}
-                ],
-                returns: vectorResultSchemas[this.model.returns],
-                arguments: (function(args){
-                    var _ = [];
-                    if(!args) return [];
-                    else {
-                        for(let k of Object.keys(args)) {
-                            _.push({
-                                name: k,
-                                title: args[k].wiki?.title ? $(args[k].wiki.title) : null,
-                                validator: args[k].validator?.text ? $(args[k].validator?.text) : null,
-                                description: args[k]?.wiki?.description ? $(args[k].wiki.description) : null,
-                                schema: vectorResultSchemas[args[k].schema],
-                                required: !!args[k]?.required,
-                                default: args[k].default || null,
-                            })
-                        }
-                    }
-                    return _;
-                })(this.model.args)
-            }
-        } else return {};
-    }
-    /**
-     * Returns an inteface for input and output schemas.
-     */
-    get schema() {
-        return {
-            output: new OutputSchema(vectorResultSchemas[this.model.returns]),
-            form: new FormVectorSchema(this.model.args)
+            if(!VectorMethodsModels.find(m => model == m.name)) throw new Error($("j0tB", {name: model}));
+            else model = VectorMethodsModels.find(m => model == m.name);
+        } 
+        else if(typeof model == "object") model = model;
+        else throw new Error("Unknown VectorAnalysis model parameter type.");
+        Object.defineProperty(this, "model", {
+            readonly: true,
+            value: model
+        })
+        Object.defineProperty(this, "args", {
+            readonly: true,
+            value: {}
+        });
+        Object.defineProperty(this, "sample", {
+            readonly: true,
+            value: {}
+        });
+        Object.defineProperty(this, "name", {
+            readonly: true,
+            value: this.model.name
+        });
+        Object.defineProperty(this, "time", {
+            readonly: true,
+            value: {}
+        });
+        Object.defineProperty(this, "outputSchema", {
+            readonly: true,
+            value: this.model.output ? new Output(this.model.output) : null
+        });
+        for(let w of ["title","description","preprocessor"]) {
+            Object.defineProperty(this, w, {
+                readonly: true,
+                value: {
+                    key: this.model.wiki[w] || null,
+                    value: this.model.wiki[w] ? $(this.model.wiki[w]) : null
+                }
+            })
         }
+        
     }
     /**
-     * Applies the model filter to the parent, stores the result into the "vector" property and returns self. The Vector is the method ultimate input.
+     * The 'with' methods allows specifying the MatrixAnalysis arguments, either as a named object with properties or as a set of parameter arguments.
+     * @returns {self}
+     */
+    with() {
+        if(this.model.args ? Object.keys(this.model.args).length == 0: true) {
+            return this;
+        }
+        /** named config (object) */
+        else if(typeof arguments[0] == "object" && !Array.isArray(arguments[0]) ? arguments[0] ? Object.keys(arguments[0]).length > 0 : false : false) {
+            var parameters = arguments[0];
+            for(let key of Object.keys(this.model.args)) {
+                var arg = this.model.args[key];
+                if(!arg) throw new ArgumentError($("EFfS", {name: key, method: $(this.model.wiki.title)}));
+                else {
+                    arg = new Argument(arg.model, this.parent, arg.config || {});
+                    this.args[key] = arg.validate(parameters[key]);
+                }
+            }
+            return this;
+        } else {
+            for(let ai = 0; ai < Object.keys(this.model.args).length; ai++) {
+                //if(ai > Object.keys(this.model.args)) break;
+                var arg = new Argument(this.model.args[Object.keys(this.model.args)[ai]].model, this.parent, this.model.args[Object.keys(this.model.args)[ai]].config || {});                
+                this.args[Object.keys(this.model.args)[ai]] = arg.validate([...arguments][ai]);
+            }
+            return this;
+        }        
+    }
+    /**
+     * Runs the 
      * @param {*} config No imployed yet.
      * @returns {self}
      */
-    prepare(config){
-        if(!this.parent) throw new Error("The method cannot be called without a parent specified")
-        this.vector = this.filter ? this.parent.filter(this.filter) : this.parent;
-        return this;
-    }
-    /**
-     * Validates method arguments and returns self.
-     * @param {any} * The method arguments.
-     * @returns {self}
-     */
-    validate() {
-        if(!this.parent) return new Empty($("hKRq"));
-        var i = 0;
-        var args = Array.prototype.slice.call(arguments);
-        var rebuilt = [];
-        if((this.model.args || []).length === 0) return args;
-        for(let k of Object.keys(this.model.args)) {
-            var _validator = this.model.args[k]?.validator?.fn || function(v){return v};
-            if((!args[i] && args[i] !== 0 && args[i] !== false))
-            {
-                if(this.model.args[k]?.required) throw new ArgumentError($("dSWt", {name: k, title: $(this.model.args[k].wiki?.title), method: $(this.model.wiki?.title)}), this);
-                else rebuilt.push(this.model.args[k].default);
-            }
-            else {
-                try {
-                    rebuilt.push(_validator(args[i]));
-                } catch(e) {
-                    throw new ArgumentError(e, this)
-                }
-            }
-            i++;
-        }
-        this.args = rebuilt;
+    prepare(){
+        if(!this.parent) throw new Error($("PtZB"));
+        if(this.model.prepare) this.model.prepare(this);
         return this;
     }
     /**
@@ -1016,68 +874,32 @@ class VectorAnalysis {
      * @returns {self | any}
      */
     run() {
-        if(!this.parent) return new Empty($("hKRq"));
-        else if(this.model.type.indexOf(this.parent?.type()) === -1) return new Empty($("ibNu", {method: $(this.model.wiki.title), type: $(getVectorTypeLabelCode(this.parent))}));
-        this.runStart = new Date();
-        if(!this.input) this.prepare({});
-        if([...arguments].length > 0) this.validate(...arguments);
-        this.result = this.fn.call(this.vector, ...(this.args || []));
-        this.runEnd = new Date();
+        this.time.from = new Date();
+        if(!this.parent) throw new Error($("PtZB"));
+        if([...arguments].length > 0) this.with(...arguments);
+        this.prepare();        
+        var args = Object.entries(this.args).map(e => e[1]);
+        this.result = this.model.fn.call(new Array(...this.parent), ...args);
+        this.time.to = new Date();
         return this;
     }
     /**
-     * 
-     * @param {Vector} parent Specifies the vector on which the method should be applied.
-     * @returns {VectorMethod} Returns the original VectorMethod instance.
-     */
-    with(parent) {
-        this.parent = parent;
-        return this;
-    }
-    /**
-    * Returns duration of the "run" method (whatever it includes inside) in milliseconds.
+     * Returns duration of the "run" method (whatever it includes inside) in milliseconds.
      */
     duration() {
-        if(this.runStart && this.runEnd) return this.runEnd.getTime() - this.runStart.getTime();
+        if(this.time.from && this.time.to) return this.time.to.getTime() - this.time.from.getTime();
         else return null;
     }
 }
 
 VectorMethodsModels.forEach(function(m) {
     Vector.prototype[m.name] = function() {
-        var M = new VectorMethod(m, this);
-        return M.call(...arguments);
+        var M = new VectorAnalysis(m, this);
+        return M.with(...arguments).run().result;
     };
 });
 
-function getVectorTypeLabelCode(vector) {
-    switch (vector.type()) {
-        case 1:
-            return "kPSW";
-            break;
-        case 2:
-            return "UQoV";
-            break;
-        case 3:
-            return "WiEE";
-            break;
-        case 4:
-            return "LiPr";
-            break;
-        case 5:
-            return "sbFB";
-            break;
-        default:
-            return null;
-    }
-}
-
 const Models = {}
-function mapModels() {
-    VectorMethodsModels.map(function(m){Models[m.name] = new VectorMethod(m)});
-}
-mapModels();
-
 
 function register(model) {
     VectorMethodsModels.push(model);
@@ -1085,7 +907,6 @@ function register(model) {
         var M = new VectorMethod(model, this);
         return M.call(...arguments);
     };
-    mapModels();
 }
 
 module.exports = {
@@ -1094,7 +915,6 @@ module.exports = {
     NumericVector: NumericVector,
     StringVector: StringVector,
     BooleanVector: BooleanVector,
-    VectorMethod: VectorMethod,
     VectorAnalysis: VectorAnalysis,
     Models: Models,
     VectorOverview: function() {

@@ -3,12 +3,37 @@ var {Matrix} = require("./matrix");
 var {NumericVector,StringVector,BooleanVector} = require("./vector");
 
 var lib = {
+    any: {
+        title: "oMas",
+        //validator: "NfvF",
+        mdType: "oMas",
+        tag: {
+            control: "input",
+            type: "any"
+        },
+        validate: function(value, parent, model){
+            return value;
+        }
+    },
+    number: {
+        title: "pelN",
+        validator: "NfvF",
+        mdType: "pelN",
+        tag: {
+            control: "input",
+            type: "number"
+        },
+        validate: function(value, parent, model){
+            if(isNaN(value)) throw new Error($("Jphg",{name: model.name, title: $(model.title), value: value}));
+            else return Number(value);
+        }
+    },
     boolean: {
         title: "kbla",
         validator: "GHFj",
         mdType: "kbla",
         tag: {
-            type: "boolean"
+            control: "boolean"
         },
         validate: function(value, parent){
             if(value) return true;
@@ -20,15 +45,15 @@ var lib = {
         validator: "dFiw",
         mdType: "pelN",
         tag: {
-            type: "input",
-            allows: "number",
+            control: "input",
+            type: "number",
             min: 1,
             step: 1            
         },
-        validate: function(value, parent){
-            if(isNaN(value)) throw new Error($("7lbs"));
-            else if(Math.round(Number(value)) < 1) throw new Error("BaeM");
-            else if(Number(value) % 1 != 0) throw new Error($("VxSV"));
+        validate: function(value, parent, model){
+            if(isNaN(value)) throw new Error($("Jphg", {value: value}));
+            else if(Math.round(Number(value)) < 1) throw new Error($("BaeM",{name: model.name, title: $(model.title), value: value}));
+            else if(Number(value) % 1 != 0) throw new Error($("VxSV",{name: model.name, title: $(model.title), value: value}));
             else return Number(value);
         }
     },
@@ -37,14 +62,31 @@ var lib = {
         validator: "dFiw",
         mdType: "ffka",
         tag: {
-            type: "input",
-            allows: "number",
+            control: "input",
+            type: "number",
             min: 0.0000000000000001,
             step: 0.0000000000000001    
         },
-        validate: function(value, parent){
-            if(isNaN(value)) throw new Error($("7lbs"));
-            else if(Number(value) <= 0) throw new Error("baSh");
+        validate: function(value, parent, model){
+            if(isNaN(value)) throw new Error($("Jphg", {name: model.name, title: $(model.title), value: value}));
+            else if(Number(value) <= 0) throw new Error($("baSh", {name: model.name, title: $(model.title), value: value}));
+            else return Number(value);
+        }
+    },
+    zeroToOneInc: {
+        title: "OQnL",
+        validator: "dFiw",
+        mdType: "ffka",
+        tag: {
+            control: "input",
+            type: "number",
+            min: 0,
+            max: 1,
+            step: 0.0000000000000001    
+        },
+        validate: function(value, parent, model){
+            if(isNaN(value)) throw new Error($("Jphg", {name: model.name, title: $(model.title), value: value}));
+            else if(Number(value) < 0 || Number(value) > 1) throw new Error($("vKlu", {name: model.name, title: $(model.title), value: value}));
             else return Number(value);
         }
     },
@@ -56,7 +98,7 @@ var lib = {
         isVector: true,
         isMultiple: false,
         tag: {
-            type: "select",
+            control: "select",
             multiple: false,
             vectorTypes: [1,2,3]
         },
@@ -72,7 +114,7 @@ var lib = {
         isVector: true,
         isMultiple: false,
         tag: {
-            type: "select",
+            control: "select",
             multiple: false,
             vectorTypes: [1]
         },
@@ -89,7 +131,7 @@ var lib = {
         isVector: true,
         isMultiple: false,
         tag: {
-            type: "select",
+            control: "select",
             multiple: false,
             vectorTypes: [3]
         },
@@ -106,7 +148,7 @@ var lib = {
         isVector: true,
         isMultiple: true,
         tags: {
-            type: "select",
+            control: "select",
             multiple: true,
             vectorTypes: [1]
         },
@@ -147,17 +189,46 @@ var lib = {
         ],
         default: 1,
         tags: {
-            type: "select",
+            control: "select",
             multiple: false
         },
         validate: function(value, parent, model){
-            if(model.enums.map(e => value).indexOf(Number(value)) < 0) {
-                var keys = model.enums.map(e => `${e.value} = ${e.title}`).join(",")
-                throw new Error($("HhLt", {value: value, keys: keys}))
-            } else return Number(value);
+            return validateEnum(value, parent, model);
         }
     },
-
+    frequencyOrder: {
+        type: "enum",
+        title: "gZCx",
+        validator: "dKFL",
+        mdType: "u5oV",
+        isEnum: true,
+        enums: [
+            {
+                value: 1, 
+                key: "AUbD"
+            },
+            {
+                value: 2, 
+                key: "WSJH"
+            },
+            {
+                value: 3, 
+                key: "dkxz"
+            },
+            {
+                value: 4, 
+                key: "vJCU"
+            }
+        ],
+        default: 1,
+        tags: {
+            control: "select",
+            multiple: false
+        },
+        validate: function(value, parent, model){
+            return validateEnum(value, parent, model);
+        }
+    },
 }
 
 class Argument {
@@ -196,11 +267,16 @@ class Argument {
             value: $(model.validator) || null
         };
         this.isVector = model.isVector || false;
-        
         this.validate = function(value) {
-            if(!model.default !==undefined && (value === undefined || value === null)) return model.default;
-            else if(!model.required && (value === undefined || value === null)) return undefined;
-            else if(model.required && (value === undefined)) throw new Error($("HOuY"));
+            if(model.default !==undefined && (value === undefined || value === null)) {
+                return model.default;
+            }
+            else if(!model.required && (value === undefined || value === null)) {
+                return undefined;
+            }
+            else if(model.required && (value === undefined)) {
+                throw new Error($("HOuY", {name: model.name, title: $(model.title)}));
+            }
             else return model.validate(value, parent, model);
         }
     }
@@ -238,6 +314,13 @@ function parseMatrix(arr, parent) {
         });
         return M;
     }
+}
+
+function validateEnum(value, parent, model) {
+    if(model.enums.map(e => e.value).indexOf(Number(value)) < 0) {
+        var keys = model.enums.map(e => `${e.value} = ${$(e.key)}`).join(", ")
+        throw new Error($("HhLt", {name: $(model.name), title: $(model.title), value: value, keys: keys}))
+    } else return Number(value);
 }
 
 module.exports = {Argument}

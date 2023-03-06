@@ -1,9 +1,16 @@
 var {Matrix, MatrixAnalysis} = require("./libs/matrix");
+var {Vector, NumericVector, StringVector, BooleanVector, VectorAnalysis} = require("./libs/vector");
 var {Argument} = require("./libs/argument");
 var {Output} = require("./libs/output");
 var locale = require("./libs/locale");
 //locale.setDefault("en-GB");
 var $ = locale.call
+var vectorMethods = [
+    "sum",
+    "count",
+    "avg",
+    "stdev"
+]
 var matrixMethods = [
     "linreg",
     "correlPearson",
@@ -20,6 +27,21 @@ var matrixMethods = [
 
 String.prototype.firstUp = function() {
     return this[0].toLocaleUpperCase() + this.slice(1);
+}
+
+Vector.toMarkdown = function(){
+    // title and overview
+    var doc = `# ${$("XY70")}\n\n${$("Ld1F")}\n\n${$("ISCX")}\n\n${$("1Tcp")}\n\n`;
+    doc += `| ${$("wRbe")} | ${$("rlTY")} |\n| :--- | :--- |\n`;
+    doc += vectorMethods.map(function(m) {
+        var ma = new VectorAnalysis(m);
+        return `| ${ma.name} | [${ma.title.value.firstUp()}](#${ma.name}) |`
+    }).join("\n");
+    doc += "\n\n";
+    doc += vectorMethods.map(function(m){
+        return new VectorAnalysis(m).toMarkdown();
+    }).join("\n\n");
+    return doc;
 }
 
 Matrix.toMarkdown = function(){
@@ -44,7 +66,10 @@ Output.prototype.toMarkdown =function(){
     } else if(this.type == "array") {
        m += createObjectPropertyMarkdown(this, m);
     } else {
-        m =+ `A[<b>${this.name}</b>${this.title.value}]`
+        try {
+            m =+ `A[<b>${this.name}</b>${this.title?.value}]`
+        } 
+        catch(e) {debugger};
     }
     m += "\n```";
     return m;
@@ -95,6 +120,37 @@ MatrixAnalysis.prototype.toMarkdown = function(){
         m += `### ${$("nzmJ")}\n\n`;
         if(typeof examples[this.name] == "function") {
             m += "```js\n" + e.stringify() + "\n```\n\n"
+        }
+        else {
+            for(var e of examples[this.name]) {
+                m += `#### ${$(e.title ? e.title + "\n\n" : "")}${e.description ? '<sub>' + $(e.description) + "</sub>\n\n" : ""}` + "```js\n" + e.code.stringify() + "\n```\n\n"
+            }
+        }
+        
+    }
+    if(this.model.output) {
+        m += "### Schéma výstupu\n\n" + new Output(this.model.output).toMarkdown();
+    }
+    return m;
+}
+
+VectorAnalysis.prototype.toMarkdown = function(){
+    var m = `## [${this.title.value.firstUp()}](#${this.name})\n\n${this.description.value ? this.description.value + "\n\n": ""}`;    
+    /* arguments */
+    var headers = ["QUJS","jBGO","dmmV","tGqA","VPYX","pDgb"];
+    m += `### ${$("FRpk")}\n\n`
+    m += "| " + headers.map(h => $(h) + " |").join("") + "\n";
+    m += "| " + headers.map(h => ":--- |").join("")  + "\n";
+    if(this.model.args) {
+        for(let a of Object.keys(this.model.args)) {
+            m += new Argument(this.model.args[a].model, null, this.model.args[a].config).toMarkdown();
+        }
+    }
+    if(this.preprocessor.value) m += `\n### ${"Preprocessor"}\n\n${this.preprocessor.value}\n\n`;
+    if(examples[this.name]) {
+        m += `### ${$("nzmJ")}\n\n`;
+        if(typeof examples[this.name] == "function") {
+            m += "```js\n" + examples[this.name].stringify() + "\n```\n\n"
         }
         else {
             for(var e of examples[this.name]) {
@@ -176,6 +232,84 @@ const examples = {
     max: function(){
         var numeric_max = new NumericVector(4.5, 3.9, 5, 6, 7, 5.7, 9.1, 5.3, 7.2, 6.9, 6, 7.5, 5.3, 7.1, 8.2, 1).max(); /* = 9.1 */;
         var string_max = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale", "Gauss", "Poisson").max(); /* = Poisson */
+    },
+    range: function(){
+        var range = new NumericVector(5,2,-15,-16.3,12,null, null, 12,13,7).range(); /* = 22 */
+    },
+    varc: function(){
+        var population = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc();  /* = 0.227 */
+        var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc(true); /* = 0.24 */ 
+    },
+    percentile: function(){
+        var score = new NumericVector(10,20,15,25,23,19,18,17,24,23);
+        var median = score.percentile(0.5); /* = 19.5 */
+        var q25 = score.percentile(0.25); /* = 17.25 */
+        var max = score.percentile(1); /* = 25 */
+    },
+    frequency: [
+        {
+            name: "example1",
+            title: "",
+            description: "",
+            code: function(){
+                var numeric_vector_no_order = new NumericVector(5,2,3,2,3,3,1,6,3).frequency();
+            }            
+        },
+        {
+            name: "example1",
+            title: "",
+            description: "",
+            code: function(){
+                var string_vector_desc_value = new StringVector("E","B","C","B","C","C","A","F","C").frequency(3);
+            }            
+        },
+        {
+            name: "example1",
+            title: "",
+            description: "",
+            code: function(){
+                var boolean_vector_desc_frequency = new BooleanVector(true, false, null, true, null, null).frequency(4);
+            }            
+        }
+    ],
+    geomean: function(){
+        var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).geomean(); /* = 21.24*/
+    },
+    harmean: function(){
+        var x = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).harmean(); /* = 21.03*/
+    },
+    median: function(){
+        var median = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).median(); /* = 21*/
+    },
+    mode: function(){
+        var x = new NumericVector(1,2,3,4,3,4,5,3).mode(); /* = 3 */
+        var y = new StringVector("a",null,null,"b","c","d",null,"b").mode(); /* = null */
+        var z = new BooleanVector(true, false, true).mode(); /* = true */
+    },
+    sem: function(){
+        var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).SEM(); /* = 0.67*/
+    },
+    skewness: function(){
+        var skewness_population = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).skewness(); /* = 0.52*/
+        var skewness_sample = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).skewness(true); /* = 0.027*/
+    },
+    kurtosis: function(){
+        var kurtosis = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).kurtosis(); /* = 0.425*/
+    },
+    ttest: function() {
+        var T = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1).ttest(10);
+    },
+    mci: function(){
+        var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).mci(0.95);
+    },
+    pci: function(){
+        var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).pci(5, 0.95);
+    },
+    swtest: function(){
+        var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).swtest(); 
+    },
+    kstest: function(){
+        var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).kstest(); 
     },
     correlPearson: [
         {
@@ -411,7 +545,9 @@ module.exports = function() {
     var _origin = locale.getDefault();
     for(var l of locale.listLanguages()) {
         locale.setDefault(l);
-        var matrix = Matrix.toMarkdown();
-        require("fs").writeFileSync(`./docs/${l}/matrix.md`, matrix);
+        //var matrix = Matrix.toMarkdown();
+        //require("fs").writeFileSync(`./docs/${l}/matrix.md`, matrix);
+        var vector = Vector.toMarkdown();
+        require("fs").writeFileSync(`./docs/${l}/vector.md`, vector);
     }
 }

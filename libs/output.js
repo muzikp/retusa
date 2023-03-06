@@ -12,7 +12,7 @@ class Output {
             this.properties = createObjectProperties(model.properties);
         }
         else if(model.type == "array") {
-            this.properties = createObjectProperties(model.properties);
+            this.properties = createObjectProperties(model.items.properties);
         }
     }
 }
@@ -81,6 +81,142 @@ const lib = {
     "uint": {
         "title": "IrhN", 
         "type": "number",
+    },
+    "histogram": {
+        "title": "PAwR", 
+        "type": "array",
+        "items":{
+            "title": "Items", 
+            "type": "object",
+            "properties": {
+                "from": {
+                    "title": "jbqY", 
+                    "type": "number",
+                },
+                "to": {
+                    "title": "GlDV", 
+                    "type": "number",
+                },
+                "n": {
+                    "title": "eHkc", 
+                    "type": "integer",
+                },
+                "nc": {
+                    "title": "Dwuz", 
+                    "type": "integer",
+                },
+                "p": {
+                    "title": "iDVx", 
+                    "type": "percent",
+                },
+                "pc": {
+                    "title": "oIyG", 
+                    "type": "percent",
+                }
+            }
+        }        
+    },
+    "frequency": {
+        "title": "dYJK", 
+        "type": "array",
+        "items":{
+            "title": "Items", 
+            "type": "object",
+            "properties": {
+                "value": {
+                    "title": "ZVbP", 
+                    "type": "any",
+                    "pattern": "^.*$"
+                },
+                "frequency": {
+                    "title": "mXpR", 
+                    "type": "integer",
+                }
+            }
+        }
+    
+    },
+    "ttest": {
+        "title": "VEAt", 
+        "type": "object",
+        "properties": {
+            "t": snippets.ttest,
+            "p": snippets.sig,
+            "n": { 
+                "title": "bLoI", 
+                "type": "integer"
+            }
+        }
+    },
+    "mci": {
+        "title": "yHjW", 
+        "type": "object",
+        "properties": {
+            "m": {
+                "title": "rR94", 
+                "type": "number",
+            },
+            "sig": snippets.siglevel,
+            "delta": {
+                "title": "NzBg", 
+                "type": "number",
+            },
+            "lb": { 
+                "title": "GynK", 
+                "type": "number",
+            },
+            "ub": {
+                "title": "iIPc", 
+                "type": "number",
+            }
+        }
+    },
+    "pci": {
+        "title": "ZhjW", 
+        "type": "object",
+        "properties": {
+            "p": {
+                "title": "nCHN", 
+                "type": "percent",
+            },
+            "sig": snippets.siglevel,
+            "delta": {
+                "title": "NzBg", 
+                "type": "percent",
+            },
+            "lb": {
+                "title": "GynK", 
+                "type": "percent",
+            },
+            "ub": {
+                "title": "iIPc", 
+                "type": "percent",
+            }
+        }
+    },    
+    "shapirowilk": {
+        "title": "byTa", 
+        "type": "object",
+        "properties": {
+            "W": {
+                "title": "nZvR", 
+                "type": "number",
+            },
+            "df": snippets.df,
+            "p": snippets.sig
+        }
+    },
+    "kstest": {
+        "title": "DLoe", 
+        "type": "object",
+        "properties": {
+            "T": {
+                "title": "jBSf", 
+                "type": "number",
+            },
+            "df": snippets.df,
+            "p": snippets.sig
+        }
     },
     "correlPearson": {
         "title": "IIlO", 
