@@ -5,16 +5,6 @@ const { StringVector } = require("./libs/vector");
 //framework.docs.publish(require("fs"));
 
 with (framework) {
-    var M = new Matrix(
-        new StringVector("elementary","elementary","elementary","elementary","high school","high school","high school","high school","college","college","college","college").name("grade"),
-        new StringVector("A","B","C","D","A","B","C","D","A","B","C","D").name("group"),
-        new NumericVector(39,25,25,27,17,30,40,29,12,41,62,53).name("frequencies")
-    );
-    var c_a = M.contingency(0,1,2);
-    var c_b = M.analyze("contingency").run(0,1,2);
-    var c_c = M.analyze("contingency").run("grade","group","frequencies");
-    var c_d = M.analyze("contingency").run({rows: 0, columns: 1, n: 2});
-    // c_a = c_b.result = c_c.result = c_d.result
     var docs = require("./docs");
     docs();
     //debugger;

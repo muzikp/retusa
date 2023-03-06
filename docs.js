@@ -54,7 +54,7 @@ String.prototype.firstUp = function() {
 Vector.toMarkdown = function(){
     // title and overview
     var doc = "";
-    //var doc = `# ${$("XY70")}\n\n${$("Ld1F")}\n\n${$("ISCX")}\n\n${$("1Tcp")}\n\n`;
+    var doc = `# ${$("arer")}\n\n${$("U8io")}\n\n`;
     doc += `| ${$("wRbe")} | ${$("rlTY")} |\n| :--- | :--- |\n`;
     doc += vectorMethods.map(function(m) {
         var ma = new VectorAnalysis(m);
@@ -638,5 +638,6 @@ module.exports = function() {
         require("fs").writeFileSync(`./docs/${l}/matrix.md`, matrix);
         var vector = Vector.toMarkdown();
         require("fs").writeFileSync(`./docs/${l}/vector.md`, vector);
+        require("fs").writeFileSync(`./docs/${l}.md`, vector + "\n\n" + matrix);
     }
 }
