@@ -180,7 +180,7 @@ MatrixAnalysis.prototype.toMarkdown = function(){
 }
 
 VectorAnalysis.prototype.toMarkdown = function(){
-    var m = `## [${this.title.value.firstUp()}] {#${this.name}}\n\n${this.description.value ? this.description.value + "\n\n": ""}`;    
+    var m = `## [${this.title.value.firstUp()}](#${this.name})\n\n${this.description.value ? this.description.value + "\n\n": ""}`;    
     if(this.model.args) {
         /* arguments */
         var headers = ["QUJS","jBGO","dmmV","tGqA","VPYX","pDgb"];
