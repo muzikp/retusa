@@ -29,7 +29,7 @@ Vector functions are statistical methods that are performed on vector instances.
 | swtest | [Shapiro-Wilk W test](#swtest) |
 | kstest | [Kolmogorov-Smirnov test](#kstest) |
 
-## [Sum]{#sum}
+## [Sum] {#sum}
 
 Returns the sum of all non-empty numeric values of a vector.
 
@@ -54,7 +54,7 @@ style sum stroke:#4967A4;
 
 ```
 
-## [Count]{#count}
+## [Count] {#count}
 
 Returns the count of all members of a vector, including empty values.
 
@@ -76,7 +76,7 @@ style count stroke:#4967A4;
 
 ```
 
-## [Mode]{#mode}
+## [Mode] {#mode}
 
 Returns the most frequent value in the vector (if the most frequent value is empty, returns the empty value). If there are more of the most frequent values (e.g. the frequency of X and Y values is the same), it returns the first value found in the vector.
 
@@ -98,7 +98,7 @@ style mode stroke:#75716F;
 
 ```
 
-## [Arithmetic mean]{#avg}
+## [Arithmetic mean] {#avg}
 
 Returns the arithmetic mean (i.e. the quotient of the sum and the number of vector values) of all non-empty values (i.e. including zeros).
 
@@ -123,7 +123,7 @@ style avg stroke:#4967A4;
 
 ```
 
-## [Minimum]{#min}
+## [Minimum] {#min}
 
 Returns the least non-empty value. For text, returns the first value from the alphabetical order.
 
@@ -141,7 +141,7 @@ var string_min = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 
 
-## [Maximum]{#max}
+## [Maximum] {#max}
 
 Returns the highest non-empty value. In the case of text, it returns the last value from the alphabetical order.
 
@@ -167,7 +167,7 @@ style max stroke:#75716F;
 
 ```
 
-## [Range]{#range}
+## [Range] {#range}
 
 Returns the difference between the largest and smallest non-empty values.
 
@@ -192,7 +192,7 @@ style range stroke:#4967A4;
 
 ```
 
-## [Geometric mean]{#geomean}
+## [Geometric mean] {#geomean}
 
 The geometric mean is a statistical indicator that is used to calculate the average value of some number or quantity. Unlike the arithmetic mean, which is calculated as the sum of all values in a set divided by the number of those values, the geometric mean is calculated as the nth root of the product of n numbers in the set. The geometric mean is often used to calculate growth or cumulative return in investments because it accounts for changes in the percentage growth of values over time. It is also used in geometry to calculate the average side length of an n-gon and in biology to calculate the average size of cells or organisms in a population.
 
@@ -217,7 +217,7 @@ style geomean stroke:#4967A4;
 
 ```
 
-## [Harmonic mean]{#harmean}
+## [Harmonic mean] {#harmean}
 
 The harmonic mean is a statistical indicator that is used to calculate the average value of some number or quantity. Unlike the arithmetic mean and the geometric mean, which are based on the addition or multiplication of values, the harmonic mean is calculated as the quotient of the number of numbers in the set and the sum of their reciprocals. The harmonic mean is used in situations where it is important to account for how speed or power changes over time or in different situations. For example, it is used to calculate average speed, average power or average resistance in electronic circuits. It is also used in finance to calculate the average return on investments over different time periods.
 
@@ -242,7 +242,7 @@ style harmean stroke:#4967A4;
 
 ```
 
-## [Median]{#median}
+## [Median] {#median}
 
 Returns the median, or middle value, of the non-empty values of a vector. This is the 50% percentile.
 
@@ -267,7 +267,7 @@ style median stroke:#4967A4;
 
 ```
 
-## [Percentile]{#percentile}
+## [Percentile] {#percentile}
 
 Using the percentile, we can examine the distribution of a numerical series, by first sorting the series from the smallest to the largest member (number), and then selecting the first N % of members (this N is a parameter), where the last member in the selection represents the given percentile, a specific number . If the number of members in the sample is even, the percentile is calculated as the average of two adjacent values, if it is even, the percentile is just the last value.
 
@@ -300,7 +300,7 @@ style percentile stroke:#4967A4;
 
 ```
 
-## [Standard deviation]{#stdev}
+## [Standard deviation] {#stdev}
 
 Returns the standard deviation of non-empty values. The standard deviation is a statistical indicator that indicates how much the values in a given data set differ from each other. The standard deviation is expressed as a number that indicates how much the average value deviates from the true value in a given data set. The standard deviation is useful when comparing the amount of dispersion of data in different sets or in different groups within a single data set. The larger the standard deviation, the more the values in a given data set differ from each other.
 
@@ -331,7 +331,7 @@ style stdev stroke:#4967A4;
 
 ```
 
-## [Variance]{#variance}
+## [Variance] {#variance}
 
 Returns the variance value of this vector. The variance value is equal to the square of the standard deviation.
 
@@ -362,7 +362,7 @@ style variance stroke:#4967A4;
 
 ```
 
-## [Coefficient of variation]{#varc}
+## [Coefficient of variation] {#varc}
 
 The coefficient of variation (also called relative variance) is a statistical indicator that measures the degree of variability or dispersion of data relative to its mean value. It is a dimensionless measure of variability that allows the variance of different data sets to be compared regardless of the units in which the data are expressed. The coefficient of variation is calculated as the ratio of the standard deviation (sigma) to the mean (x) in the data set, multiplied by 100 to express it as a percentage. where the coefficient of variation is low, it means that the data are relatively homogeneous or not widely dispersed relative to the mean. If, on the other hand, it is high, it means that the data is very diverse or significantly different from the average. The coefficient of variation is mainly used to compare the variability between different data sets. For example, it is often used in biology, medicine, economics, psychology, and sociology to measure the variability of different populations or groups.
 
@@ -388,7 +388,7 @@ style varc stroke:#4967A4;
 
 ```
 
-## [Histogram]{#histogram}
+## [Histogram] {#histogram}
 
 Returns the histogram matrix of the given vector. The method can be chosen with or without parameter specification. If the parameter 'maximum number of intervals' (maxIntervals) is not specified, its value is automatically calculated as the variation range/root of the number of elements. If the parameter 'fixed interval size' (fixedInterval) is specified, this value is taken as decisive for the number of intervals. The two values are not compatible (although they do not return an error), when specifying both, the maxIntervals parameter is taken as a priority.
 
@@ -470,7 +470,7 @@ style pc stroke:#75716F;
 
 ```
 
-## [Frequency table]{#frequency}
+## [Frequency table] {#frequency}
 
 Returns a frequency table object with the breakdown of elements and their frequency.
 
@@ -509,7 +509,7 @@ style n stroke:#75716F;
 
 ```
 
-## [Standard error of the mean]{#sem}
+## [Standard error of the mean] {#sem}
 
 Returns the value of the standard error of the estimate of the mean. The standard error of the mean is a statistical measure of the variability of the sample mean of the estimated parameter in the entire population. This is an estimate of the standard deviation of the sample mean. The mean error of the mean is calculated as the ratio of the estimated standard deviation of the sample mean to the square root of the sample size. The larger the sample size, the smaller the mean error of the mean, meaning that the estimate of the sample mean is more accurate and more closely aligned with the entire population mean. The mean error of the mean is useful for estimating confidence intervals of the sample mean, which allows us to determine how accurately it estimates the population mean.
 
@@ -534,7 +534,7 @@ style sem stroke:#4967A4;
 
 ```
 
-## [Skewness]{#skewness}
+## [Skewness] {#skewness}
 
 Returns the skewness of the distribution, i.e. the asymmetry of the distribution around the mean value of the vector.
 
@@ -565,7 +565,7 @@ style skewness stroke:#4967A4;
 
 ```
 
-## [Kurtosis]{#kurtosis}
+## [Kurtosis] {#kurtosis}
 
 Returns the excess value of the data set. In statistics, kurtosis refers to the measure of how much the values in a collection of data differ from the mean value. Skewness is usually calculated for a data distribution curve, which is a graphical representation of the distribution of values in a given collection of data.
 There are two basic types of kurtosis: platykurtosis and leptokurtosis. Platykurtosis occurs when the values of a vector are distributed more or less uniformly around the mean value. This distribution appears as a U-shaped distribution curve that has a flat top. Conversely, leptokurtosis occurs when the values in a data collection are distributed with a significant deviation from the mean value. This distribution manifests itself as a 'peaked hill letter' or 'pointed valley letter' shaped distribution curve.
@@ -592,7 +592,7 @@ style kurtosis stroke:#4967A4;
 
 ```
 
-## [Confidence interval of the mean]{#mci}
+## [Confidence interval of the mean] {#mci}
 
 Returns the statistical log of the confidence interval estimate of the sample mean at a specified significance level. If the number of cases is less than 30, the Student's T-distribution is used, otherwise the standardized normal distribution is used.
 
@@ -637,7 +637,7 @@ style ub stroke:#4967A4;
 
 ```
 
-## [Confidence interval of the proportion]{#pci}
+## [Confidence interval of the proportion] {#pci}
 
 Returns the statistical log of the confidence interval estimate of the sample proportion at a specified significance level.
 
@@ -683,7 +683,7 @@ style ub stroke:#75716F;
 
 ```
 
-## [One-sample t-test]{#ttest}
+## [One-sample t-test] {#ttest}
 
 Returns the statistical log for a one-sample t-test given the population mean.
 
@@ -722,7 +722,7 @@ style n stroke:#75716F;
 
 ```
 
-## [Shapiro-Wilk W test]{#swtest}
+## [Shapiro-Wilk W test] {#swtest}
 
 Returns the statistical log of the Shapiro-Wilk W test of normality of the distribution of vector values. The Shapiro-Wilk test is a statistical test used to test the hypothesis that the data come from a normal distribution. This test is often used to verify the normality of data in statistical analysis. The Shapiro-Wilk test is based on comparing the value of the quartiles of the data with the values of the quartiles of a normal distribution. When the quartile values of the data are similar to the quartile values of the normal distribution, it is likely that the data comes from a normal distribution. Otherwise, it is likely that the data is not normal. When using the Shapiro-Wilk test, it should be noted that this test has low sensitivity for large samples, i.e. for large samples the test may be less reliable in detecting non-normality. Therefore, other tests of normality, such as the Anderson-Darling test or the Kolmogorov-Smirnov test, are often used for large samples.
 
@@ -756,7 +756,7 @@ style p stroke:#75716F;
 
 ```
 
-## [Kolmogorov-Smirnov test]{#kstest}
+## [Kolmogorov-Smirnov test] {#kstest}
 
 Returns the statistical log of the Komogorov-Smirnov normality test of the distribution of vector values. It does not currently calculate the significance level of the test. The Kolmogorov-Smirnov test (often abbreviated as the K-S test) is a statistical test used to test the hypothesis that data come from a particular distribution. This test compares the data distribution to the theoretical distribution that the data is assumed to come from and evaluates whether the data values are close enough to the theoretical distribution that the hypothesis that the data come from the given distribution can be considered true.Kolmogorov test -Smirnov is often used to test the normality of data, but it can also be used to test if the data comes from another theoretical distribution, such as the exponential or binomial distribution. The Kolmogorov-Smirnov test is generally considered to be one of the most accurate tests of normality, but it has limited sensitivity for small samples, i.e. it may be less reliable in detecting non-normality for small samples. Therefore, other tests of normality, such as the Shapiro-Wilk test or the Anderson-Darling test, are often used for small samples.
 
