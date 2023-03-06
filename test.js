@@ -5,9 +5,16 @@ const { StringVector } = require("./libs/vector");
 //framework.docs.publish(require("fs"));
 
 with (framework) {
+    var score = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1);
+    var h1 = score.histogram(null, 3);
+    var h2 = score.analyze("histogram").run(null, 3);
+    var h3 = score.histogram({fix: 3});
+    var h4 = score.analyze("histogram").run({fix: 3});
+    // h1 = h3 = h2.result = h4.result
+
     var docs = require("./docs");
     docs();
-    debugger;
+    //debugger;
     return;
 
 

@@ -265,5 +265,11 @@ module.exports = {
 	"ffka": "kladné číslo",
 	"baSh": "Hodnota argumentu '${name}' (${title}) musí být vyšší nebo rovna nule. Zadána hodnota ${value}.",
 	"j0tB": "Vektorový model metody '${name}' nebyl nalezen",
-	"PtZB": "Analýzu nelze provést bez specifikace instance vektoru."
+	"PtZB": "Analýzu nelze provést bez specifikace instance vektoru.",
+	"2zlT": "Bez upřesnění intervalu",
+	"X8Ft": "Metoda je volána bez parametrů, tzn. že velikost intervalu je automaticky spočítána jako (maximum-minimum)/odmocnina(počet prvků).",
+	"lh3Z": "Se specifikací počtu intervalu",
+	"mHb0": "Argument 'max' upřesní, na kolik kategorií (intervalů) má být histogram rozdělen. Argument 'max' je možné upřesnit buďto jako první parametr, nebo - pokud je argumentem objekt - jako vlatnost 'max'.",
+	"3Pll": "Se specifikací velikosti intervalu",
+	"AZXR": "Argument 'fix' nastaví pevnou velikost intervalu. Argument je možné upřesnit buďto jako druhý parametr (v tom případě musí být první argument null), nebo - pokud je argumentem objekt - jako vlatnost 'fix'. Argument 'max' má před argumentem 'fix' prioritu."
 }

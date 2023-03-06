@@ -265,5 +265,11 @@ module.exports = {
 	"ffka": "positive decimal",
 	"baSh": "Argument '${name}' (${title}) value must be greater or equal to one. Thrown value: ${value}.",
 	"j0tB": "Vector method model '${name}' was not found.",
-	"PtZB": "Analysis cannot be processed without a vector specification."
+	"PtZB": "Analysis cannot be processed without a vector specification.",
+	"2zlT": "No interval configuration",
+	"X8Ft": "The method is called without parameters, i.e. that the size of the interval is automatically calculated as (maximum-minimum)/root(number of elements).",
+	"lh3Z": "Total of intervals specified",
+	"mHb0": "The 'max' argument specifies how many categories (intervals) the histogram should be divided into. The 'max' argument can be specified either as the first parameter or - if the argument is an object - as the 'max' property.",
+	"3Pll": "Interval size specified",
+	"AZXR": "The 'fix' argument sets a fixed interval size. The argument can be specified either as a second parameter (in which case the first argument must be null), or - if the argument is an object - as a 'fix' attribute. The 'max' argument takes precedence over the 'fix' argument."
 }

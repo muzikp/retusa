@@ -8,8 +8,28 @@ var $ = locale.call
 var vectorMethods = [
     "sum",
     "count",
+    "mode",
     "avg",
-    "stdev"
+    "min",
+    "max",
+    "range",
+    "geomean",
+    "harmean",
+    "median",
+    "percentile",
+    "stdev",
+    "variance",
+    "varc",
+    "histogram",
+    "frequency",
+    "sem",
+    "skewness",
+    "kurtosis",
+    "mci",
+    "pci",
+    "ttest",
+    "swtest",
+    "kstest"    
 ]
 var matrixMethods = [
     "linreg",
@@ -31,7 +51,8 @@ String.prototype.firstUp = function() {
 
 Vector.toMarkdown = function(){
     // title and overview
-    var doc = `# ${$("XY70")}\n\n${$("Ld1F")}\n\n${$("ISCX")}\n\n${$("1Tcp")}\n\n`;
+    var doc = "";
+    //var doc = `# ${$("XY70")}\n\n${$("Ld1F")}\n\n${$("ISCX")}\n\n${$("1Tcp")}\n\n`;
     doc += `| ${$("wRbe")} | ${$("rlTY")} |\n| :--- | :--- |\n`;
     doc += vectorMethods.map(function(m) {
         var ma = new VectorAnalysis(m);
@@ -59,39 +80,40 @@ Matrix.toMarkdown = function(){
     return doc;
 }
 
-Output.prototype.toMarkdown =function(){
+Output.prototype.toMarkdown =function(analysis){
     var m = "```mermaid\ngraph TD\n";
     if(this.type == "object") {
-        m += createObjectPropertyMarkdown(this, m);
+        m += createObjectPropertyMarkdown(this);
     } else if(this.type == "array") {
-       m += createObjectPropertyMarkdown(this, m);
+       m += createObjectPropertyMarkdown(this);
     } else {
-        try {
-            m =+ `A[<b>${this.name}</b>${this.title?.value}]`
-        } 
-        catch(e) {debugger};
-    }
+        m += `A[<b>${analysis ? mmb(analysis.title.value) : ""}<br></b>${mmb(this.title.value)}]`
+    } 
     m += "\n```";
     return m;
-
 }
 
 function createObjectPropertyMarkdown(parent) {
     var m = "";
     for(let p of Object.entries(parent.properties || parent.items.properties).map(e => e[1])) {
         if(p.type == "object") {
-            m += `${parent.name} --> ${p.name}((<b>${p.name}</b><br><u>${p.title.value}</u>))\n`;
+            m += `${parent.name} --> ${p.name}((<b>${p.name}</b><br><u>${mmb(p.title.value)}</u>))\n`;
             m += createObjectPropertyMarkdown(p)
         }
         else if(p.type == "array") {
-            m += `${parent.name} --> ${p.name}[[<b>${p.name}</b><br>${p.title.value}]]\n`;
+            m += `${parent.name} --> ${p.name}[[<b>${p.name}</b><br>${mmb(p.title.value)}]]\n`;
             m += createObjectPropertyMarkdown(p)
         }
         else {
-            m += `${parent.name} --> ${p.name}[<b>${p.name}</b><br>${p.title.value} <br><i>${formatMdPrimitiveType(p.type)}</i>]\n`;
+            m += `${parent.name} --> ${p.name}[<b>${p.name}</b><br>${mmb(p.title.value)} <br><i>${mmb(formatMdPrimitiveType(p.type))}</i>]\n`;
         }
     }
     return m;
+}
+
+/** Replaces mermaid sensitive characters (brackets etc.) */
+function mmb(str) {
+    return str.replace(/[\[\](){}<>]/g, "");
 }
 
 function formatMdPrimitiveType(value) {
@@ -136,31 +158,31 @@ MatrixAnalysis.prototype.toMarkdown = function(){
 
 VectorAnalysis.prototype.toMarkdown = function(){
     var m = `## [${this.title.value.firstUp()}](#${this.name})\n\n${this.description.value ? this.description.value + "\n\n": ""}`;    
-    /* arguments */
-    var headers = ["QUJS","jBGO","dmmV","tGqA","VPYX","pDgb"];
-    m += `### ${$("FRpk")}\n\n`
-    m += "| " + headers.map(h => $(h) + " |").join("") + "\n";
-    m += "| " + headers.map(h => ":--- |").join("")  + "\n";
     if(this.model.args) {
+        /* arguments */
+        var headers = ["QUJS","jBGO","dmmV","tGqA","VPYX","pDgb"];
+        m += `### ${$("FRpk")}\n\n`
+        m += "| " + headers.map(h => $(h) + " |").join("") + "\n";
+        m += "| " + headers.map(h => ":--- |").join("")  + "\n";
         for(let a of Object.keys(this.model.args)) {
             m += new Argument(this.model.args[a].model, null, this.model.args[a].config).toMarkdown();
         }
     }
     if(this.preprocessor.value) m += `\n### ${"Preprocessor"}\n\n${this.preprocessor.value}\n\n`;
     if(examples[this.name]) {
-        m += `### ${$("nzmJ")}\n\n`;
+        m += `### ${$("nzmJ")}\n\n`; // syntax example header
         if(typeof examples[this.name] == "function") {
             m += "```js\n" + examples[this.name].stringify() + "\n```\n\n"
         }
         else {
             for(var e of examples[this.name]) {
-                m += `#### ${$(e.title ? e.title + "\n\n" : "")}${e.description ? '<sub>' + $(e.description) + "</sub>\n\n" : ""}` + "```js\n" + e.code.stringify() + "\n```\n\n"
+                m += `${$(e.title ? "#### " + $(e.title) + "\n\n" : "")}${e.description ? '<sub>' + $(e.description) + "</sub>\n\n" : ""}` + "```js\n" + e.code.stringify() + "\n```\n\n"
             }
         }
         
     }
     if(this.model.output) {
-        m += "### Schéma výstupu\n\n" + new Output(this.model.output).toMarkdown();
+        m += "### Schéma výstupu\n\n" + new Output(this.model.output).toMarkdown(this);
     }
     return m;
 }
@@ -172,7 +194,7 @@ Argument.prototype.toMarkdown = function(){
             validator += `<b>${e.value}</b> = ${e.title}<br>`
         }
     }
-    return `| <b>${this.name || ""}</b> | ${this.title.value} | ${this.mdType.value} | <sub>${validator}<sub> | ${this.required ? "✔️" : ""} | ${this.default !== undefined ? this.default : ""} |\n`;
+    return `| <b>${this.name || ""}</b> | ${this.title.value} | ${this.mdType.value} | <sub>${validator ? validator : "-"}<sub> | ${this.required ? "✔️" : ""} | ${this.default !== undefined ? this.default : ""} |\n`;
     
 };
 
@@ -199,29 +221,39 @@ const examples = {
     histogram: [
         {
             name: "example1",
-            title: "",
-            description: "",
+            title: "2zlT",
+            description: "X8Ft",
             code: function(){
-                var score = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1);
+                var score = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,null, 7.2,6.9,6,7.5,5.3,7.1,8.2,1, null);
                 var h1 = score.histogram();
+                var h2 = score.analyze("histogram").run();
+                // h1 = h2.result
             }
         },
         {
             name: "example2",
-            title: "",
-            description: "",
+            title: "lh3Z",
+            description: "mHb0",
             code: function(){
                 var score = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1);
-                var h2 = score.histogram(4)
+                var h1 = score.histogram(4);
+                var h2 = score.analyze("histogram").run(4);
+                var h3 = score.histogram({max: 4});
+                var h4 = score.analyze("histogram").run({max: 4});
+                // h1 = h3 = h2.result = h4.result
             }
         },
         {
             name: "example3",
-            title: "",
-            description: "",
+            title: "3Pll",
+            description: "AZXR",
             code: function(){
                 var score = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1);
-                var h3 = score.histogram(null, 2);
+                var h1 = score.histogram(null, 3);
+                var h2 = score.analyze("histogram").run(null, 3);
+                var h3 = score.histogram({fix: 3});
+                var h4 = score.analyze("histogram").run({fix: 3});
+                // h1 = h3 = h2.result = h4.result
             }
         }
     ],

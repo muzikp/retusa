@@ -76,7 +76,7 @@ var lib = {
     zeroToOneInc: {
         title: "OQnL",
         validator: "dFiw",
-        mdType: "ffka",
+        mdType: "OQnL",
         tag: {
             control: "input",
             type: "number",

@@ -13,6 +13,11 @@ class Output {
         }
         else if(model.type == "array") {
             this.properties = createObjectProperties(model.items.properties);
+        } else {
+            this.title = {
+                key: model.title,
+                value: $(model.title)
+            }
         }
     }
 }
@@ -72,7 +77,7 @@ const snippets = {
 const lib = {
     "any": {
         type: "any",
-        title: ""
+        title: "oMas"
     },
     "number": {
         "title": "pelN", 
