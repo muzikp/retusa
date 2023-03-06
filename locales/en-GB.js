@@ -271,5 +271,6 @@ module.exports = {
 	"lh3Z": "Total of intervals specified",
 	"mHb0": "The 'max' argument specifies how many categories (intervals) the histogram should be divided into. The 'max' argument can be specified either as the first parameter or - if the argument is an object - as the 'max' property.",
 	"3Pll": "Interval size specified",
-	"AZXR": "The 'fix' argument sets a fixed interval size. The argument can be specified either as a second parameter (in which case the first argument must be null), or - if the argument is an object - as a 'fix' attribute. The 'max' argument takes precedence over the 'fix' argument."
+	"AZXR": "The 'fix' argument sets a fixed interval size. The argument can be specified either as a second parameter (in which case the first argument must be null), or - if the argument is an object - as a 'fix' attribute. The 'max' argument takes precedence over the 'fix' argument.",
+	"l43h": "Output schema"
 }

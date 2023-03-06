@@ -182,7 +182,7 @@ VectorAnalysis.prototype.toMarkdown = function(){
         
     }
     if(this.model.output) {
-        m += "### Schéma výstupu\n\n" + new Output(this.model.output).toMarkdown(this);
+        m += `### ${$("l43h")}\n\n` + new Output(this.model.output).toMarkdown(this);
     }
     return m;
 }
@@ -292,7 +292,7 @@ const examples = {
             title: "",
             description: "",
             code: function(){
-                var string_vector_desc_value = new StringVector("E","B","C","B","C","C","A","F","C").frequency(3);
+                var string_vector_desc_value = new StringVector("E","B","C","B","C","C","A","F","C").frequency({order: 3});
             }            
         },
         {

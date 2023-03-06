@@ -268,8 +268,9 @@ module.exports = {
 	"PtZB": "Analýzu nelze provést bez specifikace instance vektoru.",
 	"2zlT": "Bez upřesnění intervalu",
 	"X8Ft": "Metoda je volána bez parametrů, tzn. že velikost intervalu je automaticky spočítána jako (maximum-minimum)/odmocnina(počet prvků).",
-	"lh3Z": "Se specifikací počtu intervalu",
+	"lh3Z": "Se specifikací počtu intervalů",
 	"mHb0": "Argument 'max' upřesní, na kolik kategorií (intervalů) má být histogram rozdělen. Argument 'max' je možné upřesnit buďto jako první parametr, nebo - pokud je argumentem objekt - jako vlatnost 'max'.",
 	"3Pll": "Se specifikací velikosti intervalu",
-	"AZXR": "Argument 'fix' nastaví pevnou velikost intervalu. Argument je možné upřesnit buďto jako druhý parametr (v tom případě musí být první argument null), nebo - pokud je argumentem objekt - jako vlatnost 'fix'. Argument 'max' má před argumentem 'fix' prioritu."
+	"AZXR": "Argument 'fix' nastaví pevnou velikost intervalu. Argument je možné upřesnit buďto jako druhý parametr (v tom případě musí být první argument null), nebo - pokud je argumentem objekt - jako vlatnost 'fix'. Argument 'max' má před argumentem 'fix' prioritu.",
+	"l43h": "Schéma výsledku"
 }

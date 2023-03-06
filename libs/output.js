@@ -128,12 +128,12 @@ const lib = {
             "title": "Items", 
             "type": "object",
             "properties": {
-                "value": {
+                "v": {
                     "title": "ZVbP", 
                     "type": "any",
                     "pattern": "^.*$"
                 },
-                "frequency": {
+                "n": {
                     "title": "mXpR", 
                     "type": "integer",
                 }

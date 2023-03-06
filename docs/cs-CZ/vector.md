@@ -40,7 +40,7 @@ Odstraní z vektoru všechny prázdné hodnoty (buňky).
 var cashflow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 600 */
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -59,7 +59,7 @@ var total_string = new StringVector("A","B","C","D").count();  /* = 4 */
 var total_boolean = new BooleanVector(true, true, false, null, false, true).count();  /* = 6 */
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -78,7 +78,7 @@ var y = new StringVector("a",null,null,"b","c","d",null,"b").mode(); /* = null *
 var z = new BooleanVector(true, false, true).mode(); /* = true */
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -100,7 +100,7 @@ Odstraní z vektoru všechny prázdné hodnoty (buňky).
 var avgCashFlow = new NumericVector(200,250,150,320,240,-250,10,-320).avg();  /* = 75 */
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -141,7 +141,7 @@ var numeric_max = new NumericVector(4.5, 3.9, 5, 6, 7, 5.7, 9.1, 5.3, 7.2, 6.9, 
 var string_max = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale", "Gauss", "Poisson").max(); /* = Poisson */
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -163,7 +163,7 @@ Odstraní z vektoru všechny prázdné hodnoty (buňky).
 var range = new NumericVector(5,2,-15,-16.3,12,null, null, 12,13,7).range(); /* = 22 */
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -185,7 +185,7 @@ Odstraní z vektoru všechny prázdné hodnoty (buňky).
 var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).geomean(); /* = 21.24*/
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -207,7 +207,7 @@ Odstraní z vektoru všechny prázdné hodnoty (buňky).
 var x = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).harmean(); /* = 21.03*/
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -229,7 +229,7 @@ Odstraní z vektoru všechny prázdné hodnoty (buňky).
 var median = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).median(); /* = 21*/
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -259,7 +259,7 @@ var q25 = score.percentile(0.25); /* = 17.25 */
 var max = score.percentile(1); /* = 25 */
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -287,7 +287,7 @@ var population = new NumericVector(10,20,15,25,23,19,18,17,24,23).stdev();  /* =
 var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).stdev(true); /* = 4.65 */
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -315,7 +315,7 @@ var population = new NumericVector(10,20,15,25,23,19,18,17,24,23).variance();  /
 var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).variance(true); /* = 21.6 */
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -338,7 +338,7 @@ var population = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc();  /* = 
 var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc(true); /* = 0.24 */
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -373,7 +373,7 @@ var h2 = score.analyze("histogram").run();
 // h1 = h2.result
 ```
 
-#### Se specifikací počtu intervalu
+#### Se specifikací počtu intervalů
 
 <sub>Argument 'max' upřesní, na kolik kategorií (intervalů) má být histogram rozdělen. Argument 'max' je možné upřesnit buďto jako první parametr, nebo - pokud je argumentem objekt - jako vlatnost 'max'.</sub>
 
@@ -399,7 +399,7 @@ var h4 = score.analyze("histogram").run({fix: 3});
 // h1 = h3 = h2.result = h4.result
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -428,19 +428,19 @@ var numeric_vector_no_order = new NumericVector(5,2,3,2,3,3,1,6,3).frequency();
 ```
 
 ```js
-var string_vector_desc_value = new StringVector("E","B","C","B","C","C","A","F","C").frequency(3);
+var string_vector_desc_value = new StringVector("E","B","C","B","C","C","A","F","C").frequency({order: 3});
 ```
 
 ```js
 var boolean_vector_desc_frequency = new BooleanVector(true, false, null, true, null, null).frequency(4);
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
-frequency --> value[<b>value</b><br>hodnota <br><i>číslo</i>]
-frequency --> frequency[<b>frequency</b><br>četnost <br><i>číslo</i>]
+frequency --> v[<b>v</b><br>hodnota <br><i>číslo</i>]
+frequency --> n[<b>n</b><br>četnost <br><i>číslo</i>]
 
 ```
 
@@ -459,7 +459,7 @@ Odstraní z vektoru všechny prázdné hodnoty (buňky).
 var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).SEM(); /* = 0.67*/
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -487,7 +487,7 @@ var skewness_population = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,
 var skewness_sample = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).skewness(true); /* = 0.027*/
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -511,7 +511,7 @@ Odstraní z vektoru všechny prázdné hodnoty (buňky).
 var kurtosis = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).kurtosis(); /* = 0.425*/
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -538,7 +538,7 @@ Odstraní z vektoru všechny prázdné hodnoty (buňky).
 var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).mci(0.95);
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -571,7 +571,7 @@ Odstraní z vektoru všechny prázdné hodnoty (buňky).
 var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).pci(5, 0.95);
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -603,7 +603,7 @@ Odstraní z vektoru všechny prázdné hodnoty (buňky).
 var T = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1).ttest(10);
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -628,7 +628,7 @@ Odstraní z vektoru všechny prázdné hodnoty (buňky).
 var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).swtest();
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -653,7 +653,7 @@ Odstraní z vektoru všechny prázdné hodnoty (buňky).
 var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).kstest();
 ```
 
-### Schéma výstupu
+### Schéma výsledku
 
 ```mermaid
 graph TD

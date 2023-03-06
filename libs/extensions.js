@@ -107,12 +107,12 @@ Array.prototype.varc = function(sample){
 Array.prototype.frequency = function(order){
     var f = [];
     for(let k of this.distinct()) {
-        f.push({value: k, frequency: this.filter(v => v === k).length});
+        f.push({v: k, n: this.filter(_v => _v === k).length});
     };
-    if(order == 3) return f.sort((a, b) => a.value - b.value);
-    else if(order == 4) return f.sort((a, b) => a.value - b.value).reverse();
-    else if(order == 2) return f.sort((a, b) => a.frequency - b.frequency);
-    else if(order == 1) return f.sort((a, b) => a.frequency - b.frequency).reverse();
+    if(order == 3) return f.sort((a, b) => a.v - b.v);
+    else if(order == 4) return f.sort((a, b) => a.v - b.v).reverse();
+    else if(order == 2) return f.sort((a, b) => a.n - b.n);
+    else if(order == 1) return f.sort((a, b) => a.n - b.n).reverse();
     else return f;
 }
 

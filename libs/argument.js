@@ -5,7 +5,6 @@ var {NumericVector,StringVector,BooleanVector} = require("./vector");
 var lib = {
     any: {
         title: "oMas",
-        //validator: "NfvF",
         mdType: "oMas",
         tag: {
             control: "input",
