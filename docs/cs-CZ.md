@@ -139,7 +139,15 @@ var numeric_min = new NumericVector(4.5, 3.9, 5, 6, 7, 5.7, 9.1, 5.3, 7.2, 6.9, 
 var string_min = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale", "Gauss", "Poisson").min(); /* = Fisher */
 ```
 
+### Schéma výsledku
 
+```mermaid
+graph TD
+min[<b>minimum<br></b>cokoliv]
+style min fill:#FFFFFF;
+style min stroke:#75716F;
+
+```
 
 ## [Maximum](#max)
 

@@ -487,9 +487,9 @@ const models = [
             description: "yBlA",
             preprocessor: preprocessors.removeEmpty.title
         },
+        output: "any",
         type: [1,2,3],
-        prepare: preprocessors.removeEmpty.fn,
-        returns: "any",
+        prepare: preprocessors.removeEmpty.fn
     },
     {   name: "max",
         fn: Array.prototype.max,
