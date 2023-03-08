@@ -1,6 +1,4 @@
 var $ = require('./locale').call;
-var {Matrix} = require("./matrix");
-var {NumericVector,StringVector,BooleanVector} = require("./vector");
 
 class Output {
     constructor(name) {
@@ -283,11 +281,6 @@ const lib = {
         "title": "vlCA",
         "type": "object",
         "properties": {
-            "model": {
-                "$id": "#root/model", 
-                "title": "OBml", 
-                "type": "string"              
-            },
             "r2": {
                 "$id": "#root/r2", 
                 "title": "VqBH", 

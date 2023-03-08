@@ -1,6 +1,4 @@
 var $ = require('./locale').call;
-var {Matrix} = require("./matrix");
-var {NumericVector,StringVector,BooleanVector} = require("./vector");
 
 var lib = {
     any: {
@@ -99,7 +97,7 @@ var lib = {
         tag: {
             control: "select",
             multiple: false,
-            vectorTypes: [1,2,3]
+            type: [1,2,3]
         },
         validate: function(value, parent){
             var v = parseVector(value, parent);
@@ -115,7 +113,7 @@ var lib = {
         tag: {
             control: "select",
             multiple: false,
-            vectorTypes: [1]
+            type: [1]
         },
         validate: function(value, parent){
             var v = parseVector(value, parent);
@@ -132,7 +130,7 @@ var lib = {
         tag: {
             control: "select",
             multiple: false,
-            vectorTypes: [3]
+            type: [3]
         },
         validate: function(value, parent){
             var v = parseVector(value, parent);
@@ -146,10 +144,10 @@ var lib = {
         mdType: "8TtV",
         isVector: true,
         isMultiple: true,
-        tags: {
+        tag: {
             control: "select",
             multiple: true,
-            vectorTypes: [1]
+            type: [1]
         },
         validate: function(value, parent){
             var m = parseMatrix(value, parent);
@@ -187,7 +185,7 @@ var lib = {
             }
         ],
         default: 1,
-        tags: {
+        tag: {
             control: "select",
             multiple: false
         },
@@ -220,7 +218,7 @@ var lib = {
             }
         ],
         default: 1,
-        tags: {
+        tag: {
             control: "select",
             multiple: false
         },
@@ -234,12 +232,12 @@ class Argument {
     constructor(name, parent, overloads) {
         var model = lib[name];
         if(!model) throw new Error("Unknown argument model name: " + name);
+        this.name = model.name;
         if(typeof overloads == "object") {
             Object.keys(overloads).forEach(function(key) {
                 model[key] = overloads[key];
             });
-        }
-        this.name = model.name;
+        }        
         this.mdType = {
             key: model.mdType,
             value: $(model.mdType)
@@ -249,14 +247,15 @@ class Argument {
             value: $(model.title)
         };
         this.default = model.default;
-        this.required = model.required;
+        this.required = model.required !== undefined ? !!model.required : model.isRequired !== undefined ? !!model.isRequired : false;
         if(model.isEnum) {
             this.isEnum = true;
             this.enums = model.enums.map(function(e){
                 e.title = $(e.key);
                 return e;
             });
-        }
+        };
+        this.multiple = !!(model.isMultiple || model.multiple);
         this.description = {
             key: model.description || null,
             value: $(model.description) || null
@@ -266,6 +265,14 @@ class Argument {
             value: $(model.validator) || null
         };
         this.isVector = model.isVector || false;
+        this.tag = {
+            control: model.tag?.control || "input",
+            type: model.tag?.type || "text",
+            multiple: model.tag?.multiple !== undefined ? model.tag.multiple : model.isMultiple !== undefined ? !!model.isMultiple : undefined,
+            min: !isNaN(model.tag?.min) ? Number(model.tag.min) : undefined,
+            max: !isNaN(model.tag?.max) ? Number(model.tag.max) : undefined,
+            step: !isNaN(model.tag?.step) ? Number(model.tag.step) : undefined
+        }
         this.validate = function(value) {
             if(model.default !==undefined && (value === undefined || value === null)) {
                 return model.default;

@@ -819,6 +819,21 @@ class VectorAnalysis {
             readonly: true,
             value: this.model.output ? new Output(this.model.output) : null
         });
+        /* Returns an object or an array of Argument instances based on the model args config. If the instance already inclides user defined arguments, it appends them as a 'value' property. */
+        Object.defineProperty(this, "parameters", {
+            readonly: true,
+            value: function(asObject) {
+                var _ = asObject ? {} : [];
+                for(let k of Object.keys(this.model.args)) {
+                    var a = new Argument(this.model.args[k].model, this.parent || null, this.model.args[k].config);
+                    if(this.args[k]) a.value = this.args[k];
+                    else a.value = a.default;
+                    if(!asObject) a.name = k;
+                    (asObject) ? _[k] = a : _.push(a);
+                };
+                return _;
+            }
+        });
         for(let w of ["title","description","preprocessor"]) {
             Object.defineProperty(this, w, {
                 readonly: true,
