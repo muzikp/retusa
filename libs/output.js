@@ -24,6 +24,24 @@ class Output {
             }
         }
     }
+    /**
+     * Creates a new Output instance and populates it with analysis result data.
+     * @param {VectorAnalysis | MatrixAnalysis} analysis 
+     * @returns {Output} Returns a new instance of the Output class.
+     */ 
+    static fromAnalysis(analysis) {
+        return props(new Output(analysis.model.output), analysis.result);
+        function props(node, result) {
+            if(node.type == "object")
+            {
+                for(let k of Object.keys(node.properties)) {
+                    props(node.properties[k], result[k]);
+                }
+            }
+            else node.value = result;
+            return node;
+        }
+    }
 }
 
 function createObjectProperties(properties) {
