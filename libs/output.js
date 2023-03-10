@@ -109,6 +109,10 @@ const lib = {
         "title": "IrhN", 
         "type": "number",
     },
+    "percent": {
+        "title": "uyVK", 
+        "type": "percent",
+    },
     "histogram": {
         "title": "PAwR", 
         "type": "array",

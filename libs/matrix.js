@@ -820,7 +820,6 @@ const matrixMethods = {
         }
         var df = k-1;
         var p = dist.chisqdist(Q,df)*2;
-        debugger;
         return {
             Q: Q,
             df: df,

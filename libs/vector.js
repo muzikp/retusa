@@ -523,7 +523,7 @@ const models = [
             url: "https://en.wikipedia.org/wiki/Coefficient_of_variation"
         },
         type: [1],
-        output: "number",
+        output: "percent",
         prepare: preprocessors.removeEmpty.fn,
         args: {
             isSample: {
