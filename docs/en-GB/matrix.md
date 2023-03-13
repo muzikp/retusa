@@ -12,15 +12,15 @@ A number of methods have a specified so-called preprocessor, which is a function
 | correlPearson | [Pearson correlation coefficient](#correlPearson) |
 | correlSpearman | [Spearman's correlation coefficient](#correlSpearman) |
 | correlGamma | [Gamma coefficient](#correlGamma) |
-| correlKendall | [Kendall's correlation](#correlKendall) |
+| correlKendall ⚠️ | [Kendall's correlation](#correlKendall) |
 | correlPartial | [Partial correlation](#correlPartial) |
 | correlBiserial | [Biserial correlation](#correlBiserial) |
 | anovaow | [ANOVA (one-way)](#anovaow) |
 | ttestind | [T-test (independent)](#ttestind) |
 | ttestpair | [T-test (paired)](#ttestpair) |
-| mwu | [Mann-Whitney test](#mwu) |
+| mwu ⚠️ | [Mann-Whitney test](#mwu) |
 | wcxpaired | [Wilcoxon Signed-Ranks Test for Paired Samples](#wcxpaired) |
-| friedman | [Friedman's ANOVA](#friedman) |
+| friedman ⚠️ | [Friedman's ANOVA](#friedman) |
 | contingency | [Contingency](#contingency) |
 
 ## [Linear regression](#linreg)
@@ -222,6 +222,8 @@ style p stroke:#75716F;
 ## [Kendall's correlation](#correlKendall)
 
 Returns the statistical log of Kendall's Tau-B correlation coefficient. If you were to calculate the same operation in SPSS, you would probably get a slightly different result. Apparently, this is due to the different sensitivity to decimal places in the two systems. However, it should not have a major influence on the interpretation of the result.
+
+⚠️ This method is under development and may return invalid results or cause an error.
 
 ### Arguments
 
@@ -554,6 +556,8 @@ style df stroke:#75716F;
 
 Returns the statistical log of the Mann-Whitney U test. It is a non-parametric null hypothesis test that compares randomly selected values of X and Y from two populations, with the probability that X is greater than Y equal to the probability that Y is greater than X.
 
+⚠️ This method is under development and may return invalid results or cause an error.
+
 ### Arguments
 
 | id |description |value type |validator |required |default value |
@@ -676,6 +680,8 @@ style p stroke:#75716F;
 ## [Friedman's ANOVA](#friedman)
 
 The Friedman test is a non-parametric statistical test developed by Milton Friedman. Similar to the parametric repeated measures ANOVA, it is used to detect differences in treatments across multiple test attempts. The procedure involves ranking each row (or block) together, then considering the values of ranks by columns. Applicable to complete block designs, it is thus a special case of the Durbin test.
+
+⚠️ This method is under development and may return invalid results or cause an error.
 
 ### Arguments
 

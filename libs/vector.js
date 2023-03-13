@@ -765,6 +765,7 @@ const models = [
             url: "https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test"
         },
         prepare: preprocessors.removeEmpty.fn,
+        unstable: true,
         type: [1],
         output: "shapirowilk",
     },
@@ -779,8 +780,8 @@ const models = [
         prepare: preprocessors.removeEmpty.fn,
         type: [1],
         output: "kstest",
-        
-    },  
+        unstable: true   
+    }
 ]
 
 let {Argument} = (require("./argument"));
@@ -818,6 +819,10 @@ class VectorAnalysis {
         Object.defineProperty(this, "outputSchema", {
             readonly: true,
             value: this.model.output ? new Output(this.model.output) : null
+        });
+        Object.defineProperty(this, "unstable", {
+            readonly: true,
+            value: !!this.model.unstable
         });
         /* Returns an object or an array of Argument instances based on the model args config. If the instance already inclides user defined arguments, it appends them as a 'value' property. */
         Object.defineProperty(this, "parameters", {

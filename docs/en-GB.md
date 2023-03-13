@@ -26,8 +26,8 @@ Vector functions are statistical methods that are performed on vector instances.
 | mci | [Confidence interval of the mean](#mci) |
 | pci | [Confidence interval of the proportion](#pci) |
 | ttest | [One-sample t-test](#ttest) |
-| swtest | [Shapiro-Wilk W test](#swtest) |
-| kstest | [Kolmogorov-Smirnov test](#kstest) |
+| swtest ⚠️ | [Shapiro-Wilk W test](#swtest) |
+| kstest ⚠️ | [Kolmogorov-Smirnov test](#kstest) |
 
 ## [Sum](#sum)
 
@@ -734,6 +734,8 @@ style n stroke:#75716F;
 
 Returns the statistical log of the Shapiro-Wilk W test of normality of the distribution of vector values. The Shapiro-Wilk test is a statistical test used to test the hypothesis that the data come from a normal distribution. This test is often used to verify the normality of data in statistical analysis. The Shapiro-Wilk test is based on comparing the value of the quartiles of the data with the values of the quartiles of a normal distribution. When the quartile values of the data are similar to the quartile values of the normal distribution, it is likely that the data comes from a normal distribution. Otherwise, it is likely that the data is not normal. When using the Shapiro-Wilk test, it should be noted that this test has low sensitivity for large samples, i.e. for large samples the test may be less reliable in detecting non-normality. Therefore, other tests of normality, such as the Anderson-Darling test or the Kolmogorov-Smirnov test, are often used for large samples.
 
+⚠️ This method is under development and may return invalid results or cause an error.
+
 
 ### Pre-calculation data modification
 
@@ -767,6 +769,8 @@ style p stroke:#75716F;
 ## [Kolmogorov-Smirnov test](#kstest)
 
 Returns the statistical log of the Komogorov-Smirnov normality test of the distribution of vector values. It does not currently calculate the significance level of the test. The Kolmogorov-Smirnov test (often abbreviated as the K-S test) is a statistical test used to test the hypothesis that data come from a particular distribution. This test compares the data distribution to the theoretical distribution that the data is assumed to come from and evaluates whether the data values are close enough to the theoretical distribution that the hypothesis that the data come from the given distribution can be considered true.Kolmogorov test -Smirnov is often used to test the normality of data, but it can also be used to test if the data comes from another theoretical distribution, such as the exponential or binomial distribution. The Kolmogorov-Smirnov test is generally considered to be one of the most accurate tests of normality, but it has limited sensitivity for small samples, i.e. it may be less reliable in detecting non-normality for small samples. Therefore, other tests of normality, such as the Shapiro-Wilk test or the Anderson-Darling test, are often used for small samples.
+
+⚠️ This method is under development and may return invalid results or cause an error.
 
 
 ### Pre-calculation data modification
@@ -812,15 +816,15 @@ A number of methods have a specified so-called preprocessor, which is a function
 | correlPearson | [Pearson correlation coefficient](#correlPearson) |
 | correlSpearman | [Spearman's correlation coefficient](#correlSpearman) |
 | correlGamma | [Gamma coefficient](#correlGamma) |
-| correlKendall | [Kendall's correlation](#correlKendall) |
+| correlKendall ⚠️ | [Kendall's correlation](#correlKendall) |
 | correlPartial | [Partial correlation](#correlPartial) |
 | correlBiserial | [Biserial correlation](#correlBiserial) |
 | anovaow | [ANOVA (one-way)](#anovaow) |
 | ttestind | [T-test (independent)](#ttestind) |
 | ttestpair | [T-test (paired)](#ttestpair) |
-| mwu | [Mann-Whitney test](#mwu) |
+| mwu ⚠️ | [Mann-Whitney test](#mwu) |
 | wcxpaired | [Wilcoxon Signed-Ranks Test for Paired Samples](#wcxpaired) |
-| friedman | [Friedman's ANOVA](#friedman) |
+| friedman ⚠️ | [Friedman's ANOVA](#friedman) |
 | contingency | [Contingency](#contingency) |
 
 ## [Linear regression](#linreg)
@@ -1022,6 +1026,8 @@ style p stroke:#75716F;
 ## [Kendall's correlation](#correlKendall)
 
 Returns the statistical log of Kendall's Tau-B correlation coefficient. If you were to calculate the same operation in SPSS, you would probably get a slightly different result. Apparently, this is due to the different sensitivity to decimal places in the two systems. However, it should not have a major influence on the interpretation of the result.
+
+⚠️ This method is under development and may return invalid results or cause an error.
 
 ### Arguments
 
@@ -1354,6 +1360,8 @@ style df stroke:#75716F;
 
 Returns the statistical log of the Mann-Whitney U test. It is a non-parametric null hypothesis test that compares randomly selected values of X and Y from two populations, with the probability that X is greater than Y equal to the probability that Y is greater than X.
 
+⚠️ This method is under development and may return invalid results or cause an error.
+
 ### Arguments
 
 | id |description |value type |validator |required |default value |
@@ -1476,6 +1484,8 @@ style p stroke:#75716F;
 ## [Friedman's ANOVA](#friedman)
 
 The Friedman test is a non-parametric statistical test developed by Milton Friedman. Similar to the parametric repeated measures ANOVA, it is used to detect differences in treatments across multiple test attempts. The procedure involves ranking each row (or block) together, then considering the values of ranks by columns. Applicable to complete block designs, it is thus a special case of the Durbin test.
+
+⚠️ This method is under development and may return invalid results or cause an error.
 
 ### Arguments
 

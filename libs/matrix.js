@@ -338,6 +338,10 @@ class MatrixAnalysis {
             readonly: true,
             value: this.model.output ? new Output(this.model.output) : null
         });
+        Object.defineProperty(this, "unstable", {
+            readonly: true,
+            value: !!this.model.unstable
+        });
         /* Returns an object or an array of Argument instances based on the model args config. If the instance already inclides user defined arguments, it appends them as a 'value' property. */
         Object.defineProperty(this, "parameters", {
             readonly: true,
@@ -915,6 +919,7 @@ const MatrixMethodsModels = [
             description: "VOmC",
             preprocessor: preprocessors.removeEmptyXY.title
         },
+        unstable: true,
         output: "correlKendall",
         prepare: preprocessors.removeEmptyXY.fn,
         args: {
@@ -1237,6 +1242,7 @@ const MatrixMethodsModels = [
         },
         output: "mwu",
         prepare: preprocessors.groupXYRemoveEmpty.fn,
+        unstable: true,
         args: {
             "vectors": {
                 model: "numericVectors",
@@ -1264,6 +1270,7 @@ const MatrixMethodsModels = [
         },   
         output: "friedman",     
         prepare: preprocessors.removeEmpty.fn,
+        unstable: true,
         args: {
             "vectors": {
                 model: "numericVectors",

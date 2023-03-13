@@ -7,6 +7,9 @@ var M = new _.Matrix(
 );
 var rg_a = M.analyze("correlGamma").run(0,1);
 var rg_b = M.correlGamma("score A","score B");
+var x = new _.NumericVector(180,197,240,210,180,160,179,185,183,150,110,190,170).name("score A");
+var sw = x.analyze("swtest").run();
+var ks = x.analyze("kstest").run();
 // rg_a.result = rg_b
 require("./docs")();
 debugger;

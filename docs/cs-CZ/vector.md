@@ -26,8 +26,8 @@ Vektorové funkce jsou statistické metody, které jsou prováděny nad instance
 | mci | [Interval spolehlivosti průměru](#mci) |
 | pci | [Interval spolehlivosti podílu](#pci) |
 | ttest | [Jednovýběrový t-test](#ttest) |
-| swtest | [Shapirův-Wilkův W test](#swtest) |
-| kstest | [Kolmogorov-Smirnovův test](#kstest) |
+| swtest ⚠️ | [Shapirův-Wilkův W test](#swtest) |
+| kstest ⚠️ | [Kolmogorov-Smirnovův test](#kstest) |
 
 ## [Součet](#sum)
 
@@ -734,6 +734,8 @@ style n stroke:#75716F;
 
 Vrátí statistický protokol Shapiro-Wilkova W testu normality rozdělení hodnot vektoru. Shapiro-Wilk test je statistický test, který se používá k testování hypotézy, že data pocházejí z normálního rozdělení. Tento test je často používán k ověření normality dat v rámci statistické analýzy. Test Shapiro-Wilk se zakládá na porovnání hodnoty kvartilů dat s hodnotami kvartilů normálního rozdělení. Když jsou hodnoty kvartilů dat podobné hodnotám kvartilů normálního rozdělení, je pravděpodobné, že data pocházejí z normálního rozdělení. V opačném případě je pravděpodobné, že data nejsou normální. Při použití testu Shapiro-Wilk je třeba si uvědomit, že tento test má nízkou citlivost pro velké vzorky, tj. pro velké vzorky může být test méně spolehlivý při detekci ne-normality. Proto se pro velké vzorky často používají jiné testy normality, jako například test Anderson-Darling nebo test Kolmogorov-Smirnov.
 
+⚠️ Tato metoda je ve vývojové fázi a může vracet neplatné výsledky či vyvolávat chybu.
+
 
 ### Před-výpočetní úprava dat
 
@@ -767,6 +769,8 @@ style p stroke:#75716F;
 ## [Kolmogorov-Smirnovův test](#kstest)
 
 Vrátí statistický protokol Komogorov-Smirnovova testu normality rozdělení hodnot vektoru. Aktuálně nepočítá hladinu významnosti testu. Kolmogorov-Smirnov test (často také zkracovaný jako K-S test) je statistický test, který se používá k testování hypotézy, že data pocházejí z určitého rozdělení. Tento test porovnává rozdělení dat s teoretickým rozdělením, které se předpokládá, že data vycházejí, a vyhodnocuje, zda jsou datové hodnoty s teoretickým rozdělením dostatečně blízko, aby se mohla hypotéza o tom, že data pocházejí z daného rozdělení, považovat za pravdivou.Test Kolmogorov-Smirnov se často používá k ověření normality dat, ale může být také použit k ověření, zda data pocházejí z jiného teoretického rozdělení, jako je například exponenciální nebo binomické rozdělení. Test Kolmogorov-Smirnov je obecně považován za jeden z nejpřesnějších testů normality, ale má omezenou citlivost pro malé vzorky, tj. pro malé vzorky může být méně spolehlivý při detekci ne-normality. Pro malé vzorky se proto často používají jiné testy normality, jako například test Shapiro-Wilk nebo test Anderson-Darling.
+
+⚠️ Tato metoda je ve vývojové fázi a může vracet neplatné výsledky či vyvolávat chybu.
 
 
 ### Před-výpočetní úprava dat

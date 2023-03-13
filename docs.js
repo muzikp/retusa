@@ -59,7 +59,7 @@ Vector.toMarkdown = function(){
     doc += `| ${$("wRbe")} | ${$("rlTY")} |\n| :--- | :--- |\n`;
     doc += vectorMethods.map(function(m) {
         var ma = new VectorAnalysis(m);
-        return `| ${ma.name} | [${ma.title.value.firstUp()}](#${ma.name}) |`
+        return `| ${ma.name}${ma.unstable ? " ⚠️" : ""} | [${ma.title.value.firstUp()}](#${ma.name}) |`
     }).join("\n");
     doc += "\n\n";
     doc += vectorMethods.map(function(m){
@@ -74,7 +74,7 @@ Matrix.toMarkdown = function(){
     doc += `| ${$("wRbe")} | ${$("rlTY")} |\n| :--- | :--- |\n`;
     doc += matrixMethods.map(function(m) {
         var ma = new MatrixAnalysis(m);
-        return `| ${ma.name} | [${ma.title.value.firstUp()}](#${ma.name}) |`
+        return `| ${ma.name}${ma.unstable ? " ⚠️" : ""} | [${ma.title.value.firstUp()}](#${ma.name}) |`
     }).join("\n");
     doc += "\n\n";
     doc += matrixMethods.map(function(m){
@@ -152,7 +152,8 @@ function formatMdPrimitiveType(value) {
 }
 
 MatrixAnalysis.prototype.toMarkdown = function(){
-    var m = `## [${this.title.value.firstUp()}](#${this.name})\n\n${this.description.value ? this.description.value + "\n\n": ""}`;    
+    var m = `## [${this.title.value.firstUp()}](#${this.name})\n\n${this.description.value ? this.description.value + "\n\n": ""}`;
+    if(this.unstable) m += `⚠️ ${$("vdkW")}\n\n`;
     /* arguments */
     var headers = ["QUJS","jBGO","dmmV","tGqA","VPYX","pDgb"];
     m += `### ${$("FRpk")}\n\n`
@@ -182,6 +183,7 @@ MatrixAnalysis.prototype.toMarkdown = function(){
 
 VectorAnalysis.prototype.toMarkdown = function(){
     var m = `## [${this.title.value.firstUp()}](#${this.name})\n\n${this.description.value ? this.description.value + "\n\n": ""}`;    
+    if(this.unstable) m += `⚠️ ${$("vdkW")}\n\n`;
     if(this.model.args) {
         /* arguments */
         var headers = ["QUJS","jBGO","dmmV","tGqA","VPYX","pDgb"];

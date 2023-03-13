@@ -285,5 +285,6 @@ module.exports = {
 	"uyVK": "percent",
 	"R5AC": "Gamma coefficient",
 	"zKSX": "The Goodman-Kruskal gamma is similar to the ordinal correlation coefficient, i.e. a test that measures the dependence between two ordinal variables. For that reason, it can take on the same values as other correlation coefficients (e.g. Pearson's or Spearman's) and is interpreted in the same way. This test is recommended over other rank-oriented correlation methods when your data has many ties.",
-	"wZUG": "The Goodman-Kruskal gamma"
+	"wZUG": "The Goodman-Kruskal gamma",
+	"vdkW": "This method is under development and may return invalid results or cause an error."
 }

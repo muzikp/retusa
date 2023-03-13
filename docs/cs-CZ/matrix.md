@@ -12,15 +12,15 @@ Každá metoda má specifikované argumenty a jejich validátory. Validátory me
 | correlPearson | [Pearsonův korelační koeficient](#correlPearson) |
 | correlSpearman | [Spearmanův korelační koeficient](#correlSpearman) |
 | correlGamma | [Koeficient gamma](#correlGamma) |
-| correlKendall | [Kendallova korelace](#correlKendall) |
+| correlKendall ⚠️ | [Kendallova korelace](#correlKendall) |
 | correlPartial | [Parciální korelace](#correlPartial) |
 | correlBiserial | [Biseriální korelace](#correlBiserial) |
 | anovaow | [ANOVA (jednofaktorová)](#anovaow) |
 | ttestind | [T-test (nezávislý)](#ttestind) |
 | ttestpair | [T-test (párový)](#ttestpair) |
-| mwu | [Mann-Whitneyho test](#mwu) |
+| mwu ⚠️ | [Mann-Whitneyho test](#mwu) |
 | wcxpaired | [Wilcoxonův znaménkový test pro dva závislé výběry](#wcxpaired) |
-| friedman | [Friedmanova ANOVA](#friedman) |
+| friedman ⚠️ | [Friedmanova ANOVA](#friedman) |
 | contingency | [Kontingence](#contingency) |
 
 ## [Lineární regrese](#linreg)
@@ -222,6 +222,8 @@ style p stroke:#75716F;
 ## [Kendallova korelace](#correlKendall)
 
 Vrátí statistický protokol Kendallova korelačního koeficientu Tau-B. Pokud byste tutéž operaci počítali v SPSS, patrně dostanete mírně odlišný výsledek. Podle všeho je to vlivem odlišné citlivosti na desetinná místa u obou systémů. Na interpretaci výsledku by to nicméně zásadní vliv mít nemělo.
+
+⚠️ Tato metoda je ve vývojové fázi a může vracet neplatné výsledky či vyvolávat chybu.
 
 ### Argumenty
 
@@ -554,6 +556,8 @@ style df stroke:#75716F;
 
 Vrátí statistický protokol Mann-Whitneyho U testu. Jedná se o neparametrický test nulové hypotézy, která srsovnává náhodně vybrané hodnoty X a Y ze dvou populací, přičemž pravděpodobnost, že X bude větší než Y, se rovná pravděpodobnosti, že Y bude větší než X.
 
+⚠️ Tato metoda je ve vývojové fázi a může vracet neplatné výsledky či vyvolávat chybu.
+
 ### Argumenty
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
@@ -676,6 +680,8 @@ style p stroke:#75716F;
 ## [Friedmanova ANOVA](#friedman)
 
 Friedmanova analýza rozptylu je neparametrický statistický test vyvinutý Miltonem Friedmanem. Podobně jako u parametrických opakovaných opatření ANOVA se používá k detekci rozdílů v léčbě během více pokusů o testování. Postup zahrnuje hodnocení každého řádu (nebo bloku) dohromady, poté zváží hodnoty řad podle sloupců. Použitelné pro kompletní návrhy bloků je tedy zvláštním případem testu Durbin.
+
+⚠️ Tato metoda je ve vývojové fázi a může vracet neplatné výsledky či vyvolávat chybu.
 
 ### Argumenty
 
