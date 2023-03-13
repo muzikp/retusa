@@ -35,6 +35,7 @@ var matrixMethods = [
     "linreg",
     "correlPearson",
     "correlSpearman",
+    "correlGamma",
     "correlKendall",
     "correlPartial",
     "correlBiserial",

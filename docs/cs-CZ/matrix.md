@@ -11,6 +11,7 @@ Každá metoda má specifikované argumenty a jejich validátory. Validátory me
 | linreg | [Lineární regrese](#linreg) |
 | correlPearson | [Pearsonův korelační koeficient](#correlPearson) |
 | correlSpearman | [Spearmanův korelační koeficient](#correlSpearman) |
+| correlGamma | [Koeficient gamma](#correlGamma) |
 | correlKendall | [Kendallova korelace](#correlKendall) |
 | correlPartial | [Parciální korelace](#correlPartial) |
 | correlBiserial | [Biseriální korelace](#correlBiserial) |
@@ -170,6 +171,37 @@ correlSpearman --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
 correlSpearman --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
+
+```
+
+## [Koeficient gamma](#correlGamma)
+
+Goodman-Kruskalova gama je obdobou ordinálního korelačního koeficientu, tedy testu, který měří závislost mezi dvěma pořadovými proměnnými. I z toho důvodu může nabývat stejných hodnot jako ostatní korelační koeficienty (např. Pearsonův či Spearmanův) a stejně se i interpretuje. Tento test se před ostatními pořadově orientovanými korelačními metodami doporučuje tehdy, pokud mají vaše data mnoho shodných pořadí.
+
+### Argumenty
+
+| id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>y</b> | první proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+| <b>x</b> | druhá proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+
+### Před-výpočetní úprava dat
+
+Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
+
+### Schéma výsledku
+
+```mermaid
+graph TD
+correlGamma((<i>objekt</i>))
+style correlGamma fill:#E1C6B3;
+style correlGamma stroke:#C36422;
+correlGamma --> r[<b>r</b><br>Goodman-Kruskalova gama <br><i>číslo</i>]
+style r fill:#FFFFFF;
+style r stroke:#4967A4;
+correlGamma --> p[<b>p</b><br>významnost <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 

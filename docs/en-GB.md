@@ -811,6 +811,7 @@ A number of methods have a specified so-called preprocessor, which is a function
 | linreg | [Linear regression](#linreg) |
 | correlPearson | [Pearson correlation coefficient](#correlPearson) |
 | correlSpearman | [Spearman's correlation coefficient](#correlSpearman) |
+| correlGamma | [Gamma coefficient](#correlGamma) |
 | correlKendall | [Kendall's correlation](#correlKendall) |
 | correlPartial | [Partial correlation](#correlPartial) |
 | correlBiserial | [Biserial correlation](#correlBiserial) |
@@ -970,6 +971,37 @@ correlSpearman --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
 correlSpearman --> p[<b>p</b><br>significance <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
+
+```
+
+## [Gamma coefficient](#correlGamma)
+
+The Goodman-Kruskal gamma is similar to the ordinal correlation coefficient, i.e. a test that measures the dependence between two ordinal variables. For that reason, it can take on the same values as other correlation coefficients (e.g. Pearson's or Spearman's) and is interpreted in the same way. This test is recommended over other rank-oriented correlation methods when your data has many ties.
+
+### Arguments
+
+| id |description |value type |validator |required |default value |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>y</b> | first variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+| <b>x</b> | second variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+
+### Pre-calculation data modification
+
+Removes from the input vectors (matrix) all rows in which there is at least one empty value.
+
+### Output schema
+
+```mermaid
+graph TD
+correlGamma((<i>object</i>))
+style correlGamma fill:#E1C6B3;
+style correlGamma stroke:#C36422;
+correlGamma --> r[<b>r</b><br>The Goodman-Kruskal gamma <br><i>number</i>]
+style r fill:#FFFFFF;
+style r stroke:#4967A4;
+correlGamma --> p[<b>p</b><br>significance <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
