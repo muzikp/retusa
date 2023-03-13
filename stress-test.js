@@ -48,6 +48,17 @@ const pearson = function(sampleSize) {
     }
 }
 
+const gamma = function(sampleSize) {
+    var matrix = new $.Matrix(
+        $.NumericVector.generate({total: sampleSize, min: -1000, max: 1000, nullprob: 0.5}).name("x"),
+        $.NumericVector.generate({total: sampleSize, min: -1000, max: 1000, nullprob: 0.5}).name("y")
+    );
+    var analysis = matrix.analyze("correlGamma").run(0,1);
+    return {
+        duration: analysis.duration()
+    }
+}
+
 const partial = function(sampleSize) {
     var matrix = new $.Matrix(
         $.NumericVector.generate({total: sampleSize, min: -1000, max: 1000, nullprob: 0.5}).name("x"),
@@ -156,6 +167,7 @@ module.exports = {
     anova: anovaow,
     biserial: biserial,
     contingency: contingency,
+    gamma: gamma,
     friedman: friedman,
     kendall: kendall,
     linreg: linreg,

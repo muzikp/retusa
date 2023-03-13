@@ -570,6 +570,29 @@ const matrixMethods = {
         debugger;
         return {};
     },
+    correlGamma: function() {
+        var x = arguments[0];
+        var y = arguments[1];
+        let n = x.length;
+        let n_c = 0;
+        let n_d = 0;   
+        for (let i = 0; i < n; i++) {
+          for (let j = i + 1; j < n; j++) {
+            if ((x[i] < x[j] && y[i] < y[j]) || (x[i] > x[j] && y[i] > y[j])) {
+              n_c++;
+            } else if ((x[i] < x[j] && y[i] > y[j]) || (x[i] > x[j] && y[i] < y[j])) {
+              n_d++;
+            }
+          }
+        }  
+        var r = (n_c - n_d) / (n_c + n_d);
+        var z = (r - 0) / Math.sqrt((4 * n_c * n_d) / (Math.pow(n, 2) * Math.pow(n - 1, 2)));
+        var p = dist.normdist(-z, 0, 1, true);
+        return {
+            r: r,
+            p: p
+        };
+    },
     ttest_independent: function(){
         var x = arguments[0][0];
         var y = arguments[0][1];
@@ -961,6 +984,34 @@ const MatrixMethodsModels = [
         args: {
             x: {
                 model: "booleanVector",
+                config: {
+                    name: "x",
+                    title: "qFEM",
+                    required: true
+                }
+            },
+            y: {
+                model: "numericVector",
+                config: {
+                    name: "y",
+                    title: "tpUu",
+                    required: true
+                }
+            }
+        }
+    },
+    {   name: "correlGamma",
+        fn: matrixMethods.correlGamma,
+        wiki: {
+            title: "R5AC",
+            description: "zKSX",
+            preprocessor: preprocessors.removeEmptyXY.title
+        },
+        output: "correlGamma",
+        prepare: preprocessors.removeEmptyXY.fn,
+        args: {
+            x: {
+                model: "numericVector",
                 config: {
                     name: "x",
                     title: "qFEM",

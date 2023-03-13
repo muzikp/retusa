@@ -299,6 +299,17 @@ const lib = {
             "p": snippets.sig
         }
     },
+    "correlGamma": {
+        "title": "R5AC", 
+        "type": "object",
+        "properties": {
+            "r": {
+                "title": "wZUG", 
+                "type": "number"
+            },
+            "p": snippets.sig
+        }
+    },
     "linreg": {
         "title": "vlCA",
         "type": "object",

@@ -35,6 +35,11 @@ The method allows us to specify for which transformation of the model (eg linear
 | <b>n</b> | independent variable (x) | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 | <b>x</b> | dependent variable (y) | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 | <b>model</b> | regression model | enumerator | <sub>Checks if the specified value is the key of an enumeration (list of possible values). If not, it throws an error.<br><br><b>1</b> = linear<br><b>2</b> = log<br><b>3</b> = hyperbole<br><b>4</b> = exponential<br><b>5</b> = quadratic<br><sub> |  | 1 |
+
+### Pre-calculation data modification
+
+Removes from the input vectors (matrix) all rows in which there is at least one empty value.
+
 ### Syntax examples
 
 ```js
@@ -57,9 +62,6 @@ graph TD
 linreg((<i>object</i>))
 style linreg fill:#E1C6B3;
 style linreg stroke:#C36422;
-linreg --> model[<b>model</b><br>regression model <br><i>number</i>]
-style model fill:#FFFFFF;
-style model stroke:#BB9B14;
 linreg --> r2[<b>r2</b><br>coefficient of determination <br><i>number</i>]
 style r2 fill:#FFFFFF;
 style r2 stroke:#4967A4;

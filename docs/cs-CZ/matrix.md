@@ -35,6 +35,11 @@ Metoda umožňuje upřesnit, pro jakou transformaci modelu (např. lineární, l
 | <b></b> | nezávislá proměnná (x) | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 | <b>x</b> | závislá proměnná (y) | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 | <b></b> | regresní model | enumerace | <sub>Ověří, zdali je zadaná hodnota klíčem enumerace (seznamu možných hodnot). Pokud ne, vyhodí chybu.<br><br><b>1</b> = lineární<br><b>2</b> = logaritmovaný<br><b>3</b> = hyperbolický<br><b>4</b> = exponenciální<br><b>5</b> = kvadratický<br><sub> |  | 1 |
+
+### Před-výpočetní úprava dat
+
+Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
+
 ### Příklady syntaxe
 
 ```js
@@ -57,9 +62,6 @@ graph TD
 linreg((<i>objekt</i>))
 style linreg fill:#E1C6B3;
 style linreg stroke:#C36422;
-linreg --> model[<b>model</b><br>regresní model <br><i>číslo</i>]
-style model fill:#FFFFFF;
-style model stroke:#BB9B14;
 linreg --> r2[<b>r2</b><br>koeficient determinace <br><i>číslo</i>]
 style r2 fill:#FFFFFF;
 style r2 stroke:#4967A4;

@@ -390,9 +390,9 @@ var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc(true); /* = 0
 
 ```mermaid
 graph TD
-varc[<b>variační koeficient<br></b>číslo]
+varc[<b>variační koeficient<br></b>procento]
 style varc fill:#FFFFFF;
-style varc stroke:#4967A4;
+style varc stroke:#75716F;
 
 ```
 
