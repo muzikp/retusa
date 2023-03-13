@@ -991,6 +991,18 @@ The Goodman-Kruskal gamma is similar to the ordinal correlation coefficient, i.e
 
 Removes from the input vectors (matrix) all rows in which there is at least one empty value.
 
+### Syntax examples
+
+```js
+var M = new Matrix(
+new NumericVector(180,197,240,210,180,160,179,185,183,150,110,190,170).name("score A"),
+new NumericVector(75,82,100,80,75,60,75,71,77,63,46,81,70).name("score B")
+);
+var rg_a = M.analyze("correlGamma").run(0,1);
+var rg_b = M.correlGamma("score A","score B");
+// rg_a.result = rg_b
+```
+
 ### Output schema
 
 ```mermaid

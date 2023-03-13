@@ -1,8 +1,15 @@
 var _ = require("./index");
 var st = require("./stress-test");
 
-
+var M = new _.Matrix(
+    new _.NumericVector(180,197,240,210,180,160,179,185,183,150,110,190,170).name("score A"),
+    new _.NumericVector(75,82,100,80,75,60,75,71,77,63,46,81,70).name("score B")
+);
+var rg_a = M.analyze("correlGamma").run(0,1);
+var rg_b = M.correlGamma("score A","score B");
+// rg_a.result = rg_b
 require("./docs")();
+debugger;
 return;
 var stats = [];
 /* anova */ 
