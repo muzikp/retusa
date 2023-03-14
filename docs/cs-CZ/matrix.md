@@ -1,4 +1,4 @@
-# Dokumentace statistických metod matic
+## Dokumentace statistických metod matic
 
 Maticové metody představují statistické metody, které je možné provádět nad danou maticí. Obecně je lze volat dvě způsoby: buďto přímo (např. {Matrix}.correlPearson(0,1), nebo pomocí obecné metody 'analyze', např. {Matrix}.analyze('correlPearson').run(0,1). Rozdíl mezi první a druhým způsobem spočívá v tom, že u první metody dotneme čistý výsledek (u daného příkladu objekt s vlastnostmi r a p), v druhém případě dostaneme zpět celou třídy MatrixAnalysis, obsahující kromě výsledku i metadata (jako jsou informacee o vzorku, trvání výpočtu ad.) a také vstupní model, specifikaci argumentů atd. Pokud tedy potřebujete v průběhu výpočtu uchovávat metadata, je vhodné volat metody přes funkci 'analyze', kde parametr tvoří název metody.
 
@@ -29,7 +29,7 @@ Lineární regrese je statistická metoda používaná k nalezení vztahu mezi d
 
 Metoda umožňuje upřesnit, pro jakou transformaci modelu (např. lineární, logaritmovanou) hledáme koeficient determinace.
 
-### Argumenty
+#### Argumenty
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
@@ -37,11 +37,11 @@ Metoda umožňuje upřesnit, pro jakou transformaci modelu (např. lineární, l
 | <b>x</b> | závislá (vysvětlovaná) proměnná (Y) | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 | <b></b> | regresní model | enumerace | <sub>Ověří, zdali je zadaná hodnota klíčem enumerace (seznamu možných hodnot). Pokud ne, vyhodí chybu.<br><br><b>1</b> = lineární<br><b>2</b> = logaritmický<br><b>3</b> = hyperbolický<br><b>4</b> = exponenciální<br><b>5</b> = kvadratický<br><sub> |  | 1 |
 
-### Před-výpočetní úprava dat
+#### Před-výpočetní úprava dat
 
 Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
 
-### Příklady syntaxe
+#### Příklady syntaxe
 
 ```js
 var M = new Matrix(
@@ -56,7 +56,7 @@ var lr_b = M.analyze("linreg").run({x: "independent x", y: 1, model: 4}); // sam
 // lb_b = lr_d.result
 ```
 
-### Schéma výsledku
+#### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -90,18 +90,18 @@ Stanoví statistický protokol Pearsonova korelačního koeficientu. Pearsonova 
 Pearsonova korelace se vypočítá pomocí vzorce, který se nazývá Pearsonův koeficient korelace. Tento koeficient se pohybuje v rozmezí od -1 do 1 a udává, jak silně je mezi veličinami vztah. Pokud je koeficient blízký -1, znamená to, že mezi veličinami je silný negativní vztah, což znamená, že když se hodnota jedné veličiny zvyšuje, hodnota druhé veličiny klesá. Naopak pokud je koeficient blízký 1, znamená to, že mezi veličinami je silný pozitivní vztah, což znamená, že když se hodnota jedné veličiny zvyšuje, hodnota druhé veličiny také roste. Pokud je koeficient blízký 0, znamená to, že mezi veličinami není žádný vztah nebo je vztah velmi slabý.
 Pearsonova korelace se používá především k porovnávání dvou kvantitativních veličin, tj. veličin, které jsou měřitelné na škále s přesnými hodnotami (například věk, výška nebo hmotnost). Může se použít k určení, zda existuje vztah mezi těmito veličinami a jaký je jeho charakter. Například může být Pearsonova korelace použita k porovnání věku a hmotnosti a zjistit, zda existuje vztah mezi těmito veličinami a jaký je jeho charakter. Může se také použít k porovnání výsledků dvou různých testů a zjistit, zda existuje vztah mezi výsledky těchto testů. Zdroj: https://chat.openai.com/chat
 
-### Argumenty
+#### Argumenty
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>y</b> | první proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 | <b>x</b> | druhá proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 
-### Před-výpočetní úprava dat
+#### Před-výpočetní úprava dat
 
 Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
 
-### Příklady syntaxe
+#### Příklady syntaxe
 
 ```js
 var M = new Matrix(
@@ -113,7 +113,7 @@ var rxy_b = M.correlPearson("height","weight");
 // rxy_a.result = rxy_b
 ```
 
-### Schéma výsledku
+#### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -133,18 +133,18 @@ style p stroke:#75716F;
 
 Stanoví statistický protokol Spearmanova koeficientu pořadové korelace. Narozdíl od hodnoty Pearsonovy korelačního koeficientu, hodnota tohoto koeficientu vychází z porovnání pořadí velikosti hodnot vstupních proměnných.
 
-### Argumenty
+#### Argumenty
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>y</b> | první proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 | <b>x</b> | druhá proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 
-### Před-výpočetní úprava dat
+#### Před-výpočetní úprava dat
 
 Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
 
-### Příklady syntaxe
+#### Příklady syntaxe
 
 ```js
 var M = new Matrix(
@@ -156,7 +156,7 @@ var rs_b = M.correlSpearman("design rating","utility rating");
 // rs_a.result = rs_b
 ```
 
-### Schéma výsledku
+#### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -179,18 +179,18 @@ style p stroke:#75716F;
 
 Goodman-Kruskalova gama je obdobou ordinálního korelačního koeficientu, tedy testu, který měří závislost mezi dvěma pořadovými proměnnými. I z toho důvodu může nabývat stejných hodnot jako ostatní korelační koeficienty (např. Pearsonův či Spearmanův) a stejně se i interpretuje. Tento test se před ostatními pořadově orientovanými korelačními metodami doporučuje tehdy, pokud mají data mnoho shodných pořadí (tzv. ties).
 
-### Argumenty
+#### Argumenty
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>y</b> | první proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 | <b>x</b> | druhá proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 
-### Před-výpočetní úprava dat
+#### Před-výpočetní úprava dat
 
 Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
 
-### Příklady syntaxe
+#### Příklady syntaxe
 
 ```js
 var M = new Matrix(
@@ -202,7 +202,7 @@ var rg_b = M.correlGamma("score A","score B");
 // rg_a.result = rg_b
 ```
 
-### Schéma výsledku
+#### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -224,18 +224,18 @@ Stanoví statistický protokol Kendallova korelačního koeficientu Tau-B. Pokud
 
 ⚠️ Tato metoda je ve vývojové fázi a může vracet neplatné výsledky či vyvolávat chybu.
 
-### Argumenty
+#### Argumenty
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>y</b> | první proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 | <b>x</b> | druhá proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 
-### Před-výpočetní úprava dat
+#### Před-výpočetní úprava dat
 
 Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
 
-### Příklady syntaxe
+#### Příklady syntaxe
 
 ```js
 var M = new Matrix(
@@ -247,7 +247,7 @@ var rk_b = M.correlKendall("design rating","utility rating");
 // rk_a.result = rk_b
 ```
 
-### Schéma výsledku
+#### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -273,7 +273,7 @@ style p stroke:#75716F;
 
 Parciální korelační koeficient umožňuje zjistit, jaký je vztah mezi dvěma proměnnými, přičemž se zohlední vliv třetí proměnné. To je užitečné, pokud chcete zjistit, zda existuje přímý vztah mezi dvěma proměnnými, aniž byste byli ovlivněni vlivem jiných proměnných. Například, pokud chcete zjistit, zda existuje vztah mezi úrovní školení a úspěšností v práci, může být užitečné zohlednit také vliv věku nebo pohlaví. V takovém případě byste mohli použít parciální korelaci k zjištění vztahu mezi úrovní školení a úspěšností v práci při zohlednění vlivu věku a pohlaví. Parciální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že parciální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost. Zdroj: https://chat.openai.com/chat.
 
-### Argumenty
+#### Argumenty
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
@@ -281,11 +281,11 @@ Parciální korelační koeficient umožňuje zjistit, jaký je vztah mezi dvěm
 | <b>x</b> | druhá proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 | <b>y</b> | třetí (kontrolní) proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 
-### Před-výpočetní úprava dat
+#### Před-výpočetní úprava dat
 
 Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
 
-### Příklady syntaxe
+#### Příklady syntaxe
 
 ```js
 var M = new Matrix(
@@ -298,7 +298,7 @@ var rp_b = M.correlPartial("x","y","z");
 // rp_a.result = rp_b
 ```
 
-### Schéma výsledku
+#### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -318,18 +318,18 @@ style p stroke:#75716F;
 
 Bodově biseriální korelační koeficient se používá k vyhodnocení vztahu mezi dvěma ...
 
-### Argumenty
+#### Argumenty
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b></b> | první proměnná | binární vektor | <sub>Ověří, zdali je argument buďto binární (boolean) vektor, jeho identifikátor nebo řada převoditelná na binární vektor. V opačném případě vyhodí chybu,<sub> | ✔️ |  |
 | <b>z</b> | druhá proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 
-### Před-výpočetní úprava dat
+#### Před-výpočetní úprava dat
 
 Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
 
-### Schéma výsledku
+#### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -349,18 +349,18 @@ style p stroke:#75716F;
 
 Stanoví statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Metoda má dva argumenty. První tvoří řada numerických vektorů, kde minimálně jeden vektor je povinný. Druhý argument je nepovinný a představuje shlukovací faktor, tedy textovou proměnnou, která v řádcích určuje příslučnost numerického faktoru ke skupině. Pokud je zadán druhý parametr, z první skupiny vektorů je zohledňován pouze první.
 
-### Argumenty
+#### Argumenty
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b></b> | vstupní vektor/y | numerický vektor nebo matice numerických vektorů | <sub>Ověří, zdali je argument buďto numerický vektor, jeho identifikátor nebo řada převoditelná na numerický vektor, anebo zdali se jedná o řadu numerických vektorů (resp. hodnot, které jsou buďto vektory, identifikátry nebo hodnoty převoditelné na numerické vektory - v libovolné kombinace). Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 | <b></b> | shlukovací proměnná | jakýkoliv vektor | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> |  |  |
 
-### Před-výpočetní úprava dat
+#### Před-výpočetní úprava dat
 
 Pokud argumenty specifikují faktorovou proměnnou (druhý argument), rozloží se první argument (buďto numerický vektor nebo první vektor v matici, pokud je prvním argumentem matice) dle hodnot faktoru do nové matice. Pokud jsou argumenty bez faktoru (tedy druhý argument je prázdný), vezme všechny numerické vektory z prvního argumentu 'vectors' (matice) a následně odstraní řádky s prázdnými hodnotami. V případě, že není zadán argument 'factor' a argument 'vectors' zároveň obsahuje pouze jediný vektor nebo je sám numerickým vektorem, vyhodí chybu (bez faktoru jsou třeba alespoň dva numerické vektory v prvním argumentu).
 
-### Příklady syntaxe
+#### Příklady syntaxe
 
 ```js
 var M = new Matrix(
@@ -371,7 +371,7 @@ new NumericVector(275,282,300,280,275,260,275,271,277,263,246,281,270).name("z")
 var anova = M.analyze("anovaow").run({vectors: [0,1,2]});
 ```
 
-### Schéma výsledku
+#### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -434,15 +434,15 @@ style df stroke:#75716F;
 
 Stanoví statistický protokol Studentova t-testu pro dva nezávislé výběry, které jsou definovány vlastní proměnnou (tedy dvěma numerickými vektory). Argumenty tvoří buď dva numerické vektory, nebo jeden numerický a jen faktorový vektor (obvykle text, ale může být i numerický či binární). Pokud je použit jako faktor vektor, který má více než dvě unikátní hodnoty, jsou pro test uvažovány pouze první dvě unikátní nalezené hodnoty (ostatní se ignorují) - v takovém případě je informace o velikosti čistého vzorku nepodstatná, nicméně hladina významnosti, do které velikost vzorku vstupuje, je již založena na čistých případech.
 
-### Argumenty
+#### Argumenty
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | vstupní vektor/y | numerický vektor nebo matice numerických vektorů | <sub>Ověří, zdali je argument buďto numerický vektor, jeho identifikátor nebo řada převoditelná na numerický vektor, anebo zdali se jedná o řadu numerických vektorů (resp. hodnot, které jsou buďto vektory, identifikátry nebo hodnoty převoditelné na numerické vektory - v libovolné kombinace). Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 | <b>factor</b> | shlukovací proměnná | jakýkoliv vektor | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> |  |  |
-### Příklady syntaxe
+#### Příklady syntaxe
 
-#### Argumenty jako vlastnosti objektu
+##### Argumenty jako vlastnosti objektu
 
 <sub>Metoda má dva parametry: vectors (první a povinný) a factor (druhý, nepovinný). V uvedeném příkladu je jako argument specifikován jediný objekt, který specifikuje hodnoty jednotlivých parametrů funkce. V této metodě je možné uvést parametr vectors i jako jediný vektor.</sub>
 
@@ -456,7 +456,7 @@ var ttestind_b = M.ttestind({vectors: [0,1]});
 // ttestind_a.result === mqu_b
 ```
 
-#### Argumenty jako řada
+##### Argumenty jako řada
 
 <sub>Argumenty jsou standardndím způsobem řazeny za sebe. Je zde zásadní dodržovat pořadí argumentů a krom toho, první argument by měl být ideálně ve formátu array, např. [vector1, vector2].</sub>
 
@@ -470,7 +470,7 @@ var ttestind_b = M.ttestind(["x","y"]);
 // ttestind_a.result === mqu_b
 ```
 
-#### Implementace argumentu 'factor'
+##### Implementace argumentu 'factor'
 
 <sub>Jako druhý parametr je specifikován faktor, tedy proměnná, dle které se přetransformuje argument vector (případně první vektor, pakliže je zadáno více numerických vektorů).</sub>
 
@@ -486,7 +486,7 @@ var ttestind_d = M.ttestind(0, 1);
 var ttestind_e = M.analyze("ttestind").run([0], 1);
 ```
 
-### Schéma výsledku
+#### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -509,18 +509,18 @@ style df stroke:#75716F;
 
 Stanoví statistický protokol párového t-testu pro dva závislé výběry. Prázdné hodnoty jsou vyřezeny v průřezu řádků, tzn. že pokud v jednom řádku chybí alespoň jedna hodnota, je z analýzy vyřezen celý řádek.
 
-### Argumenty
+#### Argumenty
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>y</b> | první proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 | <b>x</b> | druhá proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 
-### Před-výpočetní úprava dat
+#### Před-výpočetní úprava dat
 
 Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
 
-### Příklady syntaxe
+#### Příklady syntaxe
 
 ```js
 var M = new Matrix(
@@ -532,7 +532,7 @@ var ttest_b = M.ttestpair("pre-score","post-score");
 // ttest_a.result = ttest_b
 ```
 
-### Schéma výsledku
+#### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -557,20 +557,20 @@ Stanoví statistický protokol Mann-Whitneyho U testu. Jedná se o neparametrick
 
 ⚠️ Tato metoda je ve vývojové fázi a může vracet neplatné výsledky či vyvolávat chybu.
 
-### Argumenty
+#### Argumenty
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | vstupní vektor/y | numerický vektor nebo matice numerických vektorů | <sub>Ověří, zdali je argument buďto numerický vektor, jeho identifikátor nebo řada převoditelná na numerický vektor, anebo zdali se jedná o řadu numerických vektorů (resp. hodnot, které jsou buďto vektory, identifikátry nebo hodnoty převoditelné na numerické vektory - v libovolné kombinace). Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 | <b>factor</b> | shlukovací proměnná | jakýkoliv vektor | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> |  |  |
 
-### Před-výpočetní úprava dat
+#### Před-výpočetní úprava dat
 
 Pokud argumenty specifikují faktorovou proměnnou (druhý argument), rozloží se první argument (buďto numerický vektor nebo první vektor v matici, pokud je prvním argumentem matice) dle hodnot faktoru do nové matice. Pokud jsou argumenty bez faktoru (tedy druhý argument je prázdný), vezme první dva vektory z prvního argumentu 'vectors' (matice) a následně odstraní řádky s prázdnými hodnotami.V případě, že není zadán argument 'factor' a argument 'vectors' zároveň obsahuje pouze jediný vektor nebo je sám numerickým vektorem, vyhodí chybu (bez faktoru jsou třeba alespoň dva numerické vektory v prvním argumentu).
 
-### Příklady syntaxe
+#### Příklady syntaxe
 
-#### Argumenty jako vlastnosti objektu
+##### Argumenty jako vlastnosti objektu
 
 <sub>Metoda má dva parametry: vectors (první a povinný) a factor (druhý, nepovinný). V uvedeném příkladu je jako argument specifikován jediný objekt, který specifikuje hodnoty jednotlivých parametrů funkce. V této metodě je možné uvést parametr vectors i jako jediný vektor.</sub>
 
@@ -584,7 +584,7 @@ var mwu_b = M.mwu({vectors: [0,1]});
 // mwu_a.result === mqu_b
 ```
 
-#### Argumenty jako řada
+##### Argumenty jako řada
 
 <sub>Argumenty jsou standardndím způsobem řazeny za sebe. Je zde zásadní dodržovat pořadí argumentů a krom toho, první argument by měl být ideálně ve formátu array, např. [vector1, vector2].</sub>
 
@@ -598,7 +598,7 @@ var mwu_b = M.mwu(["x","y"]);
 // mwu_a.result === mqu_b
 ```
 
-#### Implementace argumentu 'factor'
+##### Implementace argumentu 'factor'
 
 <sub>Jako druhý parametr je specifikován faktor, tedy proměnná, dle které se přetransformuje argument vector (případně první vektor, pakliže je zadáno více numerických vektorů).</sub>
 
@@ -614,7 +614,7 @@ var mwu_d = M.mwu(0, 1);
 var mwu_e = M.analyze("mwu").run([0], 1);
 ```
 
-### Schéma výsledku
+#### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -637,18 +637,18 @@ style p stroke:#75716F;
 
 Wilcoxonův znaménkový test je neparametrický statistický test používaný k určení, zda dva příbuzné nebo spárované vzorky mají stejný medián nebo ne. Používá se, když data nejsou normálně rozdělena nebo je porušen předpoklad stejných rozptylů. Tento test je vhodný pro malé velikosti vzorků.
 
-### Argumenty
+#### Argumenty
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>y</b> | první proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 | <b>x</b> | druhá proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 
-### Před-výpočetní úprava dat
+#### Před-výpočetní úprava dat
 
 Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
 
-### Příklady syntaxe
+#### Příklady syntaxe
 
 ```js
 var M = new Matrix(
@@ -660,7 +660,7 @@ var wcx_b = M.wcxpaired(0,1);
 // wcx_a.result = wcx_b
 ```
 
-### Schéma výsledku
+#### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -682,17 +682,17 @@ Friedmanova analýza rozptylu je neparametrický statistický test vyvinutý Mil
 
 ⚠️ Tato metoda je ve vývojové fázi a může vracet neplatné výsledky či vyvolávat chybu.
 
-### Argumenty
+#### Argumenty
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | vstupní vektor/y | numerický vektor nebo matice numerických vektorů | <sub>Ověří, zdali je argument buďto numerický vektor, jeho identifikátor nebo řada převoditelná na numerický vektor, anebo zdali se jedná o řadu numerických vektorů (resp. hodnot, které jsou buďto vektory, identifikátry nebo hodnoty převoditelné na numerické vektory - v libovolné kombinace). Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 
-### Před-výpočetní úprava dat
+#### Před-výpočetní úprava dat
 
 Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
 
-### Příklady syntaxe
+#### Příklady syntaxe
 
 ```js
 var M = new Matrix(
@@ -705,7 +705,7 @@ var friedman_b = M.friedman(["white","red","rose"]);
 // friedman_a.result = friedman_b
 ```
 
-### Schéma výsledku
+#### Schéma výsledku
 
 ```mermaid
 graph TD
@@ -728,7 +728,7 @@ style p stroke:#75716F;
 
 Stanoví statistický protokol kontingence. Parametry metody jsou a) řádková proměnná, b) sloupcová proměnná a volitelně c) četnost skupiny a/b (pokud je prázdná, bere se, že četnost průniku je 1). Výstupem metody jsou jak statistiky kontingence (chí^2), Cramérovo V, Pearsonovo C, ad).
 
-### Argumenty
+#### Argumenty
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
@@ -736,13 +736,13 @@ Stanoví statistický protokol kontingence. Parametry metody jsou a) řádková 
 | <b>rows</b> | sloupcová proměnná | jakýkoliv vektor | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 | <b>y</b> | proměnná četnosti | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> |  |  |
 
-### Před-výpočetní úprava dat
+#### Před-výpočetní úprava dat
 
 Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
 
-### Příklady syntaxe
+#### Příklady syntaxe
 
-#### Bez specifikace četností
+##### Bez specifikace četností
 
 <sub>Metoda nahrazuje chybějící argument n (četnosti) automaticky vygenerovaných vektorem, jehož každá hodnota je rovna 1. Stručně řešeno, vstupní tabulka má podobu hrubých, neagregovaných dat.</sub>
 
@@ -757,7 +757,7 @@ var c_c = M.analyze("contingency").run({rows: 0, columns: 1});
 // c_a = c_b.result = c_c.result
 ```
 
-#### Se specifikací četností
+##### Se specifikací četností
 
 <sub>Poslední argument tvoří agregované četnosti, tzn. že vstupní tabulka je již agregovaná.</sub>
 
@@ -774,7 +774,7 @@ var c_d = M.analyze("contingency").run({rows: 0, columns: 1, n: 2});
 // c_a = c_b.result = c_c.result = c_d.result
 ```
 
-### Schéma výsledku
+#### Schéma výsledku
 
 ```mermaid
 graph TD

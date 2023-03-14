@@ -1,7 +1,7 @@
 var _ = require("./index");
 var st = require("./stress-test");
 
-require("./docs")();
+require("./docs")({offset: 2});
 return;
 //logisticRegression([true, false, true, false, true],[[0.5, 0.2, 0.9, 0.1, 0.8],[0.3, 0.7, 0.1, 0.8, 0.4],[1, 0, 1, 0, 1]], 1000)
 //logisticRegression([false,true,false,true,true,false,false,true,true,false,true,false],[[2,13,13,12,14,14,17,17,21,21,24,24],[3,4,4,9,4,4,2,6,5,9,11,4],[6,4,6,9,5,4,2,5,7,3,11,5]], 1000)

@@ -3,6 +3,7 @@ var {Vector, NumericVector, StringVector, BooleanVector, VectorAnalysis} = requi
 var {Argument} = require("./libs/argument");
 var {Output} = require("./libs/output");
 var locale = require("./libs/locale");
+let offset = 1;
 //locale.setDefault("en-GB");
 var $ = locale.call
 var vectorMethods = [
@@ -48,6 +49,14 @@ var matrixMethods = [
     "contingency"
 ]
 
+function hash(off = 0) {
+    var _ = "";
+    for(var i = 0; i < (off || 0) + offset; i++) {
+        _ += "#";
+    }
+    return _;
+}
+
 String.prototype.firstUp = function() {
     return this[0].toLocaleUpperCase() + this.slice(1);
 }
@@ -55,7 +64,7 @@ String.prototype.firstUp = function() {
 Vector.toMarkdown = function(){
     // title and overview
     var doc = "";
-    var doc = `# ${$("arer")}\n\n${$("U8io")}\n\n`;
+    var doc = `${hash()} ${$("arer")}\n\n${$("U8io")}\n\n`;
     doc += `| ${$("wRbe")} | ${$("rlTY")} |\n| :--- | :--- |\n`;
     doc += vectorMethods.map(function(m) {
         var ma = new VectorAnalysis(m);
@@ -70,7 +79,7 @@ Vector.toMarkdown = function(){
 
 Matrix.toMarkdown = function(){
     // title and overview
-    var doc = `# ${$("XY70")}\n\n${$("Ld1F")}\n\n${$("ISCX")}\n\n${$("1Tcp")}\n\n`;
+    var doc = `${hash()} ${$("XY70")}\n\n${$("Ld1F")}\n\n${$("ISCX")}\n\n${$("1Tcp")}\n\n`;
     doc += `| ${$("wRbe")} | ${$("rlTY")} |\n| :--- | :--- |\n`;
     doc += matrixMethods.map(function(m) {
         var ma = new MatrixAnalysis(m);
@@ -156,38 +165,38 @@ MatrixAnalysis.prototype.toMarkdown = function(){
     if(this.unstable) m += `⚠️ ${$("vdkW")}\n\n`;
     /* arguments */
     var headers = ["QUJS","jBGO","dmmV","tGqA","VPYX","pDgb"];
-    m += `### ${$("FRpk")}\n\n`
+    m += `${hash(2)} ${$("FRpk")}\n\n`
     m += "| " + headers.map(h => $(h) + " |").join("") + "\n";
     m += "| " + headers.map(h => ":--- |").join("")  + "\n";
     for(let a of Object.keys(this.model.args)) {
         m += new Argument(this.model.args[a].model, null, this.model.args[a].config).toMarkdown();
     }
-    if(this.preprocessor.value) m += `\n### ${$("jrdS")}\n\n${this.preprocessor.value}\n\n`;
+    if(this.preprocessor.value) m += `\n${hash(2)} ${$("jrdS")}\n\n${this.preprocessor.value}\n\n`;
     if(examples[this.name]) {
-        m += `### ${$("nzmJ")}\n\n`; // syntax example header
+        m += `${hash(2)} ${$("nzmJ")}\n\n`; // syntax example header
         if(typeof examples[this.name] == "function") {
             m += "```js\n" + examples[this.name].stringify() + "\n```\n\n"
         }
         else {
             for(var e of examples[this.name]) {
-                m += `${$(e.title ? "#### " + $(e.title) + "\n\n" : "")}${e.description ? '<sub>' + $(e.description) + "</sub>\n\n" : ""}` + "```js\n" + e.code.stringify() + "\n```\n\n"
+                m += `${$(e.title ? hash(3) + " " + $(e.title) + "\n\n" : "")}${e.description ? '<sub>' + $(e.description) + "</sub>\n\n" : ""}` + "```js\n" + e.code.stringify() + "\n```\n\n"
             }
         }
         
     }
     if(this.model.output) {
-        m += `### ${$("l43h")}\n\n` + new Output(this.model.output).toMarkdown(this);
+        m += `${hash(2)} ${$("l43h")}\n\n` + new Output(this.model.output).toMarkdown(this);
     }
     return m;
 }
 
 VectorAnalysis.prototype.toMarkdown = function(){
-    var m = `## [${this.title.value.firstUp()}](#${this.name})\n\n${this.description.value ? this.description.value + "\n\n": ""}`;    
+    var m = `${hash(1)} [${this.title.value.firstUp()}](#${this.name})\n\n${this.description.value ? this.description.value + "\n\n": ""}`;    
     if(this.unstable) m += `⚠️ ${$("vdkW")}\n\n`;
     if(this.model.args) {
         /* arguments */
         var headers = ["QUJS","jBGO","dmmV","tGqA","VPYX","pDgb"];
-        m += `### ${$("FRpk")}\n\n`
+        m += `${hash(2)} ${$("FRpk")}\n\n`
         m += "| " + headers.map(h => $(h) + " |").join("") + "\n";
         m += "| " + headers.map(h => ":--- |").join("")  + "\n";
         for(let a of Object.keys(this.model.args)) {
@@ -196,19 +205,19 @@ VectorAnalysis.prototype.toMarkdown = function(){
     }
     if(this.preprocessor.value) m += `\n### ${$("jrdS")}\n\n${this.preprocessor.value}\n\n`;
     if(examples[this.name]) {
-        m += `### ${$("nzmJ")}\n\n`; // syntax example header
+        m += `${hash(2)} ${$("nzmJ")}\n\n`; // syntax example header
         if(typeof examples[this.name] == "function") {
             m += "```js\n" + examples[this.name].stringify() + "\n```\n\n"
         }
         else {
             for(var e of examples[this.name]) {
-                m += `${$(e.title ? "#### " + $(e.title) + "\n\n" : "")}${e.description ? '<sub>' + $(e.description) + "</sub>\n\n" : ""}` + "```js\n" + e.code.stringify() + "\n```\n\n"
+                m += `${$(e.title ? hash(3) + " " + $(e.title) + "\n\n" : "")}${e.description ? '<sub>' + $(e.description) + "</sub>\n\n" : ""}` + "```js\n" + e.code.stringify() + "\n```\n\n"
             }
         }
         
     }
     if(this.model.output) {
-        m += `### ${$("l43h")}\n\n` + new Output(this.model.output).toMarkdown(this);
+        m += `${hash(2)} ${$("l43h")}\n\n` + new Output(this.model.output).toMarkdown(this);
     }
     return m;
 }
@@ -648,7 +657,8 @@ const examples = {
     ]
 }
 
-module.exports = function() {
+module.exports = function(config = {offset: 1}) {
+    offset = config.offset;
     const _origin = locale.getDefault();
     const write = require("fs").writeFileSync
     for(var l of locale.listLanguages()) {
