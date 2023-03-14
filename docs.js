@@ -150,7 +150,8 @@ function mmb(str = "") {
 }
 
 function formatMdPrimitiveType(value) {
-    if(value == "number" || "zeroToOneInc") return `${$("pelN")}`;
+    if(value == "any") return `${$("oMas")}`;
+    else if(value == "number" || "zeroToOneInc") return `${$("pelN")}`;
     else if(value == "integer") return `${$("DQnl")}`;
     else if(value == "uint") return `${$("IrhN")}`;
     //else if(value == "zeroToOneInc") return `${$("OQnL")}`;
@@ -666,8 +667,8 @@ module.exports = function(config = {offset: 1}) {
         locale.setDefault(l);
         var vector = Vector.toMarkdown();
         var matrix = Matrix.toMarkdown();
-        write(`./docs/${l}/matrix.md`, matrix);
-        write(`./docs/${l}/vector.md`, vector);
+        //write(`./docs/${l}/matrix.md`, matrix);
+        //write(`./docs/${l}/vector.md`, vector);
         write(`./docs/${l}.md`, vector + "\n\n" + matrix);
     }
     locale.setDefault(_origin);

@@ -36,7 +36,7 @@ Stanoví součet všech neprázdných číselných hodnot vektoru.
 
 ### Před-výpočetní úprava dat
 
-Odstraní z vektoru všechny prázdné hodnoty (buňky).
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
 
 #### Příklady syntaxe
 
@@ -92,7 +92,7 @@ var z = new BooleanVector(true, false, true).mode(); /* = true */
 
 ```mermaid
 graph TD
-mode[<b>modus<br></b>cokoliv]
+mode[<b>modus<br></b>libovolný typ hodnoty]
 style mode fill:#FFFFFF;
 style mode stroke:#75716F;
 
@@ -105,7 +105,7 @@ Stanoví aritmetický průměr (tedy podíl součtu a počtu hodnot vektoru) ze 
 
 ### Před-výpočetní úprava dat
 
-Odstraní z vektoru všechny prázdné hodnoty (buňky).
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
 
 #### Příklady syntaxe
 
@@ -130,7 +130,7 @@ Stanoví nejnižší hodnotu z neprázdných hodnot.
 
 ### Před-výpočetní úprava dat
 
-Odstraní z vektoru všechny prázdné hodnoty (buňky).
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
 
 #### Příklady syntaxe
 
@@ -143,7 +143,7 @@ var string_min = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 ```mermaid
 graph TD
-min[<b>minimum<br></b>cokoliv]
+min[<b>minimum<br></b>libovolný typ hodnoty]
 style min fill:#FFFFFF;
 style min stroke:#75716F;
 
@@ -156,7 +156,7 @@ Stanoví nejvyšší hodnotu z neprázdných hodnot.
 
 ### Před-výpočetní úprava dat
 
-Odstraní z vektoru všechny prázdné hodnoty (buňky).
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
 
 #### Příklady syntaxe
 
@@ -169,7 +169,7 @@ var string_max = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale",
 
 ```mermaid
 graph TD
-max[<b>maximum<br></b>cokoliv]
+max[<b>maximum<br></b>libovolný typ hodnoty]
 style max fill:#FFFFFF;
 style max stroke:#75716F;
 
@@ -182,7 +182,7 @@ Stanoví hodnotu variačního rozpětí.
 
 ### Před-výpočetní úprava dat
 
-Odstraní z vektoru všechny prázdné hodnoty (buňky).
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
 
 #### Příklady syntaxe
 
@@ -207,7 +207,7 @@ Geometrický průměr je charakteristika, která se počítá jako n-tá odmocni
 
 ### Před-výpočetní úprava dat
 
-Odstraní z vektoru všechny prázdné hodnoty (buňky).
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
 
 #### Příklady syntaxe
 
@@ -232,7 +232,7 @@ Harmonický průměr je charakteristika, která se počítá jako podíl počtu 
 
 ### Před-výpočetní úprava dat
 
-Odstraní z vektoru všechny prázdné hodnoty (buňky).
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
 
 #### Příklady syntaxe
 
@@ -257,7 +257,7 @@ Stanoví medián neboli prostřední hodnotu z neprázdných hodnot vektoru. Jed
 
 ### Před-výpočetní úprava dat
 
-Odstraní z vektoru všechny prázdné hodnoty (buňky).
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
 
 #### Příklady syntaxe
 
@@ -287,7 +287,7 @@ Pomocí kvantilu můžeme zkoumat rozdělení numerické řady, a to tak, že ř
 
 ### Před-výpočetní úprava dat
 
-Odstraní z vektoru všechny prázdné hodnoty (buňky).
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
 
 #### Příklady syntaxe
 
@@ -310,17 +310,17 @@ style percentile stroke:#4967A4;
 
 ### [Směrodatná odchylka](#stdev)
 
-Stanoví směrodatnou odchylku neprázdných hodnot. Směrodatná odchylka je statistický ukazatel, který udává, jak moc se hodnoty v daném souboru dat od sebe liší. Směrodatná odchylka je vyjádřena jako číslo, které udává, o kolik se průměrná hodnota odchýlí od skutečné hodnoty v daném souboru dat. Směrodatná odchylka je užitečná při porovnávání velikosti rozptýlení dat v různých souborech nebo v různých skupinách v rámci jednoho souboru dat. Čím je směrodatná odchylka větší, tím více se hodnoty v daném souboru dat od sebe liší.
+Stanoví směrodatnou odchylku neprázdných hodnot. Směrodatná odchylka je statistický ukazatel, který udává, jak moc se hodnoty v daném souboru dat od sebe liší. Čím je směrodatná odchylka větší, tím více se hodnoty v daném souboru dat od sebe liší.
 
 #### Argumenty
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
-| <b></b> | výběrový soubor | binární hodnota | <sub>Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu.<sub> |  | false |
+| <b></b> | výběrový soubor | binární hodnota | <sub>Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevyvolá tudíž nikdy chybu.<sub> |  | false |
 
 ### Před-výpočetní úprava dat
 
-Odstraní z vektoru všechny prázdné hodnoty (buňky).
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
 
 #### Příklady syntaxe
 
@@ -347,11 +347,11 @@ Stanoví hodnotu rozptylu tohoto vektoru.
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
-| <b>isSample</b> | výběrový soubor | binární hodnota | <sub>Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu.<sub> |  | false |
+| <b>isSample</b> | výběrový soubor | binární hodnota | <sub>Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevyvolá tudíž nikdy chybu.<sub> |  | false |
 
 ### Před-výpočetní úprava dat
 
-Odstraní z vektoru všechny prázdné hodnoty (buňky).
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
 
 #### Příklady syntaxe
 
@@ -372,13 +372,13 @@ style variance stroke:#4967A4;
 
 ### [Variační koeficient](#varc)
 
-Variační koeficient (také nazývaný relativní rozptyl) je statistický ukazatel, který měří míru variability nebo rozptýlení dat vzhledem k jejich střední hodnotě. Je to bezrozměrná míra variability, která umožňuje porovnávat rozptyl různých souborů dat bez ohledu na jednotky, ve kterých jsou data vyjádřena. Variační koeficient se počítá jako poměr směrodatné odchylky (sigma) a střední hodnoty (x) v sadě dat, násobený 100 pro vyjádření v procentech. okud je variační koeficient nízký, znamená to, že data jsou poměrně homogenní nebo málo rozptýlená vzhledem k průměru. Pokud je naopak vysoký, znamená to, že data jsou velmi různorodá nebo se výrazně liší od průměru.Variační koeficient se používá především k porovnávání variability mezi různými soubory dat. Například se často používá v biologii, medicíně, ekonomii, psychologii a sociologii pro měření variability různých populací nebo skupin.
+Variační koeficient (také nazývaný relativní rozptyl) je statistický ukazatel, který měří míru variability nebo rozptýlení dat vzhledem k jejich střední hodnotě. Je to bezrozměrná míra variability, která umožňuje porovnávat rozptyl různých souborů dat bez ohledu na jednotky, ve kterých jsou data vyjádřena. Variační koeficient se počítá jako poměr směrodatné odchylky (sigma) a střední hodnoty (x) v sadě dat, násobený 100 pro vyjádření v procentech. okud je variační koeficient nízký, znamená to, že data jsou poměrně homogenní nebo málo rozptýlená vzhledem k průměru. Pokud je naopak vysoký, znamená to, že data jsou velmi různorodá nebo se výrazně liší od průměru. Variační koeficient se používá především k porovnávání variability mezi různými soubory dat. Například se často používá v biologii, medicíně, ekonomii, psychologii a sociologii pro měření variability různých populací nebo skupin.
 
 #### Argumenty
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
-| <b>isSample</b> | výběrový soubor | binární hodnota | <sub>Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu.<sub> |  | false |
+| <b>isSample</b> | výběrový soubor | binární hodnota | <sub>Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevyvolá tudíž nikdy chybu.<sub> |  | false |
 #### Příklady syntaxe
 
 ```js
@@ -398,7 +398,7 @@ style varc stroke:#75716F;
 
 ### [Histogram](#histogram)
 
-Stanoví matici histogramu daného vektoru. Metodu lze volit s upřesněním parametrů nebo i bez nich. Pokud není upřesněn parametr 'maximální počet intervalů' (maxIntervals), je jeho hodnota automaticky vypočítána jako variační rozpětí/odmocnina z počtu prvků. Pokud je uveden parametr 'pevná velikost intervalu' (fixedInterval), je brána tato hodnota jako rozhodující pro počet intervalu. Obě dvě hodnoty nejsou slučitelné (ačkoliv nevrací chybu), při zadání obou dvou je jako prioritní brán parametr maxIntervals.
+Stanoví matici histogramu daného vektoru. Metodu lze volit s upřesněním parametrů nebo i bez nich. Pokud není upřesněn parametr 'maximální počet intervalů' (maxIntervals), je jeho hodnota automaticky vypočítána jako variační rozpětí/odmocnina z počtu prvků. Pokud je uveden parametr 'pevná velikost intervalu' (fixedInterval), je brána tato hodnota jako rozhodující pro počet intervalů. Obě dvě hodnoty nejsou slučitelné (ačkoliv nevrací chybu), při zadání obou dvou je jako prioritní brán parametr maxIntervals.
 
 #### Argumenty
 
@@ -409,7 +409,7 @@ Stanoví matici histogramu daného vektoru. Metodu lze volit s upřesněním par
 
 ### Před-výpočetní úprava dat
 
-Odstraní z vektoru všechny prázdné hodnoty (buňky).
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
 
 #### Příklady syntaxe
 
@@ -508,7 +508,7 @@ graph TD
 frequency{<i>řada</i>}
 style frequency fill:#85B3BE;
 style frequency stroke:#2E7C8F;
-frequency --> v[<b>v</b><br>hodnota <br><i>číslo</i>]
+frequency --> v[<b>v</b><br>hodnota <br><i>libovolný typ hodnoty</i>]
 style v fill:#FFFFFF;
 style v stroke:#75716F;
 frequency --> n[<b>n</b><br>četnost <br><i>číslo</i>]
@@ -524,7 +524,7 @@ Stanoví hodnotu směrodatné chyby odhadu průměru. Směrodatná chyba průmě
 
 ### Před-výpočetní úprava dat
 
-Odstraní z vektoru všechny prázdné hodnoty (buňky).
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
 
 #### Příklady syntaxe
 
@@ -550,11 +550,11 @@ Stanoví koeficient šikmosti, tedy asymetrii rozdělení kolem střední hodnot
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
-| <b>isSample</b> | výběrový soubor | binární hodnota | <sub>Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevrací tudíž nikdy chybu.<sub> |  | false |
+| <b>isSample</b> | výběrový soubor | binární hodnota | <sub>Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevyvolá tudíž nikdy chybu.<sub> |  | false |
 
 ### Před-výpočetní úprava dat
 
-Odstraní z vektoru všechny prázdné hodnoty (buňky).
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
 
 #### Příklady syntaxe
 
@@ -576,13 +576,13 @@ style skewness stroke:#4967A4;
 ### [Špičatost](#kurtosis)
 
 Stanoví hodnotu excesu množiny dat. Ve statistice špičatost (kurtosis) označuje míru, jak moc se hodnoty liší od průměrné hodnoty. Špičatost se obvykle počítá pro křivku rozdělení dat, která je grafickým zobrazením rozložení hodnot v dané sbírce dat.
-Existují dva základní typy špičatosti: platykurtóza a leptokurtóza. Platykurtóza se vyskytuje, když hodnoty vektoru jsou rozloženy víceméně rovnoměrně kolem průměrné hodnoty. Toto rozložení se projevuje jako křivka rozdělení tvaru písmene U, která má plochý vrchol. Naopak leptokurtóza se vyskytuje, když hodnoty v sbírce dat jsou rozloženy s výraznou odchylkou od průměrné hodnoty. Toto rozložení se projevuje jako křivka rozdělení tvaru 'písmene špičatého kopce' nebo 'písmene špičatého údolí'.
-Špičatost se používá k určení, zda je rozložení hodnot v sbírce dat víceméně rovnoměrné, nebo zda existují nějaké výrazné odchylky od průměrné hodnoty. Špičatost se často používá spolu s dalšími metrikami, jako je medián, šikmost a kvantily, které vám pomohou lépe porozumět rozložení dat a určit, zda existují nějaké výrazné odchylky od průměrné hodnoty.
+Existují dva základní typy špičatosti: platykurtóza a leptokurtóza. Platykurtóza se vyskytuje, když hodnoty vektoru jsou rozloženy víceméně rovnoměrně kolem průměrné hodnoty. Toto rozložení se projevuje jako křivka rozdělení tvaru písmene U, která má plochý vrchol. Naopak leptokurtóza se vyskytuje, když jsou hodnoty rozloženy s výraznou odchylkou od průměrné hodnoty. Toto rozložení se projevuje jako křivka rozdělení tvaru 'písmene špičatého kopce' nebo 'písmene špičatého údolí'.
+Špičatost se používá k určení, zda je rozložení hodnot v sbírce dat víceméně rovnoměrné, nebo zda existují nějaké výrazné odchylky od průměrné hodnoty. Špičatost se často používá spolu s dalšími metrikami, jako je medián, šikmost a kvantily, které pomohou lépe porozumět rozložení dat a určit, zda existují nějaké výrazné odchylky od průměrné hodnoty.
 
 
 ### Před-výpočetní úprava dat
 
-Odstraní z vektoru všechny prázdné hodnoty (buňky).
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
 
 #### Příklady syntaxe
 
@@ -612,7 +612,7 @@ Stanoví statistický protokol odhadu intervalu spolehlivosti pro střední hodn
 
 ### Před-výpočetní úprava dat
 
-Odstraní z vektoru všechny prázdné hodnoty (buňky).
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
 
 #### Příklady syntaxe
 
@@ -653,12 +653,12 @@ Stanoví statistický protokol odhadu intervalu spolehlivosti podílu výběrov�
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
-| <b></b> | hledaná hodnota | cokoliv | <sub>-<sub> | ✔️ |  |
+| <b></b> | hledaná hodnota | libovolný typ hodnoty | <sub>-<sub> | ✔️ |  |
 | <b>alpha</b> | hladina významnosti | desetinné číslo mezi 1 a 0 (včetně) | <sub>Ověří, zdali se jedná o celé kladné číslo větší než nula. V opačném případě vyvolá chybu.<sub> |  | 0.95 |
 
 ### Před-výpočetní úprava dat
 
-Odstraní z vektoru všechny prázdné hodnoty (buňky).
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
 
 #### Příklady syntaxe
 
@@ -703,7 +703,7 @@ Stanoví statistický protokol pro jednovýběrový t-test při zadání popula�
 
 ### Před-výpočetní úprava dat
 
-Odstraní z vektoru všechny prázdné hodnoty (buňky).
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
 
 #### Příklady syntaxe
 
@@ -721,7 +721,7 @@ style ttest stroke:#C36422;
 ttest --> t[<b>t</b><br>hodnota testového kritéria daného t-testu <br><i>číslo</i>]
 style t fill:#FFFFFF;
 style t stroke:#4967A4;
-ttest --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+ttest --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 ttest --> n[<b>n</b><br>počet případů <br><i>číslo</i>]
@@ -739,7 +739,7 @@ Stanoví statistický protokol Shapiro-Wilkova W testu normality rozdělení hod
 
 ### Před-výpočetní úprava dat
 
-Odstraní z vektoru všechny prázdné hodnoty (buňky).
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
 
 #### Příklady syntaxe
 
@@ -760,7 +760,7 @@ style W stroke:#4967A4;
 shapirowilk --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
-shapirowilk --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+shapirowilk --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -775,7 +775,7 @@ Stanoví statistický protokol Komogorov-Smirnovova testu normality rozdělení 
 
 ### Před-výpočetní úprava dat
 
-Odstraní z vektoru všechny prázdné hodnoty (buňky).
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
 
 #### Příklady syntaxe
 
@@ -796,7 +796,7 @@ style T stroke:#4967A4;
 kstest --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
-kstest --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+kstest --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -843,7 +843,7 @@ Metoda umožňuje upřesnit, pro jakou transformaci modelu (např. lineární, l
 
 #### Před-výpočetní úprava dat
 
-Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
+Vstupní argumenty převede na vektory, ze kterých vytvoří matici. Z této matice následně odebere všechny řádky, které alespoň v jedné buňce obsahují prázdnou hodnotu. Vektory z této dceřiné matice poté přepíše původní argumenty, tzn. že vektory vstupují do metody již očištěné.
 
 #### Příklady syntaxe
 
@@ -876,7 +876,7 @@ style r stroke:#4967A4;
 linreg --> F[<b>F</b><br>F test <br><i>číslo</i>]
 style F fill:#FFFFFF;
 style F stroke:#4967A4;
-linreg --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+linreg --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 linreg --> beta0[<b>beta0</b><br>konstanta funkce <br><i>číslo</i>]
@@ -903,7 +903,7 @@ Pearsonova korelace se používá především k porovnávání dvou kvantitativ
 
 #### Před-výpočetní úprava dat
 
-Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
+Vstupní argumenty převede na vektory, ze kterých vytvoří matici. Z této matice následně odebere všechny řádky, které alespoň v jedné buňce obsahují prázdnou hodnotu. Vektory z této dceřiné matice poté přepíše původní argumenty, tzn. že vektory vstupují do metody již očištěné.
 
 #### Příklady syntaxe
 
@@ -927,7 +927,7 @@ style correlPearson stroke:#C36422;
 correlPearson --> r[<b>r</b><br>Pearsonův korelační koeficient <br><i>číslo</i>]
 style r fill:#FFFFFF;
 style r stroke:#4967A4;
-correlPearson --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+correlPearson --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -935,7 +935,7 @@ style p stroke:#75716F;
 
 ## [Spearmanův korelační koeficient](#correlSpearman)
 
-Stanoví statistický protokol Spearmanova koeficientu pořadové korelace. Narozdíl od hodnoty Pearsonovy korelačního koeficientu, hodnota tohoto koeficientu vychází z porovnání pořadí velikosti hodnot vstupních proměnných.
+Stanoví statistický protokol Spearmanova koeficientu pořadové korelace. Na rozdíl od Pearsonova korelačního koeficientu vychází hodnota testu z pořadí hodnot ve vstupních proměnných.
 
 #### Argumenty
 
@@ -946,7 +946,7 @@ Stanoví statistický protokol Spearmanova koeficientu pořadové korelace. Naro
 
 #### Před-výpočetní úprava dat
 
-Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
+Vstupní argumenty převede na vektory, ze kterých vytvoří matici. Z této matice následně odebere všechny řádky, které alespoň v jedné buňce obsahují prázdnou hodnotu. Vektory z této dceřiné matice poté přepíše původní argumenty, tzn. že vektory vstupují do metody již očištěné.
 
 #### Příklady syntaxe
 
@@ -973,7 +973,7 @@ style r stroke:#4967A4;
 correlSpearman --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
-correlSpearman --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+correlSpearman --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -992,7 +992,7 @@ Goodman-Kruskalova gama je obdobou ordinálního korelačního koeficientu, tedy
 
 #### Před-výpočetní úprava dat
 
-Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
+Vstupní argumenty převede na vektory, ze kterých vytvoří matici. Z této matice následně odebere všechny řádky, které alespoň v jedné buňce obsahují prázdnou hodnotu. Vektory z této dceřiné matice poté přepíše původní argumenty, tzn. že vektory vstupují do metody již očištěné.
 
 #### Příklady syntaxe
 
@@ -1016,7 +1016,7 @@ style correlGamma stroke:#C36422;
 correlGamma --> r[<b>r</b><br>Goodman-Kruskalova gama <br><i>číslo</i>]
 style r fill:#FFFFFF;
 style r stroke:#4967A4;
-correlGamma --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+correlGamma --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1037,7 +1037,7 @@ Stanoví statistický protokol Kendallova korelačního koeficientu Tau-B. Pokud
 
 #### Před-výpočetní úprava dat
 
-Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
+Vstupní argumenty převede na vektory, ze kterých vytvoří matici. Z této matice následně odebere všechny řádky, které alespoň v jedné buňce obsahují prázdnou hodnotu. Vektory z této dceřiné matice poté přepíše původní argumenty, tzn. že vektory vstupují do metody již očištěné.
 
 #### Příklady syntaxe
 
@@ -1058,16 +1058,16 @@ graph TD
 correlKendall((<i>objekt</i>))
 style correlKendall fill:#E1C6B3;
 style correlKendall stroke:#C36422;
-correlKendall --> taub[<b>taub</b><br>Tau-b <br><i>číslo</i>]
+correlKendall --> taub[<b>taub</b><br>koeficient tau-b <br><i>číslo</i>]
 style taub fill:#FFFFFF;
 style taub stroke:#4967A4;
-correlKendall --> taua[<b>taua</b><br>Tau-a <br><i>číslo</i>]
+correlKendall --> taua[<b>taua</b><br>koeficient tau-a <br><i>číslo</i>]
 style taua fill:#FFFFFF;
 style taua stroke:#4967A4;
 correlKendall --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
-correlKendall --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+correlKendall --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1075,7 +1075,7 @@ style p stroke:#75716F;
 
 ## [Parciální korelace](#correlPartial)
 
-Parciální korelační koeficient umožňuje zjistit, jaký je vztah mezi dvěma proměnnými, přičemž se zohlední vliv třetí proměnné. To je užitečné, pokud chcete zjistit, zda existuje přímý vztah mezi dvěma proměnnými, aniž byste byli ovlivněni vlivem jiných proměnných. Například, pokud chcete zjistit, zda existuje vztah mezi úrovní školení a úspěšností v práci, může být užitečné zohlednit také vliv věku nebo pohlaví. V takovém případě byste mohli použít parciální korelaci k zjištění vztahu mezi úrovní školení a úspěšností v práci při zohlednění vlivu věku a pohlaví. Parciální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že parciální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost. Zdroj: https://chat.openai.com/chat.
+Parciální korelační koeficient umožňuje zjistit, jaký je vztah mezi dvěma proměnnými, přičemž zohledňuje možný vliv třetí, kontrolní proměnné. Zjednodušeně řečeno je tento test iterací Pearsonova korelačního koeficientu nad kombinacemi třech vstupních proměnných.
 
 #### Argumenty
 
@@ -1087,7 +1087,7 @@ Parciální korelační koeficient umožňuje zjistit, jaký je vztah mezi dvěm
 
 #### Před-výpočetní úprava dat
 
-Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
+Vstupní argumenty převede na vektory, ze kterých vytvoří matici. Z této matice následně odebere všechny řádky, které alespoň v jedné buňce obsahují prázdnou hodnotu. Vektory z této dceřiné matice poté přepíše původní argumenty, tzn. že vektory vstupují do metody již očištěné.
 
 #### Příklady syntaxe
 
@@ -1112,7 +1112,7 @@ style correlPartial stroke:#C36422;
 correlPartial --> r[<b>r</b><br>Pearsonův korelační koeficient <br><i>číslo</i>]
 style r fill:#FFFFFF;
 style r stroke:#4967A4;
-correlPartial --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+correlPartial --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1120,7 +1120,7 @@ style p stroke:#75716F;
 
 ## [Bodově biseriální korelace](#correlBiserial)
 
-Bodově biseriální korelační koeficient se používá k vyhodnocení vztahu mezi dvěma ...
+Bodově biseriální korelační koeficient se používá k vyhodnocení vztahu mezi dvěma proměnnými, kde první proměnná je binárního typu (boolean, biseriální) a druhá proměnná je spojitá. Výpočetně je metoda totožná s výpočet Pearsonova korelačního koeficient, s tím rozdílem, že binární hodnota je před výpočtem transformována (hodnota pravda/true = 1, hodnota nepravda/false = 0). Interpretace koeficientu je totožná s interpretací výše uvedeného koeficientu.
 
 #### Argumenty
 
@@ -1131,7 +1131,7 @@ Bodově biseriální korelační koeficient se používá k vyhodnocení vztahu 
 
 #### Před-výpočetní úprava dat
 
-Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
+Vstupní argumenty převede na vektory, ze kterých vytvoří matici. Z této matice následně odebere všechny řádky, které alespoň v jedné buňce obsahují prázdnou hodnotu. Vektory z této dceřiné matice poté přepíše původní argumenty, tzn. že vektory vstupují do metody již očištěné.
 
 #### Schéma výsledku
 
@@ -1143,7 +1143,7 @@ style correlPearson stroke:#C36422;
 correlPearson --> r[<b>r</b><br>Pearsonův korelační koeficient <br><i>číslo</i>]
 style r fill:#FFFFFF;
 style r stroke:#4967A4;
-correlPearson --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+correlPearson --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1151,7 +1151,7 @@ style p stroke:#75716F;
 
 ## [Jednofaktorová analýza rozptylu (ANOVA)](#anovaow)
 
-Stanoví statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Metoda má dva argumenty. První tvoří řada numerických vektorů, kde minimálně jeden vektor je povinný. Druhý argument je nepovinný a představuje shlukovací faktor, tedy textovou proměnnou, která v řádcích určuje příslučnost numerického faktoru ke skupině. Pokud je zadán druhý parametr, z první skupiny vektorů je zohledňován pouze první.
+Stanoví statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Metoda má dva argumenty. První tvoří řada numerických vektorů, kde minimálně jeden vektor je povinný. Druhý argument je nepovinný a představuje shlukovací faktor, tedy textovou proměnnou, která v řádcích určuje příslučnost numerického faktoru ke skupině. Pokud je zadán druhý parametr, z první skupiny vektorů je zohledňován pouze první. V případě, že faktor neuvádíme, je vhodné vybrat minimálně dva vektory pro první argument, v opačném případě je použití metody bezpřednětné (není co srovnávat).
 
 #### Argumenty
 
@@ -1162,7 +1162,7 @@ Stanoví statistický protokol analýzy rozptylu jednoduchého třídění (One-
 
 #### Před-výpočetní úprava dat
 
-Pokud argumenty specifikují faktorovou proměnnou (druhý argument), rozloží se první argument (buďto numerický vektor nebo první vektor v matici, pokud je prvním argumentem matice) dle hodnot faktoru do nové matice. Pokud jsou argumenty bez faktoru (tedy druhý argument je prázdný), vezme všechny numerické vektory z prvního argumentu 'vectors' (matice) a následně odstraní řádky s prázdnými hodnotami. V případě, že není zadán argument 'factor' a argument 'vectors' zároveň obsahuje pouze jediný vektor nebo je sám numerickým vektorem, vyhodí chybu (bez faktoru jsou třeba alespoň dva numerické vektory v prvním argumentu).
+Pokud argumenty specifikují faktorovou proměnnou (druhý argument), rozloží se první argument (buďto numerický vektor nebo první vektor v matici, pokud je prvním argumentem matice) dle hodnot faktoru do nové matice. Pokud jsou argumenty bez faktoru (tedy druhý argument je prázdný), vezme všechny numerické vektory z prvního argumentu 'vectors' (matice) a následně odstraní řádky s prázdnými hodnotami. V případě, že není zadán argument 'factor' a argument 'vectors' zároveň obsahuje pouze jediný vektor nebo je sám numerickým vektorem, vyvolá chybu (bez faktoru jsou třeba alespoň dva numerické vektory v prvním argumentu). V dceřinné matici jsou následně vektory očištěny od prázdných hodnot (buněk), avšak nezávisle na sobě, tzn. že vstupní vektory metody nemusí mít stejný počet členů, jako je to běžné u jiných metod (korelací, párovách testů apod.). Tato skutečnost může být v rozportu se statistikou velikosti vzorku (vlastnost sample u tříd VectorAnalysis i MatrixAnalysis), je proto vhodné zohledňovat spíše hodnotu n, případně df u výstupu.
 
 #### Příklady syntaxe
 
@@ -1188,7 +1188,7 @@ style F stroke:#4967A4;
 anovaow --> P2[<b>P2</b><br>Poměr determinace P2 ANOVA <br><i>číslo</i>]
 style P2 fill:#FFFFFF;
 style P2 stroke:#4967A4;
-anovaow --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+anovaow --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 anovaow --> n[<b>n</b><br>počet případů <br><i>číslo</i>]
@@ -1262,7 +1262,7 @@ var ttestind_b = M.ttestind({vectors: [0,1]});
 
 ##### Argumenty jako řada
 
-<sub>Argumenty jsou standardndím způsobem řazeny za sebe. Je zde zásadní dodržovat pořadí argumentů a krom toho, první argument by měl být ideálně ve formátu array, např. [vector1, vector2].</sub>
+<sub>Argumenty jsou standardním způsobem řazeny za sebe. Je zde zásadní dodržovat pořadí argumentů a krom toho, první argument by měl být ideálně ve formátu array, např. [vector1, vector2].</sub>
 
 ```js
 var M = new Matrix(
@@ -1300,7 +1300,7 @@ style ttestind stroke:#C36422;
 ttestind --> t[<b>t</b><br>hodnota testového kritéria daného t-testu <br><i>číslo</i>]
 style t fill:#FFFFFF;
 style t stroke:#4967A4;
-ttestind --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+ttestind --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 ttestind --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
@@ -1311,7 +1311,7 @@ style df stroke:#75716F;
 
 ## [T-test (párový)](#ttestpair)
 
-Stanoví statistický protokol párového t-testu pro dva závislé výběry. Prázdné hodnoty jsou vyřezeny v průřezu řádků, tzn. že pokud v jednom řádku chybí alespoň jedna hodnota, je z analýzy vyřezen celý řádek.
+Stanoví statistický protokol párového t-testu pro dva závislé výběry. Test se používá pro srovnání dvou závislých výběrů, u kterých je předpoklad normálního rozdělení. Analogickou metodou pro ordinální proměnné (či proměnné, které nemají předpoklad normality) je Wilcoxonův znaménkový test pro dva závislé výběry.
 
 #### Argumenty
 
@@ -1322,7 +1322,7 @@ Stanoví statistický protokol párového t-testu pro dva závislé výběry. Pr
 
 #### Před-výpočetní úprava dat
 
-Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
+Vstupní argumenty převede na vektory, ze kterých vytvoří matici. Z této matice následně odebere všechny řádky, které alespoň v jedné buňce obsahují prázdnou hodnotu. Vektory z této dceřiné matice poté přepíše původní argumenty, tzn. že vektory vstupují do metody již očištěné.
 
 #### Příklady syntaxe
 
@@ -1346,7 +1346,7 @@ style ttestpair stroke:#C36422;
 ttestpair --> t[<b>t</b><br>hodnota testového kritéria daného t-testu <br><i>číslo</i>]
 style t fill:#FFFFFF;
 style t stroke:#4967A4;
-ttestpair --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+ttestpair --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 ttestpair --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
@@ -1357,7 +1357,7 @@ style df stroke:#75716F;
 
 ## [Mann-Whitneyho test](#mwu)
 
-Stanoví statistický protokol Mann-Whitneyho U testu. Jedná se o neparametrický test nulové hypotézy, která srsovnává náhodně vybrané hodnoty X a Y ze dvou populací, přičemž pravděpodobnost, že X bude větší než Y, se rovná pravděpodobnosti, že Y bude větší než X.
+Stanoví statistický protokol Mann-Whitneyho U testu. Jedná se o neparametrický test nulové hypotézy, která srovnává náhodně vybrané hodnoty X a Y ze dvou populací, přičemž pravděpodobnost, že X bude větší než Y, se rovná pravděpodobnosti, že Y bude větší než X. Metoda je analogií k dvouvýběrovému t-testu, u kterého se však předpokládá normální rozdělení.
 
 ⚠️ Tato metoda je ve vývojové fázi a může vracet neplatné výsledky či vyvolávat chybu.
 
@@ -1390,7 +1390,7 @@ var mwu_b = M.mwu({vectors: [0,1]});
 
 ##### Argumenty jako řada
 
-<sub>Argumenty jsou standardndím způsobem řazeny za sebe. Je zde zásadní dodržovat pořadí argumentů a krom toho, první argument by měl být ideálně ve formátu array, např. [vector1, vector2].</sub>
+<sub>Argumenty jsou standardním způsobem řazeny za sebe. Je zde zásadní dodržovat pořadí argumentů a krom toho, první argument by měl být ideálně ve formátu array, např. [vector1, vector2].</sub>
 
 ```js
 var M = new Matrix(
@@ -1431,7 +1431,7 @@ style U stroke:#4967A4;
 mwu --> Z[<b>Z</b><br>Z test <br><i>číslo</i>]
 style Z fill:#FFFFFF;
 style Z stroke:#4967A4;
-mwu --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+mwu --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1450,7 +1450,7 @@ Wilcoxonův znaménkový test je neparametrický statistický test používaný 
 
 #### Před-výpočetní úprava dat
 
-Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
+Vstupní argumenty převede na vektory, ze kterých vytvoří matici. Z této matice následně odebere všechny řádky, které alespoň v jedné buňce obsahují prázdnou hodnotu. Vektory z této dceřiné matice poté přepíše původní argumenty, tzn. že vektory vstupují do metody již očištěné.
 
 #### Příklady syntaxe
 
@@ -1474,7 +1474,7 @@ style wcxpaired stroke:#C36422;
 wcxpaired --> Z[<b>Z</b><br>Z test <br><i>číslo</i>]
 style Z fill:#FFFFFF;
 style Z stroke:#4967A4;
-wcxpaired --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+wcxpaired --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1482,7 +1482,7 @@ style p stroke:#75716F;
 
 ## [Friedmanova ANOVA](#friedman)
 
-Friedmanova analýza rozptylu je neparametrický statistický test vyvinutý Miltonem Friedmanem. Podobně jako u parametrických opakovaných opatření ANOVA se používá k detekci rozdílů v léčbě během více pokusů o testování. Postup zahrnuje hodnocení každého řádu (nebo bloku) dohromady, poté zváží hodnoty řad podle sloupců. Použitelné pro kompletní návrhy bloků je tedy zvláštním případem testu Durbin.
+Friedmanova analýza rozptylu je neparametrický statistický test, který nachází své úplatnění při porovnávání rozdílů u dvou a více závislých výběrů.
 
 ⚠️ Tato metoda je ve vývojové fázi a může vracet neplatné výsledky či vyvolávat chybu.
 
@@ -1494,7 +1494,7 @@ Friedmanova analýza rozptylu je neparametrický statistický test vyvinutý Mil
 
 #### Před-výpočetní úprava dat
 
-Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
+Vstupní argumenty převede na vektory, ze kterých vytvoří matici. Z této matice následně odebere všechny řádky, které alespoň v jedné buňce obsahují prázdnou hodnotu. Vektory z této dceřiné matice poté přepíše původní argumenty, tzn. že vektory vstupují do metody již očištěné.
 
 #### Příklady syntaxe
 
@@ -1522,7 +1522,7 @@ style Q stroke:#4967A4;
 friedman --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
-friedman --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+friedman --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1530,7 +1530,7 @@ style p stroke:#75716F;
 
 ## [Kontingence](#contingency)
 
-Stanoví statistický protokol kontingence. Parametry metody jsou a) řádková proměnná, b) sloupcová proměnná a volitelně c) četnost skupiny a/b (pokud je prázdná, bere se, že četnost průniku je 1). Výstupem metody jsou jak statistiky kontingence (chí^2), Cramérovo V, Pearsonovo C, ad).
+Stanoví statistický protokol kontingence. Parametry metody jsou a) řádková proměnná, b) sloupcová proměnná a volitelně c) četnost skupiny a/b (pokud je prázdná, bere se, že četnost průniku je 1). Výstupem metody jspi kromě chí^2 testu testu také koeficienty Cramérovo V a Pearsonovo C, které doplňují popis vztahů mezi proměnnými.
 
 #### Argumenty
 
@@ -1542,7 +1542,7 @@ Stanoví statistický protokol kontingence. Parametry metody jsou a) řádková 
 
 #### Před-výpočetní úprava dat
 
-Odstraní ze vstupních vektorů (matice) všechny řádky, ve kterých je alespoň jedna prázdná hodnota.
+Vstupní argumenty převede na vektory, ze kterých vytvoří matici. Z této matice následně odebere všechny řádky, které alespoň v jedné buňce obsahují prázdnou hodnotu. Vektory z této dceřiné matice poté přepíše původní argumenty, tzn. že vektory vstupují do metody již očištěné.
 
 #### Příklady syntaxe
 
@@ -1588,7 +1588,7 @@ style contingency stroke:#C36422;
 contingency --> phi[<b>phi</b><br>chí^2 test <br><i>číslo</i>]
 style phi fill:#FFFFFF;
 style phi stroke:#4967A4;
-contingency --> p[<b>p</b><br>významnost <br><i>číslo</i>]
+contingency --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 contingency --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]

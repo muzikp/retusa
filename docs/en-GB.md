@@ -508,7 +508,7 @@ graph TD
 frequency{<i>array</i>}
 style frequency fill:#85B3BE;
 style frequency stroke:#2E7C8F;
-frequency --> v[<b>v</b><br>value <br><i>number</i>]
+frequency --> v[<b>v</b><br>value <br><i>any type</i>]
 style v fill:#FFFFFF;
 style v stroke:#75716F;
 frequency --> n[<b>n</b><br>frequency table <br><i>number</i>]
@@ -608,7 +608,7 @@ Returns the statistical log of the confidence interval estimate of the sample me
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
-| <b>k</b> | level of importance | decimal number between 1 and 0 (including) | <sub>Checks if it is a positive integer greater than zero. Otherwise, it will throw an error.<sub> |  | 0.95 |
+| <b>k</b> | level of significance | decimal number between 1 and 0 (including) | <sub>Checks if it is a positive integer greater than zero. Otherwise, it will throw an error.<sub> |  | 0.95 |
 
 ### Pre-calculation data modification
 
@@ -654,7 +654,7 @@ Returns the statistical log of the confidence interval estimate of the sample pr
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>value</b> | the lookup value | any type | <sub>-<sub> | ✔️ |  |
-| <b>alpha</b> | level of importance | decimal number between 1 and 0 (including) | <sub>Checks if it is a positive integer greater than zero. Otherwise, it will throw an error.<sub> |  | 0.95 |
+| <b>alpha</b> | level of significance | decimal number between 1 and 0 (including) | <sub>Checks if it is a positive integer greater than zero. Otherwise, it will throw an error.<sub> |  | 0.95 |
 
 ### Pre-calculation data modification
 
@@ -721,7 +721,7 @@ style ttest stroke:#C36422;
 ttest --> t[<b>t</b><br>T-value <br><i>number</i>]
 style t fill:#FFFFFF;
 style t stroke:#4967A4;
-ttest --> p[<b>p</b><br>significance <br><i>number</i>]
+ttest --> p[<b>p</b><br>p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 ttest --> n[<b>n</b><br>total of cases <br><i>number</i>]
@@ -760,7 +760,7 @@ style W stroke:#4967A4;
 shapirowilk --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
-shapirowilk --> p[<b>p</b><br>significance <br><i>number</i>]
+shapirowilk --> p[<b>p</b><br>p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -796,7 +796,7 @@ style T stroke:#4967A4;
 kstest --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
-kstest --> p[<b>p</b><br>significance <br><i>number</i>]
+kstest --> p[<b>p</b><br>p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -876,7 +876,7 @@ style r stroke:#4967A4;
 linreg --> F[<b>F</b><br>F test <br><i>number</i>]
 style F fill:#FFFFFF;
 style F stroke:#4967A4;
-linreg --> p[<b>p</b><br>significance <br><i>number</i>]
+linreg --> p[<b>p</b><br>p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 linreg --> beta0[<b>beta0</b><br>constant <br><i>number</i>]
@@ -928,7 +928,7 @@ style correlPearson stroke:#C36422;
 correlPearson --> r[<b>r</b><br>Pearson correlation coefficient <br><i>number</i>]
 style r fill:#FFFFFF;
 style r stroke:#4967A4;
-correlPearson --> p[<b>p</b><br>significance <br><i>number</i>]
+correlPearson --> p[<b>p</b><br>p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -974,7 +974,7 @@ style r stroke:#4967A4;
 correlSpearman --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
-correlSpearman --> p[<b>p</b><br>significance <br><i>number</i>]
+correlSpearman --> p[<b>p</b><br>p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1017,7 +1017,7 @@ style correlGamma stroke:#C36422;
 correlGamma --> r[<b>r</b><br>The Goodman-Kruskal gamma <br><i>number</i>]
 style r fill:#FFFFFF;
 style r stroke:#4967A4;
-correlGamma --> p[<b>p</b><br>significance <br><i>number</i>]
+correlGamma --> p[<b>p</b><br>p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1068,7 +1068,7 @@ style taua stroke:#4967A4;
 correlKendall --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
-correlKendall --> p[<b>p</b><br>significance <br><i>number</i>]
+correlKendall --> p[<b>p</b><br>p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1113,7 +1113,7 @@ style correlPartial stroke:#C36422;
 correlPartial --> r[<b>r</b><br>Pearson correlation coefficient <br><i>number</i>]
 style r fill:#FFFFFF;
 style r stroke:#4967A4;
-correlPartial --> p[<b>p</b><br>significance <br><i>number</i>]
+correlPartial --> p[<b>p</b><br>p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1144,7 +1144,7 @@ style correlPearson stroke:#C36422;
 correlPearson --> r[<b>r</b><br>Pearson correlation coefficient <br><i>number</i>]
 style r fill:#FFFFFF;
 style r stroke:#4967A4;
-correlPearson --> p[<b>p</b><br>significance <br><i>number</i>]
+correlPearson --> p[<b>p</b><br>p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1189,7 +1189,7 @@ style F stroke:#4967A4;
 anovaow --> P2[<b>P2</b><br>dependence coefficient <br><i>number</i>]
 style P2 fill:#FFFFFF;
 style P2 stroke:#4967A4;
-anovaow --> p[<b>p</b><br>significance <br><i>number</i>]
+anovaow --> p[<b>p</b><br>p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 anovaow --> n[<b>n</b><br>total of cases <br><i>number</i>]
@@ -1301,7 +1301,7 @@ style ttestind stroke:#C36422;
 ttestind --> t[<b>t</b><br>T-value <br><i>number</i>]
 style t fill:#FFFFFF;
 style t stroke:#4967A4;
-ttestind --> p[<b>p</b><br>significance <br><i>number</i>]
+ttestind --> p[<b>p</b><br>p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 ttestind --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
@@ -1347,7 +1347,7 @@ style ttestpair stroke:#C36422;
 ttestpair --> t[<b>t</b><br>T-value <br><i>number</i>]
 style t fill:#FFFFFF;
 style t stroke:#4967A4;
-ttestpair --> p[<b>p</b><br>significance <br><i>number</i>]
+ttestpair --> p[<b>p</b><br>p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 ttestpair --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
@@ -1432,7 +1432,7 @@ style U stroke:#4967A4;
 mwu --> Z[<b>Z</b><br>Z test <br><i>number</i>]
 style Z fill:#FFFFFF;
 style Z stroke:#4967A4;
-mwu --> p[<b>p</b><br>significance <br><i>number</i>]
+mwu --> p[<b>p</b><br>p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1475,7 +1475,7 @@ style wcxpaired stroke:#C36422;
 wcxpaired --> Z[<b>Z</b><br>Z test <br><i>number</i>]
 style Z fill:#FFFFFF;
 style Z stroke:#4967A4;
-wcxpaired --> p[<b>p</b><br>significance <br><i>number</i>]
+wcxpaired --> p[<b>p</b><br>p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1523,7 +1523,7 @@ style Q stroke:#4967A4;
 friedman --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
-friedman --> p[<b>p</b><br>significance <br><i>number</i>]
+friedman --> p[<b>p</b><br>p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1589,7 +1589,7 @@ style contingency stroke:#C36422;
 contingency --> phi[<b>phi</b><br>phi^2 test <br><i>number</i>]
 style phi fill:#FFFFFF;
 style phi stroke:#4967A4;
-contingency --> p[<b>p</b><br>significance <br><i>number</i>]
+contingency --> p[<b>p</b><br>p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 contingency --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
