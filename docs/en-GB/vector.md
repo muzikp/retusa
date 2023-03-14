@@ -14,7 +14,7 @@ Vector functions are statistical methods that are performed on vector instances.
 | geomean | [Geometric mean](#geomean) |
 | harmean | [Harmonic mean](#harmean) |
 | median | [Median](#median) |
-| percentile | [Percentile](#percentile) |
+| percentile | [Quantile](#percentile) |
 | stdev | [Standard deviation](#stdev) |
 | variance | [Variance](#variance) |
 | varc | [Coefficient of variation](#varc) |
@@ -36,7 +36,7 @@ Returns the sum of all non-empty numeric values of a vector.
 
 ### Pre-calculation data modification
 
-Removes all empty values (blank cells) from th vector.
+Removes all empty values (blank cells) from the vector.
 
 ### Syntax examples
 
@@ -105,7 +105,7 @@ Returns the arithmetic mean (i.e. the quotient of the sum and the number of vect
 
 ### Pre-calculation data modification
 
-Removes all empty values (blank cells) from th vector.
+Removes all empty values (blank cells) from the vector.
 
 ### Syntax examples
 
@@ -130,7 +130,7 @@ Returns the least non-empty value. For text, returns the first value from the al
 
 ### Pre-calculation data modification
 
-Removes all empty values (blank cells) from th vector.
+Removes all empty values (blank cells) from the vector.
 
 ### Syntax examples
 
@@ -156,7 +156,7 @@ Returns the highest non-empty value. In the case of text, it returns the last va
 
 ### Pre-calculation data modification
 
-Removes all empty values (blank cells) from th vector.
+Removes all empty values (blank cells) from the vector.
 
 ### Syntax examples
 
@@ -182,7 +182,7 @@ Returns the difference between the largest and smallest non-empty values.
 
 ### Pre-calculation data modification
 
-Removes all empty values (blank cells) from th vector.
+Removes all empty values (blank cells) from the vector.
 
 ### Syntax examples
 
@@ -207,7 +207,7 @@ The geometric mean is a statistical indicator that is used to calculate the aver
 
 ### Pre-calculation data modification
 
-Removes all empty values (blank cells) from th vector.
+Removes all empty values (blank cells) from the vector.
 
 ### Syntax examples
 
@@ -232,7 +232,7 @@ The harmonic mean is a statistical indicator that is used to calculate the avera
 
 ### Pre-calculation data modification
 
-Removes all empty values (blank cells) from th vector.
+Removes all empty values (blank cells) from the vector.
 
 ### Syntax examples
 
@@ -257,7 +257,7 @@ Returns the median, or middle value, of the non-empty values of a vector. This i
 
 ### Pre-calculation data modification
 
-Removes all empty values (blank cells) from th vector.
+Removes all empty values (blank cells) from the vector.
 
 ### Syntax examples
 
@@ -275,19 +275,19 @@ style median stroke:#4967A4;
 
 ```
 
-## [Percentile](#percentile)
+## [Quantile](#percentile)
 
-Using the percentile, we can examine the distribution of a numerical series, by first sorting the series from the smallest to the largest member (number), and then selecting the first N % of members (this N is a parameter), where the last member in the selection represents the given percentile, a specific number . If the number of members in the sample is even, the percentile is calculated as the average of two adjacent values, if it is even, the percentile is just the last value.
+Using the quantile, we can examine the distribution of a numerical series, by first sorting the series from the smallest to the largest member (number), and then selecting the first N % of members (this N is a parameter), where the last member in the selection represents the given percentile, a specific number . If the number of members in the sample is even, the quantile is calculated as the average of two adjacent values, if it is even, the quantile is just the last value.
 
 ### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
-| <b>alpha</b> | percentile value | decimal number between 1 and 0 (including) | <sub>Checks if it is a positive integer greater than zero. Otherwise, it will throw an error.<sub> | ✔️ | 0.95 |
+| <b>alpha</b> | quantile value | decimal number between 1 and 0 (including) | <sub>Checks if it is a positive integer greater than zero. Otherwise, it will throw an error.<sub> | ✔️ | 0.95 |
 
 ### Pre-calculation data modification
 
-Removes all empty values (blank cells) from th vector.
+Removes all empty values (blank cells) from the vector.
 
 ### Syntax examples
 
@@ -302,7 +302,7 @@ var max = score.percentile(1); /* = 25 */
 
 ```mermaid
 graph TD
-percentile[<b>percentile<br></b>number]
+percentile[<b>quantile<br></b>number]
 style percentile fill:#FFFFFF;
 style percentile stroke:#4967A4;
 
@@ -320,7 +320,7 @@ Returns the standard deviation of non-empty values. The standard deviation is a 
 
 ### Pre-calculation data modification
 
-Removes all empty values (blank cells) from th vector.
+Removes all empty values (blank cells) from the vector.
 
 ### Syntax examples
 
@@ -351,7 +351,7 @@ Returns the variance value of this vector. The variance value is equal to the sq
 
 ### Pre-calculation data modification
 
-Removes all empty values (blank cells) from th vector.
+Removes all empty values (blank cells) from the vector.
 
 ### Syntax examples
 
@@ -409,7 +409,7 @@ Returns the histogram matrix of the given vector. The method can be chosen with 
 
 ### Pre-calculation data modification
 
-Removes all empty values (blank cells) from th vector.
+Removes all empty values (blank cells) from the vector.
 
 ### Syntax examples
 
@@ -524,7 +524,7 @@ Returns the value of the standard error of the estimate of the mean. The standar
 
 ### Pre-calculation data modification
 
-Removes all empty values (blank cells) from th vector.
+Removes all empty values (blank cells) from the vector.
 
 ### Syntax examples
 
@@ -554,7 +554,7 @@ Returns the skewness of the distribution, i.e. the asymmetry of the distribution
 
 ### Pre-calculation data modification
 
-Removes all empty values (blank cells) from th vector.
+Removes all empty values (blank cells) from the vector.
 
 ### Syntax examples
 
@@ -582,7 +582,7 @@ Skewedness is used to determine whether the distribution of values in a collecti
 
 ### Pre-calculation data modification
 
-Removes all empty values (blank cells) from th vector.
+Removes all empty values (blank cells) from the vector.
 
 ### Syntax examples
 
@@ -612,7 +612,7 @@ Returns the statistical log of the confidence interval estimate of the sample me
 
 ### Pre-calculation data modification
 
-Removes all empty values (blank cells) from th vector.
+Removes all empty values (blank cells) from the vector.
 
 ### Syntax examples
 
@@ -658,7 +658,7 @@ Returns the statistical log of the confidence interval estimate of the sample pr
 
 ### Pre-calculation data modification
 
-Removes all empty values (blank cells) from th vector.
+Removes all empty values (blank cells) from the vector.
 
 ### Syntax examples
 
@@ -703,7 +703,7 @@ Returns the statistical log for a one-sample t-test given the population mean.
 
 ### Pre-calculation data modification
 
-Removes all empty values (blank cells) from th vector.
+Removes all empty values (blank cells) from the vector.
 
 ### Syntax examples
 
@@ -739,7 +739,7 @@ Returns the statistical log of the Shapiro-Wilk W test of normality of the distr
 
 ### Pre-calculation data modification
 
-Removes all empty values (blank cells) from th vector.
+Removes all empty values (blank cells) from the vector.
 
 ### Syntax examples
 
@@ -775,7 +775,7 @@ Returns the statistical log of the Komogorov-Smirnov normality test of the distr
 
 ### Pre-calculation data modification
 
-Removes all empty values (blank cells) from th vector.
+Removes all empty values (blank cells) from the vector.
 
 ### Syntax examples
 

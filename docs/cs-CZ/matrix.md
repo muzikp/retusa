@@ -14,9 +14,9 @@ Každá metoda má specifikované argumenty a jejich validátory. Validátory me
 | correlGamma | [Koeficient gamma](#correlGamma) |
 | correlKendall ⚠️ | [Kendallova korelace](#correlKendall) |
 | correlPartial | [Parciální korelace](#correlPartial) |
-| correlBiserial | [Biseriální korelace](#correlBiserial) |
-| anovaow | [ANOVA (jednofaktorová)](#anovaow) |
-| ttestind | [T-test (nezávislý)](#ttestind) |
+| correlBiserial | [Bodově biseriální korelace](#correlBiserial) |
+| anovaow | [Jednofaktorová analýza rozptylu (ANOVA)](#anovaow) |
+| ttestind | [Dvouvýběrový t-test](#ttestind) |
 | ttestpair | [T-test (párový)](#ttestpair) |
 | mwu ⚠️ | [Mann-Whitneyho test](#mwu) |
 | wcxpaired | [Wilcoxonův znaménkový test pro dva závislé výběry](#wcxpaired) |
@@ -25,7 +25,7 @@ Každá metoda má specifikované argumenty a jejich validátory. Validátory me
 
 ## [Lineární regrese](#linreg)
 
-Lineární regrese je statistická metoda používaná k nalezení vztahu mezi dvěma spojitými proměnnými. Tyto proměnné jsou obvykle označeny jako závislá proměnná a nezávislá proměnná. Cílem lineární regrese je najít nejlepší lineární aproximaci závislé proměnné v závislosti na nezávislé proměnné. Lineární regrese se používá k predikci hodnoty závislé proměnné pro danou hodnotu nezávislé proměnné, když mezi nimi existuje lineární vztah. Tento vztah je reprezentován pomocí rovnice lineární regrese, která popisuje, jak se hodnoty závislé proměnné mění v závislosti na hodnotách nezávislé proměnné. Lineární regrese je často používána v různých oblastech, jako je ekonomie, sociologie, biologie, psychologie, inženýrství a dalších.
+Lineární regrese je statistická metoda používaná k nalezení vztahu mezi dvěma proměnnými. Tyto proměnné jsou obvykle označeny jako závislá proměnná a nezávislá proměnná. Cílem lineární regrese je najít nejlepší lineární aproximaci závislé proměnné v závislosti na nezávislé proměnné. Lineární regrese se používá k predikci hodnoty závislé proměnné pro danou hodnotu nezávislé proměnné, když mezi nimi existuje lineární vztah. Tento vztah je reprezentován pomocí rovnice lineární regrese, která popisuje, jak se hodnoty závislé proměnné mění v závislosti na hodnotách nezávislé proměnné. Lineární regrese je často používána v různých oblastech, jako je ekonomie, sociologie, biologie, psychologie, inženýrství a dalších.
 
 Metoda umožňuje upřesnit, pro jakou transformaci modelu (např. lineární, logaritmovanou) hledáme koeficient determinace.
 
@@ -33,9 +33,9 @@ Metoda umožňuje upřesnit, pro jakou transformaci modelu (např. lineární, l
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
-| <b>y</b> | nezávislá proměnná (x) | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
-| <b>x</b> | závislá proměnná (y) | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
-| <b></b> | regresní model | enumerace | <sub>Ověří, zdali je zadaná hodnota klíčem enumerace (seznamu možných hodnot). Pokud ne, vyhodí chybu.<br><br><b>1</b> = lineární<br><b>2</b> = logaritmovaný<br><b>3</b> = hyperbolický<br><b>4</b> = exponenciální<br><b>5</b> = kvadratický<br><sub> |  | 1 |
+| <b></b> | nezávislá (vysvětlující) proměnná (X) | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+| <b>x</b> | závislá (vysvětlovaná) proměnná (Y) | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+| <b></b> | regresní model | enumerace | <sub>Ověří, zdali je zadaná hodnota klíčem enumerace (seznamu možných hodnot). Pokud ne, vyhodí chybu.<br><br><b>1</b> = lineární<br><b>2</b> = logaritmický<br><b>3</b> = hyperbolický<br><b>4</b> = exponenciální<br><b>5</b> = kvadratický<br><sub> |  | 1 |
 
 ### Před-výpočetní úprava dat
 
@@ -86,8 +86,7 @@ style beta1 stroke:#4967A4;
 
 ## [Pearsonův korelační koeficient](#correlPearson)
 
-Vrátí statistický protokol Pearsonova korelačního koeficientu.
-Pearsonova korelace je statistická metoda, která se používá k měření vztahu mezi dvěma veličinami. Jejím cílem je zjistit, zda existuje lineární vztah mezi těmito veličinami a jaký je jeho intenzita.
+Stanoví statistický protokol Pearsonova korelačního koeficientu. Pearsonova korelace je statistická metoda, která se používá k měření vztahu mezi dvěma veličinami. Jejím cílem je zjistit, zda existuje lineární vztah mezi těmito veličinami a jaký je jeho intenzita.
 Pearsonova korelace se vypočítá pomocí vzorce, který se nazývá Pearsonův koeficient korelace. Tento koeficient se pohybuje v rozmezí od -1 do 1 a udává, jak silně je mezi veličinami vztah. Pokud je koeficient blízký -1, znamená to, že mezi veličinami je silný negativní vztah, což znamená, že když se hodnota jedné veličiny zvyšuje, hodnota druhé veličiny klesá. Naopak pokud je koeficient blízký 1, znamená to, že mezi veličinami je silný pozitivní vztah, což znamená, že když se hodnota jedné veličiny zvyšuje, hodnota druhé veličiny také roste. Pokud je koeficient blízký 0, znamená to, že mezi veličinami není žádný vztah nebo je vztah velmi slabý.
 Pearsonova korelace se používá především k porovnávání dvou kvantitativních veličin, tj. veličin, které jsou měřitelné na škále s přesnými hodnotami (například věk, výška nebo hmotnost). Může se použít k určení, zda existuje vztah mezi těmito veličinami a jaký je jeho charakter. Například může být Pearsonova korelace použita k porovnání věku a hmotnosti a zjistit, zda existuje vztah mezi těmito veličinami a jaký je jeho charakter. Může se také použít k porovnání výsledků dvou různých testů a zjistit, zda existuje vztah mezi výsledky těchto testů. Zdroj: https://chat.openai.com/chat
 
@@ -132,7 +131,7 @@ style p stroke:#75716F;
 
 ## [Spearmanův korelační koeficient](#correlSpearman)
 
-Vrátí statistický protokol Spearmanova koeficientu pořadové korelace. Narozdíl od Pearsonovy korelace, Spearmanova metoda vychází z porovnání pořadí velikosti hodnot vstupních proměnných.
+Stanoví statistický protokol Spearmanova koeficientu pořadové korelace. Narozdíl od hodnoty Pearsonovy korelačního koeficientu, hodnota tohoto koeficientu vychází z porovnání pořadí velikosti hodnot vstupních proměnných.
 
 ### Argumenty
 
@@ -178,7 +177,7 @@ style p stroke:#75716F;
 
 ## [Koeficient gamma](#correlGamma)
 
-Goodman-Kruskalova gama je obdobou ordinálního korelačního koeficientu, tedy testu, který měří závislost mezi dvěma pořadovými proměnnými. I z toho důvodu může nabývat stejných hodnot jako ostatní korelační koeficienty (např. Pearsonův či Spearmanův) a stejně se i interpretuje. Tento test se před ostatními pořadově orientovanými korelačními metodami doporučuje tehdy, pokud mají vaše data mnoho shodných pořadí.
+Goodman-Kruskalova gama je obdobou ordinálního korelačního koeficientu, tedy testu, který měří závislost mezi dvěma pořadovými proměnnými. I z toho důvodu může nabývat stejných hodnot jako ostatní korelační koeficienty (např. Pearsonův či Spearmanův) a stejně se i interpretuje. Tento test se před ostatními pořadově orientovanými korelačními metodami doporučuje tehdy, pokud mají data mnoho shodných pořadí (tzv. ties).
 
 ### Argumenty
 
@@ -221,7 +220,7 @@ style p stroke:#75716F;
 
 ## [Kendallova korelace](#correlKendall)
 
-Vrátí statistický protokol Kendallova korelačního koeficientu Tau-B. Pokud byste tutéž operaci počítali v SPSS, patrně dostanete mírně odlišný výsledek. Podle všeho je to vlivem odlišné citlivosti na desetinná místa u obou systémů. Na interpretaci výsledku by to nicméně zásadní vliv mít nemělo.
+Stanoví statistický protokol Kendallova korelačního koeficientu Tau-B. Pokud byste tutéž operaci počítali v SPSS, patrně dostanete mírně odlišný výsledek. Podle všeho je to vlivem odlišné citlivosti na desetinná místa u obou systémů. Na interpretaci výsledku by to nicméně zásadní vliv mít nemělo.
 
 ⚠️ Tato metoda je ve vývojové fázi a může vracet neplatné výsledky či vyvolávat chybu.
 
@@ -272,7 +271,7 @@ style p stroke:#75716F;
 
 ## [Parciální korelace](#correlPartial)
 
-Parciální korelace je statistická metoda, která vám umožňuje zjistit, jaký je vztah mezi dvěma proměnnými, přičemž se zohlední vliv třetí proměnné. To je užitečné, pokud chcete zjistit, zda existuje přímý vztah mezi dvěma proměnnými, aniž byste byli ovlivněni vlivem jiných proměnných. Například, pokud chcete zjistit, zda existuje vztah mezi úrovní školení a úspěšností v práci, může být užitečné zohlednit také vliv věku nebo pohlaví. V takovém případě byste mohli použít parciální korelaci k zjištění vztahu mezi úrovní školení a úspěšností v práci při zohlednění vlivu věku a pohlaví. Parciální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že parciální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost. Zdroj: https://chat.openai.com/chat.
+Parciální korelační koeficient umožňuje zjistit, jaký je vztah mezi dvěma proměnnými, přičemž se zohlední vliv třetí proměnné. To je užitečné, pokud chcete zjistit, zda existuje přímý vztah mezi dvěma proměnnými, aniž byste byli ovlivněni vlivem jiných proměnných. Například, pokud chcete zjistit, zda existuje vztah mezi úrovní školení a úspěšností v práci, může být užitečné zohlednit také vliv věku nebo pohlaví. V takovém případě byste mohli použít parciální korelaci k zjištění vztahu mezi úrovní školení a úspěšností v práci při zohlednění vlivu věku a pohlaví. Parciální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že parciální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost. Zdroj: https://chat.openai.com/chat.
 
 ### Argumenty
 
@@ -315,9 +314,9 @@ style p stroke:#75716F;
 
 ```
 
-## [Biseriální korelace](#correlBiserial)
+## [Bodově biseriální korelace](#correlBiserial)
 
-Biseriální korelace je statistická metoda, která se používá k vyhodnocení vztahu mezi dvěma binárními proměnnými (tj. proměnnými, které mohou mít pouze dvě možné hodnoty, například 'ano' nebo 'ne'). Binární proměnné se často používají v sociálních vědách, například při zkoumání vztahu mezi vzděláním a zaměstnáním nebo mezi kouřením a zdravím. Biseriální korelace se počítá pomocí vzorce, který se odvíjí od korelačního koeficientu Pearsona. Je důležité si uvědomit, že biseriální korelace neznamená causaci, tj. že jedna proměnná nezpůsobuje druhou, ale pouze ukazuje, že existuje mezi nimi určitá souvislost.
+Bodově biseriální korelační koeficient se používá k vyhodnocení vztahu mezi dvěma ...
 
 ### Argumenty
 
@@ -346,9 +345,9 @@ style p stroke:#75716F;
 
 ```
 
-## [ANOVA (jednofaktorová)](#anovaow)
+## [Jednofaktorová analýza rozptylu (ANOVA)](#anovaow)
 
-Vrátí statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Metoda má dva argumenty. První tvoří řada numerických vektorů, kde minimálně jeden vektor je povinný. Druhý argument je nepovinný a představuje shlukovací faktor, tedy textovou proměnnou, která v řádcích určuje příslučnost numerického faktoru ke skupině. Pokud je zadán druhý parametr, z první skupiny vektorů je zohledňován pouze první.
+Stanoví statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Metoda má dva argumenty. První tvoří řada numerických vektorů, kde minimálně jeden vektor je povinný. Druhý argument je nepovinný a představuje shlukovací faktor, tedy textovou proměnnou, která v řádcích určuje příslučnost numerického faktoru ke skupině. Pokud je zadán druhý parametr, z první skupiny vektorů je zohledňován pouze první.
 
 ### Argumenty
 
@@ -382,7 +381,7 @@ style anovaow stroke:#C36422;
 anovaow --> F[<b>F</b><br>F test <br><i>číslo</i>]
 style F fill:#FFFFFF;
 style F stroke:#4967A4;
-anovaow --> P2[<b>P2</b><br>koeficient závislosti <br><i>číslo</i>]
+anovaow --> P2[<b>P2</b><br>Poměr determinace P2 ANOVA <br><i>číslo</i>]
 style P2 fill:#FFFFFF;
 style P2 stroke:#4967A4;
 anovaow --> p[<b>p</b><br>významnost <br><i>číslo</i>]
@@ -431,9 +430,9 @@ style df stroke:#75716F;
 
 ```
 
-## [T-test (nezávislý)](#ttestind)
+## [Dvouvýběrový t-test](#ttestind)
 
-Vrátí statistický protokol Studentova t-testu pro dva nezávislé výběry, které jsou definovány vlastní proměnnou (tedy dvěma numerickými vektory). Argumenty tvoří buď dva numerické vektory, nebo jeden numerický a jen faktorový vektor (obvykle text, ale může být i numerický či binární). Pokud je použit jako faktor vektor, který má více než dvě unikátní hodnoty, jsou pro test uvažovány pouze první dvě unikátní nalezené hodnoty (ostatní se ignorují) - v takovém případě je informace o velikosti čistého vzorku nepodstatná, nicméně hladina významnosti, do které velikost vzorku vstupuje, je již založena na čistých případech.
+Stanoví statistický protokol Studentova t-testu pro dva nezávislé výběry, které jsou definovány vlastní proměnnou (tedy dvěma numerickými vektory). Argumenty tvoří buď dva numerické vektory, nebo jeden numerický a jen faktorový vektor (obvykle text, ale může být i numerický či binární). Pokud je použit jako faktor vektor, který má více než dvě unikátní hodnoty, jsou pro test uvažovány pouze první dvě unikátní nalezené hodnoty (ostatní se ignorují) - v takovém případě je informace o velikosti čistého vzorku nepodstatná, nicméně hladina významnosti, do které velikost vzorku vstupuje, je již založena na čistých případech.
 
 ### Argumenty
 
@@ -494,7 +493,7 @@ graph TD
 ttestind((<i>objekt</i>))
 style ttestind fill:#E1C6B3;
 style ttestind stroke:#C36422;
-ttestind --> t[<b>t</b><br>hodnota testu T <br><i>číslo</i>]
+ttestind --> t[<b>t</b><br>hodnota testového kritéria daného t-testu <br><i>číslo</i>]
 style t fill:#FFFFFF;
 style t stroke:#4967A4;
 ttestind --> p[<b>p</b><br>významnost <br><i>číslo</i>]
@@ -508,7 +507,7 @@ style df stroke:#75716F;
 
 ## [T-test (párový)](#ttestpair)
 
-Vrátí statistický protokol párového t-testu pro dva závislé výběry. Prázdné hodnoty jsou vyřezeny v průřezu řádků, tzn. že pokud v jednom řádku chybí alespoň jedna hodnota, je z analýzy vyřezen celý řádek.
+Stanoví statistický protokol párového t-testu pro dva závislé výběry. Prázdné hodnoty jsou vyřezeny v průřezu řádků, tzn. že pokud v jednom řádku chybí alespoň jedna hodnota, je z analýzy vyřezen celý řádek.
 
 ### Argumenty
 
@@ -540,7 +539,7 @@ graph TD
 ttestpair((<i>objekt</i>))
 style ttestpair fill:#E1C6B3;
 style ttestpair stroke:#C36422;
-ttestpair --> t[<b>t</b><br>hodnota testu T <br><i>číslo</i>]
+ttestpair --> t[<b>t</b><br>hodnota testového kritéria daného t-testu <br><i>číslo</i>]
 style t fill:#FFFFFF;
 style t stroke:#4967A4;
 ttestpair --> p[<b>p</b><br>významnost <br><i>číslo</i>]
@@ -554,7 +553,7 @@ style df stroke:#75716F;
 
 ## [Mann-Whitneyho test](#mwu)
 
-Vrátí statistický protokol Mann-Whitneyho U testu. Jedná se o neparametrický test nulové hypotézy, která srsovnává náhodně vybrané hodnoty X a Y ze dvou populací, přičemž pravděpodobnost, že X bude větší než Y, se rovná pravděpodobnosti, že Y bude větší než X.
+Stanoví statistický protokol Mann-Whitneyho U testu. Jedná se o neparametrický test nulové hypotézy, která srsovnává náhodně vybrané hodnoty X a Y ze dvou populací, přičemž pravděpodobnost, že X bude větší než Y, se rovná pravděpodobnosti, že Y bude větší než X.
 
 ⚠️ Tato metoda je ve vývojové fázi a může vracet neplatné výsledky či vyvolávat chybu.
 
@@ -727,7 +726,7 @@ style p stroke:#75716F;
 
 ## [Kontingence](#contingency)
 
-Vrátí statistický protokol kontingence. Parametry metody jsou a) řádková proměnná, b) sloupcová proměnná a volitelně c) četnost skupiny a/b (pokud je prázdná, bere se, že četnost průniku je 1). Výstupem metody jsou jak statistiky kontingence (chí^2), Cramérovo V, Pearsonovo C, ad).
+Stanoví statistický protokol kontingence. Parametry metody jsou a) řádková proměnná, b) sloupcová proměnná a volitelně c) četnost skupiny a/b (pokud je prázdná, bere se, že četnost průniku je 1). Výstupem metody jsou jak statistiky kontingence (chí^2), Cramérovo V, Pearsonovo C, ad).
 
 ### Argumenty
 

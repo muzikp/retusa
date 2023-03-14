@@ -46,6 +46,7 @@ class Matrix extends Array {
             else if(Array.isArray(a)) super.push(a.vectorify());
             else {
                 throw new Error("Argument is not a vector or array.");
+                
             }
         };
     }
@@ -104,6 +105,15 @@ class Matrix extends Array {
         }
         return clone;
     }
+    slice(from = 0, to = Infinity) {
+        var M = new Matrix();
+        for(let a = from < 0 ? 0 : from; a < (to >= this.length ? this.length : to); a++)
+        {
+            M.push(this[a]);
+
+        };
+        return M;
+    }
     /** 
      * Attention! This method significantly extends the base method of the Array parent class. The method shows different behavior with respect to the number and type of arguments. If only one argument is given, the method behaves according to the following types:
 
@@ -155,6 +165,12 @@ class Matrix extends Array {
     }
     /** Removes rows with any null value across all values in the row. */
     removeEmpty() {
+        var notnulls = [];
+        for(var r = 0 ; r < this.maxRows(); r++) {
+            if(!this.row(r).find(v => v === null)) notnulls.push(r);
+        }
+        return this.filterByIndex(...notnulls);
+        /* old variant*/
         var fs = new Array(...this).map((v,i) => [i, (v) => v !== null]).flat(Infinity);
         return this.filter(...fs);
     }
@@ -852,6 +868,48 @@ const matrixMethods = {
             df: df,
             p: p
         }
+    },
+    logreg: function() {
+        var dependent = arguments[0];
+  var independent = arguments[1];
+  var maxIterations = arguments[2];
+  var n = independent[0].length;
+  var m = independent.length;
+  var beta = new Array(m).fill(0);
+  
+  function sigmoid(z) {
+    return 1 / (1 + Math.exp(-z));
+  }
+  
+  for (var i = 0; i < maxIterations; i++) {
+    var yHat = new Array(n).fill(0);
+    for (var j = 0; j < n; j++) {
+      var z = beta[0];
+      for (var k = 0; k < m; k++) {
+        z += beta[k+1] * independent[k][j];
+      }
+      yHat[j] = sigmoid(z);
+    }
+    var errors = new Array(n);
+    for (var j = 0; j < n; j++) {
+      errors[j] = dependent[j] - yHat[j];
+    }
+    beta[0] += errors.reduce((a,b) => a+b, 0) / n;
+    for (var k = 0; k < m; k++) {
+      var gradient = 0;
+      for (var j = 0; j < n; j++) {
+        gradient += errors[j] * independent[k][j];
+      }
+      beta[k+1] += gradient / n;
+    }
+  }
+  
+  var result = {};
+  for (var k = 0; k < m; k++) {
+    result[k] = beta[k+1];
+  }
+  
+  return result;
     }
 };
 
@@ -1279,6 +1337,49 @@ const MatrixMethodsModels = [
                     required: true,
                 }
             }
+        }
+    },
+    {   name: "logreg",
+        fn: matrixMethods.logreg,
+        wiki: {
+            title: "vlCA",
+            description: "dzFE",
+            preprocessor: preprocessors.removeEmptyXY.title,
+        },
+        output: "linreg",
+        prepare: function(_) {
+            var M = new Matrix();
+            M.push(_.args.dependent);
+            M.push(..._.args.covariates);
+            M = M.removeEmpty();
+            _.args.dependent = M[0];
+            _.args.covariates = new Array(...M.slice(1));
+        },
+        args: {
+            dependent: {
+                model: "booleanVector",
+                config: {
+                    name: "dependent",
+                    title: "jDlm",
+                    required: true,
+                }
+            },
+            covariates: {
+                model: "numericVectors",
+                config: {
+                    name: "covariates",
+                    title: "jFVv",
+                    required: true
+                }
+            },        
+            maxIterations: {
+                model: "positiveInteger",
+                config: {
+                    name: "maxIterations",
+                    title: "OBml",
+                    default: 1000
+                }
+            }            
         }
     },
 ];

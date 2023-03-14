@@ -99,7 +99,7 @@ class Vector extends Array {
     }
     
     filterByIndex(...indexes) {
-        return new this.constructor(...this).filter((e,i) => indexes.indexOf(i) > -1).name(this.name());
+        return new this.constructor(...this).filter((e,i) => [...indexes].indexOf(i) > -1).name(this.name(), true);
     }
     static deserialize(data) {
         if(typeof data != "object") {

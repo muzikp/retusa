@@ -1,19 +1,21 @@
 var _ = require("./index");
 var st = require("./stress-test");
 
-var M = new _.Matrix(
-    new _.NumericVector(180,197,240,210,180,160,179,185,183,150,110,190,170).name("score A"),
-    new _.NumericVector(75,82,100,80,75,60,75,71,77,63,46,81,70).name("score B")
-);
-var rg_a = M.analyze("correlGamma").run(0,1);
-var rg_b = M.correlGamma("score A","score B");
-var x = new _.NumericVector(180,197,240,210,180,160,179,185,183,150,110,190,170).name("score A");
-var sw = x.analyze("swtest").run();
-var ks = x.analyze("kstest").run();
-// rg_a.result = rg_b
 require("./docs")();
+return;
+//logisticRegression([true, false, true, false, true],[[0.5, 0.2, 0.9, 0.1, 0.8],[0.3, 0.7, 0.1, 0.8, 0.4],[1, 0, 1, 0, 1]], 1000)
+//logisticRegression([false,true,false,true,true,false,false,true,true,false,true,false],[[2,13,13,12,14,14,17,17,21,21,24,24],[3,4,4,9,4,4,2,6,5,9,11,4],[6,4,6,9,5,4,2,5,7,3,11,5]], 1000)
+var M = new _.Matrix(
+    new _.BooleanVector(0,1,0,1,1,0,0,1,1,0,1,0),
+    new _.NumericVector(12,13,13,12,14,14,17,17,21,21,24,24),
+    new _.NumericVector(3,4,4,9,4,4,2,6,5,9,11,4),
+    new _.NumericVector(6,4,6,9,5,4,2,5,7,3,11,5),
+)
+var logreg = M.analyze("logreg").run(0,[1,2,3], 1000).result;
+console.log(JSON.stringify(logreg));
 debugger;
 return;
+//require("./docs")();
 var stats = [];
 /* anova */ 
 
