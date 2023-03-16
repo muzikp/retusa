@@ -1,23 +1,32 @@
 var _ = require("./index");
 var st = require("./stress-test");
 
+require("./docs")({offset: 0});
+return;
+with (_) {
+    var _M = new Matrix(
+        new NumericVector(27,27,27,19,30,31).name("A"),
+        new NumericVector(30,30,30,30,30,23).name("B"),
+        new NumericVector(19,27,28,25,26,30).name("C"),
+        new NumericVector(11,25,28,25,28,28).name("D"),
+        new NumericVector(36,32,34,29,25,27).name("E")
+    )
+    var M = new Matrix(
+        new NumericVector(7,14,14,13,12,9,6,14,12,8).name("fertilizer 1"),
+        new NumericVector(15,17,13,15,15,13,9,12,10,8).name("fertilizer 2"),
+        new NumericVector(6,8,8,9,5,14,13,8,10,9).name("fertilizer 3")
+    )
+    var kw_a = M.analyze("kwanova").run([0,1,2]);
+    var kw_b = M.kwanova(["fertilizer 1", "fertilizer 2", "fertilizer 3"]);
+    // kw_a.result = kw_b
+    debugger;
+    
+}
 require("./docs")({offset: 2});
+
+
+
 return;
-//logisticRegression([true, false, true, false, true],[[0.5, 0.2, 0.9, 0.1, 0.8],[0.3, 0.7, 0.1, 0.8, 0.4],[1, 0, 1, 0, 1]], 1000)
-//logisticRegression([false,true,false,true,true,false,false,true,true,false,true,false],[[2,13,13,12,14,14,17,17,21,21,24,24],[3,4,4,9,4,4,2,6,5,9,11,4],[6,4,6,9,5,4,2,5,7,3,11,5]], 1000)
-var M = new _.Matrix(
-    new _.BooleanVector(0,1,0,1,1,0,0,1,1,0,1,0),
-    new _.NumericVector(12,13,13,12,14,14,17,17,21,21,24,24),
-    new _.NumericVector(3,4,4,9,4,4,2,6,5,9,11,4),
-    new _.NumericVector(6,4,6,9,5,4,2,5,7,3,11,5),
-)
-var logreg = M.analyze("logreg").run(0,[1,2,3], 1000).result;
-console.log(JSON.stringify(logreg));
-debugger;
-return;
-//require("./docs")();
-var stats = [];
-/* anova */ 
 
 var iterations = 10000;
 for(var i = 0; i < iterations; i++) {

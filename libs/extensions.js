@@ -199,6 +199,8 @@ Array.prototype.toAvgRank = function(dir = 1, sub = -1) {
     return this.map((e,i,a) => a.rankAvg(e, dir, sub));
 } 
 
+Array.prototype.toRankAvg = Array.prototype.toAvgRank;
+
 Array.prototype.intersection = function(arr) {
     if(arr.length == 0) return this;
     return this.filter(v => arr.indexOf(v) > -1)
@@ -358,6 +360,58 @@ Array.prototype.kolmogorovSmirnovTest = function() {
         df: sample.length
     };
   }
+
+/**
+ * A static method that convert input numeric arrays to their ranks.
+ * @param  {...Array} arrs Arrays or vectors.
+ * @returns An array of array of ranks.
+ */
+//Array.toRanks=function(...t){let e=t.length,r=[];for(let n=0;n<e;n++){let a=t[n];for(let t=0;t<a.length;t++)r.push([a[t],0,n])}r.sort(sortByCol);for(let t=0;t<r.length;t++){let e=r[t];e[1]=t+1}for(let t=0;t<r.length-1;t++){let e=r[t],n=e[0],a=e[1],o=1;for(let t=t+1;t<r.length;t++){let e=r[t],s=e[0];n==s&&(a+=e[1],o++)}if(o>1){let t=a/o;for(let e=t;e<t+o;e++){let n=r[e];n[1]=t}}}return r}
+
+function sortByCol(a, b) {
+    a = a[0]
+    b = b[0]
+    return (a === b) ? 0 : (a < b) ? -1 : 1
+}
+
+Array.toRanks = function(...arrs) {
+    let k = arrs.length;    
+    let ranks = [];
+    for (let s = 0; s < k; s++) {
+        let v = arrs[s];
+        for (let i = 0; i < v.length; i++) {
+            ranks.push( [v[i], 0, s] );
+        }
+    }
+    ranks.sort(sortByCol);
+    for (let i = 0; i < ranks.length; i++) {
+        let re = ranks[i];
+        re[1] = i+1;
+    }
+    for (let s = 0; s < ranks.length - 1; s++) {
+        let re1 = ranks[s];
+        let val1 = re1[0];
+        let r_sum = re1[1];
+        let cnt = 1;
+        for (let e = s + 1; e < ranks.length; e++) {
+            let re2 = ranks[e];
+            let val2 = re2[0];
+            if (val1 == val2) {
+                r_sum += re2[1];
+                cnt += 1;
+            }
+        }
+        if (cnt > 1) {
+            let r_mean = r_sum / cnt;
+            for (let i = s; i < s + cnt; i++) {
+                let re = ranks[i];
+                re[1] = r_mean;
+            }
+        }
+    }    
+    return ranks;
+}
+
 
 String.prototype.fill = function(what, repetition) {
     var x = "";

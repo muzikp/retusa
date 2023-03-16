@@ -44,6 +44,7 @@ var matrixMethods = [
     "ttestind",
     "ttestpair",
     "mwu",
+    "kwanova",
     "wcxpaired",
     "friedman",
     "contingency"
@@ -653,6 +654,21 @@ const examples = {
                 var c_c = M.analyze("contingency").run("grade","group","frequencies");
                 var c_d = M.analyze("contingency").run({rows: 0, columns: 1, n: 2});
                 // c_a = c_b.result = c_c.result = c_d.result
+            }
+        }
+    ],
+    kwanova: [
+        {
+            name: "example1",
+            code: function(){
+                var M = new Matrix(
+                    new NumericVector(7,14,14,13,12,9,6,14,12,8).name("fertilizer 1"),
+                    new NumericVector(15,17,13,15,15,13,9,12,10,8).name("fertilizer 2"),
+                    new NumericVector(6,8,8,9,5,14,13,8,10,9).name("fertilizer 3")
+                )
+                var kw_a = M.analyze("kwanova").run([0,1,2]);
+                var kw_b = M.kwanova(["fertilizer 1", "fertilizer 2", "fertilizer 3"]);
+                // kw_a.result = kw_b
             }
         }
     ]

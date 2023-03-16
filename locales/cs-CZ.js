@@ -286,5 +286,8 @@ module.exports = {
 	"R5AC": "Koeficient gamma",
 	"zKSX": "Goodman-Kruskalova gama je obdobou ordinálního korelačního koeficientu, tedy testu, který měří závislost mezi dvěma pořadovými proměnnými. I z toho důvodu může nabývat stejných hodnot jako ostatní korelační koeficienty (např. Pearsonův či Spearmanův) a stejně se i interpretuje. Tento test se před ostatními pořadově orientovanými korelačními metodami doporučuje tehdy, pokud mají data mnoho shodných pořadí (tzv. ties).",
 	"wZUG": "Goodman-Kruskalova gama",
-	"vdkW": "Tato metoda je ve vývojové fázi a může vracet neplatné výsledky či vyvolávat chybu."
+	"vdkW": "Tato metoda je ve vývojové fázi a může vracet neplatné výsledky či vyvolávat chybu.",
+	"IWXW": "Kruskal-Wallisova ANOVA",
+	"J5jV": "Stanoví statistický protokol Kruskal-Wallisovy analýzy rozptylu. Jedná se analogii analýzy rozptylu s jednoduchým tříděním, která zohledňuje pořadí hodnot v proměnných.",
+	"rrWq": "hodnota H testu"
 }

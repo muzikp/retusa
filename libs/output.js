@@ -492,5 +492,17 @@ const lib = {
             }
         }
     },
+    "kwanova": {
+        "title": "YqRh", 
+        "type": "object",
+        "properties": {
+            "H": {
+                title: "rrWq",
+                type: "number"
+            },
+            "p": snippets.sig,
+            "df": snippets.df
+        }
+    }
 }
 module.exports = {Output: Output};

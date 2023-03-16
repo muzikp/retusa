@@ -254,7 +254,10 @@ Matrix.prototype.isMatrix = true;
 // #endregion
 
 const preprocessors = {
-    removeEmpty: {
+    /**
+     * Removes all rows where at least one empty value is present.
+     */
+    removeEmptyAcrossRows: {
         title: "Cumi",
         fn: function(_){
             var M = new Matrix(..._.args.vectors);
@@ -262,6 +265,18 @@ const preprocessors = {
             M = M.removeEmpty();
             _.args.vectors = M;
             _.sample.net = M.maxRows();
+        }
+    },
+    /**
+     * Removes empty cells from each vectors without removing rows from other vectors in the set.
+     */
+    removeEmptyAcrossColumns: {
+        title: "Cumi",
+        fn: function(_){
+            for(var i = 0; i < _.args.vectors; i++)
+            {
+                _.args.vectors[i] = _.args.vectors[i].removeEmpty();
+            }
         }
     },
     removeEmptyXY: {
@@ -798,26 +813,17 @@ const matrixMethods = {
             V: V,
         }
     },
-    kwanova: function(vectors, factor) {
-        var data = (factor ? new Array(...new Matrix(factor, vectors[0]).pivot(1,0)) : new Array(...vectors)).map(v => v.removeEmpty());
-        const flatData = data.flat().sort((a, b) => a - b);
-        const nGroups = data.length;
-        const nObs = data.map(group => group.length);
-        const ranks = flatData.map((value, index) => index + 1);
-        //const groupRanks = data.map(group => group.reduce((sum, value) => sum + ranks[flatData.indexOf(value)], 0));
-        const groupRanks = data.map(group => group.reduce((sum, value) => sum + ranks[Math.round(flatData.rankAvg(value))], 0));
-        const meanRanks = groupRanks.map((sum, index) => sum / nObs[index]);
-        const grandMeanRank = ranks.reduce((sum, value) => sum + value, 0) / flatData.length;
-        const ssTotal = ranks.reduce((sum, value) => sum + (value - grandMeanRank) ** 2, 0);
-        const ssBetween = nObs.reduce((sum, n, index) => sum + n * (meanRanks[index] - grandMeanRank) ** 2, 0);
-        const dfBetween = nGroups - 1;
-        const dfWithin = flatData.length - nGroups;
-        const h = (ssBetween / dfBetween) / ((ssTotal - ssBetween) / dfWithin);
-        const p = 1 - dist.chisqdist(h, dfBetween, true);
+    kwanova: function(){
+        var all = [...arguments[0]].flat();
+        var ranks = [...arguments[0]].map(vector => vector.map(v => all.rankAvg(v, 1, 1))).map(v => Math.pow(v.sum(), 2)/v.length);
+        let H = 12/(all.length*(all.length+1)) * ranks.sum() - 3*(all.length+1)
+        let df = arguments[0].length - 1;
+        let p = 1 - dist.chisqdist(H, df, true);
         return {
-            H: h,
+            H: H,
+            df: df,
             p: p
-        };
+        }        
     },
     /* Wilcoxon's signed rank test for dependent samples */
     wcxpaired: function(){
@@ -868,48 +874,6 @@ const matrixMethods = {
             df: df,
             p: p
         }
-    },
-    logreg: function() {
-        var dependent = arguments[0];
-  var independent = arguments[1];
-  var maxIterations = arguments[2];
-  var n = independent[0].length;
-  var m = independent.length;
-  var beta = new Array(m).fill(0);
-  
-  function sigmoid(z) {
-    return 1 / (1 + Math.exp(-z));
-  }
-  
-  for (var i = 0; i < maxIterations; i++) {
-    var yHat = new Array(n).fill(0);
-    for (var j = 0; j < n; j++) {
-      var z = beta[0];
-      for (var k = 0; k < m; k++) {
-        z += beta[k+1] * independent[k][j];
-      }
-      yHat[j] = sigmoid(z);
-    }
-    var errors = new Array(n);
-    for (var j = 0; j < n; j++) {
-      errors[j] = dependent[j] - yHat[j];
-    }
-    beta[0] += errors.reduce((a,b) => a+b, 0) / n;
-    for (var k = 0; k < m; k++) {
-      var gradient = 0;
-      for (var j = 0; j < n; j++) {
-        gradient += errors[j] * independent[k][j];
-      }
-      beta[k+1] += gradient / n;
-    }
-  }
-  
-  var result = {};
-  for (var k = 0; k < m; k++) {
-    result[k] = beta[k+1];
-  }
-  
-  return result;
     }
 };
 
@@ -1222,7 +1186,7 @@ const MatrixMethodsModels = [
         wiki: {
             title: "gRix",
             description: "fqwd",
-            preprocessor: preprocessors.removeEmpty.title,
+            preprocessor: preprocessors.removeEmptyAcrossRows.title,
             url: "https://en.wikipedia.org/wiki/Contingency_table"
         },
         prepare: function(_) {
@@ -1324,10 +1288,10 @@ const MatrixMethodsModels = [
         wiki: {
             title: "7m48",
             description: "sUw5",
-            preprocessor: preprocessors.removeEmpty.title
+            preprocessor: preprocessors.removeEmptyAcrossRows.title
         },   
         output: "friedman",     
-        prepare: preprocessors.removeEmpty.fn,
+        prepare: preprocessors.removeEmptyAcrossRows.fn,
         unstable: true,
         args: {
             "vectors": {
@@ -1339,47 +1303,31 @@ const MatrixMethodsModels = [
             }
         }
     },
-    {   name: "logreg",
-        fn: matrixMethods.logreg,
+    {   name: "kwanova",
+        fn: matrixMethods.kwanova,
         wiki: {
-            title: "vlCA",
-            description: "dzFE",
-            preprocessor: preprocessors.removeEmptyXY.title,
-        },
-        output: "linreg",
-        prepare: function(_) {
-            var M = new Matrix();
-            M.push(_.args.dependent);
-            M.push(..._.args.covariates);
-            M = M.removeEmpty();
-            _.args.dependent = M[0];
-            _.args.covariates = new Array(...M.slice(1));
-        },
+            title: "IWXW",
+            description: "J5jV",
+            preprocessor: preprocessors.groupANOVARemoveEmpty.title
+        },   
+        output: "kwanova",     
+        prepare: preprocessors.groupANOVARemoveEmpty.fn,
         args: {
-            dependent: {
-                model: "booleanVector",
-                config: {
-                    name: "dependent",
-                    title: "jDlm",
-                    required: true,
-                }
-            },
-            covariates: {
+            "vectors": {
                 model: "numericVectors",
                 config: {
-                    name: "covariates",
-                    title: "jFVv",
-                    required: true
+                    name: "vectors",
+                    title: "Rd9K",
+                    required: true,
                 }
             },        
-            maxIterations: {
-                model: "positiveInteger",
+            "factor": {
+                model: "anyVector",
                 config: {
-                    name: "maxIterations",
-                    title: "OBml",
-                    default: 1000
+                    name: "factor",
+                    title: "dTDt"
                 }
-            }            
+            }
         }
     },
 ];
