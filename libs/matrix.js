@@ -815,8 +815,12 @@ const matrixMethods = {
     },
     kwanova: function(){
         var all = [...arguments[0]].flat();
+        var n = all.length;
         var ranks = [...arguments[0]].map(vector => vector.map(v => all.rankAvg(v, 1, 1))).map(v => Math.pow(v.sum(), 2)/v.length);
-        let H = 12/(all.length*(all.length+1)) * ranks.sum() - 3*(all.length+1)
+        let H = 12/(n*(n+1)) * ranks.sum() - 3*(n+1);
+        var t = [...arguments[0]].map(vector => vector.map(v => all.rankAvg(v, 1, 1))).flat().frequency().filter(r => r.n > 1).map(e => e.n).frequency();
+        /* ties correction */
+        if(t.length > 0) H = H/(1 - t.map(_ => Number(_.n) * (Math.pow(Number(_.v),3) - Number(_.v))).sum()/(Math.pow(n,3)- n));
         let df = arguments[0].length - 1;
         let p = 1 - dist.chisqdist(H, df, true);
         return {

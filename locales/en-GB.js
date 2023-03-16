@@ -289,5 +289,6 @@ module.exports = {
 	"vdkW": "This method is under development and may return invalid results or cause an error.",
 	"IWXW": "Kruskal-Wallis ANOVA",
 	"J5jV": "Return the Kruskal-Wallis ANOVA statistical log. This is an analogy to One-way ANOVA. It takes into account the order of the values in the variables.",
-	"rrWq": "H test value"
+	"rrWq": "H test value",
+	"ImLY": "Removes all empty cells from all input vectors one by one without affecting other vectors. The output is a purified matrix whose vectors do not have to have the same length (number of members)."
 }

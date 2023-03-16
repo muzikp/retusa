@@ -825,7 +825,7 @@ Každá metoda má specifikované argumenty a jejich validátory. Validátory me
 | mwu ⚠️ | [Mann-Whitneyho test](#mwu) |
 | kwanova | [Kruskal-Wallisova ANOVA](#kwanova) |
 | wcxpaired | [Wilcoxonův znaménkový test pro dva závislé výběry](#wcxpaired) |
-| friedman ⚠️ | [Friedmanova ANOVA](#friedman) |
+| friedman | [Friedmanova ANOVA](#friedman) |
 | contingency | [Kontingence](#contingency) |
 
 ## [Lineární regrese](#linreg)
@@ -1531,8 +1531,6 @@ style p stroke:#75716F;
 ## [Friedmanova ANOVA](#friedman)
 
 Friedmanova analýza rozptylu je neparametrický statistický test, který nachází své úplatnění při porovnávání rozdílů u dvou a více závislých výběrů.
-
-⚠️ Tato metoda je ve vývojové fázi a může vracet neplatné výsledky či vyvolávat chybu.
 
 ## Argumenty
 

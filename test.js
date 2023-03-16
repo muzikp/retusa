@@ -16,7 +16,7 @@ with (_) {
         new NumericVector(15,17,13,15,15,13,9,12,10,8).name("fertilizer 2"),
         new NumericVector(6,8,8,9,5,14,13,8,10,9).name("fertilizer 3")
     )
-    var fm_a = M.analyze("friedman").run([0,1,2]);
+    var fm_a = M.analyze("kwanova").run([0,1,2]);
     //var fm_b = M.friedman(["fertilizer 1", "fertilizer 2", "fertilizer 3"]);
     // fm_a.result = fm_b
     console.log(fm_a.result);

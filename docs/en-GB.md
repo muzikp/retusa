@@ -825,7 +825,7 @@ A number of methods have a specified so-called preprocessor, which is a function
 | mwu ⚠️ | [Mann-Whitney test](#mwu) |
 | kwanova | [Kruskal-Wallis ANOVA](#kwanova) |
 | wcxpaired | [Wilcoxon Signed-Ranks Test for Paired Samples](#wcxpaired) |
-| friedman ⚠️ | [Friedman's ANOVA](#friedman) |
+| friedman | [Friedman's ANOVA](#friedman) |
 | contingency | [Contingency](#contingency) |
 
 ## [Linear regression](#linreg)
@@ -1532,8 +1532,6 @@ style p stroke:#75716F;
 ## [Friedman's ANOVA](#friedman)
 
 The Friedman test is a non-parametric statistical test developed by Milton Friedman. Similar to the parametric repeated measures ANOVA, it is used to detect differences in treatments across multiple test attempts. The procedure involves ranking each row (or block) together, then considering the values of ranks by columns. Applicable to complete block designs, it is thus a special case of the Durbin test.
-
-⚠️ This method is under development and may return invalid results or cause an error.
 
 ## Arguments
 
