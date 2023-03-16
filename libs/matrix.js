@@ -271,7 +271,7 @@ const preprocessors = {
      * Removes empty cells from each vectors without removing rows from other vectors in the set.
      */
     removeEmptyAcrossColumns: {
-        title: "Cumi",
+        title: "ImLY",
         fn: function(_){
             for(var i = 0; i < _.args.vectors; i++)
             {
@@ -854,18 +854,18 @@ const matrixMethods = {
         for(var r = 0; r < n; r++) {
             rows.push(vectors.map((v,i) => v[r]).toAvgRank(1,1));
         };
-        var hasTies = Array.from(Array(k).keys()).map((v,i) => rows.map(e => e[i])).map(c => c.distinct().length !== c.length).find(e => e);
-        /* without ties*/ 
-        var meanRanks = Array.from(Array(k).keys()).map((x,i) => rows.map(r => r[i]).avg());
-        if(!hasTies || hasTies) {
-            var R2 =  Array.from(Array(k).keys()).map((x,i) => Math.pow(rows.map(r => r[i]).sum(),2)).sum();
-            var Q = 12/(n*k*(k+1)) * R2 - 3*n*(k+1);
+        let transposition = Array.from(Array(k).keys()).map((x,i) => rows.map(r => r[i]));
+        var hasTies = transposition.map(v => v.distinct().length < v.length);
+        /* without ties*/         
+        if(!hasTies) {
+            var Q = 12/(n*k*(k+1))* transposition.map(v => Math.pow(v.sum(),2)).sum() - 3*n*(k+1);
+            // alternative calculation
+            //var Q = 12/((n*k*(k+1))) * transposition.map(v => v.sum()).map(s => Math.pow(s - ((n*(k+1))/2),2)).sum(); 
         } 
         /* with ties */
         else  {
-            var R2 =  Array.from(Array(k).keys()).map((x,i) => rows.map(r => r[i]).sum()).map(r => Math.pow(r - n*(k-1)/2,2)).sum();
-            var rij = rows.flat().map(e => Math.pow(e,2) - n*k*(k-1)).sum();
-            var Q = Math.abs((4*(k-1)* R2)/rij)
+            const C = 1/4*n*k*Math.pow(k+1,2);
+            var Q = (n*(k-1)*(transposition.map(v => Math.pow(v.sum(),2)/v.length).sum() - C)) / (transposition.flat().map(e => Math.pow(e,2)).sum() - C);
         }
         var df = k-1;
         var p = dist.chisqdist(Q,df)*2;
@@ -1292,7 +1292,6 @@ const MatrixMethodsModels = [
         },   
         output: "friedman",     
         prepare: preprocessors.removeEmptyAcrossRows.fn,
-        unstable: true,
         args: {
             "vectors": {
                 model: "numericVectors",

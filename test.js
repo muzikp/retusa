@@ -1,8 +1,8 @@
 var _ = require("./index");
 var st = require("./stress-test");
 
-require("./docs")({offset: 0});
-return;
+//require("./docs")({offset: 0});
+
 with (_) {
     var _M = new Matrix(
         new NumericVector(27,27,27,19,30,31).name("A"),
@@ -16,10 +16,12 @@ with (_) {
         new NumericVector(15,17,13,15,15,13,9,12,10,8).name("fertilizer 2"),
         new NumericVector(6,8,8,9,5,14,13,8,10,9).name("fertilizer 3")
     )
-    var kw_a = M.analyze("kwanova").run([0,1,2]);
-    var kw_b = M.kwanova(["fertilizer 1", "fertilizer 2", "fertilizer 3"]);
-    // kw_a.result = kw_b
+    var fm_a = M.analyze("friedman").run([0,1,2]);
+    //var fm_b = M.friedman(["fertilizer 1", "fertilizer 2", "fertilizer 3"]);
+    // fm_a.result = fm_b
+    console.log(fm_a.result);
     debugger;
+    return;s
     
 }
 require("./docs")({offset: 2});
