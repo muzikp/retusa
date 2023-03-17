@@ -281,7 +281,7 @@ class StringVector extends Vector {
                 if(Math.random() <= nullprob) {
                     _new.push(null);
                 } else _new.push(Math.rndSelectOne(list))
-            } else _new.push(Math.rndSelectOne(list))
+            } else _new.push(Math.rndSelectOne(list));
         }
         return _new;
     };

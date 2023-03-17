@@ -723,7 +723,7 @@ const matrixMethods = {
         var U2 = N1*N2+N2*(N2+1)/2 - R2;
         var U = Math.min(U1,U2);
         var z = (U-N1*N2/2)/Math.sqrt(N1*N2*(N1+N2+1)/12)
-        var p = dist.normsdist(z)*2;
+        var p = dist.normsdist(z, true)*2;
         return {
             U: U,
             Z: z,
@@ -1268,7 +1268,6 @@ const MatrixMethodsModels = [
         },
         output: "mwu",
         prepare: preprocessors.groupXYRemoveEmpty.fn,
-        unstable: true,
         args: {
             "vectors": {
                 model: "numericVectors",

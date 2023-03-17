@@ -163,6 +163,19 @@ const contingency = function(sampleSize) {
     }
 }
 
+const kwanova = function(sampleSize, groups) {
+    var matrix = new $.Matrix(
+        $.NumericVector.generate({total: sampleSize, min: 1, max: 100, nullprob: 0.5}).name("values"),
+        $.StringVector.generate({total: sampleSize, list: 5, nullprob: 0.5}).name("grouping variable")
+    );
+    var analysis = matrix.analyze("kwanova").run([0],1);
+    return {
+        sampleSize: sampleSize,
+        groups: groups,
+        duration: analysis.duration()
+    }
+}
+
 module.exports = {
     anova: anovaow,
     biserial: biserial,
@@ -170,6 +183,7 @@ module.exports = {
     gamma: gamma,
     friedman: friedman,
     kendall: kendall,
+    kwanova: kwanova,
     linreg: linreg,
     partial: partial,
     pearson: pearson,

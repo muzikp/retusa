@@ -1,4 +1,4 @@
- Vector statistical methods documentation
+## Vector statistical methods documentation
 
 Vector functions are statistical methods that are performed on vector instances. A simple example is the 'sum' function, which sums all the non-empty values in (a numeric vector). There are a total of around 30 vector methods available, while some are simple (such as 'sum'), others are either computationally more complex (normality tests), have a complex output (e.g. a histogram) or require parameters to be specified for their calculation (arguments ). Methods can be invoked in two ways, either by calling the method directly from the vector instance - eg vector.sum() - or by calling via the general **analysis** method, eg *vector.analyze('sum').run()*. Multiple approaches can also be chosen in entering arguments. These can either be entered according to the order specified in the documentation as members of the arguments - e.g. parties.pci('ODS', 0.95) - or using a single object that precisely defines the argument values using its properties - e.g. parties.pci({value: ' ODS', alpha: 0.95}). Calling methods via the general function **analysis** is effective in several ways, among other things, because it allows the sequential execution of the analysis (e.g. before the calculation, validate the arguments using the *with* method) and also because of writing metadata to the instance of the VectorAnalysis class, specifically the input and output sample size (object *sample* and properties *raw* and *net*) and time parameters (object *time* and properties *from* and *to*, from which the method *duration* accessible from the instance of the analysis class calculates the total result processing time.
 
@@ -29,7 +29,7 @@ Vector functions are statistical methods that are performed on vector instances.
 | swtest ⚠️ | [Shapiro-Wilk W test](#swtest) |
 | kstest ⚠️ | [Kolmogorov-Smirnov test](#kstest) |
 
-# [Sum](#sum)
+### [Sum](#sum)
 
 Returns the sum of all non-empty numeric values of a vector.
 
@@ -38,13 +38,13 @@ Returns the sum of all non-empty numeric values of a vector.
 
 Removes all empty values (blank cells) from the vector.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var cashflow = new NumericVector(200,250,150,320,240,-250,10,-320).sum();  /* = 600 */
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -54,11 +54,11 @@ style sum stroke:#4967A4;
 
 ```
 
-# [Count](#count)
+### [Count](#count)
 
 Returns the count of all members of a vector, including empty values.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var total_numeric = new NumericVector(200,250,null,150,320,240,-250,null,10,-320).count();  /* = 10 */
@@ -66,7 +66,7 @@ var total_string = new StringVector("A","B","C","D").count();  /* = 4 */
 var total_boolean = new BooleanVector(true, true, false, null, false, true).count();  /* = 6 */
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -76,11 +76,11 @@ style count stroke:#4967A4;
 
 ```
 
-# [Mode](#mode)
+### [Mode](#mode)
 
 Returns the most frequent value in the vector (if the most frequent value is empty, returns the empty value). If there are more of the most frequent values (e.g. the frequency of X and Y values is the same), it returns the first value found in the vector.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var x = new NumericVector(1,2,3,4,3,4,5,3).mode(); /* = 3 */
@@ -88,7 +88,7 @@ var y = new StringVector("a",null,null,"b","c","d",null,"b").mode(); /* = null *
 var z = new BooleanVector(true, false, true).mode(); /* = true */
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -98,7 +98,7 @@ style mode stroke:#75716F;
 
 ```
 
-# [Arithmetic mean](#avg)
+### [Arithmetic mean](#avg)
 
 Returns the arithmetic mean (i.e. the quotient of the sum and the number of vector values) of all non-empty values (i.e. including zeros).
 
@@ -107,13 +107,13 @@ Returns the arithmetic mean (i.e. the quotient of the sum and the number of vect
 
 Removes all empty values (blank cells) from the vector.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var avgCashFlow = new NumericVector(200,250,150,320,240,-250,10,-320).avg();  /* = 75 */
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -123,7 +123,7 @@ style avg stroke:#4967A4;
 
 ```
 
-# [Minimum](#min)
+### [Minimum](#min)
 
 Returns the least non-empty value. For text, returns the first value from the alphabetical order.
 
@@ -132,14 +132,14 @@ Returns the least non-empty value. For text, returns the first value from the al
 
 Removes all empty values (blank cells) from the vector.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var numeric_min = new NumericVector(4.5, 3.9, 5, 6, 7, 5.7, 9.1, 5.3, 7.2, 6.9, 6, 7.5, 5.3, 7.1, 8.2, 1).min(); /* = 1 */;
 var string_min = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale", "Gauss", "Poisson").min(); /* = Fisher */
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -149,7 +149,7 @@ style min stroke:#75716F;
 
 ```
 
-# [Maximum](#max)
+### [Maximum](#max)
 
 Returns the highest non-empty value. In the case of text, it returns the last value from the alphabetical order.
 
@@ -158,14 +158,14 @@ Returns the highest non-empty value. In the case of text, it returns the last va
 
 Removes all empty values (blank cells) from the vector.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var numeric_max = new NumericVector(4.5, 3.9, 5, 6, 7, 5.7, 9.1, 5.3, 7.2, 6.9, 6, 7.5, 5.3, 7.1, 8.2, 1).max(); /* = 9.1 */;
 var string_max = new StringVector("Norwood", "Pearson", "Fisher", "Nightingale", "Gauss", "Poisson").max(); /* = Poisson */
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -175,7 +175,7 @@ style max stroke:#75716F;
 
 ```
 
-# [Range](#range)
+### [Range](#range)
 
 Returns the difference between the largest and smallest non-empty values.
 
@@ -184,13 +184,13 @@ Returns the difference between the largest and smallest non-empty values.
 
 Removes all empty values (blank cells) from the vector.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var range = new NumericVector(5,2,-15,-16.3,12,null, null, 12,13,7).range(); /* = 22 */
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -200,7 +200,7 @@ style range stroke:#4967A4;
 
 ```
 
-# [Geometric mean](#geomean)
+### [Geometric mean](#geomean)
 
 The geometric mean is a statistical indicator that is used to calculate the average value of some number or quantity. Unlike the arithmetic mean, which is calculated as the sum of all values in a set divided by the number of those values, the geometric mean is calculated as the nth root of the product of n numbers in the set. The geometric mean is often used to calculate growth or cumulative return in investments because it accounts for changes in the percentage growth of values over time. It is also used in geometry to calculate the average side length of an n-gon and in biology to calculate the average size of cells or organisms in a population.
 
@@ -209,13 +209,13 @@ The geometric mean is a statistical indicator that is used to calculate the aver
 
 Removes all empty values (blank cells) from the vector.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var x = new framework.NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).geomean(); /* = 21.24*/
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -225,7 +225,7 @@ style geomean stroke:#4967A4;
 
 ```
 
-# [Harmonic mean](#harmean)
+### [Harmonic mean](#harmean)
 
 The harmonic mean is a statistical indicator that is used to calculate the average value of some number or quantity. Unlike the arithmetic mean and the geometric mean, which are based on the addition or multiplication of values, the harmonic mean is calculated as the quotient of the number of numbers in the set and the sum of their reciprocals. The harmonic mean is used in situations where it is important to account for how speed or power changes over time or in different situations. For example, it is used to calculate average speed, average power or average resistance in electronic circuits. It is also used in finance to calculate the average return on investments over different time periods.
 
@@ -234,13 +234,13 @@ The harmonic mean is a statistical indicator that is used to calculate the avera
 
 Removes all empty values (blank cells) from the vector.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var x = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).harmean(); /* = 21.03*/
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -250,7 +250,7 @@ style harmean stroke:#4967A4;
 
 ```
 
-# [Median](#median)
+### [Median](#median)
 
 Returns the median, or middle value, of the non-empty values of a vector. This is the 50% percentile.
 
@@ -259,13 +259,13 @@ Returns the median, or middle value, of the non-empty values of a vector. This i
 
 Removes all empty values (blank cells) from the vector.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var median = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).median(); /* = 21*/
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -275,11 +275,11 @@ style median stroke:#4967A4;
 
 ```
 
-# [Quantile](#percentile)
+### [Quantile](#percentile)
 
 Using the quantile, we can examine the distribution of a numerical series, by first sorting the series from the smallest to the largest member (number), and then selecting the first N % of members (this N is a parameter), where the last member in the selection represents the given percentile, a specific number . If the number of members in the sample is even, the quantile is calculated as the average of two adjacent values, if it is even, the quantile is just the last value.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
@@ -289,7 +289,7 @@ Using the quantile, we can examine the distribution of a numerical series, by fi
 
 Removes all empty values (blank cells) from the vector.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var score = new NumericVector(10,20,15,25,23,19,18,17,24,23);
@@ -298,7 +298,7 @@ var q25 = score.percentile(0.25); /* = 17.25 */
 var max = score.percentile(1); /* = 25 */
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -308,11 +308,11 @@ style percentile stroke:#4967A4;
 
 ```
 
-# [Standard deviation](#stdev)
+### [Standard deviation](#stdev)
 
 Returns the standard deviation of non-empty values. The standard deviation is a statistical indicator that indicates how much the values in a given data set differ from each other. The standard deviation is expressed as a number that indicates how much the average value deviates from the true value in a given data set. The standard deviation is useful when comparing the amount of dispersion of data in different sets or in different groups within a single data set. The larger the standard deviation, the more the values in a given data set differ from each other.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
@@ -322,14 +322,14 @@ Returns the standard deviation of non-empty values. The standard deviation is a 
 
 Removes all empty values (blank cells) from the vector.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var population = new NumericVector(10,20,15,25,23,19,18,17,24,23).stdev();  /* = 4.41 */
 var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).stdev(true); /* = 4.65 */
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -339,11 +339,11 @@ style stdev stroke:#4967A4;
 
 ```
 
-# [Variance](#variance)
+### [Variance](#variance)
 
 Returns the variance value of this vector. The variance value is equal to the square of the standard deviation.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
@@ -353,14 +353,14 @@ Returns the variance value of this vector. The variance value is equal to the sq
 
 Removes all empty values (blank cells) from the vector.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var population = new NumericVector(10,20,15,25,23,19,18,17,24,23).variance();  /* = 19.44 */
 var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).variance(true); /* = 21.6 */
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -370,23 +370,23 @@ style variance stroke:#4967A4;
 
 ```
 
-# [Coefficient of variation](#varc)
+### [Coefficient of variation](#varc)
 
 The coefficient of variation (also called relative variance) is a statistical indicator that measures the degree of variability or dispersion of data relative to its mean value. It is a dimensionless measure of variability that allows the variance of different data sets to be compared regardless of the units in which the data are expressed. The coefficient of variation is calculated as the ratio of the standard deviation (sigma) to the mean (x) in the data set, multiplied by 100 to express it as a percentage. where the coefficient of variation is low, it means that the data are relatively homogeneous or not widely dispersed relative to the mean. If, on the other hand, it is high, it means that the data is very diverse or significantly different from the average. The coefficient of variation is mainly used to compare the variability between different data sets. For example, it is often used in biology, medicine, economics, psychology, and sociology to measure the variability of different populations or groups.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>isSample</b> | is sample | boolean value | <sub>Checks if the value is binary in nature. Otherwise, it automatically converts the value to the boolean type and therefore never returns an error.<sub> |  | false |
-## Syntax examples
+#### Syntax examples
 
 ```js
 var population = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc();  /* = 0.227 */
 var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).varc(true); /* = 0.24 */
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -396,11 +396,11 @@ style varc stroke:#75716F;
 
 ```
 
-# [Histogram](#histogram)
+### [Histogram](#histogram)
 
 Returns the histogram matrix of the given vector. The method can be chosen with or without parameter specification. If the parameter 'maximum number of intervals' (maxIntervals) is not specified, its value is automatically calculated as the variation range/root of the number of elements. If the parameter 'fixed interval size' (fixedInterval) is specified, this value is taken as decisive for the number of intervals. The two values are not compatible (although they do not return an error), when specifying both, the maxIntervals parameter is taken as a priority.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
@@ -411,9 +411,9 @@ Returns the histogram matrix of the given vector. The method can be chosen with 
 
 Removes all empty values (blank cells) from the vector.
 
-## Syntax examples
+#### Syntax examples
 
-### No interval configuration
+##### No interval configuration
 
 <sub>The method is called without parameters, i.e. that the size of the interval is automatically calculated as (maximum-minimum)/root(number of elements).</sub>
 
@@ -424,7 +424,7 @@ var h2 = score.analyze("histogram").run();
 // h1 = h2.result
 ```
 
-### Total of intervals specified
+##### Total of intervals specified
 
 <sub>The 'max' argument specifies how many categories (intervals) the histogram should be divided into. The 'max' argument can be specified either as the first parameter or - if the argument is an object - as the 'max' property.</sub>
 
@@ -437,7 +437,7 @@ var h4 = score.analyze("histogram").run({max: 4});
 // h1 = h3 = h2.result = h4.result
 ```
 
-### Interval size specified
+##### Interval size specified
 
 <sub>The 'fix' argument sets a fixed interval size. The argument can be specified either as a second parameter (in which case the first argument must be null), or - if the argument is an object - as a 'fix' attribute. The 'max' argument takes precedence over the 'fix' argument.</sub>
 
@@ -450,7 +450,7 @@ var h4 = score.analyze("histogram").run({fix: 3});
 // h1 = h3 = h2.result = h4.result
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -478,16 +478,16 @@ style pc stroke:#75716F;
 
 ```
 
-# [Frequency table](#frequency)
+### [Frequency table](#frequency)
 
 Returns a frequency table object with the breakdown of elements and their frequency.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>order</b> | table order mode | enumerator | <sub>Checks if the specified value is the key of an enumeration (list of possible values). If not, it throws an error.<br><br><b>1</b> = by frequency descending<br><b>2</b> = by frequency ascending<br><b>3</b> = by value ascending<br><b>4</b> = by value descending<br><sub> |  | 1 |
-## Syntax examples
+#### Syntax examples
 
 ```js
 var numeric_vector_no_order = new NumericVector(5,2,3,2,3,3,1,6,3).frequency();
@@ -501,7 +501,7 @@ var string_vector_desc_value = new StringVector("E","B","C","B","C","C","A","F",
 var boolean_vector_desc_frequency = new BooleanVector(true, false, null, true, null, null).frequency(4);
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -517,7 +517,7 @@ style n stroke:#75716F;
 
 ```
 
-# [Standard error of the mean](#sem)
+### [Standard error of the mean](#sem)
 
 Returns the value of the standard error of the estimate of the mean. The standard error of the mean is a statistical measure of the variability of the sample mean of the estimated parameter in the entire population. This is an estimate of the standard deviation of the sample mean. The mean error of the mean is calculated as the ratio of the estimated standard deviation of the sample mean to the square root of the sample size. The larger the sample size, the smaller the mean error of the mean, meaning that the estimate of the sample mean is more accurate and more closely aligned with the entire population mean. The mean error of the mean is useful for estimating confidence intervals of the sample mean, which allows us to determine how accurately it estimates the population mean.
 
@@ -526,13 +526,13 @@ Returns the value of the standard error of the estimate of the mean. The standar
 
 Removes all empty values (blank cells) from the vector.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var sem = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).SEM(); /* = 0.67*/
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -542,11 +542,11 @@ style sem stroke:#4967A4;
 
 ```
 
-# [Skewness](#skewness)
+### [Skewness](#skewness)
 
 Returns the skewness of the distribution, i.e. the asymmetry of the distribution around the mean value of the vector.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
@@ -556,14 +556,14 @@ Returns the skewness of the distribution, i.e. the asymmetry of the distribution
 
 Removes all empty values (blank cells) from the vector.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var skewness_population = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).skewness(); /* = 0.52*/
 var skewness_sample = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).skewness(true); /* = 0.027*/
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -573,7 +573,7 @@ style skewness stroke:#4967A4;
 
 ```
 
-# [Kurtosis](#kurtosis)
+### [Kurtosis](#kurtosis)
 
 Returns the excess value of the data set. In statistics, kurtosis refers to the measure of how much the values in a collection of data differ from the mean value. Skewness is usually calculated for a data distribution curve, which is a graphical representation of the distribution of values in a given collection of data.
 There are two basic types of kurtosis: platykurtosis and leptokurtosis. Platykurtosis occurs when the values of a vector are distributed more or less uniformly around the mean value. This distribution appears as a U-shaped distribution curve that has a flat top. Conversely, leptokurtosis occurs when the values in a data collection are distributed with a significant deviation from the mean value. This distribution manifests itself as a 'peaked hill letter' or 'pointed valley letter' shaped distribution curve.
@@ -584,13 +584,13 @@ Skewedness is used to determine whether the distribution of values in a collecti
 
 Removes all empty values (blank cells) from the vector.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var kurtosis = new NumericVector(20,19,21,22,21,18,23,22,27,16,17,19,19,21,29,24,23,25,24,21,22,19).kurtosis(); /* = 0.425*/
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -600,11 +600,11 @@ style kurtosis stroke:#4967A4;
 
 ```
 
-# [Confidence interval of the mean](#mci)
+### [Confidence interval of the mean](#mci)
 
 Returns the statistical log of the confidence interval estimate of the sample mean at a specified significance level. If the number of cases is less than 30, the Student's T-distribution is used, otherwise the standardized normal distribution is used.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
@@ -614,13 +614,13 @@ Returns the statistical log of the confidence interval estimate of the sample me
 
 Removes all empty values (blank cells) from the vector.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).mci(0.95);
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -645,11 +645,11 @@ style ub stroke:#4967A4;
 
 ```
 
-# [Confidence interval of the proportion](#pci)
+### [Confidence interval of the proportion](#pci)
 
 Returns the statistical log of the confidence interval estimate of the sample proportion at a specified significance level.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
@@ -660,13 +660,13 @@ Returns the statistical log of the confidence interval estimate of the sample pr
 
 Removes all empty values (blank cells) from the vector.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var v = new NumericVector([2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5]).pci(5, 0.95);
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -691,11 +691,11 @@ style ub stroke:#75716F;
 
 ```
 
-# [One-sample t-test](#ttest)
+### [One-sample t-test](#ttest)
 
 Returns the statistical log for a one-sample t-test given the population mean.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
@@ -705,13 +705,13 @@ Returns the statistical log for a one-sample t-test given the population mean.
 
 Removes all empty values (blank cells) from the vector.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var T = new NumericVector(4.5,3.9,5,6,7,5.7,9.1,5.3,7.2,6.9,6,7.5,5.3,7.1,8.2,1).ttest(10);
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -730,7 +730,7 @@ style n stroke:#75716F;
 
 ```
 
-# [Shapiro-Wilk W test](#swtest)
+### [Shapiro-Wilk W test](#swtest)
 
 Returns the statistical log of the Shapiro-Wilk W test of normality of the distribution of vector values. The Shapiro-Wilk test is a statistical test used to test the hypothesis that the data come from a normal distribution. This test is often used to verify the normality of data in statistical analysis. The Shapiro-Wilk test is based on comparing the value of the quartiles of the data with the values of the quartiles of a normal distribution. When the quartile values of the data are similar to the quartile values of the normal distribution, it is likely that the data comes from a normal distribution. Otherwise, it is likely that the data is not normal. When using the Shapiro-Wilk test, it should be noted that this test has low sensitivity for large samples, i.e. for large samples the test may be less reliable in detecting non-normality. Therefore, other tests of normality, such as the Anderson-Darling test or the Kolmogorov-Smirnov test, are often used for large samples.
 
@@ -741,13 +741,13 @@ Returns the statistical log of the Shapiro-Wilk W test of normality of the distr
 
 Removes all empty values (blank cells) from the vector.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).swtest();
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -766,7 +766,7 @@ style p stroke:#75716F;
 
 ```
 
-# [Kolmogorov-Smirnov test](#kstest)
+### [Kolmogorov-Smirnov test](#kstest)
 
 Returns the statistical log of the Komogorov-Smirnov normality test of the distribution of vector values. It does not currently calculate the significance level of the test. The Kolmogorov-Smirnov test (often abbreviated as the K-S test) is a statistical test used to test the hypothesis that data come from a particular distribution. This test compares the data distribution to the theoretical distribution that the data is assumed to come from and evaluates whether the data values are close enough to the theoretical distribution that the hypothesis that the data come from the given distribution can be considered true.Kolmogorov test -Smirnov is often used to test the normality of data, but it can also be used to test if the data comes from another theoretical distribution, such as the exponential or binomial distribution. The Kolmogorov-Smirnov test is generally considered to be one of the most accurate tests of normality, but it has limited sensitivity for small samples, i.e. it may be less reliable in detecting non-normality for small samples. Therefore, other tests of normality, such as the Shapiro-Wilk test or the Anderson-Darling test, are often used for small samples.
 
@@ -777,13 +777,13 @@ Returns the statistical log of the Komogorov-Smirnov normality test of the distr
 
 Removes all empty values (blank cells) from the vector.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).kstest();
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -802,7 +802,7 @@ style p stroke:#75716F;
 
 ```
 
- Matrix statistical methods documentation
+## Matrix statistical methods documentation
 
 Matrix methods represent statistical methods that can be performed on a given matrix. In general, they can be called in two ways: either directly (e.g. {Matrix}.correlPearson(0,1)) or using the generic 'analyze' method, e.g. {Matrix}.analyze('correlPearson').run(0,1) . The difference between the first and the second method is that in the first method we touch the pure result (in the given example an object with properties r and p), in the second case we get back the entire MatrixAnalysis class, containing in addition to the result also metadata (such as sample information, duration calculation, etc.) as well as the input model, specification of arguments, etc. Therefore, if you need to store metadata during the calculation, it is advisable to call the methods via the 'analysis' function, where the parameter is the name of the method.
 
@@ -822,7 +822,7 @@ A number of methods have a specified so-called preprocessor, which is a function
 | anovaow | [ANOVA (one-way)](#anovaow) |
 | ttestind | [T-test (independent)](#ttestind) |
 | ttestpair | [T-test (paired)](#ttestpair) |
-| mwu ⚠️ | [Mann-Whitney test](#mwu) |
+| mwu | [Mann-Whitney test](#mwu) |
 | kwanova | [Kruskal-Wallis ANOVA](#kwanova) |
 | wcxpaired | [Wilcoxon Signed-Ranks Test for Paired Samples](#wcxpaired) |
 | friedman | [Friedman's ANOVA](#friedman) |
@@ -834,7 +834,7 @@ Linear regression is a statistical method used to find the relationship between 
 
 The method allows us to specify for which transformation of the model (eg linear, logarithmic) we are looking for the coefficient of determination.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
@@ -842,11 +842,11 @@ The method allows us to specify for which transformation of the model (eg linear
 | <b>x</b> | dependent variable (y) | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 | <b>model</b> | regression model | enumerator | <sub>Checks if the specified value is the key of an enumeration (list of possible values). If not, it throws an error.<br><br><b>1</b> = linear<br><b>2</b> = log<br><b>3</b> = hyperbole<br><b>4</b> = exponential<br><b>5</b> = quadratic<br><sub> |  | 1 |
 
-## Pre-calculation data modification
+#### Pre-calculation data modification
 
 Removes from the input vectors (matrix) all rows in which there is at least one empty value.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var M = new Matrix(
@@ -861,7 +861,7 @@ var lr_b = M.analyze("linreg").run({x: "independent x", y: 1, model: 4}); // sam
 // lb_b = lr_d.result
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -896,18 +896,18 @@ The Pearson correlation is a statistical method used to measure the relationship
 Pearson's correlation is calculated using a formula called Pearson's correlation coefficient. This coefficient ranges from -1 to 1 and indicates how strong the relationship is between the quantities. If the coefficient is close to -1, it means that there is a strong negative relationship between the quantities, which means that when the value of one quantity increases, the value of the other quantity decreases. On the contrary, if the coefficient is close to 1, it means that there is a strong positive relationship between the quantities, which means that when the value of one quantity increases, the value of the other quantity also increases. If the coefficient is close to 0, it means that there is no relationship between the quantities or the relationship is very weak.
 Pearson's correlation is mainly used to compare two quantitative quantities, i.e. quantities that can be measured on a scale with exact values (for example, age, height or weight). It can be used to determine whether there is a relationship between these quantities and what its character is. For example, Pearson's correlation can be used to compare age and weight and see if there is a relationship between these quantities and what its nature is. It can also be used to compare the results of two different tests and see if there is a relationship between the results of those tests. Source: https://chat.openai.com/chat
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>y</b> | first variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 | <b>x</b> | second variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 
-## Pre-calculation data modification
+#### Pre-calculation data modification
 
 Removes from the input vectors (matrix) all rows in which there is at least one empty value.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var M = new Matrix(
@@ -919,7 +919,7 @@ var rxy_b = M.correlPearson("height","weight");
 // rxy_a.result = rxy_b
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -939,18 +939,18 @@ style p stroke:#75716F;
 
 Returns the statistical log of the Spearman rank correlation coefficient. Unlike the Pearson correlation, the Spearman method is based on a comparison of the order of magnitude of the values of the input variables.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>y</b> | first variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 | <b>x</b> | second variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 
-## Pre-calculation data modification
+#### Pre-calculation data modification
 
 Removes from the input vectors (matrix) all rows in which there is at least one empty value.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var M = new Matrix(
@@ -962,7 +962,7 @@ var rs_b = M.correlSpearman("design rating","utility rating");
 // rs_a.result = rs_b
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -985,18 +985,18 @@ style p stroke:#75716F;
 
 The Goodman-Kruskal gamma is similar to the ordinal correlation coefficient, i.e. a test that measures the dependence between two ordinal variables. For that reason, it can take on the same values as other correlation coefficients (e.g. Pearson's or Spearman's) and is interpreted in the same way. This test is recommended over other rank-oriented correlation methods when your data has many ties.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>y</b> | first variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 | <b>x</b> | second variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 
-## Pre-calculation data modification
+#### Pre-calculation data modification
 
 Removes from the input vectors (matrix) all rows in which there is at least one empty value.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var M = new Matrix(
@@ -1008,7 +1008,7 @@ var rg_b = M.correlGamma("score A","score B");
 // rg_a.result = rg_b
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -1030,18 +1030,18 @@ Returns the statistical log of Kendall's Tau-B correlation coefficient. If you w
 
 ⚠️ This method is under development and may return invalid results or cause an error.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>y</b> | first variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 | <b>x</b> | second variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 
-## Pre-calculation data modification
+#### Pre-calculation data modification
 
 Removes from the input vectors (matrix) all rows in which there is at least one empty value.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var M = new Matrix(
@@ -1053,7 +1053,7 @@ var rk_b = M.correlKendall("design rating","utility rating");
 // rk_a.result = rk_b
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -1079,7 +1079,7 @@ style p stroke:#75716F;
 
 Partial correlation is a statistical method that allows you to find out what the relationship is between two variables while taking into account the influence of a third variable. This is useful if you want to see if there is a direct relationship between two variables without being affected by the influence of other variables. For example, if you want to find out if there is a relationship between level of training and success at work, it may be useful to consider the effect of age or gender as well. In that case, you could use partial correlation to find the relationship between level of training and success at work while controlling for the effects of age and gender. The partial correlation is calculated using a formula that is derived from the Pearson correlation coefficient. It is important to note that partial correlation does not imply causation, i.e. that one variable does not cause the other, but only shows that there is some association between them. Source: https://chat.openai.com/chat.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
@@ -1087,11 +1087,11 @@ Partial correlation is a statistical method that allows you to find out what the
 | <b>x</b> | second variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 | <b>y</b> | third (control) variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 
-## Pre-calculation data modification
+#### Pre-calculation data modification
 
 Removes from the input vectors (matrix) all rows in which there is at least one empty value.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var M = new Matrix(
@@ -1104,7 +1104,7 @@ var rp_b = M.correlPartial("x","y","z");
 // rp_a.result = rp_b
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -1124,18 +1124,18 @@ style p stroke:#75716F;
 
 Biserial correlation is a statistical method that is used to evaluate the relationship between two binary variables (ie variables that can have only two possible values, such as 'yes' or 'no'). Binary variables are often used in the social sciences, for example when examining the relationship between education and employment or between smoking and health. Biserial correlation is calculated using a formula that is derived from the Pearson correlation coefficient. It is important to note that biserial correlation does not imply causation, i.e. that one variable does not cause the other, but only shows that there is some association between them.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>x</b> | first variable | binary (boolean) vector | <sub>Checks if the argument is either a binary (boolean) vector, its identifier, or an array convertible to a binary vector. Otherwise, it throws an error,<sub> | ✔️ |  |
 | <b>z</b> | second variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 
-## Pre-calculation data modification
+#### Pre-calculation data modification
 
 Removes from the input vectors (matrix) all rows in which there is at least one empty value.
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -1155,18 +1155,18 @@ style p stroke:#75716F;
 
 Returns the One-way ANOVA statistical log. The method has two arguments. The first consists of a series of numerical vectors, where at least one vector is mandatory. The second argument is optional and represents the grouping factor, i.e. a text variable that determines whether the numerical factor belongs to the group in the rows. If the second parameter is specified, only the first of the first group of vectors is taken into account.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | input vector/s | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
 | <b>columns</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 
-## Pre-calculation data modification
+#### Pre-calculation data modification
 
 If the arguments specify a factor variable (the second argument), the first argument (either a numeric vector or the first vector in the matrix, if the first argument is a matrix) is decomposed according to the factor values into a new matrix. If the arguments are without a factor (ie the second argument is empty), it takes all the numeric vectors from the first argument 'vectors' (matrix) and then removes the rows with empty values. If the 'factor' argument is not specified and the 'vectors' argument contains only a single vector or is itself a numeric vector, an error will be thrown (without the factor, at least two numeric vectors are required in the first argument).
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var M = new Matrix(
@@ -1177,7 +1177,7 @@ new NumericVector(275,282,300,280,275,260,275,271,277,263,246,281,270).name("z")
 var anova = M.analyze("anovaow").run({vectors: [0,1,2]});
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -1240,15 +1240,15 @@ style df stroke:#75716F;
 
 Returns the statistical log of the Student's t-test for two independent samples that are defined by an eigenvariable (that is, two numeric vectors). Arguments are either two numeric vectors, or one numeric and only a factor vector (usually text, but can also be numeric or binary). If a vector that has more than two unique values is used as a factor, only the first two unique values found are considered for the test (the others are ignored) - in this case, the information about the size of the pure sample is irrelevant, however, the level of significance to which the sample size enters, it is already based on pure cases.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | input vector/s | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
 | <b>factor</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
-## Syntax examples
+#### Syntax examples
 
-### Arguments as object properties
+##### Arguments as object properties
 
 <sub>The method has two parameters: vectors (first and mandatory) and factor (second, optional). In the given example, a single object is specified as an argument, which specifies the values of the individual parameters of the function. In this method, it is possible to specify the vectors parameter even as a single vector.</sub>
 
@@ -1262,7 +1262,7 @@ var ttestind_b = M.ttestind({vectors: [0,1]});
 // ttestind_a.result === mqu_b
 ```
 
-### Arguments as an array
+##### Arguments as an array
 
 <sub>Arguments are ordered in the standard way. It is essential to follow the order of the arguments here, and in addition, the first argument should ideally be in array format, e.g. [vector1, vector2].</sub>
 
@@ -1276,7 +1276,7 @@ var ttestind_b = M.ttestind(["x","y"]);
 // ttestind_a.result === mqu_b
 ```
 
-### Factor' parameter implementation
+##### Factor' parameter implementation
 
 <sub>As the second parameter, a factor is specified, i.e. a variable according to which the vector argument is transformed (or the first vector, if several numerical vectors are entered).</sub>
 
@@ -1292,7 +1292,7 @@ var ttestind_d = M.ttestind(0, 1);
 var ttestind_e = M.analyze("ttestind").run([0], 1);
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -1315,18 +1315,18 @@ style df stroke:#75716F;
 
 Returns the statistical log of a paired t-test for two dependent samples. Empty values are cut out in the row cross-section, i.e. that if at least one value is missing in one row, the entire row is cut from the analysis.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>y</b> | first variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 | <b>x</b> | second variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 
-## Pre-calculation data modification
+#### Pre-calculation data modification
 
 Removes from the input vectors (matrix) all rows in which there is at least one empty value.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var M = new Matrix(
@@ -1338,7 +1338,7 @@ var ttest_b = M.ttestpair("pre-score","post-score");
 // ttest_a.result = ttest_b
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -1361,22 +1361,20 @@ style df stroke:#75716F;
 
 Returns the statistical log of the Mann-Whitney U test. It is a non-parametric null hypothesis test that compares randomly selected values of X and Y from two populations, with the probability that X is greater than Y equal to the probability that Y is greater than X.
 
-⚠️ This method is under development and may return invalid results or cause an error.
-
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | input vector/s | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
 | <b>factor</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 
-## Pre-calculation data modification
+#### Pre-calculation data modification
 
 If the arguments specify a factor variable (the second argument), the first argument (either a numeric vector or the first vector in the matrix, if it is the first argument of the matrix) is decomposed according to the values of the factor into a new matrix. If the arguments are without a factor (i.e. the second argument is empty), it takes the first two vectors from the first argument 'vectors' (matrix) and then deletes the rows with empty values. In case the argument 'factor' and the argument 'vectors' are not specified contains only a single vector or is itself a numeric vector, throws an error (at least two numeric vectors are required in the first argument without a factor).
 
-## Syntax examples
+#### Syntax examples
 
-### Arguments as object properties
+##### Arguments as object properties
 
 <sub>The method has two parameters: vectors (first and mandatory) and factor (second, optional). In the given example, a single object is specified as an argument, which specifies the values of the individual parameters of the function. In this method, it is possible to specify the vectors parameter even as a single vector.</sub>
 
@@ -1390,7 +1388,7 @@ var mwu_b = M.mwu({vectors: [0,1]});
 // mwu_a.result === mqu_b
 ```
 
-### Arguments as an array
+##### Arguments as an array
 
 <sub>Arguments are ordered in the standard way. It is essential to follow the order of the arguments here, and in addition, the first argument should ideally be in array format, e.g. [vector1, vector2].</sub>
 
@@ -1404,7 +1402,7 @@ var mwu_b = M.mwu(["x","y"]);
 // mwu_a.result === mqu_b
 ```
 
-### Factor' parameter implementation
+##### Factor' parameter implementation
 
 <sub>As the second parameter, a factor is specified, i.e. a variable according to which the vector argument is transformed (or the first vector, if several numerical vectors are entered).</sub>
 
@@ -1420,7 +1418,7 @@ var mwu_d = M.mwu(0, 1);
 var mwu_e = M.analyze("mwu").run([0], 1);
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -1443,18 +1441,18 @@ style p stroke:#75716F;
 
 Return the Kruskal-Wallis ANOVA statistical log. This is an analogy to One-way ANOVA. It takes into account the order of the values in the variables.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | input vector/s | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
 | <b>factor</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 
-## Pre-calculation data modification
+#### Pre-calculation data modification
 
 If the arguments specify a factor variable (the second argument), the first argument (either a numeric vector or the first vector in the matrix, if the first argument is a matrix) is decomposed according to the factor values into a new matrix. If the arguments are without a factor (ie the second argument is empty), it takes all the numeric vectors from the first argument 'vectors' (matrix) and then removes the rows with empty values. If the 'factor' argument is not specified and the 'vectors' argument contains only a single vector or is itself a numeric vector, an error will be thrown (without the factor, at least two numeric vectors are required in the first argument).
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var M = new Matrix(
@@ -1467,7 +1465,7 @@ var kw_b = M.kwanova(["fertilizer 1", "fertilizer 2", "fertilizer 3"]);
 // kw_a.result = kw_b
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -1490,18 +1488,18 @@ style df stroke:#75716F;
 
 The Wilcoxon signed-ranks test is a non-parametric statistical test used to determine whether two related or paired samples have the same median or not. It is used when the data is not normally distributed or the assumption of equal variances is violated. This test is suitable for small sample sizes.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>y</b> | first variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 | <b>x</b> | second variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 
-## Pre-calculation data modification
+#### Pre-calculation data modification
 
 Removes from the input vectors (matrix) all rows in which there is at least one empty value.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var M = new Matrix(
@@ -1513,7 +1511,7 @@ var wcx_b = M.wcxpaired(0,1);
 // wcx_a.result = wcx_b
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -1533,17 +1531,17 @@ style p stroke:#75716F;
 
 The Friedman test is a non-parametric statistical test developed by Milton Friedman. Similar to the parametric repeated measures ANOVA, it is used to detect differences in treatments across multiple test attempts. The procedure involves ranking each row (or block) together, then considering the values of ranks by columns. Applicable to complete block designs, it is thus a special case of the Durbin test.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | input vector/s | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
 
-## Pre-calculation data modification
+#### Pre-calculation data modification
 
 Removes from the input vectors (matrix) all rows in which there is at least one empty value.
 
-## Syntax examples
+#### Syntax examples
 
 ```js
 var M = new Matrix(
@@ -1556,7 +1554,7 @@ var friedman_b = M.friedman(["white","red","rose"]);
 // friedman_a.result = friedman_b
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
@@ -1579,7 +1577,7 @@ style p stroke:#75716F;
 
 Returns the contingency statistics log. The parameters of the method are a) row variable, b) column variable, and optionally c) frequency of group a/b (if empty, intersection frequency is taken to be 1). The output of the method is both contingency statistics (chi^2), Cramer's V, Pearson's C, etc.
 
-## Arguments
+#### Arguments
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
@@ -1587,13 +1585,13 @@ Returns the contingency statistics log. The parameters of the method are a) row 
 | <b>rows</b> | column variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 | <b>y</b> | frequency variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> |  |  |
 
-## Pre-calculation data modification
+#### Pre-calculation data modification
 
 Removes from the input vectors (matrix) all rows in which there is at least one empty value.
 
-## Syntax examples
+#### Syntax examples
 
-### Without specifying frequencies
+##### Without specifying frequencies
 
 <sub>The method replaces the missing argument with an automatically generated n (frequency) vector, each value of which is equal to 1. Briefly, the input table takes the form of raw, unaggregated data.</sub>
 
@@ -1608,7 +1606,7 @@ var c_c = M.analyze("contingency").run({rows: 0, columns: 1});
 // c_a = c_b.result = c_c.result
 ```
 
-### With specifying frequencies
+##### With specifying frequencies
 
 <sub>The last argument consists of aggregated frequencies, i.e. that the input table is already aggregated.</sub>
 
@@ -1625,7 +1623,7 @@ var c_d = M.analyze("contingency").run({rows: 0, columns: 1, n: 2});
 // c_a = c_b.result = c_c.result = c_d.result
 ```
 
-## Output schema
+#### Output schema
 
 ```mermaid
 graph TD
