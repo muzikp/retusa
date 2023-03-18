@@ -290,5 +290,12 @@ module.exports = {
 	"IWXW": "Kruskal-Wallis ANOVA",
 	"J5jV": "Return the Kruskal-Wallis ANOVA statistical log. This is an analogy to One-way ANOVA. It takes into account the order of the values in the variables.",
 	"rrWq": "H test value",
-	"ImLY": "Removes all empty cells from all input vectors one by one without affecting other vectors. The output is a purified matrix whose vectors do not have to have the same length (number of members)."
+	"ImLY": "Removes all empty cells from all input vectors one by one without affecting other vectors. The output is a purified matrix whose vectors do not have to have the same length (number of members).",
+	"L9ff": "multiple linear regression",
+	"MSug": "Returns a statistical log for multiple linear regression. The method is used to estimate the value of the dependent variable when the values of the independent (explanatory) variables change.",
+	"BnOT": "dependent variable",
+	"OzwJ": "independent variables",
+	"Httc": "Wilcoxon test",
+	"sqwQ": "The Wilcoxon test is a non-parametric test that compares the rank sum of two independent samples. It is a non-parametric analogue of Student's t-test for two independent samples.",
+	"Zymm": "Wilcoxon test value"
 }

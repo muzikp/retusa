@@ -815,13 +815,14 @@ Každá metoda má specifikované argumenty a jejich validátory. Validátory me
 | linreg | [Lineární regrese](#linreg) |
 | correlPearson | [Pearsonův korelační koeficient](#correlPearson) |
 | correlSpearman | [Spearmanův korelační koeficient](#correlSpearman) |
-| correlGamma | [Koeficient gamma](#correlGamma) |
+| correlGamma | [Koeficient gama](#correlGamma) |
 | correlKendall ⚠️ | [Kendallova korelace](#correlKendall) |
 | correlPartial | [Parciální korelace](#correlPartial) |
 | correlBiserial | [Bodově biseriální korelace](#correlBiserial) |
 | anovaow | [Jednofaktorová analýza rozptylu (ANOVA)](#anovaow) |
 | ttestind | [Dvouvýběrový t-test](#ttestind) |
 | ttestpair | [T-test (párový)](#ttestpair) |
+| wcxind | [Wilcoxonův test](#wcxind) |
 | mwu | [Mann-Whitneyho test](#mwu) |
 | kwanova | [Kruskal-Wallisova ANOVA](#kwanova) |
 | wcxpaired | [Wilcoxonův znaménkový test pro dva závislé výběry](#wcxpaired) |
@@ -980,7 +981,7 @@ style p stroke:#75716F;
 
 ```
 
-## [Koeficient gamma](#correlGamma)
+## [Koeficient gama](#correlGamma)
 
 Goodman-Kruskalova gama je obdobou ordinálního korelačního koeficientu, tedy testu, který měří závislost mezi dvěma pořadovými proměnnými. I z toho důvodu může nabývat stejných hodnot jako ostatní korelační koeficienty (např. Pearsonův či Spearmanův) a stejně se i interpretuje. Tento test se před ostatními pořadově orientovanými korelačními metodami doporučuje tehdy, pokud mají data mnoho shodných pořadí (tzv. ties).
 
@@ -1159,7 +1160,7 @@ Stanoví statistický protokol analýzy rozptylu jednoduchého třídění (One-
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | vstupní vektor/y | numerický vektor nebo matice numerických vektorů | <sub>Ověří, zdali je argument buďto numerický vektor, jeho identifikátor nebo řada převoditelná na numerický vektor, anebo zdali se jedná o řadu numerických vektorů (resp. hodnot, které jsou buďto vektory, identifikátry nebo hodnoty převoditelné na numerické vektory - v libovolné kombinace). Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
-| <b></b> | shlukovací proměnná | jakýkoliv vektor | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> |  |  |
+| <b>factor</b> | shlukovací proměnná | jakýkoliv vektor | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> |  |  |
 
 #### Před-výpočetní úprava dat
 
@@ -1353,6 +1354,47 @@ style p stroke:#75716F;
 ttestpair --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
+
+```
+
+## [Wilcoxonův test](#wcxind)
+
+Wilcoxonův test je neparametrický test, který porovnává součet pořadí u dvou nezávislých vzorků. Je neparametrickou obdobou Studentova t-testu pro dva nazávislé výběry.
+
+#### Argumenty
+
+| id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>vectors</b> | vstupní vektor/y | numerický vektor nebo matice numerických vektorů | <sub>Ověří, zdali je argument buďto numerický vektor, jeho identifikátor nebo řada převoditelná na numerický vektor, anebo zdali se jedná o řadu numerických vektorů (resp. hodnot, které jsou buďto vektory, identifikátry nebo hodnoty převoditelné na numerické vektory - v libovolné kombinace). Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+| <b>factor</b> | shlukovací proměnná | jakýkoliv vektor | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> |  |  |
+#### Příklady syntaxe
+
+```js
+var M = new Matrix(
+new NumericVector(11,15,9,4,34,17,18,14,12,13,26,31).name("control"),
+new NumericVector(34,31,35,29,28,12,18,30,14,22,10).name("drug")
+);
+var wcx_a = M.analyze("wcxind").run([0,1]);
+var wcx_b = M.wcxind(["control","drug"]);
+// wcx_a.result = wcx_b
+```
+
+#### Schéma výsledku
+
+```mermaid
+graph TD
+wcxind((<i>objekt</i>))
+style wcxind fill:#E1C6B3;
+style wcxind stroke:#C36422;
+wcxind --> W[<b>W</b><br>hodnota Wilcoxonova testu <br><i>číslo</i>]
+style W fill:#FFFFFF;
+style W stroke:#4967A4;
+wcxind --> Z[<b>Z</b><br>Z test <br><i>číslo</i>]
+style Z fill:#FFFFFF;
+style Z stroke:#4967A4;
+wcxind --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 
 ```
 

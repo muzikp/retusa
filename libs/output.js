@@ -460,6 +460,21 @@ const lib = {
             "p": snippets.sig,
         }
     },
+    "wcxind": {
+        "title": "ChzY", 
+        "type": "object",
+        "properties": {
+            "W": { 
+                "title": "Zymm", 
+                "type": "number"
+            },
+            "Z": { 
+                "title": "9KFq", 
+                "type": "number"
+            },
+            "p": snippets.sig,
+        }
+    },
     "friedman": {
         "title": "7m48", 
         "type": "object",
@@ -503,6 +518,38 @@ const lib = {
             "p": snippets.sig,
             "df": snippets.df
         }
-    }
+    },
+    "mtplinreg": {
+        "title": "vlCA",
+        "type": "object",
+        "properties": {
+            "r2": {
+                "$id": "#root/r2", 
+                "title": "VqBH", 
+                "type": "number"
+            },
+            "r": {
+                "$id": "#root/r", 
+                "title": "pTvR", 
+                "type": "number"
+            },
+            "F": {
+                "$id": "#root/F", 
+                "title": "Jdfb", 
+                "type": "number"
+            },
+            "p": snippets.sig,
+            "beta0": {
+                "$id": "#root/beta0", 
+                "title": "TDpu", 
+                "type": "number"
+            },
+            "beta1": {
+                "$id": "#root/beta1", 
+                "title": "eFcW", 
+                "type": "number"
+            }
+        }
+    },
 }
 module.exports = {Output: Output};

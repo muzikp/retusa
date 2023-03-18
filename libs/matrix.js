@@ -165,11 +165,13 @@ class Matrix extends Array {
     }
     /** Removes rows with any null value across all values in the row. */
     removeEmpty() {
+        /*
         var notnulls = [];
         for(var r = 0 ; r < this.maxRows(); r++) {
             if(!this.row(r).find(v => v === null)) notnulls.push(r);
         }
         return this.filterByIndex(...notnulls);
+        */
         /* old variant*/
         var fs = new Array(...this).map((v,i) => [i, (v) => v !== null]).flat(Infinity);
         return this.filter(...fs);
@@ -304,12 +306,12 @@ const preprocessors = {
                     _.args.factor = null;
                 }
             }
-            _.sample.raw = _.args.vectors.maxRows();
+            _.sample.raw = _.args.vectors.flat().length;
             //_.args.vectors = _.args.vectors.removeEmpty();
             for(let v = 0; v < _.args.vectors.length; v++) {
                 _.args.vectors[v] = _.args.vectors[v].removeEmpty();
             }
-            _.sample.net = _.args.vectors.maxRows();
+            _.sample.net = _.args.vectors.flat().length;
         }
     },
     groupANOVARemoveEmpty: {
@@ -326,12 +328,12 @@ const preprocessors = {
                     _.args.factor = null;
                 }
             }
-            _.sample.raw = _.args.vectors.maxRows();
+            _.sample.raw = _.args.vectors.flat().length;
             for(let v = 0; v < _.args.vectors.length; v++) {
                 _.args.vectors[v] = _.args.vectors[v].removeEmpty();
             }
             //_.args.vectors = _.args.vectors.removeEmpty();
-            _.sample.net = _.args.vectors.maxRows();
+            _.sample.net = _.args.vectors.flat().length;
         }
     }
 }
@@ -829,6 +831,22 @@ const matrixMethods = {
             p: p
         }        
     },
+    /* Wilcoxon Rank Sum Test for Independent Samples */
+    wcxind: function(){
+        var all = arguments[0].flat();
+        var x = arguments[0][0].map(v => all.rankAvg(v, 1, 1));
+        var y= arguments[0][1].map(v => all.rankAvg(v, 1, 1));
+        var n1 = x.length;
+        var n2 = y.length;
+        let W = Math.min(x.sum(), y.sum());
+        var z = (W - n1*(n1+n2+1)/2)/ Math.sqrt(n1*n2*(n1+n2+1)/12);
+        var p = dist.normsdist(z,true)*2;
+        return {
+            W: W,
+            Z: z,
+            p: p
+        }
+    },
     /* Wilcoxon's signed rank test for dependent samples */
     wcxpaired: function(){
         var x = arguments[0];
@@ -878,6 +896,9 @@ const matrixMethods = {
             df: df,
             p: p
         }
+    },
+    mtplinreg: function(){
+
     }
 };
 
@@ -1061,9 +1082,6 @@ const MatrixMethodsModels = [
     },
     {   name: "ttestind",
         fn: matrixMethods.ttest_independent,
-        example: function(){
-            var M = new Matrix([],[]).ttestind(0,1);
-        },
         wiki: {
             title: "YqRh",
             description: "gILL",
@@ -1258,6 +1276,34 @@ const MatrixMethodsModels = [
             }           
         }
     },
+    {   name: "wcxind",
+        fn: matrixMethods.wcxind,
+        wiki: {
+            title: "Httc",
+            description: "sqwQ",
+            preeprocesor: preprocessors.groupXYRemoveEmpty
+        },
+        output: "wcxind",
+        prepare: preprocessors.groupXYRemoveEmpty.fn,
+        args: {
+            "vectors": {
+                model: "numericVectors",
+                config: {
+                    name: "vectors",
+                    title: "Rd9K",
+                    required: true,
+                }
+            },        
+            "factor": {
+                model: "anyVector",
+                config: {
+                    name: "factor",
+                    title: "dTDt"
+
+                }
+            }
+        }
+    },
     {   name: "mwu",
         fn: matrixMethods.mannwhitney,
         wiki: {
@@ -1330,6 +1376,41 @@ const MatrixMethodsModels = [
                     title: "dTDt"
                 }
             }
+        }
+    },
+    {   name: "mtplinreg",
+        fn: matrixMethods.mtplinreg,
+        wiki: {
+            title: "L9ff",
+            description: "MSug",
+            preprocessor: preprocessors.removeEmptyXY.title,
+        },
+        output: "mtplinreg",
+        prepare: function(_){
+            var M = new Matrix(..._.args.independents, _.args.dependent);
+            _.sample.raw = M.maxRows();
+            M = M.removeEmpty();
+            _.sample.net = M.maxRows();
+            _.args.independents = M.slice(0, M.length - 1);
+            _.args.dependent = M[M.length - 1];
+        },
+        args: {
+            dependent: {
+                model: "numericVector",
+                config: {
+                    name: "dependent",
+                    title: "BnOT",
+                    required: true
+                }
+            },   
+            independents: {
+                model: "numericVectors",
+                config: {
+                    name: "independents",
+                    title: "OzwJ",
+                    required: true,
+                }
+            }         
         }
     },
 ];

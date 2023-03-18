@@ -4,22 +4,13 @@ var st = require("./stress-test");
 //require("./docs")({offset: 0});
 
 with (_) {
-    var _M = new Matrix(
-        new NumericVector(27,27,27,19,30,31).name("A"),
-        new NumericVector(30,30,30,30,30,23).name("B"),
-        new NumericVector(19,27,28,25,26,30).name("C"),
-        new NumericVector(11,25,28,25,28,28).name("D"),
-        new NumericVector(36,32,34,29,25,27).name("E")
-    )
     var M = new Matrix(
-        new NumericVector(7,14,14,13,12,9,6,14,12,8).name("fertilizer 1"),
-        new NumericVector(15,17,13,15,15,13,9,12,10,8).name("fertilizer 2"),
-        new NumericVector(6,8,8,9,5,14,13,8,10,9).name("fertilizer 3")
-    )
-    var fm_a = M.analyze("friedman").run([0,1,2]);
-    //var fm_b = M.friedman(["fertilizer 1", "fertilizer 2", "fertilizer 3"]);
-    // fm_a.result = fm_b
-    console.log(fm_a.result);
+        new NumericVector(11,15,9,4,34,17,18,14,12,13,26,31).name("control"),
+        new NumericVector(34,31,35,29,28,12,18,30,14,22,10).name("drug")
+    );
+    var wcx_a = M.analyze("wcxind").run([0,1]);
+    var wcx_b = M.wcxind(["control","drug"]);
+    // wcx_a.result = wcx_b
     //debugger;
     //return;
     

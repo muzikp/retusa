@@ -43,6 +43,7 @@ var matrixMethods = [
     "anovaow",
     "ttestind",
     "ttestpair",
+    "wcxind",
     "mwu",
     "kwanova",
     "wcxpaired",
@@ -669,6 +670,20 @@ const examples = {
                 var kw_a = M.analyze("kwanova").run([0,1,2]);
                 var kw_b = M.kwanova(["fertilizer 1", "fertilizer 2", "fertilizer 3"]);
                 // kw_a.result = kw_b
+            }
+        }
+    ],
+    wcxind: [
+        {
+            name: "",
+            code: function(){
+                var M = new Matrix(
+                    new NumericVector(11,15,9,4,34,17,18,14,12,13,26,31).name("control"),
+                    new NumericVector(34,31,35,29,28,12,18,30,14,22,10).name("drug")
+                );
+                var wcx_a = M.analyze("wcxind").run([0,1]);
+                var wcx_b = M.wcxind(["control","drug"]);
+                // wcx_a.result = wcx_b
             }
         }
     ]

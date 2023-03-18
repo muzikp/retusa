@@ -822,6 +822,7 @@ A number of methods have a specified so-called preprocessor, which is a function
 | anovaow | [ANOVA (one-way)](#anovaow) |
 | ttestind | [T-test (independent)](#ttestind) |
 | ttestpair | [T-test (paired)](#ttestpair) |
+| wcxind | [Wilcoxon test](#wcxind) |
 | mwu | [Mann-Whitney test](#mwu) |
 | kwanova | [Kruskal-Wallis ANOVA](#kwanova) |
 | wcxpaired | [Wilcoxon Signed-Ranks Test for Paired Samples](#wcxpaired) |
@@ -1354,6 +1355,47 @@ style p stroke:#75716F;
 ttestpair --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
+
+```
+
+## [Wilcoxon test](#wcxind)
+
+The Wilcoxon test is a non-parametric test that compares the rank sum of two independent samples. It is a non-parametric analogue of Student's t-test for two independent samples.
+
+#### Arguments
+
+| id |description |value type |validator |required |default value |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>vectors</b> | input vector/s | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
+| <b>factor</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+#### Syntax examples
+
+```js
+var M = new Matrix(
+new NumericVector(11,15,9,4,34,17,18,14,12,13,26,31).name("control"),
+new NumericVector(34,31,35,29,28,12,18,30,14,22,10).name("drug")
+);
+var wcx_a = M.analyze("wcxind").run([0,1]);
+var wcx_b = M.wcxind(["control","drug"]);
+// wcx_a.result = wcx_b
+```
+
+#### Output schema
+
+```mermaid
+graph TD
+wcxind((<i>object</i>))
+style wcxind fill:#E1C6B3;
+style wcxind stroke:#C36422;
+wcxind --> W[<b>W</b><br>Wilcoxon test value <br><i>number</i>]
+style W fill:#FFFFFF;
+style W stroke:#4967A4;
+wcxind --> Z[<b>Z</b><br>Z test <br><i>number</i>]
+style Z fill:#FFFFFF;
+style Z stroke:#4967A4;
+wcxind --> p[<b>p</b><br>p-value <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 
 ```
 

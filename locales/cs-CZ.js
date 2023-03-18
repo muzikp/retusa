@@ -283,12 +283,19 @@ module.exports = {
 	"arer": "Dokumentace statistických metod vektorů",
 	"U8io": "Vektorové funkce jsou statistické metody, které jsou prováděny nad instancemi vektorů. Jednoduchým příkladem je funkce 'sum', která sečte všechny neprázdné hodnoty v (numerickém vektoru). Vektorových metod je k dispozici celkem kolem 30, přičemž některé jsou prosté (jako např. 'sum')., jiné jsou buďto výpočetně komplexnější (testy normality), mají komplexní výstup (např. histogram) nebo vyžadují ke svému výpočtu upřesnit parametry (argumenty). Metody lze vyvolávat dvěma způsoby, buďto přímo voláním metody z instance vektoru - např vector.sum() - nebo voláním přes obecnou metodu **analyze**, např. *vector.analyze('sum').run()*. Více přístupů lze zvolit i v zadávání argumentů. Ty lze buď zadávat dle pořadí uvedeném v dokumentaci jako členy argumentů - např. parties.pci('ODS', 0.95) - nebo pomocí jediného objektu, který pomocí svých vlastnosti přesně definuje hodnoty argumenty - např. parties.pci({value: 'ODS', alpha: 0.95}). Volání metod přes obecnou funkci **analyze** je efektivní v několika ohledech, mj. proto, že umožňuje sekvenční provádění analýzy (např. před výpočtem validovat argumenty pomocí metody *with*) a také kvůli zápisu metadat do instance třídy VectorAnalysis, konkrétně vstupní a výstupní velikost vzorku (objekt *sample* a vlastnosti *raw* a *net*) a časové parametry (object *time* a vlastnosti *from* a *to*, ze kterých metoda *duration* přístupná z instance analytické třídy počítá celkovou dobu zpracování výsledků.",
 	"uyVK": "procento",
-	"R5AC": "Koeficient gamma",
+	"R5AC": "Koeficient gama",
 	"zKSX": "Goodman-Kruskalova gama je obdobou ordinálního korelačního koeficientu, tedy testu, který měří závislost mezi dvěma pořadovými proměnnými. I z toho důvodu může nabývat stejných hodnot jako ostatní korelační koeficienty (např. Pearsonův či Spearmanův) a stejně se i interpretuje. Tento test se před ostatními pořadově orientovanými korelačními metodami doporučuje tehdy, pokud mají data mnoho shodných pořadí (tzv. ties).",
 	"wZUG": "Goodman-Kruskalova gama",
 	"vdkW": "Tato metoda je ve vývojové fázi a může vracet neplatné výsledky či vyvolávat chybu.",
 	"IWXW": "Kruskal-Wallisova ANOVA",
 	"J5jV": "Stanoví statistický protokol Kruskal-Wallisovy analýzy rozptylu. Jedná se analogii analýzy rozptylu s jednoduchým tříděním, která zohledňuje pořadí hodnot v proměnných.",
 	"rrWq": "hodnota H testu",
-	"ImLY": "Ze všech vstupních vektorů odstraní postupně všechny prázdné buňky, aniž by odstranění v jednom vektoru ovlivnilo ostatní vektory. Výstupem je očištěná matice, jejíž vektory nemusí mít stejnou délku (počet členů)."
+	"ImLY": "Ze všech vstupních vektorů odstraní postupně všechny prázdné buňky, aniž by odstranění v jednom vektoru ovlivnilo ostatní vektory. Výstupem je očištěná matice, jejíž vektory nemusí mít stejnou délku (počet členů).",
+	"L9ff": "vícenásobná linární regrese",
+	"MSug": "Stanoví statistický protokol pro vícenásobnou lineární regresi. Metodu se využívá pro odhad hodnoty závislé (vyvětlované) proměnné při změně hodnot nezávislých (vysvětlujících) proměnných.",
+	"BnOT": "závislá (vysvětlovaná) proměnná",
+	"OzwJ": "nezávislé (vysvětlující) proměnné",
+	"Httc": "Wilcoxonův test",
+	"sqwQ": "Wilcoxonův test je neparametrický test, který porovnává součet pořadí u dvou nezávislých vzorků. Je neparametrickou obdobou Studentova t-testu pro dva nazávislé výběry.",
+	"Zymm": "hodnota Wilcoxonova testu"
 }
