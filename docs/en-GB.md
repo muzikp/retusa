@@ -825,7 +825,7 @@ A number of methods have a specified so-called preprocessor, which is a function
 | wcxind | [Wilcoxon test](#wcxind) |
 | mwu | [Mann-Whitney test](#mwu) |
 | kwanova | [Kruskal-Wallis ANOVA](#kwanova) |
-| wcxpaired | [Wilcoxon Signed-Ranks Test for Paired Samples](#wcxpaired) |
+| wcxpair | [Wilcoxon Signed-Ranks Test for Paired Samples](#wcxpair) |
 | friedman | [Friedman's ANOVA](#friedman) |
 | contingency | [Contingency](#contingency) |
 
@@ -1364,7 +1364,7 @@ The Wilcoxon test is a non-parametric test that compares the rank sum of two ind
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | input vector/s | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
-| <b>factor</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+| <b>factor</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> |  |  |
 ## Syntax examples
 
 ```js
@@ -1405,7 +1405,7 @@ Returns the statistical log of the Mann-Whitney U test. It is a non-parametric n
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | input vector/s | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
-| <b>factor</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+| <b>factor</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> |  |  |
 
 ## Pre-calculation data modification
 
@@ -1485,7 +1485,7 @@ Return the Kruskal-Wallis ANOVA statistical log. This is an analogy to One-way A
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | input vector/s | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
-| <b>factor</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+| <b>factor</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> |  |  |
 
 ## Pre-calculation data modification
 
@@ -1523,7 +1523,7 @@ style df stroke:#75716F;
 
 ```
 
-## [Wilcoxon Signed-Ranks Test for Paired Samples](#wcxpaired)
+## [Wilcoxon Signed-Ranks Test for Paired Samples](#wcxpair)
 
 The Wilcoxon signed-ranks test is a non-parametric statistical test used to determine whether two related or paired samples have the same median or not. It is used when the data is not normally distributed or the assumption of equal variances is violated. This test is suitable for small sample sizes.
 
@@ -1554,13 +1554,13 @@ var wcx_b = M.wcxpaired(0,1);
 
 ```mermaid
 graph TD
-wcxpaired((<i>object</i>))
-style wcxpaired fill:#E1C6B3;
-style wcxpaired stroke:#C36422;
-wcxpaired --> Z[<b>Z</b><br>Z test <br><i>number</i>]
+wcxpair((<i>object</i>))
+style wcxpair fill:#E1C6B3;
+style wcxpair stroke:#C36422;
+wcxpair --> Z[<b>Z</b><br>Z test <br><i>number</i>]
 style Z fill:#FFFFFF;
 style Z stroke:#4967A4;
-wcxpaired --> p[<b>p</b><br>p-value <br><i>number</i>]
+wcxpair --> p[<b>p</b><br>p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 

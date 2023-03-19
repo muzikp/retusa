@@ -455,7 +455,7 @@ const lib = {
             "df": snippets.df
         }
     },
-    "wcxpaired": {
+    "wcxpair": {
         "title": "ChzY", 
         "type": "object",
         "properties": {

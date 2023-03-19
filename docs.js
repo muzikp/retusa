@@ -46,7 +46,7 @@ var matrixMethods = [
     "wcxind",
     "mwu",
     "kwanova",
-    "wcxpaired",
+    "wcxpair",
     "friedman",
     "contingency"
 ]
@@ -593,7 +593,7 @@ const examples = {
             }
         }
     ],
-    wcxpaired: [
+    wcxpair: [
         {
             name: "example1",
             url: "https://real-statistics.com/non-parametric-tests/wilcoxon-signed-ranks-test/",

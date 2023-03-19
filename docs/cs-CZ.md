@@ -825,7 +825,7 @@ Každá metoda má specifikované argumenty a jejich validátory. Validátory me
 | wcxind | [Wilcoxonův test](#wcxind) |
 | mwu | [Mann-Whitneyho test](#mwu) |
 | kwanova | [Kruskal-Wallisova ANOVA](#kwanova) |
-| wcxpaired | [Wilcoxonův znaménkový test pro dva závislé výběry](#wcxpaired) |
+| wcxpair | [Wilcoxonův znaménkový test pro dva závislé výběry](#wcxpair) |
 | friedman | [Friedmanova ANOVA](#friedman) |
 | contingency | [Kontingence](#contingency) |
 
@@ -1522,7 +1522,7 @@ style df stroke:#75716F;
 
 ```
 
-## [Wilcoxonův znaménkový test pro dva závislé výběry](#wcxpaired)
+## [Wilcoxonův znaménkový test pro dva závislé výběry](#wcxpair)
 
 Wilcoxonův znaménkový test je neparametrický statistický test používaný k určení, zda dva příbuzné nebo spárované vzorky mají stejný medián nebo ne. Používá se, když data nejsou normálně rozdělena nebo je porušen předpoklad stejných rozptylů. Tento test je vhodný pro malé velikosti vzorků.
 
@@ -1553,13 +1553,13 @@ var wcx_b = M.wcxpaired(0,1);
 
 ```mermaid
 graph TD
-wcxpaired((<i>objekt</i>))
-style wcxpaired fill:#E1C6B3;
-style wcxpaired stroke:#C36422;
-wcxpaired --> Z[<b>Z</b><br>Z test <br><i>číslo</i>]
+wcxpair((<i>objekt</i>))
+style wcxpair fill:#E1C6B3;
+style wcxpair stroke:#C36422;
+wcxpair --> Z[<b>Z</b><br>Z test <br><i>číslo</i>]
 style Z fill:#FFFFFF;
 style Z stroke:#4967A4;
-wcxpaired --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
+wcxpair --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 

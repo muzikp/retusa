@@ -247,7 +247,7 @@ class Argument {
             value: $(model.title)
         };
         this.default = model.default;
-        this.required = model.required !== undefined ? !!model.required : model.isRequired !== undefined ? !!model.isRequired : false;
+        this.required = (model.required || model.isRequired) ? true : false;
         if(model.isEnum) {
             this.isEnum = true;
             this.enums = model.enums.map(function(e){

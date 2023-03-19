@@ -583,7 +583,6 @@ const matrixMethods = {
         var T = new Table(x,y).removeEmpty();
         x = T.item(0).toNumeric().values();
         y = T.item(1).toNumeric().values();
-        debugger;
         var x1y1 = x.filter((_x,i) => _x == 1 && y[i] == 1).length;
         var x1y0 = x.filter((_x,i) => _x == 1 && y[i] == 0).length;
         var x0y1 = x.filter((_x,i) => _x == 0 && y[i] == 1).length;
@@ -593,7 +592,6 @@ const matrixMethods = {
         var y1 = y.filter(_y => _y == 1).length;
         var y0 = y.filter(_y => _y == 0).length;
         var phi = (x1y1*x0y0 - x1y0*x0y1)/Math.sqrt(x1*x0*y1*y0);
-        debugger;
         return {};
     },
     correlGamma: function() {
@@ -1237,14 +1235,14 @@ const MatrixMethodsModels = [
             }               
         }
     },
-    {   name: "wcxpaired",
+    {   name: "wcxpair",
         fn: matrixMethods.wilcoxon_paired,
         wiki: {
             title: "ChzY",
             description: "pApR",
             preprocessor: preprocessors.removeEmptyXY.title
         },
-        output: "wcxpaired",
+        output: "wcxpair",
         prepare: preprocessors.removeEmptyXY.fn,
         args: {
             x: {
@@ -1287,8 +1285,8 @@ const MatrixMethodsModels = [
                 model: "anyVector",
                 config: {
                     name: "factor",
-                    title: "dTDt"
-
+                    title: "dTDt",
+                    required: false
                 }
             }
         }
