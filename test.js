@@ -1,7 +1,7 @@
 var _ = require("./index");
 var st = require("./stress-test");
 
-require("./docs")({offset: 0});
+require("./docs")({offset: 1});
 
 with (_) {
     var M = new Matrix(
