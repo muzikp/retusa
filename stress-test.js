@@ -176,6 +176,17 @@ const kwanova = function(sampleSize, groups) {
     }
 }
 
+const wcxind = function(sampleSize) {
+    var matrix = new $.Matrix(
+        $.NumericVector.generate({total: sampleSize, min: 0, max: 100}).name("values"),
+        $.StringVector.generate({total: sampleSize, list: ["x","y"]}).name("grouping variable")
+    );
+    var analysis = matrix.analyze("wcxind").run([0],1);
+    return {
+        duration: analysis.duration()
+    }
+}
+
 module.exports = {
     anova: anovaow,
     biserial: biserial,
@@ -191,6 +202,7 @@ module.exports = {
     ttestind: ttestind,
     ttestpair: ttestpair,
     wcxpaired: wcxpaired,
+    wcxind: wcxind,
     mwu: mwu,
     save: function(name, result) {
         var content = {

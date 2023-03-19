@@ -276,6 +276,11 @@ const lib = {
         "title": "mgBC", 
         "type": "object",
         "properties": {
+            "tau": {
+                "title": "QCkg", 
+                "type": "number",
+            },
+            /*
             "taub": {
                 "title": "NgVa", 
                 "type": "number",
@@ -284,6 +289,7 @@ const lib = {
                 "title": "mgBA", 
                 "type": "number",
             },
+            */
             "df": snippets.df,
             "p": snippets.sig
         }

@@ -297,5 +297,6 @@ module.exports = {
 	"OzwJ": "nezávislé (vysvětlující) proměnné",
 	"Httc": "Wilcoxonův test",
 	"sqwQ": "Wilcoxonův test je neparametrický test, který porovnává součet pořadí u dvou nezávislých vzorků. Je neparametrickou obdobou Studentova t-testu pro dva nazávislé výběry.",
-	"Zymm": "hodnota Wilcoxonova testu"
+	"Zymm": "hodnota Wilcoxonova testu",
+	"QCkg": "Kendallův koeficient tau"
 }

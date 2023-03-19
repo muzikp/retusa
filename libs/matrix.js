@@ -6,6 +6,7 @@ let {Argument} = (require("./argument"));
 let {Output} = require("./output");
 const {Array, Math, String, Function} = require("./extensions");
 const dist = require("./distribution");
+const { normdist } = require("./distribution");
 var matrixName = null
 
 // #region MATRIX
@@ -515,12 +516,12 @@ const matrixMethods = {
         var y = arguments[1];
         let n = x.length;
         let numPairs = n * (n - 1) / 2;
-        let numConcordant = 0;
-        let numDiscordant = 0;
+        var numConcordant = 0;
+        var numDiscordant = 0;
         let numTiesX = 0;
         let numTiesY = 0;
         let numTiesXY = 0;
-        for (let i = 0; i < n - 1; i++) {
+        for (let i = 0; i < n; i++) {
             for (let j = i + 1; j < n; j++) {
                 let x1 = x[i];
                 let x2 = x[j];
@@ -528,41 +529,29 @@ const matrixMethods = {
                 let y2 = y[j];
                 let xDiff = x1 - x2;
                 let yDiff = y1 - y2;
-                if (xDiff === 0 && yDiff === 0) {
-                    numTiesX++;
-                    numTiesY++;
-                    numTiesXY++;
-                } else if (xDiff === 0) {
-                    numTiesX++;
-                    if (yDiff > 0) {
+                if (xDiff > 0 && yDiff > 0 || xDiff < 0 && yDiff < 0) {
                     numConcordant++;
-                    } else if (yDiff < 0) {
+                } else if (xDiff !== 0 && yDiff !== 0) {
                     numDiscordant++;
-                    }
-                } else if (yDiff === 0) {
-                    numTiesY++;
-                    if (xDiff > 0) {
-                    numConcordant++;
-                    } else if (xDiff < 0) {
-                    numDiscordant++;
-                    }
                 } else {
-                    if (xDiff > 0 && yDiff > 0 || xDiff < 0 && yDiff < 0) {
-                    numConcordant++;
-                    } else {
-                    numDiscordant++;
+                    numTiesXY++;
+                    if (xDiff === 0) {
+                        numTiesX++;
+                    }
+                    if (yDiff === 0) {
+                        numTiesY++;
                     }
                 }
             }
         }
-        let denominator = Math.sqrt((numPairs - numTiesX) * (numPairs - numTiesY));
-        var taub = (numConcordant - numDiscordant) / denominator;
-        var taua = (numConcordant - numDiscordant)/ Math.combinations(n, 2);
-        var z = (3 * taua * Math.pow(n*(n-1), .5))/Math.pow(2*(2*n+5), .5);
-        var p = dist.normsdist(Math.abs(z))/2;
+        let cn2 = Math.combinations(n,2);
+        let d = Math.sqrt((cn2-numTiesX)*(cn2-numTiesY));
+        let tau = (numConcordant - numDiscordant)/d;
+        // z calculated only for ranks without ties - see Mann-Kendall test
+        var z = 1.05 * 3*(numConcordant - numDiscordant)/Math.sqrt(n*(n-1)*(2*n+5)/2);
+        var p = dist.normsdist(Math.abs(z));
         return {
-            taub: taub,
-            taua: taua,
+            tau: tau,
             df: n - 2,
             p: p
         }
@@ -832,7 +821,7 @@ const matrixMethods = {
         }        
     },
     /* Wilcoxon Rank Sum Test for Independent Samples */
-    wcxind: function(){
+    wilcoxon_indpendent: function(){
         var all = arguments[0].flat();
         var x = arguments[0][0].map(v => all.rankAvg(v, 1, 1));
         var y= arguments[0][1].map(v => all.rankAvg(v, 1, 1));
@@ -848,7 +837,7 @@ const matrixMethods = {
         }
     },
     /* Wilcoxon's signed rank test for dependent samples */
-    wcxpaired: function(){
+    wilcoxon_paired: function(){
         var x = arguments[0];
         var y= arguments[1];
         var d = x.map((_,i) => _ - y[i]);
@@ -1249,7 +1238,7 @@ const MatrixMethodsModels = [
         }
     },
     {   name: "wcxpaired",
-        fn: matrixMethods.wcxpaired,
+        fn: matrixMethods.wilcoxon_paired,
         wiki: {
             title: "ChzY",
             description: "pApR",
@@ -1277,7 +1266,7 @@ const MatrixMethodsModels = [
         }
     },
     {   name: "wcxind",
-        fn: matrixMethods.wcxind,
+        fn: matrixMethods.wilcoxon_indpendent,
         wiki: {
             title: "Httc",
             description: "sqwQ",

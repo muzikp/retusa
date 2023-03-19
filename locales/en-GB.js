@@ -297,5 +297,6 @@ module.exports = {
 	"OzwJ": "independent variables",
 	"Httc": "Wilcoxon test",
 	"sqwQ": "The Wilcoxon test is a non-parametric test that compares the rank sum of two independent samples. It is a non-parametric analogue of Student's t-test for two independent samples.",
-	"Zymm": "Wilcoxon test value"
+	"Zymm": "Wilcoxon test value",
+	"QCkg": "Kendall's tau cofficient"
 }
