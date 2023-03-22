@@ -72,7 +72,7 @@ class Vector extends Array {
         return obj;
     }
     clone(flush = false) {
-        var _ = (flush ? new this.constructor() : new this.constructor(...this).name(this.name()));
+        var _ = (flush ? new this.constructor() : new this.constructor(...this).name(this.name(), true));
         _.name(this.name());
         return _;
     }
@@ -129,14 +129,6 @@ class Vector extends Array {
             clone.push(...this.filter((v,i) => indexes.indexOf(i) > - 1));
             return clone;
         }
-    }
-    /**
-     * Returns a model of the specified method with this vector set as its parent.
-     * @param {string} name Name of the vector method.
-     * @returns {NumericVector | StringVector | BooleanVector}
-     */
-    model(name) {
-        return new VectorMethod(models.find(m => m.name == name), this);
     }
     analyze(name) {
         return new VectorAnalysis(name, this);

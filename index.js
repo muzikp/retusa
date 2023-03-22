@@ -5,6 +5,12 @@ var dist = require("./libs/distribution");
 
 module.exports = {
     Matrix: Matrix.Matrix,
+    matrix: function(){
+        return new Matrix.Matrix(...arguments);
+    },
+    vector: function(){
+        return [...arguments].vectorify();
+    },
     NumericVector: Vector.NumericVector,
     StringVector: Vector.StringVector,
     BooleanVector: Vector.BooleanVector,

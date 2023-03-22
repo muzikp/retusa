@@ -548,6 +548,8 @@ const matrixMethods = {
         let d = Math.sqrt((cn2-numTiesX)*(cn2-numTiesY));
         let tau = (numConcordant - numDiscordant)/d;
         // z calculated only for ranks without ties - see Mann-Kendall test
+        // see https://github.com/thisancog/statistics.js/blob/master/source/correlation.js
+        // 1.05 - artificial and unacceptable correction
         var z = 1.05 * 3*(numConcordant - numDiscordant)/Math.sqrt(n*(n-1)*(2*n+5)/2);
         var p = dist.normsdist(Math.abs(z));
         return {
@@ -886,6 +888,9 @@ const matrixMethods = {
     },
     mtplinreg: function(){
 
+    },
+    logreg: function(){
+        //http://www.17bigdata.com/logistic-regression-in-7-steps-in-excel-2010-and-excel-2013/
     }
 };
 
@@ -1399,7 +1404,7 @@ const MatrixMethodsModels = [
                 }
             }         
         }
-    },
+    }
 ];
 
 MatrixMethodsModels.forEach(function(m) {

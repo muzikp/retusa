@@ -164,31 +164,38 @@ function formatMdPrimitiveType(value) {
 }
 
 MatrixAnalysis.prototype.toMarkdown = function(){
-    var m = `## [${this.title.value.firstUp()}](#${this.name})\n\n${this.description.value ? this.description.value + "\n\n": ""}`;
+    var m = `${hash(1)} [${this.title.value.firstUp()}](#${this.name})\n\n${this.description.value ? this.description.value + "\n\n": ""}`;
     if(this.unstable) m += `⚠️ ${$("vdkW")}\n\n`;
     /* arguments */
     var headers = ["QUJS","jBGO","dmmV","tGqA","VPYX","pDgb"];
-    m += `${hash(2)} ${$("FRpk")}\n\n`
+    if(format == "docx") m +=`<u><b>${$("FRpk")}</b></u>\n\n`
+    else m +=`${hash(2)} ${$("FRpk")}\n\n`
     m += "| " + headers.map(h => $(h) + " |").join("") + "\n";
     m += "| " + headers.map(h => ":--- |").join("")  + "\n";
     for(let a of Object.keys(this.model.args)) {
         m += new Argument(this.model.args[a].model, null, this.model.args[a].config).toMarkdown();
     }
-    if(this.preprocessor.value) m += `\n${hash(2)} ${$("jrdS")}\n\n${this.preprocessor.value}\n\n`;
+    if(this.preprocessor.value) {
+        if(format == "docx") m += `\n<u><b>${$("jrdS")}</b></u>\n${this.preprocessor.value}\n\n`;
+        else m += `\n${hash(2)} ${$("jrdS")}\n\n${this.preprocessor.value}\n\n`;
+    } 
     if(examples[this.name]) {
-        m += `${hash(2)} ${$("nzmJ")}\n\n`; // syntax example header
+        if(format == "docx") m += `<u><b>${$("nzmJ")}</b></u>\n\n`; // syntax example header
+        else m += `${hash(2)} ${$("nzmJ")}\n\n`; // syntax example header
         if(typeof examples[this.name] == "function") {
             m += "```js\n" + examples[this.name].stringify() + "\n```\n\n"
         }
         else {
             for(var e of examples[this.name]) {
-                m += `${$(e.title ? hash(3) + " " + $(e.title) + "\n\n" : "")}${e.description ? '<sub>' + $(e.description) + "</sub>\n\n" : ""}` + "```js\n" + e.code.stringify() + "\n```\n\n"
+                if(format == "docx") m += `${$(e.title ? "<sub><u>" + $(e.title) + "</u>: " : "")}${e.description ? $(e.description) + "</sub>\n\n" : ""}` + "```js\n" + e.code.stringify() + "\n```\n\n";
+                else m += `${$(e.title ? hash(3) + " " + $(e.title) + "\n\n" : "")}${e.description ? '<sub>' + $(e.description) + "</sub>\n\n" : ""}` + "```js\n" + e.code.stringify() + "\n```\n\n"
             }
         }
         
     }
     if(this.model.output) {
-        m += `${hash(2)} ${$("l43h")}\n\n` + new Output(this.model.output).toMarkdown(this);
+        if(format == "docx") m += `<u><b>${$("l43h")}</b></u>\n\n` + new Output(this.model.output).toMarkdown(this);
+        else m += `${hash(2)} ${$("l43h")}\n\n` + new Output(this.model.output).toMarkdown(this);
     }
     return m;
 }
@@ -206,21 +213,27 @@ VectorAnalysis.prototype.toMarkdown = function(){
             m += new Argument(this.model.args[a].model, null, this.model.args[a].config).toMarkdown();
         }
     }
-    if(this.preprocessor.value) m += `\n### ${$("jrdS")}\n\n${this.preprocessor.value}\n\n`;
+    if(this.preprocessor.value) {
+        if(format == "docx") m += `\n<u><b>${$("jrdS")}</b></u>\n${this.preprocessor.value}\n\n`;
+        else m += `\n${hash(2)} ${$("jrdS")}\n\n${this.preprocessor.value}\n\n`;
+    } 
     if(examples[this.name]) {
-        m += `${hash(2)} ${$("nzmJ")}\n\n`; // syntax example header
+        if(format == "docx") m += `<u><b>${$("nzmJ")}</b></u>\n\n`; // syntax example header
+        else m += `${hash(2)} ${$("nzmJ")}\n\n`; // syntax example header
         if(typeof examples[this.name] == "function") {
             m += "```js\n" + examples[this.name].stringify() + "\n```\n\n"
         }
         else {
             for(var e of examples[this.name]) {
-                m += `${$(e.title ? hash(3) + " " + $(e.title) + "\n\n" : "")}${e.description ? '<sub>' + $(e.description) + "</sub>\n\n" : ""}` + "```js\n" + e.code.stringify() + "\n```\n\n"
+                if(format == "docx") m += `${$(e.title ? "<sub><u>" + $(e.title) + "</u>: " : "")}${e.description ? $(e.description) + "</sub>\n\n" : ""}` + "```js\n" + e.code.stringify() + "\n```\n\n";
+                else m += `${$(e.title ? hash(3) + " " + $(e.title) + "\n\n" : "")}${e.description ? '<sub>' + $(e.description) + "</sub>\n\n" : ""}` + "```js\n" + e.code.stringify() + "\n```\n\n"
             }
         }
         
     }
     if(this.model.output) {
-        m += `${hash(2)} ${$("l43h")}\n\n` + new Output(this.model.output).toMarkdown(this);
+        if(format == "docx") m += `<u><b>${$("l43h")}</b></u>\n\n` + new Output(this.model.output).toMarkdown(this);
+        else m += `${hash(2)} ${$("l43h")}\n\n` + new Output(this.model.output).toMarkdown(this);
     }
     return m;
 }
@@ -232,7 +245,7 @@ Argument.prototype.toMarkdown = function(){
             validator += `<b>${e.value}</b> = ${e.title}<br>`
         }
     }
-    return `| <b>${this.name || ""}</b> | ${this.title.value} | ${this.mdType.value} | <sub>${validator ? validator : "-"}<sub> | ${this.required ? "✔️" : ""} | ${this.default !== undefined ? this.default : ""} |\n`;
+    return `| <b>${this.name || ""}</b> | ${this.title.value} | ${this.mdType.value} | <sub>${validator ? validator : "-"}<sub> | ${this.required ? format == "docx" ? "ano" : "✔️" : format == "docx" ? "ne" : ""} | ${this.default !== undefined ? this.default : ""} |\n`;
     
 };
 
@@ -689,8 +702,9 @@ const examples = {
     ]
 }
 
-module.exports = function(config = {offset: 1}) {
+module.exports = function(config = {offset: 1, format: "markdown"}) {
     offset = config.offset;
+    format = config.format;
     const _origin = locale.getDefault();
     const write = require("fs").writeFileSync
     for(var l of locale.listLanguages()) {
