@@ -62,6 +62,13 @@ class Vector extends Array {
             return this;
         } else return registry.get(this).parent
     }
+    set(key,value) {
+        setRegistryProperty(this, key,value);
+        return this;
+    }
+    get(key, alwaysReturnSelf = false){
+        return getRegistryProperty(this, key) || alwaysReturnSelf ? this : undefined;
+    }
     /* Returns an object with this vector's values and attributes. */
     serialize() {
         var obj = {

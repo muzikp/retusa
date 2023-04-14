@@ -4,10 +4,18 @@ var st = require("./stress-test");
 //require("./docs")({offset: 1, format: "markdown"});
 
 
-var M = new _.Matrix(new _.NumericVector(11, 15, 9, 4, 34, 17, 18, 14, 12, 13, 26, 31), new _.NumericVector(34, 31, 35, 29, 28, 12, 18, 30, 14, 22, 10));
-var sampledM = M.sample(0.5);
-debugger;
-console.log(JSON.stringify(sampledM));
+var V = new _.NumericVector(11, 15, 9, 4, 34, 17, 18, 14, 12, 13, 26, 31).name("respondent score");
+/* vrátí identickou kopii */
+var _V = V.clone();
+/* vrátí prázdnou kopii */
+var __V = V.clone(true);
+/* vrátí kopii vektoru s novými hodnotami z argumentu */
+var C = V.reload(9, 8, 7, 6);
+/* převede numerický vektor na textový */
+var S = V.convert(2);
+/* převede textový vektor na numerický za pomoci konverzní funkce */
+var S = new _.StringVector("man", "man", "woman", "woman", "woman", null, "man", "woman");
+var cV = S.convert(1, function (value) { return value == "man" ? 1 : value == "woman" ? 2 : null })
 debugger;
 
 
