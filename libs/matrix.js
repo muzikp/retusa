@@ -619,6 +619,22 @@ const matrixMethods = {
             p: p
         };
     },
+    correlMatrix: function() {
+        var input = arguments[0];
+        var method = arguments[1] == 1 ? "correlPearson" : arguments[1] == 2 ? "correlSpearman" : arguments[1] == 3 ? "correlKendall" : arguments[1] == 4 ? "correlGamma" : "correlPearson";
+        var container = [];
+        for(var x = 0; x < input.length; x++)
+        {
+            for(var y = x + 1; y < input.length; y++) 
+            {
+                var c = new Matrix(input[x], input[y]).analyze(method).run(0,1);
+                container.push({x: input[x].name() || x, y: input[y].name() || y, r: c.result.r || c.result.tau, p: c.result.p, n: c.sample.net});
+            }
+        }
+        container = container.sort((a,b) => Math.abs(a.r) < Math.abs(b.r) ? 1 : -1);
+        return container;
+        
+    },
     ttest_independent: function(){
         var x = arguments[0][0];
         var y = arguments[0][1];
@@ -1068,6 +1084,34 @@ const MatrixMethodsModels = [
                     name: "y",
                     title: "tpUu",
                     required: true
+                }
+            }
+        }
+    },
+    {   name: "correlMatrix",
+        fn: matrixMethods.correlMatrix,
+        wiki: {
+            title: "DeMU",
+            description: "XtbY",
+            preprocessor: preprocessors.removeEmptyXY.title
+        },
+        output: "correlMatrix",
+        prepare: null,
+        args: {
+            vectors: {
+                model: "numericVectors",
+                config: {
+                    name: "vectors",
+                    title: "sQ9w",
+                    required: true
+                }
+            },
+            method: {
+                model: "correlationMatrixMethod",
+                config: {
+                    name: "method",
+                    title: "nDx1",
+                    required: false
                 }
             }
         }

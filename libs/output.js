@@ -50,7 +50,8 @@ function createObjectProperties(properties) {
         var p = properties[key]
         var prop = {
             name: key,
-            type: p.type
+            type: p.type,
+            format: p.format
         }
         prop.title = {
             key: p.title,
@@ -81,6 +82,7 @@ const snippets = {
     sig: {
         "title": "sDgR", 
         "type": "zeroToOneInc",
+        "format": "sig"
     },
     ttest: {
         "title": "cBNP", 
@@ -93,6 +95,10 @@ const snippets = {
     siglevel: {
         "title": "mjPq", 
         "type": "zeroToOneInc",
+    },
+    n: {
+        "title": "vlH2",
+        "type": "uint"
     }
 }
 
@@ -315,6 +321,35 @@ const lib = {
             },
             "p": snippets.sig
         }
+    },
+    "correlMatrix": {
+        "title": "DeMU", 
+        "type": "array",
+        "items":{
+            "title": "Items", 
+            "type": "object",
+            "properties": {
+                "x": {
+                    "title": "qFEM", 
+                    "type": "any",
+                    "pattern": "^.*$"
+                },
+                "y": {
+                    "title": "tpUu", 
+                    "type": "any",
+                    "pattern": "^.*$"
+                },
+                "r": {
+                    "title": "S3WK", 
+                    "type": "number",
+                    "pattern": "^.*$",
+                    "format": "correl"
+                },
+                "p": snippets.sig,
+                "n": snippets.n
+            }
+        }
+    
     },
     "linreg": {
         "title": "vlCA",

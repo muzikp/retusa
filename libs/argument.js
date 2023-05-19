@@ -193,6 +193,39 @@ var lib = {
             return validateEnum(value, parent, model);
         }
     },
+    correlationMatrixMethod: {
+        title: "nDx1",
+        validator: "dKFL",
+        mdType: "u5oV",
+        isEnum: true,
+        enums: [
+            {
+                value: 1, //Pearson
+                key: "GR2Y"
+            },
+            {
+                value: 2, // Spearman
+                key: "5BMC"
+            },
+            {
+                value: 3, //Kendall
+                key: "MqE5"
+            },
+            {
+                value: 4, //Gamma
+                key: "xKzh"
+            }
+        ],
+        default: 1,
+        tag: {
+            control: "select",
+            multiple: false
+        },
+        validate: function(value, parent, model){
+            return validateEnum(value, parent, model);
+        }
+
+    },
     frequencyOrder: {
         type: "enum",
         title: "gZCx",

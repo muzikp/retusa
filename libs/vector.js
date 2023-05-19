@@ -29,7 +29,7 @@ class Vector extends Array {
     /**
      * Gets or sets the name of this vector. If the argument 'value' is empty, it returns the name of this vector (if set before). Otherwise the name of the vector is set and the vector itself is returned.
      * @param {string} value Optional: name of the vector.
-     * @param {boolean} alwaysRetunSelf Default false. Is set to true, will return the vector itself even if the name is blank.
+     * @param {boolean} alwaysRetunSelf Default false. If set to true, will return the vector itself even if the name is blank.
      * @returns Either name or the vector itself.
      */
     name(value, alwaysRetunSelf){
@@ -182,7 +182,7 @@ const vectorParser = {
         if(value === 0 || value === "0" || value === false) return 0;
         else if(!value) return null;
         else if(!isNaN(value)) return Number(value);
-        else throw new Error($("UyOj", {value}));
+        else throw new Error($("UyOj", {value:value}));
     },
     string: function(value) {
         if(value || value === false || value === 0) return String(value);
@@ -192,6 +192,14 @@ const vectorParser = {
         if(value) return true;
         else if(value === false || value === 0 || value === "0" || value === "false") return false;
         else return null;
+    },
+    time: function(value) {
+        if(Date.isDate(value)) return value;
+        else if(Array.isArray(value)) {
+            var _ = new Date(...value);
+        }
+        if(isNaN(new Date(value).getTime())) throw new Error($("eZw1", {value: value}));
+        else return new Date(value);
     }
 }
 
@@ -324,9 +332,73 @@ class BooleanVector extends Vector {
         return _new;
     };
 }
-
 BooleanVector.prototype.parse = vectorParser.boolean;
 
+class TimeVector extends Vector {
+    constructor(){
+        super(...arguments);
+    }
+    /**
+     * Returns the type of this vector, either as an enumeration (integer) or as a class name.
+     * @param {boolean} verbose If the argument is true, it returns the full class name of the vector (eg NominalVector). Otherwise, it returns an enumeration (eg 3).
+     * @returns {number | string} Returns the type of this vector.
+     */
+    type(verbose) {
+        if(verbose) return "TimeVector";
+        else return 4;
+    }
+    /**
+     * Generates a new time vector with 'total' randomly generated values ranging between 'min' and 'max' and with a 'nullprob' probability of null value occurrence.
+     * @param {object} config Eg. {min: -50, max: 200, total: 1000, nullprob: 0.1}
+     * @example var n = NumericVector.generate();
+     * @example var n = NumericVector.generate({total: 1000});
+     * @example var n = NumericVector.generate({total: 1000, min: 0});
+     * @example var n = NumericVector.generate({total: 1000, min: 0, max: 200});
+     * @example var n = NumericVector.generate({total: 100, min: 0, nullprob: 0.5});
+     * Returns a new instance of the vector with random values.
+     */
+    static generate(config = {}) {
+        var min = isNaN(config.min) ? - Number.MAX_SAFE_INTEGER : Number(config.min) < - Number.MAX_SAFE_INTEGER ? - Number.MAX_SAFE_INTEGER : Number(config.min);
+        var max = isNaN(config.max) ? Number.MAX_SAFE_INTEGER : Number(config.max) > Number.MAX_SAFE_INTEGER ? Number.MAX_SAFE_INTEGER : Number(config.max);
+        var nullprob = Number(config.nullprob) > 0 ? Number(config.nullprob) > 1 ? 1 : Number(config.nullprob) : 0;
+        if(max < min){
+            var _min = config.min;
+            var _max = config.max
+            min = _max;
+            max = _min
+        };
+        var decimal = Number(config.decimal) > 0 ? Math.floor(config.decimal) : 0;
+        var total = Number(config.total) > 0 ? Number(config.total) : 100;
+        var _new = new NumericVector();
+        for(var i = 0; i < total; i++) {
+            if(nullprob > 0) {
+                if(Math.random() <= nullprob) {
+                    _new.push(null);
+                } else _new.push(Math.rndNumber(min,max,decimal));
+            } else _new.push(Math.rndNumber(min,max,decimal));
+        }
+        return _new;
+    };
+    /**
+     * 
+     * @returns Array<Number> Returns an array of years.
+     */
+    toYear() {
+        return this.map(i => i.getYear());
+    }
+    toMonth() {
+        return this.map(i => i.getMonth())
+    }
+    explode(level = Infinity) {
+
+    }
+}
+TimeVector.prototype.parse = vectorParser.time;
+
+/**
+ * @obsolete
+ * @returns 
+ */
 Array.prototype.numerify = function(){
     return new NumericVector(...this);
 }
@@ -337,6 +409,10 @@ Array.prototype.stringify = function(){
 
 Array.prototype.boolify = function(){
     return new BooleanVector(...this);
+}
+
+Array.prototype.timefy = function(){
+    return new TimeVector(...this);
 }
 
 Array.prototype.vectorify = function() {

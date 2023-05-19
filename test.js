@@ -4,19 +4,15 @@ var st = require("./stress-test");
 //require("./docs")({offset: 1, format: "markdown"});
 
 
-var V = new _.NumericVector(11, 15, 9, 4, 34, 17, 18, 14, 12, 13, 26, 31).name("respondent score");
-/* vrátí identickou kopii */
-var _V = V.clone();
-/* vrátí prázdnou kopii */
-var __V = V.clone(true);
-/* vrátí kopii vektoru s novými hodnotami z argumentu */
-var C = V.reload(9, 8, 7, 6);
-/* převede numerický vektor na textový */
-var S = V.convert(2);
-/* převede textový vektor na numerický za pomoci konverzní funkce */
-var S = new _.StringVector("man", "man", "woman", "woman", "woman", null, "man", "woman");
-var cV = S.convert(1, function (value) { return value == "man" ? 1 : value == "woman" ? 2 : null })
+var C = new _.NumericVector(11, 15, 9, 4, 34, 17, 18, 14, 12, 13, 26, 31).name("Czech");
+var G = new _.NumericVector(10, 16, 9, 3, 38, 17, 16, 14, 13, 13, 26, 31).name("German");
+var F = new _.NumericVector(11, 15, 9, 7, 34, 27, 8, 4, 19, 13, 26, 31).name("French");
+var E = new _.NumericVector(11, 15, 9, 9, 24, 27, 8, 14, 19, 18, 26, 31).name("English");
+var T = new _.Matrix(C,G,F,E);
+var cm = T.analyze("correlMatrix").run(T,3);
+console.log(cm.result);
 debugger;
+return;
 
 
 //require("./docs")({offset: 2});

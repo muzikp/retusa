@@ -298,5 +298,16 @@ module.exports = {
 	"Httc": "Wilcoxonův test",
 	"sqwQ": "Wilcoxonův test je neparametrický test, který porovnává součet pořadí u dvou nezávislých vzorků. Je neparametrickou obdobou Studentova t-testu pro dva nazávislé výběry.",
 	"Zymm": "hodnota Wilcoxonova testu",
-	"QCkg": "Kendallův koeficient tau"
+	"QCkg": "Kendallův koeficient tau",
+	"eZw1": "Tento typ vektoru akceptuje pouze časové hodnoty, hodnoty převoditlné na čas (datum) nebo prázdné hodnoty. Vrácená chybná hodnota: ${value}",
+	"DeMU": "Korelační matice",
+	"XtbY": "Stanoví korelační matici vstupních (numerických) proměnných. Výstupem je tabulka statistik korelačních koeficientů mezi kombinacemi jednotlivých proměnných, seřazených od nejvyšší absolutní hodnoty po nejnižší. Lze upřesnit, jakou metodou mají být jednotlivé analýzy zpracovány.",
+	"sQ9w": "vstupní vektory",
+	"nDx1": "metoda výpočtu",
+	"S3WK": "korelační koeficient",
+	"vlH2": "počet případů",
+	"GR2Y": "Pearsonovo r",
+	"5BMC": "Spearmanovo r",
+	"MqE5": "Kendallovo Tau",
+	"xKzh": "Koeficient gama"
 }

@@ -298,5 +298,16 @@ module.exports = {
 	"Httc": "Wilcoxon test",
 	"sqwQ": "The Wilcoxon test is a non-parametric test that compares the rank sum of two independent samples. It is a non-parametric analogue of Student's t-test for two independent samples.",
 	"Zymm": "Wilcoxon test value",
-	"QCkg": "Kendall's tau cofficient"
+	"QCkg": "Kendall's tau cofficient",
+	"eZw1": "This vector type only accepts DateTime values, values convertible to DateTime value and empty values. Returned error value: ${value}",
+	"DeMU": "Correlation matrix",
+	"XtbY": "Returns the correlation matrix of the input (numeric) variables. It is possible to specify the method by which individual analyzes are to be processed.",
+	"sQ9w": "input vectors",
+	"nDx1": "calculation method",
+	"S3WK": "correlation coefficient",
+	"vlH2": "total of cases",
+	"GR2Y": "Pearson's r",
+	"5BMC": "Spearman's r",
+	"MqE5": "Kendall's tau",
+	"xKzh": "Gamma coefficient"
 }
