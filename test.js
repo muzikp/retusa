@@ -1,7 +1,7 @@
 var _ = require("./index");
 var st = require("./stress-test");
 
-//require("./docs")({offset: 1, format: "markdown"});
+require("./docs")({offset: 1, format: "markdown"});
 
 
 var C = new _.NumericVector(11, 15, 9, 4, 34, 17, 18, 14, 12, 13, 26, 31).name("Czech");

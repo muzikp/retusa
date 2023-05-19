@@ -40,6 +40,7 @@ var matrixMethods = [
     "correlKendall",
     "correlPartial",
     "correlBiserial",
+    "correlMatrix",
     "anovaow",
     "ttestind",
     "ttestpair",
