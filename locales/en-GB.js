@@ -309,5 +309,22 @@ module.exports = {
 	"GR2Y": "Pearson's r",
 	"5BMC": "Spearman's r",
 	"MqE5": "Kendall's tau",
-	"xKzh": "Gamma coefficient"
+	"xKzh": "Gamma coefficient",
+	"EXYx": "covariance",
+	"AkjW": "Returns the covariance value of two input numerical variables. Accepts an argument whether it is a sample or an absolute file.",
+	"Cdly": "Two-way ANOVA",
+	"3FYm": "Returns a statistical protocol for a bivariate analysis of variance. The method is used, among other things, in experimental designs where, in addition to the influence of the main factor, it is necessary to monitor the influence of a second factor - for example, the first factor can be the efficacy of the drug, the second factor the experimental/control group.",
+	"WGqY": "factor A",
+	"O6Av": "factor B",
+	"XeLl": "dependent variable",
+	"whdI": "interactions between factors",
+	"aKUo": "total variance",
+	"IGv4": "residual variance",
+	"3gl5": "variability source",
+	"CIjd": "sum of squares",
+	"xtws": "mean square",
+	"0tRn": "One-way ANOVA with repeated measures",
+	"V0CE": "Returns a statistical log for one-way analysis of variance with replications (or repeated measures). A repeated measures ANOVA is used to determine whether or not there is a statistically significant difference between the means of three or more groups in which the same subjects show up in each group.",
+	"K3ls": "between groups",
+	"wGQw": "subject"
 }

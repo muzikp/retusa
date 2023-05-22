@@ -821,6 +821,8 @@ A number of methods have a specified so-called preprocessor, which is a function
 | correlBiserial | [Biserial correlation](#correlBiserial) |
 | correlMatrix | [Correlation matrix](#correlMatrix) |
 | anovaow | [ANOVA (one-way)](#anovaow) |
+| anovaowrm | [One-way ANOVA with repeated measures](#anovaowrm) |
+| anovatw | [Two-way ANOVA](#anovatw) |
 | ttestind | [T-test (independent)](#ttestind) |
 | ttestpair | [T-test (paired)](#ttestpair) |
 | wcxind | [Wilcoxon test](#wcxind) |
@@ -1275,6 +1277,115 @@ style df stroke:#75716F;
 
 ```
 
+## [One-way ANOVA with repeated measures](#anovaowrm)
+
+Returns a statistical log for one-way analysis of variance with replications (or repeated measures). A repeated measures ANOVA is used to determine whether or not there is a statistically significant difference between the means of three or more groups in which the same subjects show up in each group.
+
+### Arguments
+
+| id |description |value type |validator |required |default value |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>vectors</b> | input vector/s | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
+
+### Pre-calculation data modification
+
+Removes from the input vectors (matrix) all rows in which there is at least one empty value.
+
+### Syntax examples
+
+```js
+var T = new Matrix(
+new StringVector("patient A", "patient B", "patient C", "patient D", "patient E").name("patient"),
+new NumericVector(30,14,24,38,26).name("drug 1"),
+new NumericVector(28,18,20,34,28).name("drug 2"),
+new NumericVector(16,10,18,20,14).name("drug 3")
+)
+var a = T.analyze("anovaowrm").run([1,2,3]);
+```
+
+### Output schema
+
+```mermaid
+graph TD
+anovaowrm{<i>array</i>}
+style anovaowrm fill:#85B3BE;
+style anovaowrm stroke:#2E7C8F;
+anovaowrm --> source[<b>source</b><br>variability source <br><i>any type</i>]
+style source fill:#FFFFFF;
+style source stroke:#75716F;
+anovaowrm --> SS[<b>SS</b><br>sum of squares <br><i>number</i>]
+style SS fill:#FFFFFF;
+style SS stroke:#4967A4;
+anovaowrm --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
+anovaowrm --> MS[<b>MS</b><br>mean square <br><i>number</i>]
+style MS fill:#FFFFFF;
+style MS stroke:#4967A4;
+anovaowrm --> F[<b>F</b><br>F test <br><i>number</i>]
+style F fill:#FFFFFF;
+style F stroke:#4967A4;
+anovaowrm --> p[<b>p</b><br>p-value <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
+
+```
+
+## [Two-way ANOVA](#anovatw)
+
+Returns a statistical protocol for a bivariate analysis of variance. The method is used, among other things, in experimental designs where, in addition to the influence of the main factor, it is necessary to monitor the influence of a second factor - for example, the first factor can be the efficacy of the drug, the second factor the experimental/control group.
+
+### Arguments
+
+| id |description |value type |validator |required |default value |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>factor</b> | factor A | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+| <b>f1</b> | factor B | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+| <b>y</b> | dependent variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+
+### Pre-calculation data modification
+
+Removes from the input vectors (matrix) all rows in which there is at least one empty value.
+
+### Syntax examples
+
+```js
+var T = new Matrix(
+new StringVector("daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly").name("watering frequency"),
+new StringVector("none","none","none","none","none","low","low","low","low","low","medium","medium","medium","medium","medium","high","high","high","high","high","none","none","none","none","none","low","low","low","low","low","medium","medium","medium","medium","medium","high","high","high","high","high").name("sunlight exposure"),
+new NumericVector(4.8, 4.4, 3.2, 3.9, 4.4, 5, 5.2, 5.6, 4.3, 4.8, 6.4, 6.2, 4.7, 5.5, 5.8, 6.3, 6.4, 5.6, 4.8, 5.8, 4.4, 4.2, 3.8, 3.7, 3.9, 4.9, 5.3, 5.7, 5.4, 4.8, 5.8, 6.2, 6.3, 6.5, 5.5, 6, 4.9, 4.6, 5.6, 5.5).name("plant growth")
+);
+var twa = T.analyze("anovatw").run(0,1,2);
+```
+
+### Output schema
+
+```mermaid
+graph TD
+anovatw{<i>array</i>}
+style anovatw fill:#85B3BE;
+style anovatw stroke:#2E7C8F;
+anovatw --> source[<b>source</b><br>variability source <br><i>any type</i>]
+style source fill:#FFFFFF;
+style source stroke:#75716F;
+anovatw --> SS[<b>SS</b><br>sum of squares <br><i>number</i>]
+style SS fill:#FFFFFF;
+style SS stroke:#4967A4;
+anovatw --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
+anovatw --> MS[<b>MS</b><br>mean square <br><i>number</i>]
+style MS fill:#FFFFFF;
+style MS stroke:#4967A4;
+anovatw --> F[<b>F</b><br>F test <br><i>number</i>]
+style F fill:#FFFFFF;
+style F stroke:#4967A4;
+anovatw --> p[<b>p</b><br>p-value <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
+
+```
+
 ## [T-test (independent)](#ttestind)
 
 Returns the statistical log of the Student's t-test for two independent samples that are defined by an eigenvariable (that is, two numeric vectors). Arguments are either two numeric vectors, or one numeric and only a factor vector (usually text, but can also be numeric or binary). If a vector that has more than two unique values is used as a factor, only the first two unique values found are considered for the test (the others are ignored) - in this case, the information about the size of the pure sample is irrelevant, however, the level of significance to which the sample size enters, it is already based on pure cases.
@@ -1284,7 +1395,7 @@ Returns the statistical log of the Student's t-test for two independent samples 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | input vector/s | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
-| <b>factor</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+| <b>f2</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 ### Syntax examples
 
 #### Arguments as object properties
@@ -1358,7 +1469,7 @@ Returns the statistical log of a paired t-test for two dependent samples. Empty 
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
-| <b>y</b> | first variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+| <b>v</b> | first variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 | <b>x</b> | second variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 
 ### Pre-calculation data modification

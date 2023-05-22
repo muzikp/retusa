@@ -166,14 +166,6 @@ class Matrix extends Array {
     }
     /** Removes rows with any null value across all values in the row. */
     removeEmpty() {
-        /*
-        var notnulls = [];
-        for(var r = 0 ; r < this.maxRows(); r++) {
-            if(!this.row(r).find(v => v === null)) notnulls.push(r);
-        }
-        return this.filterByIndex(...notnulls);
-        */
-        /* old variant*/
         var fs = new Array(...this).map((v,i) => [i, (v) => v !== null]).flat(Infinity);
         return this.filter(...fs);
     }
@@ -185,6 +177,18 @@ class Matrix extends Array {
     row(index) {
         if(index > this.maxRows() - 1) return null;
         return new Array(...this).map(v => v[index] || null);
+    }
+    rows(asObject = false) {
+        var rows = [];
+        for(var r = 0; r < this.maxRows(); r++)
+        {
+            var row = [];
+            for(var c = 0; c < this.length; c++ ) {
+                row.push(this[c][r]);
+            }
+            rows.push(row);
+        }
+        return rows;
     }
     appendRow(...values) {
         for(var i = 0; i < values.length; i++) {
@@ -267,6 +271,21 @@ const preprocessors = {
             _.sample.raw = M.maxRows();
             M = M.removeEmpty();
             _.args.vectors = M;
+            _.sample.net = M.maxRows();
+        }
+    },
+    /**
+     * removeEmptyAcrossRows for independent vectors as inputs for two-way ANOVA
+     */
+    twoWayAnova: {
+        title: "Cumi",
+        fn: function(_){
+            var M = new Matrix(_.args.f1, _.args.f2, _.args.v);
+            _.sample.raw = M.maxRows();
+            M = M.removeEmpty();
+            _.args.f1 = M[0];
+            _.args.f2 = M[1];
+            _.args.v = M[2];
             _.sample.net = M.maxRows();
         }
     },
@@ -472,6 +491,16 @@ class MatrixAnalysis {
 // #region Models
 // core functions
 const matrixMethods = {
+    covariance: function() {
+        var x = arguments[0];
+        var y = arguments[1];
+        var N = arguments[2] ? x.length -1 : x.length;
+        var xm = x.avg();
+        var ym = y.avg();
+        var c = x.map((v,i) => (x[i]-xm)*(y[i]-ym) ).sum()/N;
+        return c;
+
+    },
     correlPearson: function() {
        var x = arguments[0];
        var y = arguments[1];
@@ -707,6 +736,102 @@ const matrixMethods = {
             }
         };
     },
+    anova_twoway: function() {
+        var T = new Matrix(arguments[0], arguments[1], arguments[2]);
+        var total_mean = T[2].avg();
+        var f1_keys = T[0].distinct();
+        var f2_keys = T[1].distinct();
+        var f1_ss = [...f1_keys.map((v,i) => function(){
+                var a = T.filter(0, (e) => e === v)[2];
+                return {m: a.avg(), n: a.length}
+            }()).map(o => o.n * Math.pow(o.m-total_mean,2))].sum();
+        var f2_ss = [...f2_keys.map((v,i) => function(){
+                var a = T.filter(1, (e) => e === v)[2];
+                return {m: a.avg(), n: a.length}
+            }()).map(o => o.n * Math.pow(o.m-total_mean,2))].sum();
+        var total_ss = T[2].map(e => Math.pow(e - total_mean,2 )).sum();
+        /* within ss */
+        var g = f1_keys.map(f1k => f2_keys.map(function(f2k){
+            var _ = T.filter(0, v => v === f1k, 1, v => v === f2k);
+            return {f1: f1k, f2: f2k, a: _[2].avg()}
+        })).flat();
+        var within_ss = 0;
+        for(var i = 0; i < T.maxRows(); i++) 
+        {
+            within_ss += Math.pow(T[2][i] - g.find(_g => _g.f1 === T[0][i] && _g.f2 === T[1][i]).a,2)
+        }
+        var interaction_ss = total_ss - f1_ss - f2_ss - within_ss;
+        var total = {
+            source: $("aKUo"),
+            SS: total_ss,
+            df: T.maxRows()-1
+        };
+        var within = {
+            source: $("IGv4"),
+            SS: within_ss,
+            df: T.maxRows() - f1_keys.length * f2_keys.length,
+            MS: within_ss / (T.maxRows() - f1_keys.length * f2_keys.length)
+        };
+        var f1 ={
+            source: T[0].name() || $("WGqY"),
+            SS: f1_ss,
+            df: f1_keys.length -1,
+            MS: f1_ss/(f1_keys.length -1),
+            F: (f1_ss/(f1_keys.length -1))/within.MS
+        }
+        f1.p = dist.fdistrt(f1.F, f1.df, within.df);
+        var f2 ={
+            source: T[1].name() || $("WGqY"),
+            SS: f2_ss,
+            df: f2_keys.length -1,
+            MS: f2_ss/(f2_keys.length -1),
+            F: (f2_ss/(f2_keys.length -1))/within.MS
+        }
+        f2.p = dist.fdistrt(f2.F, f2.df, within.df);
+        var interaction = {
+            source: $("whdI"),
+            SS: interaction_ss,
+            df: f1.df*f2.df,
+            MS: interaction_ss/(f1.df*f2.df),
+            F: (interaction_ss/(f1.df*f2.df))/within.MS
+        };
+        interaction.p = dist.fdistrt(interaction.F, interaction.df, within.df);
+        return [f1,f2,interaction, within, total];
+
+    },
+    anova_oneway_repeated: function() {
+        var T = arguments[0];
+        var f = T.flat();
+        var df_total = f.length -1, df_between = T.length - 1, df_subject = T.maxRows() -1 , SS_total = [... f].variance(true) * df_total, bmeans = T.smap(v => v.avg());
+        var b_mean = bmeans.avg();
+        var SS_between = bmeans.map((e,i) => Math.pow(e- b_mean,2)* T[i].length).sum();
+        var SS_subject = T.rows().map((r) => Math.pow(r.sum(),2)).sum() / T.length - Math.pow(f.sum(),2) / (T.maxRows() * T.length);
+        var SS_residual = SS_total - SS_between - SS_subject;
+        var df_residual = df_between * df_subject;
+        var residual = {
+            source: $("IGv4"),
+            SS: SS_residual,
+            df: df_residual,
+            MS: SS_residual/df_residual
+        }
+        var between = {
+            source: $("K3ls"),
+            SS: SS_between,
+            df: df_between,
+            MS: SS_between/df_between,
+            F: (SS_between/df_between)/residual.MS,
+            p: dist.fdistrt((SS_between/df_between)/residual.MS,df_between,df_residual)
+        }
+        var subject = {
+            source: $("wGQw"),
+            SS: SS_subject,
+            df: df_subject,
+            MS: SS_subject/df_subject,
+            F: (SS_subject/df_subject)/residual.MS,
+            p: dist.fdistrt((SS_subject/df_subject)/residual.MS,df_subject,df_residual)
+        }
+        return [between, subject, residual, {source: $("aKUo"), SS: SS_total, df: df_total}]
+    },
     mannwhitney: function(){
         var x = arguments[0][0];
         var y = arguments[0][1];
@@ -907,10 +1032,67 @@ const matrixMethods = {
     },
     logreg: function(){
         //http://www.17bigdata.com/logistic-regression-in-7-steps-in-excel-2010-and-excel-2013/
+    },
+    pca: function(){
+        var vectors = [...arguments[0]];
+        var isSample = true;
+        var means = vectors.map(v => v.avg());
+        var sds = vectors.map(v => v.stdev(isSample));
+        var stv = vectors.map((v,i) => v.map((_v, _i) => (_v - means[i])/sds[i]));
+        var cmx = [];
+        for(var i = 0; i < stv.length; i++)
+        {
+            for(var j = 0; j < stv.length; j++)
+            {
+                var v;
+                if(i === j) v = (stv[i].map(e => Math.pow(e,2)).sum())/stv[i].length;
+                else v = matrixMethods.covariance(stv[i], stv[j]);
+                cmx.push({x: i, y: j, v: v})
+            }
+        }
+        debugger;
     }
 };
 
 const MatrixMethodsModels = [
+    {   name: "covariance",
+        fn: matrixMethods.covariance,
+        wiki: {
+            title: "EXYx",
+            description: "AkjW",
+            preprocessor: preprocessors.removeEmptyXY.title
+        },
+        output: "number",
+        prepare: preprocessors.removeEmptyXY.fn,
+        args: {
+            x: {
+                model: "numericVector",
+                config: {
+                    name: "x",
+                    title: "qFEM",
+                    required: true
+                }
+            },
+            y: {
+                model: "numericVector",
+                config: {
+                    name: "y",
+                    title: "tpUu",
+                    required: true
+                }
+            },
+            isSample: {
+                model: "boolean",
+                config: {
+                    name: "isSample",
+                    title: "eJTq",
+                    description: "FfpU",
+                    required: false,
+                    default: true
+                }
+            }
+        }
+    },
     {   name: "correlPearson",
         fn: matrixMethods.correlPearson,
         wiki: {
@@ -1199,6 +1381,62 @@ const MatrixMethodsModels = [
             }
         }
     },
+    {   name: "anovatw",
+        fn: matrixMethods.anova_twoway,
+        wiki: {
+            title: "Cdly",
+            description: "3FYm",
+            preprocessor: preprocessors.removeEmptyAcrossRows.title
+        },   
+        output: "anovatw",     
+        prepare: preprocessors.twoWayAnova.fn,
+        args: {       
+            "f1": {
+                model: "anyVector",
+                config: {
+                    name: "f1",
+                    title: "WGqY",
+                    required: true
+                }
+            },        
+            "f2": {
+                model: "anyVector",
+                config: {
+                    name: "f2",
+                    title: "O6Av",
+                    required: true
+                }
+            },
+            v: {
+                model: "numericVector",
+                config: {
+                    name: "v",
+                    title: "XeLl",
+                    required: true
+                }
+            }
+        }
+    },
+    {   name: "anovaowrm",
+        fn: matrixMethods.anova_oneway_repeated,
+        wiki: {
+            title: "0tRn",
+            description: "V0CE",
+            preprocessor: preprocessors.removeEmptyAcrossRows.title
+        },   
+        output: "anovaowrm",     
+        prepare: preprocessors.removeEmptyAcrossRows.fn,
+        args: {       
+            "vectors": {
+                model: "numericVectors",
+                config: {
+                    name: "vectors",
+                    title: "Rd9K",
+                    required: true,
+                }
+            }
+        }
+    },
     {   name: "linreg",
         fn: matrixMethods.linreg,
         wiki: {
@@ -1447,6 +1685,26 @@ const MatrixMethodsModels = [
                     required: true,
                 }
             }         
+        }
+    },
+    {   name: "pca",
+        fn: matrixMethods.pca,
+        wiki: {
+            title: "DeMU",
+            description: "XtbY",
+            preprocessor: preprocessors.removeEmptyXY.title
+        },
+        output: "correlMatrix",
+        prepare: null,
+        args: {
+            vectors: {
+                model: "numericVectors",
+                config: {
+                    name: "vectors",
+                    title: "sQ9w",
+                    required: true
+                }
+            }
         }
     }
 ];

@@ -42,6 +42,8 @@ var matrixMethods = [
     "correlBiserial",
     "correlMatrix",
     "anovaow",
+    "anovaowrm",
+    "anovatw",
     "ttestind",
     "ttestpair",
     "wcxind",
@@ -544,6 +546,33 @@ const examples = {
                     new NumericVector(275,282,300,280,275,260,275,271,277,263,246,281,270).name("z")
                 );
                 var anova = M.analyze("anovaow").run({vectors: [0,1,2]});
+            }
+        }
+    ],
+    anovaowrm: [
+        {
+            name: "example1",
+            code: function() {
+                var T = new Matrix(
+                    new StringVector("patient A", "patient B", "patient C", "patient D", "patient E").name("patient"),
+                    new NumericVector(30,14,24,38,26).name("drug 1"),
+                    new NumericVector(28,18,20,34,28).name("drug 2"),
+                    new NumericVector(16,10,18,20,14).name("drug 3")
+                )
+                var a = T.analyze("anovaowrm").run([1,2,3]);
+            }
+        }
+    ],
+    anovatw: [
+        {
+            name: "example1",
+            code: function() {
+                var T = new Matrix(
+                    new StringVector("daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly").name("watering frequency"),
+                    new StringVector("none","none","none","none","none","low","low","low","low","low","medium","medium","medium","medium","medium","high","high","high","high","high","none","none","none","none","none","low","low","low","low","low","medium","medium","medium","medium","medium","high","high","high","high","high").name("sunlight exposure"),
+                    new NumericVector(4.8, 4.4, 3.2, 3.9, 4.4, 5, 5.2, 5.6, 4.3, 4.8, 6.4, 6.2, 4.7, 5.5, 5.8, 6.3, 6.4, 5.6, 4.8, 5.8, 4.4, 4.2, 3.8, 3.7, 3.9, 4.9, 5.3, 5.7, 5.4, 4.8, 5.8, 6.2, 6.3, 6.5, 5.5, 6, 4.9, 4.6, 5.6, 5.5).name("plant growth")
+                );
+                var twa = T.analyze("anovatw").run(0,1,2);
             }
         }
     ],

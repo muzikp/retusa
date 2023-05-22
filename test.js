@@ -3,13 +3,37 @@ var st = require("./stress-test");
 
 require("./docs")({offset: 1, format: "markdown"});
 
+var T = new _.Matrix(
+    new _.StringVector("patient A", "patient B", "patient C", "patient D", "patient E").name("patient"),
+    new _.NumericVector(30,14,24,38,26).name("drug 1"),
+    new _.NumericVector(28,18,20,34,28).name("drug 2"),
+    new _.NumericVector(16,10,18,20,14).name("drug 3")
+)
+var a = T.analyze("anovaowrm").run([1,2,3]);
+debugger;
+return;
 
-var C = new _.NumericVector(11, 15, 9, 4, 34, 17, 18, 14, 12, 13, 26, 31).name("Czech");
-var G = new _.NumericVector(10, 16, 9, 3, 38, 17, 16, 14, 13, 13, 26, 31).name("German");
-var F = new _.NumericVector(11, 15, 9, 7, 34, 27, 8, 4, 19, 13, 26, 31).name("French");
-var E = new _.NumericVector(11, 15, 9, 9, 24, 27, 8, 14, 19, 18, 26, 31).name("English");
-var T = new _.Matrix(C,G,F,E);
-var cm = T.analyze("correlMatrix").run(T,3);
+
+
+var T = new _.Matrix(
+    new _.StringVector("daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly").name("watering frequency"),
+    new _.StringVector("none","none","none","none","none","low","low","low","low","low","medium","medium","medium","medium","medium","high","high","high","high","high","none","none","none","none","none","low","low","low","low","low","medium","medium","medium","medium","medium","high","high","high","high","high").name("sunlight exposure"),
+    new _.NumericVector(4.8, 4.4, 3.2, 3.9, 4.4, 5, 5.2, 5.6, 4.3, 4.8, 6.4, 6.2, 4.7, 5.5, 5.8, 6.3, 6.4, 5.6, 4.8, 5.8, 4.4, 4.2, 3.8, 3.7, 3.9, 4.9, 5.3, 5.7, 5.4, 4.8, 5.8, 6.2, 6.3, 6.5, 5.5, 6, 4.9, 4.6, 5.6, 5.5).name("plant growth")
+);
+var twa = T.analyze("anovatw").run(0,1,2);
+
+
+debugger;
+return;
+
+
+var T = new _.Matrix(
+    new _.NumericVector(1,5,1,5,8),
+    new _.NumericVector(2,5,4,3,1),
+    new _.NumericVector(3,6,2,2,2),
+    new _.NumericVector(4,7,3,1,2)
+    );
+var cm = T.analyze("pca").run([0,1,2,3]);
 console.log(cm.result);
 debugger;
 return;

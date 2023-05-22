@@ -255,6 +255,17 @@ const lib = {
             "p": snippets.sig
         }
     },
+    "covariance": {
+        "title": "xfSf", 
+        "type": "object",
+        "properties": {
+            "r": {
+                "title": "pTvR", 
+                "type": "number",
+            },
+            "p": snippets.sig
+        }
+    },
     "correlPearson": {
         "title": "pTvR", 
         "type": "object",
@@ -471,6 +482,66 @@ const lib = {
             }
     
         }
+    },
+    "anovaowrm": {
+        "title": "0tRn", 
+        "type": "array",
+        "items":{
+            "title": "Items", 
+            "type": "object",
+            "properties": {
+                "source": {
+                    "title": "3gl5", 
+                    "type": "any",
+                    "pattern": "^.*$"
+                },
+                "SS": {
+                    "title": "CIjd", 
+                    "type": "number",
+                },
+                df: snippets.df,
+                "MS": {
+                    "title": "xtws", 
+                    "type": "number"
+                },
+                "F": {
+                    "title": "Jdfb", 
+                    "type": "number"
+                },
+                "p": snippets.sig
+            }
+        }
+    
+    },
+    "anovatw": {
+        "title": "Cdly", 
+        "type": "array",
+        "items":{
+            "title": "Items", 
+            "type": "object",
+            "properties": {
+                "source": {
+                    "title": "3gl5", 
+                    "type": "any",
+                    "pattern": "^.*$"
+                },
+                "SS": {
+                    "title": "CIjd", 
+                    "type": "number",
+                },
+                df: snippets.df,
+                "MS": {
+                    "title": "xtws", 
+                    "type": "number"
+                },
+                "F": {
+                    "title": "Jdfb", 
+                    "type": "number"
+                },
+                "p": snippets.sig
+            }
+        }
+    
     },
     "ttestind": {
         "title": "YqRh", 

@@ -820,7 +820,9 @@ Každá metoda má specifikované argumenty a jejich validátory. Validátory me
 | correlPartial | [Parciální korelace](#correlPartial) |
 | correlBiserial | [Bodově biseriální korelace](#correlBiserial) |
 | correlMatrix | [Korelační matice](#correlMatrix) |
-| anovaow | [Jednofaktorová analýza rozptylu (ANOVA)](#anovaow) |
+| anovaow | [Jednofaktorová ANOVA](#anovaow) |
+| anovaowrm | [Jednofaktorová ANOVA s opakovaným měřením](#anovaowrm) |
+| anovatw | [Analýza rozptylu dvojného třídění](#anovatw) |
 | ttestind | [Dvouvýběrový t-test](#ttestind) |
 | ttestpair | [T-test (párový)](#ttestpair) |
 | wcxind | [Wilcoxonův test](#wcxind) |
@@ -1189,7 +1191,7 @@ style n stroke:#75716F;
 
 ```
 
-## [Jednofaktorová analýza rozptylu (ANOVA)](#anovaow)
+## [Jednofaktorová ANOVA](#anovaow)
 
 Stanoví statistický protokol analýzy rozptylu jednoduchého třídění (One-way ANOVA). Metoda má dva argumenty. První tvoří řada numerických vektorů, kde minimálně jeden vektor je povinný. Druhý argument je nepovinný a představuje shlukovací faktor, tedy textovou proměnnou, která v řádcích určuje příslučnost numerického faktoru ke skupině. Pokud je zadán druhý parametr, z první skupiny vektorů je zohledňován pouze první. V případě, že faktor neuvádíme, je vhodné vybrat minimálně dva vektory pro první argument, v opačném případě je použití metody bezpřednětné (není co srovnávat).
 
@@ -1274,6 +1276,115 @@ style df stroke:#75716F;
 
 ```
 
+## [Jednofaktorová ANOVA s opakovaným měřením](#anovaowrm)
+
+Stanoví statistický protokol pro analýzu rozptylu jednoduchého třídění s replikacemi (opakovanými měřeními). ANOVA s opakovanými měřeními se používá k určení, zda existuje nebo neexistuje statisticky významný rozdíl mezi průměry tří nebo více skupin, ve kterých se v každé skupině objevují stejné subjekty.
+
+### Argumenty
+
+| id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>vectors</b> | vstupní vektor/y | numerický vektor nebo matice numerických vektorů | <sub>Ověří, zdali je argument buďto numerický vektor, jeho identifikátor nebo řada převoditelná na numerický vektor, anebo zdali se jedná o řadu numerických vektorů (resp. hodnot, které jsou buďto vektory, identifikátry nebo hodnoty převoditelné na numerické vektory - v libovolné kombinace). Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+
+### Před-výpočetní úprava dat
+
+Vstupní argumenty převede na vektory, ze kterých vytvoří matici. Z této matice následně odebere všechny řádky, které alespoň v jedné buňce obsahují prázdnou hodnotu. Vektory z této dceřiné matice poté přepíše původní argumenty, tzn. že vektory vstupují do metody již očištěné.
+
+### Příklady syntaxe
+
+```js
+var T = new Matrix(
+new StringVector("patient A", "patient B", "patient C", "patient D", "patient E").name("patient"),
+new NumericVector(30,14,24,38,26).name("drug 1"),
+new NumericVector(28,18,20,34,28).name("drug 2"),
+new NumericVector(16,10,18,20,14).name("drug 3")
+)
+var a = T.analyze("anovaowrm").run([1,2,3]);
+```
+
+### Schéma výsledku
+
+```mermaid
+graph TD
+anovaowrm{<i>řada</i>}
+style anovaowrm fill:#85B3BE;
+style anovaowrm stroke:#2E7C8F;
+anovaowrm --> source[<b>source</b><br>zdroj variability <br><i>libovolný typ hodnoty</i>]
+style source fill:#FFFFFF;
+style source stroke:#75716F;
+anovaowrm --> SS[<b>SS</b><br>suma čtverců <br><i>číslo</i>]
+style SS fill:#FFFFFF;
+style SS stroke:#4967A4;
+anovaowrm --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
+anovaowrm --> MS[<b>MS</b><br>střední čtverec <br><i>číslo</i>]
+style MS fill:#FFFFFF;
+style MS stroke:#4967A4;
+anovaowrm --> F[<b>F</b><br>F test <br><i>číslo</i>]
+style F fill:#FFFFFF;
+style F stroke:#4967A4;
+anovaowrm --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
+
+```
+
+## [Analýza rozptylu dvojného třídění](#anovatw)
+
+Stanoví statistický protokol analýzy rozptylu dvojného třídění. Metoda se používá mj. v experimentálních designech, kde je potřeba kromě vlivu hlavního faktoru třeba sledovat ještě vliv druhého faktoru - příkladem, první faktor může být účiinost léčiva, druhým faktorem experimentální/kontroní skupina. 
+
+### Argumenty
+
+| id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>factor</b> | faktor A | jakýkoliv vektor | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+| <b>f1</b> | faktor B | jakýkoliv vektor | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+| <b>y</b> | závislá (vysvětlovaná) proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+
+### Před-výpočetní úprava dat
+
+Vstupní argumenty převede na vektory, ze kterých vytvoří matici. Z této matice následně odebere všechny řádky, které alespoň v jedné buňce obsahují prázdnou hodnotu. Vektory z této dceřiné matice poté přepíše původní argumenty, tzn. že vektory vstupují do metody již očištěné.
+
+### Příklady syntaxe
+
+```js
+var T = new Matrix(
+new StringVector("daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","daily","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly","weekly").name("watering frequency"),
+new StringVector("none","none","none","none","none","low","low","low","low","low","medium","medium","medium","medium","medium","high","high","high","high","high","none","none","none","none","none","low","low","low","low","low","medium","medium","medium","medium","medium","high","high","high","high","high").name("sunlight exposure"),
+new NumericVector(4.8, 4.4, 3.2, 3.9, 4.4, 5, 5.2, 5.6, 4.3, 4.8, 6.4, 6.2, 4.7, 5.5, 5.8, 6.3, 6.4, 5.6, 4.8, 5.8, 4.4, 4.2, 3.8, 3.7, 3.9, 4.9, 5.3, 5.7, 5.4, 4.8, 5.8, 6.2, 6.3, 6.5, 5.5, 6, 4.9, 4.6, 5.6, 5.5).name("plant growth")
+);
+var twa = T.analyze("anovatw").run(0,1,2);
+```
+
+### Schéma výsledku
+
+```mermaid
+graph TD
+anovatw{<i>řada</i>}
+style anovatw fill:#85B3BE;
+style anovatw stroke:#2E7C8F;
+anovatw --> source[<b>source</b><br>zdroj variability <br><i>libovolný typ hodnoty</i>]
+style source fill:#FFFFFF;
+style source stroke:#75716F;
+anovatw --> SS[<b>SS</b><br>suma čtverců <br><i>číslo</i>]
+style SS fill:#FFFFFF;
+style SS stroke:#4967A4;
+anovatw --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
+anovatw --> MS[<b>MS</b><br>střední čtverec <br><i>číslo</i>]
+style MS fill:#FFFFFF;
+style MS stroke:#4967A4;
+anovatw --> F[<b>F</b><br>F test <br><i>číslo</i>]
+style F fill:#FFFFFF;
+style F stroke:#4967A4;
+anovatw --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
+
+```
+
 ## [Dvouvýběrový t-test](#ttestind)
 
 Stanoví statistický protokol Studentova t-testu pro dva nezávislé výběry, které jsou definovány vlastní proměnnou (tedy dvěma numerickými vektory). Argumenty tvoří buď dva numerické vektory, nebo jeden numerický a jen faktorový vektor (obvykle text, ale může být i numerický či binární). Pokud je použit jako faktor vektor, který má více než dvě unikátní hodnoty, jsou pro test uvažovány pouze první dvě unikátní nalezené hodnoty (ostatní se ignorují) - v takovém případě je informace o velikosti čistého vzorku nepodstatná, nicméně hladina významnosti, do které velikost vzorku vstupuje, je již založena na čistých případech.
@@ -1283,7 +1394,7 @@ Stanoví statistický protokol Studentova t-testu pro dva nezávislé výběry, 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | vstupní vektor/y | numerický vektor nebo matice numerických vektorů | <sub>Ověří, zdali je argument buďto numerický vektor, jeho identifikátor nebo řada převoditelná na numerický vektor, anebo zdali se jedná o řadu numerických vektorů (resp. hodnot, které jsou buďto vektory, identifikátry nebo hodnoty převoditelné na numerické vektory - v libovolné kombinace). Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
-| <b>factor</b> | shlukovací proměnná | jakýkoliv vektor | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> |  |  |
+| <b>f2</b> | shlukovací proměnná | jakýkoliv vektor | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 ### Příklady syntaxe
 
 #### Argumenty jako vlastnosti objektu
@@ -1357,7 +1468,7 @@ Stanoví statistický protokol párového t-testu pro dva závislé výběry. Te
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
-| <b>y</b> | první proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+| <b>v</b> | první proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 | <b>x</b> | druhá proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 
 ### Před-výpočetní úprava dat
