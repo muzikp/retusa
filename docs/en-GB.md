@@ -1222,58 +1222,30 @@ var anova = M.analyze("anovaow").run({vectors: [0,1,2]});
 
 ```mermaid
 graph TD
-anovaow((<i>object</i>))
-style anovaow fill:#E1C6B3;
-style anovaow stroke:#C36422;
+anovaow{<i>array</i>}
+style anovaow fill:#85B3BE;
+style anovaow stroke:#2E7C8F;
+anovaow --> source[<b>source</b><br>variability source <br><i>any type</i>]
+style source fill:#FFFFFF;
+style source stroke:#75716F;
+anovaow --> SS[<b>SS</b><br>sum of squares <br><i>number</i>]
+style SS fill:#FFFFFF;
+style SS stroke:#4967A4;
+anovaow --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
+anovaow --> MS[<b>MS</b><br>mean square <br><i>number</i>]
+style MS fill:#FFFFFF;
+style MS stroke:#4967A4;
+anovaow --> P2[<b>P2</b><br>dependence coefficient <br><i>number</i>]
+style P2 fill:#FFFFFF;
+style P2 stroke:#75716F;
 anovaow --> F[<b>F</b><br>F test <br><i>number</i>]
 style F fill:#FFFFFF;
 style F stroke:#4967A4;
-anovaow --> P2[<b>P2</b><br>dependence coefficient <br><i>number</i>]
-style P2 fill:#FFFFFF;
-style P2 stroke:#4967A4;
 anovaow --> p[<b>p</b><br>p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
-anovaow --> n[<b>n</b><br>total of cases <br><i>number</i>]
-style n fill:#FFFFFF;
-style n stroke:#75716F;
-anovaow --> ANOVA((<b>ANOVA</b><br><u>ANOVA statistics</u>))
-ANOVA((<b>ANOVA</b><br><u>ANOVA statistics</u><br><i>object</i>))
-style ANOVA fill:#E1C6B3;
-style ANOVA stroke:#C36422;
-ANOVA --> totalOfGroups[<b>totalOfGroups</b><br>total of groups <br><i>number</i>]
-style totalOfGroups fill:#FFFFFF;
-style totalOfGroups stroke:#75716F;
-ANOVA --> betweenGroups((<b>betweenGroups</b><br><u>intergroup effects</u>))
-betweenGroups((<b>betweenGroups</b><br><u>intergroup effects</u><br><i>object</i>))
-style betweenGroups fill:#E1C6B3;
-style betweenGroups stroke:#C36422;
-betweenGroups --> sumOfSquares[<b>sumOfSquares</b><br>sum of squares <br><i>number</i>]
-style sumOfSquares fill:#FFFFFF;
-style sumOfSquares stroke:#4967A4;
-betweenGroups --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
-style df fill:#FFFFFF;
-style df stroke:#75716F;
-ANOVA --> withinGroups((<b>withinGroups</b><br><u>intragroup effects</u>))
-withinGroups((<b>withinGroups</b><br><u>intragroup effects</u><br><i>object</i>))
-style withinGroups fill:#E1C6B3;
-style withinGroups stroke:#C36422;
-withinGroups --> sumOfSquares[<b>sumOfSquares</b><br>sum of squares <br><i>number</i>]
-style sumOfSquares fill:#FFFFFF;
-style sumOfSquares stroke:#4967A4;
-withinGroups --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
-style df fill:#FFFFFF;
-style df stroke:#75716F;
-ANOVA --> total((<b>total</b><br><u>total</u>))
-total((<b>total</b><br><u>total</u><br><i>object</i>))
-style total fill:#E1C6B3;
-style total stroke:#C36422;
-total --> sumOfSquares[<b>sumOfSquares</b><br>sum of squares <br><i>number</i>]
-style sumOfSquares fill:#FFFFFF;
-style sumOfSquares stroke:#4967A4;
-total --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
-style df fill:#FFFFFF;
-style df stroke:#75716F;
 
 ```
 
@@ -1377,6 +1349,9 @@ style df stroke:#75716F;
 anovatw --> MS[<b>MS</b><br>mean square <br><i>number</i>]
 style MS fill:#FFFFFF;
 style MS stroke:#4967A4;
+anovatw --> P2[<b>P2</b><br>dependence coefficient <br><i>number</i>]
+style P2 fill:#FFFFFF;
+style P2 stroke:#75716F;
 anovatw --> F[<b>F</b><br>F test <br><i>number</i>]
 style F fill:#FFFFFF;
 style F stroke:#4967A4;

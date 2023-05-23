@@ -1221,58 +1221,30 @@ var anova = M.analyze("anovaow").run({vectors: [0,1,2]});
 
 ```mermaid
 graph TD
-anovaow((<i>objekt</i>))
-style anovaow fill:#E1C6B3;
-style anovaow stroke:#C36422;
+anovaow{<i>řada</i>}
+style anovaow fill:#85B3BE;
+style anovaow stroke:#2E7C8F;
+anovaow --> source[<b>source</b><br>zdroj variability <br><i>libovolný typ hodnoty</i>]
+style source fill:#FFFFFF;
+style source stroke:#75716F;
+anovaow --> SS[<b>SS</b><br>suma čtverců <br><i>číslo</i>]
+style SS fill:#FFFFFF;
+style SS stroke:#4967A4;
+anovaow --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
+anovaow --> MS[<b>MS</b><br>střední čtverec <br><i>číslo</i>]
+style MS fill:#FFFFFF;
+style MS stroke:#4967A4;
+anovaow --> P2[<b>P2</b><br>Poměr determinace P2 ANOVA <br><i>číslo</i>]
+style P2 fill:#FFFFFF;
+style P2 stroke:#75716F;
 anovaow --> F[<b>F</b><br>F test <br><i>číslo</i>]
 style F fill:#FFFFFF;
 style F stroke:#4967A4;
-anovaow --> P2[<b>P2</b><br>Poměr determinace P2 ANOVA <br><i>číslo</i>]
-style P2 fill:#FFFFFF;
-style P2 stroke:#4967A4;
 anovaow --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
-anovaow --> n[<b>n</b><br>počet případů <br><i>číslo</i>]
-style n fill:#FFFFFF;
-style n stroke:#75716F;
-anovaow --> ANOVA((<b>ANOVA</b><br><u>statistiky ANOVA</u>))
-ANOVA((<b>ANOVA</b><br><u>statistiky ANOVA</u><br><i>objekt</i>))
-style ANOVA fill:#E1C6B3;
-style ANOVA stroke:#C36422;
-ANOVA --> totalOfGroups[<b>totalOfGroups</b><br>celkem skupin <br><i>číslo</i>]
-style totalOfGroups fill:#FFFFFF;
-style totalOfGroups stroke:#75716F;
-ANOVA --> betweenGroups((<b>betweenGroups</b><br><u>meziskupinové efekty</u>))
-betweenGroups((<b>betweenGroups</b><br><u>meziskupinové efekty</u><br><i>objekt</i>))
-style betweenGroups fill:#E1C6B3;
-style betweenGroups stroke:#C36422;
-betweenGroups --> sumOfSquares[<b>sumOfSquares</b><br>suma čtverců <br><i>číslo</i>]
-style sumOfSquares fill:#FFFFFF;
-style sumOfSquares stroke:#4967A4;
-betweenGroups --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
-style df fill:#FFFFFF;
-style df stroke:#75716F;
-ANOVA --> withinGroups((<b>withinGroups</b><br><u>vnitroskupinové efekty</u>))
-withinGroups((<b>withinGroups</b><br><u>vnitroskupinové efekty</u><br><i>objekt</i>))
-style withinGroups fill:#E1C6B3;
-style withinGroups stroke:#C36422;
-withinGroups --> sumOfSquares[<b>sumOfSquares</b><br>suma čtverců <br><i>číslo</i>]
-style sumOfSquares fill:#FFFFFF;
-style sumOfSquares stroke:#4967A4;
-withinGroups --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
-style df fill:#FFFFFF;
-style df stroke:#75716F;
-ANOVA --> total((<b>total</b><br><u>celkem</u>))
-total((<b>total</b><br><u>celkem</u><br><i>objekt</i>))
-style total fill:#E1C6B3;
-style total stroke:#C36422;
-total --> sumOfSquares[<b>sumOfSquares</b><br>suma čtverců <br><i>číslo</i>]
-style sumOfSquares fill:#FFFFFF;
-style sumOfSquares stroke:#4967A4;
-total --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
-style df fill:#FFFFFF;
-style df stroke:#75716F;
 
 ```
 
@@ -1376,6 +1348,9 @@ style df stroke:#75716F;
 anovatw --> MS[<b>MS</b><br>střední čtverec <br><i>číslo</i>]
 style MS fill:#FFFFFF;
 style MS stroke:#4967A4;
+anovatw --> P2[<b>P2</b><br>Poměr determinace P2 ANOVA <br><i>číslo</i>]
+style P2 fill:#FFFFFF;
+style P2 stroke:#75716F;
 anovatw --> F[<b>F</b><br>F test <br><i>číslo</i>]
 style F fill:#FFFFFF;
 style F stroke:#4967A4;

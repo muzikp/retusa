@@ -411,76 +411,35 @@ const lib = {
     },
     "anovaow": {
         "title": "baJo", 
-        "type": "object",
-        "properties": {
-            "F": {
-                "title": "Jdfb", 
-                "type": "number"
-            },
-            "P2": {
-                "title": "HksP", 
-                "type": "number",
-            },
-            "p": snippets.sig,
-            "n": { 
-                "title": "bLoI", 
-                "type": "uint",
-            },
-            "ANOVA": {
-                "title": "qCgT", 
-                "type": "object",
-                "target": "addon",
-                "properties": {
-                    "totalOfGroups": {
-                        "title": "cXCr", 
-                        "type": "integer"
-                    },
-                    "betweenGroups": {
-                        "title": "thNv", 
-                        "type": "object",
-                        "properties": {
-                            "sumOfSquares": {
-                                "title": "SqTd", 
-                                "type": "number",
-                            },
-                            "df": {
-                                "title": "OYQu", 
-                                "type": "integer",
-                            }
-                        }
-                    },
-                    "withinGroups": {
-                        "title": "GiRP", 
-                        "type": "object",
-                        "properties": {
-                            "sumOfSquares": {
-                                "title": "SqTd", 
-                                "type": "number",
-                            },
-                            "df": {
-                                "title": "OYQu", 
-                                "type": "integer",
-                            }
-                        }
-                    },
-                    "total": {
-                        "title": "P67p", 
-                        "type": "object",
-                        "properties": {
-                            "sumOfSquares": {
-                                "title": "SqTd", 
-                                "type": "number",
-                            },
-                            "df": {
-                                "title": "OYQu", 
-                                "type": "integer",
-                            }
-                        }
-                    }
-    
-                }
+        "type": "array",
+        "items":{
+            "title": "Items", 
+            "type": "object",
+            "properties": {
+                "source": {
+                    "title": "3gl5", 
+                    "type": "any",
+                    "pattern": "^.*$"
+                },
+                "SS": {
+                    "title": "CIjd", 
+                    "type": "number",
+                },
+                df: snippets.df,
+                "MS": {
+                    "title": "xtws", 
+                    "type": "number"
+                },
+                "P2": {
+                    "title": "HksP", 
+                    "type": "percent",
+                },
+                "F": {
+                    "title": "Jdfb", 
+                    "type": "number"
+                },                
+                "p": snippets.sig
             }
-    
         }
     },
     "anovaowrm": {
@@ -534,10 +493,14 @@ const lib = {
                     "title": "xtws", 
                     "type": "number"
                 },
+                "P2": {
+                    "title": "HksP", 
+                    "type": "percent",
+                },
                 "F": {
                     "title": "Jdfb", 
                     "type": "number"
-                },
+                },                
                 "p": snippets.sig
             }
         }

@@ -713,28 +713,29 @@ const matrixMethods = {
         var F = (yi_yn.sum() / (ns.length - 1)) / (pow_yi_min_total / dfwg);
         var P2 = yi_yn_total / (yi_yn_total + pow_yi_min_total);
         var p = dist.fdistrt(F, ns.length - 1, dfwg);
-        return {
+        var total = {
+            source: $("P67p"),
+            SS: yi_yn_total + pow_yi_min_total,
+            df: ns.length - 1 + dfwg
+        }
+        var between = {
+            source: $("thNv"),
+            SS: yi_yn_total,
+            df: arrays.length - 1,
+            MS: yi_yn_total/(arrays.length - 1),
+            P2: yi_yn_total/total.SS,
             F: F,
-            P2: P2,
-            p: p,
-            df: dfwg,
-            n: ns.sum(),
-            ANOVA: {
-                totalOfGroups: arrays.length,
-                betweenGroups: {
-                    sumOfSquares: yi_yn_total,
-                    df: ns.length - 1
-                },
-                withinGroups: {
-                    sumOfsquares: pow_yi_min_total,
-                    df: dfwg
-                },
-                total: {
-                    sumOfSquares: yi_yn_total + pow_yi_min_total,
-                    df: ns.length - 1 + dfwg
-                }
-            }
-        };
+            p: p
+        }
+        var within = {
+            source: $("GiRP"),
+            SS: pow_yi_min_total,
+            df: (ns.sum() - arrays.length),
+            MS: pow_yi_min_total/((ns.sum() - arrays.length))
+        }
+        return [
+            between, within, total
+        ]
     },
     anova_twoway: function() {
         var T = new Matrix(arguments[0], arguments[1], arguments[2]);
@@ -770,14 +771,16 @@ const matrixMethods = {
             source: $("IGv4"),
             SS: within_ss,
             df: T.maxRows() - f1_keys.length * f2_keys.length,
-            MS: within_ss / (T.maxRows() - f1_keys.length * f2_keys.length)
+            MS: within_ss / (T.maxRows() - f1_keys.length * f2_keys.length),
+            P2: within_ss/total_ss
         };
         var f1 ={
             source: T[0].name() || $("WGqY"),
             SS: f1_ss,
             df: f1_keys.length -1,
             MS: f1_ss/(f1_keys.length -1),
-            F: (f1_ss/(f1_keys.length -1))/within.MS
+            P2: f1_ss/total_ss,
+            F: (f1_ss/(f1_keys.length -1))/within.MS            
         }
         f1.p = dist.fdistrt(f1.F, f1.df, within.df);
         var f2 ={
@@ -785,7 +788,8 @@ const matrixMethods = {
             SS: f2_ss,
             df: f2_keys.length -1,
             MS: f2_ss/(f2_keys.length -1),
-            F: (f2_ss/(f2_keys.length -1))/within.MS
+            P2: f2_ss/total_ss,
+            F: (f2_ss/(f2_keys.length -1))/within.MS            
         }
         f2.p = dist.fdistrt(f2.F, f2.df, within.df);
         var interaction = {
@@ -793,7 +797,9 @@ const matrixMethods = {
             SS: interaction_ss,
             df: f1.df*f2.df,
             MS: interaction_ss/(f1.df*f2.df),
+            P2: interaction_ss/total_ss,
             F: (interaction_ss/(f1.df*f2.df))/within.MS
+            
         };
         interaction.p = dist.fdistrt(interaction.F, interaction.df, within.df);
         return [f1,f2,interaction, within, total];
@@ -812,13 +818,15 @@ const matrixMethods = {
             source: $("IGv4"),
             SS: SS_residual,
             df: df_residual,
-            MS: SS_residual/df_residual
+            MS: SS_residual/df_residual,
+            P2: SS_residual/SS_total
         }
         var between = {
             source: $("K3ls"),
             SS: SS_between,
             df: df_between,
             MS: SS_between/df_between,
+            P2: SS_between/SS_total,
             F: (SS_between/df_between)/residual.MS,
             p: dist.fdistrt((SS_between/df_between)/residual.MS,df_between,df_residual)
         }
@@ -827,6 +835,7 @@ const matrixMethods = {
             SS: SS_subject,
             df: df_subject,
             MS: SS_subject/df_subject,
+            P2: SS_subject/SS_total,
             F: (SS_subject/df_subject)/residual.MS,
             p: dist.fdistrt((SS_subject/df_subject)/residual.MS,df_subject,df_residual)
         }

@@ -2,7 +2,18 @@ var _ = require("./index");
 var st = require("./stress-test");
 
 require("./docs")({offset: 1, format: "markdown"});
+return;
 
+var M = new _.Matrix(
+    new _.StringVector(1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3,4,4,4,4,4,4,5,5,5,5,5,5).name("factor"),
+    new _.NumericVector(27,27,27,19,30,31,30,30,30,30,30,23,19,27,28,25,26,30,11,25,28,25,28,28,36,32,34,29,25,27).name("vector"),
+);
+var anova = M.analyze("anovaow").run({vectors: [1], factor: 0});
+console.log(JSON.stringify(anova.result, null, "\t"))
+debugger;
+return;
+
+/*
 var T = new _.Matrix(
     new _.StringVector("patient A", "patient B", "patient C", "patient D", "patient E").name("patient"),
     new _.NumericVector(30,14,24,38,26).name("drug 1"),
@@ -12,7 +23,7 @@ var T = new _.Matrix(
 var a = T.analyze("anovaowrm").run([1,2,3]);
 debugger;
 return;
-
+*/
 
 
 var T = new _.Matrix(
