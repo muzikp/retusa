@@ -841,6 +841,43 @@ const matrixMethods = {
         }
         return [between, subject, residual, {source: $("aKUo"), SS: SS_total, df: df_total}]
     },
+    ancova: function(){
+        //https://www.statology.org/ancova-excel/
+        let T = new Matrix(arguments[0], arguments[1], arguments[2]);
+        var yt = [...T.select(0,1).pivot(1,0)], ct = [...T.select(0,2).pivot(1,0)];
+        var SSx = ct.map(v => v.devsq());
+        var slopes = yt.map((v,i) => v.slope(ct[i]));
+        var SSxSlopes = SSx.map((e,i) => e*slopes[i]).sum();
+        const bw = SSxSlopes/SSx.sum();
+        const bt = yt.flat().slope(ct.flat());
+        var anovay = matrixMethods.anova_oneway(yt);
+        var anovac = matrixMethods.anova_oneway(ct);
+        var ancova_within = {
+            source: $("K3ls"),
+            SS: anovay[1].SS - Math.pow(bw,2)*anovac[1].SS,
+            df: anovay[1].df -1,
+            MS: (anovay[1].SS - Math.pow(bw,2)*anovac[1].SS)/(anovay[1].df -1)
+        }
+        var ancova_c = {
+            source: T[2].name() || $("EBON"),
+            SS: bw * SSxSlopes,
+            df: 1,
+            MS: bw * SSxSlopes,
+            F: (bw * SSxSlopes)/ancova_within.MS,
+            p: dist.fdistrt((bw * SSxSlopes)/ancova_within.MS,1,ancova_within.df)
+        }
+        var ancova_y = {
+            source: T[1].name() || $("lYdI"),
+            SS: anovay.last().SS - Math.pow(bt,2)*anovac.last().SS - ancova_within.SS,
+            df: anovay[0].df,
+            MS: (anovay.last().SS - Math.pow(bt,2)*anovac.last().SS - ancova_within.SS)/anovay[0].df
+        }
+        ancova_y.F = ancova_y.MS/ancova_within.MS;
+        ancova_y.p = dist.fdistrt(ancova_y.F, ancova_y.df, ancova_within.df);
+        ancova_y.P2 = ancova_y.SS/anovay[2].SS;
+        ancova_c.P2 = ancova_c.SS/anovay[2].SS;
+        return [ancova_y, ancova_c, ancova_within, {source: $("aKUo"), SS: anovay[2].SS, df: T.maxRows()}];
+    },
     mannwhitney: function(){
         var x = arguments[0][0];
         var y = arguments[0][1];
@@ -1442,6 +1479,42 @@ const MatrixMethodsModels = [
                     name: "vectors",
                     title: "Rd9K",
                     required: true,
+                }
+            }
+        }
+    },
+    {   name: "ancova",
+        fn: matrixMethods.ancova,
+        wiki: {
+            title: "EI6f",
+            description: "cwa9",
+            preprocessor: preprocessors.removeEmptyAcrossRows.title
+        },   
+        output: "anovatw",     
+        prepare: preprocessors.twoWayAnova.fn,
+        args: {       
+            "f": {
+                model: "anyVector",
+                config: {
+                    name: "factor",
+                    title: "dZ4S",
+                    required: true
+                }
+            },        
+            "y": {
+                model: "numericVector",
+                config: {
+                    name: "dependent",
+                    title: "lYdI",
+                    required: true
+                }
+            },
+            "c": {
+                model: "numericVector",
+                config: {
+                    name: "covariant",
+                    title: "EBON",
+                    required: true
                 }
             }
         }

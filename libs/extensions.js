@@ -212,6 +212,24 @@ Array.prototype.covariance = function(arr, sample = false) {
     return this.map((x,i) => (x-xm)*(arr[i]*ym)).sum(arr.length - (sample ? 1 : 0));
 }
 
+Array.prototype.devsq = function() {
+    const m = this.avg();
+    return this.map(e => Math.pow(e -m,2)).sum();
+}
+
+Array.prototype.slope = function(y) {
+    var xm = this.avg(), ym = y.avg();
+    return this.map((_x, i) => (_x-xm) * (y[i]-ym)).sum() / this.map((_x,i) => Math.pow(y[i] - ym, 2)).sum();
+}
+
+/**
+ * 
+ * @returns Returns the last element of the array.
+ */
+Array.prototype.last = function() {
+    return this.slice(-1)[0]
+}
+
 Array.prototype.shapirowilk = function() {
 
 	function poly(cc, nord, x) {

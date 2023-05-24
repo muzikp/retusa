@@ -506,6 +506,40 @@ const lib = {
         }
     
     },
+    "ancova": {
+        "title": "EI6f", 
+        "type": "array",
+        "items":{
+            "title": "Items", 
+            "type": "object",
+            "properties": {
+                "source": {
+                    "title": "3gl5", 
+                    "type": "any",
+                    "pattern": "^.*$"
+                },
+                "SS": {
+                    "title": "CIjd", 
+                    "type": "number",
+                },
+                df: snippets.df,
+                "MS": {
+                    "title": "xtws", 
+                    "type": "number"
+                },
+                "P2": {
+                    "title": "HksP", 
+                    "type": "percent",
+                },
+                "F": {
+                    "title": "Jdfb", 
+                    "type": "number"
+                },                
+                "p": snippets.sig
+            }
+        }
+    
+    },
     "ttestind": {
         "title": "YqRh", 
         "type": "object",

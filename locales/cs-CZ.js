@@ -326,5 +326,10 @@ module.exports = {
 	"0tRn": "Jednofaktorová ANOVA s opakovaným měřením",
 	"V0CE": "Stanoví statistický protokol pro analýzu rozptylu jednoduchého třídění s replikacemi (opakovanými měřeními). ANOVA s opakovanými měřeními se používá k určení, zda existuje nebo neexistuje statisticky významný rozdíl mezi průměry tří nebo více skupin, ve kterých se v každé skupině objevují stejné subjekty.",
 	"K3ls": "meziskupinový efekt",
-	"wGQw": "efekt subjektů"
+	"wGQw": "efekt subjektů",
+	"EI6f": "Analýza kovariance",
+	"cwa9": "Stanoví statistický protokol analýzy kovariance (ANCOVA). Analýza kovariance (ANCOVA) je obecný lineární model, který kombinuje ANOVA a regresi. ANCOVA hodnotí, zda jsou průměry závislé proměnné (DV) stejné napříč úrovněmi kategorické nezávislé proměnné (IV), často nazývané léčba, přičemž statisticky kontroluje účinky dalších spojitých proměnných, které nejsou primárně zajímavé, známé jako kovariáty ( CV) nebo rušivé proměnné. Často se používá při vyhodnocení experimentů typu pre-test/post-test.",
+	"dZ4S": "faktor",
+	"lYdI": "závislá (vysvětlovaná) proměnná",
+	"EBON": "kovarianta"
 }

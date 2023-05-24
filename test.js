@@ -2,6 +2,14 @@ var _ = require("./index");
 var st = require("./stress-test");
 
 require("./docs")({offset: 1, format: "markdown"});
+var M = new _.Matrix(
+    new _.StringVector("A","A","A","A","A","B","B","B","B","B","C","C","C","C","C").name("study technique"),
+    new _.NumericVector(67,88,75,77,85,92,69,77,74,88,96,91,88,82,80).name("Current grade"),
+    new _.NumericVector(77,89,72,74,69,78,88,93,94,90,85,81,83,88,79).name("Exam score")
+)
+var ANCOVA = M.analyze("ancova").run(0,2,1);
+console.log(ANCOVA.result);
+debugger;
 return;
 
 var M = new _.Matrix(

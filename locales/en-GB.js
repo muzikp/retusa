@@ -326,5 +326,10 @@ module.exports = {
 	"0tRn": "One-way ANOVA with repeated measures",
 	"V0CE": "Returns a statistical log for one-way analysis of variance with replications (or repeated measures). A repeated measures ANOVA is used to determine whether or not there is a statistically significant difference between the means of three or more groups in which the same subjects show up in each group.",
 	"K3ls": "between groups",
-	"wGQw": "subject"
+	"wGQw": "subject",
+	"EI6f": "Analysis of covariance",
+	"cwa9": "Returns a statistical log for analysis of covariance. Analysis of covariance (ANCOVA) is a general linear model which blends ANOVA and regression. ANCOVA evaluates whether the means of a dependent variable (DV) are equal across levels of a categorical independent variable (IV) often called a treatment, while statistically controlling for the effects of other continuous variables that are not of primary interest, known as covariates (CV) or nuisance variables. It is often used in the evaluation of pre-test/post-test experiments.",
+	"dZ4S": "factor",
+	"lYdI": "dependent variable",
+	"EBON": "covariant"
 }

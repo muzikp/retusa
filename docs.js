@@ -576,6 +576,19 @@ const examples = {
             }
         }
     ],
+    ancova: [
+        {
+            name: "example1",
+            code: function() {
+                var M = new Matrix(
+                    new StringVector("A","A","A","A","A","B","B","B","B","B","C","C","C","C","C").name("study technique"),
+                    new NumericVector(67,88,75,77,85,92,69,77,74,88,96,91,88,82,80).name("Current grade"),
+                    new NumericVector(77,89,72,74,69,78,88,93,94,90,85,81,83,88,79).name("Exam score")
+                )
+                var ANCOVA = M.analyze("ancova").run(0,2,1);
+            }
+        }
+    ],
     ttestind: [
         {
             name: "example1",
