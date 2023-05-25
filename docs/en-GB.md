@@ -1575,7 +1575,7 @@ style t stroke:#4967A4;
 ttestpair --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
-ttestpair --> p[<b>p</b><br>p-value <br><i>number</i>]
+ttestpair --> p[<b>p</b><br>two-tail p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1616,7 +1616,7 @@ style W stroke:#4967A4;
 wcxind --> Z[<b>Z</b><br>Z test <br><i>number</i>]
 style Z fill:#FFFFFF;
 style Z stroke:#4967A4;
-wcxind --> p[<b>p</b><br>p-value <br><i>number</i>]
+wcxind --> p[<b>p</b><br>two-tail p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1740,12 +1740,12 @@ style kwanova stroke:#C36422;
 kwanova --> H[<b>H</b><br>H test value <br><i>number</i>]
 style H fill:#FFFFFF;
 style H stroke:#4967A4;
-kwanova --> p[<b>p</b><br>p-value <br><i>number</i>]
-style p fill:#FFFFFF;
-style p stroke:#75716F;
 kwanova --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
+kwanova --> p[<b>p</b><br>p-value <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 
 ```
 
@@ -1786,7 +1786,7 @@ style wcxpair stroke:#C36422;
 wcxpair --> Z[<b>Z</b><br>Z test <br><i>number</i>]
 style Z fill:#FFFFFF;
 style Z stroke:#4967A4;
-wcxpair --> p[<b>p</b><br>p-value <br><i>number</i>]
+wcxpair --> p[<b>p</b><br>two-tail p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1832,7 +1832,7 @@ style Q stroke:#4967A4;
 friedman --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
-friedman --> p[<b>p</b><br>p-value <br><i>number</i>]
+friedman --> p[<b>p</b><br>two-tail p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 

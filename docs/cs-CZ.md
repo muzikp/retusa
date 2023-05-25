@@ -1574,7 +1574,7 @@ style t stroke:#4967A4;
 ttestpair --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
-ttestpair --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
+ttestpair --> p[<b>p</b><br>p-hodnota oboustranná <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1615,7 +1615,7 @@ style W stroke:#4967A4;
 wcxind --> Z[<b>Z</b><br>Z test <br><i>číslo</i>]
 style Z fill:#FFFFFF;
 style Z stroke:#4967A4;
-wcxind --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
+wcxind --> p[<b>p</b><br>p-hodnota oboustranná <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1739,12 +1739,12 @@ style kwanova stroke:#C36422;
 kwanova --> H[<b>H</b><br>hodnota H testu <br><i>číslo</i>]
 style H fill:#FFFFFF;
 style H stroke:#4967A4;
-kwanova --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
-style p fill:#FFFFFF;
-style p stroke:#75716F;
 kwanova --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
+kwanova --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 
 ```
 
@@ -1785,7 +1785,7 @@ style wcxpair stroke:#C36422;
 wcxpair --> Z[<b>Z</b><br>Z test <br><i>číslo</i>]
 style Z fill:#FFFFFF;
 style Z stroke:#4967A4;
-wcxpair --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
+wcxpair --> p[<b>p</b><br>p-hodnota oboustranná <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1831,7 +1831,7 @@ style Q stroke:#4967A4;
 friedman --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
-friedman --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
+friedman --> p[<b>p</b><br>p-hodnota oboustranná <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 

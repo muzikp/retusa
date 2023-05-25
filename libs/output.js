@@ -569,7 +569,7 @@ const lib = {
         "properties": {
             "t": snippets.ttest,
             "df": snippets.df,
-            "p": snippets.sig            
+            "p": snippets.sig2t
         }
     },
     "wcxpair": {
@@ -580,7 +580,7 @@ const lib = {
                 "title": "9KFq", 
                 "type": "number"
             },
-            "p": snippets.sig,
+            "p": snippets.sig2t,
         }
     },
     "wcxind": {
@@ -595,7 +595,7 @@ const lib = {
                 "title": "9KFq", 
                 "type": "number"
             },
-            "p": snippets.sig,
+            "p": snippets.sig2t,
         }
     },
     "friedman": {
@@ -607,7 +607,7 @@ const lib = {
                 "type": "number"
             },
             df: snippets.df,
-            "p": snippets.sig,
+            "p": snippets.sig2t,
         }
     },
     "contingency": {
@@ -637,9 +637,9 @@ const lib = {
             "H": {
                 title: "rrWq",
                 type: "number"
-            },
-            "p": snippets.sig,
-            "df": snippets.df
+            },            
+            "df": snippets.df,
+            "p": snippets.sig
         }
     },
     "mtplinreg": {
