@@ -318,7 +318,7 @@ module.exports = {
 	"O6Av": "faktor B",
 	"XeLl": "závislá (vysvětlovaná) proměnná",
 	"whdI": "interakce mezi faktory",
-	"aKUo": "celkový rozptyl",
+	"aKUo": "celkem",
 	"IGv4": "reziduální rozptyl",
 	"3gl5": "zdroj variability",
 	"CIjd": "suma čtverců",
@@ -331,5 +331,8 @@ module.exports = {
 	"cwa9": "Stanoví statistický protokol analýzy kovariance (ANCOVA). Analýza kovariance (ANCOVA) je obecný lineární model, který kombinuje ANOVA a regresi. ANCOVA hodnotí, zda jsou průměry závislé proměnné (DV) stejné napříč úrovněmi kategorické nezávislé proměnné (IV), často nazývané léčba, přičemž statisticky kontroluje účinky dalších spojitých proměnných, které nejsou primárně zajímavé, známé jako kovariáty ( CV) nebo rušivé proměnné. Často se používá při vyhodnocení experimentů typu pre-test/post-test.",
 	"dZ4S": "faktor",
 	"lYdI": "závislá (vysvětlovaná) proměnná",
-	"EBON": "kovarianta"
+	"EBON": "kovariáta",
+	"2mXr": "Welchův T-test",
+	"qojR": "Stanoví statistický protokol pro Welchův T-test pro dva nezávislé výběry. Někteří lidé tvrdí, že Welchův t-test by měl být výchozí volbou pro porovnávání průměrů dvou nezávislých skupin, protože funguje lépe než Studentův t-test, když jsou velikosti vzorků a rozptyly mezi skupinami nestejné, a dává stejné výsledky, když jsou velikosti vzorku jsou rozptyly stejné.",
+	"ZZT8": "p-hodnota (oboustranná)"
 }

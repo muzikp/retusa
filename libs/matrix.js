@@ -289,6 +289,18 @@ const preprocessors = {
             _.sample.net = M.maxRows();
         }
     },
+    ancova: {
+        title: "Cumi",
+        fn: function(_){
+            var M = new Matrix(_.args.f, _.args.y, _.args.c);
+            _.sample.raw = M.maxRows();
+            M = M.removeEmpty();
+            _.args.f = M[0];
+            _.args.y = M[1];
+            _.args.c = M[2];
+            _.sample.net = M.maxRows();
+        }
+    },
     /**
      * Removes empty cells from each vectors without removing rows from other vectors in the set.
      */
@@ -684,6 +696,15 @@ const matrixMethods = {
             df: df
         }
     },
+    welchttest: function() {
+        var x = arguments[0][0];
+        var y = arguments[0][1];
+        var xm = x.avg(), ym = y.avg(), xn = x.length, yn = y.length, s1 = Math.pow(x.stdev(true),2), s2 = Math.pow(y.stdev(true),2);
+        var t = (xm-ym)/Math.sqrt(s1/xn+s2/yn);
+        var df = Math.pow(s1/xn+s2/yn,2)/(Math.pow(s1,2)/((Math.pow(xn,2)*(xn-1))) + Math.pow(s2,2)/((Math.pow(yn,2)*(yn-1))));
+        var p = dist.tdist(t,df,true)*2;
+        return {t: t, df: df, p:p};
+    },
     ttest_paired: function(){
         var x = arguments[0];
         var y = arguments[1];
@@ -867,7 +888,7 @@ const matrixMethods = {
             p: dist.fdistrt((bw * SSxSlopes)/ancova_within.MS,1,ancova_within.df)
         }
         var ancova_y = {
-            source: T[1].name() || $("lYdI"),
+            source: T[0].name() || $("dZ4S"),
             SS: anovay.last().SS - Math.pow(bt,2)*anovac.last().SS - ancova_within.SS,
             df: anovay[0].df,
             MS: (anovay.last().SS - Math.pow(bt,2)*anovac.last().SS - ancova_within.SS)/anovay[0].df
@@ -1400,6 +1421,35 @@ const MatrixMethodsModels = [
             }           
         }
     },
+    {   name: "welchttest",
+        fn: matrixMethods.welchttest,
+        wiki: {
+            title: "2mXr",
+            description: "qojR",
+            preeprocesor: preprocessors.groupXYRemoveEmpty
+        },
+        output: "welchttest",
+        prepare: preprocessors.groupXYRemoveEmpty.fn,
+        args: {
+            "vectors": {
+                model: "numericVectors",
+                config: {
+                    name: "vectors",
+                    title: "Rd9K",
+                    required: true,
+                }
+            },        
+            "factor": {
+                model: "anyVector",
+                config: {
+                    name: "factor",
+                    title: "dTDt",
+                    required: false
+
+                }
+            }
+        }
+    },
     {   name: "anovaow",
         fn: matrixMethods.anova_oneway,
         wiki: {
@@ -1490,8 +1540,8 @@ const MatrixMethodsModels = [
             description: "cwa9",
             preprocessor: preprocessors.removeEmptyAcrossRows.title
         },   
-        output: "anovatw",     
-        prepare: preprocessors.twoWayAnova.fn,
+        output: "ancova",     
+        prepare: preprocessors.ancova.fn,
         args: {       
             "f": {
                 model: "anyVector",

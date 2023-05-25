@@ -823,7 +823,9 @@ A number of methods have a specified so-called preprocessor, which is a function
 | anovaow | [ANOVA (one-way)](#anovaow) |
 | anovaowrm | [One-way ANOVA with repeated measures](#anovaowrm) |
 | anovatw | [Two-way ANOVA](#anovatw) |
+| ancova | [Analysis of covariance](#ancova) |
 | ttestind | [T-test (independent)](#ttestind) |
+| welchttest | [Welch's T-test](#welchttest) |
 | ttestpair | [T-test (paired)](#ttestpair) |
 | wcxind | [Wilcoxon test](#wcxind) |
 | mwu | [Mann-Whitney test](#mwu) |
@@ -1361,6 +1363,64 @@ style p stroke:#75716F;
 
 ```
 
+## [Analysis of covariance](#ancova)
+
+Returns a statistical log for analysis of covariance. Analysis of covariance (ANCOVA) is a general linear model which blends ANOVA and regression. ANCOVA evaluates whether the means of a dependent variable (DV) are equal across levels of a categorical independent variable (IV) often called a treatment, while statistically controlling for the effects of other continuous variables that are not of primary interest, known as covariates (CV) or nuisance variables. It is often used in the evaluation of pre-test/post-test experiments.
+
+### Arguments
+
+| id |description |value type |validator |required |default value |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>f2</b> | factor | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+| <b>v</b> | dependent variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+| <b>dependent</b> | covariant | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+
+### Pre-calculation data modification
+
+Removes from the input vectors (matrix) all rows in which there is at least one empty value.
+
+### Syntax examples
+
+```js
+var M = new Matrix(
+new StringVector("A","A","A","A","A","B","B","B","B","B","C","C","C","C","C").name("study technique"),
+new NumericVector(67,88,75,77,85,92,69,77,74,88,96,91,88,82,80).name("Current grade"),
+new NumericVector(77,89,72,74,69,78,88,93,94,90,85,81,83,88,79).name("Exam score")
+)
+var ANCOVA = M.analyze("ancova").run(0,2,1);
+```
+
+### Output schema
+
+```mermaid
+graph TD
+ancova{<i>array</i>}
+style ancova fill:#85B3BE;
+style ancova stroke:#2E7C8F;
+ancova --> source[<b>source</b><br>variability source <br><i>any type</i>]
+style source fill:#FFFFFF;
+style source stroke:#75716F;
+ancova --> SS[<b>SS</b><br>sum of squares <br><i>number</i>]
+style SS fill:#FFFFFF;
+style SS stroke:#4967A4;
+ancova --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
+ancova --> MS[<b>MS</b><br>mean square <br><i>number</i>]
+style MS fill:#FFFFFF;
+style MS stroke:#4967A4;
+ancova --> P2[<b>P2</b><br>dependence coefficient <br><i>number</i>]
+style P2 fill:#FFFFFF;
+style P2 stroke:#75716F;
+ancova --> F[<b>F</b><br>F test <br><i>number</i>]
+style F fill:#FFFFFF;
+style F stroke:#4967A4;
+ancova --> p[<b>p</b><br>p-value <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
+
+```
+
 ## [T-test (independent)](#ttestind)
 
 Returns the statistical log of the Student's t-test for two independent samples that are defined by an eigenvariable (that is, two numeric vectors). Arguments are either two numeric vectors, or one numeric and only a factor vector (usually text, but can also be numeric or binary). If a vector that has more than two unique values is used as a factor, only the first two unique values found are considered for the test (the others are ignored) - in this case, the information about the size of the pure sample is irrelevant, however, the level of significance to which the sample size enters, it is already based on pure cases.
@@ -1370,7 +1430,7 @@ Returns the statistical log of the Student's t-test for two independent samples 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | input vector/s | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
-| <b>f2</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+| <b>factor</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 ### Syntax examples
 
 #### Arguments as object properties
@@ -1427,12 +1487,51 @@ style ttestind stroke:#C36422;
 ttestind --> t[<b>t</b><br>T-value <br><i>number</i>]
 style t fill:#FFFFFF;
 style t stroke:#4967A4;
-ttestind --> p[<b>p</b><br>p-value <br><i>number</i>]
-style p fill:#FFFFFF;
-style p stroke:#75716F;
 ttestind --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
+ttestind --> p[<b>p</b><br>two-tail p-value <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
+
+```
+
+## [Welch's T-test](#welchttest)
+
+Returns a statistial log for Welch's independent sample T-test. Some people argue that the Welch’s t-test should be the default choice for comparing the means of two independent groups since it performs better than the Student’s t-test when sample sizes and variances are unequal between groups, and it gives identical results when sample sizes are variances are equal.
+
+### Arguments
+
+| id |description |value type |validator |required |default value |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>vectors</b> | input vector/s | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
+| <b>factor</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> |  |  |
+### Syntax examples
+
+```js
+var T = new Matrix(
+new NumericVector(14, 15, 15, 15, 16, 18, 22, 23, 24, 25, 25).name("alpha"),
+new NumericVector(10, 12, 14, 15, 18, 22, 24, 27, 31, 33, 34, 34, 34).name("beta")
+);
+var welch = T.analyze("welchttest").run({vectors: [0,1]});
+```
+
+### Output schema
+
+```mermaid
+graph TD
+welchttest((<i>object</i>))
+style welchttest fill:#E1C6B3;
+style welchttest stroke:#C36422;
+welchttest --> t[<b>t</b><br>T-value <br><i>number</i>]
+style t fill:#FFFFFF;
+style t stroke:#4967A4;
+welchttest --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
+welchttest --> p[<b>p</b><br>two-tail p-value <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 
 ```
 
@@ -1444,7 +1543,7 @@ Returns the statistical log of a paired t-test for two dependent samples. Empty 
 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
-| <b>v</b> | first variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+| <b>covariant</b> | first variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 | <b>x</b> | second variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
 
 ### Pre-calculation data modification
@@ -1473,12 +1572,12 @@ style ttestpair stroke:#C36422;
 ttestpair --> t[<b>t</b><br>T-value <br><i>number</i>]
 style t fill:#FFFFFF;
 style t stroke:#4967A4;
-ttestpair --> p[<b>p</b><br>p-value <br><i>number</i>]
-style p fill:#FFFFFF;
-style p stroke:#75716F;
 ttestpair --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
+ttestpair --> p[<b>p</b><br>p-value <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 
 ```
 

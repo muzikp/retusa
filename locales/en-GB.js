@@ -318,7 +318,7 @@ module.exports = {
 	"O6Av": "factor B",
 	"XeLl": "dependent variable",
 	"whdI": "interactions between factors",
-	"aKUo": "total variance",
+	"aKUo": "total",
 	"IGv4": "residual variance",
 	"3gl5": "variability source",
 	"CIjd": "sum of squares",
@@ -331,5 +331,8 @@ module.exports = {
 	"cwa9": "Returns a statistical log for analysis of covariance. Analysis of covariance (ANCOVA) is a general linear model which blends ANOVA and regression. ANCOVA evaluates whether the means of a dependent variable (DV) are equal across levels of a categorical independent variable (IV) often called a treatment, while statistically controlling for the effects of other continuous variables that are not of primary interest, known as covariates (CV) or nuisance variables. It is often used in the evaluation of pre-test/post-test experiments.",
 	"dZ4S": "factor",
 	"lYdI": "dependent variable",
-	"EBON": "covariant"
+	"EBON": "covariant",
+	"2mXr": "Welch's T-test",
+	"qojR": "Returns a statistial log for Welch's independent sample T-test. Some people argue that the Welch’s t-test should be the default choice for comparing the means of two independent groups since it performs better than the Student’s t-test when sample sizes and variances are unequal between groups, and it gives identical results when sample sizes are variances are equal.",
+	"ZZT8": "two-tail p-value"
 }

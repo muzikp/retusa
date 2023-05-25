@@ -44,7 +44,9 @@ var matrixMethods = [
     "anovaow",
     "anovaowrm",
     "anovatw",
+    "ancova",
     "ttestind",
+    "welchttest",
     "ttestpair",
     "wcxind",
     "mwu",
@@ -632,6 +634,18 @@ const examples = {
                 var ttestind_c = M.analyze("ttestind").run(0, 1);
                 var ttestind_d = M.ttestind(0, 1);
                 var ttestind_e = M.analyze("ttestind").run([0], 1);
+            }
+        }
+    ],
+    welchttest: [
+        {
+            name: "example1",
+            code: function() {
+                var T = new Matrix(
+                    new NumericVector(14, 15, 15, 15, 16, 18, 22, 23, 24, 25, 25).name("alpha"),
+                    new NumericVector(10, 12, 14, 15, 18, 22, 24, 27, 31, 33, 34, 34, 34).name("beta")
+                );
+                var welch = T.analyze("welchttest").run({vectors: [0,1]});
             }
         }
     ],

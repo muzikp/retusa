@@ -79,6 +79,11 @@ function createArrayItems(items) {
 }
 
 const snippets = {
+    sig2t: {
+        "title": "ZZT8", 
+        "type": "zeroToOneInc",
+        "format": "sig"
+    },
     sig: {
         "title": "sDgR", 
         "type": "zeroToOneInc",
@@ -545,8 +550,17 @@ const lib = {
         "type": "object",
         "properties": {
             "t": snippets.ttest,
-            "p": snippets.sig,
-            "df": snippets.df
+            "df": snippets.df,
+            "p": snippets.sig2t            
+        }
+    },
+    "welchttest": {
+        "title": "2mXr", 
+        "type": "object",
+        "properties": {
+            "t": snippets.ttest,
+            "df": snippets.df,
+            "p": snippets.sig2t           
         }
     },
     "ttestpair": {
@@ -554,8 +568,8 @@ const lib = {
         "type": "object",
         "properties": {
             "t": snippets.ttest,
-            "p": snippets.sig,
-            "df": snippets.df
+            "df": snippets.df,
+            "p": snippets.sig            
         }
     },
     "wcxpair": {

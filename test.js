@@ -2,6 +2,17 @@ var _ = require("./index");
 var st = require("./stress-test");
 
 require("./docs")({offset: 1, format: "markdown"});
+
+var T = new _.Matrix(
+    new _.NumericVector(14, 15, 15, 15, 16, 18, 22, 23, 24, 25, 25).name("alpha"),
+    new _.NumericVector(10, 12, 14, 15, 18, 22, 24, 27, 31, 33, 34, 34, 34).name("beta")
+);
+var welch = T.analyze("welchttest").run({vectors: [0,1]});
+console.log(T.analyze("ttestind").run({vectors: [0,1]}));
+console.log(welch.result);
+debugger;
+return;
+
 var M = new _.Matrix(
     new _.StringVector("A","A","A","A","A","B","B","B","B","B","C","C","C","C","C").name("study technique"),
     new _.NumericVector(67,88,75,77,85,92,69,77,74,88,96,91,88,82,80).name("Current grade"),

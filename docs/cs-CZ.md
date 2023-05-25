@@ -823,7 +823,9 @@ Každá metoda má specifikované argumenty a jejich validátory. Validátory me
 | anovaow | [Jednofaktorová ANOVA](#anovaow) |
 | anovaowrm | [Jednofaktorová ANOVA s opakovaným měřením](#anovaowrm) |
 | anovatw | [Analýza rozptylu dvojného třídění](#anovatw) |
+| ancova | [Analýza kovariance](#ancova) |
 | ttestind | [Dvouvýběrový t-test](#ttestind) |
+| welchttest | [Welchův T-test](#welchttest) |
 | ttestpair | [T-test (párový)](#ttestpair) |
 | wcxind | [Wilcoxonův test](#wcxind) |
 | mwu | [Mann-Whitneyho test](#mwu) |
@@ -1360,6 +1362,64 @@ style p stroke:#75716F;
 
 ```
 
+## [Analýza kovariance](#ancova)
+
+Stanoví statistický protokol analýzy kovariance (ANCOVA). Analýza kovariance (ANCOVA) je obecný lineární model, který kombinuje ANOVA a regresi. ANCOVA hodnotí, zda jsou průměry závislé proměnné (DV) stejné napříč úrovněmi kategorické nezávislé proměnné (IV), často nazývané léčba, přičemž statisticky kontroluje účinky dalších spojitých proměnných, které nejsou primárně zajímavé, známé jako kovariáty ( CV) nebo rušivé proměnné. Často se používá při vyhodnocení experimentů typu pre-test/post-test.
+
+### Argumenty
+
+| id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>f2</b> | faktor | jakýkoliv vektor | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+| <b>v</b> | závislá (vysvětlovaná) proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+| <b>dependent</b> | kovariáta | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+
+### Před-výpočetní úprava dat
+
+Vstupní argumenty převede na vektory, ze kterých vytvoří matici. Z této matice následně odebere všechny řádky, které alespoň v jedné buňce obsahují prázdnou hodnotu. Vektory z této dceřiné matice poté přepíše původní argumenty, tzn. že vektory vstupují do metody již očištěné.
+
+### Příklady syntaxe
+
+```js
+var M = new Matrix(
+new StringVector("A","A","A","A","A","B","B","B","B","B","C","C","C","C","C").name("study technique"),
+new NumericVector(67,88,75,77,85,92,69,77,74,88,96,91,88,82,80).name("Current grade"),
+new NumericVector(77,89,72,74,69,78,88,93,94,90,85,81,83,88,79).name("Exam score")
+)
+var ANCOVA = M.analyze("ancova").run(0,2,1);
+```
+
+### Schéma výsledku
+
+```mermaid
+graph TD
+ancova{<i>řada</i>}
+style ancova fill:#85B3BE;
+style ancova stroke:#2E7C8F;
+ancova --> source[<b>source</b><br>zdroj variability <br><i>libovolný typ hodnoty</i>]
+style source fill:#FFFFFF;
+style source stroke:#75716F;
+ancova --> SS[<b>SS</b><br>suma čtverců <br><i>číslo</i>]
+style SS fill:#FFFFFF;
+style SS stroke:#4967A4;
+ancova --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
+ancova --> MS[<b>MS</b><br>střední čtverec <br><i>číslo</i>]
+style MS fill:#FFFFFF;
+style MS stroke:#4967A4;
+ancova --> P2[<b>P2</b><br>Poměr determinace P2 ANOVA <br><i>číslo</i>]
+style P2 fill:#FFFFFF;
+style P2 stroke:#75716F;
+ancova --> F[<b>F</b><br>F test <br><i>číslo</i>]
+style F fill:#FFFFFF;
+style F stroke:#4967A4;
+ancova --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
+
+```
+
 ## [Dvouvýběrový t-test](#ttestind)
 
 Stanoví statistický protokol Studentova t-testu pro dva nezávislé výběry, které jsou definovány vlastní proměnnou (tedy dvěma numerickými vektory). Argumenty tvoří buď dva numerické vektory, nebo jeden numerický a jen faktorový vektor (obvykle text, ale může být i numerický či binární). Pokud je použit jako faktor vektor, který má více než dvě unikátní hodnoty, jsou pro test uvažovány pouze první dvě unikátní nalezené hodnoty (ostatní se ignorují) - v takovém případě je informace o velikosti čistého vzorku nepodstatná, nicméně hladina významnosti, do které velikost vzorku vstupuje, je již založena na čistých případech.
@@ -1369,7 +1429,7 @@ Stanoví statistický protokol Studentova t-testu pro dva nezávislé výběry, 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | vstupní vektor/y | numerický vektor nebo matice numerických vektorů | <sub>Ověří, zdali je argument buďto numerický vektor, jeho identifikátor nebo řada převoditelná na numerický vektor, anebo zdali se jedná o řadu numerických vektorů (resp. hodnot, které jsou buďto vektory, identifikátry nebo hodnoty převoditelné na numerické vektory - v libovolné kombinace). Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
-| <b>f2</b> | shlukovací proměnná | jakýkoliv vektor | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+| <b>factor</b> | shlukovací proměnná | jakýkoliv vektor | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 ### Příklady syntaxe
 
 #### Argumenty jako vlastnosti objektu
@@ -1426,12 +1486,51 @@ style ttestind stroke:#C36422;
 ttestind --> t[<b>t</b><br>hodnota testového kritéria daného t-testu <br><i>číslo</i>]
 style t fill:#FFFFFF;
 style t stroke:#4967A4;
-ttestind --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
-style p fill:#FFFFFF;
-style p stroke:#75716F;
 ttestind --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
+ttestind --> p[<b>p</b><br>p-hodnota oboustranná <br><i>číslo</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
+
+```
+
+## [Welchův T-test](#welchttest)
+
+Stanoví statistický protokol pro Welchův T-test pro dva nezávislé výběry. Někteří lidé tvrdí, že Welchův t-test by měl být výchozí volbou pro porovnávání průměrů dvou nezávislých skupin, protože funguje lépe než Studentův t-test, když jsou velikosti vzorků a rozptyly mezi skupinami nestejné, a dává stejné výsledky, když jsou velikosti vzorku jsou rozptyly stejné.
+
+### Argumenty
+
+| id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>vectors</b> | vstupní vektor/y | numerický vektor nebo matice numerických vektorů | <sub>Ověří, zdali je argument buďto numerický vektor, jeho identifikátor nebo řada převoditelná na numerický vektor, anebo zdali se jedná o řadu numerických vektorů (resp. hodnot, které jsou buďto vektory, identifikátry nebo hodnoty převoditelné na numerické vektory - v libovolné kombinace). Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+| <b>factor</b> | shlukovací proměnná | jakýkoliv vektor | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> |  |  |
+### Příklady syntaxe
+
+```js
+var T = new Matrix(
+new NumericVector(14, 15, 15, 15, 16, 18, 22, 23, 24, 25, 25).name("alpha"),
+new NumericVector(10, 12, 14, 15, 18, 22, 24, 27, 31, 33, 34, 34, 34).name("beta")
+);
+var welch = T.analyze("welchttest").run({vectors: [0,1]});
+```
+
+### Schéma výsledku
+
+```mermaid
+graph TD
+welchttest((<i>objekt</i>))
+style welchttest fill:#E1C6B3;
+style welchttest stroke:#C36422;
+welchttest --> t[<b>t</b><br>hodnota testového kritéria daného t-testu <br><i>číslo</i>]
+style t fill:#FFFFFF;
+style t stroke:#4967A4;
+welchttest --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
+welchttest --> p[<b>p</b><br>p-hodnota oboustranná <br><i>číslo</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 
 ```
 
@@ -1443,7 +1542,7 @@ Stanoví statistický protokol párového t-testu pro dva závislé výběry. Te
 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
-| <b>v</b> | první proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+| <b>covariant</b> | první proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 | <b>x</b> | druhá proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
 
 ### Před-výpočetní úprava dat
@@ -1472,12 +1571,12 @@ style ttestpair stroke:#C36422;
 ttestpair --> t[<b>t</b><br>hodnota testového kritéria daného t-testu <br><i>číslo</i>]
 style t fill:#FFFFFF;
 style t stroke:#4967A4;
-ttestpair --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
-style p fill:#FFFFFF;
-style p stroke:#75716F;
 ttestpair --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
+ttestpair --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 
 ```
 
