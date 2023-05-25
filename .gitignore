@@ -104,6 +104,7 @@ typings/
 
 .vscode/
 webpack.config.js
-/test.js
 /webpack.config.js
 /stress-test.js
+/test.js
+test.js
