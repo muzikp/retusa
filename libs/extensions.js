@@ -119,7 +119,7 @@ Array.prototype.mode = function() {
     return this.frequency(1)[0].value;
 }
 
-Array.prototype.percentile = function(q){
+Array.prototype.quantile = function(q){
     let _ = this.asc();
     var pos = ((_.length) - 1) * q;
     var base = Math.floor(pos);
@@ -128,7 +128,7 @@ Array.prototype.percentile = function(q){
 }
 
 Array.prototype.median = function() {
-    return this.percentile(0.5);
+    return this.quantile(0.5);
 }
 
 Array.prototype.geomean = function(){
@@ -392,6 +392,20 @@ function sortByCol(a, b) {
     return (a === b) ? 0 : (a < b) ? -1 : 1
 }
 
+Array.prototype.qqplot = function() {
+    const arr = this.asc();
+    var n = this.length;
+    var stdev = this.stdev(true);
+    var m = this.avg();
+    return arr.toRankAvg(1,0.5).map((e,i) => dist.normsinv(e/n,1)).map((e,i) => ({x: e, y: (arr[i]-m)/stdev}));
+}
+
+Array.prototype.ppplot = function() {
+    var n = this.length;
+    return this.map((v,i) => dist.normsinv((this.indexOf(v) + 0.5)/n,1)).map((e,i) => ({x: this[i], y: e}));
+    
+}
+
 Array.toRanks = function(...arrs) {
     let k = arrs.length;    
     let ranks = [];
@@ -533,6 +547,10 @@ Function.prototype.stringify = function(indent = "\t") {
     var formatted = "";
     raw.split(/\n/g).forEach(l => formatted += l.trim() + "\n");
     return formatted.trim();
+}
+
+Date.isDate = function(date) {
+    return (date instanceof Date && !isNaN(date.valueOf()))
 }
 
 module.exports = {Array, Math, String, Function};

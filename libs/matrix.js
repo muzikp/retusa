@@ -6,7 +6,6 @@ let {Argument} = (require("./argument"));
 let {Output} = require("./output");
 const {Array, Math, String, Function} = require("./extensions");
 const dist = require("./distribution");
-const { normdist } = require("./distribution");
 var matrixName = null
 
 // #region MATRIX
@@ -68,10 +67,10 @@ class Matrix extends Array {
     pivot(target, factor, selectedKeys = []) {
         target = this.item(target);
         factor = this.item(factor);
-        var selection = this.select(target, factor);
-        var pivot = new Matrix();        
+        const selection = this.select(target, factor);
+        const pivot = new Matrix();        
         for(let key of factor.distinct().intersection(selectedKeys)) {
-            pivot.push(new target.constructor(...selection.filter(factor, (v) => v === key)[0]).name(key));
+            pivot.push(new target.constructor(...selection.filter(factor, (v) => v === key)[0]).name(key).label(factor.format(key)).formatter(target.formatter()));
         }
         return pivot;
     }
@@ -81,7 +80,7 @@ class Matrix extends Array {
     /**
      * Returns a vector according to the specified identifier. The identifier argument is extremely flexible, it can be a number (the order of the vector), text (the name of the vector), an instance of the vector, or a filter function with which the vector is searched in the matrix.
      * @param {number | string | Vektor | function} identifier 
-     * @returns {Vektor} Returns a Vector instance or (if not found) null.
+     * @returns {Vector} Returns a Vector instance or (if not found) null.
      */
     item(identifier) {
         if(!identifier && identifier !== 0) return null;
@@ -513,6 +512,27 @@ const matrixMethods = {
         return c;
 
     },
+    correl: function() {
+        var x = arguments[0], y = arguments[1], methods = arguments[2];
+        var result = [];
+        if(methods.indexOf(1) > -1) {
+            const r = matrixMethods.correlPearson(x,y);
+            result.push({method: $("pTvR"), r: r.r, p: r.p});
+        }
+        if(methods.indexOf(2) > -1) {
+            const r = matrixMethods.correlSpearman(x,y);
+            result.push({method: $("eJTT"), r: r.r, p: r.p});
+        }
+        if(methods.indexOf(3) > -1) {
+            const r = matrixMethods.correlKendall(x,y);
+            result.push({method: $("mgBC"), r: r.tau, p: r.p});
+        }
+        if(methods.indexOf(4) > -1) {
+            const r = matrixMethods.correlGamma(x,y);
+            result.push({method: $("R5AC"), r: r.r, p: r.p});
+        }
+        return result;
+    },
     correlPearson: function() {
        var x = arguments[0];
        var y = arguments[1];
@@ -796,7 +816,7 @@ const matrixMethods = {
             P2: within_ss/total_ss
         };
         var f1 ={
-            source: T[0].name() || $("WGqY"),
+            source: T[0].label() || $("WGqY"),
             SS: f1_ss,
             df: f1_keys.length -1,
             MS: f1_ss/(f1_keys.length -1),
@@ -805,7 +825,7 @@ const matrixMethods = {
         }
         f1.p = dist.fdistrt(f1.F, f1.df, within.df);
         var f2 ={
-            source: T[1].name() || $("WGqY"),
+            source: T[1].label() || $("WGqY"),
             SS: f2_ss,
             df: f2_keys.length -1,
             MS: f2_ss/(f2_keys.length -1),
@@ -880,7 +900,7 @@ const matrixMethods = {
             MS: (anovay[1].SS - Math.pow(bw,2)*anovac[1].SS)/(anovay[1].df -1)
         }
         var ancova_c = {
-            source: T[2].name() || $("EBON"),
+            source: T[2].label() || $("EBON"),
             SS: bw * SSxSlopes,
             df: 1,
             MS: bw * SSxSlopes,
@@ -888,7 +908,7 @@ const matrixMethods = {
             p: dist.fdistrt((bw * SSxSlopes)/ancova_within.MS,1,ancova_within.df)
         }
         var ancova_y = {
-            source: T[0].name() || $("dZ4S"),
+            source: T[0].label() || $("dZ4S"),
             SS: anovay.last().SS - Math.pow(bt,2)*anovac.last().SS - ancova_within.SS,
             df: anovay[0].df,
             MS: (anovay.last().SS - Math.pow(bt,2)*anovac.last().SS - ancova_within.SS)/anovay[0].df
@@ -1156,6 +1176,43 @@ const MatrixMethodsModels = [
                     description: "FfpU",
                     required: false,
                     default: true
+                }
+            }
+        }
+    },
+    {   name: "correl",
+        fn: matrixMethods.correl,
+        wiki: {
+            title: "leYr",
+            description: "gJwy",
+            preprocessor: preprocessors.removeEmptyXY.title
+        },
+        output: "correl",
+        prepare: preprocessors.removeEmptyXY.fn,
+        args: {
+            x: {
+                model: "numericVector",
+                config: {
+                    name: "x",
+                    title: "qFEM",
+                    required: true
+                }
+            },
+            y: {
+                model: "numericVector",
+                config: {
+                    name: "y",
+                    title: "tpUu",
+                    required: true
+                }
+            },
+            methods: {
+                model: "correlMethods",
+                config: {
+                    name: "methods",
+                    title: "ipHs",
+                    required: false,
+                    default: [1,2]
                 }
             }
         }

@@ -2,6 +2,7 @@
 let $ = require("./locale").call;
 const {Array, Math, String, Function} = require("./extensions");
 const rndWordList= ["silver","twig","train","reading","clouds","bean","frogs","power","canvas","stop","van","drain","doctor","lamp","mind","existence","seat","sky","cloud","burn","crayon","brush","hat","snails","snail","move","seashore","honey","powder","cork","toothpaste","cub","kitty","skin","self","rice","chin","cushion","death","steel","toes","cabbage","stamp","bone","cemetery","appliance","fairies","unit","committee","fall","debt","cherry","baby","rings","legs","knee","bike","cook","carpenter","expansion","toothbrush","rain","fork","statement","house","things","cars","root","books","marble","swim","babies","jellyfish","question","trains","apparatus","wish","sand","lettuce","sense","balls","baby","ghost","power","sofa","learning","bushes","church","smile","distribution","reason","whip","giants","beginner","crow","invention","letters","horses","game","scissors","bat","cover","journey","whistle","society","competition","flowers","sweater","shoe","punishment","creator","brain","ray","island","mailbox","pump","rub","hands","burn","spoon","beetle","step","plot","activity","airplane","sea","grip","blow","pump","jeans","slave","boys","appliance","ball","trees","cherries","ladybug","appliance","brick","doctor","branch","crib","elbow","root","sheep","toothpaste","behavior","sail","voice","hydrant","sky","hands","veil","crib","tray","wind","beggar","authority","wax","flesh","afterthought","existence","feet","creator","plough","hook","cub","bottle","sidewalk","weather","light","fight","wheel","fog","island","knife","pancake","bikes","farmer","experience","lizards","cracker","scale","rabbits","camera","coach","airplane","wrench","pencil","minute","paper","pancake","push","treatment","shop","lock","string","hand","dinner","goat","wine","expert","creator","woman","trick","pet","news","bells","wire","song","bushes","distribution","tank","pan","feast","quince","nerve","hair","wrench","cats","neck","work","sugar","tramp","ants","house","sidewalk","afterthought","orange","finger","earth","decision","edge","chin","shoe","balloon","desk","chicken","toad","building","yarn","seashore","star","snow","book","song","boys","rainstorm","spring","secretary","cork","coach","range","dinosaurs","produce","bean","downtown","sleet","egg","arm","home","angle","whip","crayon","iron","parcel","river","potato","shop","leaf","territory","ear","behavior","cat","monkey","hair","trains","horses","volcano","waste","dog","juice","peace","end","route","whip","blade","giraffe","grandfather","celery","grandmother","spoon","person","yam","screw","top","watch","steam","impulse","map","history","pot","frog","bells","quilt","argument","apparel","wind","cub","wish","sugar","servant","language","sun","cherries","need","order","flower","seat","wheel","army","screw","icicle","coal","hook","act","action","cause","pet","school","rest","cows","relation","road","talk","burn","brake","crook","sand","journey","crack","spade","song","clouds","quarter","spade","fifth","flower","structure","finger","pain","corn","cakes","jeans","wing","shame","field","comb","pump","box","stone","industry","swim","sticks","whip","burn","stove","trouble","scene","library","crown","fork","birth","cast","amusement","mice","cub","houses","loaf","card","rhythm","downtown","animal","chairs","respect","cactus","opinion","thread","aunt","treatment","shame","tank","spiders","marble","arm","cemetery","locket","fact","division","holiday","current","humor","thunder","crack","receipt","sense","moon","kittens","K","vegetable","smile","cushion","representative","toy","look","crowd","hands","idea","drug","lace","jeans","net","moon","scarecrow","learning","dog","debt","knife","hill","sail","pear","organization","meal","knee","disgust","pet","bag","road","garden","smash","money","wealth","crate","end","insect","muscle","exchange","town","stage","pump","size","cat","tray","fog","wall","stage","beetle","start","self","side","group","porter","theory","bait","afternoon","leg","wing","earth","breakfast","account","snails","back","dime","bee","cast","town","cent","chicken","stem","garden","slave","meeting","umbrella","argument","clouds","partner","ray","stranger","body","trouble","son","produce","scene","mouth","observation","monkey","friction","desk","hose","powder","pull","sisters","cobweb","smell","anger","haircut","wood","lace","garden","slip","liquid","boat","fly","roof","reason","drawer","tank","farmer","sink","loaf","nail","head","payment","friction","cause","point","shock","breakfast","spot","rain","aftermath","discovery","hen","boys","finger","baseball","body","airplane","wax","rain","hand","behavior","cannon","brick","guitar","store","trade","invention","bread","shame","guitar","wood","time","room","base","arithmetic","sand","design","rainstorm","railway","boot","coal","flesh","airport","string","wing","jail","brother","match","quarter","guide","knowledge","lead","love","popcorn","answer","amount","representative","list","smash","sun","weight","disease","gold","flag","porter","reading","way","stretch","lettuce","can","fifth","sweater","chair","face","pain","toothbrush","land","sort","beggar","morning","tramp","steel","sack","boot","wool","meeting","summer","skirt","attraction","chalk","polish","town","meeting","partner","man","cork","lead","girls","request","wind","cracker","poison","north","railway","honey","request","riddle","children","rice","limit","sugar","cover","government","car","cows","beast","ray","thing","note","writer","breakfast","songs","income","crowd","fork","scarf","apples","dinosaurs","wire","string","zinc","water","needle","number","behavior","friend","bear","umbrella","fold","wave","sofa","haircut","tank","window","tongue","apple","muscle","summer","cakes","trail","laugh","meal","fish","map","egg","watch","story","crayon","nest","dogs","spark","dog","team","rose","clam","beetle","skin","flame","design","voyage","oatmeal","lunchroom","school","engine","room","salt","decision","church","snakes","cable","queen","substance","comb","babies","lead","card","pleasure","creator","wrench","vessel","unit","cabbage","afternoon","linen","songs","ground","monkey","self","beef","crime","thumb","wilderness","bread","meeting","lake","faucet","coast","verse","shelf","cart","men","punishment","debt","arch","lead","cats","servant","burn","scarecrow","side","butter","comfort","rate","night","offer","fly","battle","wish","respect","trade","sticks","arithmetic","anger","relation","van","writer","leg","slip","house","appliance","ray","day","lawyer","camp","hat","station","airplane","color","argument","family","thunder","coast","fairies","street","verse","ants","jeans","jar","bead","development","pancake","clock","honey","hammer","snakes","run","title","sweater","snail","hose","throat","cushion","list","act","wine","pencil","size","wine","shoe","writing","trains","boot","reaction","father","time","office","skate","van","maid","bun","queen","distance","fire","pot","smell","interest","summer","morning","kiss","scarf","point","birthday","idea","babies","copy","blow","space","need","produce","pull","bit","control","spy","jewel","statement","horse","change","ice","rail","things","force","zinc","yard","title","cook","apparel","lock","representative","copper","stomach","woman","uncle","test","crowd","opinion","turn","maid","banana","action","beast","mouth","bucket","lizards","circle","ear","arithmetic","frog","foot","growth","legs","belief","mist","pollution","lock","earth","hair","fruit","rock","rule","quartz","country","lawyer","division","believe","queen","protest","smell","memory","girl","belief","finger","stranger","trucks","kick","goat","measure","coach","comb","smell","science","word","icicle","beetle","territory","need","nerve","brain","car","chalk","bike","territory","ink","flavor","sense","adjustment","number","brother","cloud","wave","class","drop","boys","zipper","whistle","sweater","hole","party","vest","parcel","punishment","thought","use","finger","cake","slope","ink","K","school","bears","trail","flower","bait","lead","girls","shake","sneeze","quartz","cream","iron","test","territory","substance","boundary","seashore","jail","run","way","engine","goat","company","wing","toothbrush","whip","cent","rod","lawyer","stomach","expert","waste","smoke","soup","shame","band","mailbox","touch","pollution","twig","blade","brass","governor","uncle","steam","art","sign","door","camp","foot","view","list","pan","territory","morning","love","wax","mother","cat","circle","chin","hour"];
+const meta = ["name","label","formatter"];
 const registry = new WeakMap();
 
 function setRegistryProperty(parent, key, value) {
@@ -29,8 +30,8 @@ class Vector extends Array {
     /**
      * Gets or sets the name of this vector. If the argument 'value' is empty, it returns the name of this vector (if set before). Otherwise the name of the vector is set and the vector itself is returned.
      * @param {string} value Optional: name of the vector.
-     * @param {boolean} alwaysRetunSelf Default false. If set to true, will return the vector itself even if the name is blank.
-     * @returns Either name or the vector itself.
+     * @param {boolean} alwaysRetunSelf Default false. If set to true, will return the vector itself even if the name is blank/empty.
+     * @returns {Vector | String} Either the name or the vector itself.
      */
     name(value, alwaysRetunSelf){
         if(value) {
@@ -42,19 +43,83 @@ class Vector extends Array {
         }
     }
     /**
+     * Gets or sets the label for this vector. If the argument 'value' is empty, it returns the label of this vector (if set before). Otherwise the name of the vector is set and the vector itself is returned.
+     * @param {string} value Optional: name of the vector.
+     * @param {boolean} alwaysRetunSelf Default false. If set to true, will return the vector itself even if the label is blank/empty.
+     * @returns {Vector | String} Either the label or the vector itself.
+     */
+    label(value, alwaysRetunSelf){
+        if(value) {
+            setRegistryProperty(this, "label", value);
+            return this;
+        } else {
+            if(alwaysRetunSelf) return this;
+            else return registry.get(this).label || registry.get(this).name;
+        }
+    }
+    formatter(value, alwaysRetunSelf) {
+        if(value) {
+            setRegistryProperty(this, "formatter", value);
+            return this;
+        } else {
+            if(alwaysRetunSelf) return this;
+            else return registry.get(this).formatter;
+        }
+    }
+    /**
+     * Returns the underlying values of this vector as a plain array of primitive values.
+     */
+    raw() {
+        return [...this];
+    }
+    /**
      * 
      * @param  {...any} values An array or set of values delimited by comma.
      * @returns {self}
      */
     reload(...values) {
-        return new this.constructor(...values).name(this.name());
+        return new this.constructor(...values).getMeta(this);
     }
     /**
      * 
      * @returns {this} This vector filtered from the null values.
      */
     removeEmpty() {
-        return new this.constructor(new Array(...this).filter(v => v !== null)).name(this.name(), true);
+        return new this.constructor(...new Array(...this).filter(v => v !== null)).getMeta(this);
+    }
+    /**
+     * Copies the vector metadata (name, label etc.) from a source vector to this vector.
+     * @param {Vector} source The vector from which to copy the vector metadata.
+     * @returns Returns the vector itself.
+     */
+    getMeta(source) {
+        if(!registry.get(source)) registry.set(source, {});
+        if(!registry.get(this)) registry.set(this, {});
+        for(let m of meta) {
+            setRegistryProperty(this, m, registry.get(source)[m]);
+        }
+        return this;
+    }
+    /**
+     * 
+     * @returns Returns an array of the underlying values modified by the formatter meta property (if defined), otherwise returns the values as they are stored in the vector.
+     */
+    values() {
+        if(this.formatter()) {
+            if(typeof this.formatter() == "object") 
+            {
+                return [...this].map(e => e === null ? null : this.formatter()[e] || e);
+            }
+            else if(typeof this.formatter() == "function") {
+                const f = this.formatter();
+                return [...this].map(e => f(e));
+            }
+            else {
+                const f = eval(`[${this.formatter()}][0]`);
+                return [...this].map(e => f(e));
+            }
+        }
+        else return [...this];
     }
     parent(value){
         if(value) {
@@ -62,25 +127,40 @@ class Vector extends Array {
             return this;
         } else return registry.get(this).parent
     }
-    set(key,value) {
-        setRegistryProperty(this, key,value);
-        return this;
+    /**
+     * Returns a formatted value (if formatted property is defined). If the formatter is an object and the value is not found in its keys (e.g. the object key!s value s undefined), returns the original value.
+     * @param {any} value Any value to be formatted.
+     */
+    format(value, index, parent) {
+        const f = getRegistryProperty(this, "formatter");
+        if(f)
+        {
+            if(typeof f == "object") return f[value] !== undefined ? f[value] : value;
+            else if(typeof f == "function") return f(value, index, parent || this);
+            else if(typeof f == "string") {
+                return eval(`[${f}][0]`)(value, index, parent || this);
+            }
+        }
+        else return value;
     }
-    get(key, alwaysReturnSelf = false){
-        return getRegistryProperty(this, key) || alwaysReturnSelf ? this : undefined;
-    }
-    /* Returns an object with this vector's values and attributes. */
-    serialize() {
+    /**
+     * Returns an object or a stringified object with this vector's values and attributes.
+     * @param {boolean} stringify If set to true, returns a string instead of an object. Default false.
+     * @param {object} config Specifies the output format (e.g. {beautify: true})
+     * @returns {Object | string}
+     */
+    serialize(stringify = false, config = {beautify: false}) {
         var obj = {
-            values: this,
+            values: this.raw(),
             name: this.name(),
-            type: this.type()
+            label: this.label(),
+            type: this.type(),
+            formatter: this.formatter() ? typeof this.formatter() == "function" ? this.formatter().toString() : this.formatter() : null
         };
-        return obj;
+        return stringify ? JSON.stringify(obj, null, config?.beautify ? "\t" : "") : obj;
     }
     clone(flush = false) {
-        var _ = (flush ? new this.constructor() : new this.constructor(...this).name(this.name(), true));
-        _.name(this.name());
+        var _ = (flush ? new this.constructor() : new this.constructor(...this).getMeta(this));
         return _;
     }
     /**
@@ -106,7 +186,7 @@ class Vector extends Array {
     }
     
     filterByIndex(...indexes) {
-        return new this.constructor(...this).filter((e,i) => [...indexes].indexOf(i) > -1).name(this.name(), true);
+        return new this.constructor(...this).filter((e,i) => [...indexes].indexOf(i) > -1).getMeta(this);
     }
     static deserialize(data) {
         if(typeof data != "object") {
@@ -117,11 +197,24 @@ class Vector extends Array {
                 return null;
             }
         }
-        if([1,2,3].indexOf(data.type) < 0) throw new Error("Unknown vector type: " + data.type);
+        if([1,2,3,4].indexOf(data.type) < 0) throw new Error("Unknown vector type: " + data.type);
         else {
-            var vector = (data.type == 1 ? new NumericVector(...data.values) : data.type == 2 ? new StringVector(...data.values) : new BooleanVector(...data.values)).name(data.name);
+            let vector = (data.type == 1 ? new NumericVector(...data.values) : data.type == 2 ? new StringVector(...data.values) : data.type == 3 ? new BooleanVector(...data.values) : data.type == 4 ? new TimeVector(...data.values) : new Error());
+            vector = vector.name(data.name).label(data.label);
+            if(data.formatter) {
+                try {
+                    vector = vector.formatter(JSON.parse())
+                } catch (e) {
+                    try {   
+                        vector = vector.formatter(data.formatter);
+                    } catch(e) {
+                        console.error("Failed to deserialize the formatter", e);
+                    }
+                }
+            }            
+            return vector;            
         }
-        return vector;
+        
     }
     static listMethods() {
         return models.map(m => m.name);
@@ -150,16 +243,21 @@ class Vector extends Array {
         if(this.type() == type) return this;
         else if(type == 1) {
             if(!fn) fn = (v,i,a) => v;
-            return new NumericVector(...this.map(fn)).name(this.name());
+            return new NumericVector(...this.map(fn)).getMeta(this);
         }
         else if(type == 2) {
             if(!fn) fn = (v,i,a) => String(v);
-            return new StringVector(...this.map(fn)).name(this.name());
+            return new StringVector(...this.map(fn)).getMeta(this);
         }
         else if(type == 3) {
             if(!fn) fn = (v,i,a) => v === null ? null : v ? true : false;
-            return new BooleanVector(...this.map(fn)).name(this.name());
-        } else throw new Error(`Unrecognized vector type: ${type}. Possible types: 1,2,3.`);
+            return new BooleanVector(...this.map(fn)).getMeta(this);
+        } 
+        else if(type == 4) {
+            if(!fn) fn = (v,i,a) => v === null ? null : v;
+            return new TimeVector(...this.map(fn)).getMeta(this);
+        }
+        else throw new Error(`Unrecognized vector type: ${type}. Possible types: 1,2,3,4.`);
     }
     static register(model) {
         models.push(model);
@@ -194,11 +292,15 @@ const vectorParser = {
         else return null;
     },
     time: function(value) {
-        if(Date.isDate(value)) return value;
+        if(value === false || value === null || value === undefined) return null;
+        else if(Date.isDate(value)) return value;
         else if(Array.isArray(value)) {
             var _ = new Date(...value);
         }
-        if(isNaN(new Date(value).getTime())) throw new Error($("eZw1", {value: value}));
+        if(isNaN(new Date(value).getTime()))
+        {
+            throw new Error($("eZw1", {value: value}));
+        }
         else return new Date(value);
     }
 }
@@ -336,7 +438,25 @@ BooleanVector.prototype.parse = vectorParser.boolean;
 
 class TimeVector extends Vector {
     constructor(){
-        super(...arguments);
+        super();
+        if([...arguments].length > 0) this.push(...arguments);
+        registry.set(this, {});
+    }
+    push(){
+        for(let i of [...arguments]){
+            if(this.parse) super.push(this.parse(i));
+            else super.push(i);
+        }
+    }
+    /**
+     * 
+     * @returns Returns values of this vector converted to integers.
+     */
+    raw() {
+        return [...this].map(function(e){
+            if(e !== null) return e.getTime();
+            else return null;
+        })
     }
     /**
      * Returns the type of this vector, either as an enumeration (integer) or as a class name.
@@ -379,18 +499,16 @@ class TimeVector extends Vector {
         }
         return _new;
     };
-    /**
-     * 
-     * @returns Array<Number> Returns an array of years.
-     */
-    toYear() {
-        return this.map(i => i.getYear());
-    }
-    toMonth() {
-        return this.map(i => i.getMonth())
-    }
-    explode(level = Infinity) {
-
+    explode() {
+        return [
+            this.map(e => e !== null ? e.getFullYear() : null).numerify().name($("Mydr")),
+            this.map(e => e !== null ? e.getMonth() + 1 : null).numerify().name($("v6qI")), 
+            this.map(e => e !== null ? e.getDate() : null).numerify().name($("o3Mh")),
+            this.map(e => e !== null ? e.getHours() : null).numerify().name($("FKmI")),
+            this.map(e => e !== null ? e.getMinutes() : null).numerify().name($("Jk73")),
+            this.map(e => e !== null ? e.getSeconds() : null).numerify().name($("46Ew")),
+            this.map(e => e !== null ? e.getMilliseconds() : null).numerify().name($("2hXX"))
+        ]
     }
 }
 TimeVector.prototype.parse = vectorParser.time;
@@ -436,6 +554,29 @@ const preprocessors = {
             _.parent = _.parent.removeEmpty();
             _.sample.net = _.parent.length;
         }
+    },
+    inspectVector: {
+        title: "8nQf",
+        fn: function(_){
+            _.sample.raw = _.parent.length;
+            _.parent = _.parent.removeEmpty();
+            _.sample.net = _.parent.length;
+            _.args.type = _.parent.type()
+        }
+    }
+}
+
+const postprocessors = {
+    numberToDate: function(a) {
+        if(a.parent.type() == 4) a.result = new Date(a.result)
+    },
+    histogramDates: function(a) {
+        if(a.parent.type() == 4) {
+            for(let e of a.result) {
+                e.from = new Date(e.from);
+                e.to = new Date(e.to)
+            }
+        }        
     }
 }
 
@@ -458,7 +599,7 @@ const models = [
             title: "tdrm",
             description: "ULJX"
         },
-        type: [1,2,3],
+        type: [1,2,3,4],
         output: "uint",
     },
     {   name: "avg",
@@ -470,7 +611,8 @@ const models = [
             url: "https://en.wikipedia.org/wiki/Arithmetic_mean"
         },
         prepare: preprocessors.removeEmpty.fn,
-        type: [1],
+        type: [1,4],
+        post: [postprocessors.numberToDate],
         output: "number",
     },
     {   name: "stdev",
@@ -530,7 +672,8 @@ const models = [
             url: "https://en.wikipedia.org/wiki/Histogram"
         },
         prepare: preprocessors.removeEmpty.fn,
-        type: [1],
+        post: [postprocessors.histogramDates],
+        type: [1,4],
         output: "histogram",
         args: {
             max: {
@@ -563,7 +706,8 @@ const models = [
             preprocessor: preprocessors.removeEmpty.title
         },
         output: "any",
-        type: [1,2,3],
+        type: [1,2,3,4],
+        post: postprocessors.numberToDate,
         prepare: preprocessors.removeEmpty.fn
     },
     {   name: "max",
@@ -574,7 +718,8 @@ const models = [
             preprocessor: preprocessors.removeEmpty.title
         },
         prepare: preprocessors.removeEmpty.fn,
-        type: [1,2,3],
+        post: postprocessors.numberToDate,
+        type: [1,2,3,4],
         output: "any",
     },
     {   name: "range",
@@ -613,8 +758,8 @@ const models = [
             }
         }
     },
-    {   name: "percentile",
-        fn: Array.prototype.percentile,
+    {   name: "quantile",
+        fn: Array.prototype.quantile,
         wiki: {
             title: "fPra",
             description: "yNbM",
@@ -622,7 +767,8 @@ const models = [
             url: "https://en.wikipedia.org/wiki/Percentile"
         },
         prepare: preprocessors.removeEmpty.fn,
-        type: [1],
+        post: postprocessors.numberToDate,
+        type: [4],
         output: "number",
         args: {
             k: {
@@ -642,7 +788,7 @@ const models = [
             title: "dYJK",
             description: "Tzyp"
         },
-        type: [1,2,3],
+        type: [1,2,3,4],
         output: "frequency",
         args: {
             order: {
@@ -667,7 +813,8 @@ const models = [
             url: "https://en.wikipedia.org/wiki/Geometric_mean"
         },
         prepare: preprocessors.removeEmpty.fn,
-        type: [1],
+        post: postprocessors.numberToDate,
+        type: [1,4],
         output: "number",
     },
     {   name: "harmean",
@@ -679,7 +826,8 @@ const models = [
             url: "https://en.wikipedia.org/wiki/Harmonic_mean"
         },
         prepare: preprocessors.removeEmpty.fn,
-        type: [1],
+        post: postprocessors.numberToDate,
+        type: [1,4],
         output: "number",
         
     },
@@ -692,7 +840,8 @@ const models = [
             url: "https://en.wikipedia.org/wiki/Median"
         },
         prepare: preprocessors.removeEmpty.fn,
-        type: [1],
+        post: postprocessors.numberToDate,
+        type: [1,4],
         output: "number",
     },
     {   name: "mode",
@@ -702,7 +851,8 @@ const models = [
             description: "IBfx",
             url: "https://en.wikipedia.org/wiki/Mode_(statistics)"
         },
-        type: [1,2,3],
+        post: postprocessors.numberToDate,
+        type: [1,2,3,4],
         output: "any"
     },
     {   name: "sem",
@@ -856,6 +1006,78 @@ const models = [
         type: [1],
         output: "kstest",
         unstable: true   
+    },
+    {   name: "inspect",
+        fn: function() {
+            var type = arguments[1], sample = arguments[0];
+            var r = {};
+            if(type == 1)
+            {
+                r.sum = this.sum();
+                r.avg = this.avg();
+                r.median = this.median();
+                r.min = this.min();
+                r.max = this.max();
+                r.range = this.range();
+                r.q05 = this.quantile(0.05);
+                r.q25 = this.quantile(0.25);
+                r.q75 = this.quantile(0.75);
+                r.q95 = this.quantile(0.95);
+                r.mode = this.mode();
+                r.stdev = this.stdev(sample);
+                r.varc = this.varc();
+                r.harmean = this.harmean();
+                r.geomean = this.geomean();
+                r.skewness = this.skewness(sample);
+                r.kurtosis = this.kurtosis(sample);                
+            } else
+            {
+                r.mode = this.mode();
+            }
+            return r;
+        },
+        wiki: {
+            title: "boBv",
+            description: "stFi",
+            preprocessor: preprocessors.inspectVector.title
+        },
+        prepare: preprocessors.inspectVector.fn,
+        type: [1,2,3,4],
+        output: "inspectVector",
+        args: {
+            isSample: {
+                model: "boolean",
+                config: {
+                    name: "isSample",
+                    title: "eJTq",
+                    description: "FfpU",
+                    required: false,
+                    default: false
+                }
+            }
+        }
+    },
+    {   name: "qqplot",
+        fn: Array.prototype.qqplot,
+        wiki: {
+            title: "Z5OQ",
+            description: "92wX",
+            preprocessor: preprocessors.removeEmpty.title
+        },
+        prepare: preprocessors.removeEmpty.fn,
+        type: [1],
+        output: "qqplot"
+    },
+    {   name: "ppplot",
+        fn: Array.prototype.ppplot,
+        wiki: {
+            title: "3PCw",
+            description: "WB2m",
+            preprocessor: preprocessors.removeEmpty.title
+        },
+        prepare: preprocessors.removeEmpty.fn,
+        type: [1],
+        output: "ppplot"
     }
 ]
 
@@ -956,13 +1178,18 @@ class VectorAnalysis {
         }        
     }
     /**
-     * Runs the 
-     * @param {*} config No imployed yet.
+     * Runs the preprocessor(s) for the given method.
      * @returns {self}
      */
     prepare(){
         if(!this.parent) throw new Error($("PtZB"));
-        if(this.model.prepare) this.model.prepare(this);
+        if(this.model.prepare) 
+        {
+            for(let p of Array.isArray(this.model.prepare) ? this.model.prepare : [this.model.prepare])
+            {
+                this.model.prepare(this);
+            }
+        }
         return this;
     }
     /**
@@ -976,7 +1203,13 @@ class VectorAnalysis {
         if([...arguments].length > 0) this.with(...arguments);
         this.prepare();        
         var args = Object.entries(this.args).map(e => e[1]);
-        this.result = this.model.fn.call(new Array(...this.parent), ...args);
+        this.result = this.model.fn.call(this.parent.raw(), ...args);
+        if(this.model.post) {
+            for(let p of Array.isArray(this.model.post) ? this.model.post : [this.model.post])
+            {
+                p(this)
+            }
+        }
         this.time.to = new Date();
         return this;
     }
@@ -1001,5 +1234,6 @@ module.exports = {
     NumericVector: NumericVector,
     StringVector: StringVector,
     BooleanVector: BooleanVector,
-    VectorAnalysis: VectorAnalysis,
+    TimeVector: TimeVector,
+    VectorAnalysis: VectorAnalysis    
 }

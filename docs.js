@@ -17,7 +17,7 @@ var vectorMethods = [
     "geomean",
     "harmean",
     "median",
-    "percentile",
+    "quantile",
     "stdev",
     "variance",
     "varc",
@@ -30,10 +30,13 @@ var vectorMethods = [
     "pci",
     "ttest",
     "swtest",
-    "kstest"    
+    "kstest",
+    "qqplot",
+    "ppplot"    
 ]
 var matrixMethods = [
     "linreg",
+    "correl",
     "correlPearson",
     "correlSpearman",
     "correlGamma",
@@ -274,6 +277,15 @@ const examples = {
         var population = new NumericVector(10,20,15,25,23,19,18,17,24,23).variance();  /* = 19.44 */
         var sample = new NumericVector(10,20,15,25,23,19,18,17,24,23).variance(true); /* = 21.6 */ 
     },
+    qqplot: function(){
+        var qqplotA = new NumericVector(-3.4,-2.9,-2.8,-2.3,-1.5,-0.4,0.4,1.7,2.4,2.9).qqplot();
+        var qqplotB = new NumericVector(-3.4,-2.9,-2.8,-2.3,-1.5,-0.4,0.4,1.7,2.4,2.9).analyze("qqplot").run();
+        // qqplotA === qqplotB
+        
+    },
+    ppplot: function(){
+        var qqplot = new NumericVector(4,5.6,7.8,7.9,9,9.3,10.4,12,13.4,14.4,15.6,18.7,20.1,20.5,20.9).analyze("ppplot").run();
+    },
     histogram: [
         {
             name: "example1",
@@ -399,6 +411,23 @@ const examples = {
     kstest: function(){
         var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).kstest(); 
     },
+    correl: [
+        {
+            name: "example1",
+            code: function() {
+                var M = new Matrix(
+                    new NumericVector(180,197,240,210,180,160,179,185,183,150,110,190,170).name("height"),
+                    new NumericVector(75,82,100,80,75,60,75,71,77,63,46,81,70).name("weight")
+                );
+                /* default Pearson + Spearman */
+                var correl = M.analyze("correl").run("height","weight");
+                /* Kendall Tau + Gamma */
+                var correl = M.analyze("correl").run(0,1,[3,4]);
+                /* all */
+                var correl = M.analyze("correl").run(0,1,[1,2,3,4]);
+            }
+        }
+    ],
     correlPearson: [
         {
             name: "example1",

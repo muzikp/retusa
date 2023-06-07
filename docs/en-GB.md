@@ -14,7 +14,7 @@ Vector functions are statistical methods that are performed on vector instances.
 | geomean | [Geometric mean](#geomean) |
 | harmean | [Harmonic mean](#harmean) |
 | median | [Median](#median) |
-| percentile | [Quantile](#percentile) |
+| quantile | [Quantile](#quantile) |
 | stdev | [Standard deviation](#stdev) |
 | variance | [Variance](#variance) |
 | varc | [Coefficient of variation](#varc) |
@@ -28,6 +28,8 @@ Vector functions are statistical methods that are performed on vector instances.
 | ttest | [One-sample t-test](#ttest) |
 | swtest ⚠️ | [Shapiro-Wilk W test](#swtest) |
 | kstest ⚠️ | [Kolmogorov-Smirnov test](#kstest) |
+| qqplot | [Q-Q plot](#qqplot) |
+| ppplot | [P-P plot](#ppplot) |
 
 ## [Sum](#sum)
 
@@ -275,7 +277,7 @@ style median stroke:#4967A4;
 
 ```
 
-## [Quantile](#percentile)
+## [Quantile](#quantile)
 
 Using the quantile, we can examine the distribution of a numerical series, by first sorting the series from the smallest to the largest member (number), and then selecting the first N % of members (this N is a parameter), where the last member in the selection represents the given percentile, a specific number . If the number of members in the sample is even, the quantile is calculated as the average of two adjacent values, if it is even, the quantile is just the last value.
 
@@ -289,22 +291,13 @@ Using the quantile, we can examine the distribution of a numerical series, by fi
 
 Removes all empty values (blank cells) from the vector.
 
-### Syntax examples
-
-```js
-var score = new NumericVector(10,20,15,25,23,19,18,17,24,23);
-var median = score.percentile(0.5); /* = 19.5 */
-var q25 = score.percentile(0.25); /* = 17.25 */
-var max = score.percentile(1); /* = 25 */
-```
-
 ### Output schema
 
 ```mermaid
 graph TD
-percentile[<b>quantile<br></b>number]
-style percentile fill:#FFFFFF;
-style percentile stroke:#4967A4;
+quantile[<b>quantile<br></b>number]
+style quantile fill:#FFFFFF;
+style quantile stroke:#4967A4;
 
 ```
 
@@ -802,6 +795,70 @@ style p stroke:#75716F;
 
 ```
 
+## [Q-Q plot](#qqplot)
+
+Returns an array of Q-Q plot coordinates. In statistics, a Q–Q plot (quantile-quantile plot) is a probability plot, a graphical method for comparing two probability distributions by plotting their quantiles against each other.[1] A point (x, y) on the plot corresponds to one of the quantiles of the second distribution (y-coordinate) plotted against the same quantile of the first distribution (x-coordinate). This defines a parametric curve where the parameter is the index of the quantile interval.
+
+
+### Pre-calculation data modification
+
+Removes all empty values (blank cells) from the vector.
+
+### Syntax examples
+
+```js
+var qqplotA = new NumericVector(-3.4,-2.9,-2.8,-2.3,-1.5,-0.4,0.4,1.7,2.4,2.9).qqplot();
+var qqplotB = new NumericVector(-3.4,-2.9,-2.8,-2.3,-1.5,-0.4,0.4,1.7,2.4,2.9).analyze("qqplot").run();
+// qqplotA === qqplotB
+```
+
+### Output schema
+
+```mermaid
+graph TD
+qqplot{<i>array</i>}
+style qqplot fill:#85B3BE;
+style qqplot stroke:#2E7C8F;
+qqplot --> x[<b>x</b><br>observed values <br><i>number</i>]
+style x fill:#FFFFFF;
+style x stroke:#4967A4;
+qqplot --> y[<b>y</b><br>expected normal <br><i>number</i>]
+style y fill:#FFFFFF;
+style y stroke:#4967A4;
+
+```
+
+## [P-P plot](#ppplot)
+
+Returns an array of P-P plot coordinate. In statistics, a P–P plot (probability–probability plot or percent–percent plot or P value plot) is a probability plot for assessing how closely two data sets agree, or for assessing how closely a dataset fits a particular model. It works by plotting the two cumulative distribution functions against each other; if they are similar, the data will appear to be nearly a straight line. This behavior is similar to that of the more widely used Q–Q plot, with which it is often confused.
+
+
+### Pre-calculation data modification
+
+Removes all empty values (blank cells) from the vector.
+
+### Syntax examples
+
+```js
+var qqplot = new NumericVector(4,5.6,7.8,7.9,9,9.3,10.4,12,13.4,14.4,15.6,18.7,20.1,20.5,20.9).analyze("ppplot").run();
+```
+
+### Output schema
+
+```mermaid
+graph TD
+ppplot{<i>array</i>}
+style ppplot fill:#85B3BE;
+style ppplot stroke:#2E7C8F;
+ppplot --> x[<b>x</b><br>observed cumulative probability <br><i>number</i>]
+style x fill:#FFFFFF;
+style x stroke:#4967A4;
+ppplot --> y[<b>y</b><br>expected cumulative probability <br><i>number</i>]
+style y fill:#FFFFFF;
+style y stroke:#4967A4;
+
+```
+
 # Matrix statistical methods documentation
 
 Matrix methods represent statistical methods that can be performed on a given matrix. In general, they can be called in two ways: either directly (e.g. {Matrix}.correlPearson(0,1)) or using the generic 'analyze' method, e.g. {Matrix}.analyze('correlPearson').run(0,1) . The difference between the first and the second method is that in the first method we touch the pure result (in the given example an object with properties r and p), in the second case we get back the entire MatrixAnalysis class, containing in addition to the result also metadata (such as sample information, duration calculation, etc.) as well as the input model, specification of arguments, etc. Therefore, if you need to store metadata during the calculation, it is advisable to call the methods via the 'analysis' function, where the parameter is the name of the method.
@@ -813,6 +870,7 @@ A number of methods have a specified so-called preprocessor, which is a function
 | function | method |
 | :--- | :--- |
 | linreg | [Linear regression](#linreg) |
+| correl | [Correlation](#correl) |
 | correlPearson | [Pearson correlation coefficient](#correlPearson) |
 | correlSpearman | [Spearman's correlation coefficient](#correlSpearman) |
 | correlGamma | [Gamma coefficient](#correlGamma) |
@@ -892,6 +950,56 @@ style beta0 stroke:#4967A4;
 linreg --> beta1[<b>beta1</b><br>coefficient <br><i>number</i>]
 style beta1 fill:#FFFFFF;
 style beta1 stroke:#4967A4;
+
+```
+
+## [Correlation](#correl)
+
+It establishes the statistical protocol of selected correlation coefficients (Pearson's, Spearman's, Kendall's Tau and Kruskal-Goodman's gamma), including their p-values. The method is designed for two numerical variables. If you want to find the correlation of three numerical variables, use partial correlation, if you want to correlate a numerical and biserial variable, use point-biserial correlation.
+
+### Arguments
+
+| id |description |value type |validator |required |default value |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>y</b> | first variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+| <b>x</b> | second variable | numeric vector | <sub>It checks whether the argument is of type numeric vector, or whether it is a valid identifier of a numeric vector in a matrix, or - if the argument is of type array - tries to convert the array to a numeric vector using the 'numerify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+| <b>methods</b> | correlation methods | enumerator | <sub>Checks if the specified value is the key of an enumeration (list of possible values). If not, it throws an error.<br><br><b>1</b> = Pearson correlation coefficient<br><b>2</b> = Spearman's correlation coefficient<br><b>3</b> = Kendall's correlation<br><b>4</b> = Gamma coefficient<br><sub> |  | 1,2 |
+
+### Pre-calculation data modification
+
+Removes from the input vectors (matrix) all rows in which there is at least one empty value.
+
+### Syntax examples
+
+```js
+var M = new Matrix(
+new NumericVector(180,197,240,210,180,160,179,185,183,150,110,190,170).name("height"),
+new NumericVector(75,82,100,80,75,60,75,71,77,63,46,81,70).name("weight")
+);
+/* default Pearson + Spearman */
+var correl = M.analyze("correl").run("height","weight");
+/* Kendall Tau + Gamma */
+var correl = M.analyze("correl").run(0,1,[3,4]);
+/* all */
+var correl = M.analyze("correl").run(0,1,[1,2,3,4]);
+```
+
+### Output schema
+
+```mermaid
+graph TD
+correl{<i>array</i>}
+style correl fill:#85B3BE;
+style correl stroke:#2E7C8F;
+correl --> method[<b>method</b><br>observed values <br><i>number</i>]
+style method fill:#FFFFFF;
+style method stroke:#4967A4;
+correl --> r[<b>r</b><br>coefficient value <br><i>number</i>]
+style r fill:#FFFFFF;
+style r stroke:#4967A4;
+correl --> p[<b>p</b><br>p-value <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 
 ```
 

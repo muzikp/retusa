@@ -260,6 +260,117 @@ const lib = {
             "p": snippets.sig
         }
     },
+    "inspectVector": {
+        "title": "R5AC", 
+        "type": "object",
+        "properties": {
+            "sum": {
+                "title": "gvdg", 
+                "type": "number"
+            },
+            "avg": {
+                "title": "rR94", 
+                "type": "number"
+            },
+            "median": {
+                "title": "Qyba", 
+                "type": "number"
+            },
+            "min": {
+                "title": "FkaD", 
+                "type": "number"
+            },
+            "max": {
+                "title": "nKuF", 
+                "type": "number"
+            },
+            "range": {
+                "title": "mXxJ", 
+                "type": "number"
+            },
+            "q05": {
+                "title": "HcqQ", 
+                "type": "number"
+            },
+            "q25": {
+                "title": "SoFH", 
+                "type": "number"
+            },
+            "q75": {
+                "title": "5Xgm", 
+                "type": "number"
+            },
+            "q95": {
+                "title": "KtLi", 
+                "type": "number"
+            },
+            "mode": {
+                "title": "StQx", 
+                "type": "number"
+            },
+            "stdev": {
+                "title": "oUcc", 
+                "type": "number"
+            },
+            "varc": {
+                "title": "uwpU", 
+                "type": "number"
+            },
+            "harmean": {
+                "title": "iuTi", 
+                "type": "number"
+            },
+            "geomean": {
+                "title": "eFdj", 
+                "type": "number"
+            },
+            "kurtosis": {
+                "title": "oPPx", 
+                "type": "number"
+            },
+            "skewness": {
+                "title": "KZgI", 
+                "type": "number"
+            }
+        }
+    },
+    "qqplot": {
+        "title": "Z5OQ", 
+        "type": "array",
+        "items":{
+            "title": "Items", 
+            "type": "object",
+            "properties": {
+                "x": {
+                    "title": "5LXq", 
+                    "type": "number",
+                },
+                "y": {
+                    "title": "grSJ", 
+                    "type": "number",
+                }
+            }
+        }    
+    },
+    "ppplot": {
+        "title": "3PCw", 
+        "type": "array",
+        "items":{
+            "title": "Items", 
+            "type": "object",
+            "properties": {
+                "x": {
+                    "title": "TK3i", 
+                    "type": "number",
+                },
+                "y": {
+                    "title": "aa8D", 
+                    "type": "number",
+                }
+            }
+        }
+    
+    },
     "covariance": {
         "title": "xfSf", 
         "type": "object",
@@ -270,6 +381,25 @@ const lib = {
             },
             "p": snippets.sig
         }
+    },
+    "correl": {
+        "title": "Z5OQ", 
+        "type": "array",
+        "items":{
+            "title": "Items", 
+            "type": "object",
+            "properties": {
+                "method": {
+                    "title": "5LXq", 
+                    "type": "number",
+                },                
+                "r": {
+                    "title": "D00h", 
+                    "type": "number",
+                },
+                p: snippets.sig
+            }
+        }    
     },
     "correlPearson": {
         "title": "pTvR", 

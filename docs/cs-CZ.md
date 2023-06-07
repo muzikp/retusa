@@ -14,7 +14,7 @@ Vektorové funkce jsou statistické metody, které jsou prováděny nad instance
 | geomean | [Geometrický průměr](#geomean) |
 | harmean | [Harmonický průměr](#harmean) |
 | median | [Medián](#median) |
-| percentile | [Kvantil](#percentile) |
+| quantile | [Kvantil](#quantile) |
 | stdev | [Směrodatná odchylka](#stdev) |
 | variance | [Rozptyl](#variance) |
 | varc | [Variační koeficient](#varc) |
@@ -28,6 +28,8 @@ Vektorové funkce jsou statistické metody, které jsou prováděny nad instance
 | ttest | [Jednovýběrový t-test](#ttest) |
 | swtest ⚠️ | [Shapirův-Wilkův W test](#swtest) |
 | kstest ⚠️ | [Kolmogorov-Smirnovův test](#kstest) |
+| qqplot | [Q-Q diagram](#qqplot) |
+| ppplot | [P-P diagram](#ppplot) |
 
 ## [Součet](#sum)
 
@@ -275,7 +277,7 @@ style median stroke:#4967A4;
 
 ```
 
-## [Kvantil](#percentile)
+## [Kvantil](#quantile)
 
 Pomocí kvantilu můžeme zkoumat rozdělení numerické řady, a to tak, že řadu nejprve seřadíme od nejmenšího po největšího člena (číslo), a následně vybereme první N % členů (toto N je parametrem), kdy poslední člen ve výběru představuje daný percentil, konkrétní číslo. Pokud je počet členů ve výběru sudý, počítá se percentil jako průměr z dvou sousedících hodnot, pokud je lichý, percentilem je právě poslední hodnota.
 
@@ -289,22 +291,13 @@ Pomocí kvantilu můžeme zkoumat rozdělení numerické řady, a to tak, že ř
 
 Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
 
-### Příklady syntaxe
-
-```js
-var score = new NumericVector(10,20,15,25,23,19,18,17,24,23);
-var median = score.percentile(0.5); /* = 19.5 */
-var q25 = score.percentile(0.25); /* = 17.25 */
-var max = score.percentile(1); /* = 25 */
-```
-
 ### Schéma výsledku
 
 ```mermaid
 graph TD
-percentile[<b>kvantil<br></b>číslo]
-style percentile fill:#FFFFFF;
-style percentile stroke:#4967A4;
+quantile[<b>kvantil<br></b>číslo]
+style quantile fill:#FFFFFF;
+style quantile stroke:#4967A4;
 
 ```
 
@@ -802,6 +795,70 @@ style p stroke:#75716F;
 
 ```
 
+## [Q-Q diagram](#qqplot)
+
+Stanoví řadu souřadnic bodů Q-Q diagramu.Ve statistice je Q–Q graf (kvantil-kvantilový graf) pravděpodobnostní graf, grafická metoda pro porovnání dvou rozdělení pravděpodobnosti vynesením jejich kvantilů proti sobě.[1] Bod (x, y) na grafu odpovídá jednomu z kvantilů druhého rozdělení (souřadnice y) vynesenému proti stejnému kvantilu prvního rozdělení (souřadnice x). Toto definuje parametrickou křivku, kde parametrem je index kvantilového intervalu.
+
+
+### Před-výpočetní úprava dat
+
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
+
+### Příklady syntaxe
+
+```js
+var qqplotA = new NumericVector(-3.4,-2.9,-2.8,-2.3,-1.5,-0.4,0.4,1.7,2.4,2.9).qqplot();
+var qqplotB = new NumericVector(-3.4,-2.9,-2.8,-2.3,-1.5,-0.4,0.4,1.7,2.4,2.9).analyze("qqplot").run();
+// qqplotA === qqplotB
+```
+
+### Schéma výsledku
+
+```mermaid
+graph TD
+qqplot{<i>řada</i>}
+style qqplot fill:#85B3BE;
+style qqplot stroke:#2E7C8F;
+qqplot --> x[<b>x</b><br>pozorované hodnoty <br><i>číslo</i>]
+style x fill:#FFFFFF;
+style x stroke:#4967A4;
+qqplot --> y[<b>y</b><br>očekávané normální <br><i>číslo</i>]
+style y fill:#FFFFFF;
+style y stroke:#4967A4;
+
+```
+
+## [P-P diagram](#ppplot)
+
+Stanoví řadu souřadnic bodů P-P diagramu. Ve statistice je P–P graf (pravděpodobnost–pravděpodobnost nebo procento–procentní graf nebo graf hodnoty P) pravděpodobnostní graf pro posouzení, jak blízko se dva soubory dat shodují, nebo pro posouzení toho, jak blízko soubor dat odpovídá konkrétnímu modelu. Funguje tak, že vynese dvě kumulativní distribuční funkce proti sobě; pokud jsou podobné, data se budou jevit jako téměř přímka. Toto chování je podobné jako u více používaného grafu Q–Q, se kterým je často zaměňováno.
+
+
+### Před-výpočetní úprava dat
+
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
+
+### Příklady syntaxe
+
+```js
+var qqplot = new NumericVector(4,5.6,7.8,7.9,9,9.3,10.4,12,13.4,14.4,15.6,18.7,20.1,20.5,20.9).analyze("ppplot").run();
+```
+
+### Schéma výsledku
+
+```mermaid
+graph TD
+ppplot{<i>řada</i>}
+style ppplot fill:#85B3BE;
+style ppplot stroke:#2E7C8F;
+ppplot --> x[<b>x</b><br>očekávaná kumulativní pravděpodobnost <br><i>číslo</i>]
+style x fill:#FFFFFF;
+style x stroke:#4967A4;
+ppplot --> y[<b>y</b><br>pozorovaná kumulativní pravděpodobnost <br><i>číslo</i>]
+style y fill:#FFFFFF;
+style y stroke:#4967A4;
+
+```
+
 # Dokumentace statistických metod matic
 
 Maticové metody představují statistické metody, které je možné provádět nad danou maticí. Obecně je lze volat dvě způsoby: buďto přímo (např. {Matrix}.correlPearson(0,1), nebo pomocí obecné metody 'analyze', např. {Matrix}.analyze('correlPearson').run(0,1). Rozdíl mezi první a druhým způsobem spočívá v tom, že u první metody dotneme čistý výsledek (u daného příkladu objekt s vlastnostmi r a p), v druhém případě dostaneme zpět celou třídy MatrixAnalysis, obsahující kromě výsledku i metadata (jako jsou informacee o vzorku, trvání výpočtu ad.) a také vstupní model, specifikaci argumentů atd. Pokud tedy potřebujete v průběhu výpočtu uchovávat metadata, je vhodné volat metody přes funkci 'analyze', kde parametr tvoří název metody.
@@ -813,6 +870,7 @@ Každá metoda má specifikované argumenty a jejich validátory. Validátory me
 | funkce | metoda |
 | :--- | :--- |
 | linreg | [Lineární regrese](#linreg) |
+| correl | [Korelace](#correl) |
 | correlPearson | [Pearsonův korelační koeficient](#correlPearson) |
 | correlSpearman | [Spearmanův korelační koeficient](#correlSpearman) |
 | correlGamma | [Koeficient gama](#correlGamma) |
@@ -892,6 +950,56 @@ style beta0 stroke:#4967A4;
 linreg --> beta1[<b>beta1</b><br>koeficient funkce <br><i>číslo</i>]
 style beta1 fill:#FFFFFF;
 style beta1 stroke:#4967A4;
+
+```
+
+## [Korelace](#correl)
+
+Stanoví statistický protokol vybraných korelačních koeficientů (Pearsonova, Spearmanova, Kendallova Tau a Kruskal-Goodmanovy gammy), včetně jejich p-hodnot. Metoda je určena pro dvě numerické proměnné. Pokud chcete zjistit korelaci tří numerických proměnných, použijte parciální korelaci, pokud chcete korelovat numerickou a biseriální proměnnou, použijte bodově-biseriální korelaci.
+
+### Argumenty
+
+| id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
+| :--- |:--- |:--- |:--- |:--- |:--- |
+| <b>y</b> | první proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+| <b>x</b> | druhá proměnná | numerický vektor | <sub>Ověří, zdali je argument typově numerický vektor, nebo zdali se jedná o validní identifkátor numerického vektoru v matici, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'numerify' převést na numerický vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+| <b></b> | korelační metody | enumerace | <sub>Ověří, zdali je zadaná hodnota klíčem enumerace (seznamu možných hodnot). Pokud ne, vyhodí chybu.<br><br><b>1</b> = Pearsonův korelační koeficient<br><b>2</b> = Spearmanův korelační koeficient<br><b>3</b> = Kendallova korelace<br><b>4</b> = Koeficient gama<br><sub> |  | 1,2 |
+
+### Před-výpočetní úprava dat
+
+Vstupní argumenty převede na vektory, ze kterých vytvoří matici. Z této matice následně odebere všechny řádky, které alespoň v jedné buňce obsahují prázdnou hodnotu. Vektory z této dceřiné matice poté přepíše původní argumenty, tzn. že vektory vstupují do metody již očištěné.
+
+### Příklady syntaxe
+
+```js
+var M = new Matrix(
+new NumericVector(180,197,240,210,180,160,179,185,183,150,110,190,170).name("height"),
+new NumericVector(75,82,100,80,75,60,75,71,77,63,46,81,70).name("weight")
+);
+/* default Pearson + Spearman */
+var correl = M.analyze("correl").run("height","weight");
+/* Kendall Tau + Gamma */
+var correl = M.analyze("correl").run(0,1,[3,4]);
+/* all */
+var correl = M.analyze("correl").run(0,1,[1,2,3,4]);
+```
+
+### Schéma výsledku
+
+```mermaid
+graph TD
+correl{<i>řada</i>}
+style correl fill:#85B3BE;
+style correl stroke:#2E7C8F;
+correl --> method[<b>method</b><br>pozorované hodnoty <br><i>číslo</i>]
+style method fill:#FFFFFF;
+style method stroke:#4967A4;
+correl --> r[<b>r</b><br>hodnota koeficientu <br><i>číslo</i>]
+style r fill:#FFFFFF;
+style r stroke:#4967A4;
+correl --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
 
 ```
 

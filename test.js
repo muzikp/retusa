@@ -1,22 +1,79 @@
 var _ = require("./index");
+const { TimeVector } = require("./libs/vector");
 var st = require("./stress-test");
 
 require("./docs")({offset: 1, format: "markdown"});
+
+var M = new _.Matrix(
+    new _.NumericVector(180,197,240,210,180,160,179,185,183,150,110,190,170).name("výška"),
+    new _.NumericVector(75,82,100,80,75,60,75,71,77,63,46,81,70).name("váha")
+);
+/* default Pearson + Spearman */
+var correl = M.analyze("correl").run(0,1);
+debugger
+/* Kendall Tau + Gamma */
+var correl = M.analyze("correl").run(0,1,[3,4]);
+debugger;
+/* all */
+var correl = M.analyze("correl").run(0,1,[1,2,3,4]);
+debugger;
+return;
+
+
+
+var V = _.Vector.deserialize({"name":"V1","label":"scale","formatter":{},"type":1,"values":[12.5,13.8,16.9,24.3,null,64.23]})
+var T = new _.Matrix(
+    new _.NumericVector(27,27,27,19,30,31,30,30,30,30,30,23,19,27,28,25,26,30,11,25,28,25,28,28,36,32,34,29,25,27).name("values").label("naměřené hodnoty").formatter((v,i,a) => v < a.avg() ? "podprůměr" : "nadprůměr"),
+    new _.StringVector("A","A","A","A","A","A","B","B","B","B","B","B","C","C","C","C","C","C","D","D","D","D","D","D","E","E","E","E","E","E").name("group").label("skupina respondentů").formatter({"A": "adolescenti", "B": "blbci", "C": "cisterciáci", "D": "debilová", "E": "emilové"})
+    );
+var S = T.serialize();
+console.log(S);
+debugger;
+return;
+
+/*
+let H = new _.NumericVector(14, 15, 15, 15, 16, 18, 22, 23, 24, 25, 25).name("alpha").label("Alpha X").clone();
+console.log(H.label(), H.name());
+
+debugger;
+return;
+
+with (_) {
+    var T = new TimeVector([1936,05,30],"1937-05-28", undefined, Date.now(), "1922-09-22",[1983]);
+    var K = T.asc();    
+    var a = T.explode();
+    debugger;
+    return;
+}
+
+//require("./docs")({offset: 1, format: "markdown"});
+var V = new _.NumericVector(14,15,15,15,16,18,22,23,24,25,25,10,12,14,15,18,22,24,27,31,33,34,34,34);
+var pp = V.analyze("ppplot").run();
+var qq = V.analyze("qqplot").run();
+//console.log(pp.result);
+console.log(qq.result);
+
+debugger;
+return;
 
 var T = new _.Matrix(
     new _.NumericVector(14, 15, 15, 15, 16, 18, 22, 23, 24, 25, 25).name("alpha"),
     new _.NumericVector(10, 12, 14, 15, 18, 22, 24, 27, 31, 33, 34, 34, 34).name("beta")
 );
+var h = T[0].analyze("inspect").run(true);
+console.dir(h.result)
+debugger;
+return;
 var welch = T.analyze("welchttest").run({vectors: [0,1]});
 console.log(T.analyze("ttestind").run({vectors: [0,1]}));
 console.log(welch.result);
 debugger;
 return;
-
+*/
 var M = new _.Matrix(
-    new _.StringVector("A","A","A","A","A","B","B","B","B","B","C","C","C","C","C").name("study technique"),
-    new _.NumericVector(67,88,75,77,85,92,69,77,74,88,96,91,88,82,80).name("Current grade"),
-    new _.NumericVector(77,89,72,74,69,78,88,93,94,90,85,81,83,88,79).name("Exam score")
+    new _.StringVector("A","A","A","A","A","B","B","B","B","B","C","C","C","C","C").name("factor").label("study technique"),
+    new _.NumericVector(67,88,75,77,85,92,69,77,74,88,96,91,88,82,80).name("cov").label("Current grade"),
+    new _.NumericVector(77,89,72,74,69,78,88,93,94,90,85,81,83,88,79).name("dep").label("Exam score")
 )
 var ANCOVA = M.analyze("ancova").run(0,2,1);
 console.log(ANCOVA.result);

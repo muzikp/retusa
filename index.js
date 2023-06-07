@@ -11,9 +11,11 @@ module.exports = {
     vector: function(){
         return [...arguments].vectorify();
     },
+    Vector: Vector.Vector,
     NumericVector: Vector.NumericVector,
     StringVector: Vector.StringVector,
     BooleanVector: Vector.BooleanVector,
+    TimeVector: Vector.TimeVector,
     VectorAnalysis: Vector.VectorAnalysis,
     MatrixAnalysis: Matrix.MatrixAnalysis,
     Argument: require("./libs/argument").Argument,

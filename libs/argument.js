@@ -259,6 +259,40 @@ var lib = {
             return validateEnum(value, parent, model);
         }
     },
+   correlMethods: {
+    type: "enum",
+    title: "gZCx",
+    validator: "dKFL",
+    mdType: "u5oV",
+    isEnum: true,
+    enums: [
+        { /* Pearson */
+            value: 1, 
+            key: "pTvR"
+        },
+        { /* Spearman */
+            value: 2, 
+            key: "eJTT"
+        },
+        { /* Kendall tau*/
+            value: 3, 
+            key: "mgBC"
+        },
+        { /* Kruskal-Goodman gamma */
+            value: 4, 
+            key: "R5AC"
+        }
+    ],
+    default: [1,2],
+    tag: {
+        control: "select",
+        multiple: true
+    },
+    validate: function(value, parent, model){
+        return validateEnums(value, parent, model).map(e => Number(e));
+    }
+},
+
 }
 
 class Argument {
@@ -360,6 +394,18 @@ function validateEnum(value, parent, model) {
         var keys = model.enums.map(e => `${e.value} = ${$(e.key)}`).join(", ")
         throw new Error($("HhLt", {name: $(model.name), title: $(model.title), value: value, keys: keys}))
     } else return Number(value);
+}
+
+function validateEnums(value, parent, model) {
+    if(!Array.isArray(value)) value = [value];
+    for(let v of value) {
+        if(model.enums.map(e => e.value).indexOf(Number(v)) < 0) {
+            var keys = model.enums.map(e => `${e.value} = ${$(e.key)}`).join(", ")
+            throw new Error($("HhLt", {name: $(model.name), title: $(model.title), value: value, keys: keys}))
+        }
+    }
+    return value;
+    
 }
 
 module.exports = {Argument}
