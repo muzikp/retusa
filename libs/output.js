@@ -35,7 +35,8 @@ class Output {
             if(node.type == "object")
             {
                 for(let k of Object.keys(node.properties)) {
-                    props(node.properties[k], result[k]);
+                    if(result[k] !== undefined) props(node.properties[k], typeof result == "object" ? result[k] : undefined);
+                    else delete node.properties[k];
                 }
             }
             else node.value = result;
@@ -104,6 +105,12 @@ const snippets = {
     n: {
         "title": "vlH2",
         "type": "uint"
+    },
+    /* correlation coefficient -1 >= <= 1 */
+    r: {
+        "title": "D00h",
+        "type": "number",
+        "format": "correl"
     }
 }
 
@@ -384,21 +391,41 @@ const lib = {
     },
     "correl": {
         "title": "Z5OQ", 
-        "type": "array",
-        "items":{
-            "title": "Items", 
-            "type": "object",
-            "properties": {
-                "method": {
-                    "title": "5LXq", 
-                    "type": "number",
-                },                
-                "r": {
-                    "title": "D00h", 
-                    "type": "number",
-                },
-                p: snippets.sig
-            }
+        "type": "object",
+        "properties":{
+            "pearson": {
+                "title": "pTvR", 
+                "type": "object",
+                "properties": {
+                    r: snippets.r,
+                    p: snippets.sig
+                }
+            },
+            "spearman": {
+                "title": "eJTT", 
+                "type": "object",
+                "properties": {
+                    r: snippets.r,
+                    p: snippets.sig
+                }
+            },
+            "kendall": {
+                "title": "mgBC", 
+                "type": "object",
+                "properties": {
+                    r: snippets.r,
+                    p: snippets.sig
+                }
+            },
+            "gamma": {
+                "title": "R5AC", 
+                "type": "object",
+                "properties": {
+                    r: snippets.r,
+                    p: snippets.sig
+                }
+            }                
+            
         }    
     },
     "correlPearson": {

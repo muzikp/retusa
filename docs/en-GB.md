@@ -870,7 +870,7 @@ A number of methods have a specified so-called preprocessor, which is a function
 | function | method |
 | :--- | :--- |
 | linreg | [Linear regression](#linreg) |
-| correl | [Correlation](#correl) |
+| correl | [Bivariate correlation](#correl) |
 | correlPearson | [Pearson correlation coefficient](#correlPearson) |
 | correlSpearman | [Spearman's correlation coefficient](#correlSpearman) |
 | correlGamma | [Gamma coefficient](#correlGamma) |
@@ -953,7 +953,7 @@ style beta1 stroke:#4967A4;
 
 ```
 
-## [Correlation](#correl)
+## [Bivariate correlation](#correl)
 
 It establishes the statistical protocol of selected correlation coefficients (Pearson's, Spearman's, Kendall's Tau and Kruskal-Goodman's gamma), including their p-values. The method is designed for two numerical variables. If you want to find the correlation of three numerical variables, use partial correlation, if you want to correlate a numerical and biserial variable, use point-biserial correlation.
 
@@ -988,16 +988,47 @@ var correl = M.analyze("correl").run(0,1,[1,2,3,4]);
 
 ```mermaid
 graph TD
-correl{<i>array</i>}
-style correl fill:#85B3BE;
-style correl stroke:#2E7C8F;
-correl --> method[<b>method</b><br>observed values <br><i>number</i>]
-style method fill:#FFFFFF;
-style method stroke:#4967A4;
-correl --> r[<b>r</b><br>coefficient value <br><i>number</i>]
+correl((<i>object</i>))
+style correl fill:#E1C6B3;
+style correl stroke:#C36422;
+correl --> pearson((<b>pearson</b><br><u>Pearson correlation coefficient</u>))
+pearson((<b>pearson</b><br><u>Pearson correlation coefficient</u><br><i>object</i>))
+style pearson fill:#E1C6B3;
+style pearson stroke:#C36422;
+pearson --> r[<b>r</b><br>coefficient value <br><i>number</i>]
 style r fill:#FFFFFF;
 style r stroke:#4967A4;
-correl --> p[<b>p</b><br>p-value <br><i>number</i>]
+pearson --> p[<b>p</b><br>p-value <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
+correl --> spearman((<b>spearman</b><br><u>Spearman's correlation coefficient</u>))
+spearman((<b>spearman</b><br><u>Spearman's correlation coefficient</u><br><i>object</i>))
+style spearman fill:#E1C6B3;
+style spearman stroke:#C36422;
+spearman --> r[<b>r</b><br>coefficient value <br><i>number</i>]
+style r fill:#FFFFFF;
+style r stroke:#4967A4;
+spearman --> p[<b>p</b><br>p-value <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
+correl --> kendall((<b>kendall</b><br><u>Kendall's correlation</u>))
+kendall((<b>kendall</b><br><u>Kendall's correlation</u><br><i>object</i>))
+style kendall fill:#E1C6B3;
+style kendall stroke:#C36422;
+kendall --> r[<b>r</b><br>coefficient value <br><i>number</i>]
+style r fill:#FFFFFF;
+style r stroke:#4967A4;
+kendall --> p[<b>p</b><br>p-value <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
+correl --> gamma((<b>gamma</b><br><u>Gamma coefficient</u>))
+gamma((<b>gamma</b><br><u>Gamma coefficient</u><br><i>object</i>))
+style gamma fill:#E1C6B3;
+style gamma stroke:#C36422;
+gamma --> r[<b>r</b><br>coefficient value <br><i>number</i>]
+style r fill:#FFFFFF;
+style r stroke:#4967A4;
+gamma --> p[<b>p</b><br>p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1311,7 +1342,7 @@ Returns the One-way ANOVA statistical log. The method has two arguments. The fir
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | input vector/s | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
-| <b>columns</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+| <b>columns</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> |  |  |
 
 ### Pre-calculation data modification
 
@@ -1538,7 +1569,7 @@ Returns the statistical log of the Student's t-test for two independent samples 
 | id |description |value type |validator |required |default value |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | input vector/s | numeric vector or a matrix (array) of numeric vectors | <sub>Checks whether the argument is either a numeric vector, its identifier, or a series convertible to a numeric vector, or whether it is a series of numeric vectors (or values that are either vectors, identifiers, or values convertible to numeric vectors - in any combination). If even one of the variants fails, it throws an error.<sub> | ✔️ |  |
-| <b>factor</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> | ✔️ |  |
+| <b>factor</b> | grouping variable | any vector | <sub>Verifies if the argument is of type vector, or if it is a valid identifier of a vector in a matrix, or - if the argument is of type array - it tries to convert the array to a vector using the 'vectorify' function. If neither variant fails, it throws an error.<sub> |  |  |
 ### Syntax examples
 
 #### Arguments as object properties

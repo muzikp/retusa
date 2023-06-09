@@ -1,21 +1,21 @@
 var _ = require("./index");
 const { TimeVector } = require("./libs/vector");
 var st = require("./stress-test");
+var {readMatrix} = require("./ex-tools");
 
 require("./docs")({offset: 1, format: "markdown"});
 
-var M = new _.Matrix(
-    new _.NumericVector(180,197,240,210,180,160,179,185,183,150,110,190,170).name("výška"),
-    new _.NumericVector(75,82,100,80,75,60,75,71,77,63,46,81,70).name("váha")
-);
-/* default Pearson + Spearman */
-var correl = M.analyze("correl").run(0,1);
-debugger
-/* Kendall Tau + Gamma */
-var correl = M.analyze("correl").run(0,1,[3,4]);
+var M = readMatrix("C:/Users/Pavel/Downloads/list1.ret");
+var info = M.info();
+var ancova = M.analyze("ancova").run(4,7,6)
 debugger;
-/* all */
-var correl = M.analyze("correl").run(0,1,[1,2,3,4]);
+return;
+
+var M = new _.Matrix(
+    new _.NumericVector(27,27,27,19,30,31,30,30,30,30,30,23,19,27,28,25,26,30,11,25,28,25,28,28,36,32,34,29,25,27).name("values").label("naměřené hodnoty"),
+    new _.StringVector("A","A","A","A","A","A","B","B","B","B","B","B","C","C","C","C","C","C","D","D","D","D","D","D","E","E","E","E","E","E").name("group").label("skupina").formatter({A: "Aš", B: "Brno", C: "Chlumec na Cidlinou", D: "Dobřichovice", E: "Ejpovice"})
+);
+var anova = M.analyze("anovaow").run([0],1);
 debugger;
 return;
 

@@ -21,7 +21,7 @@ var lib = {
             type: "number"
         },
         validate: function(value, parent, model){
-            if(isNaN(value)) throw new Error($("Jphg",{name: model.name, title: $(model.title), value: value}));
+            if(isNaN(value)) throw new ArgumentError($("Jphg",{name: model.name, title: $(model.title), value: value}), value, parent, model);
             else return Number(value);
         }
     },
@@ -50,7 +50,7 @@ var lib = {
         validate: function(value, parent, model){
             if(isNaN(value)) throw new Error($("Jphg", {value: value}));
             else if(Math.round(Number(value)) < 1) throw new Error($("BaeM",{name: model.name, title: $(model.title), value: value}));
-            else if(Number(value) % 1 != 0) throw new Error($("VxSV",{name: model.name, title: $(model.title), value: value}));
+            else if(Number(value) % 1 != 0) throw new ArgumentError($("VxSV",{name: model.name, title: $(model.title), value: value}), value, parent, model);
             else return Number(value);
         }
     },
@@ -66,7 +66,7 @@ var lib = {
         },
         validate: function(value, parent, model){
             if(isNaN(value)) throw new Error($("Jphg", {name: model.name, title: $(model.title), value: value}));
-            else if(Number(value) <= 0) throw new Error($("baSh", {name: model.name, title: $(model.title), value: value}));
+            else if(Number(value) <= 0) throw new ArgumentError($("baSh", {name: model.name, title: $(model.title), value: value}), value, parent, model);
             else return Number(value);
         }
     },
@@ -83,7 +83,7 @@ var lib = {
         },
         validate: function(value, parent, model){
             if(isNaN(value)) throw new Error($("Jphg", {name: model.name, title: $(model.title), value: value}));
-            else if(Number(value) < 0 || Number(value) > 1) throw new Error($("vKlu", {name: model.name, title: $(model.title), value: value}));
+            else if(Number(value) < 0 || Number(value) > 1) throw new ArgumentError($("vKlu", {name: model.name, title: $(model.title), value: value}), value, parent, model);
             else return Number(value);
         }
     },
@@ -99,8 +99,8 @@ var lib = {
             multiple: false,
             type: [1,2,3]
         },
-        validate: function(value, parent){
-            var v = parseVector(value, parent);
+        validate: function(value, parent, model){
+            var v = parseVector(value, parent, model);
             return v;
         }
     },
@@ -115,9 +115,9 @@ var lib = {
             multiple: false,
             type: [1]
         },
-        validate: function(value, parent){
+        validate: function(value, parent, model) {
             var v = parseVector(value, parent);
-            if(v.type() !== 1) throw new Error($("cNG4"))
+            if(v.type() !== 1) throw new ArgumentError($("cNG4", {name: model.name, label: $(model.title), inputType: v.type(true)}),value, parent, model)
             else return v;
         }
     },
@@ -132,9 +132,9 @@ var lib = {
             multiple: false,
             type: [3]
         },
-        validate: function(value, parent){
+        validate: function(value, parent, model){
             var v = parseVector(value, parent);
-            if(v.type() !== 3) throw new Error($("KvHv"))
+            if(v.type() !== 3) throw new ArgumentError($("KvHv", {name: model.name, label: $(model.title), inputType: v.type(true)}),value, parent, model)
             else return v;
         }
     },
@@ -149,10 +149,10 @@ var lib = {
             multiple: true,
             type: [1]
         },
-        validate: function(value, parent){
+        validate: function(value, parent, model){
             var m = parseMatrix(value, parent);
             for(let v of m) {
-                if(v.type() !== 1) throw new Error($("cNG4"))
+                if(v.type() !== 1) throw new ArgumentError($("cNG4"), value, parent, model)
             }            
             return m;
         }
@@ -259,40 +259,40 @@ var lib = {
             return validateEnum(value, parent, model);
         }
     },
-   correlMethods: {
-    type: "enum",
-    title: "gZCx",
-    validator: "dKFL",
-    mdType: "u5oV",
-    isEnum: true,
-    enums: [
-        { /* Pearson */
-            value: 1, 
-            key: "pTvR"
+    correlMethods: {
+        type: "enum",
+        multiple: true,
+        title: "gZCx",
+        validator: "dKFL",
+        mdType: "u5oV",
+        isEnum: true,
+        enums: [
+            { /* Pearson */
+                value: 1, 
+                key: "pTvR"
+            },
+            { /* Spearman */
+                value: 2, 
+                key: "eJTT"
+            },
+            { /* Kendall tau*/
+                value: 3, 
+                key: "mgBC"
+            },
+            { /* Kruskal-Goodman gamma */
+                value: 4, 
+                key: "R5AC"
+            }
+        ],
+        default: [1,2],
+        tag: {
+            control: "select",
+            multiple: true
         },
-        { /* Spearman */
-            value: 2, 
-            key: "eJTT"
-        },
-        { /* Kendall tau*/
-            value: 3, 
-            key: "mgBC"
-        },
-        { /* Kruskal-Goodman gamma */
-            value: 4, 
-            key: "R5AC"
+        validate: function(value, parent, model){
+            return validateEnums(value, parent, model).map(e => Number(e));
         }
-    ],
-    default: [1,2],
-    tag: {
-        control: "select",
-        multiple: true
-    },
-    validate: function(value, parent, model){
-        return validateEnums(value, parent, model).map(e => Number(e));
     }
-},
-
 }
 
 class Argument {
@@ -355,18 +355,18 @@ class Argument {
     }
 }
 
-function parseVector(v, parent) {
-    if(!v && v !== 0) throw new Error("Value is empty");
-    if(parent) {
-        if(parent.item(v)) return parent.item(v);
-    }
-    if(!Array.isArray(v)) throw new Error("Value must be iterable");
-    else if(v.isVector) return v;
+function parseVector(v, parent, model) {
+    if(v?.isVector) return v;
+    /* identifier cannot be empty */
+    else if(!v && v !== 0) throw new Error($("0Duq"));
+    else if(parent?.item(v)) return parent.item(v);
+    /* Value must be iterable */
+    else if(!Array.isArray(v)) throw new Error($("9i3T"));
     else {
         try {
             return v.vectorify();
         } catch (e) {
-            throw new Error("The value cannot be converted to a vector.")
+            throw new ArgumentError($("p7rV"), v, parent)
         }
     }
 }
@@ -392,7 +392,7 @@ function parseMatrix(arr, parent) {
 function validateEnum(value, parent, model) {
     if(model.enums.map(e => e.value).indexOf(Number(value)) < 0) {
         var keys = model.enums.map(e => `${e.value} = ${$(e.key)}`).join(", ")
-        throw new Error($("HhLt", {name: $(model.name), title: $(model.title), value: value, keys: keys}))
+        throw new ArgumentError($("HhLt", {name: $(model.name), title: $(model.title), value: value, keys: keys}), value, parent, model)
     } else return Number(value);
 }
 
@@ -401,11 +401,34 @@ function validateEnums(value, parent, model) {
     for(let v of value) {
         if(model.enums.map(e => e.value).indexOf(Number(v)) < 0) {
             var keys = model.enums.map(e => `${e.value} = ${$(e.key)}`).join(", ")
-            throw new Error($("HhLt", {name: $(model.name), title: $(model.title), value: value, keys: keys}))
+            throw new ArgumentError($("HhLt", {name: $(model.name), title: $(model.title), value: value, keys: keys}), value, parent, model)
         }
     }
     return value;
     
+}
+
+class ArgumentError extends Error {
+    constructor(message, value, parent, model)
+    {
+        super();
+        Object.defineProperty(this, "message", {
+            value: message,
+            readonly: true
+        });
+        Object.defineProperty(this, "value", {
+            value: value,
+            readonly: true
+        });
+        Object.defineProperty(this, "parent", {
+            value: parent,
+            readonly: true
+        });
+        Object.defineProperty(this, "model", {
+            value: model,
+            readonly: true
+        });
+    }
 }
 
 module.exports = {Argument}

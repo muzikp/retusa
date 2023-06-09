@@ -110,7 +110,7 @@ module.exports = {
 	"jrQP": "Analysis cannot be processed without a matrix specified.",
 	"RLob": "Argument must be a vector; recieved ${value}",
 	"Kvpv": "Argument must be a numeric vector",
-	"KvHv": "The argument must be a binary vector, a valid binary vector identifier, or an Array convertible to a binary vector.",
+	"KvHv": "The argument ${name} (${label}) must be a binary vector, a valid binary vector identifier, or an Array convertible to a binary vector.",
 	"NfvF": "Checks if the value is a number. Otherwise, it will throw an error.",
 	"GweD": "Checks if the value is a number between 0 and 1 (including boundary values). Otherwise, it will throw an error.",
 	"GHFj": "Checks if the value is binary in nature. Otherwise, it automatically converts the value to the boolean type and therefore never returns an error.",
@@ -227,7 +227,7 @@ module.exports = {
 	"oFZO": "The argument(s) must be at least one numeric vector.",
 	"e0uy": "The argument must be an array.",
 	"xV0p": "The argument cannot be an empty array.",
-	"cNG4": "The argument must be a numeric vector or its valid identifier.",
+	"cNG4": "The argument ${name} (${label}) must be a numeric vector or its valid identifier. The input vector is of ${inputType} type.",
 	"BoEs": "Matrix method model '${name}' was not found.",
 	"OH5v": "If the arguments specify a factor variable (the second argument), the first argument (either a numeric vector or the first vector in the matrix, if it is the first argument of the matrix) is decomposed according to the values of the factor into a new matrix. If the arguments are without a factor (i.e. the second argument is empty), it takes the first two vectors from the first argument 'vectors' (matrix) and then deletes the rows with empty values. In case the argument 'factor' and the argument 'vectors' are not specified contains only a single vector or is itself a numeric vector, throws an error (at least two numeric vectors are required in the first argument without a factor).",
 	"HHCW": "The minimum number of vectors for the 'vectors' argument is 2 (if the 'factor' argument is not specified - then only one is sufficient).",
@@ -357,8 +357,11 @@ module.exports = {
 	"46Ew": "seconds",
 	"2hXX": "millisecond",
 	"VIUz": "Formatter value must be either an object or a function.",
-	"leYr": "Correlation",
+	"leYr": "bivariate correlation",
 	"gJwy": "It establishes the statistical protocol of selected correlation coefficients (Pearson's, Spearman's, Kendall's Tau and Kruskal-Goodman's gamma), including their p-values. The method is designed for two numerical variables. If you want to find the correlation of three numerical variables, use partial correlation, if you want to correlate a numerical and biserial variable, use point-biserial correlation.",
 	"ipHs": "correlation methods",
-	"D00h": "coefficient value"
+	"D00h": "coefficient value",
+	"0Duq": "vector identifier cannot be empty",
+	"9i3T": "argument must be iterable",
+	"p7rV": "failed to convert the argument to a vector"
 }

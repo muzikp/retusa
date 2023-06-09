@@ -41,14 +41,31 @@ class Matrix extends Array {
     push() {
         for(let a of [...arguments].filter(v => v)) {
             if(a?.isVector) {
-                super.push(a);
+                super.push.call(this,a);
             }
-            else if(Array.isArray(a)) super.push(a.vectorify());
+            else if(Array.isArray(a)) super.push.call(this, a.vectorify());
             else {
                 throw new Error("Argument is not a vector or array.");
                 
             }
         };
+        return this.length;
+    }
+    map(callbackFn, thisArg = this) {
+        if(!callbackFn) return this;
+        var isMatrix = true;
+        var _m = [];
+        var i = 0;
+        for(let v of thisArg || this) {
+            var e = callbackFn(v, i, thisArg);
+            i++;
+            if(!e?.isVector) isMatrix = false;
+            _m.push(e);
+        };
+        if(isMatrix) {
+            _m = new Matrix(..._m).name(this.name());
+        }
+        return _m;
     }
     smap(fn) {
         var _m = [];
@@ -70,7 +87,9 @@ class Matrix extends Array {
         const selection = this.select(target, factor);
         const pivot = new Matrix();        
         for(let key of factor.distinct().intersection(selectedKeys)) {
-            pivot.push(new target.constructor(...selection.filter(factor, (v) => v === key)[0]).name(key).label(factor.format(key)).formatter(target.formatter()));
+            var v = new target.constructor(...selection.filter(factor, (v) => v === key)[0]).name(key).label(factor.format(key)).formatter(target.formatter(), true);
+            pivot.push(new target.constructor(...selection.filter(factor, (v) => v === key)[0]).name(key).label(factor.format(key)).formatter(target.formatter(), true));
+
         }
         return pivot;
     }
@@ -252,6 +271,14 @@ class Matrix extends Array {
     }
     static listMethods() {
         return MatrixMethodsModels.map(m => m.name);
+    }
+    /**
+     * 
+     * @returns {Array} Return an array of this matrix's vectors descriptions (index, name, label, length, formatter).
+     * 
+     */
+    info() {
+        return this.map((v,i) => ({index: i, name: v.name(), label: v.label(), length: v.length, formatter: v.formatter()}));
     }
 }
 
@@ -513,23 +540,23 @@ const matrixMethods = {
 
     },
     correl: function() {
-        var x = arguments[0], y = arguments[1], methods = arguments[2];
-        var result = [];
+       var x = arguments[0], y = arguments[1], methods = arguments[2];
+        var result = {};
         if(methods.indexOf(1) > -1) {
-            const r = matrixMethods.correlPearson(x,y);
-            result.push({method: $("pTvR"), r: r.r, p: r.p});
+            let r = matrixMethods.correlPearson(x,y);
+            result.pearson = {r: r.r, p: r.p};
         }
         if(methods.indexOf(2) > -1) {
-            const r = matrixMethods.correlSpearman(x,y);
-            result.push({method: $("eJTT"), r: r.r, p: r.p});
+            let r = matrixMethods.correlSpearman(x,y);
+            result.spearman = {r: r.r, p: r.p};
         }
         if(methods.indexOf(3) > -1) {
-            const r = matrixMethods.correlKendall(x,y);
-            result.push({method: $("mgBC"), r: r.tau, p: r.p});
+            let r = matrixMethods.correlKendall(x,y);
+            result.kendall = {r: r.tau, p: r.p};
         }
         if(methods.indexOf(4) > -1) {
-            const r = matrixMethods.correlGamma(x,y);
-            result.push({method: $("R5AC"), r: r.r, p: r.p});
+            let r = matrixMethods.correlGamma(x,y);
+            result.gamma = {r: r.r, p: r.p};
         }
         return result;
     },
@@ -1444,7 +1471,8 @@ const MatrixMethodsModels = [
                 model: "anyVector",
                 config: {
                     name: "factor",
-                    title: "dTDt"
+                    title: "dTDt",
+                    required: false
 
                 }
             }
@@ -1529,7 +1557,8 @@ const MatrixMethodsModels = [
                 model: "anyVector",
                 config: {
                     name: "factor",
-                    title: "dTDt"
+                    title: "dTDt",
+                    required: false
                 }
             }
         }
@@ -1600,7 +1629,7 @@ const MatrixMethodsModels = [
         output: "ancova",     
         prepare: preprocessors.ancova.fn,
         args: {       
-            "f": {
+            "factor": {
                 model: "anyVector",
                 config: {
                     name: "factor",
@@ -1608,7 +1637,7 @@ const MatrixMethodsModels = [
                     required: true
                 }
             },        
-            "y": {
+            "dependent": {
                 model: "numericVector",
                 config: {
                     name: "dependent",
@@ -1616,7 +1645,7 @@ const MatrixMethodsModels = [
                     required: true
                 }
             },
-            "c": {
+            "covariant": {
                 model: "numericVector",
                 config: {
                     name: "covariant",
@@ -1790,7 +1819,8 @@ const MatrixMethodsModels = [
                 model: "anyVector",
                 config: {
                     title: "dTDt",
-                    name: "factor"
+                    name: "factor",
+                    required: false
                 }
             }
         }
@@ -1836,7 +1866,8 @@ const MatrixMethodsModels = [
                 model: "anyVector",
                 config: {
                     name: "factor",
-                    title: "dTDt"
+                    title: "dTDt",
+                    required: false
                 }
             }
         }

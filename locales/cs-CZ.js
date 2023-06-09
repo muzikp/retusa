@@ -110,7 +110,7 @@ module.exports = {
 	"jrQP": "Analýzu nelze provést bez specifikace matice.",
 	"RLob": "Argument musí být typu vektor, místo toho přijata hodnota ${value}",
 	"Kvpv": "Argument musí být numerický vektor.",
-	"KvHv": "Argument musí být binární vektor, platný identifikátor binárního vektoru nebo řada (Array) převoditelná na binární vektor.",
+	"KvHv": "Argument ${name} (${label}) musí být binární vektor, platný identifikátor binárního vektoru nebo řada (Array) převoditelná na binární vektor.",
 	"NfvF": "Ověří, zdali je hodnota číslo. V opačném případě vyvolá chybu.",
 	"GweD": "Ověří, zdali je hodnota číslo mezi 0 a 1 (včetně hraničních hodnot). V opačném případě vyvolá chybu.",
 	"GHFj": "Ověří, zdali je hodnota binární povahy. V opačném případě hodnotu automaticky převede na typ boolean a nevyvolá tudíž nikdy chybu.",
@@ -227,7 +227,7 @@ module.exports = {
 	"oFZO": "Argumentem/argumenty musí být alespoň jeden numerický vektor.",
 	"e0uy": "Argument musí být typu Array.",
 	"xV0p": "Argument nemůže být prázdná instance třídy array.",
-	"cNG4": "Argument musí být numerický vektor nebo jeho platný identifikátor.",
+	"cNG4": "Argument ${name} (${label}) musí být numerický vektor nebo jeho platný identifikátor. Zadaný vektor má typ ${inputType}.",
 	"BoEs": "Maticový model metody '${name}' nebyl nalezen",
 	"OH5v": "Pokud argumenty specifikují faktorovou proměnnou (druhý argument), rozloží se první argument (buďto numerický vektor nebo první vektor v matici, pokud je prvním argumentem matice) dle hodnot faktoru do nové matice. Pokud jsou argumenty bez faktoru (tedy druhý argument je prázdný), vezme první dva vektory z prvního argumentu 'vectors' (matice) a následně odstraní řádky s prázdnými hodnotami.V případě, že není zadán argument 'factor' a argument 'vectors' zároveň obsahuje pouze jediný vektor nebo je sám numerickým vektorem, vyhodí chybu (bez faktoru jsou třeba alespoň dva numerické vektory v prvním argumentu).",
 	"HHCW": "Minimální počet vektorů pro argument 'vectors' jsou 2 (pokud není specifikovan argument ''factor' - pak stačí pouze jeden).",
@@ -357,8 +357,11 @@ module.exports = {
 	"46Ew": "sekunda",
 	"2hXX": "milisekunda",
 	"VIUz": "Hodnota vlasnosti formatter musí být typu objekt nebo funkce.",
-	"leYr": "Korelace",
+	"leYr": "dvourozměrná korelace",
 	"gJwy": "Stanoví statistický protokol vybraných korelačních koeficientů (Pearsonova, Spearmanova, Kendallova Tau a Kruskal-Goodmanovy gammy), včetně jejich p-hodnot. Metoda je určena pro dvě numerické proměnné. Pokud chcete zjistit korelaci tří numerických proměnných, použijte parciální korelaci, pokud chcete korelovat numerickou a biseriální proměnnou, použijte bodově-biseriální korelaci.",
 	"ipHs": "korelační metody",
-	"D00h": "hodnota koeficientu"
+	"D00h": "hodnota koeficientu",
+	"0Duq": "argument určující vektor nemůže být prázdný",
+	"9i3T": "argument musí mít povahu iterativního typu",
+	"p7rV": "argument se nepodařilo převést na vektor"
 }

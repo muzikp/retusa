@@ -870,7 +870,7 @@ Každá metoda má specifikované argumenty a jejich validátory. Validátory me
 | funkce | metoda |
 | :--- | :--- |
 | linreg | [Lineární regrese](#linreg) |
-| correl | [Korelace](#correl) |
+| correl | [Dvourozměrná korelace](#correl) |
 | correlPearson | [Pearsonův korelační koeficient](#correlPearson) |
 | correlSpearman | [Spearmanův korelační koeficient](#correlSpearman) |
 | correlGamma | [Koeficient gama](#correlGamma) |
@@ -953,7 +953,7 @@ style beta1 stroke:#4967A4;
 
 ```
 
-## [Korelace](#correl)
+## [Dvourozměrná korelace](#correl)
 
 Stanoví statistický protokol vybraných korelačních koeficientů (Pearsonova, Spearmanova, Kendallova Tau a Kruskal-Goodmanovy gammy), včetně jejich p-hodnot. Metoda je určena pro dvě numerické proměnné. Pokud chcete zjistit korelaci tří numerických proměnných, použijte parciální korelaci, pokud chcete korelovat numerickou a biseriální proměnnou, použijte bodově-biseriální korelaci.
 
@@ -988,16 +988,47 @@ var correl = M.analyze("correl").run(0,1,[1,2,3,4]);
 
 ```mermaid
 graph TD
-correl{<i>řada</i>}
-style correl fill:#85B3BE;
-style correl stroke:#2E7C8F;
-correl --> method[<b>method</b><br>pozorované hodnoty <br><i>číslo</i>]
-style method fill:#FFFFFF;
-style method stroke:#4967A4;
-correl --> r[<b>r</b><br>hodnota koeficientu <br><i>číslo</i>]
+correl((<i>objekt</i>))
+style correl fill:#E1C6B3;
+style correl stroke:#C36422;
+correl --> pearson((<b>pearson</b><br><u>Pearsonův korelační koeficient</u>))
+pearson((<b>pearson</b><br><u>Pearsonův korelační koeficient</u><br><i>objekt</i>))
+style pearson fill:#E1C6B3;
+style pearson stroke:#C36422;
+pearson --> r[<b>r</b><br>hodnota koeficientu <br><i>číslo</i>]
 style r fill:#FFFFFF;
 style r stroke:#4967A4;
-correl --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
+pearson --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
+correl --> spearman((<b>spearman</b><br><u>Spearmanův korelační koeficient</u>))
+spearman((<b>spearman</b><br><u>Spearmanův korelační koeficient</u><br><i>objekt</i>))
+style spearman fill:#E1C6B3;
+style spearman stroke:#C36422;
+spearman --> r[<b>r</b><br>hodnota koeficientu <br><i>číslo</i>]
+style r fill:#FFFFFF;
+style r stroke:#4967A4;
+spearman --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
+correl --> kendall((<b>kendall</b><br><u>Kendallova korelace</u>))
+kendall((<b>kendall</b><br><u>Kendallova korelace</u><br><i>objekt</i>))
+style kendall fill:#E1C6B3;
+style kendall stroke:#C36422;
+kendall --> r[<b>r</b><br>hodnota koeficientu <br><i>číslo</i>]
+style r fill:#FFFFFF;
+style r stroke:#4967A4;
+kendall --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
+correl --> gamma((<b>gamma</b><br><u>Koeficient gama</u>))
+gamma((<b>gamma</b><br><u>Koeficient gama</u><br><i>objekt</i>))
+style gamma fill:#E1C6B3;
+style gamma stroke:#C36422;
+gamma --> r[<b>r</b><br>hodnota koeficientu <br><i>číslo</i>]
+style r fill:#FFFFFF;
+style r stroke:#4967A4;
+gamma --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -1537,7 +1568,7 @@ Stanoví statistický protokol Studentova t-testu pro dva nezávislé výběry, 
 | id |popis |typ hodnoty |validátor |povinný |defaultní hodnota |
 | :--- |:--- |:--- |:--- |:--- |:--- |
 | <b>vectors</b> | vstupní vektor/y | numerický vektor nebo matice numerických vektorů | <sub>Ověří, zdali je argument buďto numerický vektor, jeho identifikátor nebo řada převoditelná na numerický vektor, anebo zdali se jedná o řadu numerických vektorů (resp. hodnot, které jsou buďto vektory, identifikátry nebo hodnoty převoditelné na numerické vektory - v libovolné kombinace). Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
-| <b>factor</b> | shlukovací proměnná | jakýkoliv vektor | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> | ✔️ |  |
+| <b>factor</b> | shlukovací proměnná | jakýkoliv vektor | <sub>Ověří, zdali je argument typu vektor, nebo zdali se jedná o validní identifkátor vektoru v matice, nebo - pokud je argument typu array - se pokusí řadu pomocí funkce 'vectorify' převést na vektor. Pokud se ani jedna z variant nezdaří, vyhodí chybu.<sub> |  |  |
 ### Příklady syntaxe
 
 #### Argumenty jako vlastnosti objektu
