@@ -267,6 +267,19 @@ const lib = {
             "p": snippets.sig
         }
     },
+    "chigoftest": {
+        "title": "DLoe", 
+        "type": "object",
+        "properties": {
+            "chi": {
+                "title": "GfeP", 
+                "type": "number",
+                "format": "chisq"
+            },
+            "df": snippets.df,
+            "p": snippets.sig
+        }
+    },
     "inspectVector": {
         "title": "R5AC", 
         "type": "object",

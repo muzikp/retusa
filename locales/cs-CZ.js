@@ -363,5 +363,7 @@ module.exports = {
 	"D00h": "hodnota koeficientu",
 	"0Duq": "argument určující vektor nemůže být prázdný",
 	"9i3T": "argument musí mít povahu iterativního typu",
-	"p7rV": "argument se nepodařilo převést na vektor"
+	"p7rV": "argument se nepodařilo převést na vektor",
+	"QIVA": "chí^2 test dobré shody",
+	"Crhj": "Stanoví statistický protokol chí kvadrát testu dobré shody."
 }

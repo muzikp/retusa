@@ -318,12 +318,12 @@ const preprocessors = {
     ancova: {
         title: "Cumi",
         fn: function(_){
-            var M = new Matrix(_.args.f, _.args.y, _.args.c);
+            var M = new Matrix(_.args.factor, _.args.dependent, _.args.covariant);
             _.sample.raw = M.maxRows();
             M = M.removeEmpty();
-            _.args.f = M[0];
-            _.args.y = M[1];
-            _.args.c = M[2];
+            _.args.factor = M[0];
+            _.args.dependent = M[1];
+            _.args.covariant = M[2];
             _.sample.net = M.maxRows();
         }
     },
@@ -812,11 +812,13 @@ const matrixMethods = {
         var f2_keys = T[1].distinct();
         var f1_ss = [...f1_keys.map((v,i) => function(){
                 var a = T.filter(0, (e) => e === v)[2];
-                return {m: a.avg(), n: a.length}
-            }()).map(o => o.n * Math.pow(o.m-total_mean,2))].sum();
+                const _ = {m: a.avg(), n: a.length}
+                return _;
+            }()).map(o => o.n * Math.pow(o.m-total_mean,2))].sum();        
         var f2_ss = [...f2_keys.map((v,i) => function(){
-                var a = T.filter(1, (e) => e === v)[2];
-                return {m: a.avg(), n: a.length}
+                var a = T.filter(1, (e) => e === v)[2];     
+                const _ = {m: a.avg(), n: a.length};
+                return _;                
             }()).map(o => o.n * Math.pow(o.m-total_mean,2))].sum();
         var total_ss = T[2].map(e => Math.pow(e - total_mean,2 )).sum();
         /* within ss */

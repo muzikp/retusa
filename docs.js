@@ -31,6 +31,7 @@ var vectorMethods = [
     "ttest",
     "swtest",
     "kstest",
+    "chigoftest",
     "qqplot",
     "ppplot"    
 ]
@@ -410,6 +411,10 @@ const examples = {
     },
     kstest: function(){
         var sw = new NumericVector(2,2,3,3,4,4,5,5,6,7,8,9,10,11,10,9,8,7,7,6,6,5,5).kstest(); 
+    },
+    chigoftest: function() {
+        var V = new StringVector().append("Apple", 180).append("Lime", 250).append("Cherry", 120).append("Orange", 225).append("Grape", 225).chigoftest();
+        //var chi = V.analyze("chigoftest").run();
     },
     correl: [
         {

@@ -215,7 +215,7 @@ module.exports = {
 	"gLRN": "row variable",
 	"bpjC": "column variable",
 	"fqUi": "frequency variable",
-	"GfeP": "phi^2 test",
+	"GfeP": "chi^2 test",
 	"VYQH": "Cramér V",
 	"BUaN": "Pearson C",
 	"bpCq": "Checks if it is a numeric value greater than zero. Otherwise, it will throw an error.",
@@ -363,5 +363,7 @@ module.exports = {
 	"D00h": "coefficient value",
 	"0Duq": "vector identifier cannot be empty",
 	"9i3T": "argument must be iterable",
-	"p7rV": "failed to convert the argument to a vector"
+	"p7rV": "failed to convert the argument to a vector",
+	"QIVA": "Chi square goodness of fit",
+	"Crhj": "Returns a statistical log for chi squared test of goodness of fit."
 }

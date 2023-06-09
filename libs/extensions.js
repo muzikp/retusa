@@ -21,7 +21,9 @@ Array.prototype.count = function() {
 }
 
 Array.prototype.avg = function() {
-    return this.sum()/this.count()
+    if(this.length === 0) return null;
+    else if(this.length === 1) return this[0];
+    else return this.sum()/this.count()
 }
 
 Array.prototype.mci = function(p) {
@@ -41,14 +43,13 @@ Array.prototype.distinct = function() {
 }
 
 Array.prototype.asc = function(self) {
-    if(self) return this.sort((a,b) => a < b ? -1 : 1);
-    else return new Array(...this).sort((a,b) => a < b ? -1 : 1);
+    if(self) return this.length > 1 ? this.sort((a,b) => a < b ? -1 : 1) : this.length > 0 ? this[0]: [];
+    else return this.length > 1 ? [...this].sort((a,b) => a < b ? -1 : 1) : this.length > 0 ? this[0] : [];
 }
 
 Array.prototype.desc = function(self) {
-    if(self) {
-        return this.asc().reverse();
-    } else return new Array(...this).asc().reverse();
+    if(self) return this.length > 1 ? this.sort((a,b) => b < a ? -1 : 1) : this.length > 0 ? this[0]: [];
+    else return this.length > 1 ? [...this].sort((a,b) => b < a ? -1 : 1) : this.length > 0 ? this[0] : [];
 }
 
 Array.prototype.min = function(){
@@ -115,11 +116,21 @@ Array.prototype.frequency = function(order){
     else return f;
 }
 
+Array.prototype.chigoftest = function() {
+    var f = this.frequency();
+    var expm = f.map(e => e.n).avg();
+    let chi =  f.map(e => Math.pow(e.n - expm,2)/expm).sum();
+    const df = f.length -1;
+    const p = dist.chisqdist(chi,df);
+    return {chi: chi, df: df, p:p};
+}
+
 Array.prototype.mode = function() {
     return this.frequency(1)[0].value;
 }
 
 Array.prototype.quantile = function(q){
+    if(this.length == 0) return null;
     let _ = this.asc();
     var pos = ((_.length) - 1) * q;
     var base = Math.floor(pos);

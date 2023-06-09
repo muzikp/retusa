@@ -85,7 +85,7 @@ class Vector extends Array {
      * @returns {this} This vector filtered from the null values.
      */
     removeEmpty() {
-        return new this.constructor(...new Array(...this).filter(v => v !== null)).getMeta(this);
+        return new this.constructor([...this].filter(v => v !== null)).getMeta(this);
     }
     /**
      * Copies the vector metadata (name, label etc.) from a source vector to this vector.
@@ -258,6 +258,18 @@ class Vector extends Array {
             return new TimeVector(...this.map(fn)).getMeta(this);
         }
         else throw new Error(`Unrecognized vector type: ${type}. Possible types: 1,2,3,4.`);
+    }
+    fill(what, count, append) {
+        var e = this.parse(what);
+        if(append) super.push(...Array(count).fill(e));
+        else this.reload(...Array(count).fill(e));
+        return this;
+    }
+    append(what, count = 1)
+    {
+        var e = this.parse(what);
+        super.push(...Array(count).fill(e));
+        return this;
     }
     static register(model) {
         models.push(model);
@@ -1007,12 +1019,25 @@ const models = [
         output: "kstest",
         unstable: true   
     },
+    {   name: "chigoftest",
+        fn: Array.prototype.chigoftest,
+        wiki: {
+            title: "QIVA",
+            description: "Crhj",
+            preprocessor: preprocessors.removeEmpty.title,
+            url: "https://www.jmp.com/en_sg/statistics-knowledge-portal/chi-square-test/chi-square-goodness-of-fit-test.html"
+        },
+        prepare: preprocessors.removeEmpty.fn,
+        type: [1,2,3,4],
+        output: "chigoftest"  
+    },
     {   name: "inspect",
         fn: function() {
             var type = arguments[1], sample = arguments[0];
             var r = {};
+            r.count = this.length;
             if(type == 1)
-            {
+            {                
                 r.sum = this.sum();
                 r.avg = this.avg();
                 r.median = this.median();
@@ -1023,16 +1048,18 @@ const models = [
                 r.q25 = this.quantile(0.25);
                 r.q75 = this.quantile(0.75);
                 r.q95 = this.quantile(0.95);
-                r.mode = this.mode();
                 r.stdev = this.stdev(sample);
                 r.varc = this.varc();
                 r.harmean = this.harmean();
                 r.geomean = this.geomean();
                 r.skewness = this.skewness(sample);
-                r.kurtosis = this.kurtosis(sample);                
+                r.kurtosis = this.kurtosis(sample);
+                r.kstest = this.kolmogorovSmirnovTest();
+                r.swtest = this.shapirowilk();
             } else
             {
                 r.mode = this.mode();
+                r.chisq = this.chigoftest();
             }
             return r;
         },

@@ -5,9 +5,18 @@ var {readMatrix} = require("./ex-tools");
 
 require("./docs")({offset: 1, format: "markdown"});
 
+var V = new _.StringVector().append("Apple", 180).append("Lime", 250).append("Cherry", 120).append("Orange", 225).append("Grape", 225).chigoftest();
+debugger;
+return;
+var M = readMatrix("C:/Users/Pavel/Downloads/list1.ret")[4];
+var chi = M.analyze("chigoftest").run();
+debugger;
+return;
+
 var M = readMatrix("C:/Users/Pavel/Downloads/list1.ret");
-var info = M.info();
-var ancova = M.analyze("ancova").run(4,7,6)
+console.log(M.info());
+debugger;
+var TW = M.analyze("anovatw").run(4,5,10)
 debugger;
 return;
 

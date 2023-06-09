@@ -28,6 +28,7 @@ Vector functions are statistical methods that are performed on vector instances.
 | ttest | [One-sample t-test](#ttest) |
 | swtest ⚠️ | [Shapiro-Wilk W test](#swtest) |
 | kstest ⚠️ | [Kolmogorov-Smirnov test](#kstest) |
+| chigoftest | [Chi square goodness of fit](#chigoftest) |
 | qqplot | [Q-Q plot](#qqplot) |
 | ppplot | [P-P plot](#ppplot) |
 
@@ -790,6 +791,41 @@ kstest --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
 kstest --> p[<b>p</b><br>p-value <br><i>number</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
+
+```
+
+## [Chi square goodness of fit](#chigoftest)
+
+Returns a statistical log for chi squared test of goodness of fit.
+
+
+### Pre-calculation data modification
+
+Removes all empty values (blank cells) from the vector.
+
+### Syntax examples
+
+```js
+var V = new StringVector().append("Apple", 180).append("Lime", 250).append("Cherry", 120).append("Orange", 225).append("Grape", 225).chigoftest();
+//var chi = V.analyze("chigoftest").run();
+```
+
+### Output schema
+
+```mermaid
+graph TD
+chigoftest((<i>object</i>))
+style chigoftest fill:#E1C6B3;
+style chigoftest stroke:#C36422;
+chigoftest --> chi[<b>chi</b><br>chi^2 test <br><i>number</i>]
+style chi fill:#FFFFFF;
+style chi stroke:#4967A4;
+chigoftest --> df[<b>df</b><br>degrees of freedom <br><i>number</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
+chigoftest --> p[<b>p</b><br>p-value <br><i>number</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
@@ -2034,7 +2070,7 @@ graph TD
 contingency((<i>object</i>))
 style contingency fill:#E1C6B3;
 style contingency stroke:#C36422;
-contingency --> phi[<b>phi</b><br>phi^2 test <br><i>number</i>]
+contingency --> phi[<b>phi</b><br>chi^2 test <br><i>number</i>]
 style phi fill:#FFFFFF;
 style phi stroke:#4967A4;
 contingency --> p[<b>p</b><br>p-value <br><i>number</i>]

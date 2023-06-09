@@ -28,6 +28,7 @@ Vektorové funkce jsou statistické metody, které jsou prováděny nad instance
 | ttest | [Jednovýběrový t-test](#ttest) |
 | swtest ⚠️ | [Shapirův-Wilkův W test](#swtest) |
 | kstest ⚠️ | [Kolmogorov-Smirnovův test](#kstest) |
+| chigoftest | [Chí^2 test dobré shody](#chigoftest) |
 | qqplot | [Q-Q diagram](#qqplot) |
 | ppplot | [P-P diagram](#ppplot) |
 
@@ -790,6 +791,41 @@ kstest --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
 style df fill:#FFFFFF;
 style df stroke:#75716F;
 kstest --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
+style p fill:#FFFFFF;
+style p stroke:#75716F;
+
+```
+
+## [Chí^2 test dobré shody](#chigoftest)
+
+Stanoví statistický protokol chí kvadrát testu dobré shody.
+
+
+### Před-výpočetní úprava dat
+
+Vyřazuje všechny prázdné hodnoty (buňky) vektoru.
+
+### Příklady syntaxe
+
+```js
+var V = new StringVector().append("Apple", 180).append("Lime", 250).append("Cherry", 120).append("Orange", 225).append("Grape", 225).chigoftest();
+//var chi = V.analyze("chigoftest").run();
+```
+
+### Schéma výsledku
+
+```mermaid
+graph TD
+chigoftest((<i>objekt</i>))
+style chigoftest fill:#E1C6B3;
+style chigoftest stroke:#C36422;
+chigoftest --> chi[<b>chi</b><br>chí^2 test <br><i>číslo</i>]
+style chi fill:#FFFFFF;
+style chi stroke:#4967A4;
+chigoftest --> df[<b>df</b><br>stupně volnosti <br><i>číslo</i>]
+style df fill:#FFFFFF;
+style df stroke:#75716F;
+chigoftest --> p[<b>p</b><br>p-hodnota <br><i>číslo</i>]
 style p fill:#FFFFFF;
 style p stroke:#75716F;
 
