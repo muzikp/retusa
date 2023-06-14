@@ -126,7 +126,12 @@ Array.prototype.chigoftest = function() {
 }
 
 Array.prototype.mode = function() {
-    return this.frequency(1)[0].value;
+    var f = {v: null, n: 0};
+    for(let k of this.distinct()) {
+        const n = this.filter(_v => _v === k).length;
+        if(f.n < n) f = {v: k, n: n};
+    };
+    return f.v;
 }
 
 Array.prototype.quantile = function(q){
@@ -562,6 +567,26 @@ Function.prototype.stringify = function(indent = "\t") {
 
 Date.isDate = function(date) {
     return (date instanceof Date && !isNaN(date.valueOf()))
+}
+
+String.fillRnd = function(length) {
+    return generateRandomString(length);
+}
+
+Array.prototype.fillRnd = function() {
+    return generateRandomString(this.length);
+}
+
+function generateRandomString(length=8) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
 }
 
 module.exports = {Array, Math, String, Function};

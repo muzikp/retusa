@@ -18,14 +18,29 @@ function getRegistryProperty(parent, key = null) {
 class Vector extends Array {
     constructor() {
         super();
-        if([...arguments].length > 0) this.push(...arguments);
-        registry.set(this, {});
+        registry.set(this, {
+            id: String.fillRnd(32),
+            name: ""
+        });
+        if([...arguments].length > 0) 
+        {
+            if(typeof arguments[0] == "function") return this.function(arguments[0]);
+            else this.push(...arguments);
+        }        
+        
     }
     push(){
         for(let i of [...arguments].flat(Infinity - 1)){
             if(this.parse) super.push(this.parse(i));
             else super.push(i);
         }
+    }
+    /**
+     * Gets an unique ID of this vector, generated while initializing. The value cannot be modified.
+     * @returns {String} An ID of this vector.
+     */
+    id() {
+        return getRegistryProperty(this, "id");
     }
     /**
      * Gets or sets the name of this vector. If the argument 'value' is empty, it returns the name of this vector (if set before). Otherwise the name of the vector is set and the vector itself is returned.
@@ -64,6 +79,30 @@ class Vector extends Array {
         } else {
             if(alwaysRetunSelf) return this;
             else return registry.get(this).formatter;
+        }
+    }
+    matrix(value, alwaysRetunSelf) {
+        if(value) {
+            setRegistryProperty(this, "matrix", value);
+            return this;
+        } else {
+            if(alwaysRetunSelf) return this;
+            else return registry.get(this).matrix;
+        }
+    }
+    /**
+     * @experimental This feature is not stable and not truly supported so far.
+     * @param {function} value 
+     * @param {boolean} alwaysRetunSelf 
+     * @returns Returns either the function or the vector itself.
+     */
+    function(value, alwaysRetunSelf) {
+        if(value) {
+            setRegistryProperty(this, "function", value);
+            return this;
+        } else {
+            if(alwaysRetunSelf) return this;
+            else return registry.get(this).function;
         }
     }
     /**
@@ -105,21 +144,30 @@ class Vector extends Array {
      * @returns Returns an array of the underlying values modified by the formatter meta property (if defined), otherwise returns the values as they are stored in the vector.
      */
     values() {
+        var data = [];
+        if(this.function()) {
+            if(this.matrix()) {
+                for(var i = 0; i < this.matrix().maxRows(); i++) {
+                    data.push(this.parse(this.function()(this.matrix(),i)));
+                }
+            } else data = [];
+        } else data = this;
+        
         if(this.formatter()) {
             if(typeof this.formatter() == "object") 
             {
-                return [...this].map(e => e === null ? null : this.formatter()[e] || e);
+                return data.map(e => e === null ? null : this.formatter()[e] || e);
             }
             else if(typeof this.formatter() == "function") {
                 const f = this.formatter();
-                return [...this].map(e => f(e));
+                return data.map(e => f(e));
             }
             else {
                 const f = eval(`[${this.formatter()}][0]`);
-                return [...this].map(e => f(e));
+                return data.map(e => f(e));
             }
         }
-        else return [...this];
+        else return data;
     }
     parent(value){
         if(value) {
@@ -151,11 +199,13 @@ class Vector extends Array {
      */
     serialize(stringify = false, config = {beautify: false}) {
         var obj = {
+            id: this.id(),
             values: this.raw(),
             name: this.name(),
             label: this.label(),
             type: this.type(),
-            formatter: this.formatter() ? typeof this.formatter() == "function" ? this.formatter().toString() : this.formatter() : null
+            formatter: this.formatter() ? typeof this.formatter() == "function" ? this.formatter().toString() : this.formatter() : null,
+            function: this.function() ? this.formatter().toString() : null
         };
         return stringify ? JSON.stringify(obj, null, config?.beautify ? "\t" : "") : obj;
     }
@@ -187,37 +237,6 @@ class Vector extends Array {
     
     filterByIndex(...indexes) {
         return new this.constructor(...this).filter((e,i) => [...indexes].indexOf(i) > -1).getMeta(this);
-    }
-    static deserialize(data) {
-        if(typeof data != "object") {
-            try {
-                data = JSON.parse(data);
-            } catch(e) {
-                console.error("Failed to parse the vector data.")
-                return null;
-            }
-        }
-        if([1,2,3,4].indexOf(data.type) < 0) throw new Error("Unknown vector type: " + data.type);
-        else {
-            let vector = (data.type == 1 ? new NumericVector(...data.values) : data.type == 2 ? new StringVector(...data.values) : data.type == 3 ? new BooleanVector(...data.values) : data.type == 4 ? new TimeVector(...data.values) : new Error());
-            vector = vector.name(data.name).label(data.label);
-            if(data.formatter) {
-                try {
-                    vector = vector.formatter(JSON.parse())
-                } catch (e) {
-                    try {   
-                        vector = vector.formatter(data.formatter);
-                    } catch(e) {
-                        console.error("Failed to deserialize the formatter", e);
-                    }
-                }
-            }            
-            return vector;            
-        }
-        
-    }
-    static listMethods() {
-        return models.map(m => m.name);
     }
     sample(size = 0) {
         var clone = this.clone(true);
@@ -271,6 +290,41 @@ class Vector extends Array {
         super.push(...Array(count).fill(e));
         return this;
     }
+    static deserialize(data) {
+        if(typeof data != "object") {
+            try {
+                data = JSON.parse(data);
+            } catch(e) {
+                console.error("Failed to parse the vector data.")
+                return null;
+            }
+        }
+        if([1,2,3,4].indexOf(data.type) < 0) throw new Error("Unknown vector type: " + data.type);
+        else {
+            let vector = (data.type == 1 ? new NumericVector(...data.values) : data.type == 2 ? new StringVector(...data.values) : data.type == 3 ? new BooleanVector(...data.values) : data.type == 4 ? new TimeVector(...data.values) : new Error());
+            if(data.id) setRegistryProperty(vector, "id", data.id);
+            vector = vector.name(data.name).label(data.label);
+            if(data.formatter) {
+                try {
+                    vector = vector.formatter(JSON.parse())
+                } catch (e) {
+                    try {   
+                        vector = vector.formatter(data.formatter);
+                    } catch(e) {
+                        console.error("Failed to deserialize the formatter", e);
+                    }
+                }
+            }
+            if(data.function) {
+
+            }
+            return vector;            
+        }
+        
+    }
+    static listMethods() {
+        return models.map(m => m.name);
+    }
     static register(model) {
         models.push(model);
         Vector.prototype[model.name] = function() {
@@ -278,6 +332,15 @@ class Vector extends Array {
             return M.with(...arguments).run().result;
         }
         return this
+    }    
+    static ofType(type) {     
+        return function() {
+            if(type == 1) return new NumericVector(...arguments);
+            else if(type == 2) return new StringVector(...arguments);
+            if(type == 3) return new BooleanVector(...arguments);
+            if(type == 4) return new TimeVector(...arguments);
+            else throw new Error("Unknown vector type: " + type);
+        }
     }
 }
 
@@ -299,8 +362,8 @@ const vectorParser = {
         else return null;
     },
     boolean: function(value) {
-        if(value) return true;
-        else if(value === false || value === 0 || value === "0" || value === "false") return false;
+        if(value) return 1;
+        else if(value === false || value === 0 || value === "0" || value === "false") return 0;
         else return null;
     },
     time: function(value) {
@@ -432,7 +495,7 @@ class BooleanVector extends Vector {
      * Returns a new instance of the vector with random values.
      */
     static generate(config = {}) {
-        let list = [true, false];
+        let list = [1,0];
         var total = Number(config.total) > 0 ? Number(config.total) : 100;
         var nullprob = Number(config.nullprob) > 0 ? Number(config.nullprob) > 1 ? 1 : Number(config.nullprob) : 0;
         var _new = new BooleanVector();
@@ -445,6 +508,10 @@ class BooleanVector extends Vector {
         }
         return _new;
     };
+    format(value, index, parent) {
+        if(this.formatter()) return this.format(value, index, parent);
+        else return value === 1 ? true : value === 0 ? false : null;
+    }
 }
 BooleanVector.prototype.parse = vectorParser.boolean;
 
@@ -1059,7 +1126,7 @@ const models = [
             } else
             {
                 r.mode = this.mode();
-                r.chisq = this.chigoftest();
+                r.chigoftest = this.chigoftest();
             }
             return r;
         },

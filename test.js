@@ -3,9 +3,37 @@ const { TimeVector } = require("./libs/vector");
 var st = require("./stress-test");
 var {readMatrix} = require("./ex-tools");
 
-require("./docs")({offset: 1, format: "markdown"});
+//require("./docs")({offset: 1, format: "markdown"});
+var K = _.BooleanVector.generate({list: [0, 1], nullprob: 0.1}).formatter((v,i,a) => v === 1 ? true : v === 0 ? false : null).name("B").label("Bools").values()
+debugger;
 
-var V = new _.StringVector().append("Apple", 180).append("Lime", 250).append("Cherry", 120).append("Orange", 225).append("Grape", 225).chigoftest();
+var M = readMatrix("C:/Users/Pavel/Downloads/winequality_red (1).ret");
+var S = M.serialize();
+var K = M.item("ABCDE");
+var x = new _.NumericVector().id()
+//var chi = M.analyze("chigoftest").run();
+debugger;
+return;
+
+
+var M = new _.Matrix(
+    new _.NumericVector(2,4,6,8).name("start"),
+    new _.NumericVector(1,3,5,7).name("end"),
+    new _.NumericVector(function(matrix, index) {
+        return matrix.item("start")[index] + matrix.item("end")[index];
+    }).name("gen")
+);
+console.log(M.item("gen").values());
+/*
+var T = new _.NumericVector(function(matrix, index) {
+    return matrix.item("start")[index] + matrix.item("end")[index];
+});
+*/
+debugger;
+return;
+
+var V = new _.StringVector().append("Apple", 180).append("Lime", 250).append("Cherry", 120).append("Orange", 225).append("Grape", 225);
+var inspect = V.analyze("inspect").run();
 debugger;
 return;
 var M = readMatrix("C:/Users/Pavel/Downloads/list1.ret")[4];

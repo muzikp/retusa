@@ -284,6 +284,10 @@ const lib = {
         "title": "R5AC", 
         "type": "object",
         "properties": {
+            "count": {
+                "title": "eHkc", 
+                "type": "integer"
+            },  
             "sum": {
                 "title": "gvdg", 
                 "type": "number"
@@ -326,7 +330,7 @@ const lib = {
             },
             "mode": {
                 "title": "StQx", 
-                "type": "number"
+                "type": "any"
             },
             "stdev": {
                 "title": "oUcc", 
@@ -351,6 +355,43 @@ const lib = {
             "skewness": {
                 "title": "KZgI", 
                 "type": "number"
+            },
+            kstest: {
+                "title": "DLoe", 
+                "type": "object",
+                "properties": {
+                    "T": {
+                        "title": "jBSf", 
+                        "type": "number",
+                    },
+                    "df": snippets.df,
+                    "p": snippets.sig
+                }
+            },
+            swtest: {
+                "title": "byTa", 
+                "type": "object",
+                "properties": {
+                    "W": {
+                        "title": "nZvR", 
+                        "type": "number",
+                    },
+                    "df": snippets.df,
+                    "p": snippets.sig
+                }
+            },
+            chigoftest: {
+                "title": "QIVA", 
+                "type": "object",
+                "properties": {
+                    "chi": {
+                        "title": "GfeP", 
+                        "type": "number",
+                        "format": "chisq"
+                    },
+                    "df": snippets.df,
+                    "p": snippets.sig
+                }
             }
         }
     },

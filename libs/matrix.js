@@ -7,7 +7,7 @@ let {Output} = require("./output");
 const {Array, Math, String, Function} = require("./extensions");
 const dist = require("./distribution");
 var matrixName = null
-
+const serVersion = "1.0";
 // #region MATRIX
 
 Array.prototype.matrify = function() {
@@ -41,9 +41,13 @@ class Matrix extends Array {
     push() {
         for(let a of [...arguments].filter(v => v)) {
             if(a?.isVector) {
-                super.push.call(this,a);
+                if(this.find(v => v.id() === a.id())) {
+                    console.warn(`Vector ${a.name() || a.id()} is already a member of the matrix.`);
+                } else super.push.call(this,a);
             }
-            else if(Array.isArray(a)) super.push.call(this, a.vectorify());
+            else if(Array.isArray(a)) {
+                super.push.call(this, a.vectorify());
+            }
             else {
                 throw new Error("Argument is not a vector or array.");
                 
@@ -97,14 +101,16 @@ class Matrix extends Array {
         return new Matrix(...new Array(...this).map(v => v.clone()));
     }
     /**
-     * Returns a vector according to the specified identifier. The identifier argument is extremely flexible, it can be a number (the order of the vector), text (the name of the vector), an instance of the vector, or a filter function with which the vector is searched in the matrix.
-     * @param {number | string | Vektor | function} identifier 
+     * Returns a vector according to the specified identifier. The identifier argument is extremely flexible, it can be a number (the order of the vector), text (either the name or the id of the vector), an instance of the vector, or a filter function with which the vector is searched in the matrix.
+     * @param {number | string | Vector | function} identifier 
      * @returns {Vector} Returns a Vector instance or (if not found) null.
      */
     item(identifier) {
         if(!identifier && identifier !== 0) return null;
         else if(!isNaN(identifier)) return this[Number(identifier)];
-        else if(typeof identifier == "string") return this.find(v => v.name() == identifier);
+        else if(typeof identifier == "string") return this.find(v => (v.id() == identifier || v.name() == identifier));
+        else if(identifier?.isVector) return this.find(v => v.id() === identifier.id());
+        /*
         else if(identifier?.isVector) {
             var byObject = this.find(v=> v == identifier);
             if(byObject) return byObject;
@@ -113,6 +119,7 @@ class Matrix extends Array {
                 else return null;
             }
         }
+        */
         else if(identifier.constructor?.name == "Function") return this.find(identifier);
         else return null;
     }
@@ -253,21 +260,29 @@ class Matrix extends Array {
         for(var v of this) {
             _m.vectors.push(v.serialize());
         }
-        return _m;
+        var _o = {
+            version: serVersion,
+            matrix: _m,
+            utils: {}
+        }
+        return _o;
     }
-    static deserialize(data) {
-        if(typeof data != "object") {
+    static deserialize(source) {
+        if(typeof source != "object") {
             try {
-                data = JSON.parse(data);
+                source = JSON.parse(source);
             } catch(e) {
                 console.error("Failed to parse the matrix data.")
                 return null;
             }
         }
-        matrixName = data.name;
-        var M = new Matrix();
-        data.vectors.forEach(v => M.push(Vector.deserialize(v)));
-        return M;
+        if(!source?.version) source.version = "1.0";
+        if(source.version == "1.0") {
+            var M = new Matrix().name(source.matrix.name);
+            source.matrix.vectors.forEach(v => M.push(Vector.deserialize(v)));
+            return M;
+        } else throw new Error("Unknown serialization version: " + source.version);
+        
     }
     static listMethods() {
         return MatrixMethodsModels.map(m => m.name);
@@ -666,13 +681,14 @@ const matrixMethods = {
     correlBiserial: function(){
         var x = arguments[0];
         var y = arguments[1];
-        return matrixMethods.correlPearson(new NumericVector(new Array(...x).map(v => v ? 1 : 0)).name(x.name),y);
+        //return matrixMethods.correlPearson(new NumericVector(new Array(...x).map(v => v ? 1 : 0)).name(x.name),y);
+        return matrixMethods.correlPearson(x,y);
     },
     /** https://en.wikipedia.org/wiki/Phi_coefficient */
     correlPhi: function(x,y) {
         var T = new Table(x,y).removeEmpty();
-        x = T.item(0).toNumeric().values();
-        y = T.item(1).toNumeric().values();
+        x = T.item(0).toNumeric();
+        y = T.item(1).toNumeric();
         var x1y1 = x.filter((_x,i) => _x == 1 && y[i] == 1).length;
         var x1y0 = x.filter((_x,i) => _x == 1 && y[i] == 0).length;
         var x0y1 = x.filter((_x,i) => _x == 0 && y[i] == 1).length;
