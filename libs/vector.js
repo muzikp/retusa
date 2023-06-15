@@ -557,8 +557,8 @@ class TimeVector extends Vector {
      * Returns a new instance of the vector with random values.
      */
     static generate(config = {}) {
-        var min = isNaN(config.min) ? - Number.MAX_SAFE_INTEGER : Number(config.min) < - Number.MAX_SAFE_INTEGER ? - Number.MAX_SAFE_INTEGER : Number(config.min);
-        var max = isNaN(config.max) ? Number.MAX_SAFE_INTEGER : Number(config.max) > Number.MAX_SAFE_INTEGER ? Number.MAX_SAFE_INTEGER : Number(config.max);
+        var min = isNaN(new Date(config.min).getTime()) ? new Date("1000-01-01").getTime() : new Date(config.min).getTime();
+        var max = isNaN(new Date(config.max).getTime()) ? new Date("2999-12-31").getTime() : new Date(config.max).getTime();
         var nullprob = Number(config.nullprob) > 0 ? Number(config.nullprob) > 1 ? 1 : Number(config.nullprob) : 0;
         if(max < min){
             var _min = config.min;
@@ -566,15 +566,14 @@ class TimeVector extends Vector {
             min = _max;
             max = _min
         };
-        var decimal = Number(config.decimal) > 0 ? Math.floor(config.decimal) : 0;
         var total = Number(config.total) > 0 ? Number(config.total) : 100;
-        var _new = new NumericVector();
+        var _new = new TimeVector();
         for(var i = 0; i < total; i++) {
             if(nullprob > 0) {
                 if(Math.random() <= nullprob) {
                     _new.push(null);
-                } else _new.push(Math.rndNumber(min,max,decimal));
-            } else _new.push(Math.rndNumber(min,max,decimal));
+                } else _new.push(Math.rndNumber(min,max,0));
+            } else _new.push(Math.rndNumber(min,max,0));
         }
         return _new;
     };

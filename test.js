@@ -3,8 +3,9 @@ const { TimeVector } = require("./libs/vector");
 var st = require("./stress-test");
 var {readMatrix} = require("./ex-tools");
 
-//require("./docs")({offset: 1, format: "markdown"});
-var K = _.BooleanVector.generate({list: [0, 1], nullprob: 0.1}).formatter((v,i,a) => v === 1 ? true : v === 0 ? false : null).name("B").label("Bools").values()
+require("./docs")({offset: 1, format: "markdown"});
+var K = _.TimeVector.generate({min: "2023-01-01", max: "2023-06-30", nullprob: 0.1}).name("B").label("Bools").values();
+console.log(K.type());
 debugger;
 
 var M = readMatrix("C:/Users/Pavel/Downloads/winequality_red (1).ret");
