@@ -32,11 +32,11 @@ class Matrix extends Array {
      * @param {string | empty} value Optional: name of the matrix.
      * @returns Either name or the matrix itself.
      */
-    name(value){
-        if(value) {
+    name(value, alwaysReturnSelf = false){
+        if(value !== undefined) {
             matrixName = value;
             return this;
-        } else return matrixName;
+        } else return matrixName ? matrixName : alwaysReturnSelf ? this : matrixName;
     }
     push() {
         for(let a of [...arguments].filter(v => v)) {
@@ -49,6 +49,7 @@ class Matrix extends Array {
                 super.push.call(this, a.vectorify());
             }
             else {
+                console.error(a);
                 throw new Error("Argument is not a vector or array.");
                 
             }
@@ -98,7 +99,7 @@ class Matrix extends Array {
         return pivot;
     }
     clone(flush = false) {
-        return new Matrix(...new Array(...this).map(v => v.clone()));
+        return new Matrix(...new Array(...this).map(v => v.clone())).name(this.name(), true);
     }
     /**
      * Returns a vector according to the specified identifier. The identifier argument is extremely flexible, it can be a number (the order of the vector), text (either the name or the id of the vector), an instance of the vector, or a filter function with which the vector is searched in the matrix.
@@ -123,8 +124,15 @@ class Matrix extends Array {
         else if(identifier.constructor?.name == "Function") return this.find(identifier);
         else return null;
     }
+    /* removes a single vector from the matrix */
+    remove(identifier) {
+        var index = this.indexOf(this.item(identifier));        
+        var clone = this.clone();        
+        delete clone[index];
+        return new Matrix(...clone);
+    }
     select(...identifiers) {
-        var clone = new Matrix();
+        var clone = new Matrix().name(this.name(), true);
         for(let i of identifiers) {
             var v = this.item(i);
             if(v) clone.push(v);
