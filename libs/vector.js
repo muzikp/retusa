@@ -19,7 +19,7 @@ class Vector extends Array {
     constructor() {
         super();
         registry.set(this, {
-            id: String.fillRnd(32),
+            id: String.fillRnd(16),
             name: ""
         });
         if([...arguments].length > 0) 
@@ -517,9 +517,8 @@ BooleanVector.prototype.parse = vectorParser.boolean;
 
 class TimeVector extends Vector {
     constructor(){
-        super();
-        if([...arguments].length > 0) this.push(...arguments);
-        registry.set(this, {});
+        super();        
+        if([...arguments].length > 0) this.push(...arguments);        
     }
     push(){
         for(let i of [...arguments]){

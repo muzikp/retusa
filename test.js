@@ -1,13 +1,12 @@
 var _ = require("./index");
-const { TimeVector } = require("./libs/vector");
 var st = require("./stress-test");
 var {readMatrix} = require("./ex-tools");
 
 //require("./docs")({offset: 1, format: "markdown"});
 var K = _.TimeVector.generate({min: "2023-01-01", max: "2023-06-30", nullprob: 0.1}).name("B").label("Bools");
 var T = _.NumericVector.generate({min: 1, max: 2000, nullprob: 0.1}).name("A").label("Vools");
-var M = new _.Matrix(K,T);
-M = M.remove("B");
+var M = new _.Matrix(new _.TimeVector());
+M = M.serialize();
 debugger;
 return;
 var M = readMatrix("C:/Users/Pavel/Downloads/winequality_red (1).ret");
