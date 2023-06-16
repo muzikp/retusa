@@ -125,8 +125,10 @@ class Matrix extends Array {
         else return null;
     }
     /* removes a single vector from the matrix */
-    remove(identifier) {
-        var index = this.indexOf(this.item(identifier));        
+    remove(identifier) {        
+        var id = this.item(identifier).id();        
+        console.log(id);
+        return this.filter(e => e.id() != id);
         var clone = this.clone();        
         delete clone[index];
         return new Matrix(...clone);
